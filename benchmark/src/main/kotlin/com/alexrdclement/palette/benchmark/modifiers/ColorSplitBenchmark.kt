@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.benchmark.shaders
+package com.alexrdclement.palette.benchmark.modifiers
 
 import androidx.benchmark.macro.BaselineProfileMode
 import androidx.benchmark.macro.CompilationMode
@@ -11,7 +11,7 @@ import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.alexrdclement.palette.MainCatalogPage
 import com.alexrdclement.palette.appPackageName
-import com.alexrdclement.palette.modifiers.ShadersPage
+import com.alexrdclement.palette.modifiers.ModifiersPage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,7 +21,7 @@ class ColorSplitBenchmark {
     @get:Rule
     val benchmarkRule = MacrobenchmarkRule()
 
-    lateinit var shadersPage: ShadersPage
+    lateinit var modifiersPage: ModifiersPage
 
     @Test
     fun compilationModeNone() = xyAdjustment(CompilationMode.None())
@@ -43,10 +43,10 @@ class ColorSplitBenchmark {
             pressHome()
             startActivityAndWait()
 
-            MainCatalogPage(device).navigateToShaders()
-            shadersPage = ShadersPage(device).apply { selectColorSplit() }
+            MainCatalogPage(device).navigateToModifiers()
+            modifiersPage = ModifiersPage(device).apply { selectColorSplit() }
         }
     ) {
-        shadersPage.adjustColorSplit()
+        modifiersPage.adjustColorSplit()
     }
 }

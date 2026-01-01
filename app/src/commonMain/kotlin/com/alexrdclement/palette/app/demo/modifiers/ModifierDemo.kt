@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.app.demo.shaders
+package com.alexrdclement.palette.app.demo.modifiers
 
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -48,10 +48,10 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
-fun ShaderDemo(
+fun ModifierDemo(
     modifier: Modifier = Modifier,
-    state: ShaderDemoState = rememberDemoShaderState(),
-    control: ShaderDemoControl = rememberShaderDemoControl(state = state),
+    state: ModifierDemoState = rememberDemoModifierState(),
+    control: ModifierDemoControl = rememberModifierDemoControl(state = state),
 ) {
     Demo(
         controls = control.controls,
@@ -166,12 +166,12 @@ fun ShaderDemo(
 
 
 @Composable
-fun rememberDemoShaderState(): ShaderDemoState {
-    return rememberSaveable(saver = ShaderDemoStateSaver) { ShaderDemoState() }
+fun rememberDemoModifierState(): ModifierDemoState {
+    return rememberSaveable(saver = ModifierDemoStateSaver) { ModifierDemoState() }
 }
 
 @Stable
-class ShaderDemoState(
+class ModifierDemoState(
     demoSubjectInitial: DemoSubject = DemoSubject.Circle,
     blurModifierInitial: DemoModifier.Blur = DemoModifier.Blur(
         radius = 0.dp,
@@ -242,7 +242,7 @@ private const val warpModifierInitialKey = "warpModifier"
 private const val demoModifierIndexInitialKey = "demoModifierIndex"
 private const val pointerOffsetInitialKey = "pointerOffset"
 
-val ShaderDemoStateSaver = mapSaverSafe(
+val ModifierDemoStateSaver = mapSaverSafe(
     save = { value ->
         mapOf(
             demoSubjectInitialKey to value.demoSubject,
@@ -273,7 +273,7 @@ val ShaderDemoStateSaver = mapSaverSafe(
         )
     },
     restore = { map ->
-        ShaderDemoState(
+        ModifierDemoState(
             demoSubjectInitial = map[demoSubjectInitialKey] as DemoSubject,
             blurModifierInitial = restore(
                 value = map[blurModifierInitialKey],
@@ -306,15 +306,15 @@ val ShaderDemoStateSaver = mapSaverSafe(
 )
 
 @Composable
-fun rememberShaderDemoControl(
-    state: ShaderDemoState = rememberDemoShaderState(),
-): ShaderDemoControl {
-    return remember(state) { ShaderDemoControl(state) }
+fun rememberModifierDemoControl(
+    state: ModifierDemoState = rememberDemoModifierState(),
+): ModifierDemoControl {
+    return remember(state) { ModifierDemoControl(state) }
 }
 
 @Stable
-class ShaderDemoControl(
-    val state: ShaderDemoState,
+class ModifierDemoControl(
+    val state: ModifierDemoState,
 ) {
     val subjectControl = enumControl(
         name = "Subject",

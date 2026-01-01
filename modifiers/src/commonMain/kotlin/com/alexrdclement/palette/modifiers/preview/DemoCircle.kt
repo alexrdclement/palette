@@ -25,7 +25,7 @@ fun DemoCircle(
     }
 }
 
-@ShaderPreview
+@ModifierPreview
 @Composable
 private fun Preview() {
     DemoCircle()

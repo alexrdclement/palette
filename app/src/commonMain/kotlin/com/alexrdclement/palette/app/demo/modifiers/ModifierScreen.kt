@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.app.demo.shaders
+package com.alexrdclement.palette.app.demo.modifiers
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,20 +10,20 @@ import com.alexrdclement.palette.components.layout.Scaffold
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun ShaderScreen(
+fun ModifierScreen(
     onNavigateBack: () -> Unit,
     onConfigureClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
-                title = "Shaders",
+                title = "Modifiers",
                 onNavigateBack = onNavigateBack,
                 onConfigureClick = onConfigureClick,
             )
         },
     ) { innerPadding ->
-        ShaderDemo(
+        ModifierDemo(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
@@ -35,7 +35,7 @@ fun ShaderScreen(
 @Composable
 private fun Preview() {
     PalettePreview {
-        ShaderScreen(
+        ModifierScreen(
             onNavigateBack = {},
             onConfigureClick = {},
         )

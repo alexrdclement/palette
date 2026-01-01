@@ -50,7 +50,7 @@ fun DemoGrid(
     }
 }
 
-@ShaderPreview
+@ModifierPreview
 @Composable
 private fun Preview() {
     DemoGrid()

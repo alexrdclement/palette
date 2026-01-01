@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RenderEffect
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.modifiers.preview.DemoCircle
-import com.alexrdclement.palette.modifiers.preview.ShaderPreview
+import com.alexrdclement.palette.modifiers.preview.ModifierPreview
 import org.intellij.lang.annotations.Language
 
 // Inspired by Rikin Marfatia's Grainy Gradients https://www.youtube.com/watch?v=soMl3k0mBx4
@@ -96,7 +96,7 @@ class NoiseShaderImpl(
     }
 }
 
-@ShaderPreview
+@ModifierPreview
 @Composable
 private fun Preview() {
     val range = 0f..1f

@@ -58,7 +58,7 @@ fun <T : CatalogItem> Catalog(
 private enum class MainCatalogItem : CatalogItem {
     Components,
     Experiments,
-    Shaders,
+    Modifiers,
     ;
 
     override val title = this.name

@@ -7,8 +7,8 @@ plugins {
 
 kotlin {
     libraryTargets(
-        androidNamespace = "com.alexrdclement.palette.shaders",
-        iosFrameworkBaseName = "Shaders",
+        androidNamespace = "com.alexrdclement.palette.modifiers",
+        iosFrameworkBaseName = "Modifiers",
     )
 
     sourceSets {

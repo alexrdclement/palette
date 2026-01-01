@@ -5,8 +5,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.alexrdclement.palette.MainCatalogPage
 import com.alexrdclement.palette.appPackageName
-import com.alexrdclement.palette.modifiers.ShadersPage
-import com.alexrdclement.palette.shadersPackageName
+import com.alexrdclement.palette.modifiers.ModifiersPage
+import com.alexrdclement.palette.modifierPackageName
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,30 +23,30 @@ class BaselineProfileGenerator {
     fun generateShadersProfile() {
         rule.collect(
             packageName = appPackageName,
-            filterPredicate = { packageFilterPredicate(shadersPackageName, it) },
+            filterPredicate = { packageFilterPredicate(modifierPackageName, it) },
         ) {
             pressHome()
             startActivityAndWait()
 
-            MainCatalogPage(device).navigateToShaders()
-            val shadersPage = ShadersPage(device)
+            MainCatalogPage(device).navigateToModifiers()
+            val modifiersPage = ModifiersPage(device)
 
-            shadersPage.selectColorInvert()
-            shadersPage.adjustColorInvert()
+            modifiersPage.selectColorInvert()
+            modifiersPage.adjustColorInvert()
 
-            shadersPage.selectColorSplit()
-            shadersPage.adjustColorSplit()
+            modifiersPage.selectColorSplit()
+            modifiersPage.adjustColorSplit()
 
-            shadersPage.selectNoise()
-            shadersPage.adjustNoise()
+            modifiersPage.selectNoise()
+            modifiersPage.adjustNoise()
 
-            shadersPage.selectPixelate()
-            shadersPage.adjustPixelate()
+            modifiersPage.selectPixelate()
+            modifiersPage.adjustPixelate()
 
-            shadersPage.selectGridLineSubject()
+            modifiersPage.selectGridLineSubject()
 
-            shadersPage.selectWarp()
-            shadersPage.adjustWarp()
+            modifiersPage.selectWarp()
+            modifiersPage.adjustWarp()
         }
     }
 

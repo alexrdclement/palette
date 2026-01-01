@@ -14,8 +14,8 @@ import com.alexrdclement.palette.app.demo.components.componentsGraph
 import com.alexrdclement.palette.app.demo.components.navigateToComponents
 import com.alexrdclement.palette.app.demo.experiments.navigation.experimentsGraph
 import com.alexrdclement.palette.app.demo.experiments.navigation.navigateToExperiments
-import com.alexrdclement.palette.app.demo.shaders.navigation.navigateToShaders
-import com.alexrdclement.palette.app.demo.shaders.navigation.shadersScreen
+import com.alexrdclement.palette.app.demo.modifiers.navigation.navigateToModifiers
+import com.alexrdclement.palette.app.demo.modifiers.navigation.modifierScreen
 import com.alexrdclement.palette.app.theme.navigation.navigateToTheme
 import com.alexrdclement.palette.app.theme.navigation.themeGraph
 import com.alexrdclement.palette.theme.control.ThemeController
@@ -35,7 +35,7 @@ fun PaletteNavHost(
                 when (item) {
                     MainCatalogItem.Components -> navController.navigateToComponents()
                     MainCatalogItem.Experiments -> navController.navigateToExperiments()
-                    MainCatalogItem.Shaders -> navController.navigateToShaders()
+                    MainCatalogItem.Modifiers -> navController.navigateToModifiers()
                 }
             },
             onConfigureClick = navController::navigateToConfiguration,
@@ -52,7 +52,7 @@ fun PaletteNavHost(
             navController = navController,
             onConfigureClick = navController::navigateToConfiguration,
         )
-        shadersScreen(
+        modifierScreen(
             navController = navController,
             onConfigureClick = navController::navigateToConfiguration,
         )

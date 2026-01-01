@@ -10,7 +10,7 @@ class MainCatalogPage(
         device.waitAndFindObject(By.text("Components")).click()
     }
 
-    fun navigateToShaders() {
-        device.waitAndFindObject(By.text("Shaders")).click()
+    fun navigateToModifiers() {
+        device.waitAndFindObject(By.text("Modifiers")).click()
     }
 }

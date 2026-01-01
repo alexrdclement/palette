@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RenderEffect
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.modifiers.preview.DemoCircle
-import com.alexrdclement.palette.modifiers.preview.ShaderPreview
+import com.alexrdclement.palette.modifiers.preview.ModifierPreview
 import org.intellij.lang.annotations.Language
 
 private const val UniformShaderName = "composable"
@@ -50,7 +50,7 @@ class ColorInvertShaderImpl(
     }
 }
 
-@ShaderPreview
+@ModifierPreview
 @Composable
 private fun Preview() {
     val range = 0f..1f

@@ -1,14 +1,14 @@
-package com.alexrdclement.palette.app.demo.shaders
+package com.alexrdclement.palette.app.demo.modifiers
 
 import androidx.compose.ui.draw.BlurredEdgeTreatment
 import androidx.compose.ui.unit.Dp
-import com.alexrdclement.palette.app.demo.shaders.DemoModifier.Blur
-import com.alexrdclement.palette.app.demo.shaders.DemoModifier.ColorInvert
-import com.alexrdclement.palette.app.demo.shaders.DemoModifier.ColorSplit
-import com.alexrdclement.palette.app.demo.shaders.DemoModifier.Noise
-import com.alexrdclement.palette.app.demo.shaders.DemoModifier.None
-import com.alexrdclement.palette.app.demo.shaders.DemoModifier.Pixelate
-import com.alexrdclement.palette.app.demo.shaders.DemoModifier.Warp
+import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.Blur
+import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.ColorInvert
+import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.ColorSplit
+import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.Noise
+import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.None
+import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.Pixelate
+import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.Warp
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.modifiers.ColorSplitMode
 import com.alexrdclement.palette.modifiers.NoiseColorMode

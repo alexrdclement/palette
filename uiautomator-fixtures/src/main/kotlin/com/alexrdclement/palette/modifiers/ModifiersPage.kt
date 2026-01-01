@@ -5,7 +5,7 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import com.alexrdclement.palette.waitAndFindObject
 
-class ShadersPage(
+class ModifiersPage(
     private val device: UiDevice,
 ) {
 

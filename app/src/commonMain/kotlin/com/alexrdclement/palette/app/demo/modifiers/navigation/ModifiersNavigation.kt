@@ -1,31 +1,31 @@
-package com.alexrdclement.palette.app.demo.shaders.navigation
+package com.alexrdclement.palette.app.demo.modifiers.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.alexrdclement.palette.app.demo.popBackStackIfResumed
-import com.alexrdclement.palette.app.demo.shaders.ShaderScreen
+import com.alexrdclement.palette.app.demo.modifiers.ModifierScreen
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName("shaders")
-object ShadersRoute
+@SerialName("modifiers")
+object ModifiersRoute
 
-fun NavGraphBuilder.shadersScreen(
+fun NavGraphBuilder.modifierScreen(
     navController: NavController,
     onConfigureClick: () -> Unit,
 ) {
-    composable<ShadersRoute> {
-        ShaderScreen(
+    composable<ModifiersRoute> {
+        ModifierScreen(
             onNavigateBack = navController::popBackStackIfResumed,
             onConfigureClick = onConfigureClick,
         )
     }
 }
 
-fun NavController.navigateToShaders() {
-    this.navigate(ShadersRoute) {
+fun NavController.navigateToModifiers() {
+    this.navigate(ModifiersRoute) {
         launchSingleTop = true
     }
 }

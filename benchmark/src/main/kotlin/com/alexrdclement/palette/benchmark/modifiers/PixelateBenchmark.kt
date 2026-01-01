@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.benchmark.shaders
+package com.alexrdclement.palette.benchmark.modifiers
 
 import androidx.benchmark.macro.BaselineProfileMode
 import androidx.benchmark.macro.CompilationMode
@@ -11,17 +11,17 @@ import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.alexrdclement.palette.MainCatalogPage
 import com.alexrdclement.palette.appPackageName
-import com.alexrdclement.palette.modifiers.ShadersPage
+import com.alexrdclement.palette.modifiers.ModifiersPage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class NoiseBenchmark {
+class PixelateBenchmark {
     @get:Rule
     val benchmarkRule = MacrobenchmarkRule()
 
-    lateinit var shadersPage: ShadersPage
+    lateinit var modifiersPage: ModifiersPage
 
     @Test
     fun compilationModeNone() = amountAdjustment(CompilationMode.None())
@@ -35,7 +35,7 @@ class NoiseBenchmark {
         packageName = appPackageName,
         metrics = listOf(
             FrameTimingMetric(),
-            TraceSectionMetric("noise", Mode.Sum),
+            TraceSectionMetric("pixelate", Mode.Sum),
         ),
         iterations = 5,
         startupMode = StartupMode.WARM,
@@ -44,10 +44,10 @@ class NoiseBenchmark {
             pressHome()
             startActivityAndWait()
 
-            MainCatalogPage(device).navigateToShaders()
-            shadersPage = ShadersPage(device).apply { selectNoise() }
+            MainCatalogPage(device).navigateToModifiers()
+            modifiersPage = ModifiersPage(device).apply { selectPixelate() }
         }
     ) {
-        shadersPage.adjustNoise()
+        modifiersPage.adjustPixelate()
     }
 }

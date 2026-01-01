@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.modifiers.preview.DemoCircle
-import com.alexrdclement.palette.modifiers.preview.ShaderPreview
+import com.alexrdclement.palette.modifiers.preview.ModifierPreview
 import org.intellij.lang.annotations.Language
 
 private const val UniformShaderName = "composable"
@@ -90,7 +90,7 @@ class WarpShaderImpl(
     }
 }
 
-@ShaderPreview
+@ModifierPreview
 @Composable
 private fun Preview() {
     val amountRange = 0f..1f
