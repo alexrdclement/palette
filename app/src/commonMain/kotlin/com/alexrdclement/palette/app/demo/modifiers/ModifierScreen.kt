@@ -12,14 +12,14 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 fun ModifierScreen(
     onNavigateBack: () -> Unit,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
                 title = "Modifiers",
                 onNavigateBack = onNavigateBack,
-                onConfigureClick = onConfigureClick,
+                onThemeClick = onThemeClick,
             )
         },
     ) { innerPadding ->
@@ -37,7 +37,7 @@ private fun Preview() {
     PalettePreview {
         ModifierScreen(
             onNavigateBack = {},
-            onConfigureClick = {},
+            onThemeClick = {},
         )
     }
 }

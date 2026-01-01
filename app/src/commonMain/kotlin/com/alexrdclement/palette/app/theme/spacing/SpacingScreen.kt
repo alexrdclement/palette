@@ -44,7 +44,7 @@ fun SpacingScreen(
             DemoTopBar(
                 title = "Spacing",
                 onNavigateBack = onNavigateBack,
-                onConfigureClick = {},
+                onThemeClick = {},
                 actions = {},
             )
         },

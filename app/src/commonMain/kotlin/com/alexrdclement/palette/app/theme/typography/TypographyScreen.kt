@@ -61,7 +61,7 @@ fun TypographyScreen(
             DemoTopBar(
                 title = "Typography",
                 onNavigateBack = onNavigateBack,
-                onConfigureClick = {},
+                onThemeClick = {},
                 actions = {},
             )
         },

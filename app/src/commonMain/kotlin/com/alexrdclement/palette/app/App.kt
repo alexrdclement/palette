@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.alexrdclement.palette.app.configuration.rememberConfigurationController
 import com.alexrdclement.palette.app.navigation.PaletteNavHost
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.theme.PaletteTheme
@@ -15,7 +14,6 @@ fun App(
     onNavHostReady: suspend (NavController) -> Unit = {}
 ) {
     val navController = rememberNavController()
-    val configurationController = rememberConfigurationController()
     val themeController = rememberThemeController()
 
     LaunchedEffect(navController) {
@@ -35,7 +33,6 @@ fun App(
         Surface {
             PaletteNavHost(
                 navController = navController,
-                configurationController = configurationController,
                 themeController = themeController,
             )
         }

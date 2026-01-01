@@ -43,7 +43,7 @@ fun IndicationScreen(
             DemoTopBar(
                 title = "Indication",
                 onNavigateBack = onNavigateBack,
-                onConfigureClick = {},
+                onThemeClick = {},
                 actions = {},
             )
         },

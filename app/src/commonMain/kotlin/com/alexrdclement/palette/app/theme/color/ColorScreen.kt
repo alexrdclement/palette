@@ -59,7 +59,7 @@ fun ColorScreen(
             DemoTopBar(
                 title = "Color",
                 onNavigateBack = onNavigateBack,
-                onConfigureClick = {},
+                onThemeClick = {},
                 actions = {},
             )
         },

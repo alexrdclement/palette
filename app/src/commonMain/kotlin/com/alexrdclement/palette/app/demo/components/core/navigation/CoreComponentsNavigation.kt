@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.alexrdclement.palette.app.catalog.CatalogScreen
-import com.alexrdclement.palette.app.configuration.ConfigureButton
+import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.demo.popBackStackIfResumed
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -19,7 +19,7 @@ object CoreComponentCatalogRoute
 
 fun NavGraphBuilder.coreComponentsGraph(
     navController: NavController,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     navigation<CoreComponentsGraphRoute>(
         startDestination = CoreComponentCatalogRoute,
@@ -27,11 +27,11 @@ fun NavGraphBuilder.coreComponentsGraph(
         coreComponentCatalogScreen(
             onItemClick = navController::navigateToComponent,
             onNavigateBack = navController::popBackStackIfResumed,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         coreComponentScreen(
             onNavigateBack = navController::popBackStackIfResumed,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
     }
 }
@@ -45,7 +45,7 @@ fun NavController.navigateToCoreComponents() {
 private fun NavGraphBuilder.coreComponentCatalogScreen(
     onItemClick: (CoreComponent) -> Unit,
     onNavigateBack: () -> Unit,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     composable<CoreComponentCatalogRoute> {
         CatalogScreen(
@@ -54,7 +54,7 @@ private fun NavGraphBuilder.coreComponentCatalogScreen(
             title = "Core",
             onNavigateBack = onNavigateBack,
             actions = {
-                ConfigureButton(onClick = onConfigureClick)
+                ThemeButton(onClick = onThemeClick)
             },
         )
     }

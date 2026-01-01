@@ -11,14 +11,14 @@ import com.alexrdclement.palette.components.layout.Scaffold
 fun GeometryComponentScreen(
     component: GeometryComponent,
     onNavigateBack: () -> Unit,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
                 title = component.title,
                 onNavigateBack = onNavigateBack,
-                onConfigureClick = onConfigureClick,
+                onThemeClick = onThemeClick,
             )
         },
     ) { innerPadding ->

@@ -49,7 +49,7 @@ fun ShapeScreen(
             DemoTopBar(
                 title = "Shape",
                 onNavigateBack = onNavigateBack,
-                onConfigureClick = {},
+                onThemeClick = {},
                 actions = {},
             )
         },

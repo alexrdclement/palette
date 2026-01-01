@@ -7,20 +7,16 @@ import androidx.navigation.compose.rememberNavController
 import com.alexrdclement.palette.app.catalog.MainCatalogItem
 import com.alexrdclement.palette.app.catalog.navigation.CatalogRoute
 import com.alexrdclement.palette.app.catalog.navigation.mainCatalogScreen
-import com.alexrdclement.palette.app.configuration.ConfigurationController
-import com.alexrdclement.palette.app.configuration.navigation.configurationGraph
-import com.alexrdclement.palette.app.configuration.navigation.navigateToConfiguration
 import com.alexrdclement.palette.app.demo.components.componentsGraph
 import com.alexrdclement.palette.app.demo.components.navigateToComponents
-import com.alexrdclement.palette.app.demo.modifiers.navigation.navigateToModifiers
 import com.alexrdclement.palette.app.demo.modifiers.navigation.modifierScreen
+import com.alexrdclement.palette.app.demo.modifiers.navigation.navigateToModifiers
 import com.alexrdclement.palette.app.theme.navigation.navigateToTheme
 import com.alexrdclement.palette.app.theme.navigation.themeGraph
 import com.alexrdclement.palette.theme.control.ThemeController
 
 @Composable
 fun PaletteNavHost(
-    configurationController: ConfigurationController,
     themeController: ThemeController,
     navController: NavHostController = rememberNavController()
 ) {
@@ -35,19 +31,15 @@ fun PaletteNavHost(
                     MainCatalogItem.Modifiers -> navController.navigateToModifiers()
                 }
             },
-            onConfigureClick = navController::navigateToConfiguration,
-        )
-        configurationGraph(
-            configurationController = configurationController,
-            onConfigureThemeClick = navController::navigateToTheme,
+            onThemeClick = navController::navigateToTheme,
         )
         componentsGraph(
             navController = navController,
-            onConfigureClick = navController::navigateToConfiguration,
+            onThemeClick = navController::navigateToTheme,
         )
         modifierScreen(
             navController = navController,
-            onConfigureClick = navController::navigateToConfiguration,
+            onThemeClick = navController::navigateToTheme,
         )
         themeGraph(
             navController = navController,

@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.alexrdclement.palette.app.catalog.CatalogScreen
-import com.alexrdclement.palette.app.configuration.ConfigureButton
+import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.demo.components.auth.navigation.authComponentsGraph
 import com.alexrdclement.palette.app.demo.components.auth.navigation.navigateToAuthComponents
 import com.alexrdclement.palette.app.demo.components.color.navigation.colorComponentsGraph
@@ -33,7 +33,7 @@ object ComponentCatalogRoute
 
 fun NavGraphBuilder.componentsGraph(
     navController: NavController,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     navigation<ComponentsGraphRoute>(
         startDestination = ComponentCatalogRoute,
@@ -51,35 +51,35 @@ fun NavGraphBuilder.componentsGraph(
                 }
             },
             onNavigateBack = navController::popBackStackIfResumed,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         authComponentsGraph(
             navController = navController,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         colorComponentsGraph(
             navController = navController,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         coreComponentsGraph(
             navController = navController,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         dateTimeComponentsGraph(
             navController = navController,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         geometryComponentsGraph(
             navController = navController,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         mediaComponentsGraph(
             navController = navController,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         moneyComponentsGraph(
             navController = navController,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
     }
 }
@@ -93,7 +93,7 @@ fun NavController.navigateToComponents() {
 private fun NavGraphBuilder.componentCatalogScreen(
     onItemClick: (ComponentCategory) -> Unit,
     onNavigateBack: () -> Unit,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     composable<ComponentCatalogRoute> {
         CatalogScreen(
@@ -102,7 +102,7 @@ private fun NavGraphBuilder.componentCatalogScreen(
             title = "Components",
             onNavigateBack = onNavigateBack,
             actions = {
-                ConfigureButton(onClick = onConfigureClick)
+                ThemeButton(onClick = onThemeClick)
             },
         )
     }

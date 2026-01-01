@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.alexrdclement.palette.app.catalog.CatalogScreen
-import com.alexrdclement.palette.app.configuration.ConfigureButton
+import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.demo.popBackStackIfResumed
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -19,7 +19,7 @@ object MediaComponentCatalogRoute
 
 fun NavGraphBuilder.mediaComponentsGraph(
     navController: NavController,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     navigation<MediaComponentsGraphRoute>(
         startDestination = MediaComponentCatalogRoute,
@@ -27,11 +27,11 @@ fun NavGraphBuilder.mediaComponentsGraph(
         mediaComponentCatalogScreen(
             onItemClick = navController::navigateToComponent,
             onNavigateBack = navController::popBackStackIfResumed,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         mediaComponentScreen(
             onNavigateBack = navController::popBackStackIfResumed,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
     }
 }
@@ -45,7 +45,7 @@ fun NavController.navigateToMediaComponents() {
 private fun NavGraphBuilder.mediaComponentCatalogScreen(
     onItemClick: (MediaComponent) -> Unit,
     onNavigateBack: () -> Unit,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     composable<MediaComponentCatalogRoute> {
         CatalogScreen(
@@ -54,7 +54,7 @@ private fun NavGraphBuilder.mediaComponentCatalogScreen(
             title = "Media",
             onNavigateBack = onNavigateBack,
             actions = {
-                ConfigureButton(onClick = onConfigureClick)
+                ThemeButton(onClick = onThemeClick)
             },
         )
     }

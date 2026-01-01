@@ -11,14 +11,14 @@ import com.alexrdclement.palette.components.layout.Scaffold
 fun MoneyComponentScreen(
     component: MoneyComponent,
     onNavigateBack: () -> Unit,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
                 title = component.title,
                 onNavigateBack = onNavigateBack,
-                onConfigureClick = onConfigureClick,
+                onThemeClick = onThemeClick,
             )
         },
     ) { innerPadding ->

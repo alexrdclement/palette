@@ -56,7 +56,7 @@ fun ButtonStyleScreen(
             DemoTopBar(
                 title = "Button style",
                 onNavigateBack = onNavigateBack,
-                onConfigureClick = {},
+                onThemeClick = {},
                 actions = {},
             )
         },

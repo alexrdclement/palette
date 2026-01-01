@@ -11,11 +11,6 @@ kotlin {
     )
 
     sourceSets {
-        androidMain {
-            dependencies {
-                implementation(libs.androidx.activity.compose)
-            }
-        }
         commonMain.dependencies {
             implementation(compose.foundation)
             implementation(compose.ui)
@@ -31,16 +26,6 @@ kotlin {
             implementation(projects.components)
             implementation(projects.modifiers)
             implementation(projects.theme)
-        }
-        jvmMain {
-            dependencies {
-                implementation(compose.desktop.common)
-            }
-        }
-        nativeMain {
-            dependencies {
-                implementation(compose.foundation)
-            }
         }
     }
 }

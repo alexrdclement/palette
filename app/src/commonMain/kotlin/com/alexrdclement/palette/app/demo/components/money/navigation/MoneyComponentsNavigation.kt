@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.alexrdclement.palette.app.catalog.CatalogScreen
-import com.alexrdclement.palette.app.configuration.ConfigureButton
+import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.demo.popBackStackIfResumed
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -20,7 +20,7 @@ object MoneyComponentCatalogRoute
 
 fun NavGraphBuilder.moneyComponentsGraph(
     navController: NavController,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     navigation<MoneyComponentsGraphRoute>(
         startDestination = MoneyComponentCatalogRoute,
@@ -28,11 +28,11 @@ fun NavGraphBuilder.moneyComponentsGraph(
         moneyComponentCatalogScreen(
             onItemClick = navController::navigateToMoneyComponent,
             onNavigateBack = navController::popBackStackIfResumed,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         moneyComponentScreen(
             onNavigateBack = navController::popBackStackIfResumed,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
     }
 }
@@ -46,7 +46,7 @@ fun NavController.navigateToMoneyComponents() {
 private fun NavGraphBuilder.moneyComponentCatalogScreen(
     onItemClick: (MoneyComponent) -> Unit,
     onNavigateBack: () -> Unit,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     composable<MoneyComponentCatalogRoute> {
         CatalogScreen(
@@ -55,7 +55,7 @@ private fun NavGraphBuilder.moneyComponentCatalogScreen(
             title = "Money",
             onNavigateBack = onNavigateBack,
             actions = {
-                ConfigureButton(onClick = onConfigureClick)
+                ThemeButton(onClick = onThemeClick)
             },
         )
     }

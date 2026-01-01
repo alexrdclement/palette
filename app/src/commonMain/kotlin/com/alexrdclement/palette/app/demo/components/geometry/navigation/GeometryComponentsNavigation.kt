@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.alexrdclement.palette.app.catalog.CatalogScreen
-import com.alexrdclement.palette.app.configuration.ConfigureButton
+import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.demo.popBackStackIfResumed
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -19,7 +19,7 @@ object GeometryComponentCatalogRoute
 
 fun NavGraphBuilder.geometryComponentsGraph(
     navController: NavController,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     navigation<GeometryComponentsGraphRoute>(
         startDestination = GeometryComponentCatalogRoute,
@@ -27,11 +27,11 @@ fun NavGraphBuilder.geometryComponentsGraph(
         geometryComponentCatalogScreen(
             onItemClick = navController::navigateToComponent,
             onNavigateBack = navController::popBackStackIfResumed,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
         geometryComponentScreen(
             onNavigateBack = navController::popBackStackIfResumed,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
     }
 }
@@ -45,7 +45,7 @@ fun NavController.navigateToGeometryComponents() {
 private fun NavGraphBuilder.geometryComponentCatalogScreen(
     onItemClick: (GeometryComponent) -> Unit,
     onNavigateBack: () -> Unit,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     composable<GeometryComponentCatalogRoute> {
         CatalogScreen(
@@ -54,7 +54,7 @@ private fun NavGraphBuilder.geometryComponentCatalogScreen(
             title = "Geometry",
             onNavigateBack = onNavigateBack,
             actions = {
-                ConfigureButton(onClick = onConfigureClick)
+                ThemeButton(onClick = onThemeClick)
             },
         )
     }

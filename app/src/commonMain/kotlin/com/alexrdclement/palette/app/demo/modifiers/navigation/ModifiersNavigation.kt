@@ -14,12 +14,12 @@ object ModifiersRoute
 
 fun NavGraphBuilder.modifierScreen(
     navController: NavController,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     composable<ModifiersRoute> {
         ModifierScreen(
             onNavigateBack = navController::popBackStackIfResumed,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
     }
 }

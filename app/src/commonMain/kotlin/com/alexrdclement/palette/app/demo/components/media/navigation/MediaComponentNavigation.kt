@@ -17,7 +17,7 @@ data class ComponentRoute(
 
 fun NavGraphBuilder.mediaComponentScreen(
     onNavigateBack: () -> Unit,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
 ) {
     composable<ComponentRoute> { backStackEntry ->
         val componentRoute: ComponentRoute = backStackEntry.toRoute()
@@ -25,7 +25,7 @@ fun NavGraphBuilder.mediaComponentScreen(
         MediaComponentScreen(
             component = component,
             onNavigateBack = onNavigateBack,
-            onConfigureClick = onConfigureClick,
+            onThemeClick = onThemeClick,
         )
     }
 }

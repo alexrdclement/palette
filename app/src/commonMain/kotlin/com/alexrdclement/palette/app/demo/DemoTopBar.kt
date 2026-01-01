@@ -3,7 +3,7 @@ package com.alexrdclement.palette.app.demo
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.alexrdclement.palette.app.configuration.ConfigureButton
+import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.TopBar
 import com.alexrdclement.palette.components.navigation.BackNavigationButton
@@ -13,12 +13,12 @@ import com.alexrdclement.palette.theme.PaletteTheme
 fun DemoTopBar(
     title: String,
     onNavigateBack: () -> Unit,
-    onConfigureClick: () -> Unit,
+    onThemeClick: () -> Unit,
     navButton: @Composable () -> Unit = {
         BackNavigationButton(onNavigateBack)
     },
     actions: @Composable () -> Unit = {
-        ConfigureButton(onClick = onConfigureClick)
+        ThemeButton(onClick = onThemeClick)
     }
 ) {
     TopBar(
