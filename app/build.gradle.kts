@@ -25,7 +25,6 @@ kotlin {
             implementation(libs.kotlinx.collections.immutable)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.navigation.compose)
-            implementation(libs.logger.impl)
             implementation(libs.trace)
             implementation(libs.uievent)
 
