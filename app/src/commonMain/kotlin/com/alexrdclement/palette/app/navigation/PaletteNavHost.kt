@@ -21,7 +21,7 @@ import com.alexrdclement.palette.app.theme.navigation.themeGraph
 import com.alexrdclement.palette.theme.control.ThemeController
 
 @Composable
-fun paletteNavHost(
+fun PaletteNavHost(
     configurationController: ConfigurationController,
     themeController: ThemeController,
     navController: NavHostController = rememberNavController()
