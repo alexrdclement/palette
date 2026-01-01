@@ -1,13 +1,5 @@
 Palette is a [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform) component, modifier, and theme library.
 
-## Catalog App
-
-The catalog app is available on Android, iOS, desktop, and [web](https://alexrdclement.github.io/palette).
-
-![app demo](docs/assets/app-demo-dark.gif)
-
-[Source](app/src/commonMain/kotlin/com/alexrdclement/palette/app)
-
 ## Components
 
 [Source](components/src)
@@ -67,6 +59,14 @@ Warp pixels towards or away from a radius.
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ![Warp - 0%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridWhite[amount=0.0].png?raw=true>) | ![Warp - 20%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridWhite[amount=0.2].png?raw=true>) | ![Warp - 50%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridWhite[amount=0.5].png?raw=true>) | ![Warp - 100%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridWhite[amount=1.0].png?raw=true>) |
 | ![Warp - 0%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridBlack[amount=0.0].png?raw=true>) | ![Warp - 20%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridBlack[amount=0.2].png?raw=true>) | ![Warp - 50%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridBlack[amount=0.5].png?raw=true>) | ![Warp - 100%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridBlack[amount=1.0].png?raw=true>) |
+
+## Catalog App
+
+The catalog app is available on Android, iOS, desktop, and [web](https://alexrdclement.github.io/palette).
+
+![app demo](docs/assets/app-demo-dark.gif)
+
+[Source](app/src/commonMain/kotlin/com/alexrdclement/palette/app)
 
 ## Screenshot Tests
 
