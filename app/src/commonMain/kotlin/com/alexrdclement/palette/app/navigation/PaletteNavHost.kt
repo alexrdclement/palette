@@ -12,8 +12,6 @@ import com.alexrdclement.palette.app.configuration.navigation.configurationGraph
 import com.alexrdclement.palette.app.configuration.navigation.navigateToConfiguration
 import com.alexrdclement.palette.app.demo.components.componentsGraph
 import com.alexrdclement.palette.app.demo.components.navigateToComponents
-import com.alexrdclement.palette.app.demo.experiments.navigation.experimentsGraph
-import com.alexrdclement.palette.app.demo.experiments.navigation.navigateToExperiments
 import com.alexrdclement.palette.app.demo.modifiers.navigation.navigateToModifiers
 import com.alexrdclement.palette.app.demo.modifiers.navigation.modifierScreen
 import com.alexrdclement.palette.app.theme.navigation.navigateToTheme
@@ -34,7 +32,6 @@ fun PaletteNavHost(
             onItemClick = { item ->
                 when (item) {
                     MainCatalogItem.Components -> navController.navigateToComponents()
-                    MainCatalogItem.Experiments -> navController.navigateToExperiments()
                     MainCatalogItem.Modifiers -> navController.navigateToModifiers()
                 }
             },
@@ -45,10 +42,6 @@ fun PaletteNavHost(
             onConfigureThemeClick = navController::navigateToTheme,
         )
         componentsGraph(
-            navController = navController,
-            onConfigureClick = navController::navigateToConfiguration,
-        )
-        experimentsGraph(
             navController = navController,
             onConfigureClick = navController::navigateToConfiguration,
         )

@@ -57,7 +57,6 @@ fun <T : CatalogItem> Catalog(
 
 private enum class MainCatalogItem : CatalogItem {
     Components,
-    Experiments,
     Modifiers,
     ;
 
