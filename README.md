@@ -2,7 +2,7 @@ Palette is a [Compose Multiplatform](https://www.jetbrains.com/compose-multiplat
 
 ## Catalog App
 
-The catalog app is available for Android, iOS, desktop, and [web](https://alexrdclement.github.io/palette).
+The catalog app is available on Android, iOS, desktop, and [web](https://alexrdclement.github.io/palette).
 
 ![app demo](docs/assets/app-demo-dark.gif)
 
