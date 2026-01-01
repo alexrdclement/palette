@@ -1,5 +1,6 @@
 name: "Publish"
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["Test"]
     types:
@@ -11,8 +12,8 @@ jobs:
   publish:
     name: "Publish"
 
-    # Only run if the test workflow succeeded
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # Only run if the test workflow succeeded (for workflow_run) or if manually triggered
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
 
     runs-on: macos-15
     timeout-minutes: 30
