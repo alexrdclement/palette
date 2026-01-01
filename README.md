@@ -1,10 +1,12 @@
-Palette is a [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform) theme library. It contains sets of UI components/modifiers/etc. and a catalog app to demonstrate them on Android, iOS, desktop, and web.
+Palette is a [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform) component, modifier, and theme library.
 
 ## Catalog App
 
-![Media Control Sheet demo](docs/assets/app-demo-dark.gif)
+The catalog app is available for Android, iOS, desktop, and [web](https://alexrdclement.github.io/palette).
 
-[Source](app/src)
+![app demo](docs/assets/app-demo-dark.gif)
+
+[Source](app/src/commonMain/kotlin/com/alexrdclement/palette/app)
 
 ## Components
 
@@ -22,7 +24,7 @@ Media Control Sheet is an interactive component that shows simple media informat
 | -- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ---- |
 | ![Media Control Bar - 0%](https://raw.githubusercontent.com/alexrdclement/Palette/main/components/src/test/snapshots/images/com.alexrdclement.palette.components.media_MediaControlBarTest_mediaControlBar[progress=0.0].png?raw=true) | ![Media Control Bar - 50%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/components/src/test/snapshots/images/com.alexrdclement.palette.components.media_MediaControlBarTest_mediaControlBar[progress=0.5].png?raw=true>) | ![Media Control Bar - 100%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/components/src/test/snapshots/images/com.alexrdclement.palette.components.media_MediaControlBarTest_mediaControlBar[progress=1.0].png?raw=true>) |
 
-## Shaders
+## Modifiers
 
 [Runtime Shaders](https://developer.android.com/reference/android/graphics/RuntimeShader) enable detailed control over how individual pixels are rendered on the screen. Below are shaders I've written, ported, or adapted as [Modifiers](https://developer.android.com/jetpack/compose/modifiers) that can be applied to any Composable that accepts a Modifier.
 
@@ -56,6 +58,15 @@ A simple noise effect with increasing levels of opacity.
 | -- | --- | --- | ---- |
 | ![Noise - 0%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_NoiseTest_whiteCircle[(0.0,_Monochrome)].png?raw=true>) | ![Noise - 20%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_NoiseTest_whiteCircle[(0.2,_Monochrome)].png?raw=true>) | ![Noise - 50%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_NoiseTest_whiteCircle[(0.5,_Monochrome)].png?raw=true>) | ![Noise - 100%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_NoiseTest_whiteCircle[(1.0,_Monochrome)].png?raw=true>) |
 | ![Noise - 0%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_NoiseTest_blackCircle[(0.0,_Monochrome)].png?raw=true>) | ![Noise - 20%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_NoiseTest_blackCircle[(0.2,_Monochrome)].png?raw=true>) | ![Noise - 50%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_NoiseTest_blackCircle[(0.5,_Monochrome)].png?raw=true>) | ![Noise - 100%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_NoiseTest_blackCircle[(1.0,_Monochrome)].png?raw=true>) |
+
+### Warp
+
+Warp pixels towards or away from a radius.
+
+| 0%                                                                                                                                                                                               | 20%                                                                                                                                                                                               | 50%                                                                                                                                                                                               | 100%                                                                                                                                                                                               |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![Warp - 0%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridWhite[amount=0.0].png?raw=true>) | ![Warp - 20%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridWhite[amount=0.2].png?raw=true>) | ![Warp - 50%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridWhite[amount=0.5].png?raw=true>) | ![Warp - 100%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridWhite[amount=1.0].png?raw=true>) |
+| ![Warp - 0%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridBlack[amount=0.0].png?raw=true>) | ![Warp - 20%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridBlack[amount=0.2].png?raw=true>) | ![Warp - 50%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridBlack[amount=0.5].png?raw=true>) | ![Warp - 100%](<https://raw.githubusercontent.com/alexrdclement/Palette/main/modifiers/src/test/snapshots/images/com.alexrdclement.palette.modifiers_WarpTest_gridBlack[amount=1.0].png?raw=true>) |
 
 ## Screenshot Tests
 
