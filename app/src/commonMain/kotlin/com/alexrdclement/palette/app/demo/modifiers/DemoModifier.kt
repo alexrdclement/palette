@@ -1,8 +1,6 @@
 package com.alexrdclement.palette.app.demo.modifiers
 
-import androidx.compose.ui.draw.BlurredEdgeTreatment
 import androidx.compose.ui.unit.Dp
-import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.Blur
 import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.ColorInvert
 import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.ColorSplit
 import com.alexrdclement.palette.app.demo.modifiers.DemoModifier.Noise
@@ -15,11 +13,6 @@ import com.alexrdclement.palette.modifiers.NoiseColorMode
 
 sealed class DemoModifier(open val name: String) {
     data object None : DemoModifier(name = "None")
-
-    data class Blur(
-        val radius: Dp,
-        val edgeTreatment: BlurredEdgeTreatment,
-    ) : DemoModifier(name = "Blur")
 
     data class ColorInvert(
         val amount: Float,
@@ -48,7 +41,6 @@ sealed class DemoModifier(open val name: String) {
 
 private enum class Type {
     None,
-    Blur,
     ColorInvert,
     ColorSplit,
     Noise,
@@ -68,10 +60,6 @@ val DemoModifierSaver = mapSaverSafe(
     save = {
         when (it) {
             is None -> mapOf(typeKey to Type.None.name)
-            is Blur -> mapOf(
-                typeKey to Type.Blur.name,
-                radiusKey to it.radius.value,
-            )
             is ColorInvert -> mapOf(
                 typeKey to Type.ColorInvert.name,
                 amountKey to it.amount,
@@ -101,10 +89,6 @@ val DemoModifierSaver = mapSaverSafe(
     restore = {
         when (Type.valueOf(it[typeKey] as String)) {
             Type.None -> None
-            Type.Blur -> Blur(
-                radius = Dp(it[radiusKey] as Float),
-                edgeTreatment = BlurredEdgeTreatment.Unbounded, // Not saved/restored
-            )
             Type.ColorInvert -> ColorInvert(
                 amount = it[amountKey] as Float,
             )

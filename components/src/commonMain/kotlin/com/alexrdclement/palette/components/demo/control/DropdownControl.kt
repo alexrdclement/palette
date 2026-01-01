@@ -15,7 +15,6 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.BlurredEdgeTreatment
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.menu.DropdownMenu
@@ -143,14 +142,11 @@ private fun DropdownControlPreview() {
         val control by remember {
             mutableStateOf(
                 Control.Dropdown(
-                    name = "Edge treatment",
+                    name = "Options",
                     values = {
-                        listOf(
-                            BlurredEdgeTreatment.Rectangle,
-                            BlurredEdgeTreatment.Unbounded
-                        ).map {
+                        listOf("A", "B", "C").map {
                             Control.Dropdown.DropdownItem(
-                                name = it.toString(),
+                                name = it,
                                 value = it
                             )
                         }.toPersistentList()
@@ -172,14 +168,11 @@ private fun DropdownControlRowPreview() {
         val control by remember {
             mutableStateOf(
                 Control.Dropdown(
-                    name = "Edge treatment",
+                    name = "Options",
                     values = {
-                        listOf(
-                            BlurredEdgeTreatment.Rectangle,
-                            BlurredEdgeTreatment.Unbounded
-                        ).map {
+                        listOf("A", "B", "C").map {
                             Control.Dropdown.DropdownItem(
-                                name = it.toString(),
+                                name = it,
                                 value = it
                             )
                         }.toPersistentList()

@@ -12,8 +12,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.BlurredEdgeTreatment
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -64,10 +62,6 @@ fun ModifierDemo(
         ) {
             val modifier = when (val innerModifier = state.demoModifier) {
                 DemoModifier.None -> Modifier
-                is DemoModifier.Blur -> Modifier.blur(
-                    radius = innerModifier.radius,
-                    edgeTreatment = innerModifier.edgeTreatment,
-                )
 
                 is DemoModifier.ColorInvert -> Modifier.colorInvert(
                     amount = { innerModifier.amount },
@@ -173,10 +167,6 @@ fun rememberDemoModifierState(): ModifierDemoState {
 @Stable
 class ModifierDemoState(
     demoSubjectInitial: DemoSubject = DemoSubject.Circle,
-    blurModifierInitial: DemoModifier.Blur = DemoModifier.Blur(
-        radius = 0.dp,
-        edgeTreatment = BlurredEdgeTreatment.Rectangle
-    ),
     colorInvertModifierInitial: DemoModifier.ColorInvert = DemoModifier.ColorInvert(
         amount = 0f,
     ),
@@ -200,8 +190,6 @@ class ModifierDemoState(
     var demoSubject by mutableStateOf(demoSubjectInitial)
         internal set
 
-    var blurModifier by mutableStateOf(blurModifierInitial)
-        internal set
     var colorInvertModifier by mutableStateOf(colorInvertModifierInitial)
         internal set
     var colorSplitModifier by mutableStateOf(colorSplitModifierInitial)
@@ -216,7 +204,6 @@ class ModifierDemoState(
     val demoModifiers
         get() = listOf(
             DemoModifier.None,
-            blurModifier,
             colorInvertModifier,
             colorSplitModifier,
             noiseModifier,
@@ -233,7 +220,6 @@ class ModifierDemoState(
 }
 
 private const val demoSubjectInitialKey = "demoSubject"
-private const val blurModifierInitialKey = "blurModifier"
 private const val colorInvertModifierInitialKey = "colorInvertModifier"
 private const val colorSplitModifierInitialKey = "colorSplitModifier"
 private const val noiseModifierInitialKey = "noiseModifier"
@@ -246,7 +232,6 @@ val ModifierDemoStateSaver = mapSaverSafe(
     save = { value ->
         mapOf(
             demoSubjectInitialKey to value.demoSubject,
-            blurModifierInitialKey to save(value.blurModifier, DemoModifierSaver, this),
             colorInvertModifierInitialKey to save(
                 value = value.colorInvertModifier,
                 saver = DemoModifierSaver,
@@ -275,10 +260,6 @@ val ModifierDemoStateSaver = mapSaverSafe(
     restore = { map ->
         ModifierDemoState(
             demoSubjectInitial = map[demoSubjectInitialKey] as DemoSubject,
-            blurModifierInitial = restore(
-                value = map[blurModifierInitialKey],
-                saver = DemoModifierSaver,
-            )!!,
             colorInvertModifierInitial = restore(
                 value = map[colorInvertModifierInitialKey],
                 saver = DemoModifierSaver,
@@ -334,37 +315,6 @@ class ModifierDemoControl(
         selectedIndex = { state.demoModifierIndex },
         onValueChange = { state.demoModifierIndex = it },
         includeLabel = false,
-    )
-
-    val blurredEdgeTreatments = listOf(
-        BlurredEdgeTreatment.Rectangle,
-        BlurredEdgeTreatment.Unbounded,
-    )
-    val blurControls: PersistentList<Control> = persistentListOf(
-        Control.Slider(
-            name = "Radius",
-            value = { state.blurModifier.radius.value },
-            onValueChange = {
-                state.blurModifier = state.blurModifier.copy(radius = it.dp)
-            },
-            valueRange = { 0f..16f },
-        ),
-        Control.Dropdown(
-            name = "Edge treatment",
-            values = {
-                blurredEdgeTreatments.map {
-                    Control.Dropdown.DropdownItem(
-                        name = it.toString(),
-                        value = it
-                    )
-                }.toPersistentList()
-            },
-            selectedIndex = { blurredEdgeTreatments.indexOf(state.blurModifier.edgeTreatment) },
-            onValueChange = {
-                state.blurModifier =
-                    state.blurModifier.copy(edgeTreatment = blurredEdgeTreatments[it])
-            }
-        )
     )
 
     val colorInvertControls = persistentListOf(
@@ -457,7 +407,6 @@ class ModifierDemoControl(
     val modifierControls
         get() = when (state.demoModifier) {
             DemoModifier.None -> persistentListOf()
-            is DemoModifier.Blur -> blurControls
             is DemoModifier.ColorInvert -> colorInvertControls
             is DemoModifier.ColorSplit -> colorSplitControls
             is DemoModifier.Noise -> noiseControl
