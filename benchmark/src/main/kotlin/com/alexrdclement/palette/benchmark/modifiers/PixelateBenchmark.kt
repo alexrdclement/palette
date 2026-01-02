@@ -12,6 +12,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.alexrdclement.palette.MainCatalogPage
 import com.alexrdclement.palette.appPackageName
 import com.alexrdclement.palette.modifiers.ModifiersPage
+import com.alexrdclement.palette.modifiers.PixelatePage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -45,9 +46,9 @@ class PixelateBenchmark {
             startActivityAndWait()
 
             MainCatalogPage(device).navigateToModifiers()
-            modifiersPage = ModifiersPage(device).apply { selectPixelate() }
+            ModifiersPage(device).navigateToPixelate()
         }
     ) {
-        modifiersPage.adjustPixelate()
+        PixelatePage(device).adjustPixelate()
     }
 }

@@ -12,6 +12,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.alexrdclement.palette.MainCatalogPage
 import com.alexrdclement.palette.appPackageName
 import com.alexrdclement.palette.modifiers.ModifiersPage
+import com.alexrdclement.palette.modifiers.NoisePage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,8 +21,6 @@ import org.junit.runner.RunWith
 class NoiseBenchmark {
     @get:Rule
     val benchmarkRule = MacrobenchmarkRule()
-
-    lateinit var modifiersPage: ModifiersPage
 
     @Test
     fun compilationModeNone() = amountAdjustment(CompilationMode.None())
@@ -45,9 +44,9 @@ class NoiseBenchmark {
             startActivityAndWait()
 
             MainCatalogPage(device).navigateToModifiers()
-            modifiersPage = ModifiersPage(device).apply { selectNoise() }
+            ModifiersPage(device).navigateToNoise()
         }
     ) {
-        modifiersPage.adjustNoise()
+        NoisePage(device).adjustNoise()
     }
 }

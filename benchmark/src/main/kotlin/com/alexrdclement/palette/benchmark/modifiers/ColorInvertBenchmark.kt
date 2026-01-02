@@ -11,6 +11,7 @@ import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.alexrdclement.palette.MainCatalogPage
 import com.alexrdclement.palette.appPackageName
+import com.alexrdclement.palette.modifiers.ColorInvertPage
 import com.alexrdclement.palette.modifiers.ModifiersPage
 import org.junit.Rule
 import org.junit.Test
@@ -20,8 +21,6 @@ import org.junit.runner.RunWith
 class ColorInvertBenchmark {
     @get:Rule
     val benchmarkRule = MacrobenchmarkRule()
-
-    private lateinit var modifiersPage: ModifiersPage
 
     @Test
     fun compilationModeNone() = amountAdjustment(CompilationMode.None())
@@ -45,9 +44,9 @@ class ColorInvertBenchmark {
             startActivityAndWait()
 
             MainCatalogPage(device).navigateToModifiers()
-            modifiersPage = ModifiersPage(device).apply { selectColorInvert() }
+            ModifiersPage(device).navigateToColorInvert()
         }
     ) {
-        modifiersPage.adjustColorInvert()
+        ColorInvertPage(device).adjustColorInvert()
     }
 }

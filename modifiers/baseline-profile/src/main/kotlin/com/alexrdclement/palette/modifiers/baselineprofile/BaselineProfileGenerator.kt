@@ -7,6 +7,11 @@ import com.alexrdclement.palette.MainCatalogPage
 import com.alexrdclement.palette.appPackageName
 import com.alexrdclement.palette.modifiers.ModifiersPage
 import com.alexrdclement.palette.modifierPackageName
+import com.alexrdclement.palette.modifiers.ColorInvertPage
+import com.alexrdclement.palette.modifiers.ColorSplitPage
+import com.alexrdclement.palette.modifiers.NoisePage
+import com.alexrdclement.palette.modifiers.PixelatePage
+import com.alexrdclement.palette.modifiers.WarpPage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,7 +23,7 @@ class BaselineProfileGenerator {
     @get:Rule
     val rule = BaselineProfileRule()
 
-    // Run with `gradle shaders:generateBaselineProfile`
+    // Run with `gradle modifiers:baseline-profile:generateBaselineProfile`
     @Test
     fun generateShadersProfile() {
         rule.collect(
@@ -31,22 +36,25 @@ class BaselineProfileGenerator {
             MainCatalogPage(device).navigateToModifiers()
             val modifiersPage = ModifiersPage(device)
 
-            modifiersPage.selectColorInvert()
-            modifiersPage.adjustColorInvert()
+            modifiersPage.navigateToColorInvert()
+            ColorInvertPage(device).adjustColorInvert()
+            device.pressBack()
 
-            modifiersPage.selectColorSplit()
-            modifiersPage.adjustColorSplit()
+            modifiersPage.navigateToColorSplit()
+            ColorSplitPage(device).adjustColorSplit()
+            device.pressBack()
 
-            modifiersPage.selectNoise()
-            modifiersPage.adjustNoise()
+            modifiersPage.navigateToNoise()
+            NoisePage(device).adjustNoise()
+            device.pressBack()
 
-            modifiersPage.selectPixelate()
-            modifiersPage.adjustPixelate()
+            modifiersPage.navigateToPixelate()
+            PixelatePage(device).adjustPixelate()
+            device.pressBack()
 
-            modifiersPage.selectGridLineSubject()
-
-            modifiersPage.selectWarp()
-            modifiersPage.adjustWarp()
+            modifiersPage.navigateToWarp()
+            WarpPage(device).adjustWarp()
+            device.pressBack()
         }
     }
 

@@ -11,6 +11,7 @@ import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.alexrdclement.palette.MainCatalogPage
 import com.alexrdclement.palette.appPackageName
+import com.alexrdclement.palette.modifiers.ColorSplitPage
 import com.alexrdclement.palette.modifiers.ModifiersPage
 import org.junit.Rule
 import org.junit.Test
@@ -20,8 +21,6 @@ import org.junit.runner.RunWith
 class ColorSplitBenchmark {
     @get:Rule
     val benchmarkRule = MacrobenchmarkRule()
-
-    lateinit var modifiersPage: ModifiersPage
 
     @Test
     fun compilationModeNone() = xyAdjustment(CompilationMode.None())
@@ -44,9 +43,9 @@ class ColorSplitBenchmark {
             startActivityAndWait()
 
             MainCatalogPage(device).navigateToModifiers()
-            modifiersPage = ModifiersPage(device).apply { selectColorSplit() }
+            ModifiersPage(device).navigateToColorSplit()
         }
     ) {
-        modifiersPage.adjustColorSplit()
+        ColorSplitPage(device).adjustColorSplit()
     }
 }
