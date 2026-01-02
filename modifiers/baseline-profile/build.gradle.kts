@@ -1,6 +1,5 @@
 plugins {
-    id(libs.plugins.alexrdclement.android.test.get().pluginId)
-    id(libs.plugins.baselineprofile.get().pluginId)
+    id(libs.plugins.alexrdclement.android.baselineprofile.generator.get().pluginId)
 }
 
 android {
@@ -9,8 +8,24 @@ android {
     targetProjectPath = ":androidApp"
 }
 
-baselineProfile {
-    useConnectedDevices = true
+baselineProfileGenerator {
+    deviceName = "mediumPhoneApi31Ftl"
+    deviceType = "MediumPhone.arm"
+    apiLevel = 31
+    copyToLibrary = ":modifiers"
+}
+
+firebaseTestLab {
+    managedDevices {
+        create(baselineProfileGenerator.deviceName) {
+            device = baselineProfileGenerator.deviceType
+            apiLevel = baselineProfileGenerator.apiLevel
+        }
+    }
+    val serviceAccountJson = System.getenv("FIREBASE_TEST_LAB_SERVICE_ACCOUNT")
+    if (serviceAccountJson != null) {
+        serviceAccountCredentials.set(file(serviceAccountJson))
+    }
 }
 
 dependencies {
@@ -20,11 +35,4 @@ dependencies {
     implementation(libs.androidx.benchmark.macro.junit4)
 
     implementation(projects.uiautomatorFixtures)
-}
-
-// Automatically copy generated baseline profiles to the library module's src directory
-tasks.configureEach {
-    if (name == "collectNonMinifiedReleaseBaselineProfile") {
-        finalizedBy(":modifiers:copyBaselineProfile")
-    }
 }

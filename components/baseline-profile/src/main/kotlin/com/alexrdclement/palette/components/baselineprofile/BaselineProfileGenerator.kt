@@ -24,8 +24,6 @@ class BaselineProfileGenerator {
     @get:Rule
     val rule = BaselineProfileRule()
 
-    // Run with `gradle components:baseline-profile:generateBaselineProfile`
-
     @Test
     fun generateCoreComponentsProfile() {
         rule.collect(
