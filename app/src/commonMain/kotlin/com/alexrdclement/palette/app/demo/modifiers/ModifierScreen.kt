@@ -11,23 +11,39 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ModifierScreen(
+    modifierType: DemoModifier,
     onNavigateBack: () -> Unit,
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
-                title = "Modifiers",
+                title = modifierType.name,
                 onNavigateBack = onNavigateBack,
                 onThemeClick = onThemeClick,
             )
         },
     ) { innerPadding ->
-        ModifierDemo(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-        )
+        val modifier = Modifier
+            .fillMaxSize()
+            .padding(innerPadding)
+        when (modifierType) {
+            DemoModifier.ColorInvert -> ColorInvertDemo(
+                modifier = modifier,
+            )
+            DemoModifier.ColorSplit -> ColorSplitDemo(
+                modifier = modifier,
+            )
+            DemoModifier.Noise -> NoiseDemo(
+                modifier = modifier,
+            )
+            DemoModifier.Pixelate -> PixelateDemo(
+                modifier = modifier,
+            )
+            DemoModifier.Warp -> WarpDemo(
+                modifier = modifier,
+            )
+        }
     }
 }
 
@@ -36,6 +52,7 @@ fun ModifierScreen(
 private fun Preview() {
     PalettePreview {
         ModifierScreen(
+            modifierType = DemoModifier.ColorSplit,
             onNavigateBack = {},
             onThemeClick = {},
         )

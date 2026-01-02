@@ -9,7 +9,7 @@ import com.alexrdclement.palette.app.catalog.navigation.CatalogRoute
 import com.alexrdclement.palette.app.catalog.navigation.mainCatalogScreen
 import com.alexrdclement.palette.app.demo.components.componentsGraph
 import com.alexrdclement.palette.app.demo.components.navigateToComponents
-import com.alexrdclement.palette.app.demo.modifiers.navigation.modifierScreen
+import com.alexrdclement.palette.app.demo.modifiers.navigation.modifiersGraph
 import com.alexrdclement.palette.app.demo.modifiers.navigation.navigateToModifiers
 import com.alexrdclement.palette.app.theme.navigation.navigateToTheme
 import com.alexrdclement.palette.app.theme.navigation.themeGraph
@@ -37,7 +37,7 @@ fun PaletteNavHost(
             navController = navController,
             onThemeClick = navController::navigateToTheme,
         )
-        modifierScreen(
+        modifiersGraph(
             navController = navController,
             onThemeClick = navController::navigateToTheme,
         )
