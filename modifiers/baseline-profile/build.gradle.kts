@@ -9,9 +9,6 @@ android {
 }
 
 baselineProfileGenerator {
-    deviceName = "mediumPhoneApi31Ftl"
-    deviceType = "MediumPhone.arm"
-    apiLevel = 31
     copyToLibrary = ":modifiers"
 }
 
