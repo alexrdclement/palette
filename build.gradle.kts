@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.alexrdclement.github.release)
     alias(libs.plugins.baselineprofile) apply false
-    alias(libs.plugins.firebase.testlab) apply false
 }
 
 subprojects {
@@ -31,7 +30,6 @@ githubRelease {
     newTagRevision = System.getenv("GITHUB_SHA")
 }
 
-// Convenience task to generate all baseline profiles
 tasks.register("generateAllBaselineProfiles") {
     group = "Baseline Profile"
     description = "Generates baseline profiles for app, components, and modifiers"
