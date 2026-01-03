@@ -29,3 +29,14 @@ githubRelease {
     enabled = !version.toString().endsWith("SNAPSHOT")
     newTagRevision = System.getenv("GITHUB_SHA")
 }
+
+tasks.register("generateAllBaselineProfiles") {
+    group = "Baseline Profile"
+    description = "Generates baseline profiles for app, components, and modifiers"
+
+    dependsOn(
+        ":baseline-profile:generateBaselineProfile",
+        ":components:baseline-profile:generateBaselineProfile",
+        ":modifiers:baseline-profile:generateBaselineProfile"
+    )
+}

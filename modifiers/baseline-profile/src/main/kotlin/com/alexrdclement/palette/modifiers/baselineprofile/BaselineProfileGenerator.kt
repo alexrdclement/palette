@@ -23,9 +23,8 @@ class BaselineProfileGenerator {
     @get:Rule
     val rule = BaselineProfileRule()
 
-    // Run with `gradle modifiers:baseline-profile:generateBaselineProfile`
     @Test
-    fun generateShadersProfile() {
+    fun generateModifiersProfile() {
         rule.collect(
             packageName = appPackageName,
             filterPredicate = { packageFilterPredicate(modifierPackageName, it) },
