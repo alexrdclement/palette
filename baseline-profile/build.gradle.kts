@@ -6,6 +6,10 @@ android {
     namespace = "com.alexrdclement.palette.baselineprofile"
 
     targetProjectPath = ":androidApp"
+
+    testOptions {
+        animationsDisabled = true
+    }
 }
 
 firebaseTestLab {
