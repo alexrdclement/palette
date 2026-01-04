@@ -25,6 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
+          ref: ${{ github.head_ref }}
           lfs: 'true'
           fetch-depth: 0
 
@@ -59,7 +60,7 @@ jobs:
         with:
           name: baseline-profiles
           path: |
-            androidApp/src/release/generated/baselineProfiles/baseline-prof.txt
+            androidApp/src/release/generated/baselineProfiles/startup-prof.txt
             components/src/androidMain/generated/baselineProfiles/baseline-prof.txt
             modifiers/src/androidMain/generated/baselineProfiles/baseline-prof.txt
 
@@ -67,7 +68,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           file_pattern: |
-            androidApp/src/release/generated/baselineProfiles/baseline-prof.txt
+            androidApp/src/release/generated/baselineProfiles/startup-prof.txt
             components/src/androidMain/generated/baselineProfiles/baseline-prof.txt
             modifiers/src/androidMain/generated/baselineProfiles/baseline-prof.txt
           disable_globbing: true
