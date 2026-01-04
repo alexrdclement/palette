@@ -21,18 +21,3 @@ fun UiDevice.waitAndFindObject(
 
     return findObject(selector)
 }
-
-/**
- * Waits for window update to complete (useful after navigation actions)
- */
-fun UiDevice.waitForWindowUpdate(timeout: Long = 1000) {
-    waitForWindowUpdate(null, timeout)
-}
-
-/**
- * Clicks an object and waits for the window to update
- */
-fun UiObject2.clickAndWaitForWindowUpdate(device: UiDevice, timeout: Long = 1000) {
-    click()
-    device.waitForWindowUpdate(timeout)
-}

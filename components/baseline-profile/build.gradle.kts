@@ -6,10 +6,6 @@ android {
     namespace = "com.alexrdclement.palette.components.baselineprofile"
 
     targetProjectPath = ":androidApp"
-
-    testOptions {
-        animationsDisabled = true
-    }
 }
 
 baselineProfileGenerator {
