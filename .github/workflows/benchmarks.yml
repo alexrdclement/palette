@@ -57,6 +57,14 @@ jobs:
           name: benchmark-results
           path: benchmark/results/*.json
 
+      - name: Upload Perfetto traces
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: perfetto-traces
+          path: |
+            benchmark/build/outputs/androidTest-results/**/*.perfetto-trace
+
       - name: Commit benchmark results
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
