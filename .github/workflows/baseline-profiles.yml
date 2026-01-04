@@ -67,9 +67,5 @@ jobs:
       - name: Commit generated baseline profiles
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          file_pattern: |
-            androidApp/src/release/generated/baselineProfiles/startup-prof.txt
-            components/src/androidMain/generated/baselineProfiles/baseline-prof.txt
-            modifiers/src/androidMain/generated/baselineProfiles/baseline-prof.txt
-          disable_globbing: true
+          file_pattern: 'androidApp/src/release/generated/baselineProfiles/startup-prof.txt components/src/androidMain/generated/baselineProfiles/baseline-prof.txt modifiers/src/androidMain/generated/baselineProfiles/baseline-prof.txt'
           commit_message: "🤖 Update baseline profiles"
