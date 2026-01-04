@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 enum class DemoModifier : CatalogItem {
     ColorInvert,
     ColorSplit,
+    Fade,
     Noise,
     Pixelate,
     Warp,

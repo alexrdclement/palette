@@ -34,6 +34,9 @@ fun ModifierScreen(
             DemoModifier.ColorSplit -> ColorSplitDemo(
                 modifier = modifier,
             )
+            DemoModifier.Fade -> FadeDemo(
+                modifier = modifier,
+            )
             DemoModifier.Noise -> NoiseDemo(
                 modifier = modifier,
             )

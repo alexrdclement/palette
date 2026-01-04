@@ -15,6 +15,10 @@ class ModifiersPage(
         navigateToModifier("ColorSplit")
     }
 
+    fun navigateToFade() {
+        navigateToModifier("Fade")
+    }
+
     fun navigateToNoise() {
         navigateToModifier("Noise")
     }

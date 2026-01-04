@@ -9,6 +9,7 @@ import com.alexrdclement.palette.modifiers.ModifiersPage
 import com.alexrdclement.palette.modifierPackageName
 import com.alexrdclement.palette.modifiers.ColorInvertPage
 import com.alexrdclement.palette.modifiers.ColorSplitPage
+import com.alexrdclement.palette.modifiers.FadePage
 import com.alexrdclement.palette.modifiers.NoisePage
 import com.alexrdclement.palette.modifiers.PixelatePage
 import com.alexrdclement.palette.modifiers.WarpPage
@@ -41,6 +42,10 @@ class BaselineProfileGenerator {
 
             modifiersPage.navigateToColorSplit()
             ColorSplitPage(device).adjustColorSplit()
+            device.pressBack()
+
+            modifiersPage.navigateToFade()
+            FadePage(device).adjustFade()
             device.pressBack()
 
             modifiersPage.navigateToNoise()
