@@ -10,4 +10,9 @@ class MediaControlSheetPage(
 ) {
     val mediaControlBar: UiObject2
         get() = device.waitAndFindObject(By.descContains("Media control bar"))
+
+    fun expandSheet() {
+        mediaControlBar.click()
+        device.waitForIdle()
+    }
 }

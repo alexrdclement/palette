@@ -152,7 +152,7 @@ fun MediaControlBar(
                         imageUrl = mediaItem.artworkLargeUrl,
                         modifier = Modifier
                             .layout { measurable, constraints ->
-                                trace("$ArtworkTraceName:measure") {
+                                trace("$ArtworkTraceName:layout") {
                                     val computedProgress = progress()
 
                                     val widthDelta = cachedSizes.contentWidthPaddedDelta * computedProgress

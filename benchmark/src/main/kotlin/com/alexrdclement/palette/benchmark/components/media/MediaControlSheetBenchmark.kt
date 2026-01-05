@@ -37,7 +37,7 @@ class MediaControlSheetBenchmark {
             TraceSectionMetric("MediaControlSheet", TraceSectionMetric.Mode.Sum),
             TraceSectionMetric("MediaControlBar", TraceSectionMetric.Mode.Sum),
             TraceSectionMetric(
-                "MediaControlBar:MediaItemArtwork:measure",
+                "MediaControlBar:MediaItemArtwork:layout",
                 TraceSectionMetric.Mode.Sum
             ),
         ),
@@ -53,6 +53,6 @@ class MediaControlSheetBenchmark {
             MediaComponentsPage(device).navigateToMediaControlSheet()
         }
     ) {
-        MediaControlSheetPage(device).mediaControlBar.click()
+        MediaControlSheetPage(device).expandSheet()
     }
 }
