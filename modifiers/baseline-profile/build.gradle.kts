@@ -23,6 +23,9 @@ firebaseTestLab {
     if (serviceAccountJson != null) {
         serviceAccountCredentials.set(file(serviceAccountJson))
     }
+    testOptions {
+        results.cloudStorageBucket = "firebase-test-lab-palette"
+    }
 }
 
 dependencies {

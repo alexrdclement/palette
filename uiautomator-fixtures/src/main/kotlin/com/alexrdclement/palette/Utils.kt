@@ -13,6 +13,8 @@ fun UiDevice.waitAndFindObject(
     selector: BySelector,
     timeout: Long = 1000,
 ): UiObject2 {
+    waitForIdle()
+
     if (!wait(Until.hasObject(selector), timeout)) {
         throw AssertionError("Element not found on screen in ${timeout}ms (selector=$selector)")
     }

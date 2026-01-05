@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.util.trace
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionExpanded
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionPartiallyExpanded
 import com.alexrdclement.palette.components.core.Surface
@@ -42,6 +41,7 @@ import com.alexrdclement.palette.components.media.model.MediaItem
 import com.alexrdclement.palette.components.util.Spacer
 import com.alexrdclement.palette.components.util.calculateHorizontalPaddingValues
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.trace.trace
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.max

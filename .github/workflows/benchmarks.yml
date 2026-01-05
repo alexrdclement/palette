@@ -1,10 +1,6 @@
-name: "Generate Baseline Profiles"
+name: "Run Benchmarks"
 
 on:
-  pull_request:
-    paths-ignore:
-      - '**.md'
-      - 'docs/**'
   workflow_dispatch:
 
 concurrency:
@@ -12,8 +8,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  generate-baseline-profiles:
-    name: "Generate Baseline Profiles"
+  run-benchmarks:
+    name: "Run Benchmarks"
     runs-on: ubuntu-latest
 
     permissions:
@@ -25,7 +21,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.head_ref }}
           lfs: 'true'
           fetch-depth: 0
 
@@ -49,26 +44,29 @@ jobs:
       - name: Create FTL service account file
         run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}' > /tmp/ftl-service-account.json
 
-      - name: Generate All Baseline Profiles
-        run: ./gradlew generateAllBaselineProfiles --no-configuration-cache
+      - name: Run Benchmarks
+        run: ./gradlew :benchmark:runBenchmarks --no-configuration-cache
         env:
           FIREBASE_TEST_LAB_SERVICE_ACCOUNT: /tmp/ftl-service-account.json
 
-      - name: Upload baseline profiles
+      - name: Upload benchmark results
         if: always()
         uses: actions/upload-artifact@v5
         with:
-          name: baseline-profiles
-          path: |
-            androidApp/src/release/generated/baselineProfiles/startup-prof.txt
-            components/src/androidMain/generated/baselineProfiles/baseline-prof.txt
-            modifiers/src/androidMain/generated/baselineProfiles/baseline-prof.txt
+          name: benchmark-results
+          path: benchmark/results/*.json
 
-      - name: Commit generated baseline profiles
+      - name: Upload Perfetto traces
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: perfetto-traces
+          path: |
+            benchmark/build/outputs/androidTest-results/**/*.perfetto-trace
+
+      - name: Commit benchmark results
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          file_pattern: >-
-            androidApp/src/release/generated/baselineProfiles/startup-prof.txt
-            components/src/androidMain/generated/baselineProfiles/baseline-prof.txt
-            modifiers/src/androidMain/generated/baselineProfiles/baseline-prof.txt
-          commit_message: "🤖 Update baseline profiles"
+          file_pattern: benchmark/results/*.json
+          disable_globbing: false
+          commit_message: "🤖 Update benchmark results"

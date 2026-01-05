@@ -27,7 +27,6 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.util.trace
 import com.alexrdclement.palette.components.MediaControlBarContentDescription
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
@@ -41,6 +40,7 @@ import com.alexrdclement.palette.components.util.calculateVerticalPadding
 import com.alexrdclement.palette.components.util.toIntSize
 import com.alexrdclement.palette.components.util.toPx
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.trace.trace
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
@@ -152,7 +152,7 @@ fun MediaControlBar(
                         imageUrl = mediaItem.artworkLargeUrl,
                         modifier = Modifier
                             .layout { measurable, constraints ->
-                                trace("$ArtworkTraceName:measure") {
+                                trace("$ArtworkTraceName:layout") {
                                     val computedProgress = progress()
 
                                     val widthDelta = cachedSizes.contentWidthPaddedDelta * computedProgress
