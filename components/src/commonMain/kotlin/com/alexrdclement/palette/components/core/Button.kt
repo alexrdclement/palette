@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.core
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Arrangement
@@ -24,8 +23,9 @@ import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.ShapeToken
+import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
+import com.alexrdclement.palette.theme.modifiers.toStyle
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.styles.stroke
 import com.alexrdclement.palette.theme.styles.toStyle
 import com.alexrdclement.palette.theme.toColor
 import com.alexrdclement.palette.theme.toShape
@@ -59,7 +59,7 @@ fun Button(
         contentPadding = contentPadding,
         containerColor = style.containerColor,
         shape = style.shape,
-        borderStroke = style.border?.stroke,
+        borderStyle = style.borderStyle,
         interactionSource = interactionSource,
         content = content,
     )
@@ -78,7 +78,7 @@ internal fun Button(
     contentPadding: PaddingValues = ButtonDefaults.ContentPaddingDefault,
     containerColor: ColorToken = ColorToken.Surface,
     shape: ShapeToken = ShapeToken.Primary,
-    borderStroke: BorderStroke? = null,
+    borderStyle: BorderStyleToken? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable RowScope.() -> Unit
 ) {
@@ -98,7 +98,7 @@ internal fun Button(
         shape = shape.toShape(),
         color = containerColor,
         contentColor = contentColor,
-        border = borderStroke,
+        borderStyle = borderStyle?.toStyle(),
         interactionSource = interactionSource,
         modifier = modifier.semantics { role = Role.Button }
     ) {

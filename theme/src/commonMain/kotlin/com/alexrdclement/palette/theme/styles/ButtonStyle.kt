@@ -1,12 +1,10 @@
 package com.alexrdclement.palette.theme.styles
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.Dp
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.toColor
+import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
 enum class ButtonStyleToken {
     Primary,
@@ -19,7 +17,7 @@ data class ButtonStyle(
     val contentColor: ColorToken,
     val containerColor: ColorToken,
     val shape: ShapeToken,
-    val border: Border?,
+    val borderStyle: BorderStyleToken?,
 )
 
 fun ButtonStyleToken.toStyle(buttonStyles: ButtonStyleScheme): ButtonStyle {
@@ -34,15 +32,3 @@ fun ButtonStyleToken.toStyle(buttonStyles: ButtonStyleScheme): ButtonStyle {
 fun ButtonStyleToken.toStyle(): ButtonStyle {
     return toStyle(PaletteTheme.styles.buttonStyles)
 }
-
-data class Border(
-    val width: Dp,
-    val color: ColorToken,
-)
-
-val Border.stroke: BorderStroke?
-    @Composable
-    get() = BorderStroke(
-        width = width,
-        color = color.toColor(),
-    )

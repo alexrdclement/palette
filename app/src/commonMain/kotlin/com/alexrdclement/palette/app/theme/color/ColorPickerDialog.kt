@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.app.theme.color
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -12,7 +11,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.components.color.ColorPicker
 import com.alexrdclement.palette.components.core.Surface
@@ -32,7 +30,7 @@ fun ColorPickerDialog(
         onDismissRequest = onDismissRequest,
     ) {
         Surface(
-            border = BorderStroke(1.dp, PaletteTheme.colorScheme.outline),
+            borderStyle = PaletteTheme.styles.border.surface,
         ) {
             ColorPickerDialogContent(
                 colorToken = colorToken,

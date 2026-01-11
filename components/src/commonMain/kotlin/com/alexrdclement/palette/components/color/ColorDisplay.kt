@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.modifiers.outline
+import com.alexrdclement.palette.theme.modifiers.border
 import com.alexrdclement.palette.theme.toComposeShape
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -21,7 +21,7 @@ fun ColorDisplay(
         modifier = modifier
             .aspectRatio(1f)
             .background(color = color, shape = PaletteTheme.shapeScheme.primary.toComposeShape())
-            .outline(style = PaletteTheme.styles.outline.primary),
+            .border(style = PaletteTheme.styles.border.primary),
     )
 }
 

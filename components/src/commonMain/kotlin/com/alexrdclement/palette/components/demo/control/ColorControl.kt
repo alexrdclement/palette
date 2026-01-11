@@ -1,16 +1,12 @@
 package com.alexrdclement.palette.components.demo.control
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,7 +16,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.components.color.ColorDisplay
 import com.alexrdclement.palette.components.color.ColorPicker
@@ -29,9 +24,7 @@ import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.ConfirmCancelButtonRow
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.modifiers.outline
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.toComposeShape
 
 @Composable
 fun ColorControl(
@@ -89,7 +82,7 @@ private fun ColorPickerDialog(
         onDismissRequest = onDismissRequest,
     ) {
         Surface(
-            border = BorderStroke(1.dp, PaletteTheme.colorScheme.outline),
+            borderStyle = PaletteTheme.styles.border.surface,
         ) {
             ColorPickerDialogContent(
                 color = color,

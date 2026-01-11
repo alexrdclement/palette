@@ -1,13 +1,10 @@
 package com.alexrdclement.palette.components.core
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,6 +17,8 @@ import com.alexrdclement.palette.components.contentColorFor
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.Shape
+import com.alexrdclement.palette.theme.modifiers.BorderStyle
+import com.alexrdclement.palette.theme.modifiers.border
 import com.alexrdclement.palette.theme.toComposeShape
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
@@ -30,7 +29,7 @@ fun Surface(
     shape: Shape = PaletteTheme.shapeScheme.surface,
     color: Color = PaletteTheme.colorScheme.surface,
     contentColor: Color = contentColorFor(color),
-    border: BorderStroke? = null,
+    borderStyle: BorderStyle? = null,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
@@ -42,7 +41,7 @@ fun Surface(
                 .surface(
                     composeShape = shape.toComposeShape(),
                     backgroundColor = color,
-                    border = border,
+                    borderStyle = borderStyle,
                 )
                 .semantics(mergeDescendants = false) {
                     isTraversalGroup = true
@@ -67,7 +66,7 @@ fun Surface(
     shape: Shape = PaletteTheme.shapeScheme.surface,
     color: Color = PaletteTheme.colorScheme.surface,
     contentColor: Color = contentColorFor(color),
-    border: BorderStroke? = null,
+    borderStyle: BorderStyle? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable () -> Unit
 ) {
@@ -92,7 +91,7 @@ fun Surface(
                 .surface(
                     composeShape = shape.toComposeShape(),
                     backgroundColor = color,
-                    border = border,
+                    borderStyle = borderStyle,
                 )
         ) {
             content()
@@ -100,14 +99,14 @@ fun Surface(
     }
 }
 
-@Stable
+@Composable
 private fun Modifier.surface(
     composeShape: androidx.compose.ui.graphics.Shape,
     backgroundColor: Color,
-    border: BorderStroke?,
+    borderStyle: BorderStyle?,
 ) = this
     .graphicsLayer(shape = composeShape, clip = true)
-    .then(if (border != null) Modifier.border(border, composeShape) else Modifier)
+    .then(if (borderStyle != null) Modifier.border(style = borderStyle) else Modifier)
     .background(color = backgroundColor, shape = composeShape)
 
 @Preview

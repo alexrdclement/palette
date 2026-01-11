@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
@@ -27,25 +28,26 @@ import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.Styles
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.modifiers.OutlineStyleToken
-import com.alexrdclement.palette.theme.modifiers.outline
+import com.alexrdclement.palette.theme.modifiers.BorderStyle
+import com.alexrdclement.palette.theme.modifiers.BorderStyleScheme
+import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
+import com.alexrdclement.palette.theme.modifiers.border
 import com.alexrdclement.palette.theme.modifiers.toStyle
-import io.ktor.util.sha1
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-fun OutlineStyleScreen(
+fun BorderStyleScreen(
     themeController: ThemeController,
     onNavigateBack: () -> Unit,
 ) {
-    val state = rememberOutlineStyleScreenState(themeState = themeController)
-    val control = rememberOutlineStyleScreenControl(state = state, themeController = themeController)
+    val state = rememberBorderStyleScreenState(themeState = themeController)
+    val control = rememberBorderStyleScreenControl(state = state, themeController = themeController)
 
     Scaffold(
         topBar = {
             DemoTopBar(
-                title = "Outline style",
+                title = "Border style",
                 onNavigateBack = onNavigateBack,
                 onThemeClick = {},
                 actions = {},
@@ -68,11 +70,11 @@ fun OutlineStyleScreen(
                 modifier = Modifier
                     .fillMaxSize()
             ) {
-                items(state.outlineStylesByToken.keys.toList()) { style ->
+                items(state.borderStylesByToken.keys.toList()) { style ->
                     Box(
                         modifier = Modifier
                             .padding(PaletteTheme.spacing.medium)
-                            .outline(style.toStyle(state.outlineStyleScheme)),
+                            .border(style.toStyle(state.borderStyleScheme)),
                     ) {
                         Text(
                             text = style.name,
@@ -86,61 +88,61 @@ fun OutlineStyleScreen(
 }
 
 @Composable
-fun rememberOutlineStyleScreenState(
+fun rememberBorderStyleScreenState(
     themeState: ThemeState,
-): OutlineStyleScreenState {
+): BorderStyleScreenState {
     return rememberSaveable(
         themeState,
-        saver = OutlineStyleScreenStateSaver(themeState),
+        saver = BorderStyleScreenStateSaver(themeState),
     ) {
-        OutlineStyleScreenState(
+        BorderStyleScreenState(
             themeState = themeState,
         )
     }
 }
 
 @Stable
-class OutlineStyleScreenState(
+class BorderStyleScreenState(
     val themeState: ThemeState,
 ) {
     val styles: Styles
         get() = themeState.styles
 
-    val outlineStyleScheme
-        get() = styles.outline
+    val borderStyleScheme
+        get() = styles.border
 
-    val outlineStylesByToken = OutlineStyleToken.entries.associateWith { token ->
-        token.toStyle(outlineStyleScheme)
+    val borderStylesByToken = BorderStyleToken.entries.associateWith { token ->
+        token.toStyle(borderStyleScheme)
     }
 }
 
-fun OutlineStyleScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
+fun BorderStyleScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
     save = { state ->
         mapOf()
     },
     restore = { map ->
-        OutlineStyleScreenState(
+        BorderStyleScreenState(
             themeState = themeState,
         )
     }
 )
 
 @Composable
-fun rememberOutlineStyleScreenControl(
-    state: OutlineStyleScreenState,
+fun rememberBorderStyleScreenControl(
+    state: BorderStyleScreenState,
     themeController: ThemeController,
-): OutlineStyleScreenControl {
+): BorderStyleScreenControl {
     return remember(state, themeController) {
-        OutlineStyleScreenControl(state = state, themeController = themeController)
+        BorderStyleScreenControl(state = state, themeController = themeController)
     }
 }
 
 @Stable
-class OutlineStyleScreenControl(
-    val state: OutlineStyleScreenState,
+class BorderStyleScreenControl(
+    val state: BorderStyleScreenState,
     val themeController: ThemeController,
 ) {
-    val styleControls = OutlineStyleToken.entries.map { token ->
+    val styleControls = BorderStyleToken.entries.map { token ->
         makeControlForToken(
             token = token,
             state = state,
@@ -154,53 +156,20 @@ class OutlineStyleScreenControl(
 }
 
 private fun makeControlForToken(
-    token: OutlineStyleToken,
-    state: OutlineStyleScreenState,
+    token: BorderStyleToken,
+    state: BorderStyleScreenState,
     themeController: ThemeController,
 ): Control {
     val contentColorControl = enumControl(
         name = "Color",
         values = { ColorToken.entries },
-        selectedValue = { state.outlineStylesByToken[token]!!.color },
+        selectedValue = { state.borderStylesByToken[token]!!.color },
         onValueChange = { newValue ->
-            val outlineScheme = when (token) {
-                OutlineStyleToken.Primary -> state.styles.outline.copy(
-                    primary = state.styles.outline.primary.copy(
-                        color = newValue,
-                    )
-                )
-                OutlineStyleToken.Secondary -> state.styles.outline.copy(
-                    secondary = state.styles.outline.secondary.copy(
-                        color = newValue,
-                    )
-                )
-            }
             val styles = state.styles.copy(
-                outline = outlineScheme,
-            )
-            themeController.setStyles(styles)
-        },
-    )
-
-    val shapeControl = enumControl(
-        name = "Shape",
-        values = { ShapeToken.entries },
-        selectedValue = { state.outlineStylesByToken[token]!!.shape },
-        onValueChange = { newValue ->
-            val outlineScheme = when (token) {
-                OutlineStyleToken.Primary -> state.styles.outline.copy(
-                    primary = state.styles.outline.primary.copy(
-                        shape = newValue,
-                    )
-                )
-                OutlineStyleToken.Secondary -> state.styles.outline.copy(
-                    secondary = state.styles.outline.secondary.copy(
-                        shape = newValue,
-                    )
-                )
-            }
-            val styles = state.styles.copy(
-                outline = outlineScheme,
+                border = state.styles.border.update(
+                    token = token,
+                    color = newValue,
+                ),
             )
             themeController.setStyles(styles)
         },
@@ -208,26 +177,32 @@ private fun makeControlForToken(
 
     val widthControl = Control.Slider(
         name = "Width",
-        value = { state.outlineStylesByToken[token]!!.width?.value ?: 0f },
+        value = { state.borderStylesByToken[token]!!.width?.value ?: 0f },
         onValueChange = { newValue ->
-            val outlineScheme = when (token) {
-                OutlineStyleToken.Primary -> state.styles.outline.copy(
-                    primary = state.styles.outline.primary.copy(
-                        width = newValue.dp,
-                    )
-                )
-                OutlineStyleToken.Secondary -> state.styles.outline.copy(
-                    secondary = state.styles.outline.secondary.copy(
-                        width = newValue.dp,
-                    )
-                )
-            }
             val styles = state.styles.copy(
-                outline = outlineScheme,
+                border = state.styles.border.update(
+                    token = token,
+                    width = newValue.dp,
+                ),
             )
             themeController.setStyles(styles)
         },
         valueRange = { 0f..100f },
+    )
+
+    val shapeControl = enumControl(
+        name = "Shape",
+        values = { ShapeToken.entries },
+        selectedValue = { state.borderStylesByToken[token]!!.shape },
+        onValueChange = { newValue ->
+            val styles = state.styles.copy(
+                border = state.styles.border.update(
+                    token = token,
+                    shape = newValue,
+                ),
+            )
+            themeController.setStyles(styles)
+        },
     )
 
     return Control.ControlColumn(
@@ -235,9 +210,57 @@ private fun makeControlForToken(
         controls = {
             persistentListOf(
                 contentColorControl,
+                widthControl,
                 shapeControl,
-                widthControl
             )
         },
     )
 }
+
+fun BorderStyleScheme.update(
+    token: BorderStyleToken,
+    color: ColorToken? = null,
+    width: Dp? = null,
+    shape: ShapeToken? = null
+): BorderStyleScheme {
+    return when (token) {
+        BorderStyleToken.Primary -> this.copy(
+            primary = this.primary.update(
+                color = color,
+                width = width,
+                shape = shape,
+            )
+        )
+        BorderStyleToken.Secondary -> this.copy(
+            secondary = this.secondary.update(
+                color = color,
+                width = width,
+                shape = shape,
+            )
+        )
+        BorderStyleToken.Tertiary -> this.copy(
+            tertiary = this.tertiary.update(
+                color = color,
+                width = width,
+                shape = shape,
+            )
+        )
+        BorderStyleToken.Surface -> this.copy(
+            surface = this.surface.update(
+                color = color,
+                width = width,
+                shape = shape,
+            )
+        )
+    }
+}
+
+fun BorderStyle.update(
+    color: ColorToken? = null,
+    width: Dp? = null,
+    shape: ShapeToken? = null
+): BorderStyle = this.copy(
+    color = color ?: this.color,
+    width = width ?: this.width,
+    shape = shape ?: this.shape,
+)

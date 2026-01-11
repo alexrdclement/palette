@@ -5,7 +5,6 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.rememberTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -49,7 +48,6 @@ import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDe
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMinWidth
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuVerticalPadding
 import com.alexrdclement.palette.components.menu.MenuDefaults.InTransitionDuration
-import com.alexrdclement.palette.components.menu.MenuDefaults.MenuBorderWidth
 import com.alexrdclement.palette.components.menu.MenuDefaults.OutTransitionDuration
 import com.alexrdclement.palette.theme.ColorScheme
 import com.alexrdclement.palette.theme.LocalPaletteIndication
@@ -149,7 +147,7 @@ internal fun DropdownMenuContent(
     }
 
     Surface(
-        border = BorderStroke(MenuBorderWidth, PaletteTheme.colorScheme.outline),
+        borderStyle = PaletteTheme.styles.border.surface,
         modifier = Modifier.graphicsLayer {
             scaleX = scale
             scaleY = scale
@@ -298,7 +296,6 @@ object MenuDefaults {
 
     // Size defaults.
     internal val MenuVerticalMargin = 48.dp
-    internal val MenuBorderWidth = 1.dp
     private val DropdownMenuItemHorizontalPadding = 12.dp
     internal val DropdownMenuVerticalPadding = 8.dp
     internal val DropdownMenuItemDefaultMinWidth = 112.dp

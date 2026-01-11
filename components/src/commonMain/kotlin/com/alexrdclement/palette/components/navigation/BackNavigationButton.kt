@@ -26,7 +26,7 @@ fun BackNavigationButton(
         onClick = onClick,
         contentColor = ColorToken.Primary,
         containerColor = ColorToken.Surface,
-        borderStroke = null,
+        borderStyle = null,
         contentPadding = PaddingValues(PaletteTheme.spacing.medium),
         modifier = modifier.size(48.dp),
     ) {

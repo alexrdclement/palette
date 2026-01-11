@@ -1,8 +1,8 @@
 package com.alexrdclement.palette.theme.styles
 
-import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.ShapeToken
+import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
 data class ButtonStyleScheme(
     val primary: ButtonStyle,
@@ -25,20 +25,20 @@ val PaletteButtonStyleScheme = ButtonStyleScheme(
         contentColor = ColorToken.OnPrimary,
         containerColor = ColorToken.Primary,
         shape = ShapeToken.Primary,
-        border = Border(1.dp, ColorToken.Outline),
+        borderStyle = BorderStyleToken.Primary,
     ),
     secondary = ButtonStyle(
         token = ButtonStyleToken.Secondary,
         contentColor = ColorToken.Secondary,
         containerColor = ColorToken.Surface,
         shape = ShapeToken.Secondary,
-        border = Border(1.dp, ColorToken.Outline),
+        borderStyle = BorderStyleToken.Secondary,
     ),
     tertiary = ButtonStyle(
         token = ButtonStyleToken.Tertiary,
         contentColor = ColorToken.Primary,
         containerColor = ColorToken.OnPrimary,
         shape = ShapeToken.Tertiary,
-        border = Border(1.dp, ColorToken.Outline),
+        borderStyle = BorderStyleToken.Tertiary,
     ),
 )

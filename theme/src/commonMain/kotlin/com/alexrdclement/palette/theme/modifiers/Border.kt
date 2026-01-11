@@ -11,18 +11,17 @@ import com.alexrdclement.palette.theme.toComposeShape
 
 // TODO token-system: Move to modifiers
 
-data class OutlineStyle(
+data class BorderStyle(
     val width: Dp = Dp.Hairline,
-    val shape: ShapeToken = ShapeToken.Primary,
     val color: ColorToken = ColorToken.Outline,
+    val shape: ShapeToken = ShapeToken.Surface,
 )
 
 @Composable
-fun Modifier.outline(
-    style: OutlineStyle,
+fun Modifier.border(
+    style: BorderStyle,
 ): Modifier = this.border(
     width = style.width,
     color = style.color.toColor(),
     shape = style.shape.toComposeShape(),
 )
-
