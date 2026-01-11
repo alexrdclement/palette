@@ -8,6 +8,8 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
+import com.alexrdclement.palette.theme.modifiers.OutlineStyleScheme
+import com.alexrdclement.palette.theme.modifiers.OutlineStyle
 import com.alexrdclement.palette.theme.styles.ButtonStyle
 import com.alexrdclement.palette.theme.styles.ButtonStyleScheme
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
@@ -80,6 +82,10 @@ val LocalPaletteStyles = staticCompositionLocalOf {
             secondary = defaultButtonStyle,
             tertiary = defaultButtonStyle,
         ),
+        outline = OutlineStyleScheme(
+            primary = OutlineStyle(),
+            secondary = OutlineStyle(),
+        )
     )
 }
 

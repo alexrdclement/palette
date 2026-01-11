@@ -29,11 +29,16 @@ fun NavGraphBuilder.stylesGraph(
             onItemClick = { style ->
                 when (style) {
                     Styles.Button -> navController.navigateToButtonStyles()
+                    Styles.Outline -> navController.navigateToOutlineStyles()
                 }
             },
             onNavigateBack = onNavigateBack,
         )
         buttonStylesScreen(
+            themeController = themeController,
+            onNavigateBack = onNavigateBack,
+        )
+        outlineStylesScreen(
             themeController = themeController,
             onNavigateBack = onNavigateBack,
         )
