@@ -6,7 +6,7 @@ The catalog app is available on Android, iOS, desktop, and [web](https://alexrdc
 
 ![app demo](docs/assets/app-demo-dark.gif)
 
-[Source](app/src/commonMain/kotlin/com/alexrdclement/palette/app)
+[Source](app/composeApp/src/commonMain/kotlin/com/alexrdclement/palette/app)
 
 ## Components
 

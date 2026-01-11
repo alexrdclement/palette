@@ -5,7 +5,7 @@ plugins {
 android {
     namespace = "com.alexrdclement.palette.components.baselineprofile"
 
-    targetProjectPath = ":androidApp"
+    targetProjectPath = ":app:androidApp"
 }
 
 baselineProfileGenerator {
@@ -34,5 +34,5 @@ dependencies {
     implementation(libs.androidx.uiautomator)
     implementation(libs.androidx.benchmark.macro.junit4)
 
-    implementation(projects.uiautomatorFixtures)
+    implementation(projects.app.uiautomatorFixtures)
 }

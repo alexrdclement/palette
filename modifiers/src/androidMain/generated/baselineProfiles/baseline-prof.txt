@@ -71,7 +71,7 @@ Lcom/alexrdclement/palette/modifiers/ColorSplitShader;
 Lcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;-><clinit>()V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;-><init>(Lkotlin/jvm/functions/Function1;)V
-HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->createRenderEffect()Landroidx/compose/ui/graphics/RenderEffect;
+PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->createRenderEffect()Landroidx/compose/ui/graphics/RenderEffect;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->onRemeasured(II)V
 PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
 PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setYAmount(F)V

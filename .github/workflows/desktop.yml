@@ -49,13 +49,13 @@ jobs:
           build-scan-terms-of-use-agree: 'yes'
 
       - name: Build desktop app
-        run: ./gradlew desktopApp:createDistributable
+        run: ./gradlew :app:desktopApp:createDistributable
 
       - name: Upload build outputs
         uses: actions/upload-artifact@v6
         with:
           name: Palette.app
-          path: 'desktopApp/build/compose/binaries/main/app/*.app'
+          path: 'app/desktopApp/build/compose/binaries/main/app/*.app'
 
   build_windows:
     name: "Build Windows Desktop App"
@@ -90,10 +90,10 @@ jobs:
           build-scan-terms-of-use-agree: 'yes'
 
       - name: Build desktop app
-        run: ./gradlew desktopApp:createDistributable
+        run: ./gradlew :app:desktopApp:createDistributable
 
       - name: Upload build outputs
         uses: actions/upload-artifact@v6
         with:
           name: Palette.exe
-          path: 'desktopApp/build/compose/binaries/main/app/*'
+          path: 'app/desktopApp/build/compose/binaries/main/app/*'

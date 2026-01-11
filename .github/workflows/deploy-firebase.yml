@@ -49,7 +49,7 @@ jobs:
         with:
           ruby-version: '3.4.8'
           bundler-cache: true
-          working-directory: 'androidApp'
+          working-directory: 'app/androidApp'
 
       - name: Install Firebase CLI
         run: curl -sL https://firebase.tools | bash
@@ -58,7 +58,7 @@ jobs:
         run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}' > /tmp/service_account.json
 
       - name: Decode keystore and create file
-        run: echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > androidApp/release.jks
+        run: echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > app/androidApp/release.jks
 
       - name: Get commits
         id: get_commits
@@ -87,7 +87,7 @@ jobs:
           bundle exec fastlane distribute_to_firebase \
             firebase_app_id:${{ secrets.FIREBASE_ANDROID_APP_ID }} \
             release_notes:"$RELEASE_NOTES"
-        working-directory: androidApp
+        working-directory: app/androidApp
         env:
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/service_account.json
           KEYSTORE_FILE_PATH: "release.jks"
@@ -126,7 +126,7 @@ jobs:
         with:
           ruby-version: '3.4.8'
           bundler-cache: true
-          working-directory: 'iosApp'
+          working-directory: 'app/iosApp'
 
       - name: Install Firebase CLI
         run: curl -sL https://firebase.tools | bash
@@ -161,7 +161,7 @@ jobs:
           bundle exec fastlane distribute_to_firebase \
             firebase_app_id:${{ secrets.FIREBASE_IOS_APP_ID }} \
             release_notes:"$RELEASE_NOTES"
-        working-directory: iosApp
+        working-directory: app/iosApp
         env:
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/service_account.json
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}

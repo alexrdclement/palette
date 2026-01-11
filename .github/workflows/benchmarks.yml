@@ -45,7 +45,7 @@ jobs:
         run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}' > /tmp/ftl-service-account.json
 
       - name: Run Benchmarks
-        run: ./gradlew :benchmark:runBenchmarks --no-configuration-cache
+        run: ./gradlew :app:benchmark:runBenchmarks --no-configuration-cache
         env:
           FIREBASE_TEST_LAB_SERVICE_ACCOUNT: /tmp/ftl-service-account.json
 
@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: benchmark-results
-          path: benchmark/results/*.json
+          path: app/benchmark/results/*.json
 
       - name: Upload Perfetto traces
         if: always()
@@ -62,11 +62,11 @@ jobs:
         with:
           name: perfetto-traces
           path: |
-            benchmark/build/outputs/androidTest-results/**/*.perfetto-trace
+            app/benchmark/build/outputs/androidTest-results/**/*.perfetto-trace
 
       - name: Commit benchmark results
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          file_pattern: benchmark/results/*.json
+          file_pattern: app/benchmark/results/*.json
           disable_globbing: false
           commit_message: "🤖 Update benchmark results"

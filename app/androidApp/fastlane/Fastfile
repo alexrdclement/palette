@@ -20,7 +20,7 @@ platform :android do
   lane :distribute_to_firebase do |options|
     gradle(
       task: "assembleRelease",
-      project_dir: "../",
+      project_dir: "../../",
     )
 
     firebase_app_distribution(

@@ -35,7 +35,7 @@ tasks.register("generateAllBaselineProfiles") {
     description = "Generates baseline profiles for app, components, and modifiers"
 
     dependsOn(
-        ":baseline-profile:generateBaselineProfile",
+        ":app:baseline-profile:generateBaselineProfile",
         ":components:baseline-profile:generateBaselineProfile",
         ":modifiers:baseline-profile:generateBaselineProfile"
     )
