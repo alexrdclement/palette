@@ -49,7 +49,7 @@ jobs:
         with:
           ruby-version: '3.4.8'
           bundler-cache: true
-          working-directory: 'androidApp'
+          working-directory: 'app/androidApp'
 
       - name: Install Firebase CLI
         run: curl -sL https://firebase.tools | bash
@@ -126,7 +126,7 @@ jobs:
         with:
           ruby-version: '3.4.8'
           bundler-cache: true
-          working-directory: 'iosApp'
+          working-directory: 'app/iosApp'
 
       - name: Install Firebase CLI
         run: curl -sL https://firebase.tools | bash
