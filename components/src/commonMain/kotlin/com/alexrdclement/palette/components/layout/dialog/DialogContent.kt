@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.components.layout
+package com.alexrdclement.palette.components.layout.dialog
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
