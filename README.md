@@ -74,4 +74,4 @@ With the exception of the GIFs, the images above were captured as gold files for
 
 [Component Tests](components/src/androidUnitTest/kotlin/com/alexrdclement/palette/components)
 
-[Shader Tests](modifiers/src/androidUnitTest/kotlin/com/alexrdclement/palette/modifiers)
+[Modifier Tests](modifiers/src/androidUnitTest/kotlin/com/alexrdclement/palette/modifiers)
