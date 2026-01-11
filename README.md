@@ -1,4 +1,4 @@
-Palette is a [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform) component, modifier, and theme library.
+Palette is a [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform) design library. It contains a set of component, modifier, and theme libraries.
 
 ## Catalog App
 
