@@ -27,21 +27,21 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "palette"
 
-include(":androidApp")
-include(":app")
-include(":baseline-profile")
-include(":benchmark")
+include(":catalogApp:androidApp")
+include(":catalogApp:app")
+include(":catalogApp:baseline-profile")
+include(":catalogApp:benchmark")
+include(":catalogApp:desktopApp")
+include(":catalogApp:uiautomator-fixtures")
+include(":catalogApp:webApp")
 include(":components")
 include(":components:android-test")
 include(":components:baseline-profile")
-include(":desktopApp")
 include(":modifiers")
 include(":modifiers:android-test")
 include(":modifiers:baseline-profile")
 include(":testing")
 include(":theme")
-include(":uiautomator-fixtures")
-include(":webApp")
 
 plugins {
     // Compose Hot Reload

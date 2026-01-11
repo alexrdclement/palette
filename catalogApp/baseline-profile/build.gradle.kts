@@ -5,7 +5,7 @@ plugins {
 android {
     namespace = "com.alexrdclement.palette.baselineprofile"
 
-    targetProjectPath = ":androidApp"
+    targetProjectPath = ":catalogApp:androidApp"
 }
 
 firebaseTestLab {
@@ -30,7 +30,7 @@ dependencies {
     implementation(libs.androidx.uiautomator)
     implementation(libs.androidx.benchmark.macro.junit4)
 
-    implementation(projects.uiautomatorFixtures)
+    implementation(projects.catalogApp.uiautomatorFixtures)
 }
 
 androidComponents {

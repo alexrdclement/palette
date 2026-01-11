@@ -12,7 +12,7 @@ android {
         }
     }
 
-    targetProjectPath = ":androidApp"
+    targetProjectPath = ":catalogApp:androidApp"
     experimentalProperties["android.experimental.self-instrumenting"] = true
 }
 
@@ -40,7 +40,7 @@ dependencies {
     implementation(libs.androidx.tracing.perfetto)
     implementation(libs.androidx.tracing.perfetto.binary)
 
-    implementation(projects.uiautomatorFixtures)
+    implementation(projects.catalogApp.uiautomatorFixtures)
 }
 
 androidComponents {

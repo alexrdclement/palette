@@ -9,7 +9,7 @@ kotlin {
     sourceSets {
         wasmJsMain {
             dependencies {
-                implementation(projects.app)
+                implementation(projects.catalogApp.app)
                 implementation(compose.ui)
                 implementation(libs.navigation.compose)
             }

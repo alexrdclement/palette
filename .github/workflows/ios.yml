@@ -49,4 +49,4 @@ jobs:
           build-scan-terms-of-use-agree: 'yes'
 
       - name: Build iOS Simulator app
-        run: xcodebuild -workspace iosApp/Palette.xcodeproj/project.xcworkspace -configuration Debug -scheme Palette -sdk iphonesimulator -arch arm64
+        run: xcodebuild -workspace catalogApp/iosApp/Palette.xcodeproj/project.xcworkspace -configuration Debug -scheme Palette -sdk iphonesimulator -arch arm64

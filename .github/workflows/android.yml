@@ -50,7 +50,7 @@ jobs:
             build-scan-terms-of-use-agree: 'yes'
 
       - name: Build debug
-        run: ./gradlew :androidApp:assembleDebug
+        run: ./gradlew :catalogApp:androidApp:assembleDebug
 
       - name: Upload build outputs (APKs)
         uses: actions/upload-artifact@v6

@@ -87,7 +87,7 @@ jobs:
           bundle exec fastlane distribute_to_firebase \
             firebase_app_id:${{ secrets.FIREBASE_ANDROID_APP_ID }} \
             release_notes:"$RELEASE_NOTES"
-        working-directory: androidApp
+        working-directory: catalogApp/androidApp
         env:
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/service_account.json
           KEYSTORE_FILE_PATH: "release.jks"
@@ -161,7 +161,7 @@ jobs:
           bundle exec fastlane distribute_to_firebase \
             firebase_app_id:${{ secrets.FIREBASE_IOS_APP_ID }} \
             release_notes:"$RELEASE_NOTES"
-        working-directory: iosApp
+        working-directory: catalogApp/iosApp
         env:
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/service_account.json
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
