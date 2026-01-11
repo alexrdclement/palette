@@ -71,7 +71,7 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.profileinstaller)
 
-    implementation(projects.catalogApp.app)
+    implementation(projects.app.composeApp)
 
-    baselineProfile(projects.catalogApp.baselineProfile)
+    baselineProfile(projects.app.baselineProfile)
 }

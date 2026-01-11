@@ -50,13 +50,13 @@ jobs:
             build-scan-terms-of-use-agree: 'yes'
 
       - name: Build Web
-        run: ./gradlew :catalogApp:webApp:wasmJsBrowserDistribution
+        run: ./gradlew :app:webApp:wasmJsBrowserDistribution
 
       - name: Upload build outputs
         id: deployment
         uses: actions/upload-pages-artifact@v4
         with:
-          path: 'catalogApp/webApp/build/dist/wasmJs/productionExecutable/'
+          path: 'app/webApp/build/dist/wasmJs/productionExecutable/'
 
   deploy:
     if: github.ref == 'refs/heads/main'

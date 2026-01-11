@@ -13,7 +13,7 @@ kotlin {
     sourceSets {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
-            implementation(projects.catalogApp.app)
+            implementation(projects.app.composeApp)
         }
     }
 }
