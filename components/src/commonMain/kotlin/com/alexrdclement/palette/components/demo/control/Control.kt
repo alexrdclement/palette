@@ -60,6 +60,12 @@ sealed class Control {
         val modifier: Modifier = Modifier,
     ) : Control()
 
+    data class Color(
+        val name: String,
+        val color: () -> androidx.compose.ui.graphics.Color,
+        val onColorChange: (androidx.compose.ui.graphics.Color) -> Unit,
+    ) : Control()
+
     data class ControlRow(val controls: () -> ImmutableList<Control>) : Control()
 
     data class ControlColumn(
