@@ -58,7 +58,7 @@ jobs:
         run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}' > /tmp/service_account.json
 
       - name: Decode keystore and create file
-        run: echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > androidApp/release.jks
+        run: echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > app/androidApp/release.jks
 
       - name: Get commits
         id: get_commits
