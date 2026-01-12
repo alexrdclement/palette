@@ -81,7 +81,7 @@ fun rememberMoneyFormatScreenState(
 ): MoneyFormatScreenState {
     return rememberSaveable(
         themeState,
-        MoneyFormatScreenStateSaver(themeState),
+        saver = MoneyFormatScreenStateSaver(themeState),
     ) {
         MoneyFormatScreenState(
             themeState = themeState,

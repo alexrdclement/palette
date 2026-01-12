@@ -5,24 +5,6 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.format.DateTimeFormat
 
-enum class DateTimeFormatToken {
-    MDYContinental,
-    MDYContinentalShort,
-    YMDContinental,
-    YMDContinentalShort,
-    ContinentalMDY,
-    ContinentalYMD,
-}
-
-fun DateTimeFormatToken.toFormat() = when (this) {
-    DateTimeFormatToken.MDYContinental -> LocalDateTimeFormatMDYContinental
-    DateTimeFormatToken.MDYContinentalShort -> LocalDateTimeFormatMDYContinentalShort
-    DateTimeFormatToken.YMDContinental -> LocalDateTimeFormatYMDContinental
-    DateTimeFormatToken.YMDContinentalShort -> LocalDateTimeFormatYMDContinentalShort
-    DateTimeFormatToken.ContinentalMDY -> LocalDateTimeFormatContinentalMDY
-    DateTimeFormatToken.ContinentalYMD -> LocalDateTimeFormatContinentalYMD
-}
-
 val LocalDateTimeFormatMDYContinental = buildLocalDateTimeFormat(
     date = LocalDate.Formats.MDY,
     time = LocalTime.Formats.HMContinental,

@@ -28,17 +28,22 @@ fun NavGraphBuilder.formatsGraph(
         formatScreen(
             onItemClick = { format ->
                 when (format) {
-                    Format.Number -> navController.navigateToNumberFormat()
+                    Format.DateTime -> navController.navigateToDateTimeFormat()
                     Format.Money -> navController.navigateToMoneyFormat()
+                    Format.Number -> navController.navigateToNumberFormat()
                 }
             },
             onNavigateBack = onNavigateBack,
         )
-        numberFormatScreen(
+        dateTimeFormatScreen(
             themeController = themeController,
             onNavigateBack = onNavigateBack,
         )
         moneyFormatScreen(
+            themeController = themeController,
+            onNavigateBack = onNavigateBack,
+        )
+        numberFormatScreen(
             themeController = themeController,
             onNavigateBack = onNavigateBack,
         )

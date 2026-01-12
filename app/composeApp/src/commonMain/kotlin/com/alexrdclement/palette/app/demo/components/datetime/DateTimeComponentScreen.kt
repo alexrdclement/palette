@@ -23,7 +23,7 @@ fun DateTimeComponentScreen(
         },
     ) { innerPadding ->
         when (component) {
-            DateTimeComponent.DateTimeFormat -> DateTimeDemo(
+            DateTimeComponent.DateTimeFormat -> DateTimeFormatDemo(
                 modifier = Modifier.padding(innerPadding)
             )
         }

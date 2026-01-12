@@ -106,7 +106,6 @@ class NumberFormatDemoState(
     }
 }
 
-private const val numberFormatKey = "numberFormat"
 private const val demoTextFieldStateKey = "demoTextFieldState"
 private const val minNumDecimalValuesTextFieldStateKey = "minNumDecimalValuesTextFieldState"
 private const val maxNumDecimalValuesTextFieldStateKey = "maxNumDecimalValuesTextFieldState"
@@ -117,7 +116,6 @@ private const val groupingChunkTextFieldStateKey = "groupingChunkTextFieldState"
 fun NumberFormatDemoStateSaver() = mapSaverSafe(
     save = { state ->
         mapOf(
-            numberFormatKey to state.numberFormat,
             demoTextFieldStateKey to save(state.demoTextFieldState),
             minNumDecimalValuesTextFieldStateKey to save(state.minNumDecimalValuesTextFieldState),
             maxNumDecimalValuesTextFieldStateKey to save(state.maxNumDecimalValuesTextFieldState),
@@ -128,7 +126,6 @@ fun NumberFormatDemoStateSaver() = mapSaverSafe(
     },
     restore = { map ->
         NumberFormatDemoState(
-            numberFormatInitial = map[numberFormatKey] as NumberFormat,
             demoTextFieldState = restore(map[demoTextFieldStateKey]!!) as TextFieldState,
             minNumDecimalValuesTextFieldState = restore(map[minNumDecimalValuesTextFieldStateKey]!!) as TextFieldState,
             maxNumDecimalValuesTextFieldState = restore(map[maxNumDecimalValuesTextFieldStateKey]!!) as TextFieldState,
@@ -155,7 +152,7 @@ fun rememberNumberFormatDemoControl(
 
 @Stable
 class NumberFormatDemoControl(
-    val state: NumberFormatDemoState,
+    val state: NumberFormatDemoState = NumberFormatDemoState(),
     val onValueChange: (NumberFormat) -> Unit = { state.numberFormat = it },
     val includeTextFieldControl: Boolean = true,
 ) {

@@ -8,12 +8,17 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
+import com.alexrdclement.palette.theme.format.DateFormatToken
+import com.alexrdclement.palette.theme.format.DateTimeFormatScheme
+import com.alexrdclement.palette.theme.format.DateTimeFormatToken
+import com.alexrdclement.palette.theme.format.InstantFormatToken
 import com.alexrdclement.palette.theme.format.MoneyFormat
 import com.alexrdclement.palette.theme.format.MoneyFormatScheme
 import com.alexrdclement.palette.theme.format.MoneyFormatToken
 import com.alexrdclement.palette.theme.format.NumberFormat
 import com.alexrdclement.palette.theme.format.NumberFormatScheme
 import com.alexrdclement.palette.theme.format.NumberFormatToken
+import com.alexrdclement.palette.theme.format.TimeFormatToken
 import com.alexrdclement.palette.theme.modifiers.BorderStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleScheme
 import com.alexrdclement.palette.theme.styles.ButtonStyle
@@ -99,11 +104,17 @@ val LocalPaletteStyles = staticCompositionLocalOf {
 
 val LocalPaletteFormats = staticCompositionLocalOf {
     Formats(
-        numberFormats = NumberFormatScheme(
-            default = NumberFormat(),
+        dateTimeFormats = DateTimeFormatScheme(
+            dateFormat = DateFormatToken.YMD,
+            timeFormat = TimeFormatToken.HMContinental,
+            dateTimeFormat = DateTimeFormatToken.YMDContinental,
+            instantFormat = InstantFormatToken.YMDContinental,
         ),
         moneyFormats = MoneyFormatScheme(
             default = MoneyFormat(),
+        ),
+        numberFormats = NumberFormatScheme(
+            default = NumberFormat(),
         ),
     )
 }

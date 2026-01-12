@@ -4,20 +4,6 @@ import kotlinx.datetime.LocalTime
 import kotlinx.datetime.format.DateTimeFormat
 import kotlinx.datetime.format.Padding
 
-enum class TimeFormat {
-    HMContinental,
-    HMAmPmPadZero,
-    HMSContinental,
-    HMSAmPmPadZero,
-}
-
-fun TimeFormat.toFormat() = when (this) {
-    TimeFormat.HMContinental -> LocalTimeFormatHMContinental
-    TimeFormat.HMAmPmPadZero -> LocalTimeFormatHMAmPmPadZero
-    TimeFormat.HMSContinental -> LocalTimeFormatHMSContinental
-    TimeFormat.HMSAmPmPadZero -> LocalTimeFormatHMSAmPmPadZero
-}
-
 val LocalTimeFormatHMContinental = LocalTime.Format {
     hour(padding = Padding.ZERO)
     chars(":")

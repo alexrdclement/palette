@@ -4,7 +4,6 @@ package com.alexrdclement.palette.app.demo.components.datetime
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -20,15 +19,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.datetime.DateFormat
-import com.alexrdclement.palette.components.datetime.DateTimeFormatToken
-import com.alexrdclement.palette.components.datetime.TimeFormat
 import com.alexrdclement.palette.components.datetime.toFormat
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.format.DateFormatToken
+import com.alexrdclement.palette.theme.format.DateTimeFormatToken
+import com.alexrdclement.palette.theme.format.TimeFormatToken
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.delay
@@ -44,9 +44,9 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
 @Composable
-fun DateTimeDemo(
-    state: DateTimeDemoState = rememberDateTimeDemoState(),
-    control: DateTimeDemoControl = rememberDateTimeDemoControl(state),
+fun DateTimeFormatDemo(
+    state: DateTimeFormatDemoState = rememberDateTimeFormatDemoState(),
+    control: DateTimeFormatDemoControl = rememberDateTimeFormatDemoControl(state),
     modifier: Modifier = Modifier,
 ) {
     Demo(
@@ -54,18 +54,16 @@ fun DateTimeDemo(
         modifier = modifier
             .fillMaxSize()
     ) {
-        DateTimeDemo(
+        DateTimeFormatDemo(
             state = state,
-            control = control,
         )
     }
 }
 
 @Composable
-fun BoxWithConstraintsScope.DateTimeDemo(
+fun DemoScope.DateTimeFormatDemo(
+    state: DateTimeFormatDemoState,
     modifier: Modifier = Modifier,
-    state: DateTimeDemoState = rememberDateTimeDemoState(),
-    control: DateTimeDemoControl = rememberDateTimeDemoControl(state),
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(
@@ -119,28 +117,28 @@ private fun FormatDemo(
 }
 
 @Composable
-fun rememberDateTimeDemoState(
+fun rememberDateTimeFormatDemoState(
     timeZone: TimeZone = TimeZone.currentSystemDefault(),
-    timeFormatInitial: TimeFormat = TimeFormat.HMSContinental,
-    dateFormatInitial: DateFormat = DateFormat.YMD,
+    timeFormatInitial: TimeFormatToken = TimeFormatToken.HMSContinental,
+    dateFormatInitial: DateFormatToken = DateFormatToken.YMD,
     dateTimeFormatInitial: DateTimeFormatToken = DateTimeFormatToken.YMDContinental,
-): DateTimeDemoState = rememberSaveable(
-    saver = DateTimeDemoStateSaver,
+): DateTimeFormatDemoState = rememberSaveable(
+    saver = DateTimeFormatDemoStateSaver,
 ) {
-    DateTimeDemoState(
+    DateTimeFormatDemoState(
         timeZoneInitial = timeZone,
         timeFormatInitial = timeFormatInitial,
         dateFormatInitial = dateFormatInitial,
-        dateTimeFormatInitial = dateTimeFormatInitial,
+        dateTimeFormatTokenInitial = dateTimeFormatInitial,
     )
 }
 
 @Stable
-class DateTimeDemoState(
+class DateTimeFormatDemoState(
     timeZoneInitial: TimeZone,
-    timeFormatInitial: TimeFormat,
-    dateFormatInitial: DateFormat,
-    dateTimeFormatInitial: DateTimeFormatToken
+    timeFormatInitial: TimeFormatToken,
+    dateFormatInitial: DateFormatToken,
+    dateTimeFormatTokenInitial: DateTimeFormatToken
 ) {
     val availableTimeZoneIds = setOf(TimeZone.currentSystemDefault().id, "UTC", "EST", "PST8PDT").toPersistentList()
 
@@ -153,7 +151,7 @@ class DateTimeDemoState(
     var dateFormat by mutableStateOf(dateFormatInitial)
         internal set
 
-    var dateTimeFormat by mutableStateOf(dateTimeFormatInitial)
+    var dateTimeFormatToken by mutableStateOf(dateTimeFormatTokenInitial)
         internal set
 
     val instant: Flow<Instant> = flow {
@@ -169,60 +167,60 @@ class DateTimeDemoState(
 
     val dateFormatted = localDateTime.map { it.date.format(dateFormat.toFormat()) }
 
-    val dateTimeFormatted = localDateTime.map { it.format(dateTimeFormat.toFormat()) }
+    val dateTimeFormatted = localDateTime.map { it.format(dateTimeFormatToken.toFormat()) }
 }
 
 private const val timeZoneKey = "timeZone"
 private const val timeFormatKey = "timeFormat"
 private const val dateFormatKey = "dateFormat"
-private const val dateTimeFormatKey = "dateTimeFormat"
+private const val dateTimeFormatTokenKey = "dateTimeFormatToken"
 
-val DateTimeDemoStateSaver = mapSaverSafe(
+val DateTimeFormatDemoStateSaver = mapSaverSafe(
     save = { value ->
         mapOf(
             timeZoneKey to value.timeZone.id,
             timeFormatKey to value.timeFormat,
             dateFormatKey to value.dateFormat,
-            dateTimeFormatKey to value.dateTimeFormat,
+            dateTimeFormatTokenKey to value.dateTimeFormatToken,
         )
     },
     restore = { map ->
-        DateTimeDemoState(
+        DateTimeFormatDemoState(
             timeZoneInitial = TimeZone.of(map[timeZoneKey] as String),
-            timeFormatInitial = map[timeFormatKey] as TimeFormat,
-            dateFormatInitial = map[dateFormatKey] as DateFormat,
-            dateTimeFormatInitial = map[dateTimeFormatKey] as DateTimeFormatToken,
+            timeFormatInitial = map[timeFormatKey] as TimeFormatToken,
+            dateFormatInitial = map[dateFormatKey] as DateFormatToken,
+            dateTimeFormatTokenInitial = map[dateTimeFormatTokenKey] as DateTimeFormatToken,
         )
     },
 )
 
 @Composable
-fun rememberDateTimeDemoControl(
-    state: DateTimeDemoState,
-): DateTimeDemoControl = remember(state) { DateTimeDemoControl(state) }
+fun rememberDateTimeFormatDemoControl(
+    state: DateTimeFormatDemoState,
+): DateTimeFormatDemoControl = remember(state) { DateTimeFormatDemoControl(state) }
 
 @Stable
-class DateTimeDemoControl(
-    val state: DateTimeDemoState,
+class DateTimeFormatDemoControl(
+    val state: DateTimeFormatDemoState,
 ) {
     val controls = persistentListOf<Control>(
         enumControl(
             name = "Time format",
-            values = { TimeFormat.entries },
+            values = { TimeFormatToken.entries },
             selectedValue = { state.timeFormat },
             onValueChange = { state.timeFormat = it },
         ),
         enumControl(
             name = "Date format",
-            values = { DateFormat.entries },
+            values = { DateFormatToken.entries },
             selectedValue = { state.dateFormat },
             onValueChange = { state.dateFormat = it },
         ),
         enumControl(
             name = "DateTime format",
             values = { DateTimeFormatToken.entries },
-            selectedValue = { state.dateTimeFormat },
-            onValueChange = { state.dateTimeFormat = it },
+            selectedValue = { state.dateTimeFormatToken },
+            onValueChange = { state.dateTimeFormatToken = it },
         ),
         Control.Dropdown(
             name = "Time zone",
