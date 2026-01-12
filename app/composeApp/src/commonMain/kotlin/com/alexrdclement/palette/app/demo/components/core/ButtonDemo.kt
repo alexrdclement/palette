@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.app.demo.components.core
 
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -50,7 +50,7 @@ fun ButtonDemo(
 }
 
 @Composable
-fun BoxWithConstraintsScope.ButtonDemo(
+fun DemoScope.ButtonDemo(
     modifier: Modifier = Modifier,
     state: ButtonDemoState = rememberButtonDemoState(),
     control: ButtonDemoControl = rememberButtonDemoControl(state),

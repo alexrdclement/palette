@@ -51,6 +51,15 @@ sealed class Control {
         val enabled: () -> Boolean = { true },
         val keyboardOptions: () -> KeyboardOptions = { KeyboardOptions.Default },
         val inputTransformation: () -> InputTransformation? = { null },
+        val onValueChange: (String) -> Unit = {},
+    ) : Control()
+
+    data class CharField(
+        val name: String,
+        val value: () -> Char,
+        val includeLabel: Boolean = true,
+        val enabled: () -> Boolean = { true },
+        val onValueChange: (Char) -> Unit = {},
     ) : Control()
 
     data class Button(

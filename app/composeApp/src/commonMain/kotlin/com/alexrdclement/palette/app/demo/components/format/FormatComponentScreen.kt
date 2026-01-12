@@ -1,15 +1,15 @@
-package com.alexrdclement.palette.app.demo.components.money
+package com.alexrdclement.palette.app.demo.components.format
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.app.demo.components.money.navigation.MoneyComponent
+import com.alexrdclement.palette.app.demo.components.format.navigation.FormatComponent
 import com.alexrdclement.palette.components.layout.Scaffold
 
 @Composable
-fun MoneyComponentScreen(
-    component: MoneyComponent,
+fun FormatComponentScreen(
+    component: FormatComponent,
     onNavigateBack: () -> Unit,
     onThemeClick: () -> Unit,
 ) {
@@ -23,11 +23,7 @@ fun MoneyComponentScreen(
         },
     ) { innerPadding ->
         when (component) {
-            MoneyComponent.CurrencyAmountField -> CurrencyAmountFieldDemo(
-                modifier = Modifier.padding(innerPadding)
-            )
-
-            MoneyComponent.MoneyFormat -> MoneyFormatDemo(
+            FormatComponent.Number -> NumberFormatDemo(
                 modifier = Modifier.padding(innerPadding)
             )
         }

@@ -9,6 +9,7 @@ enum class ComponentCategory : CatalogItem {
     Color,
     Core,
     DateTime,
+    Format,
     Geometry,
     Media,
     Money,

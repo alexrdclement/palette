@@ -8,7 +8,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.alexrdclement.palette.theme.ColorScheme
+import com.alexrdclement.palette.theme.Formats
 import com.alexrdclement.palette.theme.PaletteDarkColorScheme
+import com.alexrdclement.palette.theme.PaletteFormats
 import com.alexrdclement.palette.theme.PaletteIndication
 import com.alexrdclement.palette.theme.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.PaletteShapeScheme
@@ -28,6 +30,7 @@ interface ThemeState {
     val isDarkMode: Boolean
     val shapeScheme: ShapeScheme
     val spacing: Spacing
+    val formats: Formats
     val styles: Styles
 
     val colorScheme: ColorScheme
@@ -42,6 +45,7 @@ internal class ThemeStateImpl(
     shapeSchemeInitial: ShapeScheme = PaletteShapeScheme,
     indicationInitial: Indication = PaletteIndication,
     spacingInitial: Spacing = PaletteSpacing,
+    formatsInitial: Formats = PaletteFormats,
     stylesInitial: Styles = PaletteStyles,
 ) : ThemeState {
     override var typography by mutableStateOf(typographyInitial)
@@ -51,6 +55,7 @@ internal class ThemeStateImpl(
     override var darkColorScheme by mutableStateOf(darkColorSchemeInitial)
     override var isDarkMode by mutableStateOf(isDarkModeInitial)
     override var spacing by mutableStateOf(spacingInitial)
+    override var formats by mutableStateOf(formatsInitial)
     override var styles by mutableStateOf(stylesInitial)
 }
 

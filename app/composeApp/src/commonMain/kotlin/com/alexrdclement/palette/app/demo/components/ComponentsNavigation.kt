@@ -13,6 +13,8 @@ import com.alexrdclement.palette.app.demo.components.core.navigation.coreCompone
 import com.alexrdclement.palette.app.demo.components.core.navigation.navigateToCoreComponents
 import com.alexrdclement.palette.app.demo.components.datetime.navigation.dateTimeComponentsGraph
 import com.alexrdclement.palette.app.demo.components.datetime.navigation.navigateToDateTimeComponents
+import com.alexrdclement.palette.app.demo.components.format.navigation.formatComponentsGraph
+import com.alexrdclement.palette.app.demo.components.format.navigation.navigateToFormatComponents
 import com.alexrdclement.palette.app.demo.components.geometry.navigation.geometryComponentsGraph
 import com.alexrdclement.palette.app.demo.components.geometry.navigation.navigateToGeometryComponents
 import com.alexrdclement.palette.app.demo.components.media.navigation.mediaComponentsGraph
@@ -45,6 +47,7 @@ fun NavGraphBuilder.componentsGraph(
                     ComponentCategory.Color -> navController.navigateToColorComponents()
                     ComponentCategory.Core -> navController.navigateToCoreComponents()
                     ComponentCategory.DateTime -> navController.navigateToDateTimeComponents()
+                    ComponentCategory.Format -> navController.navigateToFormatComponents()
                     ComponentCategory.Geometry -> navController.navigateToGeometryComponents()
                     ComponentCategory.Media -> navController.navigateToMediaComponents()
                     ComponentCategory.Money -> navController.navigateToMoneyComponents()
@@ -66,6 +69,10 @@ fun NavGraphBuilder.componentsGraph(
             onThemeClick = onThemeClick,
         )
         dateTimeComponentsGraph(
+            navController = navController,
+            onThemeClick = onThemeClick,
+        )
+        formatComponentsGraph(
             navController = navController,
             onThemeClick = onThemeClick,
         )

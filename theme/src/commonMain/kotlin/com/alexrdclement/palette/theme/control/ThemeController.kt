@@ -3,6 +3,7 @@ package com.alexrdclement.palette.theme.control
 import androidx.compose.foundation.Indication
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.ColorScheme
+import com.alexrdclement.palette.theme.Formats
 import com.alexrdclement.palette.theme.ShapeScheme
 import com.alexrdclement.palette.theme.Spacing
 import com.alexrdclement.palette.theme.Styles
@@ -49,6 +50,11 @@ class ThemeController internal constructor(
 
     fun setStyles(styles: Styles): Boolean {
         state.styles = styles
+        return true
+    }
+
+    fun setFormats(formats: Formats): Boolean {
+        state.formats = formats
         return true
     }
 }

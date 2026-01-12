@@ -41,6 +41,7 @@ fun CurrencyAmountFieldDemo(
                 style = PaletteTheme.typography.headline,
             )
             CurrencyAmountField(
+                moneyFormat = PaletteTheme.formats.moneyFormats.default,
                 textFieldState = textFieldState,
             )
         }

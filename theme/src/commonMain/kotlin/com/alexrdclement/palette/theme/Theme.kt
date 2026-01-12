@@ -8,6 +8,12 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
+import com.alexrdclement.palette.theme.format.MoneyFormat
+import com.alexrdclement.palette.theme.format.MoneyFormatScheme
+import com.alexrdclement.palette.theme.format.MoneyFormatToken
+import com.alexrdclement.palette.theme.format.NumberFormat
+import com.alexrdclement.palette.theme.format.NumberFormatScheme
+import com.alexrdclement.palette.theme.format.NumberFormatToken
 import com.alexrdclement.palette.theme.modifiers.BorderStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleScheme
 import com.alexrdclement.palette.theme.styles.ButtonStyle
@@ -91,6 +97,17 @@ val LocalPaletteStyles = staticCompositionLocalOf {
     )
 }
 
+val LocalPaletteFormats = staticCompositionLocalOf {
+    Formats(
+        numberFormats = NumberFormatScheme(
+            default = NumberFormat(),
+        ),
+        moneyFormats = MoneyFormatScheme(
+            default = MoneyFormat(),
+        ),
+    )
+}
+
 @Composable
 fun PaletteTheme(
     isDarkMode: Boolean = isSystemInDarkTheme(),
@@ -101,6 +118,7 @@ fun PaletteTheme(
     indication: Indication = PaletteIndication,
     spacing: Spacing = PaletteSpacing,
     styles: Styles = PaletteStyles,
+    formats: Formats = PaletteFormats,
     content: @Composable () -> Unit
 ) {
     val colorScheme = if (isDarkMode) darkColorScheme else lightColorScheme
@@ -111,6 +129,7 @@ fun PaletteTheme(
         LocalPaletteIndication provides indication,
         LocalPaletteSpacing provides spacing,
         LocalPaletteStyles provides styles,
+        LocalPaletteFormats provides formats,
         content = content,
     )
 }
@@ -119,6 +138,10 @@ object PaletteTheme {
     val colorScheme: ColorScheme
         @Composable
         get() = LocalPaletteColorScheme.current
+
+    val formats: Formats
+        @Composable
+        get() = LocalPaletteFormats.current
 
     val typography: Typography
         @Composable

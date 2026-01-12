@@ -1,12 +1,11 @@
-package com.alexrdclement.palette.app.demo.components.money.navigation
+package com.alexrdclement.palette.app.demo.components.format.navigation
 
 import com.alexrdclement.palette.components.layout.catalog.CatalogItem
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class MoneyComponent : CatalogItem {
-    CurrencyAmountField,
-    MoneyFormat,
+enum class FormatComponent : CatalogItem {
+    Number,
     ;
 
     override val title = this.name

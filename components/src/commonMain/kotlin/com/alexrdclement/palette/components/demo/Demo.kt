@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.HorizontalDivider
@@ -28,11 +29,18 @@ import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
+@Stable
+interface DemoScope : BoxWithConstraintsScope
+
+private class DemoScopeImpl(
+    val boxWithConstraintsScope: BoxWithConstraintsScope,
+) : DemoScope, BoxWithConstraintsScope by boxWithConstraintsScope
+
 @Composable
 fun Demo(
     modifier: Modifier = Modifier,
     controls: PersistentList<Control> = persistentListOf(),
-    content: @Composable BoxWithConstraintsScope.() -> Unit,
+    content: @Composable DemoScope.() -> Unit,
 ) {
     BoxWithConstraints(
         modifier = modifier
@@ -48,7 +56,8 @@ fun Demo(
                         .fillMaxWidth()
                         .weight(1f)
                 ) {
-                    this.content()
+                    val scope = DemoScopeImpl(this)
+                    scope.content()
                 }
                 if (controls.isNotEmpty()) {
                     HorizontalDivider(modifier = Modifier.fillMaxWidth())
@@ -73,7 +82,8 @@ fun Demo(
                         .fillMaxHeight()
                         .weight(1f)
                 ) {
-                    this@BoxWithConstraints.content()
+                    val scope = DemoScopeImpl(this@BoxWithConstraints)
+                    scope.content()
                 }
                 if (controls.isNotEmpty()) {
                     VerticalDivider(modifier = Modifier.fillMaxHeight())

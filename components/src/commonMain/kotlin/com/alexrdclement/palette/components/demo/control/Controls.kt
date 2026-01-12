@@ -89,6 +89,7 @@ fun Controls(
                     is Control.Slider -> SliderControl(control = control)
                     is Control.Dropdown<*> -> DropdownControlRow(control = control)
                     is Control.Toggle -> ToggleControlRow(control = control)
+                    is Control.CharField -> CharControl(control = control)
                     is Control.TextField -> TextFieldControl(control = control)
                     is Control.ControlColumn -> {
                         val controls by rememberUpdatedState(control.controls())
@@ -128,6 +129,7 @@ fun ControlsRow(
                 is Control.Slider -> SliderControl(control = control)
                 is Control.Dropdown<*> -> DropdownControl(control = control)
                 is Control.Toggle -> ToggleControl(control = control)
+                is Control.CharField -> CharControl(control = control)
                 is Control.TextField -> TextFieldControl(control = control)
                 is Control.ControlColumn -> {
                     val controls by rememberUpdatedState(control.controls())
