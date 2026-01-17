@@ -8,8 +8,6 @@ enum class ComponentCategory : CatalogItem {
     Auth,
     Color,
     Core,
-    DateTime,
-    Format,
     Geometry,
     Media,
     Money,

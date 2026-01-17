@@ -66,6 +66,7 @@ jobs:
           path: |
             app/androidApp/src/release/generated/baselineProfiles/startup-prof.txt
             components/src/androidMain/generated/baselineProfiles/baseline-prof.txt
+            formats/src/androidMain/generated/baselineProfiles/baseline-prof.txt
             modifiers/src/androidMain/generated/baselineProfiles/baseline-prof.txt
 
       - name: Commit generated baseline profiles
@@ -74,5 +75,6 @@ jobs:
           file_pattern: >-
             app/androidApp/src/release/generated/baselineProfiles/startup-prof.txt
             components/src/androidMain/generated/baselineProfiles/baseline-prof.txt
+            formats/src/androidMain/generated/baselineProfiles/baseline-prof.txt
             modifiers/src/androidMain/generated/baselineProfiles/baseline-prof.txt
           commit_message: "🤖 Update baseline profiles"

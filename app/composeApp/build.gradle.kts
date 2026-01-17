@@ -20,6 +20,7 @@ kotlin {
             implementation(libs.uievent)
 
             implementation(projects.components)
+            implementation(projects.formats)
             implementation(projects.modifiers)
             implementation(projects.theme)
         }

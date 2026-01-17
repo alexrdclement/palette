@@ -10,6 +10,10 @@ class MainCatalogPage(
         device.waitAndFindObject(By.text("Components")).click()
     }
 
+    fun navigateToFormats() {
+        device.waitAndFindObject(By.text("Formats")).click()
+    }
+
     fun navigateToModifiers() {
         device.waitAndFindObject(By.text("Modifiers")).click()
     }

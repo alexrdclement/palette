@@ -3,7 +3,7 @@ package com.alexrdclement.palette.theme.control
 import androidx.compose.foundation.Indication
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.ColorScheme
-import com.alexrdclement.palette.theme.Formats
+import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.ShapeScheme
 import com.alexrdclement.palette.theme.Spacing
 import com.alexrdclement.palette.theme.Styles

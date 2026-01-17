@@ -26,10 +26,6 @@ fun MoneyComponentScreen(
             MoneyComponent.CurrencyAmountField -> CurrencyAmountFieldDemo(
                 modifier = Modifier.padding(innerPadding)
             )
-
-            MoneyComponent.MoneyFormat -> MoneyFormatDemo(
-                modifier = Modifier.padding(innerPadding)
-            )
         }
     }
 }

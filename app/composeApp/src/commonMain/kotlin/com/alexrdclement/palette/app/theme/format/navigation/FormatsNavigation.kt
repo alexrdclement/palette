@@ -6,6 +6,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.theme.format.Format
+import com.alexrdclement.palette.app.theme.format.datetime.navigation.dateTimeFormatsGraph
+import com.alexrdclement.palette.app.theme.format.datetime.navigation.navigateToDateTimeFormats
 import com.alexrdclement.palette.theme.control.ThemeController
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -25,17 +27,18 @@ fun NavGraphBuilder.formatsGraph(
     navigation<FormatGraphRoute>(
         startDestination = FormatCatalogRoute,
     ) {
-        formatScreen(
+        formatsScreen(
             onItemClick = { format ->
                 when (format) {
-                    Format.DateTime -> navController.navigateToDateTimeFormat()
+                    Format.DateTime -> navController.navigateToDateTimeFormats()
                     Format.Money -> navController.navigateToMoneyFormat()
                     Format.Number -> navController.navigateToNumberFormat()
                 }
             },
             onNavigateBack = onNavigateBack,
         )
-        dateTimeFormatScreen(
+        dateTimeFormatsGraph(
+            navController = navController,
             themeController = themeController,
             onNavigateBack = onNavigateBack,
         )
@@ -50,13 +53,13 @@ fun NavGraphBuilder.formatsGraph(
     }
 }
 
-fun NavController.navigateToFormat() {
+fun NavController.navigateToFormats() {
     this.navigate(FormatGraphRoute) {
         launchSingleTop = true
     }
 }
 
-fun NavGraphBuilder.formatScreen(
+fun NavGraphBuilder.formatsScreen(
     onItemClick: (Format) -> Unit,
     onNavigateBack: () -> Unit,
 ) {

@@ -10,7 +10,7 @@ import com.alexrdclement.palette.app.theme.ThemeItem
 import com.alexrdclement.palette.app.theme.color.navigation.colorScreen
 import com.alexrdclement.palette.app.theme.color.navigation.navigateToColor
 import com.alexrdclement.palette.app.theme.format.navigation.formatsGraph
-import com.alexrdclement.palette.app.theme.format.navigation.navigateToFormat
+import com.alexrdclement.palette.app.theme.format.navigation.navigateToFormats
 import com.alexrdclement.palette.app.theme.interaction.navigation.interactionGraph
 import com.alexrdclement.palette.app.theme.interaction.navigation.navigateToInteraction
 import com.alexrdclement.palette.app.theme.shape.navigation.navigateToShape
@@ -43,7 +43,7 @@ fun NavGraphBuilder.themeGraph(
             onItemClick = {
                 when (it) {
                     ThemeItem.Color -> navController.navigateToColor()
-                    ThemeItem.Format -> navController.navigateToFormat()
+                    ThemeItem.Format -> navController.navigateToFormats()
                     ThemeItem.Interaction -> navController.navigateToInteraction()
                     ThemeItem.Shape -> navController.navigateToShape()
                     ThemeItem.Spacing -> navController.navigateToSpacing()

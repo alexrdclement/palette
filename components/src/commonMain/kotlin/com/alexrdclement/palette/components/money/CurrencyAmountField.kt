@@ -15,10 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
-import com.alexrdclement.palette.components.format.NumberFormatInputTransformation
-import com.alexrdclement.palette.components.format.NumberFormatOutputTransformation
+import com.alexrdclement.palette.formats.core.NumberFormatInputTransformation
+import com.alexrdclement.palette.formats.core.NumberFormatOutputTransformation
+import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.format.MoneyFormat
 
 /**
  * A text field for entering currency amounts with automatic formatting.

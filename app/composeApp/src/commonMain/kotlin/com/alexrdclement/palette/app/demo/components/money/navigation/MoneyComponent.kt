@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 enum class MoneyComponent : CatalogItem {
     CurrencyAmountField,
-    MoneyFormat,
     ;
 
     override val title = this.name
