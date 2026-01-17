@@ -253,7 +253,7 @@ class NumberFormatDemoControl(
         textFieldState = state.groupingChunkTextFieldState,
         onValueChange = { newValue ->
             val newState = state.numberFormat.update(
-                groupingChunk = newValue.toInt(),
+                groupingChunk = newValue.toIntOrNull(),
             )
             onValueChange(newState)
         },
