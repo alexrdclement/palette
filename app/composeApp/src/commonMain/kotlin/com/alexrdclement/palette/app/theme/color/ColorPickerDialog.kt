@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.components.color.ColorPicker
 import com.alexrdclement.palette.components.core.Surface
@@ -18,7 +19,6 @@ import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.toColor
-import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ColorPickerDialog(

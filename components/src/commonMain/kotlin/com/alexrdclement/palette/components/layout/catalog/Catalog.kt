@@ -12,12 +12,12 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun <T : CatalogItem> Catalog(

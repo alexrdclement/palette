@@ -25,13 +25,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.demo.Demo
-import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.app.demo.util.KeyboardCapitalizationSaver
 import com.alexrdclement.palette.app.demo.util.KeyboardTypeSaver
 import com.alexrdclement.palette.app.demo.util.onlyDigits
 import com.alexrdclement.palette.components.core.TextField
+import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.control.Control
+import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save

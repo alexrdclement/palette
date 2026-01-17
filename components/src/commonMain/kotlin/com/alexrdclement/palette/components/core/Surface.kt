@@ -12,6 +12,8 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.contentColorFor
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
@@ -20,8 +22,6 @@ import com.alexrdclement.palette.theme.Shape
 import com.alexrdclement.palette.theme.modifiers.BorderStyle
 import com.alexrdclement.palette.theme.modifiers.border
 import com.alexrdclement.palette.theme.toComposeShape
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 
 @Composable
 fun Surface(

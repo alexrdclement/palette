@@ -15,15 +15,16 @@ import androidx.compose.ui.graphics.drawscope.DrawStyle
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.app.demo.util.DensitySaver
+import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.app.demo.util.DensitySaver
-import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.geometry.Grid
 import com.alexrdclement.palette.components.geometry.GridCoordinateSystem
 import com.alexrdclement.palette.components.geometry.GridCoordinateSystemType
@@ -42,7 +43,6 @@ import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
-import androidx.compose.ui.tooling.preview.Preview
 import kotlin.math.PI
 
 @Composable

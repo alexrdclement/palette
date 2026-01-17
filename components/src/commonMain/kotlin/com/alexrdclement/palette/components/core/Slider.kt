@@ -39,11 +39,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.setProgress
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.coroutines.coroutineScope
-import androidx.compose.ui.tooling.preview.Preview
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt

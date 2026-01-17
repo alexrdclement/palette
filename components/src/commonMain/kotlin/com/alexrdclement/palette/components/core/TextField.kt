@@ -23,11 +23,11 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.theme.PaletteTheme
-import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TextField(

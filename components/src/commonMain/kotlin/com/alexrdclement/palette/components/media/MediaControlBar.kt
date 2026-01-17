@@ -24,6 +24,9 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
@@ -41,9 +44,6 @@ import com.alexrdclement.palette.components.util.toIntSize
 import com.alexrdclement.palette.components.util.toPx
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.trace.trace
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import kotlin.math.roundToInt
 
 private const val TraceName = "MediaControlBar"
