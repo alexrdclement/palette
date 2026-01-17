@@ -268,6 +268,7 @@ PLcom/alexrdclement/palette/components/demo/control/Control$Slider;->getValue()L
 PLcom/alexrdclement/palette/components/demo/control/Control$Slider;->getValueRange()Lkotlin/jvm/functions/Function0;
 PLcom/alexrdclement/palette/components/demo/control/Control$Slider$$ExternalSyntheticLambda2;-><init>(Ljava/lang/String;)V
 PLcom/alexrdclement/palette/components/demo/control/Control$Slider$$ExternalSyntheticLambda2;->invoke()Ljava/lang/Object;
+PLcom/alexrdclement/palette/components/demo/control/Control$TextField;->$r8$lambda$1kMTgG4wX7mAf1Olp6GhqqLjRkc()Landroidx/compose/foundation/text/input/InputTransformation;
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField;->$r8$lambda$V12eVd3d5xgGfQdqsyMEIDFCEHw()Z
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField;->$r8$lambda$aqAig-8m0b3leIeqxOOFbiUJVS0()Landroidx/compose/foundation/text/KeyboardOptions;
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField;-><clinit>()V
@@ -275,6 +276,7 @@ PLcom/alexrdclement/palette/components/demo/control/Control$TextField;-><init>(L
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField;-><init>(Ljava/lang/String;Landroidx/compose/foundation/text/input/TextFieldState;ZLkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField;->_init_$lambda$0()Z
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField;->_init_$lambda$1()Landroidx/compose/foundation/text/KeyboardOptions;
+PLcom/alexrdclement/palette/components/demo/control/Control$TextField;->_init_$lambda$2()Landroidx/compose/foundation/text/input/InputTransformation;
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField;->getEnabled()Lkotlin/jvm/functions/Function0;
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField;->getIncludeLabel()Z
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField;->getInputTransformation()Lkotlin/jvm/functions/Function0;
@@ -284,10 +286,8 @@ PLcom/alexrdclement/palette/components/demo/control/Control$TextField$$ExternalS
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField$$ExternalSyntheticLambda0;->invoke()Ljava/lang/Object;
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField$$ExternalSyntheticLambda1;-><init>()V
 PLcom/alexrdclement/palette/components/demo/control/Control$TextField$$ExternalSyntheticLambda1;->invoke()Ljava/lang/Object;
-PLcom/alexrdclement/palette/components/demo/control/Control$TextField$3;-><clinit>()V
-PLcom/alexrdclement/palette/components/demo/control/Control$TextField$3;-><init>()V
-PLcom/alexrdclement/palette/components/demo/control/Control$TextField$3;->invoke()Ljava/lang/Object;
-PLcom/alexrdclement/palette/components/demo/control/Control$TextField$3;->invoke()Ljava/lang/Void;
+PLcom/alexrdclement/palette/components/demo/control/Control$TextField$$ExternalSyntheticLambda2;-><init>()V
+PLcom/alexrdclement/palette/components/demo/control/Control$TextField$$ExternalSyntheticLambda2;->invoke()Ljava/lang/Object;
 PLcom/alexrdclement/palette/components/demo/control/Control$Toggle;-><clinit>()V
 PLcom/alexrdclement/palette/components/demo/control/Control$Toggle;-><init>(Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
 PLcom/alexrdclement/palette/components/demo/control/Control$Toggle;->getName()Ljava/lang/String;
@@ -466,8 +466,7 @@ HSPLcom/alexrdclement/palette/components/util/PaddingValuesKt;->plus-YLPp7PM(Lan
 PLcom/alexrdclement/palette/components/util/SaverKt;->mapSaverSafe$default(Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Landroidx/compose/runtime/saveable/Saver;
 PLcom/alexrdclement/palette/components/util/SaverKt;->mapSaverSafe(Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Landroidx/compose/runtime/saveable/Saver;
 PLcom/alexrdclement/palette/components/util/SaverKt;->save(Ljava/lang/Object;Landroidx/compose/runtime/saveable/Saver;Landroidx/compose/runtime/saveable/SaverScope;)Ljava/lang/Object;
-PLcom/alexrdclement/palette/components/util/SaverKt$$ExternalSyntheticLambda0;-><init>(Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
-PLcom/alexrdclement/palette/components/util/SaverKt$mapSaverSafe$1;-><clinit>()V
-PLcom/alexrdclement/palette/components/util/SaverKt$mapSaverSafe$1;-><init>()V
+PLcom/alexrdclement/palette/components/util/SaverKt$$ExternalSyntheticLambda0;-><init>()V
+PLcom/alexrdclement/palette/components/util/SaverKt$$ExternalSyntheticLambda1;-><init>(Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
 Lcom/alexrdclement/palette/components/util/WindowInsetsKt;
 HSPLcom/alexrdclement/palette/components/util/WindowInsetsKt;->horizontalPaddingValues(Landroidx/compose/foundation/layout/WindowInsets;Landroidx/compose/runtime/Composer;I)Landroidx/compose/foundation/layout/PaddingValues;
