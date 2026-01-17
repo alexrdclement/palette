@@ -66,6 +66,8 @@ fun rememberNumberFormatDemoState(
     demoTextFieldState: TextFieldState = TextFieldState("12345678.90"),
 ): NumberFormatDemoState {
     return rememberSaveable(
+        numberFormat,
+        demoTextFieldState,
         saver = NumberFormatDemoStateSaver(),
     ) {
         NumberFormatDemoState(

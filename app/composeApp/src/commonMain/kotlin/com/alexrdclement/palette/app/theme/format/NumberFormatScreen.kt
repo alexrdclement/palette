@@ -22,10 +22,9 @@ import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.core.NumberFormat
-import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.control.ThemeController
-import com.alexrdclement.palette.theme.control.ThemeState
+import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.format.core.NumberFormatToken
 import com.alexrdclement.palette.theme.format.core.toFormat
@@ -37,7 +36,7 @@ fun NumberFormatScreen(
     themeController: ThemeController,
     onNavigateBack: () -> Unit,
 ) {
-    val state = rememberNumberFormatScreenState(themeState = themeController)
+    val state = rememberNumberFormatScreenState(formats = themeController.formats)
     val control = rememberNumberFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
@@ -81,25 +80,22 @@ fun NumberFormatScreen(
 
 @Composable
 fun rememberNumberFormatScreenState(
-    themeState: ThemeState,
+    formats: Formats,
 ): NumberFormatScreenState {
     return rememberSaveable(
-        themeState,
-        saver = NumberFormatScreenStateSaver(themeState),
+        formats,
+        saver = NumberFormatScreenStateSaver(formats),
     ) {
         NumberFormatScreenState(
-            themeState = themeState,
+            formats = formats,
         )
     }
 }
 
 @Stable
 class NumberFormatScreenState(
-    val themeState: ThemeState,
+    val formats: Formats,
 ) {
-    val formats: Formats
-        get() = themeState.formats
-
     val numberFormatScheme: NumberFormatScheme
         get() = formats.numberFormats
 
@@ -115,13 +111,13 @@ class NumberFormatScreenState(
     }
 }
 
-fun NumberFormatScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
+fun NumberFormatScreenStateSaver(formats: Formats) = mapSaverSafe(
     save = { state ->
         mapOf()
     },
     restore = { map ->
         NumberFormatScreenState(
-            themeState = themeState,
+            formats = formats,
         )
     }
 )
@@ -138,7 +134,7 @@ fun rememberNumberFormatScreenControl(
             themeController = themeController,
         )
     }
-    return remember(state, themeController, formatControlByToken) {
+    return remember(state, themeController) {
         NumberFormatScreenControl(
             state = state,
             themeController = themeController,

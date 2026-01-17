@@ -106,7 +106,6 @@ fun rememberMoneyFormatDemoControl(
     state: MoneyFormatDemoState,
     updateState: (MoneyFormat) -> Unit = { state.moneyFormat = it },
 ): MoneyFormatDemoControl {
-
     return remember(state, state.moneyFormat) {
         MoneyFormatDemoControl(
             state = state,

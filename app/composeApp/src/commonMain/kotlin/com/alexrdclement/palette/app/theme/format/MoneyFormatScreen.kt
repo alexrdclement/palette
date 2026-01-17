@@ -21,10 +21,9 @@ import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.money.MoneyFormat
-import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.control.ThemeController
-import com.alexrdclement.palette.theme.control.ThemeState
+import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
 import com.alexrdclement.palette.theme.format.money.MoneyFormatToken
 import com.alexrdclement.palette.theme.format.money.toFormat
@@ -36,7 +35,7 @@ fun MoneyFormatScreen(
     themeController: ThemeController,
     onNavigateBack: () -> Unit,
 ) {
-    val state = rememberMoneyFormatScreenState(themeState = themeController)
+    val state = rememberMoneyFormatScreenState(formats = themeController.formats)
     val control = rememberMoneyFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
@@ -77,25 +76,22 @@ fun MoneyFormatScreen(
 
 @Composable
 fun rememberMoneyFormatScreenState(
-    themeState: ThemeState,
+    formats: Formats,
 ): MoneyFormatScreenState {
     return rememberSaveable(
-        themeState,
-        saver = MoneyFormatScreenStateSaver(themeState),
+        formats,
+        saver = MoneyFormatScreenStateSaver(formats),
     ) {
         MoneyFormatScreenState(
-            themeState = themeState,
+            formats = formats,
         )
     }
 }
 
 @Stable
 class MoneyFormatScreenState(
-    val themeState: ThemeState,
+    val formats: Formats,
 ) {
-    val formats: Formats
-        get() = themeState.formats
-
     val moneyFormatScheme: MoneyFormatScheme
         get() = formats.moneyFormats
 
@@ -111,14 +107,14 @@ class MoneyFormatScreenState(
 }
 
 fun MoneyFormatScreenStateSaver(
-    themeState: ThemeState,
+    formats: Formats,
 ) = mapSaverSafe(
     save = { state ->
         mapOf()
     },
     restore = { map ->
         MoneyFormatScreenState(
-            themeState = themeState,
+            formats = formats,
         )
     }
 )
