@@ -29,6 +29,7 @@ fun App(
         indication = themeController.indication,
         spacing = themeController.spacing,
         styles = themeController.styles,
+        formats = themeController.formats,
     ) {
         Surface {
             PaletteNavHost(

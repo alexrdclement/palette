@@ -59,12 +59,15 @@ fun DemoScope.MoneyFormatDemo(
 }
 
 @Composable
-fun rememberMoneyFormatDemoState(): MoneyFormatDemoState {
+fun rememberMoneyFormatDemoState(
+    moneyFormatInitial: MoneyFormat = MoneyFormat()
+): MoneyFormatDemoState {
     return rememberSaveable(
+        moneyFormatInitial,
         saver = MoneyFormatDemoStateSaver(),
     ) {
         MoneyFormatDemoState(
-            moneyFormatInitial = MoneyFormat(),
+            moneyFormatInitial = moneyFormatInitial,
         )
     }
 }
