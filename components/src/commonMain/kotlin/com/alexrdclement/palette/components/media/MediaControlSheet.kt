@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.IntOffset
@@ -43,7 +44,6 @@ import com.alexrdclement.palette.components.util.calculateHorizontalPaddingValue
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.trace.trace
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.max
 
 private const val TraceName = "MediaControlSheet"

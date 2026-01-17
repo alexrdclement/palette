@@ -14,17 +14,8 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.ui)
-                implementation(compose.components.uiToolingPreview)
-
-                api(libs.trace)
-            }
-        }
-        androidMain {
-            dependencies {
-                implementation(libs.compose.ui.test.manifest)
+                implementation(libs.compose.material3)
+                implementation(libs.trace)
             }
         }
 

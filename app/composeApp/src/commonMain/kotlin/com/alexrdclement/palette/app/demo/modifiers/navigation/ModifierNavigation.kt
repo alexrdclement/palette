@@ -5,8 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.alexrdclement.palette.app.demo.modifiers.DemoModifier
-import com.alexrdclement.palette.app.demo.popBackStackIfResumed
 import com.alexrdclement.palette.app.demo.modifiers.ModifierScreen
+import com.alexrdclement.palette.app.demo.popBackStackIfResumed
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

@@ -10,7 +10,6 @@ kotlin {
         wasmJsMain {
             dependencies {
                 implementation(projects.app.composeApp)
-                implementation(compose.ui)
                 implementation(libs.navigation.compose)
             }
         }

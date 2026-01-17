@@ -20,14 +20,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.app.demo.util.OffsetSaver
+import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.app.demo.util.OffsetSaver
-import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.geometry.CurveStitch
 import com.alexrdclement.palette.components.geometry.CurveStitchShape
 import com.alexrdclement.palette.components.geometry.CurveStitchStar
@@ -36,7 +37,6 @@ import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.toPersistentList
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.roundToInt
 
 @Composable

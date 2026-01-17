@@ -1,6 +1,7 @@
 plugins {
     id(libs.plugins.alexrdclement.android.library.asProvider().get().pluginId)
     id(libs.plugins.alexrdclement.android.library.compose.get().pluginId)
+    id(libs.plugins.alexrdclement.android.compose.test.get().pluginId)
     alias(libs.plugins.paparazzi)
 }
 
@@ -15,5 +16,4 @@ dependencies {
     testImplementation(projects.components)
     testImplementation(projects.testing)
     androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.compose.ui.test.junit4)
 }

@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Surface
@@ -18,7 +19,6 @@ import com.alexrdclement.palette.components.util.ViewingAngle
 import com.alexrdclement.palette.components.util.rotatePoint3D
 import com.alexrdclement.palette.components.util.toRadians
 import com.alexrdclement.palette.theme.PaletteTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.cos
 import kotlin.math.sin
 

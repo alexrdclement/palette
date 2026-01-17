@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Surface
@@ -21,7 +22,6 @@ import com.alexrdclement.palette.components.navigation.BackNavigationButton
 import com.alexrdclement.palette.components.util.copy
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TopBar(

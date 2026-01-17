@@ -5,7 +5,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.alexrdclement.palette.app.catalog.CatalogScreen
-import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.demo.components.auth.navigation.authComponentsGraph
 import com.alexrdclement.palette.app.demo.components.auth.navigation.navigateToAuthComponents
 import com.alexrdclement.palette.app.demo.components.color.navigation.colorComponentsGraph
@@ -21,6 +20,7 @@ import com.alexrdclement.palette.app.demo.components.media.navigation.navigateTo
 import com.alexrdclement.palette.app.demo.components.money.navigation.moneyComponentsGraph
 import com.alexrdclement.palette.app.demo.components.money.navigation.navigateToMoneyComponents
 import com.alexrdclement.palette.app.demo.popBackStackIfResumed
+import com.alexrdclement.palette.app.theme.ThemeButton
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

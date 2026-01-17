@@ -13,8 +13,8 @@ import androidx.compose.ui.node.invalidateDraw
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalGraphicsContext
 import androidx.compose.ui.unit.IntSize
-import com.alexrdclement.trace.trace
 import com.alexrdclement.palette.modifiers.util.useGraphicsLayer
+import com.alexrdclement.trace.trace
 
 data class ShaderElement<T: Shader>(
     val shader: T,

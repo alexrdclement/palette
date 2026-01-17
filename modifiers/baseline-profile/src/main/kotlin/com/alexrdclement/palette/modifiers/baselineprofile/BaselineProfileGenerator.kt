@@ -5,11 +5,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.alexrdclement.palette.MainCatalogPage
 import com.alexrdclement.palette.appPackageName
-import com.alexrdclement.palette.modifiers.ModifiersPage
 import com.alexrdclement.palette.modifierPackageName
 import com.alexrdclement.palette.modifiers.ColorInvertPage
 import com.alexrdclement.palette.modifiers.ColorSplitPage
 import com.alexrdclement.palette.modifiers.FadePage
+import com.alexrdclement.palette.modifiers.ModifiersPage
 import com.alexrdclement.palette.modifiers.NoisePage
 import com.alexrdclement.palette.modifiers.PixelatePage
 import com.alexrdclement.palette.modifiers.WarpPage
