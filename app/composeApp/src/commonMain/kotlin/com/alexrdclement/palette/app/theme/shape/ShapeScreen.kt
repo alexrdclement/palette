@@ -34,7 +34,7 @@ import com.alexrdclement.palette.theme.toComposeShape
 import com.alexrdclement.palette.theme.toShape
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ShapeScreen(

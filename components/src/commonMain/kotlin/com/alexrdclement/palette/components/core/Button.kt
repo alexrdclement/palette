@@ -29,8 +29,8 @@ import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.styles.toStyle
 import com.alexrdclement.palette.theme.toColor
 import com.alexrdclement.palette.theme.toShape
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 
 @Composable
 fun Button(

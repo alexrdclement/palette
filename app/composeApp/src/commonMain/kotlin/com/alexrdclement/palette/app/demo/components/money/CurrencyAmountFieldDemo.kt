@@ -16,7 +16,7 @@ import com.alexrdclement.palette.app.preview.PalettePreview
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.money.CurrencyAmountField
 import com.alexrdclement.palette.theme.PaletteTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun CurrencyAmountFieldDemo(

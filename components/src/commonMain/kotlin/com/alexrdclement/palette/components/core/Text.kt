@@ -16,8 +16,8 @@ import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.PaletteTypography
 import com.alexrdclement.palette.theme.preview.TextStylePreviewParameterProvider
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 
 @Composable
 fun Text(

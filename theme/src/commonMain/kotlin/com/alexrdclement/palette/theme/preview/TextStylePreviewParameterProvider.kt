@@ -2,7 +2,7 @@ package com.alexrdclement.palette.theme.preview
 
 import androidx.compose.ui.text.TextStyle
 import com.alexrdclement.palette.theme.PaletteTypography
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 
 class TextStylePreviewParameterProvider : PreviewParameterProvider<Pair<String, TextStyle>> {
     override val values = sequenceOf(

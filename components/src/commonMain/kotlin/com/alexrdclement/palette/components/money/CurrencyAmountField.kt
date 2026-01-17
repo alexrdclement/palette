@@ -23,7 +23,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
 import com.alexrdclement.palette.theme.PaletteTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import kotlin.math.min
 
 internal data class DecimalFormatSymbols(

@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.theme.PaletteTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TextField(

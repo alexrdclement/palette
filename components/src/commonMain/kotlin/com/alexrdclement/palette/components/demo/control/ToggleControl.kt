@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.components.core.Checkbox
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.theme.PaletteTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ToggleControl(

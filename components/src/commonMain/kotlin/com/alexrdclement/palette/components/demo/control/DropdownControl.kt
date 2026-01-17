@@ -22,7 +22,7 @@ import com.alexrdclement.palette.components.menu.DropdownMenuItem
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import kotlinx.collections.immutable.toPersistentList
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun <T> DropdownControl(

@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.coroutines.coroutineScope
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt

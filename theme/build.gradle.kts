@@ -13,11 +13,6 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api(compose.foundation)
-                api(compose.ui)
-
-                implementation(compose.components.uiToolingPreview)
-
                 implementation(projects.modifiers)
             }
         }

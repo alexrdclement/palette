@@ -43,7 +43,7 @@ import com.alexrdclement.palette.components.util.calculateHorizontalPaddingValue
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.trace.trace
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import kotlin.math.max
 
 private const val TraceName = "MediaControlSheet"

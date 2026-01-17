@@ -18,7 +18,7 @@ import com.alexrdclement.palette.components.util.ViewingAngle
 import com.alexrdclement.palette.components.util.rotatePoint3D
 import com.alexrdclement.palette.components.util.toRadians
 import com.alexrdclement.palette.theme.PaletteTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import kotlin.math.cos
 import kotlin.math.sin
 

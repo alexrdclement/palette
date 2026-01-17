@@ -14,31 +14,21 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api(compose.ui)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.materialIconsExtended)
-                implementation(compose.components.uiToolingPreview)
-
                 api(libs.coil.compose)
                 api(libs.coil.network.ktor3)
-
                 api(libs.kotlinx.collections.immutable)
                 api(libs.kotlinx.datetime)
-
                 api(libs.trace)
+
                 api(projects.theme)
+
+                implementation(libs.compose.material.icons.extended)
             }
         }
         androidMain {
             dependencies {
                 api(libs.ktor.client.android)
                 api(libs.ktor.client.okhttp)
-                implementation(compose.preview)
-                implementation(libs.compose.ui.test.manifest)
-                implementation(libs.androidx.emoji2)
-                implementation(libs.androidx.activity.compose)
-                implementation(compose.uiTooling)
             }
         }
         appleMain {

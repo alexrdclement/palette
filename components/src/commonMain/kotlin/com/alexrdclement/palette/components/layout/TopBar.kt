@@ -21,7 +21,7 @@ import com.alexrdclement.palette.components.navigation.BackNavigationButton
 import com.alexrdclement.palette.components.util.copy
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TopBar(
