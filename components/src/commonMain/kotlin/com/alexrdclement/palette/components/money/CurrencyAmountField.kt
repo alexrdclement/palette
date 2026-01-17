@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.money
 
-import androidx.annotation.CheckResult
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -8,27 +7,18 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.input.InputTransformation
-import androidx.compose.foundation.text.input.OutputTransformation
-import androidx.compose.foundation.text.input.TextFieldBuffer
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextFieldState
-import androidx.compose.foundation.text.input.delete
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
 import com.alexrdclement.palette.components.format.NumberFormatInputTransformation
 import com.alexrdclement.palette.components.format.NumberFormatOutputTransformation
-import com.alexrdclement.palette.components.format.format
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.format.MoneyFormat
-import com.alexrdclement.palette.theme.format.NumberFormat
-import kotlin.math.min
 
 /**
  * A text field for entering currency amounts with automatic formatting.
