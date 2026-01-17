@@ -6,9 +6,9 @@ import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldBuffer
 import androidx.compose.foundation.text.input.delete
+import androidx.compose.foundation.text.input.insert
 import androidx.compose.ui.text.input.KeyboardType
 import kotlin.math.min
-import kotlin.text.iterator
 
 data class NumberFormat(
     val numDecimalValuesRange: IntRange = 0..2,
@@ -137,7 +137,10 @@ class NumberFormatInputTransformation(
         filterChars()
         filterConsecutiveDecimals()
 
-        val (intPart, decimalPart) = splitNumberParts(asCharSequence().toString(), decimalSeparator)
+        val (intPart, decimalPart) = splitNumberParts(
+            numberString = asCharSequence().toString(),
+            decimalSeparator = decimalSeparator,
+        )
 
         val numSeparators = asCharSequence().count { it == decimalSeparator }
         if (numSeparators > 1) {
@@ -216,14 +219,19 @@ class NumberFormatInputTransformation(
 class NumberFormatOutputTransformation(
     private val numberFormat: NumberFormat,
 ): OutputTransformation {
+    private val groupingSeparatorStr = numberFormat.groupingSeparator.toString()
+
     override fun TextFieldBuffer.transformOutput() {
-        val originalAmount = originalText.toString()
-        if (originalAmount.isEmpty()) return
+        if (length == 0 || numberFormat.groupingChunk <= 0) return
 
-        // Use String-based format to avoid precision loss from Double conversion
-        val formattedAmount = numberFormat.format(originalAmount)
+        val decimalPos = asCharSequence().indexOf(numberFormat.decimalSeparator)
+        val intPartEnd = if (decimalPos >= 0) decimalPos else length
 
-        replace(0, length, formattedAmount)
+        if (intPartEnd <= numberFormat.groupingChunk) return
+
+        for (index in intPartEnd - numberFormat.groupingChunk downTo 1 step numberFormat.groupingChunk) {
+            insert(index, groupingSeparatorStr)
+        }
     }
 }
 
@@ -231,7 +239,7 @@ private fun splitNumberParts(
     numberString: String,
     decimalSeparator: Char = '.',
 ): Pair<String, String?> {
-    val parts = numberString.split(decimalSeparator)
+    val parts = numberString.split(decimalSeparator, '.')
     val intPart = parts.getOrNull(0) ?: ""
     val fracPart = parts.getOrNull(1)
     return intPart to fracPart
