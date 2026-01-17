@@ -7,7 +7,6 @@ import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldBuffer
 import androidx.compose.foundation.text.input.delete
 import androidx.compose.ui.text.input.KeyboardType
-import kotlin.math.abs
 import kotlin.math.min
 import kotlin.text.iterator
 
@@ -45,35 +44,63 @@ fun NumberFormat.update(
 fun NumberFormat.format(
     amount: Double,
 ): String {
-    val decimalSeparatorStr = decimalSeparator.toString()
-    val groupingSeparatorStr = groupingSeparator.toString()
+    return format(amount.toString())
+}
+
+private const val DOUBLE_VALUE_INFINITY_LOWERCASE = "infinity"
+private const val DOUBLE_VALUE_NEGATIVE_INFINITY_LOWERCASE = "-infinity"
+private const val DOUBLE_VALUE_NAN_LOWERCASE = "nan"
+private const val DOUBLE_VALUE_SCIENTIFIC_NOTATION_CHAR_LOWERCASE = 'e'
+private const val MINUS_SIGN_ASCII = '-'
+private const val MINUS_SIGN_UNICODE = '−'
+private const val PLUS_SIGN_ASCII = '+'
+private const val PLUS_SIGN_UNICODE = '＋'
+
+fun NumberFormat.format(
+    amount: String,
+): String {
+    if (amount.isEmpty()) return ""
+
+    // Handle special values and scientific notation as-is
+    val amountLower = amount.lowercase()
+    if (amountLower.contains(DOUBLE_VALUE_SCIENTIFIC_NOTATION_CHAR_LOWERCASE) ||
+        amountLower == DOUBLE_VALUE_INFINITY_LOWERCASE ||
+        amountLower == DOUBLE_VALUE_NEGATIVE_INFINITY_LOWERCASE ||
+        amountLower == DOUBLE_VALUE_NAN_LOWERCASE) {
+        return amount
+    }
+
+    val isNegative = amount.startsWith(MINUS_SIGN_ASCII) || amount.startsWith(MINUS_SIGN_UNICODE)
+
+    val absAmountStr = amount.trimStart(MINUS_SIGN_ASCII, MINUS_SIGN_UNICODE, PLUS_SIGN_ASCII, PLUS_SIGN_UNICODE)
+    val numericValue = absAmountStr.toDoubleOrNull() ?: 0.0
 
     val sign = when {
-        amount < 0 -> negativeSign
-        amount > 0 && positiveSign != null -> positiveSign
-        else -> ""
+        isNegative -> negativeSign
+        numericValue == 0.0 -> ""
+        else -> positiveSign.orEmpty()
     }
-    val absAmount = abs(amount)
 
-    val intPartValue = absAmount.toLong()
-    val fracPartValue = absAmount - intPartValue
+    val (rawIntPart, fracPart) = splitNumberParts(absAmountStr)
+    val intPart = normalizeIntegerPart(rawIntPart)
 
-    val intPart = intPartValue.toString()
-    val decimalPart = if (fracPartValue > 0 || minNumDecimalValues > 0) {
-        var remaining = fracPartValue
-        val rawDecimal = buildString {
-            for (i in 0 until maxNumDecimalValues) {
-                remaining *= 10
-                // Extract digit (floor), adding small epsilon to handle floating point errors
-                val digit = (remaining + 0.00001).toInt() % 10
-                append(digit)
-                remaining -= remaining.toInt()
-                if (remaining < 1e-10) break
-            }
-        }
+    return format(
+        sign = sign,
+        intPart = intPart,
+        fracPart = fracPart,
+    )
+}
+
+fun NumberFormat.format(
+    sign: String = "",
+    intPart: String,
+    fracPart: String? = null,
+): String {
+    val decimalPart = if (fracPart != null || minNumDecimalValues > 0) {
+        val truncated = (fracPart ?: "").take(maxNumDecimalValues)
 
         // Trim trailing zeros but keep at least minNumDecimalValues
-        val trimmed = rawDecimal.trimEnd('0')
+        val trimmed = truncated.trimEnd('0')
         if (trimmed.length < minNumDecimalValues) {
             trimmed.padEnd(minNumDecimalValues, '0')
         } else if (trimmed.isEmpty() && minNumDecimalValues == 0) {
@@ -85,17 +112,10 @@ fun NumberFormat.format(
         null
     }
 
-    // Grouping separator every groupingChunk digits, right to left
-    val formattedIntPart = if (intPart.isNotEmpty() && groupingChunk > 0) {
-        intPart.reversed()
-            .chunked(groupingChunk)
-            .joinToString(groupingSeparatorStr)
-            .reversed()
-    } else {
-        intPart
-    }
+    val formattedIntPart = applyGroupingSeparator(intPart, groupingSeparator, groupingChunk)
 
     return if (decimalPart != null) {
+        val decimalSeparatorStr = decimalSeparator.toString()
         "$sign$formattedIntPart$decimalSeparatorStr$decimalPart"
     } else {
         "$sign$formattedIntPart"
@@ -108,7 +128,6 @@ class NumberFormatInputTransformation(
 ) : InputTransformation {
 
     private val decimalSeparator = numberFormat.decimalSeparator
-    private val decimalSeparatorStr = decimalSeparator.toString()
 
     override val keyboardOptions = KeyboardOptions(
         keyboardType = KeyboardType.Decimal,
@@ -118,11 +137,10 @@ class NumberFormatInputTransformation(
         filterChars()
         filterConsecutiveDecimals()
 
-        val parts = asCharSequence().split(decimalSeparatorStr)
-        val intPart = parts.firstOrNull()?.filter { it.isDigit() } ?: ""
-        val decimalPart = parts.getOrNull(1)?.filter { it.isDigit() }
+        val (intPart, decimalPart) = splitNumberParts(asCharSequence().toString(), decimalSeparator)
 
-        if (parts.size > 2) {
+        val numSeparators = asCharSequence().count { it == decimalSeparator }
+        if (numSeparators > 1) {
             // Instead of rejecting changes with multiple decimals, recalculate according to the
             // first one.
             replace(intPart.length + 1, length, decimalPart ?: "")
@@ -163,12 +181,7 @@ class NumberFormatInputTransformation(
 
         if (mutableIntPart.startsWith('0')) {
             // Allow single leading zero. Replace leading zero if followed by another digit.
-            val indexOfFirstNonZero = mutableIntPart.indexOfFirst { it != '0' }
-            val newIntPart = if (indexOfFirstNonZero > 0) {
-                mutableIntPart.substring(indexOfFirstNonZero)
-            } else {
-                "0"
-            }
+            val newIntPart = normalizeIntegerPart(mutableIntPart)
             replace(0, mutableIntPart.length, newIntPart)
             mutableIntPart = newIntPart
         }
@@ -207,9 +220,38 @@ class NumberFormatOutputTransformation(
         val originalAmount = originalText.toString()
         if (originalAmount.isEmpty()) return
 
-        val amountDouble = originalAmount.toDoubleOrNull() ?: return
-        val formattedAmount = numberFormat.format(amountDouble)
+        // Use String-based format to avoid precision loss from Double conversion
+        val formattedAmount = numberFormat.format(originalAmount)
 
         replace(0, length, formattedAmount)
     }
+}
+
+private fun splitNumberParts(
+    numberString: String,
+    decimalSeparator: Char = '.',
+): Pair<String, String?> {
+    val parts = numberString.split(decimalSeparator)
+    val intPart = parts.getOrNull(0) ?: ""
+    val fracPart = parts.getOrNull(1)
+    return intPart to fracPart
+}
+
+private fun normalizeIntegerPart(intPart: String): String {
+    return intPart.trimStart('0').ifEmpty { "0" }
+}
+
+private fun applyGroupingSeparator(
+    intPart: String,
+    groupingSeparator: Char,
+    groupingChunk: Int,
+): String {
+    if (intPart.isEmpty() || groupingChunk <= 0) {
+        return intPart
+    }
+
+    return intPart.reversed()
+        .chunked(groupingChunk)
+        .joinToString(groupingSeparator.toString())
+        .reversed()
 }

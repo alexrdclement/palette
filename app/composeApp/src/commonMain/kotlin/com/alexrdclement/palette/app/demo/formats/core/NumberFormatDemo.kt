@@ -101,10 +101,7 @@ class NumberFormatDemoState(
         internal set
 
     val text by derivedStateOf {
-        val rawValue = demoTextFieldState.text.toString().toDoubleOrNull() ?: 0.0
-        // Round to 10 decimal places to avoid floating point precision errors
-        val rounded = (rawValue * 1e10).toLong() / 1e10
-        numberFormat.format(rounded)
+        numberFormat.format(demoTextFieldState.text.toString())
     }
 }
 

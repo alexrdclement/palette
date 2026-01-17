@@ -88,7 +88,7 @@ class MoneyFormatDemoState(
         internal set
 
     val text by derivedStateOf {
-        moneyFormat.format(demoTextFieldState.text.toString().toDouble())
+        moneyFormat.format(demoTextFieldState.text.toString())
     }
 }
 

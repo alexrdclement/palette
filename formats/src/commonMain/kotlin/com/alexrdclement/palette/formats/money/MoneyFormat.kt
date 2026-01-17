@@ -19,6 +19,12 @@ fun MoneyFormat.update(
 fun MoneyFormat.format(
     amount: Double,
 ): String {
+    return format(amount.toString())
+}
+
+fun MoneyFormat.format(
+    amount: String,
+): String {
     val formattedNumber = numberFormat.format(amount)
 
     return if (currencySymbol != null) {
