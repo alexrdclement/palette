@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.input.InputTransformation
+import androidx.compose.foundation.text.input.TextFieldBuffer
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.byValue
 import androidx.compose.foundation.text.input.rememberTextFieldState
@@ -67,8 +68,12 @@ fun CharControl(
         TextField(
             state = textFieldState,
             textStyle = PaletteTheme.typography.labelLarge,
-            inputTransformation = InputTransformation.byValue { _, proposed ->
-                proposed.lastOrNull()?.toString() ?: ""
+            inputTransformation = InputTransformation {
+                val text = asCharSequence().toString()
+                val newText = text.lastOrNull()?.toString() ?: ""
+                if (text != newText) {
+                    replace(0, length, newText)
+                }
             },
             lineLimits = TextFieldLineLimits.SingleLine,
             enabled = enabled,
