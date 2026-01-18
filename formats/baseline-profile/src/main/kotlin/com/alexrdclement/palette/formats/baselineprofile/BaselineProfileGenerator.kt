@@ -8,6 +8,7 @@ import com.alexrdclement.palette.appPackageName
 import com.alexrdclement.palette.formats.FormatsPage
 import com.alexrdclement.palette.formats.core.CoreFormatsPage
 import com.alexrdclement.palette.formats.core.NumberFormatPage
+import com.alexrdclement.palette.formats.core.TextFormatPage
 import com.alexrdclement.palette.formats.datetime.DateTimeFormatPage
 import com.alexrdclement.palette.formats.datetime.DateTimeFormatsPage
 import com.alexrdclement.palette.formats.money.MoneyFormatPage
@@ -40,6 +41,10 @@ class BaselineProfileGenerator {
             CoreFormatsPage(device).apply {
                 navigateToNumber()
                 NumberFormatPage(device)
+                device.pressBack()
+
+                navigateToText()
+                TextFormatPage(device)
                 device.pressBack()
             }
             device.pressBack()

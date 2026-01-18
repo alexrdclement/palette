@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 enum class CoreFormat : CatalogItem {
     Number,
+    Text,
     ;
 
     override val title = this.name

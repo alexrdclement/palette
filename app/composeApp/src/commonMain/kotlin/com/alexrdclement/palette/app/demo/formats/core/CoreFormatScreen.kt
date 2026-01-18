@@ -26,6 +26,9 @@ fun CoreFormatScreen(
             CoreFormat.Number -> NumberFormatDemo(
                 modifier = Modifier.padding(innerPadding)
             )
+            CoreFormat.Text -> TextFormatDemo(
+                modifier = Modifier.padding(innerPadding)
+            )
         }
     }
 }

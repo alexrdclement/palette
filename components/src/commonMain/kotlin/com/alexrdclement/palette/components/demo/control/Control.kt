@@ -3,10 +3,12 @@ package com.alexrdclement.palette.components.demo.control
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 import kotlin.enums.EnumEntries
+import androidx.compose.ui.graphics.Color as ComposeColor
 
 sealed class Control {
     data class Slider(
@@ -71,8 +73,8 @@ sealed class Control {
 
     data class Color(
         val name: String,
-        val color: () -> androidx.compose.ui.graphics.Color,
-        val onColorChange: (androidx.compose.ui.graphics.Color) -> Unit,
+        val color: () -> ComposeColor,
+        val onColorChange: (ComposeColor) -> Unit,
     ) : Control()
 
     data class ControlRow(val controls: () -> ImmutableList<Control>) : Control()
@@ -83,6 +85,18 @@ sealed class Control {
         val indent: Boolean = false,
         val expandedInitial: Boolean = false,
     ) : Control()
+
+    data class DynamicControlColumn<T>(
+        val name: String,
+        val items: () -> List<T>,
+        val onItemsChange: (List<T>) -> Unit,
+        val newItemDefault: () -> T,
+        val createControl: @Composable (item: T, onChange: (T) -> Unit) -> Control,
+        val addButtonText: String = "Add",
+        val includeLabel: Boolean = true,
+        val expandedInitial: Boolean = true,
+        val indent: Boolean = false,
+    ) : Control()
 }
 
 inline fun <T : Enum<T>> enumControl(
@@ -90,7 +104,7 @@ inline fun <T : Enum<T>> enumControl(
     crossinline values: () -> EnumEntries<T>,
     crossinline selectedValue: () -> Enum<T>,
     crossinline onValueChange: (T) -> Unit,
-    includeLabel: Boolean = true
+    includeLabel: Boolean = true,
 ): Control.Dropdown<T> {
     return Control.Dropdown(
         name = name,

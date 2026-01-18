@@ -8,6 +8,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
+import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.PaletteFormats

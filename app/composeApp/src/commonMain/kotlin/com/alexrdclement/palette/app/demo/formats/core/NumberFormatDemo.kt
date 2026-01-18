@@ -28,7 +28,6 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.core.IntGrouping
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.core.format
-import com.alexrdclement.palette.formats.core.copy
 import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
