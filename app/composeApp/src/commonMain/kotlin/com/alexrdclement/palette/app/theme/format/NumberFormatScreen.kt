@@ -3,6 +3,7 @@ package com.alexrdclement.palette.app.theme.format
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,6 +20,7 @@ import com.alexrdclement.palette.app.demo.formats.core.NumberFormatDemoState
 import com.alexrdclement.palette.app.demo.formats.core.rememberNumberFormatDemoControl
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
+import com.alexrdclement.palette.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.core.NumberFormat
@@ -66,12 +68,15 @@ fun NumberFormatScreen(
                     .fillMaxSize()
             ) {
                 items(state.numberFormatsByToken.keys.toList()) { token ->
-                    NumberFormatDemo(
-                        state = state.numberFormatDemoStatesByToken[token]!!,
-                        modifier = Modifier.padding(
-                            horizontal = PaletteTheme.spacing.medium,
+                    BoxWithLabel(
+                        label = token.name,
+                        modifier = Modifier
+                            .padding(horizontal = PaletteTheme.spacing.medium)
+                    ) {
+                        NumberFormatDemo(
+                            state = state.numberFormatDemoStatesByToken[token]!!,
                         )
-                    )
+                    }
                 }
             }
         }
@@ -176,7 +181,7 @@ private fun makeControlForToken(
     return Control.ControlColumn(
         name = token.name,
         controls = { demoControl.controls },
-        expandedInitial = true,
+        expandedInitial = false,
     )
 }
 

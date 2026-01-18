@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.preview.PalettePreview
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.money.CurrencyAmountField
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.formats.money.format
@@ -76,29 +77,6 @@ fun CurrencyAmountFieldDemo(
                 textFieldState = textFieldState,
             )
         }
-    }
-}
-
-@Composable
-private fun BoxWithLabel(
-    label: String,
-    modifier: Modifier = Modifier,
-    content: @Composable () -> Unit,
-) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier,
-    ) {
-        Text(
-            text = label,
-            style = PaletteTheme.typography.labelSmall,
-            modifier = Modifier
-                .border(1.dp, PaletteTheme.colorScheme.outline)
-                .padding(PaletteTheme.spacing.xs)
-                .align(Alignment.Start)
-        )
-        content()
     }
 }
 
