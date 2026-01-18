@@ -14,8 +14,5 @@ fun NumberFormatScheme.copy(
 )
 
 val PaletteNumberFormatScheme = NumberFormatScheme(
-    default = NumberFormat(
-        decimalSeparator = '.',
-        groupingSeparator = ',',
-    ),
+    default = NumberFormat(),
 )

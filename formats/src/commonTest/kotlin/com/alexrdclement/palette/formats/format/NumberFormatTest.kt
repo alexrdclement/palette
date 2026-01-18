@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.formats.format
 
+import com.alexrdclement.palette.formats.core.IntGrouping
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.core.format
 import kotlin.test.Test
@@ -12,8 +13,7 @@ class NumberFormatTest {
         positiveSign = null,
         negativeSign = "-",
         decimalSeparator = '.',
-        groupingSeparator = ',',
-        groupingChunk = 3,
+        intGrouping = IntGrouping.Uniform(numDigits = 3, separator = ','),
     )
 
     @Test
@@ -124,7 +124,7 @@ class NumberFormatTest {
     fun customSeparators() {
         val format = testFormat.copy(
             decimalSeparator = ',',
-            groupingSeparator = ' ',
+            intGrouping = IntGrouping.Uniform(numDigits = 3, separator = ' '),
         )
 
         val testCases = listOf(
@@ -142,7 +142,7 @@ class NumberFormatTest {
     @Test
     fun customGroupingChunk() {
         val format = testFormat.copy(
-            groupingChunk = 2,
+            intGrouping = IntGrouping.Uniform(numDigits = 2, separator = ','),
         )
 
         val testCases = listOf(
@@ -160,7 +160,7 @@ class NumberFormatTest {
     @Test
     fun noGroupingChunk() {
         val format = testFormat.copy(
-            groupingChunk = 0,
+            intGrouping = IntGrouping.None,
         )
 
         val testCases = listOf(

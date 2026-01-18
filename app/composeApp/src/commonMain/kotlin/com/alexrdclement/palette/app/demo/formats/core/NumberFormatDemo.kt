@@ -23,7 +23,9 @@ import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
+import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
+import com.alexrdclement.palette.formats.core.IntGrouping
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.core.format
 import com.alexrdclement.palette.formats.core.update
@@ -93,12 +95,21 @@ class NumberFormatDemoState(
     val negativeSignTextFieldState: TextFieldState = TextFieldState(
         initialText = numberFormatInitial.negativeSign,
     ),
-    val groupingChunkTextFieldState: TextFieldState = TextFieldState(
-        initialText = numberFormatInitial.groupingChunk.toString(),
+    val groupingNumDigitsTextFieldState: TextFieldState = TextFieldState(
+        initialText = when (val grouping = numberFormatInitial.intGrouping) {
+            is IntGrouping.Uniform -> grouping.numDigits.toString()
+            is IntGrouping.None -> "0"
+        },
     ),
 ) {
     var numberFormat by mutableStateOf(numberFormatInitial)
         internal set
+
+    val intGroupingType: DigitGroupingType
+        get() = when (numberFormat.intGrouping) {
+            is IntGrouping.Uniform -> DigitGroupingType.Uniform
+            is IntGrouping.None -> DigitGroupingType.None
+        }
 
     val text by derivedStateOf {
         numberFormat.format(demoTextFieldState.text.toString())
@@ -110,7 +121,7 @@ private const val minNumDecimalValuesTextFieldStateKey = "minNumDecimalValuesTex
 private const val maxNumDecimalValuesTextFieldStateKey = "maxNumDecimalValuesTextFieldState"
 private const val positiveSignTextFieldStateKey = "positiveSignTextFieldState"
 private const val negativeSignTextFieldStateKey = "negativeSignTextFieldState"
-private const val groupingChunkTextFieldStateKey = "groupingChunkTextFieldState"
+private const val groupingNumDigitsTextFieldStateKey = "groupingNumDigitsTextFieldState"
 
 fun NumberFormatDemoStateSaver() = mapSaverSafe(
     save = { state ->
@@ -120,7 +131,7 @@ fun NumberFormatDemoStateSaver() = mapSaverSafe(
             maxNumDecimalValuesTextFieldStateKey to save(state.maxNumDecimalValuesTextFieldState),
             positiveSignTextFieldStateKey to save(state.positiveSignTextFieldState),
             negativeSignTextFieldStateKey to save(state.negativeSignTextFieldState),
-            groupingChunkTextFieldStateKey to save(state.groupingChunkTextFieldState),
+            groupingNumDigitsTextFieldStateKey to save(state.groupingNumDigitsTextFieldState),
         )
     },
     restore = { map ->
@@ -130,7 +141,7 @@ fun NumberFormatDemoStateSaver() = mapSaverSafe(
             maxNumDecimalValuesTextFieldState = restore(map[maxNumDecimalValuesTextFieldStateKey]!!) as TextFieldState,
             positiveSignTextFieldState = restore(map[positiveSignTextFieldStateKey]!!) as TextFieldState,
             negativeSignTextFieldState = restore(map[negativeSignTextFieldStateKey]!!) as TextFieldState,
-            groupingChunkTextFieldState = restore(map[groupingChunkTextFieldStateKey]!!) as TextFieldState,
+            groupingNumDigitsTextFieldState = restore(map[groupingNumDigitsTextFieldStateKey]!!) as TextFieldState,
         )
     }
 )
@@ -147,6 +158,11 @@ fun rememberNumberFormatDemoControl(
             onValueChange = onValueChange,
         )
     }
+}
+
+enum class DigitGroupingType {
+    Uniform,
+    None,
 }
 
 @Stable
@@ -234,23 +250,63 @@ class NumberFormatDemoControl(
         },
     )
 
-    val groupingSeparatorControl = Control.CharField(
-        name = "Grouping separator",
-        value = { state.numberFormat.groupingSeparator },
+    val groupingTypeControl = enumControl(
+        name = "Type",
+        values = { DigitGroupingType.entries },
+        selectedValue = { state.intGroupingType },
         onValueChange = { newValue ->
+            val numDigits = state.groupingNumDigitsTextFieldState.text.toString().toIntOrNull() ?: 0
             val newState = state.numberFormat.update(
-                groupingSeparator = newValue,
+                intGrouping = when (newValue) {
+                    DigitGroupingType.Uniform -> IntGrouping.Uniform(
+                        numDigits = numDigits,
+                        separator = when (val grouping = state.numberFormat.intGrouping) {
+                            is IntGrouping.Uniform -> grouping.separator
+                            is IntGrouping.None -> ','
+                        }
+                    )
+
+                    DigitGroupingType.None -> IntGrouping.None
+                }
             )
             onValueChange(newState)
         },
     )
 
-    val groupingChunkControl = Control.TextField(
-        name = "Grouping chunk",
-        textFieldState = state.groupingChunkTextFieldState,
+    val groupingSeparatorControl = Control.CharField(
+        name = "Separator",
+        value = {
+            when (val grouping = state.numberFormat.intGrouping) {
+                is IntGrouping.Uniform -> grouping.separator
+                is IntGrouping.None -> ','
+            }
+        },
         onValueChange = { newValue ->
             val newState = state.numberFormat.update(
-                groupingChunk = newValue.toIntOrNull(),
+                intGrouping = when (val grouping = state.numberFormat.intGrouping) {
+                    is IntGrouping.Uniform -> grouping.copy(
+                        separator = newValue,
+                    )
+                    is IntGrouping.None -> IntGrouping.None
+                },
+            )
+            onValueChange(newState)
+            onValueChange(newState)
+        },
+    )
+
+    val groupingNumDigitsControl = Control.TextField(
+        name = "Num digits",
+        textFieldState = state.groupingNumDigitsTextFieldState,
+        onValueChange = { newValue ->
+            val numDigits = newValue.toIntOrNull() ?: return@TextField
+            val newState = state.numberFormat.update(
+                intGrouping = when (val grouping = state.numberFormat.intGrouping) {
+                    is IntGrouping.Uniform -> grouping.copy(
+                        numDigits = numDigits,
+                    )
+                    is IntGrouping.None -> IntGrouping.None
+                },
             )
             onValueChange(newState)
         },
@@ -263,6 +319,25 @@ class NumberFormatDemoControl(
             InputTransformation.byValue { _, proposed ->
                 proposed.filter { it.isDigit() }
             }
+        }
+    )
+
+    val groupingControls = Control.ControlColumn(
+        name = "Grouping",
+        controls = {
+            buildList {
+                add(groupingTypeControl)
+                when (state.intGroupingType) {
+                    DigitGroupingType.Uniform -> addAll(
+                        listOf(
+                            groupingSeparatorControl,
+                            groupingNumDigitsControl,
+                        )
+                    )
+
+                    DigitGroupingType.None -> Unit
+                }
+            }.toPersistentList()
         }
     )
 
@@ -287,8 +362,7 @@ class NumberFormatDemoControl(
                 maxNumDecimalValuesControl,
                 positiveSignControl,
                 negativeSignControl,
-                groupingSeparatorControl,
-                groupingChunkControl,
+                groupingControls,
                 decimalSeparatorControl,
             )
         )

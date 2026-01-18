@@ -15,14 +15,17 @@ data class NumberFormat(
     val positiveSign: String? = null,
     val negativeSign: String = "-",
     val decimalSeparator: Char = '.',
-    val groupingSeparator: Char = ',',
-    val groupingChunk: Int = 3,
+    val intGrouping: IntGrouping = IntGrouping.Uniform(numDigits = 3, separator = ','),
 ) {
     val minNumDecimalValues: Int
         get() = numDecimalValuesRange.first
-
     val maxNumDecimalValues: Int
         get() = numDecimalValuesRange.last
+}
+
+sealed class IntGrouping {
+    data class Uniform(val numDigits: Int, val separator: Char) : IntGrouping()
+    data object None : IntGrouping()
 }
 
 fun NumberFormat.update(
@@ -30,15 +33,13 @@ fun NumberFormat.update(
     positiveSign: String? = null,
     negativeSign: String? = null,
     decimalSeparator: Char? = null,
-    groupingSeparator: Char? = null,
-    groupingChunk: Int? = null,
+    intGrouping: IntGrouping? = null,
 ): NumberFormat = this.copy(
     numDecimalValuesRange = numDecimalValuesRange ?: this.numDecimalValuesRange,
     positiveSign = positiveSign ?: this.positiveSign,
     negativeSign = negativeSign ?: this.negativeSign,
     decimalSeparator = decimalSeparator ?: this.decimalSeparator,
-    groupingSeparator = groupingSeparator ?: this.groupingSeparator,
-    groupingChunk = groupingChunk ?: this.groupingChunk,
+    intGrouping = intGrouping ?: this.intGrouping,
 )
 
 fun NumberFormat.format(
@@ -112,7 +113,7 @@ fun NumberFormat.format(
         null
     }
 
-    val formattedIntPart = applyGroupingSeparator(intPart, groupingSeparator, groupingChunk)
+    val formattedIntPart = applyIntGrouping(intPart, intGrouping)
 
     return if (decimalPart != null) {
         val decimalSeparatorStr = decimalSeparator.toString()
@@ -219,18 +220,22 @@ class NumberFormatInputTransformation(
 class NumberFormatOutputTransformation(
     private val numberFormat: NumberFormat,
 ): OutputTransformation {
-    private val groupingSeparatorStr = numberFormat.groupingSeparator.toString()
-
     override fun TextFieldBuffer.transformOutput() {
-        if (length == 0 || numberFormat.groupingChunk <= 0) return
+        when (val intGrouping = numberFormat.intGrouping) {
+            IntGrouping.None -> return
+            is IntGrouping.Uniform -> {
+                if (length == 0 || intGrouping.numDigits <= 0) return
 
-        val decimalPos = asCharSequence().indexOf(numberFormat.decimalSeparator)
-        val intPartEnd = if (decimalPos >= 0) decimalPos else length
+                val decimalPos = asCharSequence().indexOf(numberFormat.decimalSeparator)
+                val intPartEnd = if (decimalPos >= 0) decimalPos else length
 
-        if (intPartEnd <= numberFormat.groupingChunk) return
+                if (intPartEnd <= intGrouping.numDigits) return
 
-        for (index in intPartEnd - numberFormat.groupingChunk downTo 1 step numberFormat.groupingChunk) {
-            insert(index, groupingSeparatorStr)
+                val groupingSeparatorStr = intGrouping.separator.toString()
+                for (index in intPartEnd - intGrouping.numDigits downTo 1 step intGrouping.numDigits) {
+                    insert(index, groupingSeparatorStr)
+                }
+            }
         }
     }
 }
@@ -249,17 +254,19 @@ private fun normalizeIntegerPart(intPart: String): String {
     return intPart.trimStart('0').ifEmpty { "0" }
 }
 
-private fun applyGroupingSeparator(
+private fun applyIntGrouping(
     intPart: String,
-    groupingSeparator: Char,
-    groupingChunk: Int,
+    intGrouping: IntGrouping,
 ): String {
-    if (intPart.isEmpty() || groupingChunk <= 0) {
-        return intPart
-    }
+    when (intGrouping) {
+        is IntGrouping.None -> return intPart
+        is IntGrouping.Uniform -> {
+            if (intPart.isEmpty() || intGrouping.numDigits <= 0) return intPart
 
-    return intPart.reversed()
-        .chunked(groupingChunk)
-        .joinToString(groupingSeparator.toString())
-        .reversed()
+            return intPart.reversed()
+                .chunked(intGrouping.numDigits)
+                .joinToString(intGrouping.separator.toString())
+                .reversed()
+        }
+    }
 }
