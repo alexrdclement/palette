@@ -28,7 +28,7 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.core.IntGrouping
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.core.format
-import com.alexrdclement.palette.formats.core.update
+import com.alexrdclement.palette.formats.core.copy
 import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
@@ -188,7 +188,7 @@ class NumberFormatDemoControl(
         onValueChange = { newValue ->
             val min = newValue.toIntOrNull() ?: state.numberFormat.minNumDecimalValues
             val max = state.numberFormat.maxNumDecimalValues
-            val newState = state.numberFormat.update(
+            val newState = state.numberFormat.copy(
                 numDecimalValuesRange = min..max,
             )
             onValueChange(newState)
@@ -211,7 +211,7 @@ class NumberFormatDemoControl(
         onValueChange = { newValue ->
             val min = state.numberFormat.minNumDecimalValues
             val max = newValue.toIntOrNull() ?: state.numberFormat.maxNumDecimalValues
-            val newState = state.numberFormat.update(
+            val newState = state.numberFormat.copy(
                 numDecimalValuesRange = min..max,
             )
             onValueChange(newState)
@@ -232,7 +232,7 @@ class NumberFormatDemoControl(
         name = "Positive sign",
         textFieldState = state.positiveSignTextFieldState,
         onValueChange = { newValue ->
-            val newState = state.numberFormat.update(
+            val newState = state.numberFormat.copy(
                 positiveSign = newValue,
             )
             onValueChange(newState)
@@ -243,7 +243,7 @@ class NumberFormatDemoControl(
         name = "Negative sign",
         textFieldState = state.negativeSignTextFieldState,
         onValueChange = { newValue ->
-            val newState = state.numberFormat.update(
+            val newState = state.numberFormat.copy(
                 negativeSign = newValue,
             )
             onValueChange(newState)
@@ -256,7 +256,7 @@ class NumberFormatDemoControl(
         selectedValue = { state.intGroupingType },
         onValueChange = { newValue ->
             val numDigits = state.groupingNumDigitsTextFieldState.text.toString().toIntOrNull() ?: 0
-            val newState = state.numberFormat.update(
+            val newState = state.numberFormat.copy(
                 intGrouping = when (newValue) {
                     DigitGroupingType.Uniform -> IntGrouping.Uniform(
                         numDigits = numDigits,
@@ -282,7 +282,7 @@ class NumberFormatDemoControl(
             }
         },
         onValueChange = { newValue ->
-            val newState = state.numberFormat.update(
+            val newState = state.numberFormat.copy(
                 intGrouping = when (val grouping = state.numberFormat.intGrouping) {
                     is IntGrouping.Uniform -> grouping.copy(
                         separator = newValue,
@@ -300,7 +300,7 @@ class NumberFormatDemoControl(
         textFieldState = state.groupingNumDigitsTextFieldState,
         onValueChange = { newValue ->
             val numDigits = newValue.toIntOrNull() ?: return@TextField
-            val newState = state.numberFormat.update(
+            val newState = state.numberFormat.copy(
                 intGrouping = when (val grouping = state.numberFormat.intGrouping) {
                     is IntGrouping.Uniform -> grouping.copy(
                         numDigits = numDigits,
@@ -345,7 +345,7 @@ class NumberFormatDemoControl(
         name = "Decimal separator",
         value = { state.numberFormat.decimalSeparator },
         onValueChange = { newValue ->
-            val newState = state.numberFormat.update(
+            val newState = state.numberFormat.copy(
                 decimalSeparator = newValue,
             )
             onValueChange(newState)

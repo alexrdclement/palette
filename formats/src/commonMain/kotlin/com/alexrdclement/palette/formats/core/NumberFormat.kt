@@ -1,15 +1,5 @@
 package com.alexrdclement.palette.formats.core
 
-import androidx.annotation.CheckResult
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.input.InputTransformation
-import androidx.compose.foundation.text.input.OutputTransformation
-import androidx.compose.foundation.text.input.TextFieldBuffer
-import androidx.compose.foundation.text.input.delete
-import androidx.compose.foundation.text.input.insert
-import androidx.compose.ui.text.input.KeyboardType
-import kotlin.math.min
-
 data class NumberFormat(
     val numDecimalValuesRange: IntRange = 0..2,
     val positiveSign: String? = null,
@@ -27,20 +17,6 @@ sealed class IntGrouping {
     data class Uniform(val numDigits: Int, val separator: Char) : IntGrouping()
     data object None : IntGrouping()
 }
-
-fun NumberFormat.update(
-    numDecimalValuesRange: IntRange? = null,
-    positiveSign: String? = null,
-    negativeSign: String? = null,
-    decimalSeparator: Char? = null,
-    intGrouping: IntGrouping? = null,
-): NumberFormat = this.copy(
-    numDecimalValuesRange = numDecimalValuesRange ?: this.numDecimalValuesRange,
-    positiveSign = positiveSign ?: this.positiveSign,
-    negativeSign = negativeSign ?: this.negativeSign,
-    decimalSeparator = decimalSeparator ?: this.decimalSeparator,
-    intGrouping = intGrouping ?: this.intGrouping,
-)
 
 fun NumberFormat.format(
     amount: Double,
@@ -62,7 +38,6 @@ fun NumberFormat.format(
 ): String {
     if (amount.isEmpty()) return ""
 
-    // Handle special values and scientific notation as-is
     val amountLower = amount.lowercase()
     if (amountLower.contains(DOUBLE_VALUE_SCIENTIFIC_NOTATION_CHAR_LOWERCASE) ||
         amountLower == DOUBLE_VALUE_INFINITY_LOWERCASE ||
@@ -123,124 +98,7 @@ fun NumberFormat.format(
     }
 }
 
-class NumberFormatInputTransformation(
-    numberFormat: NumberFormat,
-    private val maxNumDecimalValues: Int? = null,
-) : InputTransformation {
-
-    private val decimalSeparator = numberFormat.decimalSeparator
-
-    override val keyboardOptions = KeyboardOptions(
-        keyboardType = KeyboardType.Decimal,
-    )
-
-    override fun TextFieldBuffer.transformInput() {
-        filterChars()
-        filterConsecutiveDecimals()
-
-        val (intPart, decimalPart) = splitNumberParts(
-            numberString = asCharSequence().toString(),
-            decimalSeparator = decimalSeparator,
-        )
-
-        val numSeparators = asCharSequence().count { it == decimalSeparator }
-        if (numSeparators > 1) {
-            // Instead of rejecting changes with multiple decimals, recalculate according to the
-            // first one.
-            replace(intPart.length + 1, length, decimalPart ?: "")
-        }
-
-        val filteredIntPart = filterIntPart(intPart, hasDecimalPart = decimalPart != null)
-
-        filterDecimalPart(decimalPart, startIndex = filteredIntPart.length + 1)
-    }
-
-    private fun TextFieldBuffer.filterChars() {
-        val proposed = asCharSequence()
-        if (proposed.any { !it.isDigit() && it != decimalSeparator }) {
-            // Reject changes for any non-digit, non-decimal characters
-            revertAllChanges()
-        }
-    }
-
-    private fun TextFieldBuffer.filterConsecutiveDecimals() {
-        val proposed = asCharSequence()
-        var prevChar = proposed.firstOrNull()
-        for (char in proposed.drop(1)) {
-            if (prevChar == decimalSeparator && char == decimalSeparator) {
-                // Reject changes for consecutive decimals
-                revertAllChanges()
-                return
-            }
-            prevChar = char
-        }
-    }
-
-    @CheckResult
-    private fun TextFieldBuffer.filterIntPart(
-        intPart: String,
-        hasDecimalPart: Boolean,
-    ): String {
-        var mutableIntPart = intPart
-
-        if (mutableIntPart.startsWith('0')) {
-            // Allow single leading zero. Replace leading zero if followed by another digit.
-            val newIntPart = normalizeIntegerPart(mutableIntPart)
-            replace(0, mutableIntPart.length, newIntPart)
-            mutableIntPart = newIntPart
-        }
-
-        if (mutableIntPart.isEmpty() && hasDecimalPart) {
-            // Prefill 0 when only decimal part is entered
-            val newIntPart = "0"
-            replace(0, mutableIntPart.length, newIntPart)
-            mutableIntPart = newIntPart
-        }
-
-        return mutableIntPart
-    }
-
-    private fun TextFieldBuffer.filterDecimalPart(
-        decimalPart: String?,
-        startIndex: Int,
-    ) {
-        if (decimalPart == null) return
-        if (maxNumDecimalValues == null) return
-
-        if (decimalPart.length > maxNumDecimalValues) {
-            // Replace chars one-by-one so the cursor advances as expected
-            for (index in startIndex until min(maxNumDecimalValues, decimalPart.length)) {
-                replace(index, index + 1, decimalPart[index].toString())
-            }
-            delete(startIndex + maxNumDecimalValues, length)
-        }
-    }
-}
-
-class NumberFormatOutputTransformation(
-    private val numberFormat: NumberFormat,
-): OutputTransformation {
-    override fun TextFieldBuffer.transformOutput() {
-        when (val intGrouping = numberFormat.intGrouping) {
-            IntGrouping.None -> return
-            is IntGrouping.Uniform -> {
-                if (length == 0 || intGrouping.numDigits <= 0) return
-
-                val decimalPos = asCharSequence().indexOf(numberFormat.decimalSeparator)
-                val intPartEnd = if (decimalPos >= 0) decimalPos else length
-
-                if (intPartEnd <= intGrouping.numDigits) return
-
-                val groupingSeparatorStr = intGrouping.separator.toString()
-                for (index in intPartEnd - intGrouping.numDigits downTo 1 step intGrouping.numDigits) {
-                    insert(index, groupingSeparatorStr)
-                }
-            }
-        }
-    }
-}
-
-private fun splitNumberParts(
+internal fun splitNumberParts(
     numberString: String,
     decimalSeparator: Char = '.',
 ): Pair<String, String?> {
@@ -250,7 +108,7 @@ private fun splitNumberParts(
     return intPart to fracPart
 }
 
-private fun normalizeIntegerPart(intPart: String): String {
+internal fun normalizeIntegerPart(intPart: String): String {
     return intPart.trimStart('0').ifEmpty { "0" }
 }
 

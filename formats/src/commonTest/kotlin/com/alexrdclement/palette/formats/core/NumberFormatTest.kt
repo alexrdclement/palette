@@ -1,8 +1,5 @@
-package com.alexrdclement.palette.formats.format
+package com.alexrdclement.palette.formats.core
 
-import com.alexrdclement.palette.formats.core.IntGrouping
-import com.alexrdclement.palette.formats.core.NumberFormat
-import com.alexrdclement.palette.formats.core.format
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -314,7 +311,10 @@ class NumberFormatTest {
         assertEquals("-100", format.format(sign = "-", intPart = "100"))
 
         val formatWithPositiveSign = testFormat.copy(positiveSign = "+")
-        assertEquals("+1,234.56", formatWithPositiveSign.format(sign = "+", intPart = "1234", fracPart = "56"))
+        assertEquals(
+            "+1,234.56",
+            formatWithPositiveSign.format(sign = "+", intPart = "1234", fracPart = "56")
+        )
         assertEquals("+100", formatWithPositiveSign.format(sign = "+", intPart = "100"))
     }
 
