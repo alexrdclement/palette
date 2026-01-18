@@ -10,8 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -27,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -64,30 +62,20 @@ fun ColorScreen(
             )
         },
     ) { paddingValues ->
-        Demo(
+        DemoList(
+            items = ColorToken.entries.toList(),
+            key = { it.name },
             controls = control.controls,
+            horizontalAlignment = Alignment.Start,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
-                horizontalAlignment = Alignment.Start,
-                contentPadding = PaddingValues(PaletteTheme.spacing.medium),
-                modifier = Modifier
-                    .align(Alignment.Center)
-            ) {
-                items(
-                    items = ColorToken.entries,
-                    key = { it.name },
-                ) { colorToken ->
-                    ColorDisplay(
-                        label = colorToken.name,
-                        color = colorToken.toColor(),
-                        onColorClick = { selectedColorToken = colorToken },
-                    )
-                }
-            }
+        ) { colorToken ->
+            ColorDisplay(
+                label = colorToken.name,
+                color = colorToken.toColor(),
+                onColorClick = { selectedColorToken = colorToken },
+            )
         }
     }
 

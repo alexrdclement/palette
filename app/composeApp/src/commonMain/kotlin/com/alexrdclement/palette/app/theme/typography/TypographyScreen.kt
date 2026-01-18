@@ -1,30 +1,23 @@
 package com.alexrdclement.palette.app.theme.typography
 
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
-import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
+import com.alexrdclement.palette.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
@@ -32,7 +25,6 @@ import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.FontFamily
 import com.alexrdclement.palette.theme.FontStyle
 import com.alexrdclement.palette.theme.FontWeight
-import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.PaletteTypographyDefaults
 import com.alexrdclement.palette.theme.TypographyToken
 import com.alexrdclement.palette.theme.control.ThemeController
@@ -66,40 +58,22 @@ fun TypographyScreen(
             )
         },
     ) { paddingValues ->
-        Demo(
+        DemoList(
+            items = TypographyToken.entries.toList(),
             controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(
-                    space = PaletteTheme.spacing.large,
-                    alignment = Alignment.CenterVertically,
-                ),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                contentPadding = PaddingValues(PaletteTheme.spacing.medium),
+        ) { textStyle ->
+            BoxWithLabel(
+                label = textStyle.name,
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
             ) {
-                items(TypographyToken.entries) { textStyle ->
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            text = textStyle.name,
-                            style = PaletteTheme.typography.labelSmall,
-                            modifier = Modifier
-                                .border(1.dp, PaletteTheme.colorScheme.outline)
-                                .padding(PaletteTheme.spacing.xs)
-                        )
-                        Text(
-                            text = state.text,
-                            style = textStyle.toTextStyle(),
-                        )
-                    }
-                }
+                Text(
+                    text = state.text,
+                    style = textStyle.toTextStyle(),
+                )
             }
         }
     }

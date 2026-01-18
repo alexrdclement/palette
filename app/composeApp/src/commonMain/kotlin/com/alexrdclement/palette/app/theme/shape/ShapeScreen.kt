@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.layout.Scaffold
@@ -54,37 +55,25 @@ fun ShapeScreen(
             )
         },
     ) { paddingValues ->
-        Demo(
+        DemoList(
+            items = ShapeToken.entries.toList(),
             controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(
-                    space = PaletteTheme.spacing.large,
-                    alignment = Alignment.CenterVertically,
-                ),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                contentPadding = PaddingValues(PaletteTheme.spacing.medium),
+        ) { shape ->
+            Box(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .border(
+                        width = 1.dp,
+                        color = PaletteTheme.colorScheme.outline,
+                        shape = shape.toComposeShape(),
+                    )
             ) {
-                items(ShapeToken.entries) { shape ->
-                    Box(
-                        modifier = Modifier
-                            .border(
-                                width = 1.dp,
-                                color = PaletteTheme.colorScheme.outline,
-                                shape = shape.toComposeShape(),
-                            )
-                    ) {
-                        Text(
-                            text = shape.name,
-                            style = PaletteTheme.typography.headline,
-                        )
-                    }
-                }
+                Text(
+                    text = shape.name,
+                    style = PaletteTheme.typography.headline,
+                )
             }
         }
     }

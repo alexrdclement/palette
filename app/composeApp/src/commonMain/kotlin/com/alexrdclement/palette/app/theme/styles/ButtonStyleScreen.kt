@@ -1,11 +1,7 @@
 package com.alexrdclement.palette.app.theme.styles
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -13,7 +9,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.components.core.TextAlign
@@ -22,7 +17,7 @@ import com.alexrdclement.palette.app.demo.components.core.TextDemoControl
 import com.alexrdclement.palette.app.demo.components.core.TextDemoState
 import com.alexrdclement.palette.app.demo.components.core.TextDemoStateSaver
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.layout.Scaffold
@@ -30,7 +25,6 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.Styles
 import com.alexrdclement.palette.theme.control.ThemeController
@@ -60,33 +54,21 @@ fun ButtonStyleScreen(
             )
         },
     ) { paddingValues ->
-        Demo(
+        DemoList(
+            items = state.buttonStylesByToken.keys.toList(),
             controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(
-                    space = PaletteTheme.spacing.large,
-                    alignment = Alignment.CenterVertically,
-                ),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                contentPadding = PaddingValues(PaletteTheme.spacing.medium),
-                modifier = Modifier
-                    .fillMaxSize()
+        ) { style ->
+            Button(
+                style = style,
+                onClick = {},
             ) {
-                items(state.buttonStylesByToken.keys.toList()) { style ->
-                    Button(
-                        style = style,
-                        onClick = {},
-                    ) {
-                        this@Demo.TextDemo(
-                            state = state.textDemoState,
-                            control = control.textDemoControl,
-                        )
-                    }
-                }
+                this@DemoList.TextDemo(
+                    state = state.textDemoState,
+                    control = control.textDemoControl,
+                )
             }
         }
     }
