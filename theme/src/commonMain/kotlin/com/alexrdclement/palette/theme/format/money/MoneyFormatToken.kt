@@ -11,7 +11,7 @@ fun MoneyFormatToken.toFormat(): MoneyFormat {
     return when (this) {
         MoneyFormatToken.Default -> MoneyFormat(
             currencySymbol = "$",
-            numberFormat = PaletteNumberFormatScheme.default,
+            numberFormat = PaletteNumberFormatScheme.currency,
         )
     }
 }

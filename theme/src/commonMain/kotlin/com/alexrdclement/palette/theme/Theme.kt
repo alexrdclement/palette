@@ -115,6 +115,7 @@ val LocalPaletteFormats = staticCompositionLocalOf {
         ),
         numberFormats = NumberFormatScheme(
             default = NumberFormat(),
+            currency = NumberFormat(),
         ),
     )
 }
