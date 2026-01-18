@@ -102,7 +102,9 @@ class MoneyFormatScreenState(
         get() = formats.moneyFormats
 
     val moneyFormatsByToken = MoneyFormatToken.entries.associateWith { token ->
-        token.toFormat(moneyFormatScheme)
+        when (token) {
+            MoneyFormatToken.Default -> moneyFormatScheme.default
+        }
     }
 
     val moneyFormatDemoStatesByToken = MoneyFormatToken.entries.associateWith { token ->

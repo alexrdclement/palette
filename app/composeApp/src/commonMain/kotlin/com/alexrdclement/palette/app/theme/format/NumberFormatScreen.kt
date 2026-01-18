@@ -105,7 +105,10 @@ class NumberFormatScreenState(
         get() = formats.numberFormats
 
     val numberFormatsByToken = NumberFormatToken.entries.associateWith { token ->
-        token.toFormat()
+        when (token) {
+            NumberFormatToken.Default -> numberFormatScheme.default
+            NumberFormatToken.Currency -> numberFormatScheme.currency
+        }
     }
 
     val numberFormatDemoStatesByToken = NumberFormatToken.entries.associateWith { token ->
