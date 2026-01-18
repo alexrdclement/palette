@@ -12,13 +12,9 @@ import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.PaletteFormats
-import com.alexrdclement.palette.theme.format.datetime.DateFormatToken
-import com.alexrdclement.palette.theme.format.datetime.DateTimeFormatScheme
-import com.alexrdclement.palette.theme.format.datetime.DateTimeFormatToken
-import com.alexrdclement.palette.theme.format.datetime.InstantFormatToken
-import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
 import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
-import com.alexrdclement.palette.theme.format.datetime.TimeFormatToken
+import com.alexrdclement.palette.theme.format.datetime.PaletteDateTimeFormats
+import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
 import com.alexrdclement.palette.theme.modifiers.BorderStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleScheme
 import com.alexrdclement.palette.theme.styles.ButtonStyle
@@ -104,12 +100,7 @@ val LocalPaletteStyles = staticCompositionLocalOf {
 
 val LocalPaletteFormats = staticCompositionLocalOf {
     Formats(
-        dateTimeFormats = DateTimeFormatScheme(
-            dateFormat = DateFormatToken.YMD,
-            timeFormat = TimeFormatToken.HMContinental,
-            dateTimeFormat = DateTimeFormatToken.YMDContinental,
-            instantFormat = InstantFormatToken.YMDContinental,
-        ),
+        dateTimeFormats = PaletteDateTimeFormats,
         moneyFormats = MoneyFormatScheme(
             default = MoneyFormat(),
         ),

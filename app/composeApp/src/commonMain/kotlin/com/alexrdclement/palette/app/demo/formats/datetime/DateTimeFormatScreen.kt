@@ -7,11 +7,11 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.formats.datetime.navigation.DateTimeFormat
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.formats.datetime.format
-import com.alexrdclement.palette.theme.format.datetime.DateFormatToken
-import com.alexrdclement.palette.theme.format.datetime.DateTimeFormatToken
-import com.alexrdclement.palette.theme.format.datetime.InstantFormatToken
-import com.alexrdclement.palette.theme.format.datetime.TimeFormatToken
-import com.alexrdclement.palette.theme.format.datetime.toFormat
+import com.alexrdclement.palette.formats.datetime.DateFormatValue
+import com.alexrdclement.palette.formats.datetime.DateTimeFormatValue
+import com.alexrdclement.palette.formats.datetime.InstantFormatValue
+import com.alexrdclement.palette.formats.datetime.TimeFormatValue
+import com.alexrdclement.palette.formats.datetime.toFormat
 import kotlinx.datetime.format
 
 @Composable
@@ -31,32 +31,32 @@ fun DateTimeFormatScreen(
     ) { innerPadding ->
         when (format) {
             DateTimeFormat.Date -> DateTimeFormatDemo(
-                entries = DateFormatToken.entries,
-                initial = DateFormatToken.YMD,
+                entries = DateFormatValue.entries,
+                initial = DateFormatValue.YMD,
                 format = { _, localDateTime, token ->
                     localDateTime.date.format(token.toFormat())
                 },
                 modifier = Modifier.padding(innerPadding)
             )
             DateTimeFormat.DateTime -> DateTimeFormatDemo(
-                entries = DateTimeFormatToken.entries,
-                initial = DateTimeFormatToken.YMDContinental,
+                entries = DateTimeFormatValue.entries,
+                initial = DateTimeFormatValue.YMDContinental,
                 format = { _, localDateTime, token ->
                     localDateTime.format(token.toFormat())
                 },
                 modifier = Modifier.padding(innerPadding)
             )
             DateTimeFormat.Instant -> DateTimeFormatDemo(
-                entries = InstantFormatToken.entries,
-                initial = InstantFormatToken.YMDContinental,
+                entries = InstantFormatValue.entries,
+                initial = InstantFormatValue.YMDContinental,
                 format = { instant, _, token ->
                     instant.format(token.toFormat())
                 },
                 modifier = Modifier.padding(innerPadding)
             )
             DateTimeFormat.Time -> DateTimeFormatDemo(
-                entries = TimeFormatToken.entries,
-                initial = TimeFormatToken.HMContinental,
+                entries = TimeFormatValue.entries,
+                initial = TimeFormatValue.HMContinental,
                 format = { _, localDateTime, token ->
                     localDateTime.time.format(token.toFormat())
                 },

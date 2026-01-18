@@ -69,24 +69,14 @@ fun <T> DemoScope.DateTimeFormatDemo(
     format: (Instant, LocalDateTime, T) -> String,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(
-            space = PaletteTheme.spacing.medium,
-            alignment = Alignment.CenterVertically,
-        ),
-        horizontalAlignment = Alignment.Start,
-        modifier = modifier
-            .align(Alignment.Center)
-    ) {
-        val formatted by state.time
-            .map { format(it.first, it.second, state.token) }
-            .collectAsStateWithLifecycle("")
-        Text(
-            text = formatted,
-            style = PaletteTheme.typography.headline,
-            modifier = modifier,
-        )
-    }
+    val formatted by state.time
+        .map { format(it.first, it.second, state.token) }
+        .collectAsStateWithLifecycle("")
+    Text(
+        text = formatted,
+        style = PaletteTheme.typography.headline,
+        modifier = modifier,
+    )
 }
 
 @Composable
@@ -106,8 +96,8 @@ fun <T> rememberDateTimeFormatDemoState(
 
 @Stable
 class DateTimeFormatDemoState<T>(
-    timeZoneInitial: TimeZone,
     tokenInitial: T,
+    timeZoneInitial: TimeZone = TimeZone.currentSystemDefault(),
 ) {
     val availableTimeZoneIds = setOf(TimeZone.currentSystemDefault().id, "UTC", "EST", "PST8PDT").toPersistentList()
 
