@@ -18,7 +18,7 @@ enum class DateTimeFormatToken {
     ContinentalYMD,
 }
 
-fun DateTimeFormatToken.toDateTimeFormat(): DateTimeFormat<LocalDateTime> = when (this) {
+fun DateTimeFormatToken.toFormat(): DateTimeFormat<LocalDateTime> = when (this) {
     DateTimeFormatToken.MDYContinental -> LocalDateTime.Formats.MDYContinental
     DateTimeFormatToken.MDYContinentalShort -> LocalDateTime.Formats.MDYContinentalShort
     DateTimeFormatToken.YMDContinental -> LocalDateTime.Formats.YMDContinental
@@ -26,5 +26,3 @@ fun DateTimeFormatToken.toDateTimeFormat(): DateTimeFormat<LocalDateTime> = when
     DateTimeFormatToken.ContinentalMDY -> LocalDateTime.Formats.ContinentalMDY
     DateTimeFormatToken.ContinentalYMD -> LocalDateTime.Formats.ContinentalYMD
 }
-
-fun DateTimeFormatToken.toFormat(): DateTimeFormat<LocalDateTime> = toDateTimeFormat()

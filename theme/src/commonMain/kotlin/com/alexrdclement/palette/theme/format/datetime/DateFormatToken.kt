@@ -16,12 +16,10 @@ enum class DateFormatToken {
     MDYLong,
 }
 
-fun DateFormatToken.toDateTimeFormat(): DateTimeFormat<LocalDate> = when (this) {
+fun DateFormatToken.toFormat(): DateTimeFormat<LocalDate> = when (this) {
     DateFormatToken.YMD -> LocalDate.Formats.YMD
     DateFormatToken.YMDShort -> LocalDate.Formats.YMDShort
     DateFormatToken.MDY -> LocalDate.Formats.MDY
     DateFormatToken.MDYShort -> LocalDate.Formats.MDYShort
     DateFormatToken.MDYLong -> LocalDate.Formats.MDYLong
 }
-
-fun DateFormatToken.toFormat(): DateTimeFormat<LocalDate> = toDateTimeFormat()

@@ -14,11 +14,9 @@ enum class TimeFormatToken {
     HMSAmPmPadZero,
 }
 
-fun TimeFormatToken.toDateTimeFormat(): DateTimeFormat<LocalTime> = when (this) {
+fun TimeFormatToken.toFormat(): DateTimeFormat<LocalTime> = when (this) {
     TimeFormatToken.HMContinental -> LocalTime.Formats.HMContinental
     TimeFormatToken.HMAmPmPadZero -> LocalTime.Formats.HMAmPmPadZero
     TimeFormatToken.HMSContinental -> LocalTime.Formats.HMSContinental
     TimeFormatToken.HMSAmPmPadZero -> LocalTime.Formats.HMSAmPmPadZero
 }
-
-fun TimeFormatToken.toFormat(): DateTimeFormat<LocalTime> = toDateTimeFormat()
