@@ -1,12 +1,7 @@
 package com.alexrdclement.palette.app.theme.format
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -18,7 +13,7 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.formats.core.NumberFormatDemo
 import com.alexrdclement.palette.app.demo.formats.core.NumberFormatDemoState
 import com.alexrdclement.palette.app.demo.formats.core.rememberNumberFormatDemoControl
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
@@ -29,7 +24,6 @@ import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.format.core.NumberFormatToken
-import com.alexrdclement.palette.theme.format.core.toFormat
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -51,33 +45,22 @@ fun NumberFormatScreen(
             )
         },
     ) { paddingValues ->
-        Demo(
+        DemoList(
+            items = state.numberFormatsByToken.entries.toList(),
             controls = control.controls,
+            horizontalAlignment = Alignment.Start,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(
-                    space = PaletteTheme.spacing.large,
-                    alignment = Alignment.CenterVertically,
-                ),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                contentPadding = PaddingValues(PaletteTheme.spacing.medium),
+        ) { (token, _) ->
+            BoxWithLabel(
+                label = token.name,
                 modifier = Modifier
-                    .fillMaxSize()
+                    .padding(horizontal = PaletteTheme.spacing.medium)
             ) {
-                items(state.numberFormatsByToken.keys.toList()) { token ->
-                    BoxWithLabel(
-                        label = token.name,
-                        modifier = Modifier
-                            .padding(horizontal = PaletteTheme.spacing.medium)
-                    ) {
-                        NumberFormatDemo(
-                            state = state.numberFormatDemoStatesByToken[token]!!,
-                        )
-                    }
-                }
+                NumberFormatDemo(
+                    state = state.numberFormatDemoStatesByToken[token]!!,
+                )
             }
         }
     }

@@ -17,6 +17,7 @@ import com.alexrdclement.palette.app.demo.formats.money.MoneyFormatDemo
 import com.alexrdclement.palette.app.demo.formats.money.MoneyFormatDemoControl
 import com.alexrdclement.palette.app.demo.formats.money.MoneyFormatDemoState
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
@@ -48,33 +49,22 @@ fun MoneyFormatScreen(
             )
         },
     ) { paddingValues ->
-        Demo(
+        DemoList(
+            items = state.moneyFormatsByToken.entries.toList(),
             controls = control.controls,
+            horizontalAlignment = Alignment.Start,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(
-                    space = PaletteTheme.spacing.large,
-                    alignment = Alignment.CenterVertically,
-                ),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                contentPadding = PaddingValues(PaletteTheme.spacing.medium),
+        ) { (token, _) ->
+            BoxWithLabel(
+                label = token.name,
                 modifier = Modifier
-                    .fillMaxSize()
+                    .padding(horizontal = PaletteTheme.spacing.medium)
             ) {
-                items(state.moneyFormatsByToken.keys.toList()) { token ->
-                    BoxWithLabel(
-                        label = token.name,
-                        modifier = Modifier
-                            .padding(horizontal = PaletteTheme.spacing.medium)
-                    ) {
-                        MoneyFormatDemo(
-                            state = state.moneyFormatDemoStatesByToken[token]!!,
-                        )
-                    }
-                }
+                MoneyFormatDemo(
+                    state = state.moneyFormatDemoStatesByToken[token]!!,
+                )
             }
         }
     }

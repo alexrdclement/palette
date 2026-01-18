@@ -19,7 +19,7 @@ fun BoxWithLabel(
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.Start,
         modifier = modifier,
     ) {
         Text(

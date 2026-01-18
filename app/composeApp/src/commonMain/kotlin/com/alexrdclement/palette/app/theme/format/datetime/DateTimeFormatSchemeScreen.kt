@@ -1,11 +1,7 @@
 package com.alexrdclement.palette.app.theme.format.datetime
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
@@ -16,18 +12,18 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.formats.datetime.DateTimeFormatDemo
 import com.alexrdclement.palette.app.demo.formats.datetime.DateTimeFormatDemoState
 import com.alexrdclement.palette.app.demo.formats.datetime.rememberDateTimeFormatDemoControl
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
+import com.alexrdclement.palette.formats.datetime.DateTimeFormatValue
+import com.alexrdclement.palette.formats.datetime.toFormat
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.datetime.DateTimeFormatScheme
 import com.alexrdclement.palette.theme.format.datetime.DateTimeFormatToken
-import com.alexrdclement.palette.formats.datetime.DateTimeFormatValue
-import com.alexrdclement.palette.formats.datetime.toFormat
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.datetime.format
@@ -55,36 +51,25 @@ fun DateTimeFormatSchemeScreen(
             )
         },
     ) { paddingValues ->
-        Demo(
+        DemoList(
+            items = state.dateFormatsByToken.entries.toList(),
             controls = control.controls,
+            horizontalAlignment = Alignment.Start,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(
-                    space = PaletteTheme.spacing.large,
-                    alignment = Alignment.CenterVertically,
-                ),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                contentPadding = PaddingValues(PaletteTheme.spacing.medium),
+        ) { (token, format) ->
+            BoxWithLabel(
+                label = token.name,
                 modifier = Modifier
-                    .align(Alignment.Center)
+                    .padding(horizontal = PaletteTheme.spacing.medium)
             ) {
-                items(state.dateFormatsByToken.entries.toList()) { (token, format) ->
-                    BoxWithLabel(
-                        label = token.name,
-                        modifier = Modifier
-                            .padding(horizontal = PaletteTheme.spacing.medium)
-                    ) {
-                        DateTimeFormatDemo(
-                            state = state.dateTimeFormatDemoStateByToken[token]!!,
-                            format = { _, localDateTime, _ ->
-                                localDateTime.format(format.toFormat())
-                            },
-                        )
-                    }
-                }
+                DateTimeFormatDemo(
+                    state = state.dateTimeFormatDemoStateByToken[token]!!,
+                    format = { _, localDateTime, _ ->
+                        localDateTime.format(format.toFormat())
+                    },
+                )
             }
         }
     }
