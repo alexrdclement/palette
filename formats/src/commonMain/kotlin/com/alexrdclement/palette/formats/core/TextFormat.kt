@@ -79,7 +79,7 @@ fun TextFormat.format(
         return formatted.applyReplacements(replacements)
     }
 
-    val words = string.split(" ").filter { it.isNotEmpty() }
+    val words = string.split(" ")
     if (words.isEmpty()) return ""
 
     val formatted = when (capitalization) {
