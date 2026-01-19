@@ -86,7 +86,7 @@ sealed class Control {
         val expandedInitial: Boolean = false,
     ) : Control()
 
-    data class DynamicControlColumn<T>(
+    data class DynamicList<T>(
         val name: String,
         val items: () -> List<T>,
         val onItemsChange: (List<T>) -> Unit,

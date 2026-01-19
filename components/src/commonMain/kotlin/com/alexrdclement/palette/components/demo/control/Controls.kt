@@ -64,7 +64,7 @@ fun Controls(
                     is Control.Toggle -> ToggleControlRow(control = control)
                     is Control.CharField -> CharControl(control = control)
                     is Control.TextField -> TextFieldControl(control = control)
-                    is Control.DynamicControlColumn<*> -> DynamicControlColumn(control = control)
+                    is Control.DynamicList<*> -> DynamicListControl(control = control)
                     is Control.ControlColumn -> {
                         val controls by rememberUpdatedState(control.controls())
                         Controls(
@@ -110,7 +110,7 @@ fun ControlsRow(
                     is Control.Toggle -> ToggleControl(control = control)
                     is Control.CharField -> CharControl(control = control)
                     is Control.TextField -> TextFieldControl(control = control)
-                    is Control.DynamicControlColumn<*> -> DynamicControlColumn(control = control)
+                    is Control.DynamicList<*> -> DynamicListControl(control = control)
                     is Control.ControlColumn -> {
                         val controls by rememberUpdatedState(control.controls())
                         Controls(

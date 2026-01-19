@@ -174,7 +174,7 @@ class TextFormatDemoControl(
         },
     )
 
-    val replacementsControl = Control.DynamicControlColumn(
+    val replacementsControl = Control.DynamicList(
         name = "Replacements",
         items = { state.textFormat.replacements.entries.map { it.key to it.value } },
         onItemsChange = { pairs ->

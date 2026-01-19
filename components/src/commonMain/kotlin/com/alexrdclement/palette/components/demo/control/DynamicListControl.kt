@@ -19,8 +19,8 @@ import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
-fun <T> DynamicControlColumn(
-    control: Control.DynamicControlColumn<T>,
+fun <T> DynamicListControl(
+    control: Control.DynamicList<T>,
     modifier: Modifier = Modifier,
 ) {
     val items by rememberUpdatedState(control.items())
@@ -92,7 +92,7 @@ fun <T> DynamicControlColumn(
 
 @Composable
 private fun <T> DynamicListItem(
-    control: Control.DynamicControlColumn<T>,
+    control: Control.DynamicList<T>,
     item: T,
     onItemChange: (T) -> Unit,
     onDelete: () -> Unit,
@@ -124,7 +124,7 @@ private fun <T> DynamicListItem(
 
 @Composable
 private fun <T> DynamicListAddItem(
-    control: Control.DynamicControlColumn<T>,
+    control: Control.DynamicList<T>,
     item: T,
     onItemChange: (T) -> Unit,
     onConfirm: () -> Unit,
