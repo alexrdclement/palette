@@ -1,8 +1,6 @@
 package com.alexrdclement.palette.theme
 
 import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.theme.styles.ResolvedTextStyleScheme
-import com.alexrdclement.palette.theme.styles.TextStyle
 import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 
 enum class TypographyToken {
@@ -37,26 +35,5 @@ fun TypographyToken.toComposeTextStyle(typography: Typography): ComposeTextStyle
         TypographyToken.LabelLarge -> typography.labelLarge
         TypographyToken.LabelMedium -> typography.labelMedium
         TypographyToken.LabelSmall -> typography.labelSmall
-    }
-}
-
-@Composable
-fun TypographyToken.toStyle(): TextStyle {
-    return toStyle(PaletteTheme.styles.text)
-}
-
-fun TypographyToken.toStyle(resolvedTextStyleScheme: ResolvedTextStyleScheme): TextStyle {
-    return when (this) {
-        TypographyToken.Display -> resolvedTextStyleScheme.display
-        TypographyToken.Headline -> resolvedTextStyleScheme.headline
-        TypographyToken.TitleLarge -> resolvedTextStyleScheme.titleLarge
-        TypographyToken.TitleMedium -> resolvedTextStyleScheme.titleMedium
-        TypographyToken.TitleSmall -> resolvedTextStyleScheme.titleSmall
-        TypographyToken.BodyLarge -> resolvedTextStyleScheme.bodyLarge
-        TypographyToken.BodyMedium -> resolvedTextStyleScheme.bodyMedium
-        TypographyToken.BodySmall -> resolvedTextStyleScheme.bodySmall
-        TypographyToken.LabelLarge -> resolvedTextStyleScheme.labelLarge
-        TypographyToken.LabelMedium -> resolvedTextStyleScheme.labelMedium
-        TypographyToken.LabelSmall -> resolvedTextStyleScheme.labelSmall
     }
 }
