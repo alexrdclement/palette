@@ -55,7 +55,7 @@ fun TextFieldControl(
         }
         TextField(
             state = control.textFieldState,
-            textStyle = PaletteTheme.styles.text.labelLarge,
+            textStyle = PaletteTheme.styles.text.bodyMedium,
             enabled = enabled,
             inputTransformation = inputTransformation,
             keyboardOptions = keyboardOptions,

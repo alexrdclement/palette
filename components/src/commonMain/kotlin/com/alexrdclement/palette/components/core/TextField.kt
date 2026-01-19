@@ -16,6 +16,7 @@ import androidx.compose.foundation.text.input.TextFieldDecorator
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.foundation.text.input.then
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -26,7 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.LocalContentColor
-import com.alexrdclement.palette.formats.core.outputTransformation
+import com.alexrdclement.palette.formats.core.inputTransformation
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.TextStyle
 
@@ -44,17 +45,24 @@ fun TextField(
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     interactionSource: MutableInteractionSource? = null,
     cursorBrush: Brush = TextFieldDefaults.CursorBrush,
-    outputTransformation: OutputTransformation? = textStyle.format.outputTransformation,
+    outputTransformation: OutputTransformation? = null,
     decorator: TextFieldDecorator? = TextFieldDefaults.TextFieldDecorator,
     scrollState: ScrollState = rememberScrollState(),
 ) {
     val color = textStyle.composeTextStyle.color.takeOrElse { LocalContentColor.current }
+
+    val formatInputTransformation = textStyle.format.inputTransformation
+    val combinedInputTransformation = when {
+        inputTransformation != null -> inputTransformation.then(formatInputTransformation)
+        else -> formatInputTransformation
+    }
+
     BasicTextField(
         state = state,
         modifier = modifier,
         enabled = enabled,
         readOnly = readOnly,
-        inputTransformation = inputTransformation,
+        inputTransformation = combinedInputTransformation,
         textStyle = textStyle.composeTextStyle.copy(color = color),
         keyboardOptions = keyboardOptions,
         onKeyboardAction = onKeyboardAction,
