@@ -20,7 +20,7 @@ fun TextFormatToken.toFormat(): TextFormat {
     )
     return when (this) {
         TextFormatToken.Body -> TextFormat(
-            capitalization = Capitalization.Sentence,
+            capitalization = Capitalization.None,
             wordDelimiter = " ",
             replacements = defaultPunctuationReplacements,
         )

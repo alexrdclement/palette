@@ -7,6 +7,7 @@ data class TextFormat(
 )
 
 sealed class Capitalization {
+    data object None : Capitalization()
     data object Sentence : Capitalization()
     data object Title : Capitalization()
     data object Uppercase : Capitalization()
@@ -15,6 +16,7 @@ sealed class Capitalization {
     data class Alternating(val capitalizeFirstChar: Boolean = true) : Capitalization()
 
     enum class Key {
+        None,
         Sentence,
         Title,
         Uppercase,
@@ -25,6 +27,7 @@ sealed class Capitalization {
 
     companion object {
         fun toKey(value: Capitalization): Key = when (value) {
+            None -> Key.None
             Sentence -> Key.Sentence
             Title -> Key.Title
             Uppercase -> Key.Uppercase
@@ -37,6 +40,7 @@ sealed class Capitalization {
             key: Key,
             capitalizeFirstChar: Boolean = true,
         ): Capitalization = when (key) {
+            Key.None -> None
             Key.Sentence -> Sentence
             Key.Title -> Title
             Key.Uppercase -> Uppercase
@@ -60,6 +64,7 @@ fun TextFormat.format(
 
     if (wordDelimiter == " ") {
         val formatted = when (capitalization) {
+            Capitalization.None -> string
             Capitalization.Sentence -> string.titlecaseFirstChar()
             Capitalization.Title -> {
                 val words = string.split(' ')
@@ -78,6 +83,7 @@ fun TextFormat.format(
     if (words.isEmpty()) return ""
 
     val formatted = when (capitalization) {
+        Capitalization.None -> string
         Capitalization.Sentence -> {
             val firstWord = words[0].titlecaseFirstChar()
             if (words.size == 1) firstWord
