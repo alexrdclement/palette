@@ -13,6 +13,7 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(projects.app.composeApp)
+            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 }

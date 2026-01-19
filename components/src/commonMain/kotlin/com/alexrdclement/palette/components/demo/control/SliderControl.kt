@@ -29,7 +29,7 @@ fun SliderControl(
         verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
         modifier = modifier,
     ) {
-        Text(text = name, style = PaletteTheme.typography.labelLarge)
+        Text(text = name, style = PaletteTheme.styles.text.labelLarge)
         Slider(
             value = value,
             onValueChange = control.onValueChange,

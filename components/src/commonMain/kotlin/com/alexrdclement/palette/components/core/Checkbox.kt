@@ -36,7 +36,7 @@ fun Checkbox(
     ) {
         Text(
             text = if (isChecked) "☑︎" else "☐",
-            style = PaletteTheme.typography.titleLarge
+            style = PaletteTheme.styles.text.titleLarge
         )
     }
 }

@@ -37,7 +37,7 @@ fun MediaItemArtwork(
         ) {
             Text(
                 "Art",
-                style = PaletteTheme.typography.labelLarge
+                style = PaletteTheme.styles.text.labelLarge
             )
         }
     }

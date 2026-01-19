@@ -63,7 +63,7 @@ private fun Preview() {
         Surface {
             TopBar(
                 title = {
-                    Text("Title", style = PaletteTheme.typography.headline)
+                    Text("Title", style = PaletteTheme.styles.text.headline)
                 }
             )
         }
@@ -77,7 +77,7 @@ private fun NavButtonPreview() {
         Surface {
             TopBar(
                 title = {
-                    Text("Title", style = PaletteTheme.typography.headline)
+                    Text("Title", style = PaletteTheme.styles.text.headline)
                 },
                 navButton = {
                     BackNavigationButton(onClick = {})
@@ -94,7 +94,7 @@ private fun ActionsPreview() {
         Surface {
             TopBar(
                 title = {
-                    Text("Title", style = PaletteTheme.typography.headline)
+                    Text("Title", style = PaletteTheme.styles.text.headline)
                 },
                 actions = {
                     Button(

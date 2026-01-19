@@ -190,14 +190,14 @@ fun MediaControlBar(
                     ) {
                         Text(
                             text = mediaItem.title,
-                            style = PaletteTheme.typography.titleMedium,
+                            style = PaletteTheme.styles.text.titleMedium,
                             maxLines = 1,
                             modifier = Modifier
                                 .basicMarquee()
                         )
                         Text(
                             text = mediaItem.artists.joinToString { it.name },
-                            style = PaletteTheme.typography.bodyMedium,
+                            style = PaletteTheme.styles.text.bodyMedium,
                             maxLines = 1,
                             modifier = Modifier
                                 .basicMarquee()

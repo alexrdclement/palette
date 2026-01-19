@@ -30,6 +30,7 @@ fun NavGraphBuilder.stylesGraph(
                 when (style) {
                     Styles.Border -> navController.navigateToBorderStyles()
                     Styles.Button -> navController.navigateToButtonStyles()
+                    Styles.Text -> navController.navigateToTextStyles()
                 }
             },
             onNavigateBack = onNavigateBack,
@@ -39,6 +40,10 @@ fun NavGraphBuilder.stylesGraph(
             onNavigateBack = onNavigateBack,
         )
         buttonStylesScreen(
+            themeController = themeController,
+            onNavigateBack = onNavigateBack,
+        )
+        textStylesScreen(
             themeController = themeController,
             onNavigateBack = onNavigateBack,
         )

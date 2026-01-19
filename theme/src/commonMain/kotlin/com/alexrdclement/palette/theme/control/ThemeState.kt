@@ -19,6 +19,8 @@ import com.alexrdclement.palette.theme.ShapeScheme
 import com.alexrdclement.palette.theme.Spacing
 import com.alexrdclement.palette.theme.Styles
 import com.alexrdclement.palette.theme.Typography
+import com.alexrdclement.palette.theme.format.Formats
+import com.alexrdclement.palette.theme.format.PaletteFormats
 
 interface ThemeState {
     val typography: Typography
@@ -28,6 +30,7 @@ interface ThemeState {
     val isDarkMode: Boolean
     val shapeScheme: ShapeScheme
     val spacing: Spacing
+    val formats: Formats
     val styles: Styles
 
     val colorScheme: ColorScheme
@@ -42,6 +45,7 @@ internal class ThemeStateImpl(
     shapeSchemeInitial: ShapeScheme = PaletteShapeScheme,
     indicationInitial: Indication = PaletteIndication,
     spacingInitial: Spacing = PaletteSpacing,
+    formatsInitial: Formats = PaletteFormats,
     stylesInitial: Styles = PaletteStyles,
 ) : ThemeState {
     override var typography by mutableStateOf(typographyInitial)
@@ -51,6 +55,7 @@ internal class ThemeStateImpl(
     override var darkColorScheme by mutableStateOf(darkColorSchemeInitial)
     override var isDarkMode by mutableStateOf(isDarkModeInitial)
     override var spacing by mutableStateOf(spacingInitial)
+    override var formats by mutableStateOf(formatsInitial)
     override var styles by mutableStateOf(stylesInitial)
 }
 

@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.app.demo.components.core
 
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -50,13 +50,13 @@ fun ButtonDemo(
 }
 
 @Composable
-fun BoxWithConstraintsScope.ButtonDemo(
+fun DemoScope.ButtonDemo(
     modifier: Modifier = Modifier,
     state: ButtonDemoState = rememberButtonDemoState(),
     control: ButtonDemoControl = rememberButtonDemoControl(state),
 ) {
-    LaunchedEffect(control, this.maxWidth) {
-        control.onSizeChanged(this@ButtonDemo.maxWidth)
+    LaunchedEffect(control, maxWidth) {
+        control.onButtonSizeChanged(maxWidth)
     }
     Button(
         onClick = {},
@@ -68,15 +68,10 @@ fun BoxWithConstraintsScope.ButtonDemo(
             .padding(PaletteTheme.spacing.medium)
             .semantics { contentDescription = "Demo Button" }
     ) {
-        BoxWithConstraints(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            TextDemo(
-                state = state.textDemoState,
-                control = control.textDemoControl,
-            )
-        }
+        this@ButtonDemo.TextDemo(
+            state = state.textDemoState,
+            control = control.textDemoControl,
+        )
     }
 }
 
@@ -176,15 +171,21 @@ class ButtonDemoControl(
         textDemoControls,
     )
 
-    fun onSizeChanged(width: Dp) {
+    fun onButtonSizeChanged(width: Dp) {
         if (state.maxWidth == 0.dp) {
             state.width = width
-            state.textDemoState.width = width
         }
         state.maxWidth = width
-        state.textDemoState.maxWidth = width
         if (state.width > state.maxWidth) {
             state.width = state.maxWidth
+        }
+
+        if (state.textDemoState.maxWidth == 0.dp) {
+            state.textDemoState.width = width
+        }
+        state.textDemoState.maxWidth = width
+        if (state.textDemoState.width > state.textDemoState.maxWidth) {
+            state.textDemoState.width = state.textDemoState.maxWidth
         }
     }
 }

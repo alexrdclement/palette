@@ -37,6 +37,7 @@ tasks.register("generateAllBaselineProfiles") {
     dependsOn(
         ":app:baseline-profile:generateBaselineProfile",
         ":components:baseline-profile:generateBaselineProfile",
+        ":formats:baseline-profile:generateBaselineProfile",
         ":modifiers:baseline-profile:generateBaselineProfile"
     )
 }

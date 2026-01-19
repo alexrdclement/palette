@@ -35,9 +35,9 @@ import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
+import com.alexrdclement.palette.formats.core.format
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.TypographyToken
-import com.alexrdclement.palette.theme.toTextStyle
+import com.alexrdclement.palette.theme.styles.TextStyle
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 
@@ -56,8 +56,19 @@ fun TextFieldDemo(
             control.onSizeChanged(this@Demo.maxWidth)
         }
 
+        LaunchedEffect(state.textStyleDemoState.textStyle.format) {
+            val currentText = state.textFieldState.text.toString()
+            val formatted = state.textStyleDemoState.textStyle.format.format(currentText)
+            if (formatted != currentText) {
+                state.textFieldState.edit {
+                    replace(0, length, formatted)
+                }
+            }
+        }
+
         TextField(
             state = state.textFieldState,
+            textStyle = state.textStyleDemoState.textStyle,
             enabled = state.enabled,
             lineLimits = when (state.lineLimits) {
                 LineLimits.SingleLine -> TextFieldLineLimits.SingleLine
@@ -77,7 +88,6 @@ fun TextFieldDemo(
                 InputTransformations.AllCaps -> InputTransformation.allCaps(Locale.current)
                 InputTransformations.OnlyDigits -> InputTransformation.onlyDigits()
             },
-            textStyle = state.style.toTextStyle(),
             modifier = Modifier
                 .align(Alignment.Center)
                 .width(state.width)
@@ -132,14 +142,14 @@ fun rememberTextFieldDemoState(
 @Stable
 class TextFieldDemoState(
     initialText: String,
-    styleInitial: TypographyToken = TypographyToken.Headline,
+    textStyleInitial: TextStyle = TextStyleDemoDefault,
     maxWidthInitial: Dp = 0.dp,
     widthInitial: Dp = 200.dp,
     enabledInitial: Boolean = true,
     keyboardTypeInitial: KeyboardType = KeyboardType.Unspecified,
     keyboardCapitalizationInitial: KeyboardCapitalization = KeyboardCapitalization.Unspecified,
     autoCorrectEnabledInitial: Boolean = true,
-    showKeyboardOnFocusInitial: Boolean = true,
+    showKeyboardOnFocusInitial: Boolean = false,
     lineLimitsInitial: LineLimits = LineLimits.SingleLine,
     minHeightInLinesInitial: Int = 1,
     maxHeightInLinesInitial: Int = Int.MAX_VALUE,
@@ -148,8 +158,10 @@ class TextFieldDemoState(
     internal val textFieldState = TextFieldState(initialText = initialText)
     val text = snapshotFlow { textFieldState.text.toString() }
 
-    var style by mutableStateOf(styleInitial)
-        internal set
+    val textStyleDemoState = TextStyleDemoState(
+        textStyleInitial = textStyleInitial,
+        demoTextFieldState = textFieldState,
+    )
 
     var maxWidth by mutableStateOf(maxWidthInitial)
         internal set
@@ -200,7 +212,7 @@ val TextFieldDemoStateSaver = mapSaverSafe(
             widthKey to value.width.value,
             maxWidthKey to value.maxWidth.value,
             enabledKey to value.enabled,
-            styleKey to value.style.name,
+            styleKey to save(value.textStyleDemoState, TextStyleDemoStateSaver, this),
             keyboardTypeKey to save(value.keyboardType, KeyboardTypeSaver, this),
             keyboardCapitalizationKey to save(
                 value = value.keyboardCapitalization,
@@ -216,12 +228,14 @@ val TextFieldDemoStateSaver = mapSaverSafe(
         )
     },
     restore = { map ->
+        val textStyleDemoState: TextStyleDemoState = restore(map[styleKey], TextStyleDemoStateSaver)!!
+
         TextFieldDemoState(
             initialText = map[textKey] as String,
+            textStyleInitial = textStyleDemoState.textStyle,
             widthInitial = (map[widthKey] as Float).dp,
             maxWidthInitial = (map[maxWidthKey] as Float).dp,
             enabledInitial = map[enabledKey] as Boolean,
-            styleInitial = TypographyToken.valueOf(map[styleKey] as String),
             keyboardTypeInitial = restore(map[keyboardTypeKey], KeyboardTypeSaver)!!,
             keyboardCapitalizationInitial = restore(map[keyboardCapitalizationKey], KeyboardCapitalizationSaver)!!,
             autoCorrectEnabledInitial = map[autoCorrectEnabledKey] as Boolean,
@@ -249,11 +263,16 @@ class TextFieldDemoControl(
         includeLabel = false,
     )
 
-    val styleControl = enumControl(
-        name = "Style",
-        values = { TypographyToken.entries },
-        selectedValue = { state.style },
-        onValueChange = { state.style = it },
+    val textStyleControl = TextStyleDemoControl(
+        state = state.textStyleDemoState,
+        includeTextFieldControl = false,
+    )
+
+    val textStyleControls = Control.ControlColumn(
+        name = "TextStyle",
+        controls = { textStyleControl.controls },
+        indent = true,
+        expandedInitial = false,
     )
 
     val widthControl = Control.Slider(
@@ -371,7 +390,7 @@ class TextFieldDemoControl(
     val controls
         get() = persistentListOf(
             textFieldControl,
-            styleControl,
+            textStyleControls,
             widthControl,
             enabledControl,
             *keyboardControls.toTypedArray(),

@@ -20,6 +20,7 @@ kotlin {
                 api(libs.kotlinx.datetime)
                 api(libs.trace)
 
+                api(projects.formats)
                 api(projects.theme)
 
                 implementation(libs.compose.material.icons.extended)

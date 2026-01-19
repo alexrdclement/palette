@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.styles.copy
 
 @Composable
 fun DialogContent(
@@ -78,7 +79,7 @@ fun DialogContent(
     ) {
         Text(
             text = message,
-            style = PaletteTheme.typography.bodyLarge.merge(
+            style = PaletteTheme.styles.text.bodyLarge.copy(
                 textAlign = TextAlign.Center,
             ),
             modifier = Modifier
@@ -106,7 +107,7 @@ fun DialogContent(
         ) {
             Text(
                 text = title,
-                style = PaletteTheme.typography.titleLarge.merge(
+                style = PaletteTheme.styles.text.titleLarge.copy(
                     textAlign = TextAlign.Center,
                 ),
                 modifier = Modifier

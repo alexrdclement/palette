@@ -110,7 +110,7 @@ private fun ColorSlider(
         verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
         modifier = modifier,
     ) {
-        Text(text = label, style = PaletteTheme.typography.labelLarge)
+        Text(text = label, style = PaletteTheme.styles.text.labelLarge)
         Slider(
             value = value,
             onValueChange = onValueChange,

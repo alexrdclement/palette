@@ -1,12 +1,8 @@
 package com.alexrdclement.palette.app.theme.styles
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
@@ -17,7 +13,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.layout.Scaffold
@@ -54,34 +50,23 @@ fun BorderStyleScreen(
             )
         },
     ) { paddingValues ->
-        Demo(
+        DemoList(
+            items = state.borderStylesByToken.keys.toList(),
             controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(
-                    space = PaletteTheme.spacing.large,
-                    alignment = Alignment.CenterVertically,
-                ),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                contentPadding = PaddingValues(PaletteTheme.spacing.medium),
+        ) { style ->
+            Box(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .padding(PaletteTheme.spacing.large)
+                    .border(style.toStyle(state.borderStyleScheme)),
             ) {
-                items(state.borderStylesByToken.keys.toList()) { style ->
-                    Box(
-                        modifier = Modifier
-                            .padding(PaletteTheme.spacing.medium)
-                            .border(style.toStyle(state.borderStyleScheme)),
-                    ) {
-                        Text(
-                            text = style.name,
-                            modifier = Modifier.align(Alignment.Center)
-                        )
-                    }
-                }
+                Text(
+                    text = style.name,
+                    style = PaletteTheme.styles.text.headline,
+                    modifier = Modifier.align(Alignment.Center)
+                )
             }
         }
     }

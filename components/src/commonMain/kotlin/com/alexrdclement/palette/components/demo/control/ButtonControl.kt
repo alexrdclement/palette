@@ -22,6 +22,6 @@ fun ButtonControl(
         modifier = modifier
             .then(control.modifier)
     ) {
-        Text(control.name, style = PaletteTheme.typography.labelLarge)
+        Text(control.name, style = PaletteTheme.styles.text.labelLarge)
     }
 }

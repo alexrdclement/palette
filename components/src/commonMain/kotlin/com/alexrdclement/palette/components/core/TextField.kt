@@ -16,27 +16,29 @@ import androidx.compose.foundation.text.input.TextFieldDecorator
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.foundation.text.input.then
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.TextLayoutResult
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.LocalContentColor
+import com.alexrdclement.palette.formats.core.inputTransformation
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.styles.TextStyle
 
 @Composable
 fun TextField(
     state: TextFieldState,
+    textStyle: TextStyle,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     inputTransformation: InputTransformation? = null,
-    textStyle: TextStyle = LocalTextStyle.current,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     onKeyboardAction: KeyboardActionHandler? = null,
     lineLimits: TextFieldLineLimits = TextFieldLineLimits.Default,
@@ -47,14 +49,21 @@ fun TextField(
     decorator: TextFieldDecorator? = TextFieldDefaults.TextFieldDecorator,
     scrollState: ScrollState = rememberScrollState(),
 ) {
-    val color = textStyle.color.takeOrElse { LocalContentColor.current }
+    val color = textStyle.composeTextStyle.color.takeOrElse { LocalContentColor.current }
+
+    val formatInputTransformation = textStyle.format.inputTransformation
+    val combinedInputTransformation = when {
+        inputTransformation != null -> inputTransformation.then(formatInputTransformation)
+        else -> formatInputTransformation
+    }
+
     BasicTextField(
         state = state,
         modifier = modifier,
         enabled = enabled,
         readOnly = readOnly,
-        inputTransformation = inputTransformation,
-        textStyle = textStyle.copy(color = color),
+        inputTransformation = combinedInputTransformation,
+        textStyle = textStyle.composeTextStyle.copy(color = color),
         keyboardOptions = keyboardOptions,
         onKeyboardAction = onKeyboardAction,
         lineLimits = lineLimits,
@@ -99,6 +108,7 @@ private fun Preview() {
         Surface {
             TextField(
                 state = rememberTextFieldState("text"),
+                textStyle = PaletteTheme.styles.text.bodyMedium,
             )
         }
     }

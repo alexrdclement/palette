@@ -32,7 +32,7 @@ fun ToggleControl(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         if (includeTitle) {
-            Text(control.name, style = PaletteTheme.typography.labelLarge)
+            Text(control.name, style = PaletteTheme.styles.text.labelLarge)
             Spacer(modifier = Modifier.height(PaletteTheme.spacing.small))
         }
 
@@ -54,7 +54,7 @@ fun ToggleControlRow(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (includeTitle) {
-            Text(control.name, style = PaletteTheme.typography.labelLarge)
+            Text(control.name, style = PaletteTheme.styles.text.labelLarge)
             Spacer(modifier = Modifier.height(PaletteTheme.spacing.small))
         }
 

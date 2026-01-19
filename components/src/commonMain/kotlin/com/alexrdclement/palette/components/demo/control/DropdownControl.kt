@@ -38,7 +38,7 @@ fun <T> DropdownControl(
 
     Column(modifier = modifier) {
         if (control.includeLabel) {
-            Text(control.name, style = PaletteTheme.typography.labelLarge)
+            Text(control.name, style = PaletteTheme.styles.text.labelLarge)
             Spacer(modifier = Modifier.height(PaletteTheme.spacing.small))
         }
 
@@ -75,7 +75,7 @@ fun <T> DropdownControlRow(
         if (control.includeLabel) {
             Text(
                 text = control.name,
-                style = PaletteTheme.typography.labelLarge,
+                style = PaletteTheme.styles.text.labelLarge,
                 softWrap = true,
                 modifier = Modifier.weight(1f, fill = false)
             )
@@ -107,7 +107,7 @@ private fun <T> DropdownMenuControlButton(
         onClick = onClick,
         modifier = modifier,
     ) {
-        Text(text = selectedValue.name, style = PaletteTheme.typography.labelLarge)
+        Text(text = selectedValue.name, style = PaletteTheme.styles.text.labelLarge)
     }
 }
 
@@ -124,7 +124,7 @@ private fun <T> DropdownControlMenu(
     ) {
         values.forEachIndexed { index, value ->
             DropdownMenuItem(
-                text = { Text(text = value.name, style = PaletteTheme.typography.labelLarge) },
+                text = { Text(text = value.name, style = PaletteTheme.styles.text.labelLarge) },
                 onClick = {
                     onMenuDismissRequest()
                     control.onValueChange(index)

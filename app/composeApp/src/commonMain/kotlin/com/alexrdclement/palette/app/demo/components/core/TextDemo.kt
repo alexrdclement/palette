@@ -28,9 +28,10 @@ import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
+import com.alexrdclement.palette.components.util.restore
+import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.TypographyToken
-import com.alexrdclement.palette.theme.toTextStyle
+import com.alexrdclement.palette.theme.styles.TextStyle
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -63,14 +64,18 @@ fun BoxWithConstraintsScope.TextDemo(
     }
     Text(
         text = text,
-        style = state.style.toTextStyle().merge(
-            textAlign = state.textAlign.toCompose(),
-            lineHeightStyle = TextDemoState.lineHeightStyleDefault.copy(
-                alignment = state.lineHeightAlignment.toCompose(),
-                trim = state.lineHeightTrim.toCompose(),
-                mode = state.lineHeightMode.toCompose(),
+        style = with(state.textStyleDemoState.textStyle) {
+            copy(
+                composeTextStyle = composeTextStyle.copy(
+                    textAlign = state.textAlign.toCompose(),
+                    lineHeightStyle = TextDemoState.lineHeightStyleDefault.copy(
+                        alignment = state.lineHeightAlignment.toCompose(),
+                        trim = state.lineHeightTrim.toCompose(),
+                        mode = state.lineHeightMode.toCompose(),
+                    )
+                ),
             )
-        ),
+        },
         autoSize = if (state.autoSize) TextAutoSize.StepBased() else null,
         softWrap = state.softWrap,
         overflow = when (state.overflow) {
@@ -139,8 +144,8 @@ fun rememberTextDemoState(
 @Stable
 class TextDemoState(
     initialText: String = "Hello world",
-    styleInitial: TypographyToken = TypographyToken.Headline,
-    textAlignInitial: TextAlign = TextAlign.Start,
+    textStyleInitial: TextStyle = TextStyleDemoDefault,
+    textAlignInitial: TextAlign = TextAlign.Center,
     lineHeightAlignmentInitial: LineHeightAlignment = lineHeightAlignmentDefault,
     lineHeightTrimInitial: LineHeightTrim = lineHeightTrimDefault,
     lineHeightModeInitial: LineHeightMode = lineHeightModeDefault,
@@ -154,8 +159,10 @@ class TextDemoState(
     internal val textFieldState = TextFieldState(initialText = initialText)
     val text get() = snapshotFlow { textFieldState.text.toString() }
 
-    var style by mutableStateOf(styleInitial)
-        internal set
+    val textStyleDemoState = TextStyleDemoState(
+        textStyleInitial = textStyleInitial,
+        demoTextFieldState = textFieldState,
+    )
 
     var textAlign by mutableStateOf(textAlignInitial)
         internal set
@@ -191,7 +198,7 @@ class TextDemoState(
     }
 }
 
-private const val styleKey = "style"
+private const val textStyleDemoKey = "textStyleDemo"
 private const val textAlignKey = "textAlign"
 private const val lineHeightAlignmentKey = "lineHeightAlignment"
 private const val lineHeightTrimKey = "lineHeightTrim"
@@ -206,7 +213,7 @@ private const val overflowKey = "overflow"
 val TextDemoStateSaver = mapSaverSafe(
     save = { value ->
         mapOf(
-            styleKey to value.style.name,
+            textStyleDemoKey to save(value.textStyleDemoState, TextStyleDemoStateSaver, this),
             textAlignKey to value.textAlign.name,
             lineHeightAlignmentKey to value.lineHeightAlignment.name,
             lineHeightTrimKey to value.lineHeightTrim.name,
@@ -220,8 +227,10 @@ val TextDemoStateSaver = mapSaverSafe(
         )
     },
     restore = { map ->
+        val textStyleDemoState: TextStyleDemoState = restore(map[textStyleDemoKey], TextStyleDemoStateSaver)!!
+
         TextDemoState(
-            styleInitial = TypographyToken.valueOf(map[styleKey] as String),
+            textStyleInitial = textStyleDemoState.textStyle,
             textAlignInitial = TextAlign.valueOf(map[textAlignKey] as String),
             lineHeightAlignmentInitial =
                 LineHeightAlignment.valueOf(map[lineHeightAlignmentKey] as String),
@@ -256,11 +265,16 @@ class TextDemoControl(
         includeLabel = false,
     )
 
-    val styleControl = enumControl(
-        name = "Style",
-        values = { TypographyToken.entries },
-        selectedValue = { state.style },
-        onValueChange = { state.style = it },
+    val textStyleControl = TextStyleDemoControl(
+        state = state.textStyleDemoState,
+        includeTextFieldControl = false,
+    )
+
+    val textStyleControls = Control.ControlColumn(
+        name = "TextStyle",
+        controls = { textStyleControl.controls },
+        indent = true,
+        expandedInitial = false,
     )
 
     val textAlignControl = enumControl(
@@ -333,7 +347,7 @@ class TextDemoControl(
 
     val controls = persistentListOf(
         textFieldControl,
-        styleControl,
+        textStyleControls,
         textAlignControl,
         lineHeightAlignmentControl,
         lineHeightTrimControl,

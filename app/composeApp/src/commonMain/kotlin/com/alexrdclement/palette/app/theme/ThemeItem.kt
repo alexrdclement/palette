@@ -4,6 +4,7 @@ import com.alexrdclement.palette.components.layout.catalog.CatalogItem
 
 enum class ThemeItem : CatalogItem {
     Color,
+    Format,
     Interaction,
     Shape,
     Spacing,

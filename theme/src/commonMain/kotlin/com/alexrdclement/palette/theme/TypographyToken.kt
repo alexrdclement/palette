@@ -1,7 +1,7 @@
 package com.alexrdclement.palette.theme
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 
 enum class TypographyToken {
     Display,
@@ -17,7 +17,12 @@ enum class TypographyToken {
     LabelSmall,
 }
 
-fun TypographyToken.toTextStyle(typography: Typography): TextStyle {
+@Composable
+fun TypographyToken.toComposeTextStyle(): ComposeTextStyle {
+    return this.toComposeTextStyle(PaletteTheme.typography)
+}
+
+fun TypographyToken.toComposeTextStyle(typography: Typography): ComposeTextStyle {
     return when (this) {
         TypographyToken.Display -> typography.display
         TypographyToken.Headline -> typography.headline
@@ -31,9 +36,4 @@ fun TypographyToken.toTextStyle(typography: Typography): TextStyle {
         TypographyToken.LabelMedium -> typography.labelMedium
         TypographyToken.LabelSmall -> typography.labelSmall
     }
-}
-
-@Composable
-fun TypographyToken.toTextStyle(): TextStyle {
-    return this.toTextStyle(PaletteTheme.typography)
 }

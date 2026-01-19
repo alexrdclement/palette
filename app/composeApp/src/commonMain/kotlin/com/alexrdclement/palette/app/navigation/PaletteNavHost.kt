@@ -9,6 +9,8 @@ import com.alexrdclement.palette.app.catalog.navigation.CatalogRoute
 import com.alexrdclement.palette.app.catalog.navigation.mainCatalogScreen
 import com.alexrdclement.palette.app.demo.components.componentsGraph
 import com.alexrdclement.palette.app.demo.components.navigateToComponents
+import com.alexrdclement.palette.app.demo.formats.formatsGraph
+import com.alexrdclement.palette.app.demo.formats.navigateToFormats
 import com.alexrdclement.palette.app.demo.modifiers.navigation.modifiersGraph
 import com.alexrdclement.palette.app.demo.modifiers.navigation.navigateToModifiers
 import com.alexrdclement.palette.app.theme.navigation.navigateToTheme
@@ -28,12 +30,17 @@ fun PaletteNavHost(
             onItemClick = { item ->
                 when (item) {
                     MainCatalogItem.Components -> navController.navigateToComponents()
+                    MainCatalogItem.Formats -> navController.navigateToFormats()
                     MainCatalogItem.Modifiers -> navController.navigateToModifiers()
                 }
             },
             onThemeClick = navController::navigateToTheme,
         )
         componentsGraph(
+            navController = navController,
+            onThemeClick = navController::navigateToTheme,
+        )
+        formatsGraph(
             navController = navController,
             onThemeClick = navController::navigateToTheme,
         )

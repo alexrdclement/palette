@@ -51,8 +51,8 @@ fun MediaControlSheetDemo(
             .fillMaxSize()
             .padding(WindowInsets.safeDrawing.horizontalPaddingValues())
     ) {
-        Text(text = "Current value ${state.currentValue}", style = PaletteTheme.typography.labelLarge)
-        Text(text = "Target value ${state.targetValue}", style = PaletteTheme.typography.labelLarge)
+        Text(text = "Current value ${state.currentValue}", style = PaletteTheme.styles.text.labelLarge)
+        Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.text.labelLarge)
     }
 
     BoxWithConstraints {
@@ -84,8 +84,8 @@ fun MediaControlSheetDemo(
                         alpha = state.partialToFullProgress
                     }
             ) {
-                Text(text = "Current value ${state.currentValue}", style = PaletteTheme.typography.labelLarge)
-                Text(text = "Target value ${state.targetValue}", style = PaletteTheme.typography.labelLarge)
+                Text(text = "Current value ${state.currentValue}", style = PaletteTheme.styles.text.labelLarge)
+                Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.text.labelLarge)
             }
         }
     }
