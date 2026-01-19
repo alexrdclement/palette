@@ -82,7 +82,7 @@ sealed class Control {
     data class ControlColumn(
         val controls: () -> ImmutableList<Control>,
         val name: String? = null,
-        val indent: Boolean = false,
+        val indent: Boolean = true,
         val expandedInitial: Boolean = false,
     ) : Control()
 

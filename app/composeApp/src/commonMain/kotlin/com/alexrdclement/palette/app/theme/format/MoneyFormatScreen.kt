@@ -1,11 +1,7 @@
 package com.alexrdclement.palette.app.theme.format
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
@@ -16,7 +12,6 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.formats.money.MoneyFormatDemo
 import com.alexrdclement.palette.app.demo.formats.money.MoneyFormatDemoControl
 import com.alexrdclement.palette.app.demo.formats.money.MoneyFormatDemoState
-import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.BoxWithLabel
@@ -171,7 +166,8 @@ private fun makeControlForToken(
     return Control.ControlColumn(
         name = token.name,
         controls = { moneyFormatDemoControl.controls },
-        expandedInitial = true,
+        expandedInitial = false,
+        indent = true,
     )
 }
 
