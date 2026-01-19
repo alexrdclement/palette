@@ -55,8 +55,8 @@ fun DemoScope.ButtonDemo(
     state: ButtonDemoState = rememberButtonDemoState(),
     control: ButtonDemoControl = rememberButtonDemoControl(state),
 ) {
-    LaunchedEffect(control, this.maxWidth) {
-        control.onSizeChanged(this@ButtonDemo.maxWidth)
+    LaunchedEffect(control, maxWidth) {
+        control.onButtonSizeChanged(maxWidth)
     }
     Button(
         onClick = {},
@@ -68,15 +68,10 @@ fun DemoScope.ButtonDemo(
             .padding(PaletteTheme.spacing.medium)
             .semantics { contentDescription = "Demo Button" }
     ) {
-        BoxWithConstraints(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            TextDemo(
-                state = state.textDemoState,
-                control = control.textDemoControl,
-            )
-        }
+        this@ButtonDemo.TextDemo(
+            state = state.textDemoState,
+            control = control.textDemoControl,
+        )
     }
 }
 
@@ -176,15 +171,21 @@ class ButtonDemoControl(
         textDemoControls,
     )
 
-    fun onSizeChanged(width: Dp) {
+    fun onButtonSizeChanged(width: Dp) {
         if (state.maxWidth == 0.dp) {
             state.width = width
-            state.textDemoState.width = width
         }
         state.maxWidth = width
-        state.textDemoState.maxWidth = width
         if (state.width > state.maxWidth) {
             state.width = state.maxWidth
+        }
+
+        if (state.textDemoState.maxWidth == 0.dp) {
+            state.textDemoState.width = width
+        }
+        state.textDemoState.maxWidth = width
+        if (state.textDemoState.width > state.textDemoState.maxWidth) {
+            state.textDemoState.width = state.textDemoState.maxWidth
         }
     }
 }

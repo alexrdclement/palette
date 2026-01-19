@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.app.theme.styles
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -64,6 +65,8 @@ fun ButtonStyleScreen(
             Button(
                 style = style,
                 onClick = {},
+                modifier = Modifier
+                    .fillMaxWidth()
             ) {
                 this@DemoList.TextDemo(
                     state = state.textDemoState,
@@ -79,6 +82,7 @@ fun rememberButtonStyleScreenState(
     themeState: ThemeState,
     textDemoStateInitial: TextDemoState = TextDemoState(
         textAlignInitial = TextAlign.Center,
+        autoSizeInitial = true,
     ),
 ): ButtonStyleScreenState {
     return rememberSaveable(
