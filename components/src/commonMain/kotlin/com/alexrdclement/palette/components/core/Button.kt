@@ -102,10 +102,8 @@ internal fun Button(
         interactionSource = interactionSource,
         modifier = modifier.semantics { role = Role.Button }
     ) {
-        val mergedTextStyle = LocalTextStyle.current.merge(PaletteTheme.typography.labelLarge)
         CompositionLocalProvider(
             LocalContentColor provides contentColor,
-            LocalTextStyle provides mergedTextStyle,
         ) {
             Row(
                 Modifier

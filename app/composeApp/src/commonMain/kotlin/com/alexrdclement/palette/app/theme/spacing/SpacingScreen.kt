@@ -75,7 +75,7 @@ fun SpacingDemo(
     ) {
         Text(
             text = spacing.name,
-            style = PaletteTheme.typography.headline,
+            style = PaletteTheme.styles.text.headline,
         )
     }
 }

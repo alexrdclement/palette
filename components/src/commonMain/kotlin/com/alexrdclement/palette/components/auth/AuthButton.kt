@@ -113,9 +113,9 @@ fun AuthButtonText(
             AuthState.LoggedOut -> "Log in"
         },
         style = when (style) {
-            AuthButtonStyle.Primary -> PaletteTheme.typography.labelLarge
-            AuthButtonStyle.Secondary -> PaletteTheme.typography.labelSmall
-            AuthButtonStyle.Tertiary -> PaletteTheme.typography.labelSmall
+            AuthButtonStyle.Primary -> PaletteTheme.styles.text.labelLarge
+            AuthButtonStyle.Secondary -> PaletteTheme.styles.text.labelSmall
+            AuthButtonStyle.Tertiary -> PaletteTheme.styles.text.labelSmall
         },
         modifier = modifier,
     )

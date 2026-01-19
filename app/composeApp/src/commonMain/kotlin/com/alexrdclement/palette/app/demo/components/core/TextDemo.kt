@@ -28,9 +28,11 @@ import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
+import com.alexrdclement.palette.formats.core.TextFormat
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.styles.TextStyle
 import com.alexrdclement.palette.theme.TypographyToken
-import com.alexrdclement.palette.theme.toTextStyle
+import com.alexrdclement.palette.theme.toComposeTextStyle
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -61,15 +63,19 @@ fun BoxWithConstraintsScope.TextDemo(
     LaunchedEffect(control, this@TextDemo.maxWidth) {
         control.onSizeChanged(this@TextDemo.maxWidth)
     }
+    val baseStyle = state.style.toComposeTextStyle()
     Text(
         text = text,
-        style = state.style.toTextStyle().merge(
-            textAlign = state.textAlign.toCompose(),
-            lineHeightStyle = TextDemoState.lineHeightStyleDefault.copy(
-                alignment = state.lineHeightAlignment.toCompose(),
-                trim = state.lineHeightTrim.toCompose(),
-                mode = state.lineHeightMode.toCompose(),
-            )
+        style = TextStyle(
+            composeTextStyle = baseStyle.copy(
+                textAlign = state.textAlign.toCompose(),
+                lineHeightStyle = TextDemoState.lineHeightStyleDefault.copy(
+                    alignment = state.lineHeightAlignment.toCompose(),
+                    trim = state.lineHeightTrim.toCompose(),
+                    mode = state.lineHeightMode.toCompose(),
+                )
+            ),
+            format = TextFormat(),
         ),
         autoSize = if (state.autoSize) TextAutoSize.StepBased() else null,
         softWrap = state.softWrap,

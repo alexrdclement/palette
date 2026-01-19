@@ -72,7 +72,7 @@ fun ShapeScreen(
             ) {
                 Text(
                     text = shape.name,
-                    style = PaletteTheme.typography.headline,
+                    style = PaletteTheme.styles.text.headline,
                 )
             }
         }

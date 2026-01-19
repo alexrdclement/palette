@@ -30,5 +30,5 @@ fun ButtonStyleToken.toStyle(buttonStyles: ButtonStyleScheme): ButtonStyle {
 
 @Composable
 fun ButtonStyleToken.toStyle(): ButtonStyle {
-    return toStyle(PaletteTheme.styles.buttonStyles)
+    return toStyle(PaletteTheme.styles.button)
 }

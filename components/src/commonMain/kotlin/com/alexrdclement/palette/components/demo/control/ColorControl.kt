@@ -41,7 +41,7 @@ fun ColorControl(
     ) {
         Text(
             text = control.name,
-            style = PaletteTheme.typography.labelLarge,
+            style = PaletteTheme.styles.text.labelLarge,
         )
         Button(
             style = ButtonStyleToken.Secondary,
@@ -58,7 +58,7 @@ fun ColorControl(
                     modifier = Modifier
                         .fillMaxHeight()
                 )
-                Text(color.toString(), style = PaletteTheme.typography.labelLarge)
+                Text(color.toString(), style = PaletteTheme.styles.text.labelLarge)
             }
         }
     }

@@ -33,6 +33,7 @@ fun NavGraphBuilder.formatsGraph(
                     Format.DateTime -> navController.navigateToDateTimeFormats()
                     Format.Money -> navController.navigateToMoneyFormat()
                     Format.Number -> navController.navigateToNumberFormat()
+                    Format.Text -> navController.navigateToTextFormat()
                 }
             },
             onNavigateBack = onNavigateBack,
@@ -47,6 +48,10 @@ fun NavGraphBuilder.formatsGraph(
             onNavigateBack = onNavigateBack,
         )
         numberFormatScreen(
+            themeController = themeController,
+            onNavigateBack = onNavigateBack,
+        )
+        textFormatScreen(
             themeController = themeController,
             onNavigateBack = onNavigateBack,
         )

@@ -1,7 +1,9 @@
 package com.alexrdclement.palette.theme
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.TextStyle
+import com.alexrdclement.palette.theme.styles.ResolvedTextStyleScheme
+import com.alexrdclement.palette.theme.styles.TextStyle
+import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 
 enum class TypographyToken {
     Display,
@@ -17,7 +19,12 @@ enum class TypographyToken {
     LabelSmall,
 }
 
-fun TypographyToken.toTextStyle(typography: Typography): TextStyle {
+@Composable
+fun TypographyToken.toComposeTextStyle(): ComposeTextStyle {
+    return this.toComposeTextStyle(PaletteTheme.typography)
+}
+
+fun TypographyToken.toComposeTextStyle(typography: Typography): ComposeTextStyle {
     return when (this) {
         TypographyToken.Display -> typography.display
         TypographyToken.Headline -> typography.headline
@@ -34,6 +41,22 @@ fun TypographyToken.toTextStyle(typography: Typography): TextStyle {
 }
 
 @Composable
-fun TypographyToken.toTextStyle(): TextStyle {
-    return this.toTextStyle(PaletteTheme.typography)
+fun TypographyToken.toStyle(): TextStyle {
+    return toStyle(PaletteTheme.styles.text)
+}
+
+fun TypographyToken.toStyle(resolvedTextStyleScheme: ResolvedTextStyleScheme): TextStyle {
+    return when (this) {
+        TypographyToken.Display -> resolvedTextStyleScheme.display
+        TypographyToken.Headline -> resolvedTextStyleScheme.headline
+        TypographyToken.TitleLarge -> resolvedTextStyleScheme.titleLarge
+        TypographyToken.TitleMedium -> resolvedTextStyleScheme.titleMedium
+        TypographyToken.TitleSmall -> resolvedTextStyleScheme.titleSmall
+        TypographyToken.BodyLarge -> resolvedTextStyleScheme.bodyLarge
+        TypographyToken.BodyMedium -> resolvedTextStyleScheme.bodyMedium
+        TypographyToken.BodySmall -> resolvedTextStyleScheme.bodySmall
+        TypographyToken.LabelLarge -> resolvedTextStyleScheme.labelLarge
+        TypographyToken.LabelMedium -> resolvedTextStyleScheme.labelMedium
+        TypographyToken.LabelSmall -> resolvedTextStyleScheme.labelSmall
+    }
 }

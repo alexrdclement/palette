@@ -10,34 +10,34 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.app.demo.formats.core.NumberFormatDemo
-import com.alexrdclement.palette.app.demo.formats.core.NumberFormatDemoState
-import com.alexrdclement.palette.app.demo.formats.core.rememberNumberFormatDemoControl
+import com.alexrdclement.palette.app.demo.formats.core.TextFormatDemo
+import com.alexrdclement.palette.app.demo.formats.core.TextFormatDemoState
+import com.alexrdclement.palette.app.demo.formats.core.rememberTextFormatDemoControl
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
-import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.format.Formats
-import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
-import com.alexrdclement.palette.theme.format.core.NumberFormatToken
+import com.alexrdclement.palette.theme.format.core.TextFormatScheme
+import com.alexrdclement.palette.theme.format.core.TextFormatToken
+import com.alexrdclement.palette.theme.format.core.update
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-fun NumberFormatScreen(
+fun TextFormatScreen(
     themeController: ThemeController,
     onNavigateBack: () -> Unit,
 ) {
-    val state = rememberNumberFormatScreenState(formats = themeController.formats)
-    val control = rememberNumberFormatScreenControl(state = state, themeController = themeController)
+    val state = rememberTextFormatScreenState(formats = themeController.formats)
+    val control = rememberTextFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
         topBar = {
             DemoTopBar(
-                title = "Number",
+                title = "Text",
                 onNavigateBack = onNavigateBack,
                 onThemeClick = {},
                 actions = {},
@@ -45,7 +45,7 @@ fun NumberFormatScreen(
         },
     ) { paddingValues ->
         DemoList(
-            items = state.numberFormatsByToken.entries.toList(),
+            items = state.textFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,
             modifier = Modifier
@@ -55,8 +55,8 @@ fun NumberFormatScreen(
             BoxWithLabel(
                 label = token.name,
             ) {
-                NumberFormatDemo(
-                    state = state.numberFormatDemoStatesByToken[token]!!,
+                TextFormatDemo(
+                    state = state.textFormatDemoStatesByToken[token]!!,
                 )
             }
         }
@@ -64,58 +64,61 @@ fun NumberFormatScreen(
 }
 
 @Composable
-fun rememberNumberFormatScreenState(
+fun rememberTextFormatScreenState(
     formats: Formats,
-): NumberFormatScreenState {
+): TextFormatScreenState {
     return rememberSaveable(
         formats,
-        saver = NumberFormatScreenStateSaver(formats),
+        saver = TextFormatScreenStateSaver(formats),
     ) {
-        NumberFormatScreenState(
+        TextFormatScreenState(
             formats = formats,
         )
     }
 }
 
 @Stable
-class NumberFormatScreenState(
+class TextFormatScreenState(
     val formats: Formats,
 ) {
-    val numberFormatScheme: NumberFormatScheme
-        get() = formats.numberFormats
+    val textFormatScheme: TextFormatScheme
+        get() = formats.textFormats
 
-    val numberFormatsByToken = NumberFormatToken.entries.associateWith { token ->
+    val textFormatsByToken = TextFormatToken.entries.associateWith { token ->
         when (token) {
-            NumberFormatToken.Default -> numberFormatScheme.default
-            NumberFormatToken.Currency -> numberFormatScheme.currency
+            TextFormatToken.Body -> textFormatScheme.body
+            TextFormatToken.Display -> textFormatScheme.display
+            TextFormatToken.Headline -> textFormatScheme.headline
+            TextFormatToken.Title -> textFormatScheme.title
+            TextFormatToken.Label -> textFormatScheme.label
         }
     }
 
-    val numberFormatDemoStatesByToken = NumberFormatToken.entries.associateWith { token ->
-        NumberFormatDemoState(
-            numberFormatInitial = numberFormatsByToken[token]!!,
-            demoTextFieldState = TextFieldState("12345678.90"),
+    val textFormatDemoStatesByToken = TextFormatToken.entries.associateWith { token ->
+        TextFormatDemoState(
+            textFormatInitial = textFormatsByToken[token]!!,
+            demoTextFieldState = TextFieldState("Sphinx of black quartz, judge my vow"),
         )
     }
 }
 
-fun NumberFormatScreenStateSaver(formats: Formats) = mapSaverSafe(
+fun TextFormatScreenStateSaver(formats: Formats) = mapSaverSafe(
     save = { state ->
         mapOf()
     },
     restore = { map ->
-        NumberFormatScreenState(
+        TextFormatScreenState(
             formats = formats,
         )
     }
 )
 
 @Composable
-fun rememberNumberFormatScreenControl(
-    state: NumberFormatScreenState,
+fun rememberTextFormatScreenControl(
+    state: TextFormatScreenState,
     themeController: ThemeController,
-): NumberFormatScreenControl {
-    val formatControlByToken = NumberFormatToken.entries.associateWith { token ->
+): TextFormatScreenControl {
+    val formatControlByToken = TextFormatToken.entries.associateWith { token ->
         makeControlForToken(
             token = token,
             state = state,
@@ -123,7 +126,7 @@ fun rememberNumberFormatScreenControl(
         )
     }
     return remember(state, themeController) {
-        NumberFormatScreenControl(
+        TextFormatScreenControl(
             state = state,
             themeController = themeController,
             formatControlByToken = formatControlByToken,
@@ -132,10 +135,10 @@ fun rememberNumberFormatScreenControl(
 }
 
 @Stable
-class NumberFormatScreenControl(
-    val state: NumberFormatScreenState,
+class TextFormatScreenControl(
+    val state: TextFormatScreenState,
     val themeController: ThemeController,
-    formatControlByToken: Map<NumberFormatToken, Control>,
+    formatControlByToken: Map<TextFormatToken, Control>,
 ) {
     val controls: PersistentList<Control> = persistentListOf(
         *formatControlByToken.values.toTypedArray(),
@@ -144,18 +147,18 @@ class NumberFormatScreenControl(
 
 @Composable
 private fun makeControlForToken(
-    token: NumberFormatToken,
-    state: NumberFormatScreenState,
+    token: TextFormatToken,
+    state: TextFormatScreenState,
     themeController: ThemeController,
 ): Control {
-    val demoControl = rememberNumberFormatDemoControl(
-        state = state.numberFormatDemoStatesByToken[token]!!,
+    val demoControl = rememberTextFormatDemoControl(
+        state = state.textFormatDemoStatesByToken[token]!!,
         onValueChange = { newValue ->
             themeController.setFormats(
                 formats = state.formats.copy(
-                    numberFormats = state.numberFormatScheme.update(
+                    textFormats = state.textFormatScheme.update(
                         token = token,
-                        numberFormat = newValue,
+                        value = newValue,
                     )
                 )
             )
@@ -165,19 +168,6 @@ private fun makeControlForToken(
         name = token.name,
         controls = { demoControl.controls },
         expandedInitial = false,
+        indent = true,
     )
-}
-
-fun NumberFormatScheme.update(
-    token: NumberFormatToken,
-    numberFormat: NumberFormat,
-): NumberFormatScheme {
-    return when (token) {
-        NumberFormatToken.Default -> this.copy(
-            default = numberFormat,
-        )
-        NumberFormatToken.Currency -> this.copy(
-            currency = numberFormat,
-        )
-    }
 }

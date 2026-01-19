@@ -53,7 +53,9 @@ fun DemoScope.TextFormatDemo(
 ) {
     Text(
         text = state.text,
-        style = PaletteTheme.typography.headline,
+        style = PaletteTheme.styles.text.headline.copy(
+            format = state.textFormat
+        ),
         modifier = modifier.align(Alignment.Center)
     )
 }
@@ -61,7 +63,7 @@ fun DemoScope.TextFormatDemo(
 @Composable
 fun rememberTextFormatDemoState(
     textFormat: TextFormat = TextFormat(),
-    demoTextFieldState: TextFieldState = TextFieldState("The quick brown fox jumps over the lazy dog"),
+    demoTextFieldState: TextFieldState = TextFieldState("Sphinx of black quartz, judge my vow"),
 ): TextFormatDemoState {
     return rememberSaveable(
         textFormat,
@@ -78,7 +80,7 @@ fun rememberTextFormatDemoState(
 @Stable
 class TextFormatDemoState(
     textFormatInitial: TextFormat = TextFormat(),
-    val demoTextFieldState: TextFieldState = TextFieldState("The quick brown fox jumps over the lazy dog"),
+    val demoTextFieldState: TextFieldState = TextFieldState("Sphinx of black quartz, judge my vow"),
     val spaceSeparatorTextFieldState: TextFieldState = TextFieldState(
         initialText = textFormatInitial.spaceSeparator,
     ),
@@ -93,7 +95,8 @@ class TextFormatDemoState(
         get() = Capitalization.toKey(textFormat.capitalization)
 
     val text by derivedStateOf {
-        textFormat.format(demoTextFieldState.text.toString())
+        // Formatted by Text component
+        demoTextFieldState.text.toString()
     }
 }
 

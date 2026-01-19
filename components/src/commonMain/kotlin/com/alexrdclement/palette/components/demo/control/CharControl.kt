@@ -60,14 +60,14 @@ fun CharControl(
         if (control.includeLabel) {
             Text(
                 text = control.name,
-                style = PaletteTheme.typography.labelLarge,
+                style = PaletteTheme.styles.text.labelLarge,
                 modifier = Modifier.weight(1f, fill = false),
             )
             Spacer(modifier = Modifier.width(PaletteTheme.spacing.small))
         }
         TextField(
             state = textFieldState,
-            textStyle = PaletteTheme.typography.labelLarge,
+            textStyle = PaletteTheme.styles.text.labelLarge,
             inputTransformation = InputTransformation {
                 val text = asCharSequence().toString()
                 val newText = text.lastOrNull()?.toString() ?: ""

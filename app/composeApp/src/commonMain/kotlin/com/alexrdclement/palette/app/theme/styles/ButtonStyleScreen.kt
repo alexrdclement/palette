@@ -102,7 +102,7 @@ class ButtonStyleScreenState(
         get() = themeState.styles
 
     val buttonStyles
-        get() = styles.buttonStyles
+        get() = styles.button
 
     val buttonStylesByToken = ButtonStyleToken.entries.associateWith { token ->
         token.toStyle(buttonStyles)
@@ -181,7 +181,7 @@ private fun makeControlForToken(
                 )
             )
             val styles = state.styles.copy(
-                buttonStyles = buttonStyles,
+                button = buttonStyles,
             )
             themeController.setStyles(styles)
         },
@@ -199,7 +199,7 @@ private fun makeControlForToken(
                 )
             )
             val styles = state.styles.copy(
-                buttonStyles = buttonStyles,
+                button = buttonStyles,
             )
             themeController.setStyles(styles)
         },
@@ -217,7 +217,7 @@ private fun makeControlForToken(
                 )
             )
             val styles = state.styles.copy(
-                buttonStyles = buttonStyles,
+                button = buttonStyles,
             )
             themeController.setStyles(styles)
         },
@@ -243,7 +243,7 @@ private fun makeControlForToken(
                 )
             )
             val styles = state.styles.copy(
-                buttonStyles = buttonStyles,
+                button = buttonStyles,
             )
             themeController.setStyles(styles)
         },
@@ -267,7 +267,7 @@ private fun makeControlForToken(
                 )
             )
             val styles = state.styles.copy(
-                buttonStyles = buttonStyles,
+                button = buttonStyles,
             )
             themeController.setStyles(styles)
         },

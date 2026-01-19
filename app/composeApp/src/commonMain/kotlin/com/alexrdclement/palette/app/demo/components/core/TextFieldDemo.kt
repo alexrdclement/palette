@@ -37,7 +37,7 @@ import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.TypographyToken
-import com.alexrdclement.palette.theme.toTextStyle
+import com.alexrdclement.palette.theme.toStyle
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 
@@ -58,6 +58,7 @@ fun TextFieldDemo(
 
         TextField(
             state = state.textFieldState,
+            textStyle = state.style.toStyle(),
             enabled = state.enabled,
             lineLimits = when (state.lineLimits) {
                 LineLimits.SingleLine -> TextFieldLineLimits.SingleLine
@@ -77,7 +78,6 @@ fun TextFieldDemo(
                 InputTransformations.AllCaps -> InputTransformation.allCaps(Locale.current)
                 InputTransformations.OnlyDigits -> InputTransformation.onlyDigits()
             },
-            textStyle = state.style.toTextStyle(),
             modifier = Modifier
                 .align(Alignment.Center)
                 .width(state.width)

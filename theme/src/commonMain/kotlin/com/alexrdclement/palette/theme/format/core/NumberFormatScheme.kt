@@ -7,7 +7,7 @@ data class NumberFormatScheme(
     val currency: NumberFormat,
 )
 
-fun NumberFormatScheme.copy(
+fun NumberFormatScheme.update(
     token: NumberFormatToken,
     value: NumberFormat,
 ) = this.copy(

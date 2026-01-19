@@ -59,7 +59,7 @@ fun CurrencyAmountFieldDemo(
             ) {
                 Text(
                     text = text,
-                    style = PaletteTheme.typography.headline,
+                    style = PaletteTheme.styles.text.headline,
                 )
             }
             BoxWithLabel(
@@ -69,7 +69,7 @@ fun CurrencyAmountFieldDemo(
             ) {
                 Text(
                     text = moneyFormat.format(text),
-                    style = PaletteTheme.typography.headline,
+                    style = PaletteTheme.styles.text.headline,
                 )
             }
             CurrencyAmountField(

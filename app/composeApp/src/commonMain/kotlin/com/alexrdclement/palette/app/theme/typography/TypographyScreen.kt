@@ -22,6 +22,7 @@ import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
+import com.alexrdclement.palette.formats.core.TextFormat
 import com.alexrdclement.palette.theme.FontFamily
 import com.alexrdclement.palette.theme.FontStyle
 import com.alexrdclement.palette.theme.FontWeight
@@ -30,13 +31,14 @@ import com.alexrdclement.palette.theme.TypographyToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.copy
+import com.alexrdclement.palette.theme.styles.TextStyle
 import com.alexrdclement.palette.theme.toComposeFontFamily
 import com.alexrdclement.palette.theme.toComposeFontStyle
 import com.alexrdclement.palette.theme.toComposeFontWeight
+import com.alexrdclement.palette.theme.toComposeTextStyle
 import com.alexrdclement.palette.theme.toFontFamily
 import com.alexrdclement.palette.theme.toFontStyle
 import com.alexrdclement.palette.theme.toFontWeight
-import com.alexrdclement.palette.theme.toTextStyle
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -72,7 +74,10 @@ fun TypographyScreen(
             ) {
                 Text(
                     text = state.text,
-                    style = textStyle.toTextStyle(),
+                    style = TextStyle(
+                        composeTextStyle = textStyle.toComposeTextStyle(),
+                        format = TextFormat(),
+                    ),
                 )
             }
         }
@@ -82,7 +87,7 @@ fun TypographyScreen(
 @Composable
 fun rememberTypographyScreenState(
     themeState: ThemeState,
-    initialText: String = "The quick brown fox jumps over the lazy dog",
+    initialText: String = "Sphinx of black quartz, judge my vow",
 ): TypographyScreenState {
     val textFieldState = rememberTextFieldState(initialText = initialText)
     return rememberSaveable(
@@ -160,7 +165,7 @@ private fun makeControlForToken(
     state: TypographyScreenState,
     themeController: ThemeController,
 ): Control {
-    val textStyle = token.toTextStyle(state.typography)
+    val textStyle = token.toComposeTextStyle(state.typography)
 
     val composeFontFamily = textStyle.fontFamily ?: PaletteTypographyDefaults.fontFamily
     val fontFamilyControl = enumControl(

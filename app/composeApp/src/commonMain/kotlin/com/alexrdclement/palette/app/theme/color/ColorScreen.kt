@@ -121,7 +121,7 @@ private fun ColorDisplay(
         }
         Text(
             text = label,
-            style = PaletteTheme.typography.labelMedium,
+            style = PaletteTheme.styles.text.labelMedium,
             modifier = Modifier
                 .padding(end = PaletteTheme.spacing.medium)
         )

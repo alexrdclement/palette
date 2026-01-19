@@ -33,7 +33,7 @@ fun ExpandableHeader(
     ) {
         Text(
             text = name,
-            style = PaletteTheme.typography.labelSmall,
+            style = PaletteTheme.styles.text.labelSmall,
             modifier = Modifier
                 .border(1.dp, PaletteTheme.colorScheme.outline)
                 .padding(PaletteTheme.spacing.xs)

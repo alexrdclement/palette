@@ -1,13 +1,15 @@
 package com.alexrdclement.palette.theme.format.core
 
 import com.alexrdclement.palette.formats.core.Capitalization
-import com.alexrdclement.palette.formats.core.TextFormatReplacements
 import com.alexrdclement.palette.formats.core.TextFormat
+import com.alexrdclement.palette.formats.core.TextFormatReplacements
 
 enum class TextFormatToken {
-    Default,
+    Body,
+    Display,
+    Headline,
+    Label,
     Title,
-    TextField,
 }
 
 fun TextFormatToken.toFormat(): TextFormat {
@@ -17,8 +19,23 @@ fun TextFormatToken.toFormat(): TextFormat {
         TextFormatReplacements.NEWLINE_UNICODE_BULLET
     )
     return when (this) {
-        TextFormatToken.Default -> TextFormat(
+        TextFormatToken.Body -> TextFormat(
             capitalization = Capitalization.Sentence,
+            spaceSeparator = " ",
+            replacements = defaultPunctuationReplacements,
+        )
+        TextFormatToken.Display -> TextFormat(
+            capitalization = Capitalization.Sentence,
+            spaceSeparator = " ",
+            replacements = defaultPunctuationReplacements,
+        )
+        TextFormatToken.Headline -> TextFormat(
+            capitalization = Capitalization.Sentence,
+            spaceSeparator = " ",
+            replacements = defaultPunctuationReplacements,
+        )
+        TextFormatToken.Label -> TextFormat(
+            capitalization = Capitalization.Title,
             spaceSeparator = " ",
             replacements = defaultPunctuationReplacements,
         )
@@ -27,10 +44,15 @@ fun TextFormatToken.toFormat(): TextFormat {
             spaceSeparator = " ",
             replacements = defaultPunctuationReplacements,
         )
-        TextFormatToken.TextField -> TextFormat(
-            capitalization = Capitalization.Sentence,
-            spaceSeparator = " ",
-            replacements = defaultPunctuationReplacements,
-        )
+    }
+}
+
+fun TextFormatToken.toFormat(scheme: TextFormatScheme): TextFormat {
+    return when (this) {
+        TextFormatToken.Body -> scheme.body
+        TextFormatToken.Display -> scheme.display
+        TextFormatToken.Headline -> scheme.headline
+        TextFormatToken.Label -> scheme.label
+        TextFormatToken.Title -> scheme.title
     }
 }

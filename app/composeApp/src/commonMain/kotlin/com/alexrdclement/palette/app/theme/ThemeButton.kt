@@ -17,6 +17,6 @@ fun ThemeButton(
         onClick = onClick,
         modifier = modifier,
     ) {
-        Text("THEME", style = PaletteTheme.typography.labelSmall)
+        Text("Theme", style = PaletteTheme.styles.text.labelSmall)
     }
 }

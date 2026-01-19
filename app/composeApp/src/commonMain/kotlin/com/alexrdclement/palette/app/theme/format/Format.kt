@@ -6,6 +6,7 @@ enum class Format : CatalogItem {
     DateTime,
     Money,
     Number,
+    Text,
     ;
 
     override val title = name

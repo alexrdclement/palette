@@ -64,7 +64,7 @@ fun BorderStyleScreen(
             ) {
                 Text(
                     text = style.name,
-                    style = PaletteTheme.typography.headline,
+                    style = PaletteTheme.styles.text.headline,
                     modifier = Modifier.align(Alignment.Center)
                 )
             }

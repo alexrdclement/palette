@@ -19,6 +19,7 @@ import com.alexrdclement.palette.formats.core.NumberFormatInputTransformation
 import com.alexrdclement.palette.formats.core.NumberFormatOutputTransformation
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.styles.copy
 
 /**
  * A text field for entering currency amounts with automatic formatting.
@@ -47,7 +48,7 @@ fun CurrencyAmountField(
 ) {
     TextField(
         state = textFieldState,
-        textStyle = PaletteTheme.typography.headline,
+        textStyle = PaletteTheme.styles.text.headline,
         modifier = Modifier
             .width(IntrinsicSize.Min)
             .padding(PaletteTheme.spacing.medium),
@@ -66,7 +67,7 @@ fun CurrencyAmountField(
                 if (includeCurrencyPrefix) {
                     Text(
                         text = moneyFormat.currencySymbol.orEmpty(),
-                        style = PaletteTheme.typography.headline
+                        style = PaletteTheme.styles.text.headline
                     )
                 }
 
@@ -74,7 +75,7 @@ fun CurrencyAmountField(
                     if (textFieldState.text.isEmpty()) {
                         Text(
                             text = placeholder,
-                            style = PaletteTheme.typography.headline.copy(
+                            style = PaletteTheme.styles.text.headline.copy(
                                 color = PaletteTheme.colorScheme.primary.copy(
                                     alpha = 0.5f,
                                 ),

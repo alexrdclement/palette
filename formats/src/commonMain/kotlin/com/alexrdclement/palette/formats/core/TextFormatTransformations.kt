@@ -3,7 +3,7 @@ package com.alexrdclement.palette.formats.core
 import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldBuffer
 
-class StringFormatOutputTransformation(
+class TextFormatOutputTransformation(
     private val stringFormat: TextFormat,
 ) : OutputTransformation {
     override fun TextFieldBuffer.transformOutput() {
@@ -18,3 +18,6 @@ class StringFormatOutputTransformation(
         }
     }
 }
+
+val TextFormat.outputTransformation: OutputTransformation
+    get() = TextFormatOutputTransformation(this)

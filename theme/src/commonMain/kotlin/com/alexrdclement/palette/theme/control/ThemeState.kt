@@ -8,9 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.alexrdclement.palette.theme.ColorScheme
-import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.PaletteDarkColorScheme
-import com.alexrdclement.palette.theme.format.PaletteFormats
 import com.alexrdclement.palette.theme.PaletteIndication
 import com.alexrdclement.palette.theme.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.PaletteShapeScheme
@@ -21,6 +19,8 @@ import com.alexrdclement.palette.theme.ShapeScheme
 import com.alexrdclement.palette.theme.Spacing
 import com.alexrdclement.palette.theme.Styles
 import com.alexrdclement.palette.theme.Typography
+import com.alexrdclement.palette.theme.format.Formats
+import com.alexrdclement.palette.theme.format.PaletteFormats
 
 interface ThemeState {
     val typography: Typography

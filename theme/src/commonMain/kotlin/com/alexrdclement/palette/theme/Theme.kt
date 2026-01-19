@@ -6,20 +6,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.PaletteFormats
 import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
+import com.alexrdclement.palette.theme.format.core.PaletteTextFormatScheme
 import com.alexrdclement.palette.theme.format.datetime.PaletteDateTimeFormats
 import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
-import com.alexrdclement.palette.theme.modifiers.BorderStyle
-import com.alexrdclement.palette.theme.modifiers.BorderStyleScheme
-import com.alexrdclement.palette.theme.styles.ButtonStyle
-import com.alexrdclement.palette.theme.styles.ButtonStyleScheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 
 val LocalPaletteColorScheme = staticCompositionLocalOf {
     ColorScheme(
@@ -39,17 +35,17 @@ val LocalPaletteColorScheme = staticCompositionLocalOf {
 
 val LocalPaletteTypography = staticCompositionLocalOf {
     Typography(
-        headline = TextStyle.Default,
-        display = TextStyle.Default,
-        titleLarge = TextStyle.Default,
-        titleMedium = TextStyle.Default,
-        titleSmall = TextStyle.Default,
-        labelLarge = TextStyle.Default,
-        labelMedium = TextStyle.Default,
-        labelSmall = TextStyle.Default,
-        bodyLarge = TextStyle.Default,
-        bodyMedium = TextStyle.Default,
-        bodySmall = TextStyle.Default,
+        headline = ComposeTextStyle.Default,
+        display = ComposeTextStyle.Default,
+        titleLarge = ComposeTextStyle.Default,
+        titleMedium = ComposeTextStyle.Default,
+        titleSmall = ComposeTextStyle.Default,
+        labelLarge = ComposeTextStyle.Default,
+        labelMedium = ComposeTextStyle.Default,
+        labelSmall = ComposeTextStyle.Default,
+        bodyLarge = ComposeTextStyle.Default,
+        bodyMedium = ComposeTextStyle.Default,
+        bodySmall = ComposeTextStyle.Default,
     )
 }
 
@@ -75,27 +71,8 @@ val LocalPaletteIndication = staticCompositionLocalOf<Indication> {
     NoOpIndication
 }
 
-val LocalPaletteStyles = staticCompositionLocalOf {
-    val defaultButtonStyle = ButtonStyle(
-        token = ButtonStyleToken.Primary,
-        shape = ShapeToken.Primary,
-        containerColor = ColorToken.Surface,
-        contentColor = ColorToken.Primary,
-        borderStyle = null,
-    )
-    Styles(
-        border = BorderStyleScheme(
-            primary = BorderStyle(),
-            secondary = BorderStyle(),
-            tertiary = BorderStyle(),
-            surface = BorderStyle(),
-        ),
-        buttonStyles = ButtonStyleScheme(
-            primary = defaultButtonStyle,
-            secondary = defaultButtonStyle,
-            tertiary = defaultButtonStyle,
-        ),
-    )
+val LocalPaletteStyles = staticCompositionLocalOf<Styles> {
+    error("Styles not provided")
 }
 
 val LocalPaletteFormats = staticCompositionLocalOf {
@@ -108,6 +85,7 @@ val LocalPaletteFormats = staticCompositionLocalOf {
             default = NumberFormat(),
             currency = NumberFormat(),
         ),
+        textFormats = PaletteTextFormatScheme,
     )
 }
 
