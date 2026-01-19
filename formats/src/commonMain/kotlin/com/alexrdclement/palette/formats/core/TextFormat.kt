@@ -83,7 +83,7 @@ fun TextFormat.format(
     if (words.isEmpty()) return ""
 
     val formatted = when (capitalization) {
-        Capitalization.None -> string
+        Capitalization.None -> words.joinToString(wordDelimiter)
         Capitalization.Sentence -> {
             val firstWord = words[0].titlecaseFirstChar()
             if (words.size == 1) firstWord
