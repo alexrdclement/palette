@@ -21,27 +21,27 @@ fun TextFormatToken.toFormat(): TextFormat {
     return when (this) {
         TextFormatToken.Body -> TextFormat(
             capitalization = Capitalization.Sentence,
-            spaceSeparator = " ",
+            wordDelimiter = " ",
             replacements = defaultPunctuationReplacements,
         )
         TextFormatToken.Display -> TextFormat(
             capitalization = Capitalization.Sentence,
-            spaceSeparator = " ",
+            wordDelimiter = " ",
             replacements = defaultPunctuationReplacements,
         )
         TextFormatToken.Headline -> TextFormat(
             capitalization = Capitalization.Sentence,
-            spaceSeparator = " ",
+            wordDelimiter = " ",
             replacements = defaultPunctuationReplacements,
         )
         TextFormatToken.Label -> TextFormat(
             capitalization = Capitalization.Title,
-            spaceSeparator = " ",
+            wordDelimiter = " ",
             replacements = defaultPunctuationReplacements,
         )
         TextFormatToken.Title -> TextFormat(
             capitalization = Capitalization.Title,
-            spaceSeparator = " ",
+            wordDelimiter = " ",
             replacements = defaultPunctuationReplacements,
         )
     }

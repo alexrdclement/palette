@@ -2,7 +2,7 @@ package com.alexrdclement.palette.formats.core
 
 data class TextFormat(
     val capitalization: Capitalization = Capitalization.Sentence,
-    val spaceSeparator: String = " ",
+    val wordDelimiter: String = " ",
     val replacements: Map<String, String> = emptyMap(),
 )
 
@@ -58,17 +58,17 @@ fun TextFormat.format(
 ): String {
     if (string.isEmpty()) return string
 
-    if (spaceSeparator == " ") {
+    if (wordDelimiter == " ") {
         val formatted = when (capitalization) {
             Capitalization.Sentence -> string.titlecaseFirstChar()
             Capitalization.Title -> {
                 val words = string.split(' ')
                 if (words.size == 1) string.titlecaseFirstChar()
-                else words.joinToString(spaceSeparator) { it.titlecaseFirstChar() }
+                else words.joinToString(wordDelimiter) { it.titlecaseFirstChar() }
             }
             Capitalization.Uppercase -> string.uppercase()
             Capitalization.Lowercase -> string.lowercase()
-            Capitalization.ReverseSentence -> string.split(' ').formatReverseSentenceCase(spaceSeparator)
+            Capitalization.ReverseSentence -> string.split(' ').formatReverseSentenceCase(wordDelimiter)
             is Capitalization.Alternating -> string.formatAlternatingCase(capitalization.capitalizeFirstChar)
         }
         return formatted.applyReplacements(replacements)
@@ -84,29 +84,29 @@ fun TextFormat.format(
             else buildString {
                 append(firstWord)
                 for (i in 1 until words.size) {
-                    append(spaceSeparator)
+                    append(wordDelimiter)
                     append(words[i])
                 }
             }
         }
-        Capitalization.Title -> words.joinToString(spaceSeparator) { it.titlecaseFirstChar() }
-        Capitalization.Uppercase -> words.joinToString(spaceSeparator) { it.uppercase() }
-        Capitalization.Lowercase -> words.joinToString(spaceSeparator) { it.lowercase() }
-        Capitalization.ReverseSentence -> words.formatReverseSentenceCase(spaceSeparator)
-        is Capitalization.Alternating -> words.joinToString(spaceSeparator).formatAlternatingCase(capitalization.capitalizeFirstChar)
+        Capitalization.Title -> words.joinToString(wordDelimiter) { it.titlecaseFirstChar() }
+        Capitalization.Uppercase -> words.joinToString(wordDelimiter) { it.uppercase() }
+        Capitalization.Lowercase -> words.joinToString(wordDelimiter) { it.lowercase() }
+        Capitalization.ReverseSentence -> words.formatReverseSentenceCase(wordDelimiter)
+        is Capitalization.Alternating -> words.joinToString(wordDelimiter).formatAlternatingCase(capitalization.capitalizeFirstChar)
     }
 
     return formatted.applyReplacements(replacements)
 }
 
-private fun List<String>.formatReverseSentenceCase(separator: String): String {
+private fun List<String>.formatReverseSentenceCase(delimiter: String): String {
     if (isEmpty()) return ""
     val firstWord = this[0].lowercaseFirstChar()
     if (size == 1) return firstWord
     return buildString {
         append(firstWord)
         for (i in 1 until size) {
-            append(separator)
+            append(delimiter)
             append(this@formatReverseSentenceCase[i].titlecaseFirstChar())
         }
     }

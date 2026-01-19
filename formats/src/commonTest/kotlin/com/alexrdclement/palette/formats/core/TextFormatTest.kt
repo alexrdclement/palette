@@ -7,7 +7,7 @@ class TextFormatTest {
 
     private val testFormat = TextFormat(
         capitalization = Capitalization.Sentence,
-        spaceSeparator = " ",
+        wordDelimiter = " ",
     )
 
     @Test
@@ -97,16 +97,16 @@ class TextFormatTest {
     }
 
     @Test
-    fun customSpaceSeparator() {
+    fun customWordDelimiter() {
         val format = testFormat.copy(
             capitalization = Capitalization.Title,
-            spaceSeparator = "-",
+            wordDelimiter = "-",
         )
 
         val testCases = listOf(
             "hello world" to "Hello-World",
             "test string here" to "Test-String-Here",
-            "hello-world" to "Hello-world", // Does not replace *by* space separator
+            "hello-world" to "Hello-world", // Does not replace *by* word delimiter
             "test" to "Test",
         )
 
@@ -116,10 +116,10 @@ class TextFormatTest {
     }
 
     @Test
-    fun customSpaceSeparatorWithUnderscore() {
+    fun customWordDelimiterWithUnderscore() {
         val format = testFormat.copy(
             capitalization = Capitalization.Lowercase,
-            spaceSeparator = "_",
+            wordDelimiter = "_",
         )
 
         val testCases = listOf(
@@ -179,10 +179,10 @@ class TextFormatTest {
     }
 
     @Test
-    fun punctuationWithCustomSeparator() {
+    fun punctuationWithCustomDelimiter() {
         val format = testFormat.copy(
             capitalization = Capitalization.Lowercase,
-            spaceSeparator = "_",
+            wordDelimiter = "_",
             replacements = mapOf("..." to "\u2026"),
         )
 

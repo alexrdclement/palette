@@ -23,7 +23,6 @@ import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.core.Capitalization
 import com.alexrdclement.palette.formats.core.TextFormat
-import com.alexrdclement.palette.formats.core.format
 import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
@@ -81,8 +80,8 @@ fun rememberTextFormatDemoState(
 class TextFormatDemoState(
     textFormatInitial: TextFormat = TextFormat(),
     val demoTextFieldState: TextFieldState = TextFieldState("Sphinx of black quartz, judge my vow"),
-    val spaceSeparatorTextFieldState: TextFieldState = TextFieldState(
-        initialText = textFormatInitial.spaceSeparator,
+    val wordDelimiterTextFieldState: TextFieldState = TextFieldState(
+        initialText = textFormatInitial.wordDelimiter,
     ),
 ) {
     var textFormat by mutableStateOf(textFormatInitial)
@@ -101,19 +100,19 @@ class TextFormatDemoState(
 }
 
 private const val demoTextFieldStateKey = "demoTextFieldState"
-private const val spaceSeparatorTextFieldStateKey = "spaceSeparatorTextFieldState"
+private const val wordDelimiterTextFieldStateKey = "wordDelimiterTextFieldState"
 
 fun TextFormatDemoStateSaver() = mapSaverSafe(
     save = { state ->
         mapOf(
             demoTextFieldStateKey to save(state.demoTextFieldState),
-            spaceSeparatorTextFieldStateKey to save(state.spaceSeparatorTextFieldState),
+            wordDelimiterTextFieldStateKey to save(state.wordDelimiterTextFieldState),
         )
     },
     restore = { map ->
         TextFormatDemoState(
             demoTextFieldState = restore(map[demoTextFieldStateKey]!!) as TextFieldState,
-            spaceSeparatorTextFieldState = restore(map[spaceSeparatorTextFieldStateKey]!!) as TextFieldState,
+            wordDelimiterTextFieldState = restore(map[wordDelimiterTextFieldStateKey]!!) as TextFieldState,
         )
     }
 )
@@ -166,11 +165,11 @@ class TextFormatDemoControl(
         },
     )
 
-    val spaceSeparatorControl = Control.TextField(
-        name = "Space separator",
-        textFieldState = state.spaceSeparatorTextFieldState,
+    val wordDelimiterControl = Control.TextField(
+        name = "Word delimiter",
+        textFieldState = state.wordDelimiterTextFieldState,
         onValueChange = { newValue ->
-            val newState = state.textFormat.copy(spaceSeparator = newValue)
+            val newState = state.textFormat.copy(wordDelimiter = newValue)
             onValueChange(newState)
         },
     )
@@ -232,7 +231,7 @@ class TextFormatDemoControl(
             add(demoTextFieldControl)
         }
         add(capitalizationControls)
-        add(spaceSeparatorControl)
+        add(wordDelimiterControl)
         add(replacementsControl)
     }.toPersistentList()
 }
