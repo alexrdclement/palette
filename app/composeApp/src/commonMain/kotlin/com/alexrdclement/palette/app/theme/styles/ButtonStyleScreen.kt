@@ -12,11 +12,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.app.demo.components.core.TextAlign
-import com.alexrdclement.palette.app.demo.components.core.TextDemo
-import com.alexrdclement.palette.app.demo.components.core.TextDemoControl
-import com.alexrdclement.palette.app.demo.components.core.TextDemoState
-import com.alexrdclement.palette.app.demo.components.core.TextDemoStateSaver
+import com.alexrdclement.palette.components.demo.core.TextAlign
+import com.alexrdclement.palette.components.demo.core.TextDemo
+import com.alexrdclement.palette.components.demo.core.TextDemoControl
+import com.alexrdclement.palette.components.demo.core.TextDemoState
+import com.alexrdclement.palette.components.demo.core.TextDemoStateSaver
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control

@@ -5,6 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.components.geometry.navigation.GeometryComponent
+import com.alexrdclement.palette.components.demo.geometry.CurveStitchDemo
+import com.alexrdclement.palette.components.demo.geometry.GridDemo
+import com.alexrdclement.palette.components.demo.geometry.SphereDemo
 import com.alexrdclement.palette.components.layout.Scaffold
 
 @Composable

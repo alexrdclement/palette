@@ -5,6 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.components.core.navigation.CoreComponent
+import com.alexrdclement.palette.components.demo.core.ButtonDemo
+import com.alexrdclement.palette.components.demo.core.TextDemo
+import com.alexrdclement.palette.components.demo.core.TextFieldDemo
 import com.alexrdclement.palette.components.layout.Scaffold
 
 @Composable

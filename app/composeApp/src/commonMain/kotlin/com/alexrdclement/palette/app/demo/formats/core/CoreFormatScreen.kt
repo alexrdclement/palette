@@ -6,6 +6,8 @@ import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.formats.core.navigation.CoreFormat
 import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.formats.demo.core.NumberFormatDemo
+import com.alexrdclement.palette.formats.demo.core.TextFormatDemo
 
 @Composable
 fun CoreFormatScreen(

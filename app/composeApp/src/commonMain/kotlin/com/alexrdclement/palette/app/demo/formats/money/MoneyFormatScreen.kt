@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.formats.money.navigation.MoneyFormat
 import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.formats.demo.money.MoneyFormatDemo
 
 @Composable
 fun MoneyFormatScreen(

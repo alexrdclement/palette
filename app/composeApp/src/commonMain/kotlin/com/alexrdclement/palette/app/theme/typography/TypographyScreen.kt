@@ -13,8 +13,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.app.demo.components.core.ComposeTextStyleDemoControl
-import com.alexrdclement.palette.app.demo.components.core.rememberComposeTextStyleDemoState
+import com.alexrdclement.palette.components.demo.core.ComposeTextStyleDemoControl
+import com.alexrdclement.palette.components.demo.core.rememberComposeTextStyleDemoState
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control

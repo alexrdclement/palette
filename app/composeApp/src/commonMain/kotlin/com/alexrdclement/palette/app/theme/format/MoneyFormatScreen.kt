@@ -9,9 +9,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.app.demo.formats.money.MoneyFormatDemo
-import com.alexrdclement.palette.app.demo.formats.money.MoneyFormatDemoControl
-import com.alexrdclement.palette.app.demo.formats.money.MoneyFormatDemoState
+import com.alexrdclement.palette.formats.demo.money.MoneyFormatDemo
+import com.alexrdclement.palette.formats.demo.money.MoneyFormatDemoControl
+import com.alexrdclement.palette.formats.demo.money.MoneyFormatDemoState
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.BoxWithLabel
