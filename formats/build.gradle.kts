@@ -26,5 +26,5 @@ kotlin {
 }
 
 dependencies {
-    baselineProfile(projects.components.baselineProfile)
+    baselineProfile(projects.formats.baselineProfile)
 }

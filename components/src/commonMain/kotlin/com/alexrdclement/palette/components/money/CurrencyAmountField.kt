@@ -21,23 +21,6 @@ import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.copy
 
-/**
- * A text field for entering currency amounts with automatic formatting.
- *
- * Features:
- * - Accepts only numeric input and the decimal separator
- * - Automatically formats with grouping separators (e.g., 1,234.56)
- * - Enforces maximum decimal places
- * - Shows currency symbol prefix (optional)
- * - Handles leading zeros intelligently
- *
- * @param moneyFormat The format defining currency symbol and number formatting rules
- * @param textFieldState The state managing the text field's content
- * @param placeholder Placeholder text shown when empty
- * @param includeCurrencyPrefix Whether to show the currency symbol before the field
- * @param maxNumDecimalValues Maximum number of decimal places allowed
- */
-
 @Composable
 fun CurrencyAmountField(
     moneyFormat: MoneyFormat,

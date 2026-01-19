@@ -139,7 +139,7 @@ class TextFieldDemoState(
     keyboardTypeInitial: KeyboardType = KeyboardType.Unspecified,
     keyboardCapitalizationInitial: KeyboardCapitalization = KeyboardCapitalization.Unspecified,
     autoCorrectEnabledInitial: Boolean = true,
-    showKeyboardOnFocusInitial: Boolean = true,
+    showKeyboardOnFocusInitial: Boolean = false,
     lineLimitsInitial: LineLimits = LineLimits.SingleLine,
     minHeightInLinesInitial: Int = 1,
     maxHeightInLinesInitial: Int = Int.MAX_VALUE,
