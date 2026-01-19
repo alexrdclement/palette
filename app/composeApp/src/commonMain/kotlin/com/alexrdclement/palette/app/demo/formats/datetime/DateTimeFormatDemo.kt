@@ -59,6 +59,8 @@ fun <T : Enum<T>> DateTimeFormatDemo(
         DateTimeFormatDemo(
             state = state,
             format = format,
+            modifier = Modifier
+                .align(Alignment.Center)
         )
     }
 }
