@@ -6,39 +6,30 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
 import com.alexrdclement.palette.app.demo.DemoTopBar
+import com.alexrdclement.palette.app.demo.components.core.ComposeTextStyleDemoControl
+import com.alexrdclement.palette.app.demo.components.core.rememberComposeTextStyleDemoState
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.formats.core.TextFormat
-import com.alexrdclement.palette.theme.FontFamily
-import com.alexrdclement.palette.theme.FontStyle
-import com.alexrdclement.palette.theme.FontWeight
-import com.alexrdclement.palette.theme.PaletteTypographyDefaults
 import com.alexrdclement.palette.theme.TypographyToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.copy
 import com.alexrdclement.palette.theme.styles.TextStyle
-import com.alexrdclement.palette.theme.toComposeFontFamily
-import com.alexrdclement.palette.theme.toComposeFontStyle
-import com.alexrdclement.palette.theme.toComposeFontWeight
 import com.alexrdclement.palette.theme.toComposeTextStyle
-import com.alexrdclement.palette.theme.toFontFamily
-import com.alexrdclement.palette.theme.toFontStyle
-import com.alexrdclement.palette.theme.toFontWeight
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -134,141 +125,54 @@ fun rememberTypographyScreenControl(
     state: TypographyScreenState,
     themeController: ThemeController,
 ): TypographyScreenControl {
-    return remember(state, themeController) {
-        TypographyScreenControl(state = state, themeController = themeController)
-    }
-}
-
-@Stable
-class TypographyScreenControl(
-    val state: TypographyScreenState,
-    val themeController: ThemeController,
-) {
     val textFieldControl = Control.TextField(
         name = "Sample text",
         includeLabel = false,
         textFieldState = state.textFieldState,
     )
 
-    val tokenControls = TypographyToken.entries.map {
-        makeControlForToken(it, state, themeController)
+    val tokenControls = TypographyToken.entries.map { token ->
+        val baseStyle = token.toComposeTextStyle(state.typography)
+
+        val composeTextStyleState = rememberComposeTextStyleDemoState(
+            composeTextStyleInitial = baseStyle,
+        )
+
+        LaunchedEffect(composeTextStyleState.composeTextStyle) {
+            snapshotFlow { composeTextStyleState.composeTextStyle }.collect { newStyle ->
+                val typography = state.typography.copy(
+                    token = token,
+                    textStyle = newStyle,
+                )
+                themeController.setTypography(typography)
+            }
+        }
+
+        val control = ComposeTextStyleDemoControl(state = composeTextStyleState)
+
+        Control.ControlColumn(
+            name = token.name,
+            controls = { control.controls },
+            indent = true,
+            expandedInitial = false,
+        )
     }
 
+    return remember(textFieldControl, tokenControls) {
+        TypographyScreenControl(
+            textFieldControl = textFieldControl,
+            tokenControls = tokenControls,
+        )
+    }
+}
+
+@Stable
+class TypographyScreenControl(
+    val textFieldControl: Control.TextField,
+    val tokenControls: List<Control.ControlColumn>,
+) {
     val controls: PersistentList<Control> = persistentListOf(
         textFieldControl,
         *tokenControls.toTypedArray(),
-    )
-}
-
-private fun makeControlForToken(
-    token: TypographyToken,
-    state: TypographyScreenState,
-    themeController: ThemeController,
-): Control {
-    val textStyle = token.toComposeTextStyle(state.typography)
-
-    val composeFontFamily = textStyle.fontFamily ?: PaletteTypographyDefaults.fontFamily
-    val fontFamilyControl = enumControl(
-        name = "Font family",
-        values = { FontFamily.entries },
-        selectedValue = { composeFontFamily.toFontFamily() },
-        onValueChange = {
-            val typography = state.typography.copy(
-                token = token,
-                textStyle = textStyle.copy(
-                    fontFamily = it.toComposeFontFamily(),
-                )
-            )
-            themeController.setTypography(typography)
-        }
-    )
-
-    val fontSizeControl = Control.Slider(
-        name = "Font size",
-        value = { textStyle.fontSize.value },
-        onValueChange = { newSize: Float ->
-            val typography = state.typography.copy(
-                token = token,
-                textStyle = textStyle.copy(
-                    fontSize = TextUnit(newSize, TextUnitType.Sp)
-                )
-            )
-            themeController.setTypography(typography)
-        },
-        valueRange = { 8f..200f },
-    )
-
-    val fontWeightControl = enumControl(
-        name = "Font weight",
-        values = { FontWeight.entries },
-        selectedValue = { textStyle.fontWeight?.toFontWeight() ?: FontWeight.Normal },
-        onValueChange = {
-            val typography = state.typography.copy(
-                token = token,
-                textStyle = textStyle.copy(
-                    fontWeight = it.toComposeFontWeight(),
-                )
-            )
-            themeController.setTypography(typography)
-        }
-    )
-
-    val fontStyleControl = enumControl(
-        name = "Font style",
-        values = { FontStyle.entries },
-        selectedValue = { textStyle.fontStyle?.toFontStyle() ?: FontStyle.Normal },
-        onValueChange = {
-            val typography = state.typography.copy(
-                token = token,
-                textStyle = textStyle.copy(
-                    fontStyle = it.toComposeFontStyle(),
-                )
-            )
-            themeController.setTypography(typography)
-        },
-    )
-
-    val lineHeightControl = Control.Slider(
-        name = "Line height",
-        value = { textStyle.lineHeight.value },
-        onValueChange = { newSize: Float ->
-            val typography = state.typography.copy(
-                token = token,
-                textStyle = textStyle.copy(
-                    lineHeight = TextUnit(newSize, TextUnitType.Sp)
-                )
-            )
-            themeController.setTypography(typography)
-        },
-        valueRange = { 8f..200f },
-    )
-
-    val letterSpacingControl = Control.Slider(
-        name = "Letter spacing",
-        value = { textStyle.letterSpacing.value },
-        onValueChange = { newSize: Float ->
-            val typography = state.typography.copy(
-                token = token,
-                textStyle = textStyle.copy(
-                    letterSpacing = TextUnit(newSize, TextUnitType.Sp)
-                )
-            )
-            themeController.setTypography(typography)
-        },
-        valueRange = { -10f..10f },
-    )
-
-    return Control.ControlColumn(
-        name = token.name,
-        controls = {
-            persistentListOf(
-                fontFamilyControl,
-                fontWeightControl,
-                fontStyleControl,
-                fontSizeControl,
-                lineHeightControl,
-                letterSpacingControl,
-            )
-        }
     )
 }
