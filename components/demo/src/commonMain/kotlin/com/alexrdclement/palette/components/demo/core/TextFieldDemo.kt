@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.TextField
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.demo.util.KeyboardCapitalizationSaver
@@ -52,48 +53,60 @@ fun TextFieldDemo(
         modifier = modifier
             .fillMaxSize(),
     ) {
-        LaunchedEffect(this@Demo.maxWidth) {
-            control.onSizeChanged(this@Demo.maxWidth)
-        }
-
-        LaunchedEffect(state.textStyleDemoState.textStyle.format) {
-            val currentText = state.textFieldState.text.toString()
-            val formatted = state.textStyleDemoState.textStyle.format.format(currentText)
-            if (formatted != currentText) {
-                state.textFieldState.edit {
-                    replace(0, length, formatted)
-                }
-            }
-        }
-
-        TextField(
-            state = state.textFieldState,
-            textStyle = state.textStyleDemoState.textStyle,
-            enabled = state.enabled,
-            lineLimits = when (state.lineLimits) {
-                LineLimits.SingleLine -> TextFieldLineLimits.SingleLine
-                LineLimits.Multiline -> TextFieldLineLimits.MultiLine(
-                    minHeightInLines = state.minHeightInLines,
-                    maxHeightInLines = state.maxHeightInLines,
-                )
-            },
-            keyboardOptions = KeyboardOptions.Default.copy(
-                keyboardType = state.keyboardType,
-                autoCorrectEnabled = state.autoCorrectEnabled,
-                capitalization = state.keyboardCapitalization,
-                showKeyboardOnFocus = state.showKeyboardOnFocus,
-            ),
-            inputTransformation = when (state.inputTransformation) {
-                InputTransformations.None -> null
-                InputTransformations.AllCaps -> InputTransformation.allCaps(Locale.current)
-                InputTransformations.OnlyDigits -> InputTransformation.onlyDigits()
-            },
+        TextFieldDemo(
+            state = state,
             modifier = Modifier
                 .align(Alignment.Center)
-                .width(state.width)
                 .padding(vertical = PaletteTheme.spacing.medium)
         )
     }
+}
+
+@Composable
+fun DemoScope.TextFieldDemo(
+    modifier: Modifier = Modifier,
+    state: TextFieldDemoState = rememberTextFieldDemoState(),
+    control: TextFieldDemoControl = rememberTextFieldDemoControl(state = state),
+) {
+    LaunchedEffect(maxWidth) {
+        control.onSizeChanged(maxWidth)
+    }
+
+    LaunchedEffect(state.textStyleDemoState.textStyle.format) {
+        val currentText = state.textFieldState.text.toString()
+        val formatted = state.textStyleDemoState.textStyle.format.format(currentText)
+        if (formatted != currentText) {
+            state.textFieldState.edit {
+                replace(0, length, formatted)
+            }
+        }
+    }
+
+    TextField(
+        state = state.textFieldState,
+        textStyle = state.textStyleDemoState.textStyle,
+        enabled = state.enabled,
+        lineLimits = when (state.lineLimits) {
+            LineLimits.SingleLine -> TextFieldLineLimits.SingleLine
+            LineLimits.Multiline -> TextFieldLineLimits.MultiLine(
+                minHeightInLines = state.minHeightInLines,
+                maxHeightInLines = state.maxHeightInLines,
+            )
+        },
+        keyboardOptions = KeyboardOptions.Default.copy(
+            keyboardType = state.keyboardType,
+            autoCorrectEnabled = state.autoCorrectEnabled,
+            capitalization = state.keyboardCapitalization,
+            showKeyboardOnFocus = state.showKeyboardOnFocus,
+        ),
+        inputTransformation = when (state.inputTransformation) {
+            InputTransformations.None -> null
+            InputTransformations.AllCaps -> InputTransformation.allCaps(Locale.current)
+            InputTransformations.OnlyDigits -> InputTransformation.onlyDigits()
+        },
+        modifier = modifier
+            .width(state.width)
+    )
 }
 
 private val keyboardTypes = persistentListOf(

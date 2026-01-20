@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.components.demo.subject
+package com.alexrdclement.palette.components.demo.geometry
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
-fun DemoCircle(
+fun CircleDemo(
     modifier: Modifier = Modifier,
     drawStyle: DrawStyle = Fill,
 ) {
@@ -28,5 +28,5 @@ fun DemoCircle(
 @Preview
 @Composable
 private fun Preview() {
-    DemoCircle()
+    CircleDemo()
 }

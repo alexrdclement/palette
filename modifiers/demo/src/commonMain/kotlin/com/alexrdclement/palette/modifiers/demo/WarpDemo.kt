@@ -13,7 +13,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.demo.subject.DemoSubjectType
+import com.alexrdclement.palette.components.demo.ComponentDemoType
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.modifiers.warp
@@ -60,7 +60,7 @@ fun WarpDemo(
                 valueRange = { 0f..1000f }
             ),
         ),
-        state = rememberModifierDemoState(demoSubjectTypeInitial = DemoSubjectType.GridDot),
+        state = rememberModifierDemoState(componentDemoTypeInitial = ComponentDemoType.Grid),
         modifier = modifier,
     )
 }

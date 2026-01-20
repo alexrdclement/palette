@@ -4,18 +4,21 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.alexrdclement.palette.components.demo.subject.DemoSubject
-import com.alexrdclement.palette.components.demo.subject.DemoSubjectType
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
+import com.alexrdclement.palette.components.demo.ComponentDemo
+import com.alexrdclement.palette.components.demo.ComponentDemoControl
+import com.alexrdclement.palette.components.demo.ComponentDemoState
+import com.alexrdclement.palette.components.demo.ComponentDemoType
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
+import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -33,12 +36,13 @@ fun ModifierDemo(
             .fillMaxSize()
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxSize()
+            modifier = Modifier.fillMaxSize()
         ) {
-            DemoSubject(
-                demoSubject = state.demoSubject,
-                modifier = demoModifier,
+            this@Demo.ComponentDemo(
+                state = state.componentDemoState,
+                control = control.componentDemoControl,
+                modifier = demoModifier
+                    .align(Alignment.Center),
             )
         }
     }
@@ -47,34 +51,51 @@ fun ModifierDemo(
 
 @Composable
 fun rememberModifierDemoState(
-    demoSubjectTypeInitial: DemoSubjectType = DemoSubjectType.Circle,
+    componentDemoTypeInitial: ComponentDemoType = ComponentDemoType.Circle,
 ): ModifierDemoState {
-    return rememberSaveable(saver = ModifierDemoStateSaver) {
+    val density = LocalDensity.current
+    val color = PaletteTheme.colorScheme.primary
+    return rememberSaveable(
+        density,
+        color,
+        saver = ModifierDemoStateSaver(
+            density = density,
+            color = color,
+        ),
+    ) {
         ModifierDemoState(
-            demoSubjectTypeInitial = demoSubjectTypeInitial,
+            density = density,
+            color = color,
+            componentDemoTypeInitial = componentDemoTypeInitial,
         )
     }
 }
 
 @Stable
 class ModifierDemoState(
-    demoSubjectTypeInitial: DemoSubjectType = DemoSubjectType.Circle,
+    density: Density,
+    color: Color,
+    componentDemoTypeInitial: ComponentDemoType = ComponentDemoType.Circle,
+
 ) {
-    var demoSubject by mutableStateOf(demoSubjectTypeInitial)
-        internal set
+    val componentDemoState = ComponentDemoState(
+        density = density,
+        color = color,
+        componentDemoTypeInitial = componentDemoTypeInitial,
+    )
 }
 
-private const val demoSubjectKey = "demoSubject"
-
-val ModifierDemoStateSaver = mapSaverSafe(
+fun ModifierDemoStateSaver(
+    density: Density,
+    color: Color,
+) = mapSaverSafe(
     save = { value ->
-        mapOf(
-            demoSubjectKey to value.demoSubject,
-        )
+        mapOf()
     },
     restore = { map ->
         ModifierDemoState(
-            demoSubjectTypeInitial = map[demoSubjectKey] as DemoSubjectType,
+            density = density,
+            color = color,
         )
     },
 )
@@ -92,16 +113,18 @@ class ModifierDemoControl(
     val modifierControls: PersistentList<Control>,
     val state: ModifierDemoState,
 ) {
-    val subjectControl = enumControl(
-        name = "Subject",
-        values = { DemoSubjectType.entries },
-        selectedValue = { state.demoSubject },
-        onValueChange = { state.demoSubject = it },
+    val componentDemoControl = ComponentDemoControl(
+        state = state.componentDemoState,
+    )
+    val componentDemoControls = Control.ControlColumn(
+        name = "Component",
+        controls = { componentDemoControl.controls },
+        expandedInitial = false,
     )
 
     val controls
         get() = persistentListOf(
-            subjectControl,
             *modifierControls.toTypedArray(),
+            componentDemoControls,
         )
 }

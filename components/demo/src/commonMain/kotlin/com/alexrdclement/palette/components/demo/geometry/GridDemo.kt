@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.demo.util.DensitySaver
@@ -55,18 +56,29 @@ fun GridDemo(
         controls = control.controls,
         modifier = modifier.fillMaxSize(),
     ) {
-        Grid(
-            lineStyle = state.lineStyle.takeIf { state.showLines },
-            vertex = state.vertexState.vertex,
-            coordinateSystem = state.coordinateSystem,
-            offset = with(LocalDensity.current) {
-                Offset(state.offsetX.toPx(), state.offsetY.toPx())
-            },
-            clipToBounds = state.clipToBounds,
+        GridDemo(
+            state = state,
             modifier = Modifier
                 .fillMaxSize()
         )
     }
+}
+
+@Composable
+fun DemoScope.GridDemo(
+    modifier: Modifier = Modifier,
+    state: GridDemoState = rememberGridDemoState(),
+) {
+    Grid(
+        lineStyle = state.lineStyle.takeIf { state.showLines },
+        vertex = state.vertexState.vertex,
+        coordinateSystem = state.coordinateSystem,
+        offset = with(LocalDensity.current) {
+            Offset(state.offsetX.toPx(), state.offsetY.toPx())
+        },
+        clipToBounds = state.clipToBounds,
+        modifier = modifier
+    )
 }
 
 @Composable

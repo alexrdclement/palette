@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -52,7 +53,7 @@ fun TextDemo(
 }
 
 @Composable
-fun BoxWithConstraintsScope.TextDemo(
+fun DemoScope.TextDemo(
     modifier: Modifier = Modifier,
     state: TextDemoState = rememberTextDemoState(),
     control: TextDemoControl = rememberTextDemoControl(state),
