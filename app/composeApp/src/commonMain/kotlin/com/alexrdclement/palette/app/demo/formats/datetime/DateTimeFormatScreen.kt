@@ -12,6 +12,7 @@ import com.alexrdclement.palette.formats.datetime.DateTimeFormatValue
 import com.alexrdclement.palette.formats.datetime.InstantFormatValue
 import com.alexrdclement.palette.formats.datetime.TimeFormatValue
 import com.alexrdclement.palette.formats.datetime.toFormat
+import com.alexrdclement.palette.formats.demo.datetime.DateTimeFormatDemo
 import kotlinx.datetime.format
 
 @Composable

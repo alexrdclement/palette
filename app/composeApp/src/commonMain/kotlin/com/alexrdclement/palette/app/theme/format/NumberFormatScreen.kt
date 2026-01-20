@@ -10,9 +10,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.app.demo.formats.core.NumberFormatDemo
-import com.alexrdclement.palette.app.demo.formats.core.NumberFormatDemoState
-import com.alexrdclement.palette.app.demo.formats.core.rememberNumberFormatDemoControl
+import com.alexrdclement.palette.formats.demo.core.NumberFormatDemo
+import com.alexrdclement.palette.formats.demo.core.NumberFormatDemoState
+import com.alexrdclement.palette.formats.demo.core.rememberNumberFormatDemoControl
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.BoxWithLabel

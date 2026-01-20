@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.components.money.navigation.MoneyComponent
+import com.alexrdclement.palette.components.demo.money.CurrencyAmountFieldDemo
 import com.alexrdclement.palette.components.layout.Scaffold
 
 @Composable

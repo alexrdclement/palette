@@ -11,10 +11,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.app.demo.components.core.ButtonDemo
-import com.alexrdclement.palette.app.demo.components.core.ButtonDemoControl
-import com.alexrdclement.palette.app.demo.components.core.ButtonDemoState
-import com.alexrdclement.palette.app.demo.components.core.ButtonDemoStateSaver
+import com.alexrdclement.palette.components.demo.core.ButtonDemo
+import com.alexrdclement.palette.components.demo.core.ButtonDemoControl
+import com.alexrdclement.palette.components.demo.core.ButtonDemoState
+import com.alexrdclement.palette.components.demo.core.ButtonDemoStateSaver
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl

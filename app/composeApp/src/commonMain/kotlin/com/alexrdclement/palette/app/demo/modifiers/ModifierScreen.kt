@@ -8,6 +8,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.preview.PalettePreview
 import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.modifiers.demo.ColorInvertDemo
+import com.alexrdclement.palette.modifiers.demo.ColorSplitDemo
+import com.alexrdclement.palette.modifiers.demo.FadeDemo
+import com.alexrdclement.palette.modifiers.demo.NoiseDemo
+import com.alexrdclement.palette.modifiers.demo.PixelateDemo
+import com.alexrdclement.palette.modifiers.demo.WarpDemo
 
 @Composable
 fun ModifierScreen(

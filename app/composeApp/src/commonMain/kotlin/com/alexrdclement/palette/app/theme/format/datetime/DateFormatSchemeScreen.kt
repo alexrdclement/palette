@@ -9,9 +9,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.app.demo.formats.datetime.DateTimeFormatDemo
-import com.alexrdclement.palette.app.demo.formats.datetime.DateTimeFormatDemoState
-import com.alexrdclement.palette.app.demo.formats.datetime.rememberDateTimeFormatDemoControl
+import com.alexrdclement.palette.formats.demo.datetime.DateTimeFormatDemo
+import com.alexrdclement.palette.formats.demo.datetime.DateTimeFormatDemoState
+import com.alexrdclement.palette.formats.demo.datetime.rememberDateTimeFormatDemoControl
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.BoxWithLabel
