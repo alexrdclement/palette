@@ -151,10 +151,10 @@ class ComponentDemoState(
         density = density,
         color = color,
         xGridScaleStateInitial = CartesianGridScaleState(
-            gridSpacingInitial = 20.dp,
+            gridSpacingInitial = 28.dp,
         ),
         yGridScaleStateInitial = CartesianGridScaleState(
-            gridSpacingInitial = 20.dp,
+            gridSpacingInitial = 28.dp,
         ),
     ),
     sphereDemoStateInitial: SphereDemoState = SphereDemoState(

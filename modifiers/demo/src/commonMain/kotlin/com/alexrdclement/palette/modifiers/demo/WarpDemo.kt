@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.demo.ComponentDemoType
@@ -27,21 +28,25 @@ fun WarpDemo(
     var pointerOffset by remember { mutableStateOf(Offset.Zero) }
 
     ModifierDemo(
-        demoModifier = Modifier.warp(
-            offset = { pointerOffset },
-            radius = { modifierState.radius },
-            amount = { modifierState.amount },
-        ).pointerInput(Unit) {
-            detectTapGestures(
-                onPress = { pointerOffset = it },
-                onTap = { pointerOffset = it },
-            )
-        }.pointerInput(Unit) {
-            detectDragGestures { change, _ ->
-                change.consume()
-                pointerOffset = change.position
+        demoModifier = Modifier
+            .warp(
+                offset = { pointerOffset },
+                radius = { modifierState.radius },
+                amount = { modifierState.amount },
+            ).pointerInput(Unit) {
+                detectTapGestures(
+                    onPress = { pointerOffset = it },
+                    onTap = { pointerOffset = it },
+                )
+            }.pointerInput(Unit) {
+                detectDragGestures { change, _ ->
+                    change.consume()
+                    pointerOffset = change.position
+                }
             }
-        },
+            .onSizeChanged {
+                pointerOffset = Offset(it.width / 2f, it.height / 2f)
+            },
         controls = persistentListOf(
             Control.Slider(
                 name = "Amount",
@@ -61,12 +66,12 @@ fun WarpDemo(
             ),
         ),
         state = rememberModifierDemoState(componentDemoTypeInitial = ComponentDemoType.Grid),
-        modifier = modifier,
+        modifier = modifier
     )
 }
 
 private class WarpState(
-    radiusInitial: Dp = 200.dp,
+    radiusInitial: Dp = 320.dp,
     amountInitial: Float = .2f,
 ) {
     var radius: Dp by mutableStateOf(radiusInitial)
