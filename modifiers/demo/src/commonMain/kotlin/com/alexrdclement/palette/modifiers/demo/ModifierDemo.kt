@@ -35,16 +35,12 @@ fun ModifierDemo(
         modifier = modifier
             .fillMaxSize()
     ) {
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            this@Demo.ComponentDemo(
-                state = state.componentDemoState,
-                control = control.componentDemoControl,
-                modifier = demoModifier
-                    .align(Alignment.Center),
-            )
-        }
+        ComponentDemo(
+            state = state.componentDemoState,
+            control = control.componentDemoControl,
+            modifier = demoModifier
+                .align(Alignment.Center),
+        )
     }
 }
 

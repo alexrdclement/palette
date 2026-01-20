@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.demo.util.OffsetSaver
@@ -49,100 +50,119 @@ fun CurveStitchDemo(
         controls = control.controls,
         modifier = modifier.fillMaxSize(),
     ) {
-        val modifier = Modifier
-            .then(
-                if (this@Demo.maxHeight < this@Demo.maxWidth) {
-                    val navigationBarsPadding = WindowInsets.navigationBars.asPaddingValues()
-                    val bottomPadding = navigationBarsPadding.calculateBottomPadding()
-                    Modifier
-                        .size(this@Demo.maxHeight - bottomPadding)
-                        .aspectRatio(1f)
-                } else {
-                    Modifier.size(this@Demo.maxWidth)
+        CurveStitchDemo(
+            state = state,
+            modifier = modifier,
+        )
+    }
+}
+
+@Composable
+fun DemoScope.CurveStitchDemo(
+    modifier: Modifier = Modifier,
+    state: CurveStitchDemoState = rememberCurveStitchDemoState(),
+    enablePointerInput: Boolean = true,
+) {
+    val modifier = modifier
+        .then(
+            if (maxHeight < maxWidth) {
+                val navigationBarsPadding = WindowInsets.navigationBars.asPaddingValues()
+                val bottomPadding = navigationBarsPadding.calculateBottomPadding()
+                Modifier
+                    .size(maxHeight - bottomPadding)
+                    .aspectRatio(1f)
+            } else {
+                Modifier.size(maxWidth)
+            }
+        )
+        .align(Alignment.Center)
+        .graphicsLayer { this.rotationZ = state.rotation }
+
+    val anglePointerModifier = if (!enablePointerInput) {
+        Modifier
+    } else {
+        Modifier
+            .pointerInput(Unit) {
+                detectTapGestures { position ->
+                    val distStart = getDistanceFromOffset(
+                        normalizedOffset = state.angleStartOffset,
+                        position = position,
+                        size = this.size,
+                    )
+                    val distVertex = getDistanceFromOffset(
+                        normalizedOffset = state.angleVertexOffset,
+                        position = position,
+                        size = this.size,
+                    )
+                    val distEnd = getDistanceFromOffset(
+                        normalizedOffset = state.angleEndOffset,
+                        position = position,
+                        size = this.size,
+                    )
+                    when (minOf(distStart, distVertex, distEnd)) {
+                        distStart -> state.angleStartOffset = normalizeOffsetPx(position, size)
+                        distVertex -> state.angleVertexOffset = normalizeOffsetPx(position, size)
+                        distEnd -> state.angleEndOffset = normalizeOffsetPx(position, size)
+                    }
                 }
-            )
-            .align(Alignment.Center)
-            .graphicsLayer { this.rotationZ = state.rotation }
-
-        when (state.currentDemo) {
-            CurveStitchDemo.Angle -> CurveStitch(
-                start = state.angleStartOffset,
-                vertex = state.angleVertexOffset,
-                end = state.angleEndOffset,
-                numLines = state.numLines,
-                strokeWidth = state.strokeWidth,
-                color = PaletteTheme.colorScheme.primary,
-                modifier = modifier
-                    .pointerInput(Unit) {
-                        detectTapGestures { position ->
-                            val distStart = getDistanceFromOffset(
-                                normalizedOffset = state.angleStartOffset,
-                                position = position,
-                                size = this.size,
-                            )
-                            val distVertex = getDistanceFromOffset(
-                                normalizedOffset = state.angleVertexOffset,
-                                position = position,
-                                size = this.size,
-                            )
-                            val distEnd = getDistanceFromOffset(
-                                normalizedOffset = state.angleEndOffset,
-                                position = position,
-                                size = this.size,
-                            )
-                            when (minOf(distStart, distVertex, distEnd)) {
-                                distStart -> state.angleStartOffset = normalizeOffsetPx(position, size)
-                                distVertex -> state.angleVertexOffset = normalizeOffsetPx(position, size)
-                                distEnd -> state.angleEndOffset = normalizeOffsetPx(position, size)
-                            }
-                        }
+            }
+            .pointerInput(Unit) {
+                detectDragGestures { change, _ ->
+                    val position = change.position
+                    val distStart = getDistanceFromOffset(
+                        normalizedOffset = state.angleStartOffset,
+                        position = position,
+                        size = this.size,
+                    )
+                    val distVertex = getDistanceFromOffset(
+                        normalizedOffset = state.angleVertexOffset,
+                        position = position,
+                        size = this.size,
+                    )
+                    val distEnd = getDistanceFromOffset(
+                        normalizedOffset = state.angleEndOffset,
+                        position = position,
+                        size = this.size,
+                    )
+                    when (minOf(distStart, distVertex, distEnd)) {
+                        distStart -> state.angleStartOffset = normalizeOffsetPx(position, size)
+                        distVertex -> state.angleVertexOffset = normalizeOffsetPx(position, size)
+                        distEnd -> state.angleEndOffset = normalizeOffsetPx(position, size)
                     }
-                    .pointerInput(Unit) {
-                        detectDragGestures { change, _ ->
-                            val position = change.position
-                            val distStart = getDistanceFromOffset(
-                                normalizedOffset = state.angleStartOffset,
-                                position = position,
-                                size = this.size,
-                            )
-                            val distVertex = getDistanceFromOffset(
-                                normalizedOffset = state.angleVertexOffset,
-                                position = position,
-                                size = this.size,
-                            )
-                            val distEnd = getDistanceFromOffset(
-                                normalizedOffset = state.angleEndOffset,
-                                position = position,
-                                size = this.size,
-                            )
-                            when (minOf(distStart, distVertex, distEnd)) {
-                                distStart -> state.angleStartOffset = normalizeOffsetPx(position, size)
-                                distVertex -> state.angleVertexOffset = normalizeOffsetPx(position, size)
-                                distEnd -> state.angleEndOffset = normalizeOffsetPx(position, size)
-                            }
-                        }
-                    }
-            )
+                }
+            }
+    }
 
-            CurveStitchDemo.Star -> CurveStitchStar(
-                numLines = state.numLines,
-                numPoints = state.numPoints,
-                strokeWidth = state.strokeWidth,
-                color = PaletteTheme.colorScheme.primary,
-                innerRadius = state.innerRadius,
-                drawInsidePoints = state.starInsidePoints,
-                drawOutsidePoints = state.starOutsidePoints,
-                modifier = modifier,
-            )
+    when (state.currentDemo) {
+        CurveStitchDemo.Angle -> CurveStitch(
+            start = state.angleStartOffset,
+            vertex = state.angleVertexOffset,
+            end = state.angleEndOffset,
+            numLines = state.numLines,
+            strokeWidth = state.strokeWidth,
+            color = PaletteTheme.colorScheme.primary,
+            modifier = modifier
+                .then(anglePointerModifier)
+        )
 
-            CurveStitchDemo.Shape -> CurveStitchShape(
-                numLines = state.numLines,
-                numPoints = state.numPoints,
-                strokeWidth = state.strokeWidth,
-                color = PaletteTheme.colorScheme.primary,
-                modifier = modifier,
-            )
-        }
+        CurveStitchDemo.Star -> CurveStitchStar(
+            numLines = state.numLines,
+            numPoints = state.numPoints,
+            strokeWidth = state.strokeWidth,
+            color = PaletteTheme.colorScheme.primary,
+            innerRadius = state.innerRadius,
+            drawInsidePoints = state.starInsidePoints,
+            drawOutsidePoints = state.starOutsidePoints,
+            modifier = modifier,
+        )
+
+        CurveStitchDemo.Shape -> CurveStitchShape(
+            numLines = state.numLines,
+            numPoints = state.numPoints,
+            strokeWidth = state.strokeWidth,
+            color = PaletteTheme.colorScheme.primary,
+            modifier = modifier,
+        )
     }
 }
 

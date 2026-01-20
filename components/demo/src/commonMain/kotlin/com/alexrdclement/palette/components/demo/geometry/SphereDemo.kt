@@ -15,6 +15,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.geometry.Sphere
 import com.alexrdclement.palette.components.geometry.SphereStyle
@@ -37,25 +38,36 @@ fun SphereDemo(
         controls = control.controls,
         modifier = modifier.fillMaxSize(),
     ) {
-        Sphere(
-            style = state.style,
-            precisionDegree = state.precisionDegree,
-            viewingAngle = state.viewingAngle,
+        SphereDemo(
+            state = state,
             modifier = Modifier
                 .align(Alignment.Center)
                 .fillMaxSize()
-                .pointerInput(Unit) {
-                    detectDragGestures { change, dragAmount ->
-                        change.consume()
-                        val (dx, dy) = dragAmount
-                        state.viewingAngle = state.viewingAngle.copy(
-                            rotationY = (state.viewingAngle.rotationY + dx / 10f) % 360f,
-                            rotationX = (state.viewingAngle.rotationX - dy / 10f) % 360f,
-                        )
-                    }
-                }
         )
     }
+}
+
+@Composable
+fun DemoScope.SphereDemo(
+    modifier: Modifier = Modifier,
+    state: SphereDemoState = rememberSphereDemoState(),
+) {
+    Sphere(
+        style = state.style,
+        precisionDegree = state.precisionDegree,
+        viewingAngle = state.viewingAngle,
+        modifier = modifier
+            .pointerInput(Unit) {
+                detectDragGestures { change, dragAmount ->
+                    change.consume()
+                    val (dx, dy) = dragAmount
+                    state.viewingAngle = state.viewingAngle.copy(
+                        rotationY = (state.viewingAngle.rotationY + dx / 10f) % 360f,
+                        rotationX = (state.viewingAngle.rotationX - dy / 10f) % 360f,
+                    )
+                }
+            }
+    )
 }
 
 @Composable

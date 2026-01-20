@@ -10,21 +10,36 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.demo.core.TextDemo
 import com.alexrdclement.palette.components.demo.core.TextDemoControl
 import com.alexrdclement.palette.components.demo.core.TextDemoState
+import com.alexrdclement.palette.components.demo.core.TextDemoStateSaver
 import com.alexrdclement.palette.components.demo.core.TextFieldDemo
 import com.alexrdclement.palette.components.demo.core.TextFieldDemoControl
 import com.alexrdclement.palette.components.demo.core.TextFieldDemoState
+import com.alexrdclement.palette.components.demo.core.TextFieldDemoStateSaver
+import com.alexrdclement.palette.components.demo.geometry.CartesianGridScaleState
 import com.alexrdclement.palette.components.demo.geometry.CircleDemo
+import com.alexrdclement.palette.components.demo.geometry.CircleDemoControl
+import com.alexrdclement.palette.components.demo.geometry.CircleDemoState
+import com.alexrdclement.palette.components.demo.geometry.CircleDemoStateSaver
+import com.alexrdclement.palette.components.demo.geometry.CurveStitchDemo
+import com.alexrdclement.palette.components.demo.geometry.CurveStitchDemoControl
+import com.alexrdclement.palette.components.demo.geometry.CurveStitchDemoState
+import com.alexrdclement.palette.components.demo.geometry.CurveStitchDemoStateSaver
 import com.alexrdclement.palette.components.demo.geometry.GridDemo
 import com.alexrdclement.palette.components.demo.geometry.GridDemoControl
 import com.alexrdclement.palette.components.demo.geometry.GridDemoState
+import com.alexrdclement.palette.components.demo.geometry.GridDemoStateSaver
+import com.alexrdclement.palette.components.demo.geometry.SphereDemo
+import com.alexrdclement.palette.components.demo.geometry.SphereDemoControl
+import com.alexrdclement.palette.components.demo.geometry.SphereDemoState
+import com.alexrdclement.palette.components.demo.geometry.SphereDemoStateSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
@@ -33,8 +48,9 @@ import kotlinx.collections.immutable.toPersistentList
 
 enum class ComponentDemoType {
     Circle,
-    CircleOutline,
+    CurveStitch,
     Grid,
+    Sphere,
     Text,
     TextField,
 }
@@ -65,11 +81,13 @@ fun DemoScope.ComponentDemo(
 ) {
     when (state.demoType) {
         ComponentDemoType.Circle -> CircleDemo(
+            state = state.circleDemoState,
             modifier = modifier
                 .fillMaxSize()
         )
-        ComponentDemoType.CircleOutline -> CircleDemo(
-            drawStyle = Stroke(2f),
+        ComponentDemoType.CurveStitch -> CurveStitchDemo(
+            state = state.curveStitchDemoState,
+            enablePointerInput = false,
             modifier = modifier
                 .fillMaxSize()
         )
@@ -78,15 +96,21 @@ fun DemoScope.ComponentDemo(
             modifier = modifier
                 .fillMaxSize()
         )
+        ComponentDemoType.Sphere -> SphereDemo(
+            state = state.sphereDemoState,
+            modifier = modifier
+                .fillMaxSize()
+        )
         ComponentDemoType.Text -> TextDemo(
             state = state.textDemoState,
             control = control.textDemoControl,
             modifier = modifier
+                .fillMaxSize()
         )
         ComponentDemoType.TextField -> TextFieldDemo(
             state = state.textFieldDemoState,
             control = control.textFieldDemoControl,
-            modifier = modifier
+            modifier = modifier,
         )
     }
 }
@@ -118,9 +142,24 @@ class ComponentDemoState(
     density: Density,
     color: Color,
     componentDemoTypeInitial: ComponentDemoType = ComponentDemoType.Circle,
+    circleDemoStateInitial: CircleDemoState = CircleDemoState(
+        density = density,
+        colorInitial = color,
+    ),
+    curveStitchDemoStateInitial: CurveStitchDemoState = CurveStitchDemoState(),
     gridDemoStateInitial: GridDemoState = GridDemoState(
         density = density,
         color = color,
+        xGridScaleStateInitial = CartesianGridScaleState(
+            gridSpacingInitial = 20.dp,
+        ),
+        yGridScaleStateInitial = CartesianGridScaleState(
+            gridSpacingInitial = 20.dp,
+        ),
+    ),
+    sphereDemoStateInitial: SphereDemoState = SphereDemoState(
+        strokeColor = color,
+        outlineStrokeColor = color,
     ),
     textDemoStateInitial: TextDemoState = TextDemoState(),
     textFieldDemoStateInitial: TextFieldDemoState = TextFieldDemoState(
@@ -130,7 +169,13 @@ class ComponentDemoState(
     var demoType by mutableStateOf(componentDemoTypeInitial)
         internal set
 
+    val circleDemoState = circleDemoStateInitial
+
+    val curveStitchDemoState = curveStitchDemoStateInitial
+
     val gridDemoState = gridDemoStateInitial
+
+    val sphereDemoState = sphereDemoStateInitial
 
     val textDemoState = textDemoStateInitial
 
@@ -138,7 +183,10 @@ class ComponentDemoState(
 }
 
 private const val demoTypeKey = "demoType"
+private const val circleDemoStateKey = "circleDemoState"
+private const val curveStitchDemoStateKey = "curveStitchDemoState"
 private const val gridDemoStateKey = "gridDemoState"
+private const val sphereDemoStateKey = "sphereDemoState"
 private const val textDemoStateKey = "textDemoState"
 private const val textFieldDemoStateKey = "textFieldDemoState"
 
@@ -149,9 +197,20 @@ fun ComponentDemoStateSaver(
     save = { value ->
         mapOf(
             demoTypeKey to value.demoType,
-            gridDemoStateKey to save(value.gridDemoState, com.alexrdclement.palette.components.demo.geometry.GridDemoStateSaver, this),
-            textDemoStateKey to save(value.textDemoState, com.alexrdclement.palette.components.demo.core.TextDemoStateSaver, this),
-            textFieldDemoStateKey to save(value.textFieldDemoState, com.alexrdclement.palette.components.demo.core.TextFieldDemoStateSaver, this),
+            circleDemoStateKey to save(
+                value = value.circleDemoState,
+                saver = CircleDemoStateSaver(density = density),
+                scope = this,
+            ),
+            curveStitchDemoStateKey to save(
+                value = value.curveStitchDemoState,
+                saver = CurveStitchDemoStateSaver,
+                scope = this,
+            ),
+            gridDemoStateKey to save(value.gridDemoState, GridDemoStateSaver, this),
+            sphereDemoStateKey to save(value.sphereDemoState, SphereDemoStateSaver, this),
+            textDemoStateKey to save(value.textDemoState, TextDemoStateSaver, this),
+            textFieldDemoStateKey to save(value.textFieldDemoState, TextFieldDemoStateSaver, this),
         )
     },
     restore = { map ->
@@ -159,9 +218,14 @@ fun ComponentDemoStateSaver(
             density = density,
             color = color,
             componentDemoTypeInitial = map[demoTypeKey] as ComponentDemoType,
-            gridDemoStateInitial = restore(map[gridDemoStateKey], com.alexrdclement.palette.components.demo.geometry.GridDemoStateSaver)!!,
-            textDemoStateInitial = restore(map[textDemoStateKey], com.alexrdclement.palette.components.demo.core.TextDemoStateSaver)!!,
-            textFieldDemoStateInitial = restore(map[textFieldDemoStateKey], com.alexrdclement.palette.components.demo.core.TextFieldDemoStateSaver)!!,
+            circleDemoStateInitial = restore(map[circleDemoStateKey], CircleDemoStateSaver(density = density))!!,
+            curveStitchDemoStateInitial = restore(map[curveStitchDemoStateKey],
+                CurveStitchDemoStateSaver
+            )!!,
+            gridDemoStateInitial = restore(map[gridDemoStateKey], GridDemoStateSaver)!!,
+            sphereDemoStateInitial = restore(map[sphereDemoStateKey], SphereDemoStateSaver)!!,
+            textDemoStateInitial = restore(map[textDemoStateKey], TextDemoStateSaver)!!,
+            textFieldDemoStateInitial = restore(map[textFieldDemoStateKey], TextFieldDemoStateSaver)!!,
         )
     },
 )
@@ -184,10 +248,31 @@ class ComponentDemoControl(
         onValueChange = { state.demoType = it },
     )
 
+    val circleDemoControl = CircleDemoControl(state = state.circleDemoState)
+    val circleDemoControls = Control.ControlColumn(
+        name = "Circle",
+        controls = { circleDemoControl.controls },
+        expandedInitial = true,
+    )
+
+    val curveStitchDemoControl = CurveStitchDemoControl(state = state.curveStitchDemoState)
+    val curveStitchDemoControls = Control.ControlColumn(
+        name = "Curve Stitch",
+        controls = { curveStitchDemoControl.controls },
+        expandedInitial = true,
+    )
+
     val gridDemoControl = GridDemoControl(state = state.gridDemoState)
     val gridDemoControls = Control.ControlColumn(
         name = "Grid",
         controls = { gridDemoControl.controls },
+        expandedInitial = true,
+    )
+
+    val sphereDemoControl = SphereDemoControl(state = state.sphereDemoState)
+    val sphereDemoControls = Control.ControlColumn(
+        name = "Sphere",
+        controls = { sphereDemoControl.controls },
         expandedInitial = true,
     )
 
@@ -209,10 +294,10 @@ class ComponentDemoControl(
         get() = buildList {
             add(demoTypeControl)
             when (state.demoType) {
-                ComponentDemoType.Circle,
-                ComponentDemoType.CircleOutline,
-                -> Unit
+                ComponentDemoType.Circle -> add(circleDemoControls)
+                ComponentDemoType.CurveStitch -> add(curveStitchDemoControls)
                 ComponentDemoType.Grid -> add(gridDemoControls)
+                ComponentDemoType.Sphere -> add(sphereDemoControls)
                 ComponentDemoType.Text -> add(textDemoControls)
                 ComponentDemoType.TextField -> add(textFieldDemoControls)
             }
