@@ -105,7 +105,6 @@ fun DemoScope.ComponentDemo(
             state = state.textDemoState,
             control = control.textDemoControl,
             modifier = modifier
-                .fillMaxSize()
         )
         ComponentDemoType.TextField -> TextFieldDemo(
             state = state.textFieldDemoState,
