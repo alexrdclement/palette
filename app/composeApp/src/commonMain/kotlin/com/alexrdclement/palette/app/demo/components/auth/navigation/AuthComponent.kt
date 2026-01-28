@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class AuthComponent : CatalogItem {
-    AuthButton,
+    Button,
     ;
 
     override val title = this.name

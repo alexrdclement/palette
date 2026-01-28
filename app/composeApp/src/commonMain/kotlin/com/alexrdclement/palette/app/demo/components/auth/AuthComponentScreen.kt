@@ -24,7 +24,7 @@ fun AuthComponentScreen(
         },
     ) { innerPadding ->
         when (component) {
-            AuthComponent.AuthButton -> AuthButtonDemo(
+            AuthComponent.Button -> AuthButtonDemo(
                 modifier = Modifier.padding(innerPadding)
             )
         }

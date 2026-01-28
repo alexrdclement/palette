@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.alexrdclement.palette.app.main.MainCatalogItem
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.layout.TopBar

@@ -45,6 +45,7 @@ include(":modifiers")
 include(":modifiers:android-test")
 include(":modifiers:baseline-profile")
 include(":modifiers:demo")
+include(":navigation")
 include(":testing")
 include(":theme")
 
