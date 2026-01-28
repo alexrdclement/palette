@@ -15,7 +15,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.kotlinx.collections.immutable)
             implementation(libs.kotlinx.serialization.json)
-            implementation(libs.navigation.compose)
             implementation(libs.trace)
             implementation(libs.uievent)
 
@@ -25,6 +24,7 @@ kotlin {
             implementation(projects.formats.demo)
             implementation(projects.modifiers)
             implementation(projects.modifiers.demo)
+            implementation(projects.navigation)
             implementation(projects.theme)
         }
     }
