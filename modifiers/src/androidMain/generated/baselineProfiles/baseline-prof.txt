@@ -295,7 +295,7 @@ PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;-><init>(JFZFLkotlin/jv
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getBorderColor-0d7_KjU()J
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getFadeLength-D9Ej5fM()F
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getShowBorder()Z
-PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getWidth-D9Ej5fM()F
+HPLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getWidth-D9Ej5fM()F
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->setFadeLength-0680j_4$demo(F)V
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->setWidth-0680j_4$demo(F)V
 PLcom/alexrdclement/palette/modifiers/demo/ModifierDemoControl;->$r8$lambda$UkqdC-gt8q_l132ixmbPrcwnRt8(Lcom/alexrdclement/palette/modifiers/demo/ModifierDemoControl;)Lkotlinx/collections/immutable/ImmutableList;
