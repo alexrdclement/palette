@@ -11,21 +11,18 @@ kotlin {
     )
 
     sourceSets {
-        val nonWebMain by creating {
-            dependsOn(commonMain.get())
+        androidMain {
             dependencies {
                 implementation(libs.androidx.navigationevent)
             }
         }
-
-        androidMain {
-            dependsOn(nonWebMain)
-        }
         jvmMain {
-            dependsOn(nonWebMain)
+            dependencies {
+                implementation(libs.androidx.navigationevent)
+            }
         }
         iosMain {
-            dependsOn(nonWebMain)
+
         }
         wasmJsMain {
             dependencies {
