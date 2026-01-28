@@ -15,6 +15,7 @@ fun NavGraphBuilder.stylesNavGraph() = navGraph(
     route = StylesGraph,
     start = StylesCatalogRoute,
 ) {
+    route(StylesCatalogRoute)
     route(ButtonStylesRoute)
     route(BorderStylesRoute)
     route(TextStylesRoute)

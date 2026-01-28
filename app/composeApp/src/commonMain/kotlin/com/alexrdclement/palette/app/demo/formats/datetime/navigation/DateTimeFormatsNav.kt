@@ -14,6 +14,7 @@ fun NavGraphBuilder.dateTimeFormatsNavGraph() = navGraph(
     route = DateTimeFormatsGraph,
     start = DateTimeFormatCatalogRoute,
 ) {
+    route(DateTimeFormatCatalogRoute)
     wildcardRoute<DateTimeFormatRoute> { pathSegment ->
         if (pathSegment == PathSegment.Wildcard) null
         else DateTimeFormatRoute(pathSegment)

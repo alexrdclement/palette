@@ -13,6 +13,7 @@ fun NavGraphBuilder.coreFormatsNavGraph() = navGraph(
     route = CoreFormatsGraph,
     start = CoreFormatCatalogRoute,
 ) {
+    route(CoreFormatCatalogRoute)
     wildcardRoute<CoreFormatRoute> { pathSegment ->
         if (pathSegment == PathSegment.Wildcard) null
         else CoreFormatRoute(pathSegment)

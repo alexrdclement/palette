@@ -13,6 +13,7 @@ fun NavGraphBuilder.mediaComponentsNavGraph() = navGraph(
     route = MediaComponentsGraph,
     start = MediaComponentCatalogRoute,
 ) {
+    route(MediaComponentCatalogRoute)
     wildcardRoute<MediaComponentRoute> { pathSegment ->
         if (pathSegment == PathSegment.Wildcard) null
         else MediaComponentRoute(pathSegment)

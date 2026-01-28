@@ -9,11 +9,6 @@ value class NavGraph(val nodes: List<NavGraphNode>)
 fun NavKey.toDeeplink(tree: NavGraph): String {
     val node = tree.findNode(this::class) ?: return pathSegment.value
 
-    // Graph roots don't add their own path segment
-    if (node.isGraphRoot) {
-        return node.parent?.toDeeplink(tree) ?: ""
-    }
-
     val parentPath = node.parent?.toDeeplink(tree)
 
     return if (parentPath != null) {
@@ -52,15 +47,8 @@ fun List<PathSegment>.toBackStack(
                     if (childMatch != null) return childMatch
                 }
 
-                // If we're at the last segment, check for graph root child
+                // If we're at the last segment, return the accumulated result
                 if (segmentIndex == this@toBackStack.size - 1) {
-                    val graphRootChild = node.children.firstOrNull { it.isGraphRoot }
-                    if (graphRootChild != null) {
-                        val graphRootParsed = graphRootChild.parser(PathSegment.Empty)
-                        if (graphRootParsed != null) {
-                            return newAccumulated + graphRootParsed
-                        }
-                    }
                     return newAccumulated
                 }
             }

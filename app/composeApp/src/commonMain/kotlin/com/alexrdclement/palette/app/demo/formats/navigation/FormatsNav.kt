@@ -24,6 +24,7 @@ fun NavGraphBuilder.formatsNavGraph() = navGraph(
     route = FormatsGraph,
     start = FormatCatalogRoute,
 ) {
+    route(FormatCatalogRoute)
     coreFormatsNavGraph()
     dateTimeFormatsNavGraph()
     moneyFormatsNavGraph()

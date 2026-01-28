@@ -13,6 +13,7 @@ fun NavGraphBuilder.colorComponentsNavGraph() = navGraph(
     route = ColorComponentsGraph,
     start = ColorComponentCatalogRoute,
 ) {
+    route(ColorComponentCatalogRoute)
     wildcardRoute<ColorComponentRoute> { pathSegment ->
         if (pathSegment == PathSegment.Wildcard) null
         else ColorComponentRoute(pathSegment)

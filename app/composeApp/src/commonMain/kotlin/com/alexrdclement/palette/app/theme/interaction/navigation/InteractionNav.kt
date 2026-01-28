@@ -13,6 +13,7 @@ fun NavGraphBuilder.interactionNavGraph() = navGraph(
     route = InteractionGraph,
     start = InteractionCatalogRoute,
 ) {
+    route(InteractionCatalogRoute)
     route(IndicationRoute)
 }
 

@@ -13,6 +13,7 @@ fun NavGraphBuilder.coreComponentsNavGraph() = navGraph(
     route = CoreComponentsGraph,
     start = CoreComponentCatalogRoute,
 ) {
+    route(CoreComponentCatalogRoute)
     wildcardRoute<CoreComponentRoute> { pathSegment ->
         if (pathSegment == PathSegment.Wildcard) null
         else CoreComponentRoute(pathSegment)

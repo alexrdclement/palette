@@ -18,6 +18,7 @@ fun NavGraphBuilder.formatNavGraph() = navGraph(
     route = FormatsGraph,
     start = FormatCatalogRoute,
 ) {
+    route(FormatCatalogRoute)
     route(NumberFormatRoute)
     route(MoneyFormatRoute)
     route(TextFormatRoute)

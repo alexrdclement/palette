@@ -28,6 +28,7 @@ fun NavGraphBuilder.themeNavGraph() = navGraph(
     route = ThemeGraph,
     start = ThemeCatalogRoute,
 ) {
+    route(ThemeCatalogRoute)
     route(ColorRoute)
     route(ShapeRoute)
     route(TypographyRoute)

@@ -11,20 +11,6 @@ class NavGraphBuilder(
         children: NavGraphBuilder.() -> Unit = {}
     ) {
         val childrenBuilder = NavGraphBuilder(parent = route)
-
-        // Add the graph root as the first child
-        childrenBuilder.nodes.add(
-            NavGraphNode(
-                pathSegment = PathSegment.Empty,
-                navKeyClass = start::class,
-                parser = { start },
-                parent = route,
-                children = emptyList(),
-                isGraphRoot = true,
-            )
-        )
-
-        // Add other children
         childrenBuilder.children()
 
         nodes.add(
@@ -34,6 +20,7 @@ class NavGraphBuilder(
                 parser = { route },
                 parent = parent,
                 children = childrenBuilder.build().nodes,
+                graphStartRoute = start,
             )
         )
     }

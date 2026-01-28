@@ -37,6 +37,7 @@ fun NavGraphBuilder.componentsNavGraph() = navGraph(
     route = ComponentsGraph,
     start = ComponentCatalogRoute,
 ) {
+    route(ComponentCatalogRoute)
     authComponentsNavGraph()
     colorComponentsNavGraph()
     coreComponentsNavGraph()

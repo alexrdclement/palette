@@ -5,7 +5,6 @@ import kotlin.jvm.JvmInline
 @JvmInline
 value class PathSegment(val value: String) {
     companion object {
-        val Empty = PathSegment("")
         val Wildcard = PathSegment("*")
     }
 }

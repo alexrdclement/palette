@@ -13,6 +13,7 @@ fun NavGraphBuilder.authComponentsNavGraph() = navGraph(
     route = AuthComponentsGraph,
     start = AuthComponentCatalogRoute,
 ) {
+    route(AuthComponentCatalogRoute)
     wildcardRoute<AuthComponentRoute> { pathSegment ->
         if (pathSegment == PathSegment.Wildcard) null
         else AuthComponentRoute(pathSegment)

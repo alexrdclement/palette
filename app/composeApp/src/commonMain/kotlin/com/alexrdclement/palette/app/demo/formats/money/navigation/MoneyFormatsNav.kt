@@ -13,6 +13,7 @@ fun NavGraphBuilder.moneyFormatsNavGraph() = navGraph(
     route = MoneyFormatsGraph,
     start = MoneyFormatCatalogRoute,
 ) {
+    route(MoneyFormatCatalogRoute)
     wildcardRoute<MoneyFormatRoute> { pathSegment ->
         if (pathSegment == PathSegment.Wildcard) null
         else MoneyFormatRoute(pathSegment)

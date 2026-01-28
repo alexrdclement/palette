@@ -13,6 +13,7 @@ fun NavGraphBuilder.geometryComponentsNavGraph() = navGraph(
     route = GeometryComponentsGraph,
     start = GeometryComponentCatalogRoute,
 ) {
+    route(GeometryComponentCatalogRoute)
     wildcardRoute<GeometryComponentRoute> { pathSegment ->
         if (pathSegment == PathSegment.Wildcard) null
         else GeometryComponentRoute(pathSegment)

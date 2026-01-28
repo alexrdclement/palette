@@ -22,14 +22,7 @@ class NavController(private val state: NavState) {
 
     private fun resolveGraphRoot(route: NavKey, navGraph: NavGraph): NavKey {
         val node = navGraph.findNode(route::class) ?: return route
-
-        // If this node has a graph root child, return it
-        val graphRootChild = node.children.firstOrNull { it.isGraphRoot }
-        if (graphRootChild != null) {
-            return graphRootChild.parser(PathSegment.Empty) ?: route
-        }
-
-        return route
+        return node.graphStartRoute ?: route
     }
 
     fun goBack() {

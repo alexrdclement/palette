@@ -13,6 +13,7 @@ fun NavGraphBuilder.moneyComponentsNavGraph() = navGraph(
     route = MoneyComponentsGraph,
     start = MoneyComponentCatalogRoute,
 ) {
+    route(MoneyComponentCatalogRoute)
     wildcardRoute<MoneyComponentRoute> { pathSegment ->
         if (pathSegment == PathSegment.Wildcard) null
         else MoneyComponentRoute(pathSegment)

@@ -15,6 +15,7 @@ fun NavGraphBuilder.modifiersNavGraph() = navGraph(
     route = ModifiersGraph,
     start = ModifierCatalogRoute,
 ) {
+    route(ModifierCatalogRoute)
     wildcardRoute<ModifierRoute> { pathSegment ->
         if (pathSegment == PathSegment.Wildcard) null
         else ModifierRoute(pathSegment)
