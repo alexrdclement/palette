@@ -1,16 +1,13 @@
 package com.alexrdclement.palette.navigation
 
 import kotlin.jvm.JvmInline
+import kotlin.reflect.KClass
 
 @JvmInline
 value class NavGraph(val nodes: List<NavGraphNode>)
 
 fun NavKey.toDeeplink(tree: NavGraph): String {
-    // TODO: cache?
-    val flattenedNodes = flattenNodes(nodes = tree.nodes)
-
-    val node = flattenedNodes.firstOrNull { it.navKeyClass == this::class }
-        ?: return pathSegment.value
+    val node = tree.findNode(this::class) ?: return pathSegment.value
 
     // Graph roots don't add their own path segment
     if (node.isGraphRoot) {
@@ -37,12 +34,10 @@ fun NavKey.Companion.fromDeeplink(
 fun List<PathSegment>.toBackStack(
     navGraph: NavGraph,
 ): List<NavKey> {
-    val segments = this
-
     fun matchRoute(nodes: List<NavGraphNode>, segmentIndex: Int, accumulated: List<NavKey>): List<NavKey>? {
-        if (segmentIndex >= segments.size) return null
+        if (segmentIndex >= this.size) return null
 
-        val segment = segments[segmentIndex]
+        val segment = this[segmentIndex]
 
         for (node in nodes) {
             val isMatch = node.pathSegment == PathSegment.Wildcard || node.pathSegment == segment
@@ -52,13 +47,13 @@ fun List<PathSegment>.toBackStack(
                 val newAccumulated = accumulated + parsed
 
                 // Try to match children first
-                if (node.children.isNotEmpty() && segmentIndex + 1 < segments.size) {
+                if (node.children.isNotEmpty() && segmentIndex + 1 < this@toBackStack.size) {
                     val childMatch = matchRoute(node.children, segmentIndex + 1, newAccumulated)
                     if (childMatch != null) return childMatch
                 }
 
                 // If we're at the last segment, check for graph root child
-                if (segmentIndex == segments.size - 1) {
+                if (segmentIndex == this@toBackStack.size - 1) {
                     val graphRootChild = node.children.firstOrNull { it.isGraphRoot }
                     if (graphRootChild != null) {
                         val graphRootParsed = graphRootChild.parser(PathSegment.Empty)
@@ -77,12 +72,15 @@ fun List<PathSegment>.toBackStack(
     return matchRoute(navGraph.nodes, 0, emptyList()) ?: emptyList()
 }
 
-private fun flattenNodes(nodes: List<NavGraphNode>): List<NavGraphNode> = buildList {
-    fun addNodes(nodes: List<NavGraphNode>) {
-        nodes.forEach { node ->
-            add(node)
-            addNodes(node.children)
-        }
+internal fun NavGraph.findNode(navKeyClass: KClass<out NavKey>): NavGraphNode? {
+    return this.nodes.findNode(navKeyClass)
+}
+
+internal fun List<NavGraphNode>.findNode(navKeyClass: KClass<out NavKey>): NavGraphNode? {
+    for (node in this) {
+        if (node.navKeyClass == navKeyClass) return node
+        val found = node.children.findNode(navKeyClass)
+        if (found != null) return found
     }
-    addNodes(nodes)
+    return null
 }

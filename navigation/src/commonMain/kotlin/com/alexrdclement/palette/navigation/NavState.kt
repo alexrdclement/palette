@@ -32,7 +32,6 @@ class NavState(
     ) {
         if (replace) {
             backStack[backStack.lastIndex] = route
-            return
         } else {
             backStack.add(route)
         }
