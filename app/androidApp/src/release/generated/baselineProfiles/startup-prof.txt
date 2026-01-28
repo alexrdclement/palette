@@ -3002,7 +3002,6 @@ HSPLandroidx/compose/runtime/SlotWriter;->sourceInformationOf$runtime(I)Landroid
 HSPLandroidx/compose/runtime/SlotWriter;->startData(ILjava/lang/Object;Ljava/lang/Object;)V
 PLandroidx/compose/runtime/SlotWriter;->startGroup()V
 HSPLandroidx/compose/runtime/SlotWriter;->startGroup(ILjava/lang/Object;)V
-HSPLandroidx/compose/runtime/SlotWriter;->startGroup(ILjava/lang/Object;ZLjava/lang/Object;)V
 HSPLandroidx/compose/runtime/SlotWriter;->startNode(ILjava/lang/Object;)V
 HSPLandroidx/compose/runtime/SlotWriter;->update(Ljava/lang/Object;)Ljava/lang/Object;
 PLandroidx/compose/runtime/SlotWriter;->updateAnchors(II)V
@@ -3957,7 +3956,6 @@ HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->clear()V
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->clear(Ljava/lang/Object;)V
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->drainChanges()Z
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->ensureMap(Lkotlin/jvm/functions/Function1;)Landroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap;
-HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->observeReads(Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)V
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->readObserver$lambda$0(Landroidx/compose/runtime/snapshots/SnapshotStateObserver;Ljava/lang/Object;)Lkotlin/Unit;
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->removeChanges()Ljava/util/Set;
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->sendNotifications$lambda$0(Landroidx/compose/runtime/snapshots/SnapshotStateObserver;)Lkotlin/Unit;
@@ -10613,12 +10611,6 @@ PLcom/alexrdclement/palette/modifiers/ShaderNode;->getShader()Lcom/alexrdclement
 HSPLcom/alexrdclement/palette/modifiers/ShaderNode;->onMeasureResultChanged()V
 HSPLcom/alexrdclement/palette/modifiers/ShaderNode;->onPlaced(Landroidx/compose/ui/layout/LayoutCoordinates;)V
 HSPLcom/alexrdclement/palette/modifiers/ShaderNode;->onRemeasured-ozmzZPI(J)V
-Lcom/alexrdclement/palette/navigation/AndroidxNavigationBackHandler_nonWebKt;
-HSPLcom/alexrdclement/palette/navigation/AndroidxNavigationBackHandler_nonWebKt;->NavigationEventHandler(Lcom/alexrdclement/palette/navigation/NavState;Lcom/alexrdclement/palette/navigation/NavController;Landroidx/compose/runtime/Composer;I)V
-Lcom/alexrdclement/palette/navigation/AndroidxNavigationBackHandler_nonWebKt$$ExternalSyntheticLambda0;
-HSPLcom/alexrdclement/palette/navigation/AndroidxNavigationBackHandler_nonWebKt$$ExternalSyntheticLambda0;-><init>(Lcom/alexrdclement/palette/navigation/NavController;)V
-Lcom/alexrdclement/palette/navigation/AndroidxNavigationBackHandler_nonWebKt$$ExternalSyntheticLambda1;
-HSPLcom/alexrdclement/palette/navigation/AndroidxNavigationBackHandler_nonWebKt$$ExternalSyntheticLambda1;-><init>(Lcom/alexrdclement/palette/navigation/NavState;Lcom/alexrdclement/palette/navigation/NavController;I)V
 Lcom/alexrdclement/palette/navigation/EnumNavKey;
 Lcom/alexrdclement/palette/navigation/NavController;
 HSPLcom/alexrdclement/palette/navigation/NavController;-><clinit>()V
@@ -10642,6 +10634,10 @@ HSPLcom/alexrdclement/palette/navigation/NavGraphNode;-><init>(Ljava/lang/String
 HSPLcom/alexrdclement/palette/navigation/NavGraphNode;-><init>(Ljava/lang/String;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function1;Lcom/alexrdclement/palette/navigation/NavKey;Ljava/util/List;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLcom/alexrdclement/palette/navigation/NavGraphNode;-><init>(Ljava/lang/String;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function1;Lcom/alexrdclement/palette/navigation/NavKey;Ljava/util/List;ZLkotlin/jvm/internal/DefaultConstructorMarker;)V
 Lcom/alexrdclement/palette/navigation/NavKey;
+HSPLcom/alexrdclement/palette/navigation/NavKey;-><clinit>()V
+Lcom/alexrdclement/palette/navigation/NavKey$Companion;
+HSPLcom/alexrdclement/palette/navigation/NavKey$Companion;-><clinit>()V
+HSPLcom/alexrdclement/palette/navigation/NavKey$Companion;-><init>()V
 Lcom/alexrdclement/palette/navigation/NavState;
 HSPLcom/alexrdclement/palette/navigation/NavState;-><clinit>()V
 HSPLcom/alexrdclement/palette/navigation/NavState;-><init>(Landroidx/compose/runtime/snapshots/SnapshotStateList;Ljava/util/List;)V
@@ -10649,6 +10645,12 @@ HSPLcom/alexrdclement/palette/navigation/NavState;-><init>(Landroidx/compose/run
 HSPLcom/alexrdclement/palette/navigation/NavState;->getBackStack()Landroidx/compose/runtime/snapshots/SnapshotStateList;
 Lcom/alexrdclement/palette/navigation/NavStateKt;
 HSPLcom/alexrdclement/palette/navigation/NavStateKt;->rememberNavState-sEOSLP8(Lcom/alexrdclement/palette/navigation/NavKey;Ljava/util/List;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/navigation/NavState;
+Lcom/alexrdclement/palette/navigation/NavigationEventHandler_nonWebKt;
+HSPLcom/alexrdclement/palette/navigation/NavigationEventHandler_nonWebKt;->NavigationEventHandler(Lcom/alexrdclement/palette/navigation/NavState;Lcom/alexrdclement/palette/navigation/NavController;Landroidx/compose/runtime/Composer;I)V
+Lcom/alexrdclement/palette/navigation/NavigationEventHandler_nonWebKt$$ExternalSyntheticLambda0;
+HSPLcom/alexrdclement/palette/navigation/NavigationEventHandler_nonWebKt$$ExternalSyntheticLambda0;-><init>(Lcom/alexrdclement/palette/navigation/NavController;)V
+Lcom/alexrdclement/palette/navigation/NavigationEventHandler_nonWebKt$$ExternalSyntheticLambda1;
+HSPLcom/alexrdclement/palette/navigation/NavigationEventHandler_nonWebKt$$ExternalSyntheticLambda1;-><init>(Lcom/alexrdclement/palette/navigation/NavState;Lcom/alexrdclement/palette/navigation/NavController;I)V
 Lcom/alexrdclement/palette/navigation/PathSegment;
 HSPLcom/alexrdclement/palette/navigation/PathSegment;-><clinit>()V
 HSPLcom/alexrdclement/palette/navigation/PathSegment;-><init>(Ljava/lang/String;)V
