@@ -29,7 +29,11 @@ fun NavKey.Companion.fromDeeplink(
 fun List<PathSegment>.toBackStack(
     navGraph: NavGraph,
 ): List<NavKey> {
-    fun matchRoute(nodes: List<NavGraphNode>, segmentIndex: Int, accumulated: List<NavKey>): List<NavKey>? {
+    fun matchRoute(
+        nodes: List<NavGraphNode>,
+        segmentIndex: Int,
+        accumulated: List<NavKey>,
+    ): List<NavKey>? {
         if (segmentIndex >= this.size) return null
 
         val segment = this[segmentIndex]
