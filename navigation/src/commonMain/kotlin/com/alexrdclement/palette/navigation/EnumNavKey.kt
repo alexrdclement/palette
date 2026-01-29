@@ -13,10 +13,6 @@ interface EnumNavKey<T : Enum<T>> : NavKey {
         get() = value.name.toPathSegment()
 }
 
-fun <T : Enum<T>> Enum<T>.toOrdinal(): Int = ordinal
-
-fun <T : Enum<T>> PathSegment.toEnumNavKeyOrdinal(entries: EnumEntries<T>): Int = toEnumEntry(entries).ordinal
-
 fun <T : Enum<T>> PathSegment.toEnumEntry(entries: EnumEntries<T>): T {
     if (this == PathSegment.Wildcard) error("Cannot convert wildcard to enum entry")
     return entries.find { it.name.toPathSegment() == this }
