@@ -18,14 +18,14 @@ import kotlinx.datetime.format
 @Composable
 fun DateTimeFormatScreen(
     format: DateTimeFormat,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
                 title = format.title,
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = onThemeClick,
             )
         },

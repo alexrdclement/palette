@@ -11,20 +11,20 @@ import com.alexrdclement.palette.components.layout.Scaffold
 @Composable
 fun AuthComponentScreen(
     component: AuthComponent,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
                 title = component.title,
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = onThemeClick,
             )
         },
     ) { innerPadding ->
         when (component) {
-            AuthComponent.AuthButton -> AuthButtonDemo(
+            AuthComponent.Button -> AuthButtonDemo(
                 modifier = Modifier.padding(innerPadding)
             )
         }

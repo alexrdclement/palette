@@ -916,7 +916,7 @@ HPLcom/alexrdclement/palette/components/menu/DropdownMenuKt;->DropdownMenu-4kj-_
 PLcom/alexrdclement/palette/components/menu/DropdownMenuKt$$ExternalSyntheticLambda9;-><init>(ZLkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;JLandroidx/compose/foundation/ScrollState;Landroidx/compose/ui/window/PopupProperties;Lkotlin/jvm/functions/Function3;II)V
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt;->$r8$lambda$mreoEvK_LwOFAkceBa7-ki1gqM8(Landroidx/compose/ui/graphics/Path;Landroidx/compose/ui/geometry/Size;Landroidx/compose/ui/unit/LayoutDirection;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt;-><clinit>()V
-HPLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt;->BackNavigationButton(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt;->BackNavigationButton(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt;->BackNavigationIconShape$lambda$0(Landroidx/compose/ui/graphics/Path;Landroidx/compose/ui/geometry/Size;Landroidx/compose/ui/unit/LayoutDirection;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt;->access$getBackNavigationIconShape$p()Landroidx/compose/ui/graphics/Shape;
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt$$ExternalSyntheticLambda2;-><init>()V

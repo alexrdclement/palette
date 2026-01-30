@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.androidx.profileinstaller)
 
     implementation(projects.app.composeApp)
+    implementation(projects.navigation)
 
     baselineProfile(projects.app.baselineProfile)
 }

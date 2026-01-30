@@ -40,7 +40,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun ShapeScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberShapeScreenState(themeState = themeController)
     val control = rememberShapeScreenControl(state = state, themeController = themeController)
@@ -49,7 +49,7 @@ fun ShapeScreen(
         topBar = {
             DemoTopBar(
                 title = "Shape",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )
@@ -203,7 +203,7 @@ private fun Preview() {
     PaletteTheme {
         ShapeScreen(
             themeController = rememberThemeController(),
-            onNavigateBack = {},
+            onNavigateUp = {},
         )
     }
 }

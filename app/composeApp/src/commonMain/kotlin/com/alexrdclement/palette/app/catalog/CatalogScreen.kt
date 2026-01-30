@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.alexrdclement.palette.app.main.MainCatalogItem
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.layout.TopBar
@@ -23,7 +24,7 @@ fun <T : CatalogItem> CatalogScreen(
     items: List<T>,
     onItemClick: (T) -> Unit,
     title: String? = null,
-    onNavigateBack: (() -> Unit)? = null,
+    onNavigateUp: (() -> Unit)? = null,
     actions: @Composable () -> Unit = {}
 ) {
     ReportDrawn()
@@ -34,8 +35,8 @@ fun <T : CatalogItem> CatalogScreen(
                 title = title?.let {
                     { Text(title, style = PaletteTheme.styles.text.titleMedium) }
                 },
-                navButton = onNavigateBack?.let {
-                    { BackNavigationButton(onNavigateBack) }
+                navButton = onNavigateUp?.let {
+                    { BackNavigationButton(onNavigateUp) }
                 },
                 actions = actions,
             )
@@ -71,7 +72,7 @@ private fun WithNavPreview() {
             items = MainCatalogItem.entries.toList(),
             onItemClick = {},
             title = "Components",
-            onNavigateBack = {},
+            onNavigateUp = {},
         )
     }
 }

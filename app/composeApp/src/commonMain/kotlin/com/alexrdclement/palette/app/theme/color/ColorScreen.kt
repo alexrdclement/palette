@@ -45,7 +45,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun ColorScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberColorScreenState(themeState = themeController)
     val control = rememberColorScreenControl(state = state, themeController = themeController)
@@ -56,7 +56,7 @@ fun ColorScreen(
         topBar = {
             DemoTopBar(
                 title = "Color",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )
@@ -219,7 +219,7 @@ private fun Preview() {
     PaletteTheme {
         ColorScreen(
             themeController = rememberThemeController(),
-            onNavigateBack = {},
+            onNavigateUp = {},
         )
     }
 }

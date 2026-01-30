@@ -12,10 +12,10 @@ import com.alexrdclement.palette.theme.PaletteTheme
 @Composable
 fun DemoTopBar(
     title: String,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
     onThemeClick: () -> Unit,
     navButton: @Composable () -> Unit = {
-        BackNavigationButton(onNavigateBack)
+        BackNavigationButton(onNavigateUp)
     },
     actions: @Composable () -> Unit = {
         ThemeButton(onClick = onThemeClick)

@@ -33,7 +33,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun IndicationScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberIndicationScreenState(themeState = themeController)
     val control = rememberIndicationScreenControl(state = state, themeController = themeController)
@@ -42,7 +42,7 @@ fun IndicationScreen(
         topBar = {
             DemoTopBar(
                 title = "Indication",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

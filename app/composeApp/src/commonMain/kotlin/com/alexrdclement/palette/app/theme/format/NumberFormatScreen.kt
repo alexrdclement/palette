@@ -29,7 +29,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun NumberFormatScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberNumberFormatScreenState(formats = themeController.formats)
     val control = rememberNumberFormatScreenControl(state = state, themeController = themeController)
@@ -38,7 +38,7 @@ fun NumberFormatScreen(
         topBar = {
             DemoTopBar(
                 title = "Number",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

@@ -37,7 +37,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun TextStyleScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberTextStyleScreenState(themeState = themeController)
     val control = rememberTextStyleScreenControl(state = state, themeController = themeController)
@@ -46,7 +46,7 @@ fun TextStyleScreen(
         topBar = {
             DemoTopBar(
                 title = "Text",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

@@ -35,7 +35,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun BorderStyleScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberBorderStyleScreenState(themeState = themeController)
     val control = rememberBorderStyleScreenControl(state = state, themeController = themeController)
@@ -44,7 +44,7 @@ fun BorderStyleScreen(
         topBar = {
             DemoTopBar(
                 title = "Border style",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

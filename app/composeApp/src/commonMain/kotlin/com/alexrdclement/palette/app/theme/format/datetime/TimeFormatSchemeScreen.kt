@@ -31,7 +31,7 @@ import kotlinx.datetime.format
 @Composable
 fun TimeFormatSchemeScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberTimeFormatSchemeScreenState(
         formats = themeController.formats,
@@ -45,7 +45,7 @@ fun TimeFormatSchemeScreen(
         topBar = {
             DemoTopBar(
                 title = "Time",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

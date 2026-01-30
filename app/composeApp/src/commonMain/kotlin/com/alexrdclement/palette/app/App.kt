@@ -1,25 +1,19 @@
 package com.alexrdclement.palette.app
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.alexrdclement.palette.app.navigation.PaletteNavHost
+import com.alexrdclement.palette.app.navigation.PaletteNav
+import com.alexrdclement.palette.app.navigation.rememberPaletteNavController
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.rememberThemeController
 
 @Composable
 fun App(
-    onNavHostReady: suspend (NavController) -> Unit = {}
+    navController: NavController = rememberPaletteNavController(),
+    themeController: ThemeController = rememberThemeController(),
 ) {
-    val navController = rememberNavController()
-    val themeController = rememberThemeController()
-
-    LaunchedEffect(navController) {
-        onNavHostReady(navController)
-    }
-
     PaletteTheme(
         lightColorScheme = themeController.lightColorScheme,
         darkColorScheme = themeController.darkColorScheme,
@@ -32,7 +26,8 @@ fun App(
         formats = themeController.formats,
     ) {
         Surface {
-            PaletteNavHost(
+            PaletteNav(
+                navState = navController.state,
                 navController = navController,
                 themeController = themeController,
             )
