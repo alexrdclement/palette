@@ -12,13 +12,12 @@ import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.theme.control.ThemeController
 
 fun NavGraphBuilder.dateTimeFormatNavGraph() = navGraph(
-    route = DateTimeFormatGraph,
+    root = DateTimeFormatGraph,
     start = DateTimeFormatCatalogRoute,
 ) {
     route(DateTimeFormatCatalogRoute)
     wildcardRoute<DateTimeFormatItemRoute> { pathSegment ->
-        if (pathSegment == PathSegment.Wildcard) null
-        else DateTimeFormatItemRoute(pathSegment)
+        DateTimeFormatItemRoute(pathSegment)
     }
 }
 
@@ -37,26 +36,26 @@ fun DateTimeFormatNav(
                 navController.navigate(DateTimeFormatItemRoute(item.ordinal))
             },
             title = "DateTime",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
         is DateTimeFormatItemRoute -> {
             val format = DateTimeFormatCatalogItem.entries[route.ordinal]
             when (format) {
                 DateTimeFormatCatalogItem.Date -> DateFormatSchemeScreen(
                     themeController = themeController,
-                    onNavigateBack = navController::goBack,
+                    onNavigateUp = navController::goBack,
                 )
                 DateTimeFormatCatalogItem.DateTime -> DateTimeFormatSchemeScreen(
                     themeController = themeController,
-                    onNavigateBack = navController::goBack,
+                    onNavigateUp = navController::goBack,
                 )
                 DateTimeFormatCatalogItem.Instant -> InstantFormatSchemeScreen(
                     themeController = themeController,
-                    onNavigateBack = navController::goBack,
+                    onNavigateUp = navController::goBack,
                 )
                 DateTimeFormatCatalogItem.Time -> TimeFormatSchemeScreen(
                     themeController = themeController,
-                    onNavigateBack = navController::goBack,
+                    onNavigateUp = navController::goBack,
                 )
             }
         }

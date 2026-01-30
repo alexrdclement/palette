@@ -18,14 +18,14 @@ import com.alexrdclement.palette.modifiers.demo.WarpDemo
 @Composable
 fun ModifierScreen(
     modifierType: DemoModifier,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
                 title = modifierType.name,
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = onThemeClick,
             )
         },
@@ -62,7 +62,7 @@ private fun Preview() {
     PalettePreview {
         ModifierScreen(
             modifierType = DemoModifier.ColorSplit,
-            onNavigateBack = {},
+            onNavigateUp = {},
             onThemeClick = {},
         )
     }

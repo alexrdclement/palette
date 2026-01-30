@@ -1,25 +1,39 @@
 package com.alexrdclement.palette.navigation
 
+inline fun <reified T : NavKey> navGraph(
+    root: T,
+    start: NavKey,
+    noinline block: NavGraphBuilder.() -> Unit = {},
+): NavGraph {
+    return NavGraphBuilder().apply {
+        navGraph(
+            root = root,
+            start = start,
+            children = block,
+        )
+    }.build(root)
+}
+
 class NavGraphBuilder(
     val parent: NavKey? = null,
 ) {
     val nodes = mutableListOf<NavGraphNode>()
 
     inline fun <reified T : NavKey> navGraph(
-        route: T,
+        root: T,
         start: NavKey,
         children: NavGraphBuilder.() -> Unit = {}
     ) {
-        val childrenBuilder = NavGraphBuilder(parent = route)
+        val childrenBuilder = NavGraphBuilder(parent = root)
         childrenBuilder.children()
 
         nodes.add(
             NavGraphNode(
-                pathSegment = route.pathSegment,
+                pathSegment = root.pathSegment,
                 navKeyClass = T::class,
-                parser = { route },
+                parser = { root },
                 parent = parent,
-                children = childrenBuilder.build().nodes,
+                children = childrenBuilder.nodes,
                 graphStartRoute = start,
             )
         )
@@ -39,7 +53,7 @@ class NavGraphBuilder(
                 navKeyClass = T::class,
                 parser = parser,
                 parent = parent,
-                children = childrenBuilder.build().nodes,
+                children = childrenBuilder.nodes,
             )
         )
     }
@@ -50,9 +64,9 @@ class NavGraphBuilder(
     ) {
         val pathSegment = PathSegment.Wildcard
 
-        // Parser should return null for wildcard during tree construction
-        // Actual parsing happens at runtime with real path segments
-        val childrenBuilder = NavGraphBuilder(parent = parser(pathSegment))
+        // For children of wildcard routes, use the current parent (the container)
+        // since wildcard routes don't have a single concrete instance to use as parent
+        val childrenBuilder = NavGraphBuilder(parent = parent)
         childrenBuilder.children()
 
         nodes.add(
@@ -61,7 +75,7 @@ class NavGraphBuilder(
                 navKeyClass = T::class,
                 parser = parser,
                 parent = parent,
-                children = childrenBuilder.build().nodes,
+                children = childrenBuilder.nodes,
             )
         )
     }
@@ -77,9 +91,5 @@ class NavGraphBuilder(
         )
     }
 
-    fun build(): NavGraph = NavGraph(nodes = nodes)
-}
-
-fun navGraph(block: NavGraphBuilder.() -> Unit): NavGraph {
-    return NavGraphBuilder().apply(block).build()
+    fun build(root: NavKey): NavGraph = NavGraph(root = root, nodes = nodes)
 }

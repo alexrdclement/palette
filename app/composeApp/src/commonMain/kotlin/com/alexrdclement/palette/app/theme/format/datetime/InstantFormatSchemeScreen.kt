@@ -31,7 +31,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun InstantFormatSchemeScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberInstantFormatSchemeScreenState(
         formats = themeController.formats,
@@ -45,7 +45,7 @@ fun InstantFormatSchemeScreen(
         topBar = {
             DemoTopBar(
                 title = "Instant",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

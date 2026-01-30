@@ -3,14 +3,13 @@ package com.alexrdclement.palette.app.theme.interaction.navigation
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.theme.interaction.IndicationScreen
-import com.alexrdclement.palette.app.theme.interaction.navigation.Interaction
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.theme.control.ThemeController
 
 fun NavGraphBuilder.interactionNavGraph() = navGraph(
-    route = InteractionGraph,
+    root = InteractionGraph,
     start = InteractionCatalogRoute,
 ) {
     route(InteractionCatalogRoute)
@@ -49,11 +48,11 @@ private fun InteractionNav(
                 }
             },
             title = "Interaction",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
         is IndicationRoute -> IndicationScreen(
             themeController = themeController,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
     }
 }

@@ -29,7 +29,7 @@ import kotlinx.collections.immutable.toPersistentList
 @Composable
 fun MoneyFormatScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberMoneyFormatScreenState(formats = themeController.formats)
     val control = rememberMoneyFormatScreenControl(state = state, themeController = themeController)
@@ -38,7 +38,7 @@ fun MoneyFormatScreen(
         topBar = {
             DemoTopBar(
                 title = "Money format",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

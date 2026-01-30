@@ -12,14 +12,14 @@ import com.alexrdclement.palette.formats.demo.core.TextFormatDemo
 @Composable
 fun CoreFormatScreen(
     format: CoreFormat,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
                 title = format.title,
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = onThemeClick,
             )
         },

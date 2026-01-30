@@ -36,7 +36,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun TypographyScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberTypographyScreenState(themeState = themeController)
     val control = rememberTypographyScreenControl(state = state, themeController = themeController)
@@ -45,7 +45,7 @@ fun TypographyScreen(
         topBar = {
             DemoTopBar(
                 title = "Typography",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

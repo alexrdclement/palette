@@ -18,7 +18,6 @@ kotlinx-serialization-json = "1.9.0"
 ktor = "3.3.3"
 navigationevent = "1.0.0"
 navigation-compose = "2.9.1"
-navigation3-ui = "1.0.0-alpha06"
 navigation3-browser = "0.3.1"
 paparazzi = "2.0.0-alpha02"
 profileinstaller = "1.4.1"
@@ -54,7 +53,6 @@ ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.r
 ktor-client-java = { group = "io.ktor", name = "ktor-client-java", version.ref = "ktor" }
 navigationevent = { group = "org.jetbrains.androidx.navigationevent", name = "navigationevent-compose", version.ref = "navigationevent" }
 navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
-navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "navigation3-ui" }
 navigation3-browser = { module = "com.github.terrakok:navigation3-browser", version.ref = "navigation3-browser" }
 paparazzi = { group = "app.cash.paparazzi", name = "paparazzi", version.ref = "paparazzi" }
 test-parameter-injector = { group = "com.google.testparameterinjector", name = "test-parameter-injector", version.ref = "test-parameter-injector" }

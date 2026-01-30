@@ -12,7 +12,7 @@ import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.theme.control.ThemeController
 
 fun NavGraphBuilder.stylesNavGraph() = navGraph(
-    route = StylesGraph,
+    root = StylesGraph,
     start = StylesCatalogRoute,
 ) {
     route(StylesCatalogRoute)
@@ -55,19 +55,19 @@ private fun StylesNav(
                 }
             },
             title = "Styles",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
         is BorderStylesRoute -> BorderStyleScreen(
             themeController = themeController,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
         is ButtonStylesRoute -> ButtonStyleScreen(
             themeController = themeController,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
         is TextStylesRoute -> TextStyleScreen(
             themeController = themeController,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
     }
 }

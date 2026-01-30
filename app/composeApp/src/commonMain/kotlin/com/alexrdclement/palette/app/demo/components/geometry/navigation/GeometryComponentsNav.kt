@@ -10,13 +10,12 @@ import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.PathSegment
 
 fun NavGraphBuilder.geometryComponentsNavGraph() = navGraph(
-    route = GeometryComponentsGraph,
+    root = GeometryComponentsGraph,
     start = GeometryComponentCatalogRoute,
 ) {
     route(GeometryComponentCatalogRoute)
     wildcardRoute<GeometryComponentRoute> { pathSegment ->
-        if (pathSegment == PathSegment.Wildcard) null
-        else GeometryComponentRoute(pathSegment)
+        GeometryComponentRoute(pathSegment)
     }
 }
 
@@ -34,7 +33,7 @@ fun GeometryComponentsNav(
                 navController.navigate(GeometryComponentRoute(component))
             },
             title = "Geometry",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             actions = {
                 ThemeButton(
                     onClick = { navController.navigate(ThemeGraph) },
@@ -43,7 +42,7 @@ fun GeometryComponentsNav(
         )
         is GeometryComponentRoute -> GeometryComponentScreen(
             component = route.component,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
             onThemeClick = {
                 navController.navigate(ThemeGraph)
             },

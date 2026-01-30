@@ -1,8 +1,10 @@
 package com.alexrdclement.palette.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -10,20 +12,31 @@ import androidx.compose.runtime.toMutableStateList
 
 @Composable
 fun rememberNavState(
-    startRoute: NavKey,
     navGraph: NavGraph,
+    deeplink: String? = null,
+    onWouldBecomeEmpty: () -> Unit = {},
 ): NavState {
+    val startRoute = navGraph.startRoute
     val backStack = rememberSaveable(
         navGraph,
         saver = navBackStackSaver(navGraph)
     ) {
-        mutableStateListOf(startRoute)
+        if (deeplink == null) return@rememberSaveable mutableStateListOf(startRoute)
+
+        val route = navGraph.parseDeeplink(deeplink)
+        if (route != null) {
+            mutableStateListOf(route)
+        } else {
+            mutableStateListOf(startRoute)
+        }
     }
+    val currentOnWouldBecomeEmpty by rememberUpdatedState(onWouldBecomeEmpty)
 
     return remember(backStack, navGraph) {
         NavState(
             backStack = backStack,
             navGraph = navGraph,
+            onWouldBecomeEmpty = currentOnWouldBecomeEmpty,
         )
     }
 }
@@ -31,7 +44,14 @@ fun rememberNavState(
 class NavState(
     val backStack: SnapshotStateList<NavKey>,
     val navGraph: NavGraph,
+    val onWouldBecomeEmpty: () -> Unit = {},
 ) {
+    val currentRoute: NavKey?
+        get() = backStack.lastOrNull()
+
+    val previousRoute: NavKey?
+        get() = backStack.getOrNull(backStack.size - 2)
+
     fun navigate(
         route: NavKey,
         replace: Boolean = false,
@@ -44,6 +64,10 @@ class NavState(
     }
 
     fun goBack() {
+        if (backStack.size <= 1) {
+            onWouldBecomeEmpty()
+            return
+        }
         backStack.removeLastOrNull()
     }
 }

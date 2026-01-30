@@ -10,13 +10,12 @@ import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.PathSegment
 
 fun NavGraphBuilder.moneyFormatsNavGraph() = navGraph(
-    route = MoneyFormatsGraph,
+    root = MoneyFormatsGraph,
     start = MoneyFormatCatalogRoute,
 ) {
     route(MoneyFormatCatalogRoute)
     wildcardRoute<MoneyFormatRoute> { pathSegment ->
-        if (pathSegment == PathSegment.Wildcard) null
-        else MoneyFormatRoute(pathSegment)
+        MoneyFormatRoute(pathSegment)
     }
 }
 
@@ -34,7 +33,7 @@ fun MoneyFormatsNav(
                 navController.navigate(MoneyFormatRoute(format))
             },
             title = "Money",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             actions = {
                 ThemeButton(
                     onClick = { navController.navigate(ThemeGraph) },
@@ -43,7 +42,7 @@ fun MoneyFormatsNav(
         )
         is MoneyFormatRoute -> MoneyFormatScreen(
             format = route.format,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
             onThemeClick = {
                 navController.navigate(ThemeGraph)
             },

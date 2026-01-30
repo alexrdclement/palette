@@ -10,13 +10,12 @@ import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.PathSegment
 
 fun NavGraphBuilder.mediaComponentsNavGraph() = navGraph(
-    route = MediaComponentsGraph,
+    root = MediaComponentsGraph,
     start = MediaComponentCatalogRoute,
 ) {
     route(MediaComponentCatalogRoute)
     wildcardRoute<MediaComponentRoute> { pathSegment ->
-        if (pathSegment == PathSegment.Wildcard) null
-        else MediaComponentRoute(pathSegment)
+        MediaComponentRoute(pathSegment)
     }
 }
 
@@ -34,7 +33,7 @@ fun MediaComponentsNav(
                 navController.navigate(MediaComponentRoute(component))
             },
             title = "Media",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             actions = {
                 ThemeButton(
                     onClick = { navController.navigate(ThemeGraph) },
@@ -43,7 +42,7 @@ fun MediaComponentsNav(
         )
         is MediaComponentRoute -> MediaComponentScreen(
             component = route.component,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
             onThemeClick = {
                 navController.navigate(ThemeGraph)
             },

@@ -30,7 +30,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun SpacingScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberSpacingScreenState(themeState = themeController)
     val control = rememberSpacingScreenControl(state = state, themeController = themeController)
@@ -39,7 +39,7 @@ fun SpacingScreen(
         topBar = {
             DemoTopBar(
                 title = "Spacing",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

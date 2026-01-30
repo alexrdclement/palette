@@ -21,7 +21,7 @@ import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.NavKey
 
 fun NavGraphBuilder.formatsNavGraph() = navGraph(
-    route = FormatsGraph,
+    root = FormatsGraph,
     start = FormatCatalogRoute,
 ) {
     route(FormatCatalogRoute)
@@ -49,7 +49,7 @@ fun FormatsNav(
                 navController.navigate(targetRoute)
             },
             title = "Formats",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             actions = {
                 ThemeButton(
                     onClick = { navController.navigate(ThemeGraph) },

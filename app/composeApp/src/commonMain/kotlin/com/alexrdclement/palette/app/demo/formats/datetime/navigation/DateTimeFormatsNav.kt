@@ -11,13 +11,12 @@ import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 
 fun NavGraphBuilder.dateTimeFormatsNavGraph() = navGraph(
-    route = DateTimeFormatsGraph,
+    root = DateTimeFormatsGraph,
     start = DateTimeFormatCatalogRoute,
 ) {
     route(DateTimeFormatCatalogRoute)
     wildcardRoute<DateTimeFormatRoute> { pathSegment ->
-        if (pathSegment == PathSegment.Wildcard) null
-        else DateTimeFormatRoute(pathSegment)
+        DateTimeFormatRoute(pathSegment)
     }
 }
 
@@ -35,7 +34,7 @@ fun DateTimeFormatsNav(
                 navController.navigate(DateTimeFormatRoute(format))
             },
             title = "DateTime",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             actions = {
                 ThemeButton(
                     onClick = { navController.navigate(ThemeGraph) },
@@ -44,7 +43,7 @@ fun DateTimeFormatsNav(
         )
         is DateTimeFormatRoute -> DateTimeFormatScreen(
             format = route.format,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
             onThemeClick = {
                 navController.navigate(ThemeGraph)
             },

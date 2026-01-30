@@ -34,7 +34,7 @@ import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.NavKey
 
 fun NavGraphBuilder.componentsNavGraph() = navGraph(
-    route = ComponentsGraph,
+    root = ComponentsGraph,
     start = ComponentCatalogRoute,
 ) {
     route(ComponentCatalogRoute)
@@ -68,7 +68,7 @@ fun ComponentsNav(
                 navController.navigate(targetRoute)
             },
             title = "Components",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             actions = {
                 ThemeButton(
                     onClick = { navController.navigate(ThemeGraph) },

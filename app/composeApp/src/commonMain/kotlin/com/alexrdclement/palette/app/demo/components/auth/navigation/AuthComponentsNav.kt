@@ -10,13 +10,12 @@ import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.PathSegment
 
 fun NavGraphBuilder.authComponentsNavGraph() = navGraph(
-    route = AuthComponentsGraph,
+    root = AuthComponentsGraph,
     start = AuthComponentCatalogRoute,
 ) {
     route(AuthComponentCatalogRoute)
     wildcardRoute<AuthComponentRoute> { pathSegment ->
-        if (pathSegment == PathSegment.Wildcard) null
-        else AuthComponentRoute(pathSegment)
+        AuthComponentRoute(pathSegment)
     }
 }
 
@@ -34,7 +33,7 @@ fun AuthComponentsNav(
                 navController.navigate(AuthComponentRoute(component))
             },
             title = "Auth",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             actions = {
                 ThemeButton(
                     onClick = { navController.navigate(ThemeGraph) },
@@ -43,7 +42,7 @@ fun AuthComponentsNav(
         )
         is AuthComponentRoute -> AuthComponentScreen(
             component = route.component,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             onThemeClick = {
                 navController.navigate(ThemeGraph)
             },

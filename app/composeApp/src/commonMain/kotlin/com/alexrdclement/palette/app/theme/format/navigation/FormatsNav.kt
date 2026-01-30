@@ -15,7 +15,7 @@ import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.theme.control.ThemeController
 
 fun NavGraphBuilder.formatNavGraph() = navGraph(
-    route = FormatsGraph,
+    root = FormatsGraph,
     start = FormatCatalogRoute,
 ) {
     route(FormatCatalogRoute)
@@ -66,20 +66,20 @@ private fun FormatsNav(
                 }
             },
             title = "Format",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
 
         is MoneyFormatRoute -> MoneyFormatScreen(
             themeController = themeController,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
         is NumberFormatRoute -> NumberFormatScreen(
             themeController = themeController,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
         is TextFormatRoute -> TextFormatScreen(
             themeController = themeController,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
         )
     }
 }

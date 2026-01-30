@@ -11,14 +11,14 @@ import com.alexrdclement.palette.components.layout.Scaffold
 @Composable
 fun ColorComponentScreen(
     component: ColorComponent,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
                 title = component.title,
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = onThemeClick,
             )
         },

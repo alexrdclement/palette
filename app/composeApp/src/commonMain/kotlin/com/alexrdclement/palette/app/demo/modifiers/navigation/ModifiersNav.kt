@@ -12,13 +12,12 @@ import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 
 fun NavGraphBuilder.modifiersNavGraph() = navGraph(
-    route = ModifiersGraph,
+    root = ModifiersGraph,
     start = ModifierCatalogRoute,
 ) {
     route(ModifierCatalogRoute)
     wildcardRoute<ModifierRoute> { pathSegment ->
-        if (pathSegment == PathSegment.Wildcard) null
-        else ModifierRoute(pathSegment)
+        ModifierRoute(pathSegment)
     }
 }
 
@@ -36,7 +35,7 @@ fun ModifiersNav(
                 navController.navigate(ModifierRoute(modifier))
             },
             title = "Modifiers",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             actions = {
                 ThemeButton(
                     onClick = { navController.navigate(ThemeGraph) },
@@ -45,7 +44,7 @@ fun ModifiersNav(
         )
         is ModifierRoute -> ModifierScreen(
             modifierType = route.modifier,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             onThemeClick = {
                 navController.navigate(ThemeGraph)
             },

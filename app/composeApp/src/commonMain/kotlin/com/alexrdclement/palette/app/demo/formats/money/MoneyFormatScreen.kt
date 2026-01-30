@@ -11,14 +11,14 @@ import com.alexrdclement.palette.formats.demo.money.MoneyFormatDemo
 @Composable
 fun MoneyFormatScreen(
     format: MoneyFormat,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             DemoTopBar(
                 title = format.title,
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = onThemeClick,
             )
         },

@@ -29,7 +29,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun TextFormatScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberTextFormatScreenState(formats = themeController.formats)
     val control = rememberTextFormatScreenControl(state = state, themeController = themeController)
@@ -38,7 +38,7 @@ fun TextFormatScreen(
         topBar = {
             DemoTopBar(
                 title = "Text",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

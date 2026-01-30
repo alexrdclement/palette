@@ -1,17 +1,36 @@
 package com.alexrdclement.palette.navigation
 
-import kotlin.jvm.JvmInline
 import kotlin.reflect.KClass
 
-@JvmInline
-value class NavGraph(val nodes: List<NavGraphNode>)
+data class NavGraph(
+    val root: NavKey,
+    val nodes: List<NavGraphNode>,
+) {
+    val startRoute: NavKey
+        get() = resolve(root)
+}
+
+/**
+ * Resolves a route to its start route if it's a graph, recursively.
+ * If the route is not a graph or is already a leaf route, returns the route itself.
+ */
+fun NavGraph.resolve(route: NavKey): NavKey {
+    fun resolve(currentRoute: NavKey): NavKey {
+        val node = findNode(currentRoute::class) ?: return currentRoute
+        val start = node.graphStartRoute ?: return currentRoute
+        // Stop if the start route is the same as current route (prevents infinite loop)
+        if (start::class == currentRoute::class) return currentRoute
+        return resolve(start)
+    }
+    return resolve(route)
+}
 
 fun NavKey.toDeeplink(tree: NavGraph): String {
     val node = tree.findNode(this::class) ?: return pathSegment.value
 
     val parentPath = node.parent?.toDeeplink(tree)
 
-    return if (parentPath != null) {
+    return if (!parentPath.isNullOrEmpty()) {
         "$parentPath/${pathSegment.value}"
     } else {
         pathSegment.value
@@ -22,46 +41,54 @@ fun NavKey.Companion.fromDeeplink(
     deeplink: String,
     navGraph: NavGraph,
 ): NavKey? {
-    val segments = deeplink.split("/").filter { it.isNotEmpty() }.map(::PathSegment)
-    return segments.toBackStack(navGraph).lastOrNull()
+    return navGraph.parseDeeplink(deeplink)
 }
 
-fun List<PathSegment>.toBackStack(
+fun NavGraph.parseDeeplink(deeplink: String): NavKey? {
+    val segments = deeplink.split("/").filter { it.isNotEmpty() }.map(::PathSegment)
+    return segments.toNavKey(this)
+}
+
+internal fun List<PathSegment>.toNavKey(
     navGraph: NavGraph,
-): List<NavKey> {
+): NavKey? {
     fun matchRoute(
         nodes: List<NavGraphNode>,
         segmentIndex: Int,
-        accumulated: List<NavKey>,
-    ): List<NavKey>? {
+    ): NavKey? {
         if (segmentIndex >= this.size) return null
 
         val segment = this[segmentIndex]
 
         for (node in nodes) {
-            val isMatch = node.pathSegment == PathSegment.Wildcard || node.pathSegment == segment
-
-            if (isMatch) {
-                val parsed = node.parser(segment) ?: continue
-                val newAccumulated = accumulated + parsed
-
-                // Try to match children first
-                if (node.children.isNotEmpty() && segmentIndex + 1 < this@toBackStack.size) {
-                    val childMatch = matchRoute(node.children, segmentIndex + 1, newAccumulated)
-                    if (childMatch != null) return childMatch
-                }
-
-                // If we're at the last segment, return the accumulated result
-                if (segmentIndex == this@toBackStack.size - 1) {
-                    return newAccumulated
-                }
+            // Skip nodes with empty path segments - search their children directly
+            if (node.pathSegment.value.isEmpty() && node.children.isNotEmpty()) {
+                val childMatch = matchRoute(node.children, segmentIndex)
+                if (childMatch != null) return childMatch
+                continue
             }
+
+            val isMatch = node.pathSegment == PathSegment.Wildcard || node.pathSegment == segment
+            if (!isMatch) continue
+
+            val parsed = node.parser(segment) ?: continue
+
+            val isLastSegment = segmentIndex == this@toNavKey.size - 1
+            if (isLastSegment || node.children.isEmpty()) {
+                return navGraph.resolve(parsed)
+            }
+
+            val childMatch = matchRoute(node.children, segmentIndex + 1)
+            if (childMatch != null) return childMatch
         }
 
         return null
     }
 
-    return matchRoute(navGraph.nodes, 0, emptyList()) ?: emptyList()
+    return matchRoute(
+        nodes = navGraph.nodes,
+        segmentIndex = 0,
+    )
 }
 
 internal fun NavGraph.findNode(navKeyClass: KClass<out NavKey>): NavGraphNode? {

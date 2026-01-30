@@ -10,13 +10,12 @@ import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.PathSegment
 
 fun NavGraphBuilder.colorComponentsNavGraph() = navGraph(
-    route = ColorComponentsGraph,
+    root = ColorComponentsGraph,
     start = ColorComponentCatalogRoute,
 ) {
     route(ColorComponentCatalogRoute)
     wildcardRoute<ColorComponentRoute> { pathSegment ->
-        if (pathSegment == PathSegment.Wildcard) null
-        else ColorComponentRoute(pathSegment)
+        ColorComponentRoute(pathSegment)
     }
 }
 
@@ -34,7 +33,7 @@ fun ColorComponentsNav(
                 navController.navigate(ColorComponentRoute(component))
             },
             title = "Color",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             actions = {
                 ThemeButton(
                     onClick = { navController.navigate(ThemeGraph) },
@@ -43,7 +42,7 @@ fun ColorComponentsNav(
         )
         is ColorComponentRoute -> ColorComponentScreen(
             component = route.component,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
             onThemeClick = {
                 navController.navigate(ThemeGraph)
             },

@@ -40,7 +40,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun ButtonStyleScreen(
     themeController: ThemeController,
-    onNavigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
 ) {
     val state = rememberButtonStyleScreenState(themeState = themeController)
     val control = rememberButtonStyleScreenControl(state = state, themeController = themeController)
@@ -49,7 +49,7 @@ fun ButtonStyleScreen(
         topBar = {
             DemoTopBar(
                 title = "Button style",
-                onNavigateBack = onNavigateBack,
+                onNavigateUp = onNavigateUp,
                 onThemeClick = {},
                 actions = {},
             )

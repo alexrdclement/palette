@@ -10,13 +10,12 @@ import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.PathSegment
 
 fun NavGraphBuilder.moneyComponentsNavGraph() = navGraph(
-    route = MoneyComponentsGraph,
+    root = MoneyComponentsGraph,
     start = MoneyComponentCatalogRoute,
 ) {
     route(MoneyComponentCatalogRoute)
     wildcardRoute<MoneyComponentRoute> { pathSegment ->
-        if (pathSegment == PathSegment.Wildcard) null
-        else MoneyComponentRoute(pathSegment)
+        MoneyComponentRoute(pathSegment)
     }
 }
 
@@ -34,7 +33,7 @@ fun MoneyComponentsNav(
                 navController.navigate(MoneyComponentRoute(component))
             },
             title = "Money",
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::navigateUp,
             actions = {
                 ThemeButton(
                     onClick = { navController.navigate(ThemeGraph) },
@@ -43,7 +42,7 @@ fun MoneyComponentsNav(
         )
         is MoneyComponentRoute -> MoneyComponentScreen(
             component = route.component,
-            onNavigateBack = navController::goBack,
+            onNavigateUp = navController::goBack,
             onThemeClick = {
                 navController.navigate(ThemeGraph)
             },
