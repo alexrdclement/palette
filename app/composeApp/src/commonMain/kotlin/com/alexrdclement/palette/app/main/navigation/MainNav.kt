@@ -7,7 +7,6 @@ import com.alexrdclement.palette.app.demo.components.navigation.ComponentsGraph
 import com.alexrdclement.palette.app.demo.formats.navigation.FormatsGraph
 import com.alexrdclement.palette.app.demo.modifiers.navigation.ModifiersGraph
 import com.alexrdclement.palette.app.main.MainCatalogItem
-import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
