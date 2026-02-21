@@ -3,6 +3,7 @@ package com.alexrdclement.palette.app.demo.components.media.navigation
 import com.alexrdclement.palette.navigation.EnumNavKey
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
+import com.alexrdclement.palette.navigation.navKeySerializersModule
 import com.alexrdclement.palette.navigation.toEnumEntry
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -32,4 +33,10 @@ data class MediaComponentRoute(
     val component get() = value
     constructor(component: MediaComponent) : this(component.ordinal)
     constructor(pathSegment: PathSegment) : this(component = pathSegment.toEnumEntry(MediaComponent.entries))
+}
+
+val mediaComponentsSerializersModule = navKeySerializersModule {
+    subclass<MediaComponentsGraph>()
+    subclass<MediaComponentCatalogRoute>()
+    subclass<MediaComponentRoute>()
 }

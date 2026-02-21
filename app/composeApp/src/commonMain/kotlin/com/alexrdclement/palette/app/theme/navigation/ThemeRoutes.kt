@@ -1,6 +1,10 @@
 package com.alexrdclement.palette.app.theme.navigation
 
+import com.alexrdclement.palette.app.theme.format.navigation.formatSerializersModule
+import com.alexrdclement.palette.app.theme.interaction.navigation.interactionSerializersModule
+import com.alexrdclement.palette.app.theme.styles.navigation.stylesSerializersModule
 import com.alexrdclement.palette.navigation.NavKey
+import com.alexrdclement.palette.navigation.navKeySerializersModule
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -14,13 +18,13 @@ data object ThemeGraph : ThemeRoute {
 }
 
 @Serializable
-@SerialName("catalog")
+@SerialName("theme-catalog")
 data object ThemeCatalogRoute : ThemeRoute {
     override val pathSegment = "catalog".toPathSegment()
 }
 
 @Serializable
-@SerialName("color")
+@SerialName("theme-color")
 data object ColorRoute : ThemeRoute {
     override val pathSegment = "color".toPathSegment()
 }
@@ -41,4 +45,16 @@ data object SpacingRoute : ThemeRoute {
 @SerialName("typography")
 data object TypographyRoute : ThemeRoute {
     override val pathSegment = "typography".toPathSegment()
+}
+
+val themeSerializersModule = navKeySerializersModule {
+    subclass<ThemeGraph>()
+    subclass<ThemeCatalogRoute>()
+    subclass<ColorRoute>()
+    subclass<ShapeRoute>()
+    subclass<SpacingRoute>()
+    subclass<TypographyRoute>()
+    include(formatSerializersModule)
+    include(interactionSerializersModule)
+    include(stylesSerializersModule)
 }

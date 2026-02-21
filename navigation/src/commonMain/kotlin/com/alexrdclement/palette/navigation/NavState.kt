@@ -1,35 +1,38 @@
 package com.alexrdclement.palette.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
-import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.runtime.toMutableStateList
+import androidx.navigation3.runtime.NavKey as Navigation3NavKey
+import kotlinx.serialization.PolymorphicSerializer
+import kotlinx.serialization.json.Json
 
 @Composable
 fun rememberNavState(
     navGraph: NavGraph,
-    deeplink: String? = null,
+    json: Json = navGraph.defaultJson,
+    initialDeeplink: String? = null,
     onWouldBecomeEmpty: () -> Unit = {},
 ): NavState {
-    val startRoute = navGraph.startRoute
-    val backStack = rememberSaveable(
-        navGraph,
-        saver = navBackStackSaver(navGraph)
-    ) {
-        if (deeplink == null) return@rememberSaveable mutableStateListOf(startRoute)
-
-        val route = navGraph.parseDeeplink(deeplink)
-        if (route != null) {
-            mutableStateListOf(route)
+    val initialRoute = remember {
+        if (initialDeeplink != null) {
+            navGraph.parseDeeplink(initialDeeplink) ?: navGraph.startRoute
         } else {
-            mutableStateListOf(startRoute)
+            navGraph.startRoute
         }
     }
+
+    val backStack = rememberNavBackStack(
+        json = json,
+        initialRoute = initialRoute,
+    )
+
     val currentOnWouldBecomeEmpty by rememberUpdatedState(onWouldBecomeEmpty)
 
     return remember(backStack, navGraph) {
@@ -41,6 +44,7 @@ fun rememberNavState(
     }
 }
 
+@Stable
 class NavState(
     val backStack: SnapshotStateList<NavKey>,
     val navGraph: NavGraph,
@@ -56,10 +60,11 @@ class NavState(
         route: NavKey,
         replace: Boolean = false,
     ) {
-        if (replace) {
-            backStack[backStack.lastIndex] = route
+        val resolvedRoute = navGraph.resolve(route)
+        if (replace && backStack.isNotEmpty()) {
+            backStack[backStack.lastIndex] = resolvedRoute
         } else {
-            backStack.add(route)
+            backStack.add(resolvedRoute)
         }
     }
 
@@ -70,19 +75,78 @@ class NavState(
         }
         backStack.removeLastOrNull()
     }
+
+    fun popUpTo(route: NavKey, inclusive: Boolean = false): Boolean {
+        val index = backStack.indexOfLast { it::class == route::class }
+        if (index == -1) return false
+
+        val targetIndex = if (inclusive) index else index + 1
+        if (targetIndex >= backStack.size) return false
+
+        val itemsToRemove = backStack.size - targetIndex
+        repeat(itemsToRemove) {
+            backStack.removeLastOrNull()
+        }
+
+        if (backStack.isEmpty()) {
+            onWouldBecomeEmpty()
+        }
+
+        return true
+    }
+
+    fun navigateUp(): Boolean {
+        val currentRoute = this.currentRoute ?: return false
+
+        // Find the first ancestor that resolves to a different route
+        var currentNode = navGraph.findNode(currentRoute::class)
+        while (currentNode != null) {
+            val parent = currentNode.parent ?: break
+
+            val resolvedParent = navGraph.resolve(parent)
+
+            // If the parent resolves to a different route, navigate there
+            if (resolvedParent::class != currentRoute::class) {
+                // If the resolved parent is already the previous route in the backstack,
+                // just pop the current route to reveal it
+                if (resolvedParent::class == previousRoute?.let { it::class }) {
+                    goBack()
+                    return true
+                }
+
+                // Otherwise, navigate to the parent with replace
+                navigate(parent, replace = true)
+                return true
+            }
+
+            // Otherwise, keep going up the hierarchy
+            currentNode = navGraph.findNode(parent::class)
+        }
+
+        // Route not found in graph or parent chain exhausted, fall back to goBack()
+        goBack()
+        return backStack.isNotEmpty()
+    }
 }
 
-private fun navBackStackSaver(navGraph: NavGraph): Saver<SnapshotStateList<NavKey>, String> = Saver(
-    save = { backStack ->
-        backStack.joinToString(separator = "|") { route ->
-            route.toDeeplink(navGraph)
-        }
-    },
-    restore = { saved ->
-        saved.split("|")
-            .mapNotNull { deeplink ->
-                NavKey.fromDeeplink(deeplink, navGraph)
+// navigation3's rememberNavBackStack doesn't expose the SnapshotStateList which is required for
+// ChronologicalBrowserNavigation
+@Composable
+private fun rememberNavBackStack(
+    json: Json,
+    initialRoute: NavKey,
+): SnapshotStateList<NavKey> = rememberSaveable(
+    saver = listSaver(
+        save = { list ->
+            list.toList().map { key ->
+                json.encodeToString(PolymorphicSerializer(Navigation3NavKey::class), key)
             }
-            .toMutableStateList()
-    }
-)
+        },
+        restore = { saved ->
+            @Suppress("UNCHECKED_CAST")
+            mutableStateListOf(*saved.map { s ->
+                json.decodeFromString(PolymorphicSerializer(Navigation3NavKey::class), s) as NavKey
+            }.toTypedArray())
+        },
+    ),
+) { mutableStateListOf(initialRoute) }

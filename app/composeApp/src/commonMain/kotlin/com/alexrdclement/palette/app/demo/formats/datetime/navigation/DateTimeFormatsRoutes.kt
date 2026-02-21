@@ -3,6 +3,7 @@ package com.alexrdclement.palette.app.demo.formats.datetime.navigation
 import com.alexrdclement.palette.navigation.EnumNavKey
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
+import com.alexrdclement.palette.navigation.navKeySerializersModule
 import com.alexrdclement.palette.navigation.toEnumEntry
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -32,4 +33,10 @@ data class DateTimeFormatRoute(
     val format get() = value
     constructor(format: DateTimeFormat) : this(format.ordinal)
     constructor(pathSegment: PathSegment) : this(format = pathSegment.toEnumEntry(DateTimeFormat.entries))
+}
+
+val dateTimeFormatsSerializersModule = navKeySerializersModule {
+    subclass<DateTimeFormatsGraph>()
+    subclass<DateTimeFormatCatalogRoute>()
+    subclass<DateTimeFormatRoute>()
 }

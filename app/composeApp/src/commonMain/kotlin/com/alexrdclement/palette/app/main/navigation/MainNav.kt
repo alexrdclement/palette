@@ -1,11 +1,13 @@
 package com.alexrdclement.palette.app.main.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.demo.components.navigation.ComponentsGraph
 import com.alexrdclement.palette.app.demo.formats.navigation.FormatsGraph
 import com.alexrdclement.palette.app.demo.modifiers.navigation.ModifiersGraph
 import com.alexrdclement.palette.app.main.MainCatalogItem
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
@@ -19,41 +21,33 @@ fun NavGraphBuilder.mainNavGraph() = navGraph(
     route(MainCatalogRoute)
 }
 
-@Composable
-fun MainNav(
-    route: NavKey,
+fun EntryProviderScope<NavKey>.mainEntryProvider(
     navController: NavController,
 ) {
-    when (route) {
-        is MainRoute -> MainNav(
-            route = route,
-            navController = navController,
-        )
+    entry<MainGraph> {
+        MainCatalog(navController)
+    }
+
+    entry<MainCatalogRoute> {
+        MainCatalog(navController)
     }
 }
 
 @Composable
-fun MainNav(
-    route: MainRoute,
-    navController: NavController,
-) {
-    when (route) {
-        is MainGraph,
-        is MainCatalogRoute,
-        -> CatalogScreen(
-            items = MainCatalogItem.entries.toList(),
-            onItemClick = { item ->
-                when (item) {
-                    MainCatalogItem.Components -> navController.navigate(ComponentsGraph)
-                    MainCatalogItem.Formats -> navController.navigate(FormatsGraph)
-                    MainCatalogItem.Modifiers -> navController.navigate(ModifiersGraph)
-                }
-            },
-            actions = {
-                ThemeButton(
-                    onClick = { navController.navigate(ThemeGraph) },
-                )
-            },
-        )
-    }
+private fun MainCatalog(navController: NavController) {
+    CatalogScreen(
+        items = MainCatalogItem.entries.toList(),
+        onItemClick = { item ->
+            when (item) {
+                MainCatalogItem.Components -> navController.navigate(ComponentsGraph)
+                MainCatalogItem.Formats -> navController.navigate(FormatsGraph)
+                MainCatalogItem.Modifiers -> navController.navigate(ModifiersGraph)
+            }
+        },
+        actions = {
+            ThemeButton(
+                onClick = { navController.navigate(ThemeGraph) },
+            )
+        },
+    )
 }

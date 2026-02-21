@@ -3,6 +3,7 @@ package com.alexrdclement.palette.app.demo.components.money.navigation
 import com.alexrdclement.palette.navigation.EnumNavKey
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
+import com.alexrdclement.palette.navigation.navKeySerializersModule
 import com.alexrdclement.palette.navigation.toEnumEntry
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -11,7 +12,7 @@ import kotlinx.serialization.Serializable
 sealed interface MoneyComponentsRoute : NavKey
 
 @Serializable
-@SerialName("money")
+@SerialName("money-components")
 data object MoneyComponentsGraph : MoneyComponentsRoute {
     override val pathSegment = "money".toPathSegment()
 }
@@ -32,4 +33,10 @@ data class MoneyComponentRoute(
     val component get() = value
     constructor(component: MoneyComponent) : this(component.ordinal)
     constructor(pathSegment: PathSegment) : this(component = pathSegment.toEnumEntry(MoneyComponent.entries))
+}
+
+val moneyComponentsSerializersModule = navKeySerializersModule {
+    subclass<MoneyComponentsGraph>()
+    subclass<MoneyComponentCatalogRoute>()
+    subclass<MoneyComponentRoute>()
 }

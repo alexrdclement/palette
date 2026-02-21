@@ -3,6 +3,7 @@ package com.alexrdclement.palette.app.demo.formats.core.navigation
 import com.alexrdclement.palette.navigation.EnumNavKey
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
+import com.alexrdclement.palette.navigation.navKeySerializersModule
 import com.alexrdclement.palette.navigation.toEnumEntry
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -17,7 +18,7 @@ data object CoreFormatsGraph : CoreFormatsRoute {
 }
 
 @Serializable
-@SerialName("catalog")
+@SerialName("core-format-catalog")
 data object CoreFormatCatalogRoute : CoreFormatsRoute {
     override val pathSegment = "catalog".toPathSegment()
 }
@@ -32,4 +33,10 @@ data class CoreFormatRoute(
     val format get() = value
     constructor(format: CoreFormat) : this(format.ordinal)
     constructor(pathSegment: PathSegment) : this(format = pathSegment.toEnumEntry(CoreFormat.entries))
+}
+
+val coreFormatsSerializersModule = navKeySerializersModule {
+    subclass<CoreFormatsGraph>()
+    subclass<CoreFormatCatalogRoute>()
+    subclass<CoreFormatRoute>()
 }

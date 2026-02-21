@@ -1,27 +1,32 @@
 package com.alexrdclement.palette.app.navigation
 
 import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.app.demo.components.navigation.ComponentsNav
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.ui.NavDisplay
+import com.alexrdclement.palette.app.demo.components.navigation.componentsEntryProvider
 import com.alexrdclement.palette.app.demo.components.navigation.componentsNavGraph
-import com.alexrdclement.palette.app.demo.formats.navigation.FormatsNav
+import com.alexrdclement.palette.app.demo.formats.navigation.formatsEntryProvider
 import com.alexrdclement.palette.app.demo.formats.navigation.formatsNavGraph
-import com.alexrdclement.palette.app.demo.modifiers.navigation.ModifiersNav
+import com.alexrdclement.palette.app.demo.modifiers.navigation.modifiersEntryProvider
 import com.alexrdclement.palette.app.demo.modifiers.navigation.modifiersNavGraph
 import com.alexrdclement.palette.app.main.navigation.MainGraph
-import com.alexrdclement.palette.app.main.navigation.MainNav
+import com.alexrdclement.palette.app.main.navigation.mainEntryProvider
 import com.alexrdclement.palette.app.main.navigation.mainNavGraph
-import com.alexrdclement.palette.app.theme.navigation.ThemeNav
+import com.alexrdclement.palette.app.theme.navigation.themeEntryProvider
 import com.alexrdclement.palette.app.theme.navigation.themeNavGraph
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavKey
-import com.alexrdclement.palette.navigation.NavState
-import com.alexrdclement.palette.navigation.NavigationEventHandler
 import com.alexrdclement.palette.navigation.navGraph
 import com.alexrdclement.palette.navigation.rememberNavController
 import com.alexrdclement.palette.navigation.rememberNavState
 import com.alexrdclement.palette.navigation.toPathSegment
 import com.alexrdclement.palette.theme.control.ThemeController
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
+@SerialName("ui-playground")
 data object PaletteGraph : NavKey {
     override val pathSegment = "".toPathSegment()
 }
@@ -40,38 +45,17 @@ val PaletteNavGraph = navGraph(
 @Composable
 fun PaletteNav(
     themeController: ThemeController,
-    navState: NavState = rememberPaletteNavState(),
-    navController: NavController = rememberNavController(
-        state = navState,
-    ),
+    navController: NavController = rememberPaletteNavController(),
 ) {
-    val currentRoute = navState.currentRoute ?: return
-
-    NavigationEventHandler(
-        navState = navState,
-        navController = navController,
-    )
-
-    MainNav(
-        route = currentRoute,
-        navController = navController,
-    )
-    ComponentsNav(
-        route = currentRoute,
-        navController = navController,
-    )
-    ModifiersNav(
-        route = currentRoute,
-        navController = navController,
-    )
-    FormatsNav(
-        route = currentRoute,
-        navController = navController,
-    )
-    ThemeNav(
-        route = currentRoute,
-        navController = navController,
-        themeController = themeController,
+    NavDisplay(
+        backStack = navController.state.backStack,
+        entryProvider = entryProvider {
+            paletteEntryProvider(
+                navController = navController,
+                themeController = themeController,
+            )
+        },
+        onBack = navController::goBack,
     )
 }
 
@@ -81,17 +65,28 @@ fun rememberPaletteNavController(
     onBackStackEmpty: () -> Unit = {},
 ) = rememberNavController(
     state = rememberPaletteNavState(
-        deeplink = initialDeeplink,
+        initialDeeplink = initialDeeplink,
         onBackStackEmpty = onBackStackEmpty,
     ),
 )
 
 @Composable
 fun rememberPaletteNavState(
-    deeplink: String? = null,
+    initialDeeplink: String? = null,
     onBackStackEmpty: () -> Unit = {},
 ) = rememberNavState(
     navGraph = PaletteNavGraph,
-    deeplink = deeplink,
+    initialDeeplink = initialDeeplink,
     onWouldBecomeEmpty = onBackStackEmpty,
 )
+
+fun EntryProviderScope<NavKey>.paletteEntryProvider(
+    navController: NavController,
+    themeController: ThemeController,
+) {
+    mainEntryProvider(navController)
+    componentsEntryProvider(navController)
+    formatsEntryProvider(navController)
+    modifiersEntryProvider(navController)
+    themeEntryProvider(navController, themeController)
+}

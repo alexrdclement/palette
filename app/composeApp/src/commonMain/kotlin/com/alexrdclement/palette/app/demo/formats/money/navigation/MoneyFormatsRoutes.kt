@@ -3,6 +3,7 @@ package com.alexrdclement.palette.app.demo.formats.money.navigation
 import com.alexrdclement.palette.navigation.EnumNavKey
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
+import com.alexrdclement.palette.navigation.navKeySerializersModule
 import com.alexrdclement.palette.navigation.toEnumEntry
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -11,7 +12,7 @@ import kotlinx.serialization.Serializable
 sealed interface MoneyFormatsRoute : NavKey
 
 @Serializable
-@SerialName("money")
+@SerialName("money-formats")
 data object MoneyFormatsGraph : MoneyFormatsRoute {
     override val pathSegment = "money".toPathSegment()
 }
@@ -32,4 +33,10 @@ data class MoneyFormatRoute(
     val format get() = value
     constructor(format: MoneyFormat) : this(format.ordinal)
     constructor(pathSegment: PathSegment) : this(format = pathSegment.toEnumEntry(MoneyFormat.entries))
+}
+
+val moneyFormatsSerializersModule = navKeySerializersModule {
+    subclass<MoneyFormatsGraph>()
+    subclass<MoneyFormatCatalogRoute>()
+    subclass<MoneyFormatRoute>()
 }

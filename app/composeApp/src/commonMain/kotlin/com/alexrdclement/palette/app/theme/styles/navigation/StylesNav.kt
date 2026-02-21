@@ -6,6 +6,7 @@ import com.alexrdclement.palette.app.theme.styles.BorderStyleScreen
 import com.alexrdclement.palette.app.theme.styles.ButtonStyleScreen
 import com.alexrdclement.palette.app.theme.styles.Styles
 import com.alexrdclement.palette.app.theme.styles.TextStyleScreen
+import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.NavKey
@@ -21,53 +22,52 @@ fun NavGraphBuilder.stylesNavGraph() = navGraph(
     route(TextStylesRoute)
 }
 
-@Composable
-fun StylesNav(
-    route: NavKey,
+fun EntryProviderScope<NavKey>.stylesEntryProvider(
     navController: NavController,
     themeController: ThemeController,
 ) {
-    when (route) {
-        is StylesRoute -> StylesNav(
-            route = route,
-            navController = navController,
+    entry<StylesGraph> {
+        StylesCatalog(navController)
+    }
+
+    entry<StylesCatalogRoute> {
+        StylesCatalog(navController)
+    }
+
+    entry<BorderStylesRoute> {
+        BorderStyleScreen(
             themeController = themeController,
+            onNavigateUp = navController::goBack,
+        )
+    }
+
+    entry<ButtonStylesRoute> {
+        ButtonStyleScreen(
+            themeController = themeController,
+            onNavigateUp = navController::goBack,
+        )
+    }
+
+    entry<TextStylesRoute> {
+        TextStyleScreen(
+            themeController = themeController,
+            onNavigateUp = navController::goBack,
         )
     }
 }
 
 @Composable
-private fun StylesNav(
-    route: StylesRoute,
-    navController: NavController,
-    themeController: ThemeController,
-) {
-    when (route) {
-        StylesGraph,
-        StylesCatalogRoute,
-        -> CatalogScreen(
-            items = Styles.entries.toList(),
-            onItemClick = { style ->
-                when (style) {
-                    Styles.Border -> navController.navigate(BorderStylesRoute)
-                    Styles.Button -> navController.navigate(ButtonStylesRoute)
-                    Styles.Text -> navController.navigate(TextStylesRoute)
-                }
-            },
-            title = "Styles",
-            onNavigateUp = navController::goBack,
-        )
-        is BorderStylesRoute -> BorderStyleScreen(
-            themeController = themeController,
-            onNavigateUp = navController::goBack,
-        )
-        is ButtonStylesRoute -> ButtonStyleScreen(
-            themeController = themeController,
-            onNavigateUp = navController::goBack,
-        )
-        is TextStylesRoute -> TextStyleScreen(
-            themeController = themeController,
-            onNavigateUp = navController::goBack,
-        )
-    }
+private fun StylesCatalog(navController: NavController) {
+    CatalogScreen(
+        items = Styles.entries.toList(),
+        onItemClick = { style ->
+            when (style) {
+                Styles.Border -> navController.navigate(BorderStylesRoute)
+                Styles.Button -> navController.navigate(ButtonStylesRoute)
+                Styles.Text -> navController.navigate(TextStylesRoute)
+            }
+        },
+        title = "Styles",
+        onNavigateUp = navController::goBack,
+    )
 }

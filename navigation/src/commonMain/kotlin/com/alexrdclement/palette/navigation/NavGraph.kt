@@ -1,13 +1,37 @@
 package com.alexrdclement.palette.navigation
 
+import androidx.compose.runtime.Stable
 import kotlin.reflect.KClass
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
 
+@Stable
 data class NavGraph(
     val root: NavKey,
     val nodes: List<NavGraphNode>,
 ) {
     val startRoute: NavKey
         get() = resolve(root)
+
+    val serializersModule: SerializersModule by lazy {
+        navKeySerializersModule {
+            fun collect(nodes: List<NavGraphNode>) {
+                nodes.forEach { node ->
+                    subclass(node.navKeyClass, node.serializer)
+                    collect(node.children)
+                }
+            }
+            collect(this@NavGraph.nodes)
+        }
+    }
+
+    val defaultJson: Json by lazy {
+        Json {
+            serializersModule = this@NavGraph.serializersModule
+            ignoreUnknownKeys = true
+            classDiscriminator = "type"
+        }
+    }
 }
 
 /**
