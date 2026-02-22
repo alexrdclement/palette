@@ -3,7 +3,6 @@ package com.alexrdclement.palette.app.demo.components.geometry.navigation
 import com.alexrdclement.palette.navigation.EnumNavKey
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
-import com.alexrdclement.palette.navigation.navKeySerializersModule
 import com.alexrdclement.palette.navigation.toEnumEntry
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -33,10 +32,4 @@ data class GeometryComponentRoute(
     val component get() = value
     constructor(component: GeometryComponent) : this(component.ordinal)
     constructor(pathSegment: PathSegment) : this(component = pathSegment.toEnumEntry(GeometryComponent.entries))
-}
-
-val geometryComponentsSerializersModule = navKeySerializersModule {
-    subclass<GeometryComponentsGraph>()
-    subclass<GeometryComponentCatalogRoute>()
-    subclass<GeometryComponentRoute>()
 }

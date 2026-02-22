@@ -4,7 +4,6 @@ import com.alexrdclement.palette.app.demo.modifiers.DemoModifier
 import com.alexrdclement.palette.navigation.EnumNavKey
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
-import com.alexrdclement.palette.navigation.navKeySerializersModule
 import com.alexrdclement.palette.navigation.toEnumEntry
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -34,10 +33,4 @@ data class ModifierRoute(
     val modifier get() = value
     constructor(modifier: DemoModifier) : this(modifier.ordinal)
     constructor(pathSegment: PathSegment) : this(modifier = pathSegment.toEnumEntry(DemoModifier.entries))
-}
-
-val modifiersSerializersModule = navKeySerializersModule {
-    subclass<ModifiersGraph>()
-    subclass<ModifierCatalogRoute>()
-    subclass<ModifierRoute>()
 }

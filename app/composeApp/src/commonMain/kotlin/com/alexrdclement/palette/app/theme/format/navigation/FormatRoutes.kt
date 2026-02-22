@@ -1,8 +1,6 @@
 package com.alexrdclement.palette.app.theme.format.navigation
 
-import com.alexrdclement.palette.app.theme.format.datetime.navigation.dateTimeFormatSerializersModule
 import com.alexrdclement.palette.navigation.NavKey
-import com.alexrdclement.palette.navigation.navKeySerializersModule
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -37,13 +35,4 @@ data object NumberFormatRoute : FormatRoute {
 @SerialName("textFormat")
 data object TextFormatRoute : FormatRoute {
     override val pathSegment = "text".toPathSegment()
-}
-
-val formatSerializersModule = navKeySerializersModule {
-    subclass<FormatsGraph>()
-    subclass<FormatCatalogRoute>()
-    subclass<MoneyFormatRoute>()
-    subclass<NumberFormatRoute>()
-    subclass<TextFormatRoute>()
-    include(dateTimeFormatSerializersModule)
 }

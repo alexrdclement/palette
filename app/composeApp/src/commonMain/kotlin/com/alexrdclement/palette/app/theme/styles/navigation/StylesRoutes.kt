@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.app.theme.styles.navigation
 
 import com.alexrdclement.palette.navigation.NavKey
-import com.alexrdclement.palette.navigation.navKeySerializersModule
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -36,12 +35,4 @@ data object ButtonStylesRoute : StylesRoute {
 @SerialName("textStyles")
 data object TextStylesRoute : StylesRoute {
     override val pathSegment = "text".toPathSegment()
-}
-
-val stylesSerializersModule = navKeySerializersModule {
-    subclass<StylesGraph>()
-    subclass<StylesCatalogRoute>()
-    subclass<BorderStylesRoute>()
-    subclass<ButtonStylesRoute>()
-    subclass<TextStylesRoute>()
 }
