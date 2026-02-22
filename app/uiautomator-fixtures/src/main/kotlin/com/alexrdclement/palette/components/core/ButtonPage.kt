@@ -8,6 +8,10 @@ import com.alexrdclement.palette.waitAndFindObject
 class ButtonPage(
     private val device: UiDevice,
 ) {
+    fun assertIsDisplayed() {
+        device.waitAndFindObject(By.desc("Demo Button"))
+    }
+
     val button: UiObject2
         get() = device.waitAndFindObject(By.desc("Demo Button"))
 }

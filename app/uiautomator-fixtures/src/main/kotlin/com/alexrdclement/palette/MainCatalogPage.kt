@@ -6,6 +6,10 @@ import androidx.test.uiautomator.UiDevice
 class MainCatalogPage(
     private val device: UiDevice,
 ) {
+    fun assertIsDisplayed() {
+        device.waitAndFindObject(By.text("Components"))
+    }
+
     fun navigateToComponents() {
         device.waitAndFindObject(By.text("Components")).click()
     }

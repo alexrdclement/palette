@@ -22,17 +22,17 @@ fun rememberNavState(
 ): NavState {
     val json = rememberNavKeyJson(navGraph, jsonConfig)
 
-    val initialRoute = remember {
+    val initialBackStack = remember {
         if (initialDeeplink != null) {
-            navGraph.parseDeeplink(initialDeeplink) ?: navGraph.startRoute
+            navGraph.parseDeeplinkToBackStack(initialDeeplink)
         } else {
-            navGraph.startRoute
+            listOf(navGraph.startRoute)
         }
     }
 
     val backStack = rememberNavBackStack(
         json = json,
-        initialRoute = initialRoute,
+        initialBackStack = initialBackStack,
     )
 
     val currentOnWouldBecomeEmpty by rememberUpdatedState(onWouldBecomeEmpty)
@@ -136,7 +136,7 @@ class NavState(
 @Composable
 private fun rememberNavBackStack(
     json: Json,
-    initialRoute: NavKey,
+    initialBackStack: List<NavKey>,
 ): SnapshotStateList<NavKey> = rememberSaveable(
     saver = listSaver(
         save = { list ->
@@ -151,4 +151,4 @@ private fun rememberNavBackStack(
             }.toTypedArray())
         },
     ),
-) { mutableStateListOf(initialRoute) }
+) { mutableStateListOf(*initialBackStack.toTypedArray()) }

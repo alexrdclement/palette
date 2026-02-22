@@ -7,6 +7,10 @@ import com.alexrdclement.palette.waitAndFindObject
 class DateTimeFormatsPage(
     private val device: UiDevice,
 ) {
+    fun assertIsDisplayed() {
+        device.waitAndFindObject(By.text("DateTime"))
+    }
+
     fun navigateToDate() {
         device.waitAndFindObject(By.text("Date")).click()
     }

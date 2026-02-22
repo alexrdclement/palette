@@ -8,6 +8,10 @@ import com.alexrdclement.palette.waitAndFindObject
 class ColorInvertPage(
     private val device: UiDevice,
 ) {
+    fun assertIsDisplayed() {
+        device.waitAndFindObject(By.desc("Amount"))
+    }
+
     fun adjustColorInvert() {
         // One adjustment doesn't generate benchmark/profile frame data
         val amount = device.waitAndFindObject(By.desc("Amount"))

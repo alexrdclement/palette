@@ -7,6 +7,10 @@ import com.alexrdclement.palette.waitAndFindObject
 class CoreComponentsPage(
     private val device: UiDevice,
 ) {
+    fun assertIsDisplayed() {
+        device.waitAndFindObject(By.text("Button"))
+    }
+
     fun navigateToButton() {
         device.waitAndFindObject(By.text("Button")).click()
     }

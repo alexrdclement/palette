@@ -7,6 +7,10 @@ import com.alexrdclement.palette.waitAndFindObject
 class CoreFormatsPage(
     private val device: UiDevice,
 ) {
+    fun assertIsDisplayed() {
+        device.waitAndFindObject(By.text("Number"))
+    }
+
     fun navigateToNumber() {
         device.waitAndFindObject(By.text("Number")).click()
     }

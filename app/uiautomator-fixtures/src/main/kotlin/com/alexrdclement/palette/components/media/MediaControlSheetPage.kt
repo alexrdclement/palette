@@ -9,6 +9,10 @@ import com.alexrdclement.palette.waitAndFindObject
 class MediaControlSheetPage(
     private val device: UiDevice,
 ) {
+    fun assertIsDisplayed() {
+        device.waitAndFindObject(By.descContains("Media control bar"))
+    }
+
     val mediaControlBar: UiObject2
         get() = device.waitAndFindObject(By.descContains("Media control bar"))
 

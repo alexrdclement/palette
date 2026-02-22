@@ -250,5 +250,27 @@ class NavGraphParseDeeplinkTest {
 
         assertEquals(Route1, route)
     }
+
+    @Test
+    fun `normalizes uppercase to lowercase`() {
+        val navGraph = navGraph(root = RootRoute, start = RootRoute) {
+            route(Route1)
+        }
+
+        val route = navGraph.parseDeeplink("${RootRoute.pathSegment.value.uppercase()}/${Route1.pathSegment.value.uppercase()}")
+
+        assertEquals(Route1, route)
+    }
+
+    @Test
+    fun `normalizes mixed case to lowercase`() {
+        val navGraph = navGraph(root = RootRoute, start = RootRoute) {
+            route(Route1)
+        }
+
+        val route = navGraph.parseDeeplink("Root/Route1")
+
+        assertEquals(Route1, route)
+    }
 }
 

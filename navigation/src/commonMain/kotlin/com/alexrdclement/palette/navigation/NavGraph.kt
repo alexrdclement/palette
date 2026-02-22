@@ -47,8 +47,21 @@ fun NavKey.Companion.fromDeeplink(
 }
 
 fun NavGraph.parseDeeplink(deeplink: String): NavKey? {
-    val segments = deeplink.split("/").filter { it.isNotEmpty() }.map(::PathSegment)
+    val segments = deeplink.lowercase().split("/").filter { it.isNotEmpty() }.map(::PathSegment)
     return segments.toNavKey(this)
+}
+
+fun NavGraph.parseDeeplinkToBackStack(deeplink: String): List<NavKey> {
+    val dest = parseDeeplink(deeplink) ?: return listOf(startRoute)
+    return buildBackStack(dest)
+}
+
+private fun NavGraph.buildBackStack(dest: NavKey): List<NavKey> {
+    val node = findNode(dest::class) ?: return listOf(dest)
+    val parent = node.parent ?: return listOf(dest)
+    val resolvedParent = resolve(parent)
+    if (resolvedParent::class == dest::class) return listOf(dest)
+    return listOf(resolvedParent, dest)
 }
 
 internal fun List<PathSegment>.toNavKey(

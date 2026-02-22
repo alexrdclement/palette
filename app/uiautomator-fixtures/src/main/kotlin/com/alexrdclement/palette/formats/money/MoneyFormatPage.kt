@@ -8,6 +8,10 @@ import com.alexrdclement.palette.waitAndFindObject
 class MoneyFormatPage(
     private val device: UiDevice,
 ) {
+    fun assertIsDisplayed() {
+        device.waitAndFindObject(By.text("MoneyFormat"))
+    }
+
     val demo: UiObject2
         get() = device.waitAndFindObject(By.descContains(""))
 }
