@@ -18,15 +18,18 @@ fun rememberNavState(
     navGraph: NavGraph,
     jsonConfig: NavKeyJsonBuilder.() -> Unit = {},
     initialDeeplink: String? = null,
+    buildSyntheticBackStack: Boolean = true,
     onWouldBecomeEmpty: () -> Unit = {},
 ): NavState {
     val json = rememberNavKeyJson(navGraph, jsonConfig)
 
     val initialBackStack = remember {
-        if (initialDeeplink != null) {
+        if (initialDeeplink == null) return@remember listOf(navGraph.startRoute)
+
+        if (buildSyntheticBackStack) {
             navGraph.parseDeeplinkToBackStack(initialDeeplink)
         } else {
-            listOf(navGraph.startRoute)
+            listOf(navGraph.parseDeeplink(initialDeeplink) ?: navGraph.startRoute)
         }
     }
 

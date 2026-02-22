@@ -57,11 +57,17 @@ fun NavGraph.parseDeeplinkToBackStack(deeplink: String): List<NavKey> {
 }
 
 private fun NavGraph.buildBackStack(dest: NavKey): List<NavKey> {
-    val node = findNode(dest::class) ?: return listOf(dest)
-    val parent = node.parent ?: return listOf(dest)
-    val resolvedParent = resolve(parent)
-    if (resolvedParent::class == dest::class) return listOf(dest)
-    return listOf(resolvedParent, dest)
+    var nodeToCheck: NavGraphNode? = findNode(dest::class)
+    while (nodeToCheck != null) {
+        val parent = nodeToCheck.parent ?: return listOf(dest)
+        val resolvedParent = resolve(parent)
+        if (resolvedParent::class != dest::class) {
+            return buildBackStack(resolvedParent) + dest
+        }
+        // This parent resolves to dest itself (dest is the start of this graph) — climb higher
+        nodeToCheck = findNode(parent::class)
+    }
+    return listOf(dest)
 }
 
 internal fun List<PathSegment>.toNavKey(

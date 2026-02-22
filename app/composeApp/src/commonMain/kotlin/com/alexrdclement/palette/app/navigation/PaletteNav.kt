@@ -63,10 +63,12 @@ fun PaletteNav(
 @Composable
 fun rememberPaletteNavController(
     initialDeeplink: String? = null,
+    buildSyntheticBackStack: Boolean = true,
     onBackStackEmpty: () -> Unit = {},
 ) = rememberNavController(
     state = rememberPaletteNavState(
         initialDeeplink = initialDeeplink,
+        buildSyntheticBackStack = buildSyntheticBackStack,
         onBackStackEmpty = onBackStackEmpty,
     ),
 )
@@ -74,10 +76,12 @@ fun rememberPaletteNavController(
 @Composable
 fun rememberPaletteNavState(
     initialDeeplink: String? = null,
+    buildSyntheticBackStack: Boolean = true,
     onBackStackEmpty: () -> Unit = {},
 ) = rememberNavState(
     navGraph = PaletteNavGraph,
     initialDeeplink = initialDeeplink,
+    buildSyntheticBackStack = buildSyntheticBackStack,
     onWouldBecomeEmpty = onBackStackEmpty,
 )
 

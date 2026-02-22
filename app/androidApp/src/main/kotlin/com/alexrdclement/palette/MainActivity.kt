@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberPaletteNavController(
                 initialDeeplink = intent?.getDeeplink(),
+                buildSyntheticBackStack = intent.isNewTask,
                 onBackStackEmpty = ::finish,
             ).also { navController = it }
 
@@ -45,4 +46,7 @@ class MainActivity : ComponentActivity() {
             uri.path?.removePrefix("/") ?: ""
         }
     }
+
+    private val Intent?.isNewTask: Boolean
+        get() = (this?.flags ?: 0) and Intent.FLAG_ACTIVITY_NEW_TASK != 0
 }
