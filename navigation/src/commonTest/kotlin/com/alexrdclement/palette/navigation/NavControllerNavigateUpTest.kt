@@ -108,7 +108,7 @@ class NavControllerNavigateUpTest {
             }
         }
 
-        val backStack = mutableStateListOf(Route1, Route3)
+        val backStack = mutableStateListOf<NavKey>(Route1, Route3)
         val navState = NavState(backStack, navGraph)
         val navController = NavController(navState)
 
@@ -134,7 +134,7 @@ class NavControllerNavigateUpTest {
             }
         }
 
-        val backStack = mutableStateListOf(Route1, Route2)
+        val backStack = mutableStateListOf<NavKey>(Route1, Route2)
         val navState = NavState(backStack, navGraph)
         val navController = NavController(navState)
 
