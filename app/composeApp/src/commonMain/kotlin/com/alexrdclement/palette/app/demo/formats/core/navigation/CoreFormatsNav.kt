@@ -1,11 +1,12 @@
 package com.alexrdclement.palette.app.demo.formats.core.navigation
 
-import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.app.catalog.CatalogScreen
+import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.app.demo.formats.core.CoreFormatScreen
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
+import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.PathSegment
 
@@ -19,29 +20,25 @@ fun NavGraphBuilder.coreFormatsNavGraph() = navGraph(
     }
 }
 
-@Composable
-fun CoreFormatsNav(
-    route: CoreFormatsRoute,
+fun EntryProviderScope<NavKey>.coreFormatsEntryProvider(
     navController: NavController,
 ) {
-    when (route) {
-        CoreFormatsGraph,
-        CoreFormatCatalogRoute,
-        -> CatalogScreen(
-            items = CoreFormat.entries.toList(),
-            onItemClick = { format ->
-                navController.navigate(CoreFormatRoute(format))
-            },
-            title = "Core",
-            onNavigateUp = navController::navigateUp,
-            actions = {
-                ThemeButton(
-                    onClick = { navController.navigate(ThemeGraph) },
-                )
-            },
-        )
-        is CoreFormatRoute -> CoreFormatScreen(
-            format = route.format,
+    catalogEntry<CoreFormatCatalogRoute, CoreFormat>(
+        onItemClick = { format ->
+            navController.navigate(CoreFormatRoute(format))
+        },
+        title = "Core",
+        onNavigateUp = navController::navigateUp,
+        actions = {
+            ThemeButton(
+                onClick = { navController.navigate(ThemeGraph) },
+            )
+        },
+    )
+
+    entry<CoreFormatRoute> {
+        CoreFormatScreen(
+            format = it.format,
             onNavigateUp = navController::goBack,
             onThemeClick = {
                 navController.navigate(ThemeGraph)

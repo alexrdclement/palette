@@ -1,6 +1,7 @@
 plugins {
     id(libs.plugins.alexrdclement.kotlin.multiplatform.library.get().pluginId)
     id(libs.plugins.alexrdclement.compose.multiplatform.get().pluginId)
+    id(libs.plugins.alexrdclement.kotlin.serialization.get().pluginId)
     id(libs.plugins.alexrdclement.maven.publish.get().pluginId)
 }
 
@@ -11,24 +12,11 @@ kotlin {
     )
 
     sourceSets {
-        val nonWebMain by creating {
-            dependsOn(commonMain.get())
+        commonMain {
             dependencies {
-                implementation(libs.navigationevent)
-            }
-        }
-        androidMain {
-            dependsOn(nonWebMain)
-        }
-        jvmMain {
-            dependsOn(nonWebMain)
-        }
-        iosMain {
-            dependsOn(nonWebMain)
-        }
-        wasmJsMain {
-            dependencies {
-                implementation(libs.navigation3.browser)
+                api(libs.navigation3.ui)
+                api(libs.navigation3.runtime)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
     }

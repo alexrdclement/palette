@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.app.demo.components.geometry.navigation
 
 import com.alexrdclement.palette.navigation.EnumNavKey
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.navigation.toEnumEntry
@@ -12,7 +13,7 @@ sealed interface GeometryComponentsRoute : NavKey
 
 @Serializable
 @SerialName("geometry")
-data object GeometryComponentsGraph : GeometryComponentsRoute {
+data object GeometryComponentsGraph : GeometryComponentsRoute, NavGraphRoute {
     override val pathSegment = "geometry".toPathSegment()
 }
 

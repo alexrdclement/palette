@@ -1,6 +1,8 @@
 package com.alexrdclement.palette.navigation
 
-inline fun <reified T : NavKey> navGraph(
+import kotlinx.serialization.serializer
+
+inline fun <reified T : NavGraphRoute> navGraph(
     root: T,
     start: NavKey,
     noinline block: NavGraphBuilder.() -> Unit = {},
@@ -19,7 +21,7 @@ class NavGraphBuilder(
 ) {
     val nodes = mutableListOf<NavGraphNode>()
 
-    inline fun <reified T : NavKey> navGraph(
+    inline fun <reified T : NavGraphRoute> navGraph(
         root: T,
         start: NavKey,
         children: NavGraphBuilder.() -> Unit = {}
@@ -31,6 +33,7 @@ class NavGraphBuilder(
             NavGraphNode(
                 pathSegment = root.pathSegment,
                 navKeyClass = T::class,
+                serializer = serializer<T>(),
                 parser = { root },
                 parent = parent,
                 children = childrenBuilder.nodes,
@@ -51,6 +54,7 @@ class NavGraphBuilder(
             NavGraphNode(
                 pathSegment = pathSegment,
                 navKeyClass = T::class,
+                serializer = serializer<T>(),
                 parser = parser,
                 parent = parent,
                 children = childrenBuilder.nodes,
@@ -73,6 +77,7 @@ class NavGraphBuilder(
             NavGraphNode(
                 pathSegment = pathSegment,
                 navKeyClass = T::class,
+                serializer = serializer<T>(),
                 parser = parser,
                 parent = parent,
                 children = childrenBuilder.nodes,

@@ -2,6 +2,7 @@ plugins {
     id(libs.plugins.alexrdclement.android.application.asProvider().get().pluginId)
     id(libs.plugins.alexrdclement.android.application.compose.get().pluginId)
     alias(libs.plugins.baselineprofile)
+    id(libs.plugins.alexrdclement.android.instrumented.test.get().pluginId)
 }
 
 android {
@@ -66,6 +67,22 @@ baselineProfile {
     saveInSrc = true
 }
 
+firebaseTestLab {
+    val serviceAccountJson = System.getenv("FIREBASE_TEST_LAB_SERVICE_ACCOUNT")
+    if (serviceAccountJson != null) {
+        serviceAccountCredentials.set(file(serviceAccountJson))
+    }
+    managedDevices {
+        create(instrumentedTest.deviceName) {
+            device = instrumentedTest.deviceType
+            apiLevel = instrumentedTest.apiLevel
+        }
+    }
+    testOptions {
+        results.cloudStorageBucket = "firebase-test-lab-palette"
+    }
+}
+
 dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.splashscreen)
@@ -75,4 +92,8 @@ dependencies {
     implementation(projects.navigation)
 
     baselineProfile(projects.app.baselineProfile)
+
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.uiautomator)
+    androidTestImplementation(projects.app.uiautomatorFixtures)
 }

@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.app.theme.interaction.navigation
 
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -9,12 +10,12 @@ sealed interface InteractionRoute : NavKey
 
 @Serializable
 @SerialName("interaction")
-data object InteractionGraph : InteractionRoute {
+data object InteractionGraph : InteractionRoute, NavGraphRoute {
     override val pathSegment = "interaction".toPathSegment()
 }
 
 @Serializable
-@SerialName("catalog")
+@SerialName("interaction-catalog")
 data object InteractionCatalogRoute : InteractionRoute {
     override val pathSegment = "catalog".toPathSegment()
 }

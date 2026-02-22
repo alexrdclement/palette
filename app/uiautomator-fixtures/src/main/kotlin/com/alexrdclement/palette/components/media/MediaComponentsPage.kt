@@ -7,6 +7,10 @@ import com.alexrdclement.palette.waitAndFindObject
 class MediaComponentsPage(
     private val device: UiDevice,
 ) {
+    fun assertIsDisplayed() {
+        device.waitAndFindObject(By.text("MediaControlSheet"))
+    }
+
     fun navigateToMediaControlSheet() {
         device.waitAndFindObject(By.text("MediaControlSheet")).click()
     }

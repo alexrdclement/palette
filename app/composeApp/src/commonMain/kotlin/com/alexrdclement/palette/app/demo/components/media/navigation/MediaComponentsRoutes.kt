@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.app.demo.components.media.navigation
 
 import com.alexrdclement.palette.navigation.EnumNavKey
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.navigation.toEnumEntry
@@ -12,7 +13,7 @@ sealed interface MediaComponentsRoute : NavKey
 
 @Serializable
 @SerialName("media")
-data object MediaComponentsGraph : MediaComponentsRoute {
+data object MediaComponentsGraph : MediaComponentsRoute, NavGraphRoute {
     override val pathSegment = "media".toPathSegment()
 }
 

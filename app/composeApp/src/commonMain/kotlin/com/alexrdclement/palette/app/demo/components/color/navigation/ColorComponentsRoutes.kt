@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.app.demo.components.color.navigation
 
 import com.alexrdclement.palette.navigation.EnumNavKey
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.navigation.toEnumEntry
@@ -11,13 +12,13 @@ import kotlinx.serialization.Serializable
 sealed interface ColorComponentsRoute : NavKey
 
 @Serializable
-@SerialName("color")
-data object ColorComponentsGraph : ColorComponentsRoute {
+@SerialName("color-components")
+data object ColorComponentsGraph : ColorComponentsRoute, NavGraphRoute {
     override val pathSegment = "color".toPathSegment()
 }
 
 @Serializable
-@SerialName("component-catalog")
+@SerialName("color-component-catalog")
 data object ColorComponentCatalogRoute : ColorComponentsRoute {
     override val pathSegment = "catalog".toPathSegment()
 }

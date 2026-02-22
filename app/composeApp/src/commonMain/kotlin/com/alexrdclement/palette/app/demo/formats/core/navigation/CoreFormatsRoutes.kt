@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.app.demo.formats.core.navigation
 
 import com.alexrdclement.palette.navigation.EnumNavKey
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.navigation.toEnumEntry
@@ -12,12 +13,12 @@ sealed interface CoreFormatsRoute : NavKey
 
 @Serializable
 @SerialName("core-formats")
-data object CoreFormatsGraph : CoreFormatsRoute {
+data object CoreFormatsGraph : CoreFormatsRoute, NavGraphRoute {
     override val pathSegment = "core".toPathSegment()
 }
 
 @Serializable
-@SerialName("catalog")
+@SerialName("core-format-catalog")
 data object CoreFormatCatalogRoute : CoreFormatsRoute {
     override val pathSegment = "catalog".toPathSegment()
 }

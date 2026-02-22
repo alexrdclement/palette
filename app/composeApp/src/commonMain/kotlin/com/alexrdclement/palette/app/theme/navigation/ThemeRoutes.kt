@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.app.theme.navigation
 
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -9,18 +10,18 @@ sealed interface ThemeRoute : NavKey
 
 @Serializable
 @SerialName("theme")
-data object ThemeGraph : ThemeRoute {
+data object ThemeGraph : ThemeRoute, NavGraphRoute {
     override val pathSegment = "theme".toPathSegment()
 }
 
 @Serializable
-@SerialName("catalog")
+@SerialName("theme-catalog")
 data object ThemeCatalogRoute : ThemeRoute {
     override val pathSegment = "catalog".toPathSegment()
 }
 
 @Serializable
-@SerialName("color")
+@SerialName("theme-color")
 data object ColorRoute : ThemeRoute {
     override val pathSegment = "color".toPathSegment()
 }

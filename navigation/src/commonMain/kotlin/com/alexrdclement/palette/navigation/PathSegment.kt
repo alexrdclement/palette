@@ -1,7 +1,9 @@
 package com.alexrdclement.palette.navigation
 
 import kotlin.jvm.JvmInline
+import kotlinx.serialization.Serializable
 
+@Serializable
 @JvmInline
 value class PathSegment(val value: String) {
     companion object {

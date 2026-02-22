@@ -63,7 +63,7 @@ class NavControllerNavigateUpTest {
             start = Route1,
         ) {
             navGraph(
-                root = Route1,
+                root = Graph2,
                 start = Route1,
             ) {
                 route(Route1)
@@ -108,7 +108,7 @@ class NavControllerNavigateUpTest {
             }
         }
 
-        val backStack = mutableStateListOf(Route1, Route3)
+        val backStack = mutableStateListOf<NavKey>(Route1, Route3)
         val navState = NavState(backStack, navGraph)
         val navController = NavController(navState)
 
@@ -134,7 +134,7 @@ class NavControllerNavigateUpTest {
             }
         }
 
-        val backStack = mutableStateListOf(Route1, Route2)
+        val backStack = mutableStateListOf<NavKey>(Route1, Route2)
         val navState = NavState(backStack, navGraph)
         val navController = NavController(navState)
 

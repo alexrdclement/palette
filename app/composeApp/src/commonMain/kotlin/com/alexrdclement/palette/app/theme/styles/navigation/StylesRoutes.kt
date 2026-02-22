@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.app.theme.styles.navigation
 
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -9,12 +10,12 @@ sealed interface StylesRoute : NavKey
 
 @Serializable
 @SerialName("styles")
-data object StylesGraph : StylesRoute {
+data object StylesGraph : StylesRoute, NavGraphRoute {
     override val pathSegment = "styles".toPathSegment()
 }
 
 @Serializable
-@SerialName("catalog")
+@SerialName("styles-catalog")
 data object StylesCatalogRoute : StylesRoute {
     override val pathSegment = "catalog".toPathSegment()
 }

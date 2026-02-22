@@ -7,6 +7,10 @@ import com.alexrdclement.palette.waitAndFindObject
 class ModifiersPage(
     private val device: UiDevice,
 ) {
+    fun assertIsDisplayed() {
+        device.waitAndFindObject(By.text("ColorInvert"))
+    }
+
     fun navigateToColorInvert() {
         navigateToModifier("ColorInvert")
     }

@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.app.demo.formats.datetime.navigation
 
 import com.alexrdclement.palette.navigation.EnumNavKey
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.navigation.toEnumEntry
@@ -12,7 +13,7 @@ sealed interface DateTimeFormatsRoute : NavKey
 
 @Serializable
 @SerialName("dateTime")
-data object DateTimeFormatsGraph : DateTimeFormatsRoute {
+data object DateTimeFormatsGraph : DateTimeFormatsRoute, NavGraphRoute {
     override val pathSegment = "datetime".toPathSegment()
 }
 

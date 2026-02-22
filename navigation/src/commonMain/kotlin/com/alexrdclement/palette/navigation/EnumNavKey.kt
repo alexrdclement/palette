@@ -1,7 +1,9 @@
 package com.alexrdclement.palette.navigation
 
+import androidx.compose.runtime.Stable
 import kotlin.enums.EnumEntries
 
+@Stable
 interface EnumNavKey<T : Enum<T>> : NavKey {
     val ordinal: Int
     val entries: EnumEntries<T>

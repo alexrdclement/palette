@@ -1,7 +1,9 @@
 package com.alexrdclement.palette.navigation
 
+import androidx.compose.runtime.Stable
 import kotlin.reflect.KClass
 
+@Stable
 data class NavGraph(
     val root: NavKey,
     val nodes: List<NavGraphNode>,
@@ -45,8 +47,27 @@ fun NavKey.Companion.fromDeeplink(
 }
 
 fun NavGraph.parseDeeplink(deeplink: String): NavKey? {
-    val segments = deeplink.split("/").filter { it.isNotEmpty() }.map(::PathSegment)
+    val segments = deeplink.lowercase().split("/").filter { it.isNotEmpty() }.map(::PathSegment)
     return segments.toNavKey(this)
+}
+
+fun NavGraph.parseDeeplinkToBackStack(deeplink: String): List<NavKey> {
+    val dest = parseDeeplink(deeplink) ?: return listOf(startRoute)
+    return buildBackStack(dest)
+}
+
+private fun NavGraph.buildBackStack(dest: NavKey): List<NavKey> {
+    var nodeToCheck: NavGraphNode? = findNode(dest::class)
+    while (nodeToCheck != null) {
+        val parent = nodeToCheck.parent ?: return listOf(dest)
+        val resolvedParent = resolve(parent)
+        if (resolvedParent::class != dest::class) {
+            return buildBackStack(resolvedParent) + dest
+        }
+        // This parent resolves to dest itself (dest is the start of this graph) — climb higher
+        nodeToCheck = findNode(parent::class)
+    }
+    return listOf(dest)
 }
 
 internal fun List<PathSegment>.toNavKey(
