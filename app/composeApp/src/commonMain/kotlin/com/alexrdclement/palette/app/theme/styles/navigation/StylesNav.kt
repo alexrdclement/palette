@@ -1,12 +1,11 @@
 package com.alexrdclement.palette.app.theme.styles.navigation
 
-import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.app.catalog.CatalogScreen
+import androidx.navigation3.runtime.EntryProviderScope
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.styles.BorderStyleScreen
 import com.alexrdclement.palette.app.theme.styles.ButtonStyleScreen
 import com.alexrdclement.palette.app.theme.styles.Styles
 import com.alexrdclement.palette.app.theme.styles.TextStyleScreen
-import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.NavKey
@@ -26,9 +25,17 @@ fun EntryProviderScope<NavKey>.stylesEntryProvider(
     navController: NavController,
     themeController: ThemeController,
 ) {
-    entry<StylesCatalogRoute> {
-        StylesCatalog(navController)
-    }
+    catalogEntry<StylesCatalogRoute, Styles>(
+        onItemClick = { style ->
+            when (style) {
+                Styles.Border -> navController.navigate(BorderStylesRoute)
+                Styles.Button -> navController.navigate(ButtonStylesRoute)
+                Styles.Text -> navController.navigate(TextStylesRoute)
+            }
+        },
+        title = "Styles",
+        onNavigateUp = navController::goBack,
+    )
 
     entry<BorderStylesRoute> {
         BorderStyleScreen(
@@ -50,20 +57,4 @@ fun EntryProviderScope<NavKey>.stylesEntryProvider(
             onNavigateUp = navController::goBack,
         )
     }
-}
-
-@Composable
-private fun StylesCatalog(navController: NavController) {
-    CatalogScreen(
-        items = Styles.entries.toList(),
-        onItemClick = { style ->
-            when (style) {
-                Styles.Border -> navController.navigate(BorderStylesRoute)
-                Styles.Button -> navController.navigate(ButtonStylesRoute)
-                Styles.Text -> navController.navigate(TextStylesRoute)
-            }
-        },
-        title = "Styles",
-        onNavigateUp = navController::goBack,
-    )
 }

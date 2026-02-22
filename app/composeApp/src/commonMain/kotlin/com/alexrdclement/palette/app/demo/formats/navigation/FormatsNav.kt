@@ -1,8 +1,6 @@
 package com.alexrdclement.palette.app.demo.formats.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.navigation3.runtime.EntryProviderScope
-import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.demo.formats.core.navigation.CoreFormatsGraph
 import com.alexrdclement.palette.app.demo.formats.core.navigation.coreFormatsEntryProvider
 import com.alexrdclement.palette.app.demo.formats.core.navigation.coreFormatsNavGraph
@@ -12,6 +10,7 @@ import com.alexrdclement.palette.app.demo.formats.datetime.navigation.dateTimeFo
 import com.alexrdclement.palette.app.demo.formats.money.navigation.MoneyFormatsGraph
 import com.alexrdclement.palette.app.demo.formats.money.navigation.moneyFormatsEntryProvider
 import com.alexrdclement.palette.app.demo.formats.money.navigation.moneyFormatsNavGraph
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
@@ -31,19 +30,7 @@ fun NavGraphBuilder.formatsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.formatsEntryProvider(
     navController: NavController,
 ) {
-    entry<FormatCatalogRoute> {
-        FormatsCatalog(navController)
-    }
-
-    coreFormatsEntryProvider(navController)
-    dateTimeFormatsEntryProvider(navController)
-    moneyFormatsEntryProvider(navController)
-}
-
-@Composable
-private fun FormatsCatalog(navController: NavController) {
-    CatalogScreen(
-        items = FormatCategory.entries.toList(),
+    catalogEntry<FormatCatalogRoute, FormatCategory>(
         onItemClick = { category ->
             val targetRoute = when (category) {
                 FormatCategory.Core -> CoreFormatsGraph
@@ -60,4 +47,8 @@ private fun FormatsCatalog(navController: NavController) {
             )
         },
     )
+
+    coreFormatsEntryProvider(navController)
+    dateTimeFormatsEntryProvider(navController)
+    moneyFormatsEntryProvider(navController)
 }

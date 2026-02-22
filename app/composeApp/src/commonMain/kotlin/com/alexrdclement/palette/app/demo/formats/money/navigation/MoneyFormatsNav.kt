@@ -1,9 +1,8 @@
 package com.alexrdclement.palette.app.demo.formats.money.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.navigation3.runtime.EntryProviderScope
-import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.demo.formats.money.MoneyFormatScreen
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
@@ -24,25 +23,7 @@ fun NavGraphBuilder.moneyFormatsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.moneyFormatsEntryProvider(
     navController: NavController,
 ) {
-    entry<MoneyFormatCatalogRoute> {
-        MoneyFormatsCatalog(navController)
-    }
-
-    entry<MoneyFormatRoute> {
-        MoneyFormatScreen(
-            format = it.format,
-            onNavigateUp = navController::goBack,
-            onThemeClick = {
-                navController.navigate(ThemeGraph)
-            },
-        )
-    }
-}
-
-@Composable
-private fun MoneyFormatsCatalog(navController: NavController) {
-    CatalogScreen(
-        items = MoneyFormat.entries.toList(),
+    catalogEntry<MoneyFormatCatalogRoute, MoneyFormat>(
         onItemClick = { format ->
             navController.navigate(MoneyFormatRoute(format))
         },
@@ -54,4 +35,14 @@ private fun MoneyFormatsCatalog(navController: NavController) {
             )
         },
     )
+
+    entry<MoneyFormatRoute> {
+        MoneyFormatScreen(
+            format = it.format,
+            onNavigateUp = navController::goBack,
+            onThemeClick = {
+                navController.navigate(ThemeGraph)
+            },
+        )
+    }
 }

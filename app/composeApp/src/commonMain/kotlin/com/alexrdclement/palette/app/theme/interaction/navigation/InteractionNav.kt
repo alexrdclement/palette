@@ -1,9 +1,8 @@
 package com.alexrdclement.palette.app.theme.interaction.navigation
 
-import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.app.catalog.CatalogScreen
-import com.alexrdclement.palette.app.theme.interaction.IndicationScreen
 import androidx.navigation3.runtime.EntryProviderScope
+import com.alexrdclement.palette.app.navigation.catalogEntry
+import com.alexrdclement.palette.app.theme.interaction.IndicationScreen
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.NavKey
@@ -21,22 +20,7 @@ fun EntryProviderScope<NavKey>.interactionEntryProvider(
     navController: NavController,
     themeController: ThemeController,
 ) {
-    entry<InteractionCatalogRoute> {
-        InteractionCatalog(navController)
-    }
-
-    entry<IndicationRoute> {
-        IndicationScreen(
-            themeController = themeController,
-            onNavigateUp = navController::goBack,
-        )
-    }
-}
-
-@Composable
-private fun InteractionCatalog(navController: NavController) {
-    CatalogScreen(
-        items = Interaction.entries.toList(),
+    catalogEntry<InteractionCatalogRoute, Interaction>(
         onItemClick = { interaction ->
             when (interaction) {
                 Interaction.Indication -> navController.navigate(IndicationRoute)
@@ -45,4 +29,11 @@ private fun InteractionCatalog(navController: NavController) {
         title = "Interaction",
         onNavigateUp = navController::goBack,
     )
+
+    entry<IndicationRoute> {
+        IndicationScreen(
+            themeController = themeController,
+            onNavigateUp = navController::goBack,
+        )
+    }
 }

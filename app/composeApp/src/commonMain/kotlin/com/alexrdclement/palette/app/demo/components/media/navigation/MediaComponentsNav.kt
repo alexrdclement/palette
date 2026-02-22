@@ -1,9 +1,8 @@
 package com.alexrdclement.palette.app.demo.components.media.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.navigation3.runtime.EntryProviderScope
-import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.demo.components.media.MediaComponentScreen
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
@@ -23,25 +22,7 @@ fun NavGraphBuilder.mediaComponentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.mediaComponentsEntryProvider(
     navController: NavController,
 ) {
-    entry<MediaComponentCatalogRoute> {
-        MediaComponentsCatalog(navController)
-    }
-
-    entry<MediaComponentRoute> {
-        MediaComponentScreen(
-            component = it.component,
-            onNavigateUp = navController::goBack,
-            onThemeClick = {
-                navController.navigate(ThemeGraph)
-            },
-        )
-    }
-}
-
-@Composable
-private fun MediaComponentsCatalog(navController: NavController) {
-    CatalogScreen(
-        items = MediaComponent.entries.toList(),
+    catalogEntry<MediaComponentCatalogRoute, MediaComponent>(
         onItemClick = { component ->
             navController.navigate(MediaComponentRoute(component))
         },
@@ -53,4 +34,14 @@ private fun MediaComponentsCatalog(navController: NavController) {
             )
         },
     )
+
+    entry<MediaComponentRoute> {
+        MediaComponentScreen(
+            component = it.component,
+            onNavigateUp = navController::goBack,
+            onThemeClick = {
+                navController.navigate(ThemeGraph)
+            },
+        )
+    }
 }

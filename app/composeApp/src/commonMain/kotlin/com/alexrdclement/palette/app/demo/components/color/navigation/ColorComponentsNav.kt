@@ -1,9 +1,8 @@
 package com.alexrdclement.palette.app.demo.components.color.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.navigation3.runtime.EntryProviderScope
-import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.demo.components.color.ColorComponentScreen
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
@@ -24,25 +23,7 @@ fun NavGraphBuilder.colorComponentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.colorComponentsEntryProvider(
     navController: NavController,
 ) {
-    entry<ColorComponentCatalogRoute> {
-        ColorComponentsCatalog(navController)
-    }
-
-    entry<ColorComponentRoute> {
-        ColorComponentScreen(
-            component = it.component,
-            onNavigateUp = navController::goBack,
-            onThemeClick = {
-                navController.navigate(ThemeGraph)
-            },
-        )
-    }
-}
-
-@Composable
-private fun ColorComponentsCatalog(navController: NavController) {
-    CatalogScreen(
-        items = ColorComponent.entries.toList(),
+    catalogEntry<ColorComponentCatalogRoute, ColorComponent>(
         onItemClick = { component ->
             navController.navigate(ColorComponentRoute(component))
         },
@@ -54,4 +35,14 @@ private fun ColorComponentsCatalog(navController: NavController) {
             )
         },
     )
+
+    entry<ColorComponentRoute> {
+        ColorComponentScreen(
+            component = it.component,
+            onNavigateUp = navController::goBack,
+            onThemeClick = {
+                navController.navigate(ThemeGraph)
+            },
+        )
+    }
 }

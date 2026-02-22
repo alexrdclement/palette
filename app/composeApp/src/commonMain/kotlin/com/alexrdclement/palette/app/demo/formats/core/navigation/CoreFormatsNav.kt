@@ -1,9 +1,8 @@
 package com.alexrdclement.palette.app.demo.formats.core.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.navigation3.runtime.EntryProviderScope
-import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.demo.formats.core.CoreFormatScreen
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
@@ -24,25 +23,7 @@ fun NavGraphBuilder.coreFormatsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.coreFormatsEntryProvider(
     navController: NavController,
 ) {
-    entry<CoreFormatCatalogRoute> {
-        CoreFormatsCatalog(navController)
-    }
-
-    entry<CoreFormatRoute> {
-        CoreFormatScreen(
-            format = it.format,
-            onNavigateUp = navController::goBack,
-            onThemeClick = {
-                navController.navigate(ThemeGraph)
-            },
-        )
-    }
-}
-
-@Composable
-private fun CoreFormatsCatalog(navController: NavController) {
-    CatalogScreen(
-        items = CoreFormat.entries.toList(),
+    catalogEntry<CoreFormatCatalogRoute, CoreFormat>(
         onItemClick = { format ->
             navController.navigate(CoreFormatRoute(format))
         },
@@ -54,4 +35,14 @@ private fun CoreFormatsCatalog(navController: NavController) {
             )
         },
     )
+
+    entry<CoreFormatRoute> {
+        CoreFormatScreen(
+            format = it.format,
+            onNavigateUp = navController::goBack,
+            onThemeClick = {
+                navController.navigate(ThemeGraph)
+            },
+        )
+    }
 }

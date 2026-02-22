@@ -1,8 +1,6 @@
 package com.alexrdclement.palette.app.demo.components.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.navigation3.runtime.EntryProviderScope
-import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.demo.components.Component
 import com.alexrdclement.palette.app.demo.components.auth.navigation.AuthComponentsGraph
 import com.alexrdclement.palette.app.demo.components.auth.navigation.authComponentsEntryProvider
@@ -22,6 +20,7 @@ import com.alexrdclement.palette.app.demo.components.media.navigation.mediaCompo
 import com.alexrdclement.palette.app.demo.components.money.navigation.MoneyComponentsGraph
 import com.alexrdclement.palette.app.demo.components.money.navigation.moneyComponentsEntryProvider
 import com.alexrdclement.palette.app.demo.components.money.navigation.moneyComponentsNavGraph
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
@@ -44,22 +43,7 @@ fun NavGraphBuilder.componentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.componentsEntryProvider(
     navController: NavController,
 ) {
-    entry<ComponentCatalogRoute> {
-        ComponentsCatalog(navController)
-    }
-
-    authComponentsEntryProvider(navController)
-    colorComponentsEntryProvider(navController)
-    coreComponentsEntryProvider(navController)
-    geometryComponentsEntryProvider(navController)
-    mediaComponentsEntryProvider(navController)
-    moneyComponentsEntryProvider(navController)
-}
-
-@Composable
-private fun ComponentsCatalog(navController: NavController) {
-    CatalogScreen(
-        items = Component.entries.toList(),
+    catalogEntry<ComponentCatalogRoute, Component>(
         onItemClick = { component ->
             val targetRoute = when (component) {
                 Component.Auth -> AuthComponentsGraph
@@ -79,4 +63,10 @@ private fun ComponentsCatalog(navController: NavController) {
             )
         },
     )
+    authComponentsEntryProvider(navController)
+    colorComponentsEntryProvider(navController)
+    coreComponentsEntryProvider(navController)
+    geometryComponentsEntryProvider(navController)
+    mediaComponentsEntryProvider(navController)
+    moneyComponentsEntryProvider(navController)
 }

@@ -1,9 +1,8 @@
 package com.alexrdclement.palette.app.demo.components.geometry.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.navigation3.runtime.EntryProviderScope
-import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.demo.components.geometry.GeometryComponentScreen
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
@@ -23,25 +22,7 @@ fun NavGraphBuilder.geometryComponentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.geometryComponentsEntryProvider(
     navController: NavController,
 ) {
-    entry<GeometryComponentCatalogRoute> {
-        GeometryComponentsCatalog(navController)
-    }
-
-    entry<GeometryComponentRoute> {
-        GeometryComponentScreen(
-            component = it.component,
-            onNavigateUp = navController::goBack,
-            onThemeClick = {
-                navController.navigate(ThemeGraph)
-            },
-        )
-    }
-}
-
-@Composable
-private fun GeometryComponentsCatalog(navController: NavController) {
-    CatalogScreen(
-        items = GeometryComponent.entries.toList(),
+    catalogEntry<GeometryComponentCatalogRoute, GeometryComponent>(
         onItemClick = { component ->
             navController.navigate(GeometryComponentRoute(component))
         },
@@ -53,4 +34,14 @@ private fun GeometryComponentsCatalog(navController: NavController) {
             )
         },
     )
+
+    entry<GeometryComponentRoute> {
+        GeometryComponentScreen(
+            component = it.component,
+            onNavigateUp = navController::goBack,
+            onThemeClick = {
+                navController.navigate(ThemeGraph)
+            },
+        )
+    }
 }

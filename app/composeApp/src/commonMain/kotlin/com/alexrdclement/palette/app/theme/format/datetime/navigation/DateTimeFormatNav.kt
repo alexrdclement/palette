@@ -1,12 +1,11 @@
 package com.alexrdclement.palette.app.theme.format.datetime.navigation
 
-import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.app.catalog.CatalogScreen
+import androidx.navigation3.runtime.EntryProviderScope
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.format.datetime.DateFormatSchemeScreen
 import com.alexrdclement.palette.app.theme.format.datetime.DateTimeFormatSchemeScreen
 import com.alexrdclement.palette.app.theme.format.datetime.InstantFormatSchemeScreen
 import com.alexrdclement.palette.app.theme.format.datetime.TimeFormatSchemeScreen
-import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.NavGraphBuilder
@@ -27,9 +26,13 @@ fun EntryProviderScope<NavKey>.dateTimeFormatEntryProvider(
     navController: NavController,
     themeController: ThemeController,
 ) {
-    entry<DateTimeFormatCatalogRoute> {
-        DateTimeFormatCatalog(navController)
-    }
+    catalogEntry<DateTimeFormatCatalogRoute, DateTimeFormatCatalogItem>(
+        onItemClick = { item ->
+            navController.navigate(DateTimeFormatItemRoute(item.ordinal))
+        },
+        title = "DateTime",
+        onNavigateUp = navController::goBack,
+    )
 
     entry<DateTimeFormatItemRoute> { route ->
         val format = DateTimeFormatCatalogItem.entries[route.ordinal]
@@ -52,16 +55,4 @@ fun EntryProviderScope<NavKey>.dateTimeFormatEntryProvider(
             )
         }
     }
-}
-
-@Composable
-private fun DateTimeFormatCatalog(navController: NavController) {
-    CatalogScreen(
-        items = DateTimeFormatCatalogItem.entries.toList(),
-        onItemClick = { item ->
-            navController.navigate(DateTimeFormatItemRoute(item.ordinal))
-        },
-        title = "DateTime",
-        onNavigateUp = navController::goBack,
-    )
 }

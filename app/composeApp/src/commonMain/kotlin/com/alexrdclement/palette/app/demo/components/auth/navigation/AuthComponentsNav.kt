@@ -1,9 +1,8 @@
 package com.alexrdclement.palette.app.demo.components.auth.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.navigation3.runtime.EntryProviderScope
-import com.alexrdclement.palette.app.catalog.CatalogScreen
 import com.alexrdclement.palette.app.demo.components.auth.AuthComponentScreen
+import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
@@ -24,25 +23,7 @@ fun NavGraphBuilder.authComponentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.authComponentsEntryProvider(
     navController: NavController,
 ) {
-    entry<AuthComponentCatalogRoute> {
-        AuthComponentsCatalog(navController)
-    }
-
-    entry<AuthComponentRoute> {
-        AuthComponentScreen(
-            component = it.component,
-            onNavigateUp = navController::navigateUp,
-            onThemeClick = {
-                navController.navigate(ThemeGraph)
-            },
-        )
-    }
-}
-
-@Composable
-private fun AuthComponentsCatalog(navController: NavController) {
-    CatalogScreen(
-        items = AuthComponent.entries.toList(),
+    catalogEntry<AuthComponentCatalogRoute, AuthComponent>(
         onItemClick = { component ->
             navController.navigate(AuthComponentRoute(component))
         },
@@ -54,4 +35,14 @@ private fun AuthComponentsCatalog(navController: NavController) {
             )
         },
     )
+
+    entry<AuthComponentRoute> {
+        AuthComponentScreen(
+            component = it.component,
+            onNavigateUp = navController::navigateUp,
+            onThemeClick = {
+                navController.navigate(ThemeGraph)
+            },
+        )
+    }
 }
