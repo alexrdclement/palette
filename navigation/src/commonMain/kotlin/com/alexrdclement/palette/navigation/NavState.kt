@@ -16,10 +16,12 @@ import kotlinx.serialization.json.Json
 @Composable
 fun rememberNavState(
     navGraph: NavGraph,
-    json: Json = navGraph.defaultJson,
+    jsonConfig: NavKeyJsonBuilder.() -> Unit = {},
     initialDeeplink: String? = null,
     onWouldBecomeEmpty: () -> Unit = {},
 ): NavState {
+    val json = rememberNavKeyJson(navGraph, jsonConfig)
+
     val initialRoute = remember {
         if (initialDeeplink != null) {
             navGraph.parseDeeplink(initialDeeplink) ?: navGraph.startRoute

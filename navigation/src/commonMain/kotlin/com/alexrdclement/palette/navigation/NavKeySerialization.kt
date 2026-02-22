@@ -1,46 +1,61 @@
 package com.alexrdclement.palette.navigation
 
-import androidx.navigation3.runtime.NavKey as Navigation3NavKey
-import kotlin.reflect.KClass
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
-import kotlinx.serialization.serializer
+import kotlin.reflect.KClass
+import androidx.navigation3.runtime.NavKey as Navigation3NavKey
 
-fun navKeySerializersModule(
-    block: NavKeySerializersModuleBuilder.() -> Unit,
-): SerializersModule = NavKeySerializersModuleBuilder().apply(block).build()
-
-class NavKeySerializersModuleBuilder {
-    @PublishedApi
-    internal data class Entry(
-        val clazz: KClass<out NavKey>,
-        val serializer: KSerializer<out NavKey>,
-    )
-
-    @PublishedApi
-    internal val entries = mutableListOf<Entry>()
-    private val includes = mutableListOf<SerializersModule>()
-
-    inline fun <reified T : NavKey> subclass() {
-        entries.add(Entry(T::class, serializer<T>()))
-    }
-
-    fun subclass(clazz: KClass<out NavKey>, serializer: KSerializer<out NavKey>) {
-        entries.add(Entry(clazz, serializer))
-    }
-
-    fun include(module: SerializersModule) {
-        includes.add(module)
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    fun build(): SerializersModule = SerializersModule {
-        polymorphic(Navigation3NavKey::class) {
-            entries.forEach { (clazz, serializer) ->
-                subclass(clazz as KClass<NavKey>, serializer as KSerializer<NavKey>)
-            }
+@Composable
+fun rememberNavKeyJson(
+    navGraph: NavGraph,
+    builder: NavKeyJsonBuilder.() -> Unit = {},
+): Json {
+    val config = NavKeyJsonBuilder().apply(builder).toConfig()
+    return remember(navGraph, config) {
+        Json(from = config.from ?: Json.Default) {
+            serializersModule = navGraph.toSerializersModule()
+            ignoreUnknownKeys = config.ignoreUnknownKeys
+            classDiscriminator = config.classDiscriminator
         }
-        includes.forEach { include(it) }
     }
 }
+
+class NavKeyJsonBuilder {
+    var from: Json? = null
+    var ignoreUnknownKeys: Boolean = true
+    var classDiscriminator: String = "type"
+}
+
+fun NavGraph.toSerializersModule(): SerializersModule = SerializersModule {
+    polymorphic(Navigation3NavKey::class) {
+        fun collect(nodes: List<NavGraphNode>) {
+            nodes.forEach { node ->
+                if (node.graphStartRoute == null) {
+                    @Suppress("UNCHECKED_CAST")
+                    subclass(
+                        node.navKeyClass as KClass<NavKey>,
+                        node.serializer as KSerializer<NavKey>,
+                    )
+                }
+                collect(node.children)
+            }
+        }
+        collect(this@toSerializersModule.nodes)
+    }
+}
+
+private data class NavKeyJsonConfig(
+    val from: Json?,
+    val ignoreUnknownKeys: Boolean,
+    val classDiscriminator: String,
+)
+
+private fun NavKeyJsonBuilder.toConfig() = NavKeyJsonConfig(
+    from = from,
+    ignoreUnknownKeys = ignoreUnknownKeys,
+    classDiscriminator = classDiscriminator,
+)
