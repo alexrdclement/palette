@@ -21,10 +21,6 @@ fun EntryProviderScope<NavKey>.interactionEntryProvider(
     navController: NavController,
     themeController: ThemeController,
 ) {
-    entry<InteractionGraph> {
-        InteractionCatalog(navController)
-    }
-
     entry<InteractionCatalogRoute> {
         InteractionCatalog(navController)
     }

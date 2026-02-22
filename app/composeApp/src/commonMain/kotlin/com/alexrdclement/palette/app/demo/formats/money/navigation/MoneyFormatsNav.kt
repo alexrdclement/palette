@@ -24,10 +24,6 @@ fun NavGraphBuilder.moneyFormatsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.moneyFormatsEntryProvider(
     navController: NavController,
 ) {
-    entry<MoneyFormatsGraph> {
-        MoneyFormatsCatalog(navController)
-    }
-
     entry<MoneyFormatCatalogRoute> {
         MoneyFormatsCatalog(navController)
     }

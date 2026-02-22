@@ -15,19 +15,19 @@ fun TestRoute(value: String, parent: NavKey? = null) = TestRoute(PathSegment(val
 
 @Serializable
 @SerialName("root-route")
-data object RootRoute : NavKey {
+data object RootRoute : NavGraphRoute {
     override val pathSegment = PathSegment("root")
 }
 
 @Serializable
 @SerialName("graph1")
-data object Graph1 : NavKey {
+data object Graph1 : NavGraphRoute {
     override val pathSegment = PathSegment("graph1")
 }
 
 @Serializable
 @SerialName("graph2")
-data object Graph2 : NavKey {
+data object Graph2 : NavGraphRoute {
     override val pathSegment = PathSegment("graph2")
 }
 
@@ -57,6 +57,6 @@ data object Route3 : NavKey {
 
 @Serializable
 @SerialName("empty-route")
-data object EmptyRoute : NavKey {
+data object EmptyRoute : NavGraphRoute {
     override val pathSegment = PathSegment("")
 }

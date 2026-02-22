@@ -44,10 +44,6 @@ fun NavGraphBuilder.componentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.componentsEntryProvider(
     navController: NavController,
 ) {
-    entry<ComponentsGraph> {
-        ComponentsCatalog(navController)
-    }
-
     entry<ComponentCatalogRoute> {
         ComponentsCatalog(navController)
     }

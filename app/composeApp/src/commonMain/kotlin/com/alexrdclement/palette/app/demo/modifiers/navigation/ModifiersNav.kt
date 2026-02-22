@@ -24,10 +24,6 @@ fun NavGraphBuilder.modifiersNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.modifiersEntryProvider(
     navController: NavController,
 ) {
-    entry<ModifiersGraph> {
-        ModifiersCatalog(navController)
-    }
-
     entry<ModifierCatalogRoute> {
         ModifiersCatalog(navController)
     }

@@ -40,10 +40,6 @@ fun EntryProviderScope<NavKey>.themeEntryProvider(
     navController: NavController,
     themeController: ThemeController,
 ) {
-    entry<ThemeGraph> {
-        ThemeCatalog(navController)
-    }
-
     entry<ThemeCatalogRoute> {
         ThemeCatalog(navController)
     }

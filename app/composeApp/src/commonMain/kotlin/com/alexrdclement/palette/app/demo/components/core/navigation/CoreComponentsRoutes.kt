@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.app.demo.components.core.navigation
 
 import com.alexrdclement.palette.navigation.EnumNavKey
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.navigation.toEnumEntry
@@ -12,7 +13,7 @@ sealed interface CoreComponentsRoute : NavKey
 
 @Serializable
 @SerialName("core")
-data object CoreComponentsGraph : CoreComponentsRoute {
+data object CoreComponentsGraph : CoreComponentsRoute, NavGraphRoute {
     override val pathSegment = "core".toPathSegment()
 }
 

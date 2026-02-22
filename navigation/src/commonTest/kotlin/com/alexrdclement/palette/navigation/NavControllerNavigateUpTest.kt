@@ -63,7 +63,7 @@ class NavControllerNavigateUpTest {
             start = Route1,
         ) {
             navGraph(
-                root = Route1,
+                root = Graph2,
                 start = Route1,
             ) {
                 route(Route1)

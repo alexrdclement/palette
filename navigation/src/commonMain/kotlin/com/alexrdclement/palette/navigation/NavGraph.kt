@@ -17,7 +17,9 @@ data class NavGraph(
         navKeySerializersModule {
             fun collect(nodes: List<NavGraphNode>) {
                 nodes.forEach { node ->
-                    subclass(node.navKeyClass, node.serializer)
+                    if (node.graphStartRoute == null) {
+                        subclass(node.navKeyClass, node.serializer)
+                    }
                     collect(node.children)
                 }
             }

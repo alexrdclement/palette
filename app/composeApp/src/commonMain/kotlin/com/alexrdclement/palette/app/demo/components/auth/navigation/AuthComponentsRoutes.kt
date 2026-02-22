@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.app.demo.components.auth.navigation
 
 import com.alexrdclement.palette.navigation.EnumNavKey
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.navigation.toEnumEntry
@@ -12,7 +13,7 @@ sealed interface AuthComponentsRoute : NavKey
 
 @Serializable
 @SerialName("auth")
-data object AuthComponentsGraph : AuthComponentsRoute {
+data object AuthComponentsGraph : AuthComponentsRoute, NavGraphRoute {
     override val pathSegment = "auth".toPathSegment()
 }
 

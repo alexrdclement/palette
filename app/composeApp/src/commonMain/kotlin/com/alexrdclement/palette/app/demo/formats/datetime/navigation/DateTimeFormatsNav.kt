@@ -24,10 +24,6 @@ fun NavGraphBuilder.dateTimeFormatsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.dateTimeFormatsEntryProvider(
     navController: NavController,
 ) {
-    entry<DateTimeFormatsGraph> {
-        DateTimeFormatsCatalog(navController)
-    }
-
     entry<DateTimeFormatCatalogRoute> {
         DateTimeFormatsCatalog(navController)
     }

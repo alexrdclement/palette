@@ -23,10 +23,6 @@ fun NavGraphBuilder.mainNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.mainEntryProvider(
     navController: NavController,
 ) {
-    entry<MainGraph> {
-        MainCatalog(navController)
-    }
-
     entry<MainCatalogRoute> {
         MainCatalog(navController)
     }

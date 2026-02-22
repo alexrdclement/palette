@@ -24,10 +24,6 @@ fun NavGraphBuilder.colorComponentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.colorComponentsEntryProvider(
     navController: NavController,
 ) {
-    entry<ColorComponentsGraph> {
-        ColorComponentsCatalog(navController)
-    }
-
     entry<ColorComponentCatalogRoute> {
         ColorComponentsCatalog(navController)
     }

@@ -26,10 +26,6 @@ fun EntryProviderScope<NavKey>.stylesEntryProvider(
     navController: NavController,
     themeController: ThemeController,
 ) {
-    entry<StylesGraph> {
-        StylesCatalog(navController)
-    }
-
     entry<StylesCatalogRoute> {
         StylesCatalog(navController)
     }

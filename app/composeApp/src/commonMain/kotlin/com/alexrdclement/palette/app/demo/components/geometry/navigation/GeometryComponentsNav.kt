@@ -23,10 +23,6 @@ fun NavGraphBuilder.geometryComponentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.geometryComponentsEntryProvider(
     navController: NavController,
 ) {
-    entry<GeometryComponentsGraph> {
-        GeometryComponentsCatalog(navController)
-    }
-
     entry<GeometryComponentCatalogRoute> {
         GeometryComponentsCatalog(navController)
     }

@@ -23,10 +23,6 @@ fun NavGraphBuilder.moneyComponentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.moneyComponentsEntryProvider(
     navController: NavController,
 ) {
-    entry<MoneyComponentsGraph> {
-        MoneyComponentsCatalog(navController)
-    }
-
     entry<MoneyComponentCatalogRoute> {
         MoneyComponentsCatalog(navController)
     }

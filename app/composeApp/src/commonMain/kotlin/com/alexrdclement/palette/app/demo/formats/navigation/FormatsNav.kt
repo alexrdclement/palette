@@ -31,10 +31,6 @@ fun NavGraphBuilder.formatsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.formatsEntryProvider(
     navController: NavController,
 ) {
-    entry<FormatsGraph> {
-        FormatsCatalog(navController)
-    }
-
     entry<FormatCatalogRoute> {
         FormatsCatalog(navController)
     }

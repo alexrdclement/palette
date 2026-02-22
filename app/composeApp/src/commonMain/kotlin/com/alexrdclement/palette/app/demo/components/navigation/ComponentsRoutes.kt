@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.app.demo.components.navigation
 
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -9,7 +10,7 @@ sealed interface ComponentsRoute : NavKey
 
 @Serializable
 @SerialName("components")
-data object ComponentsGraph : ComponentsRoute {
+data object ComponentsGraph : ComponentsRoute, NavGraphRoute {
     override val pathSegment = "components".toPathSegment()
 }
 

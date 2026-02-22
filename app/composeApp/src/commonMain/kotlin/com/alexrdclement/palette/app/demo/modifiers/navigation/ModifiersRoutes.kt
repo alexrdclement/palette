@@ -2,6 +2,7 @@ package com.alexrdclement.palette.app.demo.modifiers.navigation
 
 import com.alexrdclement.palette.app.demo.modifiers.DemoModifier
 import com.alexrdclement.palette.navigation.EnumNavKey
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.navigation.toEnumEntry
@@ -13,7 +14,7 @@ sealed interface ModifiersRoute : NavKey
 
 @Serializable
 @SerialName("modifiers")
-data object ModifiersGraph : ModifiersRoute {
+data object ModifiersGraph : ModifiersRoute, NavGraphRoute {
     override val pathSegment = "modifiers".toPathSegment()
 }
 

@@ -24,10 +24,6 @@ fun NavGraphBuilder.coreFormatsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.coreFormatsEntryProvider(
     navController: NavController,
 ) {
-    entry<CoreFormatsGraph> {
-        CoreFormatsCatalog(navController)
-    }
-
     entry<CoreFormatCatalogRoute> {
         CoreFormatsCatalog(navController)
     }

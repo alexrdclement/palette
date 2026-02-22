@@ -24,10 +24,6 @@ fun NavGraphBuilder.coreComponentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.coreComponentsEntryProvider(
     navController: NavController,
 ) {
-    entry<CoreComponentsGraph> {
-        CoreComponentsCatalog(navController)
-    }
-
     entry<CoreComponentCatalogRoute> {
         CoreComponentsCatalog(navController)
     }

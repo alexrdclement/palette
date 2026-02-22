@@ -16,6 +16,7 @@ import com.alexrdclement.palette.app.main.navigation.mainNavGraph
 import com.alexrdclement.palette.app.theme.navigation.themeEntryProvider
 import com.alexrdclement.palette.app.theme.navigation.themeNavGraph
 import com.alexrdclement.palette.navigation.NavController
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.navGraph
 import com.alexrdclement.palette.navigation.rememberNavController
@@ -27,7 +28,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("ui-playground")
-data object PaletteGraph : NavKey {
+data object PaletteGraph : NavGraphRoute {
     override val pathSegment = "".toPathSegment()
 }
 

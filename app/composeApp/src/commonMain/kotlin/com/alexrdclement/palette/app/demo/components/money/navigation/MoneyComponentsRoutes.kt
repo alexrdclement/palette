@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.app.demo.components.money.navigation
 
 import com.alexrdclement.palette.navigation.EnumNavKey
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.navigation.toEnumEntry
@@ -12,7 +13,7 @@ sealed interface MoneyComponentsRoute : NavKey
 
 @Serializable
 @SerialName("money-components")
-data object MoneyComponentsGraph : MoneyComponentsRoute {
+data object MoneyComponentsGraph : MoneyComponentsRoute, NavGraphRoute {
     override val pathSegment = "money".toPathSegment()
 }
 

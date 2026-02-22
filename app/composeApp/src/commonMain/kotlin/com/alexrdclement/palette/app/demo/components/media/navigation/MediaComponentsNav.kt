@@ -23,10 +23,6 @@ fun NavGraphBuilder.mediaComponentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.mediaComponentsEntryProvider(
     navController: NavController,
 ) {
-    entry<MediaComponentsGraph> {
-        MediaComponentsCatalog(navController)
-    }
-
     entry<MediaComponentCatalogRoute> {
         MediaComponentsCatalog(navController)
     }

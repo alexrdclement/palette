@@ -10,15 +10,15 @@ class NavGraphBuilderTest {
     @Test
     fun `creates graph with single route`() {
         val navGraph = navGraph(
-            root = Route1,
+            root = Graph1,
             start = Route1,
         ) {
             route(Route1)
         }
 
-        val node = navGraph.findNode(Route1::class)
+        val node = navGraph.findNode(Graph1::class)
         assertNotNull(node)
-        assertEquals(Route1.pathSegment, node.pathSegment)
+        assertEquals(Graph1.pathSegment, node.pathSegment)
         assertNull(node.parent)
         assertEquals(1, node.children.size)
         assertEquals(Route1, node.graphStartRoute)

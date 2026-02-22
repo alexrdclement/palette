@@ -30,10 +30,6 @@ fun EntryProviderScope<NavKey>.formatsEntryProvider(
     navController: NavController,
     themeController: ThemeController,
 ) {
-    entry<FormatsGraph> {
-        FormatCatalog(navController)
-    }
-
     entry<FormatCatalogRoute> {
         FormatCatalog(navController)
     }

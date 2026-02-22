@@ -24,10 +24,6 @@ fun NavGraphBuilder.authComponentsNavGraph() = navGraph(
 fun EntryProviderScope<NavKey>.authComponentsEntryProvider(
     navController: NavController,
 ) {
-    entry<AuthComponentsGraph> {
-        AuthComponentsCatalog(navController)
-    }
-
     entry<AuthComponentCatalogRoute> {
         AuthComponentsCatalog(navController)
     }

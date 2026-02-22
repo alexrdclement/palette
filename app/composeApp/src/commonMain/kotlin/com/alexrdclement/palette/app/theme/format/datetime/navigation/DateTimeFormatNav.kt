@@ -27,10 +27,6 @@ fun EntryProviderScope<NavKey>.dateTimeFormatEntryProvider(
     navController: NavController,
     themeController: ThemeController,
 ) {
-    entry<DateTimeFormatGraph> {
-        DateTimeFormatCatalog(navController)
-    }
-
     entry<DateTimeFormatCatalogRoute> {
         DateTimeFormatCatalog(navController)
     }

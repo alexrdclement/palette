@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.app.demo.formats.navigation
 
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.toPathSegment
 import kotlinx.serialization.SerialName
@@ -9,7 +10,7 @@ sealed interface FormatsRoute : NavKey
 
 @Serializable
 @SerialName("demo-formats")
-data object FormatsGraph : FormatsRoute {
+data object FormatsGraph : FormatsRoute, NavGraphRoute {
     override val pathSegment = "formats".toPathSegment()
 }
 

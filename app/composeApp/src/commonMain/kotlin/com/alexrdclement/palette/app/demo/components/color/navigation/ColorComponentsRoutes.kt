@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.app.demo.components.color.navigation
 
 import com.alexrdclement.palette.navigation.EnumNavKey
+import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.navigation.toEnumEntry
@@ -12,7 +13,7 @@ sealed interface ColorComponentsRoute : NavKey
 
 @Serializable
 @SerialName("color-components")
-data object ColorComponentsGraph : ColorComponentsRoute {
+data object ColorComponentsGraph : ColorComponentsRoute, NavGraphRoute {
     override val pathSegment = "color".toPathSegment()
 }
 
