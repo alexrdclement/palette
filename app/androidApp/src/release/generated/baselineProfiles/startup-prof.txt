@@ -2633,7 +2633,6 @@ HSPLandroidx/compose/runtime/ComposerImpl;->endRoot()V
 HSPLandroidx/compose/runtime/ComposerImpl;->ensureWriter()V
 HSPLandroidx/compose/runtime/ComposerImpl;->enterGroup(ZLandroidx/compose/runtime/Pending;)V
 HSPLandroidx/compose/runtime/ComposerImpl;->enterRecomposeScope(Landroidx/compose/runtime/RecomposeScopeImpl;)V
-HSPLandroidx/compose/runtime/ComposerImpl;->exitGroup(IZ)V
 HSPLandroidx/compose/runtime/ComposerImpl;->exitRecomposeScope(Landroidx/compose/runtime/RecomposeScopeImpl;)Lkotlin/jvm/functions/Function1;
 HSPLandroidx/compose/runtime/ComposerImpl;->finalizeCompose()V
 HSPLandroidx/compose/runtime/ComposerImpl;->forceFreshInsertTable()V
@@ -3120,6 +3119,7 @@ HSPLandroidx/compose/runtime/Pending$keyMap$2;->invoke-fVlnmYg()Landroidx/collec
 Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/PersistentCompositionLocalMap;->getCurrentValue(Landroidx/compose/runtime/CompositionLocal;)Ljava/lang/Object;
 Landroidx/compose/runtime/PersistentCompositionLocalMap$Builder;
+Landroidx/compose/runtime/PreconditionsKt;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt;
 HSPLandroidx/compose/runtime/PrimitiveSnapshotStateKt;->mutableFloatStateOf(F)Landroidx/compose/runtime/MutableFloatState;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt__SnapshotFloatStateKt;
