@@ -3120,6 +3120,7 @@ HSPLandroidx/compose/runtime/Pending$keyMap$2;->invoke-fVlnmYg()Landroidx/collec
 Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/PersistentCompositionLocalMap;->getCurrentValue(Landroidx/compose/runtime/CompositionLocal;)Ljava/lang/Object;
 Landroidx/compose/runtime/PersistentCompositionLocalMap$Builder;
+Landroidx/compose/runtime/PreconditionsKt;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt;
 HSPLandroidx/compose/runtime/PrimitiveSnapshotStateKt;->mutableFloatStateOf(F)Landroidx/compose/runtime/MutableFloatState;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt__SnapshotFloatStateKt;
@@ -4685,7 +4686,6 @@ HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap;->
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap;->recordInvalidation(Ljava/util/Set;)Z
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap;->recordRead(Ljava/lang/Object;)V
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap;->recordRead(Ljava/lang/Object;ILjava/lang/Object;Landroidx/collection/MutableObjectIntMap;)V
-PLandroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap;->removeObservation(Ljava/lang/Object;Ljava/lang/Object;)V
 PLandroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap;->rereadDerivedState(Landroidx/compose/runtime/DerivedState;)V
 Landroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap$derivedStateObserver$1;
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap$derivedStateObserver$1;-><init>(Landroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap;)V
@@ -6719,7 +6719,7 @@ HSPLandroidx/compose/ui/node/LayoutNodeDrawScope;-><clinit>()V
 HSPLandroidx/compose/ui/node/LayoutNodeDrawScope;-><init>(Landroidx/compose/ui/graphics/drawscope/CanvasDrawScope;)V
 HSPLandroidx/compose/ui/node/LayoutNodeDrawScope;-><init>(Landroidx/compose/ui/graphics/drawscope/CanvasDrawScope;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLandroidx/compose/ui/node/LayoutNodeDrawScope;->draw-eZhPAX0$ui(Landroidx/compose/ui/graphics/Canvas;JLandroidx/compose/ui/node/NodeCoordinator;Landroidx/compose/ui/Modifier$Node;Landroidx/compose/ui/graphics/layer/GraphicsLayer;)V
-HPLandroidx/compose/ui/node/LayoutNodeDrawScope;->drawContent()V
+PLandroidx/compose/ui/node/LayoutNodeDrawScope;->drawContent()V
 HPLandroidx/compose/ui/node/LayoutNodeDrawScope;->drawDirect-eZhPAX0$ui(Landroidx/compose/ui/graphics/Canvas;JLandroidx/compose/ui/node/NodeCoordinator;Landroidx/compose/ui/node/DrawModifierNode;Landroidx/compose/ui/graphics/layer/GraphicsLayer;)V
 PLandroidx/compose/ui/node/LayoutNodeDrawScope;->drawRect-AsUm42w(Landroidx/compose/ui/graphics/Brush;JJFLandroidx/compose/ui/graphics/drawscope/DrawStyle;Landroidx/compose/ui/graphics/ColorFilter;I)V
 PLandroidx/compose/ui/node/LayoutNodeDrawScope;->drawRect-n-J9OG0(JJJFLandroidx/compose/ui/graphics/drawscope/DrawStyle;Landroidx/compose/ui/graphics/ColorFilter;I)V
@@ -8264,13 +8264,11 @@ HSPLandroidx/compose/ui/text/AnnotatedString$Companion;-><init>()V
 HSPLandroidx/compose/ui/text/AnnotatedString$Companion;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 Landroidx/compose/ui/text/EmojiSupportMatch;
 HSPLandroidx/compose/ui/text/EmojiSupportMatch;-><clinit>()V
-PLandroidx/compose/ui/text/EmojiSupportMatch;->access$getAll$cp()I
 HSPLandroidx/compose/ui/text/EmojiSupportMatch;->access$getNone$cp()I
 HSPLandroidx/compose/ui/text/EmojiSupportMatch;->constructor-impl(I)I
 Landroidx/compose/ui/text/EmojiSupportMatch$Companion;
 HSPLandroidx/compose/ui/text/EmojiSupportMatch$Companion;-><init>()V
 HSPLandroidx/compose/ui/text/EmojiSupportMatch$Companion;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-PLandroidx/compose/ui/text/EmojiSupportMatch$Companion;->getAll-_3YsG6Y()I
 HSPLandroidx/compose/ui/text/EmojiSupportMatch$Companion;->getNone-_3YsG6Y()I
 Landroidx/compose/ui/text/NonNullValueClassSaver;
 Landroidx/compose/ui/text/Paragraph;
@@ -10617,8 +10615,6 @@ PLandroidx/profileinstaller/ProfileVerifier;->getPackageLastUpdateTime(Landroid/
 PLandroidx/profileinstaller/ProfileVerifier;->setCompilationStatus(IZZZ)Landroidx/profileinstaller/ProfileVerifier$CompilationStatus;
 PLandroidx/profileinstaller/ProfileVerifier;->writeProfileVerification(Landroid/content/Context;Z)Landroidx/profileinstaller/ProfileVerifier$CompilationStatus;
 PLandroidx/profileinstaller/ProfileVerifier$Cache;-><init>(IIJJ)V
-PLandroidx/profileinstaller/ProfileVerifier$Cache;->equals(Ljava/lang/Object;)Z
-PLandroidx/profileinstaller/ProfileVerifier$Cache;->readFromFile(Ljava/io/File;)Landroidx/profileinstaller/ProfileVerifier$Cache;
 PLandroidx/profileinstaller/ProfileVerifier$Cache;->writeOnFile(Ljava/io/File;)V
 PLandroidx/profileinstaller/ProfileVerifier$CompilationStatus;-><init>(IZZZ)V
 Landroidx/savedstate/R$id;
