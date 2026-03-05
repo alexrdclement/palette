@@ -2618,7 +2618,6 @@ HSPLandroidx/compose/runtime/ComposerImpl;->currentCompositionLocalScope()Landro
 HSPLandroidx/compose/runtime/ComposerImpl;->currentCompositionLocalScope(I)Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/ComposerImpl;->doCompose-aFTiNEg(Landroidx/collection/MutableScatterMap;Lkotlin/jvm/functions/Function2;)V
 PLandroidx/compose/runtime/ComposerImpl;->doRecordDownsFor(II)V
-HSPLandroidx/compose/runtime/ComposerImpl;->end(Z)V
 HSPLandroidx/compose/runtime/ComposerImpl;->endDefaults()V
 HSPLandroidx/compose/runtime/ComposerImpl;->endGroup()V
 HSPLandroidx/compose/runtime/ComposerImpl;->endMovableGroup()V
@@ -3523,7 +3522,6 @@ HSPLandroidx/compose/runtime/SlotWriter;->sourceInformationOf$runtime(I)Landroid
 HSPLandroidx/compose/runtime/SlotWriter;->startData(ILjava/lang/Object;Ljava/lang/Object;)V
 HSPLandroidx/compose/runtime/SlotWriter;->startGroup()V
 HSPLandroidx/compose/runtime/SlotWriter;->startGroup(ILjava/lang/Object;)V
-HSPLandroidx/compose/runtime/SlotWriter;->startGroup(ILjava/lang/Object;ZLjava/lang/Object;)V
 HSPLandroidx/compose/runtime/SlotWriter;->startNode(ILjava/lang/Object;)V
 HSPLandroidx/compose/runtime/SlotWriter;->update(Ljava/lang/Object;)Ljava/lang/Object;
 PLandroidx/compose/runtime/SlotWriter;->updateAnchors(II)V
@@ -6719,7 +6717,7 @@ HSPLandroidx/compose/ui/node/LayoutNodeDrawScope;-><clinit>()V
 HSPLandroidx/compose/ui/node/LayoutNodeDrawScope;-><init>(Landroidx/compose/ui/graphics/drawscope/CanvasDrawScope;)V
 HSPLandroidx/compose/ui/node/LayoutNodeDrawScope;-><init>(Landroidx/compose/ui/graphics/drawscope/CanvasDrawScope;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLandroidx/compose/ui/node/LayoutNodeDrawScope;->draw-eZhPAX0$ui(Landroidx/compose/ui/graphics/Canvas;JLandroidx/compose/ui/node/NodeCoordinator;Landroidx/compose/ui/Modifier$Node;Landroidx/compose/ui/graphics/layer/GraphicsLayer;)V
-HPLandroidx/compose/ui/node/LayoutNodeDrawScope;->drawContent()V
+PLandroidx/compose/ui/node/LayoutNodeDrawScope;->drawContent()V
 HPLandroidx/compose/ui/node/LayoutNodeDrawScope;->drawDirect-eZhPAX0$ui(Landroidx/compose/ui/graphics/Canvas;JLandroidx/compose/ui/node/NodeCoordinator;Landroidx/compose/ui/node/DrawModifierNode;Landroidx/compose/ui/graphics/layer/GraphicsLayer;)V
 PLandroidx/compose/ui/node/LayoutNodeDrawScope;->drawRect-AsUm42w(Landroidx/compose/ui/graphics/Brush;JJFLandroidx/compose/ui/graphics/drawscope/DrawStyle;Landroidx/compose/ui/graphics/ColorFilter;I)V
 PLandroidx/compose/ui/node/LayoutNodeDrawScope;->drawRect-n-J9OG0(JJJFLandroidx/compose/ui/graphics/drawscope/DrawStyle;Landroidx/compose/ui/graphics/ColorFilter;I)V
@@ -10617,8 +10615,6 @@ PLandroidx/profileinstaller/ProfileVerifier;->getPackageLastUpdateTime(Landroid/
 PLandroidx/profileinstaller/ProfileVerifier;->setCompilationStatus(IZZZ)Landroidx/profileinstaller/ProfileVerifier$CompilationStatus;
 PLandroidx/profileinstaller/ProfileVerifier;->writeProfileVerification(Landroid/content/Context;Z)Landroidx/profileinstaller/ProfileVerifier$CompilationStatus;
 PLandroidx/profileinstaller/ProfileVerifier$Cache;-><init>(IIJJ)V
-PLandroidx/profileinstaller/ProfileVerifier$Cache;->equals(Ljava/lang/Object;)Z
-PLandroidx/profileinstaller/ProfileVerifier$Cache;->readFromFile(Ljava/io/File;)Landroidx/profileinstaller/ProfileVerifier$Cache;
 PLandroidx/profileinstaller/ProfileVerifier$Cache;->writeOnFile(Ljava/io/File;)V
 PLandroidx/profileinstaller/ProfileVerifier$CompilationStatus;-><init>(IZZZ)V
 Landroidx/savedstate/R$id;
