@@ -17,11 +17,12 @@ data class NavGraph(
  * If the route is not a graph or is already a leaf route, returns the route itself.
  */
 fun NavGraph.resolve(route: NavKey): NavKey {
-    fun resolve(currentRoute: NavKey): NavKey {
-        val node = findNode(currentRoute::class) ?: return currentRoute
-        val start = node.graphStartRoute ?: return currentRoute
+    fun resolve(current: NavKey): NavKey {
+        if (current !is NavGraphRoute) return current
+        val node = findNode(current::class) ?: return current
+        val start = node.startRouteFactory?.invoke(current) ?: return current
         // Stop if the start route is the same as current route (prevents infinite loop)
-        if (start::class == currentRoute::class) return currentRoute
+        if (start::class == current::class) return current
         return resolve(start)
     }
     return resolve(route)
@@ -43,16 +44,16 @@ fun NavKey.Companion.fromDeeplink(
     deeplink: String,
     navGraph: NavGraph,
 ): NavKey? {
-    return navGraph.parseDeeplink(deeplink)
+    return navGraph.parseDeeplinkToNavKey(deeplink)
 }
 
-fun NavGraph.parseDeeplink(deeplink: String): NavKey? {
+fun NavGraph.parseDeeplinkToNavKey(deeplink: String): NavKey? {
     val segments = deeplink.lowercase().split("/").filter { it.isNotEmpty() }.map(::PathSegment)
     return segments.toNavKey(this)
 }
 
 fun NavGraph.parseDeeplinkToBackStack(deeplink: String): List<NavKey> {
-    val dest = parseDeeplink(deeplink) ?: return listOf(startRoute)
+    val dest = parseDeeplinkToNavKey(deeplink) ?: return listOf(startRoute)
     return buildBackStack(dest)
 }
 
@@ -92,15 +93,19 @@ internal fun List<PathSegment>.toNavKey(
             val isMatch = node.pathSegment == PathSegment.Wildcard || node.pathSegment == segment
             if (!isMatch) continue
 
-            val parsed = node.parser(segment) ?: continue
+            val parsed = node.parser(segment)
 
-            val isLastSegment = segmentIndex == this@toNavKey.size - 1
-            if (isLastSegment || node.children.isEmpty()) {
-                return navGraph.resolve(parsed)
+            if (parsed != null) {
+                val isLastSegment = segmentIndex == this@toNavKey.size - 1
+                if (isLastSegment || node.children.isEmpty()) {
+                    return navGraph.resolve(parsed)
+                }
             }
 
-            val childMatch = matchRoute(node.children, segmentIndex + 1)
-            if (childMatch != null) return childMatch
+            if (node.children.isNotEmpty()) {
+                val childMatch = matchRoute(node.children, segmentIndex + 1)
+                if (childMatch != null) return childMatch
+            }
         }
 
         return null
@@ -116,6 +121,7 @@ internal fun NavGraph.findNode(navKeyClass: KClass<out NavKey>): NavGraphNode? {
     return this.nodes.findNode(navKeyClass)
 }
 
+@PublishedApi
 internal fun List<NavGraphNode>.findNode(navKeyClass: KClass<out NavKey>): NavGraphNode? {
     for (node in this) {
         if (node.navKeyClass == navKeyClass) return node

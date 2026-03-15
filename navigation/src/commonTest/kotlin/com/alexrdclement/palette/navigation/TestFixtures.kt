@@ -32,6 +32,18 @@ data object Graph2 : NavGraphRoute {
 }
 
 @Serializable
+@SerialName("graph3")
+data object Graph3 : NavGraphRoute {
+    override val pathSegment = PathSegment("graph3")
+}
+
+@Serializable
+@SerialName("circular-graph")
+data object CircularGraph : NavGraphRoute {
+    override val pathSegment = PathSegment("circular")
+}
+
+@Serializable
 @SerialName("test-route-wildcard")
 data object TestRouteWildcard : NavKey {
     override val pathSegment = PathSegment.Wildcard
@@ -59,4 +71,22 @@ data object Route3 : NavKey {
 @SerialName("empty-route")
 data object EmptyRoute : NavGraphRoute {
     override val pathSegment = PathSegment("")
+}
+
+@Serializable
+@SerialName("empty-leaf-route")
+data object EmptyLeafRoute : NavKey {
+    override val pathSegment = PathSegment("")
+}
+
+@Serializable
+@SerialName("param-graph")
+data class ParamGraph(val id: String) : NavGraphRoute {
+    override val pathSegment = PathSegment(id)
+}
+
+@Serializable
+@SerialName("param-route")
+data class ParamRoute(val id: String) : NavKey {
+    override val pathSegment = PathSegment(id)
 }

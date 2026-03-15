@@ -8,10 +8,7 @@ class NavControllerNavigateUpTest {
 
     @Test
     fun `with valid parent navigates to parent with replace`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Graph1,
-        ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             navGraph(root = Graph1, start = Route1) {
                 route(Route1)
                 route(Route2)
@@ -21,7 +18,7 @@ class NavControllerNavigateUpTest {
         val backStack = mutableStateListOf<NavKey>(Route2)
         val navState = NavState(backStack, navGraph)
         val navController = NavController(navState)
-        
+
         navController.navigateUp()
 
         assertEquals(1, backStack.size)
@@ -34,11 +31,8 @@ class NavControllerNavigateUpTest {
 
         val route = UnregisteredRoute(PathSegment("unregistered"))
 
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = RootRoute,
-        ) {
-            // Empty - route is not registered
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            route(Route1)
         }
 
         val backStack = mutableStateListOf<NavKey>(route)
@@ -58,20 +52,10 @@ class NavControllerNavigateUpTest {
 
     @Test
     fun `skips intermediate graph containers that resolve to same route`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Route1,
-        ) {
-            navGraph(
-                root = Graph2,
-                start = Route1,
-            ) {
-                route(Route1)
-                // Simulate graph container with start route pointing to leaf
-                navGraph(
-                    root = Graph1,
-                    start = Route2,
-                ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            navGraph(root = Graph2, start = Route2) {
+                navGraph(root = Graph1, start = Route1) {
+                    route(Route1)
                     route(Route2)
                 }
             }
@@ -89,19 +73,10 @@ class NavControllerNavigateUpTest {
 
     @Test
     fun `from middle of stack replaces current route`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Route1,
-        ) {
-            navGraph(
-                root = Graph1,
-                start = Route1,
-            ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            navGraph(root = Graph1, start = Route1) {
                 route(Route1)
-                navGraph(
-                    root = Graph2,
-                    start = Route2,
-                ) {
+                navGraph(root = Graph2, start = Route2) {
                     route(Route2)
                     route(Route3)
                 }
@@ -121,14 +96,8 @@ class NavControllerNavigateUpTest {
 
     @Test
     fun `when parent is in backstack pops current route`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Graph1,
-        ) {
-            navGraph(
-                root = Graph1,
-                start = Route1,
-            ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            navGraph(root = Graph1, start = Route1) {
                 route(Route1)
                 route(Route2)
             }
@@ -146,14 +115,8 @@ class NavControllerNavigateUpTest {
 
     @Test
     fun `when parent not in backstack replaces current route`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Graph1,
-        ) {
-            navGraph(
-                root = Graph1,
-                start = Route1,
-            ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            navGraph(root = Graph1, start = Route1) {
                 route(Route1)
                 route(Route2)
             }
@@ -169,4 +132,3 @@ class NavControllerNavigateUpTest {
         assertEquals(Route1, backStack[0])
     }
 }
-

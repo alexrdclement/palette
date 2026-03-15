@@ -8,14 +8,9 @@ class NavControllerNavigateToDeeplinkTest {
 
     @Test
     fun `navigates to route from deeplink`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Graph1,
-        ) {
-            navGraph(
-                root = Graph1,
-                start = Route1,
-            ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            route(Route1)
+            navGraph(root = Graph1, start = Route1) {
                 route(Route1)
                 route(Route2)
             }
@@ -34,14 +29,9 @@ class NavControllerNavigateToDeeplinkTest {
 
     @Test
     fun `with replace flag replaces current route`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Graph1,
-        ) {
-            navGraph(
-                root = Graph1,
-                start = Route1,
-            ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            route(Route1)
+            navGraph(root = Graph1, start = Route1) {
                 route(Route1)
                 route(Route2)
             }
@@ -59,10 +49,7 @@ class NavControllerNavigateToDeeplinkTest {
 
     @Test
     fun `with invalid deeplink does nothing`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Route1,
-        ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             route(Route1)
         }
 
@@ -78,14 +65,9 @@ class NavControllerNavigateToDeeplinkTest {
 
     @Test
     fun `resolves graph roots in deeplink`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Graph1,
-        ) {
-            navGraph(
-                root = Graph1,
-                start = Route2,
-            ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            route(Route1)
+            navGraph(root = Graph2, start = Route2) {
                 route(Route2)
             }
         }
@@ -94,7 +76,7 @@ class NavControllerNavigateToDeeplinkTest {
         val navState = NavState(backStack, navGraph)
         val navController = NavController(navState)
 
-        navController.navigateToDeeplink("${RootRoute.pathSegment}/${Graph1.pathSegment}")
+        navController.navigateToDeeplink("${RootRoute.pathSegment}/${Graph2.pathSegment}")
 
         assertEquals(2, backStack.size)
         assertEquals(RootRoute, backStack[0])

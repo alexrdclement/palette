@@ -49,8 +49,9 @@ class NavKeySerializationTest {
 
     @Test
     fun `encodes and decodes route with dynamic path segment`() {
-        val navGraph = navGraph(root = RootRoute, start = RootRoute) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             wildcardRoute<TestRoute> { segment -> TestRoute(segment.value) }
+            route(Route1)
         }
         val json = navGraph.toJson()
         val route = TestRoute("some-path")
@@ -71,6 +72,29 @@ class NavKeySerializationTest {
         assertFailsWith<SerializationException> {
             json.encodeToString(navKeySerializer, Graph1)
         }
+    }
+
+    @Test
+    fun `parameterized graph routes are excluded but child routes are included`() {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            route(Route1)
+            navGraph<ParamGraph>(
+                root = { seg -> ParamGraph(id = seg.value) },
+                start = { graph -> ParamRoute(id = graph.id) },
+            ) {
+                wildcardRoute<ParamRoute> { seg -> ParamRoute(id = seg.value) }
+            }
+        }
+        val json = navGraph.toJson()
+
+        assertFailsWith<SerializationException> {
+            json.encodeToString(navKeySerializer, ParamGraph(id = "abc123"))
+        }
+
+        val route = ParamRoute(id = "abc123")
+        val encoded = json.encodeToString(navKeySerializer, route)
+        val decoded = json.decodeFromString(navKeySerializer, encoded)
+        assertEquals(route, decoded)
     }
 
     @Test

@@ -10,5 +10,7 @@ data class NavGraphNode(
     val parser: (PathSegment) -> NavKey?,
     val parent: NavKey?,
     val children: List<NavGraphNode>,
-    val graphStartRoute: NavKey? = null,
-)
+    val startRouteFactory: ((NavKey) -> NavKey)? = null,
+) {
+    val isGraph: Boolean get() = startRouteFactory != null
+}

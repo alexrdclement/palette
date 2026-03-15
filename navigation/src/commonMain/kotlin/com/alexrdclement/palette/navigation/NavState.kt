@@ -29,7 +29,7 @@ fun rememberNavState(
         if (buildSyntheticBackStack) {
             navGraph.parseDeeplinkToBackStack(initialDeeplink)
         } else {
-            listOf(navGraph.parseDeeplink(initialDeeplink) ?: navGraph.startRoute)
+            listOf(navGraph.parseDeeplinkToNavKey(initialDeeplink) ?: navGraph.startRoute)
         }
     }
 
