@@ -65,7 +65,7 @@ Lcom/alexrdclement/palette/modifiers/ColorSplitShader;
 Lcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;-><clinit>()V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;-><init>(Lkotlin/jvm/functions/Function1;)V
-HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->createRenderEffect()Landroidx/compose/ui/graphics/RenderEffect;
+PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->createRenderEffect()Landroidx/compose/ui/graphics/RenderEffect;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->onRemeasured(II)V
 PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
 PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setYAmount(F)V
@@ -295,7 +295,7 @@ PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;-><init>(JFZFLkotlin/jv
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getBorderColor-0d7_KjU()J
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getFadeLength-D9Ej5fM()F
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getShowBorder()Z
-PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getWidth-D9Ej5fM()F
+HPLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getWidth-D9Ej5fM()F
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->setFadeLength-0680j_4$demo(F)V
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->setWidth-0680j_4$demo(F)V
 PLcom/alexrdclement/palette/modifiers/demo/ModifierDemoControl;->$r8$lambda$UkqdC-gt8q_l132ixmbPrcwnRt8(Lcom/alexrdclement/palette/modifiers/demo/ModifierDemoControl;)Lkotlinx/collections/immutable/ImmutableList;
