@@ -26,6 +26,40 @@ class NavGraphBuilder(
         start: NavKey,
         children: NavGraphBuilder.() -> Unit = {}
     ) {
+        require(parent == null || root.pathSegment.value.isNotEmpty()) {
+            "${T::class.simpleName} has an empty path segment. Only the top-level graph root may have an empty path segment."
+        }
+
+        val childrenBuilder = NavGraphBuilder(parent = root)
+        childrenBuilder.children()
+
+        val startRouteClass = start::class
+        require(childrenBuilder.nodes.findNode(startRouteClass) != null) {
+            "${T::class.simpleName} start (${startRouteClass.simpleName}) is not registered in this graph"
+        }
+
+        nodes.add(
+            NavGraphNode(
+                pathSegment = root.pathSegment,
+                navKeyClass = T::class,
+                serializer = serializer<T>(),
+                parser = { root },
+                parent = parent,
+                children = childrenBuilder.nodes,
+                startRouteFactory = { start },
+            )
+        )
+    }
+
+    inline fun <reified T : NavGraphRoute> navGraph(
+        root: T,
+        noinline start: (T) -> NavKey,
+        children: NavGraphBuilder.() -> Unit = {},
+    ) {
+        require(parent == null || root.pathSegment.value.isNotEmpty()) {
+            "${T::class.simpleName} has an empty path segment. Only the top-level graph root may have an empty path segment."
+        }
+
         val childrenBuilder = NavGraphBuilder(parent = root)
         childrenBuilder.children()
 
@@ -37,7 +71,28 @@ class NavGraphBuilder(
                 parser = { root },
                 parent = parent,
                 children = childrenBuilder.nodes,
-                graphStartRoute = start,
+                startRouteFactory = { route -> start(route as T) },
+            )
+        )
+    }
+
+    inline fun <reified T : NavGraphRoute> navGraph(
+        noinline root: (PathSegment) -> T?,
+        noinline start: (T) -> NavKey,
+        children: NavGraphBuilder.() -> Unit = {},
+    ) {
+        val childrenBuilder = NavGraphBuilder(parent = parent)
+        childrenBuilder.children()
+
+        nodes.add(
+            NavGraphNode(
+                pathSegment = PathSegment.Wildcard,
+                navKeyClass = T::class,
+                serializer = serializer<T>(),
+                parser = { seg -> root(seg) },
+                parent = parent,
+                children = childrenBuilder.nodes,
+                startRouteFactory = { route -> start(route as T) },
             )
         )
     }
@@ -47,6 +102,10 @@ class NavGraphBuilder(
         noinline parser: (PathSegment) -> NavKey?,
         children: NavGraphBuilder.() -> Unit = {}
     ) {
+        require(pathSegment.value.isNotEmpty()) {
+            "${T::class.simpleName} has an empty path segment and cannot be registered as a route."
+        }
+
         val childrenBuilder = NavGraphBuilder(parent = parser(pathSegment))
         childrenBuilder.children()
 

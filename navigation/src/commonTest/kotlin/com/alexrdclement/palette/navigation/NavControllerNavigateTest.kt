@@ -8,7 +8,7 @@ class NavControllerNavigateTest {
 
     @Test
     fun `pushes route to back stack`() {
-        val navGraph = navGraph(root = RootRoute, start = RootRoute) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             route(Route1)
             route(Route2)
         }
@@ -26,7 +26,7 @@ class NavControllerNavigateTest {
 
     @Test
     fun `with replace replaces current route`() {
-        val navGraph = navGraph(root = RootRoute, start = RootRoute) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             route(Route1)
             route(Route2)
         }
@@ -43,11 +43,8 @@ class NavControllerNavigateTest {
 
     @Test
     fun `resolves graph route to start route`() {
-        val navGraph = navGraph(root = RootRoute, start = RootRoute) {
-            navGraph(
-                root = Graph1,
-                start = Route1,
-            ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            navGraph(root = Graph1, start = Route1) {
                 route(Route1)
             }
         }

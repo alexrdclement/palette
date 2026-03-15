@@ -2,16 +2,14 @@ package com.alexrdclement.palette.navigation
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class NavGraphToDeeplinkTest {
 
     @Test
     fun `with single route generates correct deeplink`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Route1,
-        ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             route(Route1)
         }
 
@@ -22,10 +20,7 @@ class NavGraphToDeeplinkTest {
 
     @Test
     fun `with multiple routes at same level`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Route1,
-        ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             route(Route1)
             route(Route2)
         }
@@ -39,14 +34,8 @@ class NavGraphToDeeplinkTest {
 
     @Test
     fun `with nested graph includes graph in path`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Graph1,
-        ) {
-            navGraph(
-                root = Graph1,
-                start = Route1,
-            ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            navGraph(root = Graph1, start = Route1) {
                 route(Route1)
                 route(Route2)
             }
@@ -59,18 +48,9 @@ class NavGraphToDeeplinkTest {
 
     @Test
     fun `with deeply nested graphs includes all parents in path`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Graph1,
-        ) {
-            navGraph(
-                root = Graph1,
-                start = Graph2,
-            ) {
-                navGraph(
-                    root = Graph2,
-                    start = Route1,
-                ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            navGraph(root = Graph3, start = Graph1) {
+                navGraph(root = Graph1, start = Route1) {
                     route(Route1)
                 }
             }
@@ -78,7 +58,19 @@ class NavGraphToDeeplinkTest {
 
         val deeplink = Route1.toDeeplink(navGraph)
 
-        assertEquals("${RootRoute.pathSegment}/${Graph1.pathSegment}/${Graph2.pathSegment}/${Route1.pathSegment}", deeplink)
+        assertEquals("${RootRoute.pathSegment}/${Graph3.pathSegment}/${Graph1.pathSegment}/${Route1.pathSegment}", deeplink)
+    }
+
+    @Test
+    fun `leaf route with empty path segment throws`() {
+        assertFailsWith<IllegalArgumentException> {
+            navGraph(root = RootRoute, start = Route1) {
+                navGraph(root = Graph1, start = Route1) {
+                    route(Route1)
+                    route(EmptyLeafRoute)
+                }
+            }
+        }
     }
 
     @Test
@@ -86,11 +78,9 @@ class NavGraphToDeeplinkTest {
         val emptyRoot = EmptyRoute
         val child = TestRoute("child", parent = emptyRoot)
 
-        val navGraph = navGraph(
-            root = emptyRoot,
-            start = emptyRoot,
-        ) {
+        val navGraph = navGraph(root = emptyRoot, start = Route1) {
             route(child)
+            route(Route1)
         }
 
         val deeplink = child.toDeeplink(navGraph)
@@ -100,10 +90,7 @@ class NavGraphToDeeplinkTest {
 
     @Test
     fun `wildcard route with children generates deeplink correctly`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = TestRoute(PathSegment.Wildcard),
-        ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             wildcardRoute<TestRoute>(
                 children = {
                     route(Route1)
@@ -121,16 +108,10 @@ class NavGraphToDeeplinkTest {
 
     @Test
     fun `wildcard route with nested graph generates deeplink for child route`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = TestRouteWildcard,
-        ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             wildcardRoute<TestRoute>(
                 children = {
-                    navGraph(
-                        root = Graph1,
-                        start = Route1,
-                    ) {
+                    navGraph(root = Graph1, start = Route1) {
                         route(Route1)
                         route(Route2)
                     }
@@ -144,5 +125,22 @@ class NavGraphToDeeplinkTest {
 
         assertEquals("${RootRoute.pathSegment}/${Graph1.pathSegment}/${Route2.pathSegment}", deeplink)
     }
-}
 
+    @Test
+    fun `parameterized graph instance produces id path`() {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            route(Route1)
+            route(Route2)
+            navGraph<ParamGraph>(
+                root = { seg -> ParamGraph(id = seg.value) },
+                start = { graph -> ParamRoute(id = graph.id) },
+            ) {
+                wildcardRoute<ParamRoute> { seg -> ParamRoute(id = seg.value) }
+            }
+        }
+
+        val deeplink = ParamGraph(id = "abc123").toDeeplink(navGraph)
+
+        assertEquals("${RootRoute.pathSegment}/abc123", deeplink)
+    }
+}

@@ -34,7 +34,7 @@ fun NavGraph.toSerializersModule(): SerializersModule = SerializersModule {
     polymorphic(Navigation3NavKey::class) {
         fun collect(nodes: List<NavGraphNode>) {
             nodes.forEach { node ->
-                if (node.graphStartRoute == null) {
+                if (!node.isGraph) {
                     @Suppress("UNCHECKED_CAST")
                     subclass(
                         node.navKeyClass as KClass<NavKey>,

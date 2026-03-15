@@ -27,15 +27,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName("ui-playground")
+@SerialName("palette")
 data object PaletteGraph : NavGraphRoute {
     override val pathSegment = "".toPathSegment()
 }
 
-val PaletteNavGraph = navGraph(
-    root = PaletteGraph,
-    start = MainGraph,
-) {
+val PaletteNavGraph = navGraph(root = PaletteGraph, start = MainGraph) {
     mainNavGraph()
     componentsNavGraph()
     formatsNavGraph()

@@ -7,10 +7,7 @@ class NavGraphToNavKeyTest {
 
     @Test
     fun `with single segment returns single route`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Route1,
-        ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             route(Route1)
         }
 
@@ -22,19 +19,11 @@ class NavGraphToNavKeyTest {
 
     @Test
     fun `skips graph containers and only includes final destination`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Graph1,
-        ) {
-            navGraph(
-                root = Graph1,
-                start = Route2,
-            ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
+            navGraph(root = Graph1, start = Route1) {
                 route(Route2)
-                navGraph(
-                    root = Graph2,
-                    start = Route1,
-                ) {
+                navGraph(root = Graph2, start = Route2) {
+                    route(Route2)
                     route(Route1)
                 }
             }
@@ -53,10 +42,7 @@ class NavGraphToNavKeyTest {
 
     @Test
     fun `includes leaf nodes even if not final segment`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Route1,
-        ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             route(Route1)
             route(Route2)
         }
@@ -72,10 +58,7 @@ class NavGraphToNavKeyTest {
 
     @Test
     fun `returns null for unmatched segments`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = Route1,
-        ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             route(Route1)
         }
 
@@ -87,13 +70,11 @@ class NavGraphToNavKeyTest {
 
     @Test
     fun `with wildcard route matches any segment`() {
-        val navGraph = navGraph(
-            root = RootRoute,
-            start = TestRouteWildcard,
-        ) {
+        val navGraph = navGraph(root = RootRoute, start = Route1) {
             wildcardRoute<TestRoute> { segment ->
                 TestRoute(segment.value)
             }
+            route(Route1)
         }
 
         val segments = listOf(RootRoute.pathSegment, PathSegment("anything"))
@@ -102,4 +83,3 @@ class NavGraphToNavKeyTest {
         assertEquals(TestRoute("anything"), route)
     }
 }
-
