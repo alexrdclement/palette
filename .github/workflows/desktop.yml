@@ -52,7 +52,7 @@ jobs:
         run: ./gradlew :app:desktopApp:createDistributable
 
       - name: Upload build outputs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: Palette.app
           path: 'app/desktopApp/build/compose/binaries/main/app/*.app'
@@ -93,7 +93,7 @@ jobs:
         run: ./gradlew :app:desktopApp:createDistributable
 
       - name: Upload build outputs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: Palette.exe
           path: 'app/desktopApp/build/compose/binaries/main/app/*'
