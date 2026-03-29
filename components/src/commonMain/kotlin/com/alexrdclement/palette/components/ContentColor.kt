@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.takeOrElse
 import com.alexrdclement.palette.theme.ColorScheme
 import com.alexrdclement.palette.theme.PaletteTheme
 
-val LocalContentColor = compositionLocalOf { Color.Black }
+val LocalContentColor = compositionLocalOf { Color.Unspecified }
 
 fun ColorScheme.contentColorFor(backgroundColor: Color): Color =
     when (backgroundColor) {

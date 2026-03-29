@@ -39,13 +39,13 @@ fun <T : CatalogItem> Catalog(
         items(
             items = items,
             key = { it.title }
-        ) {
+        ) { item ->
             Button(
                 style = ButtonStyleToken.Secondary,
-                onClick = { onItemClick(it) },
+                onClick = { onItemClick(item) },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(it.title)
+                Text(item.title)
             }
         }
         item {

@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.PlayArrow
@@ -37,7 +38,7 @@ fun PlayPauseButton(
         contentPadding = PaddingValues(vertical = 2.dp, horizontal = 2.dp),
         modifier = modifier
             .aspectRatio(1f)
-    ) {
+    ) { shapePadding ->
         Image(
             imageVector = if (isPlaying) Icons.Default.Close else Icons.Default.PlayArrow,
             contentDescription = if (isPlaying) {
@@ -46,6 +47,7 @@ fun PlayPauseButton(
             colorFilter = ColorFilter.tint(PaletteTheme.colorScheme.onPrimary),
             modifier = Modifier
                 .fillMaxSize()
+                .padding(shapePadding)
         )
     }
 }

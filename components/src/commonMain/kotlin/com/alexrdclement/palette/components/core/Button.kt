@@ -44,7 +44,7 @@ fun Button(
     enabled: Boolean = true,
     contentPadding: PaddingValues = ButtonDefaults.ContentPaddingDefault,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable RowScope.() -> Unit
+    content: @Composable RowScope.(PaddingValues) -> Unit
 ) {
     val style = style.toStyle()
     Button(
@@ -80,7 +80,7 @@ internal fun Button(
     shape: ShapeToken = ShapeToken.Primary,
     borderStyle: BorderStyleToken? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable RowScope.() -> Unit
+    content: @Composable RowScope.(PaddingValues) -> Unit
 ) {
     val containerColor = containerColor.toColor().copy(
         alpha = if (enabled) 1f else PaletteTheme.colorScheme.disabledContainerAlpha,
@@ -101,7 +101,7 @@ internal fun Button(
         borderStyle = borderStyle?.toStyle(),
         interactionSource = interactionSource,
         modifier = modifier.semantics { role = Role.Button }
-    ) {
+    ) { shapePadding ->
         CompositionLocalProvider(
             LocalContentColor provides contentColor,
         ) {
@@ -114,8 +114,9 @@ internal fun Button(
                     .padding(contentPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-                content = content
-            )
+            ) {
+                content(shapePadding)
+            }
         }
     }
 }
