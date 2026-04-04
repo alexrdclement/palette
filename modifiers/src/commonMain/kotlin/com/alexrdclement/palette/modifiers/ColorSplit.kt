@@ -30,7 +30,7 @@ fun Modifier.colorSplit(
     yAmount: () -> Float = { 0f },
     colorMode: () -> ColorSplitMode = { ColorSplitMode.RGB },
 ): Modifier = this then ShaderElement(
-    shader = createColorSplitShader {
+    shader = createColorSplitShader().apply {
         setXAmount(xAmount())
         setYAmount(yAmount())
         setColorMode(colorMode())
@@ -50,7 +50,7 @@ data class ColorSplitIndication(
         val yAmountAnimatable = Animatable(0f)
 
         return ShaderIndicationNode(
-            shader = createColorSplitShader {
+            shader = createColorSplitShader().apply {
                 setColorMode(colorMode)
             },
             traceLabel = "colorSplitIndication",
@@ -94,6 +94,4 @@ interface ColorSplitShader : Shader {
     fun setColorMode(mode: ColorSplitMode)
 }
 
-expect fun createColorSplitShader(
-    configure: ColorSplitShader.() -> Unit
-): ColorSplitShader
+expect fun createColorSplitShader(): ColorSplitShader

@@ -53,6 +53,10 @@ open class ShaderNode<T: Shader>(
 
     override fun ContentDrawScope.draw() {
         trace(traceLabel) {
+            if (!shader.isActive()) {
+                drawContent()
+                return@trace
+            }
             val renderEffect = shader.createRenderEffect() ?: run {
                 drawContent()
                 return@trace

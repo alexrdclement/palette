@@ -12,5 +12,4 @@ internal interface ShaderControl {
 internal expect fun createShaderControl(
     source: String,
     uniformName: String,
-    configure: ShaderControl.() -> Unit
 ): ShaderControl

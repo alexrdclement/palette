@@ -1,7 +1,5 @@
 package com.alexrdclement.palette.modifiers
 
-import androidx.compose.ui.graphics.RenderEffect
-
 private const val UniformShaderName = "composable"
 private const val UniformSizeName = "size"
 private const val UniformXAmountName = "xAmount"
@@ -63,27 +61,28 @@ half4 main(float2 fragCoord) {
 }
 """
 
-actual fun createColorSplitShader(
-    configure: ColorSplitShader.() -> Unit
-): ColorSplitShader {
-    return ColorSplitShaderImpl(configure)
+actual fun createColorSplitShader(): ColorSplitShader {
+    return ColorSplitShaderImpl()
 }
 
-class ColorSplitShaderImpl(
-    configure: ColorSplitShader.() -> Unit,
-) : ColorSplitShader {
+class ColorSplitShaderImpl : ColorSplitShader {
 
-    private val control = createShaderControl(ShaderSource, UniformShaderName, configure = { configure() })
+    private val control = createShaderControl(ShaderSource, UniformShaderName)
 
-    override fun createRenderEffect(): RenderEffect? {
-        return control.createRenderEffect()
-    }
+    private var xAmount: Float = 0f
+    private var yAmount: Float = 0f
+
+    override fun isActive(): Boolean = xAmount != 0f || yAmount != 0f
+
+    override fun createRenderEffect() = control.createRenderEffect()
 
     override fun setXAmount(xAmount: Float) {
+        this.xAmount = xAmount
         control.setFloatUniform(UniformXAmountName, xAmount)
     }
 
     override fun setYAmount(yAmount: Float) {
+        this.yAmount = yAmount
         control.setFloatUniform(UniformYAmountName, yAmount)
     }
 

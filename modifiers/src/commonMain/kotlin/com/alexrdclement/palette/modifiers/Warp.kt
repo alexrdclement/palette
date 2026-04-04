@@ -20,7 +20,7 @@ fun Modifier.warp(
     radius: () -> Dp,
     amount: () -> Float,
 ): Modifier = this then ShaderElement(
-    shader = createWarpShader {
+    shader = createWarpShader().apply {
         setOffset(offset())
         setRadius(radius())
         setAmount(amount())
@@ -84,6 +84,4 @@ interface WarpShader : Shader {
     fun setAmount(amount: Float)
 }
 
-expect fun createWarpShader(
-    configure: WarpShader.() -> Unit = {},
-): WarpShader
+expect fun createWarpShader(): WarpShader

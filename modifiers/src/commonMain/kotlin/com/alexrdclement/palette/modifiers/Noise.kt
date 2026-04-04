@@ -26,7 +26,7 @@ fun Modifier.noise(
     colorMode: NoiseColorMode = NoiseColorMode.Monochrome,
     amount: () -> Float,
 ): Modifier = this then ShaderElement(
-    shader = createNoiseShader {
+    shader = createNoiseShader().apply {
         setColorMode(colorMode)
         setAmount(amount())
     },
@@ -43,7 +43,7 @@ data class NoiseIndication(
         val amountAnimatable = Animatable(0f)
 
         return ShaderIndicationNode(
-            shader = createNoiseShader {
+            shader = createNoiseShader().apply {
                 setColorMode(colorMode)
             },
             traceLabel = "noiseIndication",
@@ -73,6 +73,4 @@ interface NoiseShader : Shader {
     fun setAmount(amount: Float)
 }
 
-expect fun createNoiseShader(
-    configure: NoiseShader.() -> Unit
-): NoiseShader
+expect fun createNoiseShader(): NoiseShader

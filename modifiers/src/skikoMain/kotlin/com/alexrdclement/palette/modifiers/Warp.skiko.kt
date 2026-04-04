@@ -1,9 +1,9 @@
 package com.alexrdclement.palette.modifiers
 
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.RenderEffect
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 
 private const val UniformShaderName = "composable"
 private const val UniformSize = "size"
@@ -34,21 +34,19 @@ half4 main(float2 fragCoord) {
 }
 """
 
-actual fun createWarpShader(
-    configure: WarpShader.() -> Unit
-): WarpShader {
-    return WarpShaderImpl(configure)
+actual fun createWarpShader(): WarpShader {
+    return WarpShaderImpl()
 }
 
-class WarpShaderImpl(
-    configure: WarpShader.() -> Unit
-): WarpShader {
-    private val control = createShaderControl(ShaderSource, UniformShaderName, configure = { configure() })
+class WarpShaderImpl : WarpShader {
+    private val control = createShaderControl(ShaderSource, UniformShaderName)
     private var density: Density = Density(1f)
+    private var amount: Float = 0f
+    private var radius: Dp = 0.dp
 
-    override fun createRenderEffect(): RenderEffect? {
-        return control.createRenderEffect()
-    }
+    override fun isActive(): Boolean = amount != 0f
+
+    override fun createRenderEffect() = control.createRenderEffect()
 
     override fun onRemeasured(width: Int, height: Int) {
         control.setFloatUniform(UniformSize, width.toFloat(), height.toFloat())
@@ -56,6 +54,7 @@ class WarpShaderImpl(
 
     override fun onDensityChanged(density: Density) {
         this.density = density
+        setRadius(this.radius)
     }
 
     override fun setOffset(offset: Offset) {
@@ -63,11 +62,13 @@ class WarpShaderImpl(
     }
 
     override fun setRadius(radius: Dp) {
+        this.radius = radius
         val radiusPx = with(density) { radius.toPx() }
         control.setFloatUniform(UniformRadius, radiusPx)
     }
 
     override fun setAmount(amount: Float) {
+        this.amount = amount
         control.setFloatUniform(UniformAmount, amount)
     }
 }
