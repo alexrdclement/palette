@@ -20,11 +20,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.layout.PeekSheetAnchor
+import com.alexrdclement.palette.components.layout.rememberPeekSheetState
 import com.alexrdclement.palette.components.media.MediaControlSheet
-import com.alexrdclement.palette.components.media.MediaControlSheetAnchor
 import com.alexrdclement.palette.components.media.model.Artist
 import com.alexrdclement.palette.components.media.model.MediaItem
-import com.alexrdclement.palette.components.media.rememberMediaControlSheetState
 import com.alexrdclement.palette.components.util.copy
 import com.alexrdclement.palette.components.util.horizontalPaddingValues
 import com.alexrdclement.palette.theme.PaletteTheme
@@ -41,9 +41,7 @@ fun MediaControlSheetDemo(
         artists = listOf(Artist("Artist 1"), Artist("Artist 2"))
     )
     var isPlaying by remember { mutableStateOf(false) }
-    val state = rememberMediaControlSheetState(
-        initialValue = MediaControlSheetAnchor.PartiallyExpanded,
-    )
+    val state = rememberPeekSheetState(initialValue = PeekSheetAnchor.Peek)
     val coroutineScope = rememberCoroutineScope()
 
     Column(
@@ -55,7 +53,11 @@ fun MediaControlSheetDemo(
         Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.text.labelLarge)
     }
 
-    BoxWithConstraints {
+    BoxWithConstraints(
+        modifier = modifier
+            .fillMaxSize()
+    ) {
+        val maxHeight = constraints.maxHeight
         MediaControlSheet(
             mediaItem = mediaItem,
             isPlaying = isPlaying,
@@ -63,7 +65,7 @@ fun MediaControlSheetDemo(
             onControlBarClick = {
                 coroutineScope.launch {
                     if (state.isExpanded) {
-                        state.partialExpand()
+                        state.peek()
                     } else {
                         state.expand()
                     }
@@ -72,9 +74,9 @@ fun MediaControlSheetDemo(
             state = state,
             maxContentSize = DpSize(
                 width = Dp.Infinity,
-                height = with(LocalDensity.current) { constraints.maxHeight.toDp() / 2f },
+                height = with(LocalDensity.current) { maxHeight.toDp() / 2f },
             ),
-            modifier = modifier
+            modifier = Modifier
                 .padding(WindowInsets.safeDrawing.asPaddingValues().copy(top = 0.dp)),
         ) {
             Column(

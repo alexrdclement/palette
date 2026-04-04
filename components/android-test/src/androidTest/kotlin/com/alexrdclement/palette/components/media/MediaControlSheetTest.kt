@@ -20,6 +20,8 @@ import com.alexrdclement.palette.components.MediaControlBarContentDescription
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionExpanded
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionPartiallyExpanded
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.layout.PeekSheetAnchor
+import com.alexrdclement.palette.components.layout.rememberPeekSheetState
 import com.alexrdclement.palette.components.media.model.Artist
 import com.alexrdclement.palette.components.media.model.MediaItem
 import kotlinx.coroutines.launch
@@ -40,10 +42,10 @@ class MediaControlSheetTest {
 
     @Composable
     private fun ComposableUnderTest(
-        initialValue: MediaControlSheetAnchor,
+        initialValue: PeekSheetAnchor,
     ) {
         var isPlaying by remember { mutableStateOf(false) }
-        val state = rememberMediaControlSheetState(
+        val state = rememberPeekSheetState(
             initialValue = initialValue,
         )
         val coroutineScope = rememberCoroutineScope()
@@ -54,7 +56,7 @@ class MediaControlSheetTest {
             onControlBarClick = {
                 coroutineScope.launch {
                     if (state.isExpanded) {
-                        state.partialExpand()
+                        state.peek()
                     } else {
                         state.expand()
                     }
@@ -76,7 +78,7 @@ class MediaControlSheetTest {
     fun partiallyExpandedToExpanded_updatesStateDescription() {
         rule.setContent {
             ComposableUnderTest(
-                initialValue = MediaControlSheetAnchor.PartiallyExpanded,
+                initialValue = PeekSheetAnchor.Peek,
             )
         }
 
@@ -94,7 +96,7 @@ class MediaControlSheetTest {
     fun expandedToPartiallyExpanded_updatesStateDescription() {
         rule.setContent {
             ComposableUnderTest(
-                initialValue = MediaControlSheetAnchor.Expanded,
+                initialValue = PeekSheetAnchor.Expanded,
             )
         }
 

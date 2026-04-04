@@ -5,7 +5,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class MediaComponent : CatalogItem {
+    MediaControlBar,
     MediaControlSheet,
+    MediaItemArtwork,
+    PlayPauseButton,
+    SkipButton,
     ;
 
     override val title = this.name

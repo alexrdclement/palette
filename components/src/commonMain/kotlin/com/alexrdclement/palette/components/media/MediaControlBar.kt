@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.components.media
 
 import androidx.compose.foundation.basicMarquee
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -129,7 +128,7 @@ fun MediaControlBar(
                 )
             }
 
-            Surface {
+            Surface(onClick = onClick) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
@@ -137,7 +136,6 @@ fun MediaControlBar(
                         .heightIn(minHeight)
                         .fillMaxWidth()
                         .padding(vertical = contentPadding.calculateVerticalPadding())
-                        .clickable { onClick() }
                         .semantics {
                             contentDescription =
                                 MediaControlBarContentDescription
