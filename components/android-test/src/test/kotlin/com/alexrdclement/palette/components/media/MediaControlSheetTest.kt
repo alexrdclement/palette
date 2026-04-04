@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.layout.PeekSheetAnchor
+import com.alexrdclement.palette.components.layout.rememberPeekSheetState
 import com.alexrdclement.palette.testing.PaparazziTestRule
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -17,13 +19,13 @@ import org.junit.runner.RunWith
 @RunWith(TestParameterInjector::class)
 class MediaControlSheetTest(
     @TestParameter(valuesProvider = AnchorProvider::class)
-    private val anchor: MediaControlSheetAnchor,
+    private val anchor: PeekSheetAnchor,
 ) {
 
     object AnchorProvider : TestParameter.TestParameterValuesProvider {
         override fun provideValues() = listOf(
-            MediaControlSheetAnchor.PartiallyExpanded,
-            MediaControlSheetAnchor.Expanded
+            PeekSheetAnchor.Peek,
+            PeekSheetAnchor.Expanded
         )
     }
 
@@ -34,7 +36,7 @@ class MediaControlSheetTest(
     fun mediaControlSheet() {
         paparazzi.snapshot {
             PaletteTheme {
-                val state = rememberMediaControlSheetState(
+                val state = rememberPeekSheetState(
                     initialValue = anchor,
                 )
                 MediaControlSheet(
