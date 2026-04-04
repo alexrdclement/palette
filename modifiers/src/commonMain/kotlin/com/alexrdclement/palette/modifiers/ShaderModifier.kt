@@ -27,6 +27,7 @@ data class ShaderElement<T: Shader>(
     override fun update(node: ShaderNode<T>) {
         node.shader = shader
         node.traceLabel = traceLabel
+        node.invalidateDraw()
     }
 }
 
@@ -64,8 +65,6 @@ open class ShaderNode<T: Shader>(
                 record { this@draw.drawContent() }
                 drawLayer(this)
             }
-
-            invalidateDraw()
         }
     }
 }
