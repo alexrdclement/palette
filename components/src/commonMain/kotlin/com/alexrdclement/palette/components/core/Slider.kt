@@ -58,6 +58,29 @@ fun Slider(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
+    stepIncrement: Float,
+    onValueChangeFinished: (() -> Unit)? = null,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+) {
+    Slider(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        enabled = enabled,
+        valueRange = valueRange,
+        steps = stepsForIncrement(valueRange, stepIncrement),
+        onValueChangeFinished = onValueChangeFinished,
+        interactionSource = interactionSource,
+    )
+}
+
+@Composable
+fun Slider(
+    value: Float,
+    onValueChange: ((Float) -> Unit)?,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
@@ -152,6 +175,27 @@ fun Slider(
             )
         }
     }
+}
+
+@Composable
+fun RangeSlider(
+    value: ClosedFloatingPointRange<Float>,
+    onValueChange: ((ClosedFloatingPointRange<Float>) -> Unit)?,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
+    stepIncrement: Float,
+    onValueChangeFinished: (() -> Unit)? = null,
+) {
+    RangeSlider(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        enabled = enabled,
+        valueRange = valueRange,
+        steps = stepsForIncrement(valueRange, stepIncrement),
+        onValueChangeFinished = onValueChangeFinished,
+    )
 }
 
 @Composable
@@ -618,6 +662,14 @@ class RangeSliderState(
             }
         }
     }
+}
+
+fun stepsForIncrement(
+    valueRange: ClosedFloatingPointRange<Float>,
+    stepIncrement: Float,
+): Int {
+    val rangeSize = valueRange.endInclusive - valueRange.start
+    return ((rangeSize / stepIncrement).roundToInt() - 1).coerceAtLeast(0)
 }
 
 internal fun stepsToTickFractions(steps: Int): FloatArray =
