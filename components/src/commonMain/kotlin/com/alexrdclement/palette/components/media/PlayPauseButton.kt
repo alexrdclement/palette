@@ -26,11 +26,13 @@ import com.alexrdclement.palette.theme.ShapeToken
 fun PlayPauseButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    onLongClick: (() -> Unit)? = null,
     isPlaying: Boolean = false,
     isEnabled: Boolean = true,
 ) {
     Button(
         onClick = onClick,
+        onLongClick = onLongClick,
         contentColor = ColorToken.OnPrimary,
         containerColor = ColorToken.Primary,
         shape = ShapeToken.Primary,
