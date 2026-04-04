@@ -373,9 +373,10 @@ fun RangeSlider(
                 minHeight = SliderDefaults.ThumbSize,
             )
     ) { measurables, constraints ->
+        val thumbConstraints = constraints.copy(minWidth = 0, minHeight = 0)
         val trackPlaceable = measurables[0].measure(constraints)
-        val startThumbPlaceable = measurables[1].measure(constraints)
-        val endThumbPlaceable = measurables[2].measure(constraints)
+        val startThumbPlaceable = measurables[1].measure(thumbConstraints)
+        val endThumbPlaceable = measurables[2].measure(thumbConstraints)
 
         val sliderWidth = startThumbPlaceable.width + trackPlaceable.width
         val sliderHeight = maxOf(
