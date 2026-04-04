@@ -101,7 +101,7 @@ class SpacingScreenState(
     val spacing: Spacing
         get() = themeState.spacing
 
-    val spacingByToken = SpacingToken.entries.associateWith { token ->
+    val spacingByToken get() = SpacingToken.entries.associateWith { token ->
         token.toSpacing(spacing)
     }
 }
@@ -161,6 +161,6 @@ private fun makeControlForToken(
             themeController.setSpacing(spacing)
         },
         valueRange = { 0f..64f },
-        stepIncrement = 8f,
+        stepIncrement = 4f,
     )
 }

@@ -96,7 +96,7 @@ class BorderStyleScreenState(
     val borderStyleScheme
         get() = styles.border
 
-    val borderStylesByToken = BorderStyleToken.entries.associateWith { token ->
+    val borderStylesByToken get() = BorderStyleToken.entries.associateWith { token ->
         token.toStyle(borderStyleScheme)
     }
 }

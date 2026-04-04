@@ -103,7 +103,7 @@ class TextStyleScreenState(
     val textStyleScheme: TextStyleScheme
         get() = styles.textStyleScheme
 
-    val textStylesByToken = TextStyleToken.entries.associateWith { token ->
+    val textStylesByToken get() = TextStyleToken.entries.associateWith { token ->
         token.toStyle(textStyleScheme)
     }
 

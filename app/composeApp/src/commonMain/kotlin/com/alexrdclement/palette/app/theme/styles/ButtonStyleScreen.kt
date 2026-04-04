@@ -108,7 +108,7 @@ class ButtonStyleScreenState(
     val buttonStyles
         get() = styles.button
 
-    val buttonStylesByToken = ButtonStyleToken.entries.associateWith { token ->
+    val buttonStylesByToken get() = ButtonStyleToken.entries.associateWith { token ->
         token.toStyle(buttonStyles)
     }
 

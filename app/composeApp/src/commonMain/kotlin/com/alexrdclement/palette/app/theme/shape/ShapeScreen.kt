@@ -1,24 +1,18 @@
 package com.alexrdclement.palette.app.theme.shape
 
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
@@ -100,7 +94,7 @@ class ShapeScreenState(
     val shapeScheme: ShapeScheme
         get() = themeState.shapeScheme
 
-    val cornerRadiusByShapeToken = ShapeToken.entries.associateWith { token ->
+    val cornerRadiusByShapeToken get() = ShapeToken.entries.associateWith { token ->
         token.toShape(shapeScheme).cornerRadius
     }
 }
@@ -149,11 +143,10 @@ private fun makeControlForToken(
     state: ShapeScreenState,
     themeController: ThemeController,
 ): Control {
-    val shapeType = token.toShape(state.shapeScheme).type
     val shapeControl = enumControl(
         name = "Shape",
         values = { ShapeType.entries },
-        selectedValue = { shapeType },
+        selectedValue = { token.toShape(state.shapeScheme).type },
         onValueChange = { shapeType ->
             val shapeScheme = state.shapeScheme.copy(
                 token = token,
@@ -184,7 +177,7 @@ private fun makeControlForToken(
     return Control.ControlColumn(
         name = token.name,
         controls = {
-            when (shapeType) {
+            when (token.toShape(state.shapeScheme).type) {
                 ShapeType.Rectangle -> persistentListOf(
                     shapeControl,
                     cornerRadiusControl,
