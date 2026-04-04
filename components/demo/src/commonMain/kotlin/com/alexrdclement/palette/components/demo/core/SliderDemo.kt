@@ -22,12 +22,17 @@ import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
-import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toPersistentList
 import kotlin.math.roundToInt
 
 enum class SliderType {
     Continuous,
     Range,
+}
+
+enum class StepMode {
+    Uniform,
+    Custom,
 }
 
 @Composable
@@ -59,23 +64,44 @@ fun DemoScope.SliderDemo(
         .padding(PaletteTheme.spacing.medium)
 
     when (state.sliderType) {
-        SliderType.Continuous -> Slider(
-            value = state.value,
-            onValueChange = { state.value = it },
-            enabled = state.enabled,
-            steps = state.steps,
-            modifier = sliderModifier,
-        )
-        SliderType.Range -> RangeSlider(
-            value = state.rangeStart..state.rangeEnd,
-            onValueChange = {
-                state.rangeStart = it.start
-                state.rangeEnd = it.endInclusive
-            },
-            enabled = state.enabled,
-            steps = state.steps,
-            modifier = sliderModifier,
-        )
+        SliderType.Continuous -> when (state.stepMode) {
+            StepMode.Uniform -> Slider(
+                value = state.value,
+                onValueChange = { state.value = it },
+                enabled = state.enabled,
+                steps = state.steps,
+                modifier = sliderModifier,
+            )
+            StepMode.Custom -> Slider(
+                value = state.value,
+                onValueChange = { state.value = it },
+                enabled = state.enabled,
+                snapValues = state.snapValues,
+                modifier = sliderModifier,
+            )
+        }
+        SliderType.Range -> when (state.stepMode) {
+            StepMode.Uniform -> RangeSlider(
+                value = state.rangeStart..state.rangeEnd,
+                onValueChange = {
+                    state.rangeStart = it.start
+                    state.rangeEnd = it.endInclusive
+                },
+                enabled = state.enabled,
+                steps = state.steps,
+                modifier = sliderModifier,
+            )
+            StepMode.Custom -> RangeSlider(
+                value = state.rangeStart..state.rangeEnd,
+                onValueChange = {
+                    state.rangeStart = it.start
+                    state.rangeEnd = it.endInclusive
+                },
+                enabled = state.enabled,
+                snapValues = state.snapValues,
+                modifier = sliderModifier,
+            )
+        }
     }
 }
 
@@ -92,6 +118,8 @@ class SliderDemoState(
     rangeEndInitial: Float = 0.75f,
     stepsInitial: Int = 0,
     enabledInitial: Boolean = true,
+    stepModeInitial: StepMode = StepMode.Uniform,
+    snapValuesInitial: List<Float> = listOf(0f, 0.25f, 0.5f, 0.75f, 1f),
 ) {
     var sliderType by mutableStateOf(sliderTypeInitial)
         internal set
@@ -105,6 +133,10 @@ class SliderDemoState(
         internal set
     var enabled by mutableStateOf(enabledInitial)
         internal set
+    var stepMode by mutableStateOf(stepModeInitial)
+        internal set
+    var snapValues by mutableStateOf(snapValuesInitial)
+        internal set
 }
 
 private const val sliderTypeKey = "sliderType"
@@ -113,6 +145,8 @@ private const val rangeStartKey = "rangeStart"
 private const val rangeEndKey = "rangeEnd"
 private const val stepsKey = "steps"
 private const val enabledKey = "enabled"
+private const val stepModeKey = "stepMode"
+private const val snapValuesKey = "snapValues"
 
 val SliderDemoStateSaver = mapSaverSafe(
     save = { value ->
@@ -123,6 +157,8 @@ val SliderDemoStateSaver = mapSaverSafe(
             rangeEndKey to value.rangeEnd,
             stepsKey to value.steps,
             enabledKey to value.enabled,
+            stepModeKey to value.stepMode.name,
+            snapValuesKey to value.snapValues.joinToString(","),
         )
     },
     restore = { map ->
@@ -135,6 +171,14 @@ val SliderDemoStateSaver = mapSaverSafe(
             rangeEndInitial = map[rangeEndKey] as Float,
             stepsInitial = map[stepsKey] as Int,
             enabledInitial = map[enabledKey] as Boolean,
+            stepModeInitial = runCatching {
+                StepMode.valueOf(map[stepModeKey] as String)
+            }.getOrDefault(StepMode.Uniform),
+            snapValuesInitial = runCatching {
+                (map[snapValuesKey] as String)
+                    .split(",")
+                    .map { it.toFloat() }
+            }.getOrDefault(listOf(0f, 0.25f, 0.5f, 0.75f, 1f)),
         )
     },
 )
@@ -161,7 +205,14 @@ class SliderDemoControl(
         onValueChange = { state.enabled = it },
     )
 
-    val stepsControl = Control.Slider(
+    val stepModeControl = enumControl(
+        name = "Step Mode",
+        values = { StepMode.entries },
+        selectedValue = { state.stepMode },
+        onValueChange = { state.stepMode = it },
+    )
+
+    val uniformStepsControl = Control.Slider(
         name = "Steps",
         value = { state.steps.toFloat() },
         onValueChange = { state.steps = it.roundToInt() },
@@ -169,9 +220,39 @@ class SliderDemoControl(
         stepIncrement = 1f,
     )
 
-    val controls = persistentListOf(
-        typeControl,
-        enabledControl,
-        stepsControl,
+    val customStepsControl = Control.DynamicList(
+        name = "Steps",
+        items = { state.snapValues },
+        onItemsChange = { state.snapValues = it },
+        newItemDefault = { 0.5f },
+        createControl = { item, onChange ->
+            Control.Slider(
+                name = "Value",
+                value = { item },
+                onValueChange = onChange,
+            )
+        },
+        addButtonText = "Add Point",
     )
+
+    val stepControl = Control.ControlColumn(
+        name = "Steps",
+        controls = {
+            buildList {
+                add(stepModeControl)
+                when (state.stepMode) {
+                    StepMode.Uniform -> add(uniformStepsControl)
+                    StepMode.Custom -> add(customStepsControl)
+                }
+            }.toPersistentList()
+        },
+        indent = true,
+    )
+
+    val controls
+        get() = buildList {
+            add(typeControl)
+            add(enabledControl)
+            add(stepControl)
+        }.toPersistentList()
 }

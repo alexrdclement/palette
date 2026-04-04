@@ -108,6 +108,38 @@ fun Slider(
 
 @Composable
 fun Slider(
+    value: Float,
+    onValueChange: ((Float) -> Unit)?,
+    snapValues: List<Float>,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
+    onValueChangeFinished: (() -> Unit)? = null,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+) {
+    val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
+    val state = remember(valueRange, snapValues) {
+        SliderState(
+            value = value,
+            onValueChangeFinished = { onValueChangeFinishedState.value?.invoke() },
+            valueRange = valueRange,
+            snapValues = snapValues,
+        )
+    }
+
+    state.onValueChange = onValueChange
+    state.value = value
+
+    Slider(
+        state = state,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource,
+    )
+}
+
+@Composable
+fun Slider(
     state: SliderState,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -216,6 +248,37 @@ fun RangeSlider(
             onValueChangeFinished = { onValueChangeFinishedState.value?.invoke() },
             valueRange = valueRange,
             steps = steps,
+        )
+    }
+    state.onValueChange = onValueChange
+    state.activeRangeStart = value.start
+    state.activeRangeEnd = value.endInclusive
+
+    RangeSlider(
+        state = state,
+        modifier = modifier,
+        enabled = enabled,
+    )
+}
+
+@Composable
+fun RangeSlider(
+    value: ClosedFloatingPointRange<Float>,
+    onValueChange: ((ClosedFloatingPointRange<Float>) -> Unit)?,
+    snapValues: List<Float>,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
+    onValueChangeFinished: (() -> Unit)? = null,
+) {
+    val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
+    val state = remember(valueRange, snapValues) {
+        RangeSliderState(
+            activeRangeStart = value.start,
+            activeRangeEnd = value.endInclusive,
+            onValueChangeFinished = { onValueChangeFinishedState.value?.invoke() },
+            valueRange = valueRange,
+            snapValues = snapValues,
         )
     }
     state.onValueChange = onValueChange
@@ -439,9 +502,12 @@ class SliderState(
     val onValueChangeFinished: (() -> Unit)? = null,
     val valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     val steps: Int = 0,
+    snapValues: List<Float>? = null,
 ) : DraggableState {
 
-    internal val tickFractions = stepsToTickFractions(steps)
+    internal val tickFractions: FloatArray = snapValues
+        ?.let { snapValuesToTickFractions(it, valueRange) }
+        ?: stepsToTickFractions(steps)
 
     private var valueState by mutableFloatStateOf(value)
 
@@ -531,8 +597,11 @@ class RangeSliderState(
     val onValueChangeFinished: (() -> Unit)? = null,
     val valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     val steps: Int = 0,
+    snapValues: List<Float>? = null,
 ) {
-    internal val tickFractions = stepsToTickFractions(steps)
+    internal val tickFractions: FloatArray = snapValues
+        ?.let { snapValuesToTickFractions(it, valueRange) }
+        ?: stepsToTickFractions(steps)
 
     private var activeRangeStartState by mutableFloatStateOf(
         activeRangeStart.coerceIn(valueRange.start, valueRange.endInclusive)
@@ -674,6 +743,18 @@ fun stepsForIncrement(
 
 internal fun stepsToTickFractions(steps: Int): FloatArray =
     if (steps == 0) floatArrayOf() else FloatArray(steps + 2) { it.toFloat() / (steps + 1) }
+
+internal fun snapValuesToTickFractions(
+    snapValues: List<Float>,
+    valueRange: ClosedFloatingPointRange<Float>,
+): FloatArray {
+    val rangeSize = valueRange.endInclusive - valueRange.start
+    return snapValues
+        .filter { it in valueRange }
+        .map { (it - valueRange.start) / rangeSize }
+        .sorted()
+        .toFloatArray()
+}
 
 internal fun snapValueToTick(
     current: Float,
