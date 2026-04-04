@@ -178,6 +178,7 @@ private fun makeControlForToken(
             themeController.setShapeScheme(shapeScheme)
         },
         valueRange = { 0f..64f },
+        stepIncrement = 8f,
     )
 
     return Control.ControlColumn(

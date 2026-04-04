@@ -166,7 +166,7 @@ class SliderDemoControl(
         value = { state.steps.toFloat() },
         onValueChange = { state.steps = it.roundToInt() },
         valueRange = { 0f..9f },
-        steps = 9,
+        stepIncrement = 1f,
     )
 
     val controls = persistentListOf(

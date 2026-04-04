@@ -55,6 +55,7 @@ fun WarpDemo(
                     modifierState.amount = it
                 },
                 valueRange = { -5f..5f },
+                stepIncrement = 1f,
             ),
             Control.Slider(
                 name = "Radius",

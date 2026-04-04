@@ -322,6 +322,7 @@ class CurveStitchDemoControl(
             state.innerRadius = it
         },
         valueRange = { 0f..1f },
+        stepIncrement = 0.1f,
     )
 
     val starInsidePoints = Control.Toggle(
@@ -347,6 +348,7 @@ class CurveStitchDemoControl(
             state.rotation = (it / 45f).roundToInt() * 45f // snap to 45 degree increments
         },
         valueRange = { 0f..360f },
+        stepIncrement = 45f,
     )
 
     val strokeWidth = Control.Slider(

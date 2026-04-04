@@ -15,18 +15,21 @@ sealed class Control {
         val name: () -> String,
         val value: () -> Float,
         val onValueChange: (Float) -> Unit,
-        val valueRange: () -> ClosedFloatingPointRange<Float> = { 0f..1f }
+        val valueRange: () -> ClosedFloatingPointRange<Float> = { 0f..1f },
+        val stepIncrement: Float? = null,
     ) : Control() {
         constructor(
             name: String,
             value: () -> Float,
             onValueChange: (Float) -> Unit,
-            valueRange: () -> ClosedFloatingPointRange<Float> = { 0f..1f }
+            valueRange: () -> ClosedFloatingPointRange<Float> = { 0f..1f },
+            stepIncrement: Float? = null,
         ) : this(
             name = { name },
             value = value,
             onValueChange = onValueChange,
             valueRange = valueRange,
+            stepIncrement = stepIncrement,
         )
     }
 

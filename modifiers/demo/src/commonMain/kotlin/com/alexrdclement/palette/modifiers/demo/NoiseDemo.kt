@@ -32,6 +32,7 @@ fun NoiseDemo(
                     modifierState.amount = it
                 },
                 valueRange = { 0f..1f },
+                stepIncrement = 0.1f,
             ),
             enumControl(
                 name = "Color Mode",

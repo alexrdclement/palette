@@ -3,6 +3,7 @@ package com.alexrdclement.palette.components.demo.control
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -14,6 +15,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Slider
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.stepsForIncrement
 import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
@@ -29,11 +31,20 @@ fun SliderControl(
         verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
         modifier = modifier,
     ) {
-        Text(text = name, style = PaletteTheme.styles.text.labelLarge)
+        val label by derivedStateOf {
+            val value = if (value % 1f == 0f) value.toInt() else value.toString()
+            "$name: $value"
+        }
+        Text(
+            text = label,
+            style = PaletteTheme.styles.text.labelLarge,
+        )
+        val steps = control.stepIncrement?.let { stepsForIncrement(valueRange, it) } ?: 0
         Slider(
             value = value,
             onValueChange = control.onValueChange,
             valueRange = valueRange,
+            steps = steps,
             modifier = Modifier.semantics {
                 contentDescription = name
             }
