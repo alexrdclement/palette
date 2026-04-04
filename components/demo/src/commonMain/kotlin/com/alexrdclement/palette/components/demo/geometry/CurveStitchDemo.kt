@@ -322,7 +322,6 @@ class CurveStitchDemoControl(
             state.innerRadius = it
         },
         valueRange = { 0f..1f },
-        stepIncrement = 0.1f,
     )
 
     val starInsidePoints = Control.Toggle(

@@ -41,7 +41,6 @@ fun ColorSplitDemo(
                     modifierState.xAmount = it
                 },
                 valueRange = { -1f..1f },
-                stepIncrement = 0.2f,
             ),
             Control.Slider(
                 name = "Y Amount",
@@ -50,7 +49,6 @@ fun ColorSplitDemo(
                     modifierState.yAmount = it
                 },
                 valueRange = { -1f..1f },
-                stepIncrement = 0.2f,
             ),
         ),
         modifier = modifier,

@@ -154,7 +154,6 @@ class ComposeTextStyleDemoControl(
         value = { state.letterSpacing ?: 0f },
         onValueChange = { state.letterSpacing = it },
         valueRange = { -10f..10f },
-        stepIncrement = 2f,
     )
 
     val controls = persistentListOf(
