@@ -24,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
@@ -98,6 +99,14 @@ fun Slider(
     state.onValueChange = onValueChange
     state.value = value
 
+    val currentOnValueChange by rememberUpdatedState(onValueChange)
+    LaunchedEffect(state) {
+        val snapped = snapValueToTick(value, state.tickFractions, valueRange)
+        if (snapped != value) {
+            currentOnValueChange?.invoke(snapped)
+        }
+    }
+
     Slider(
         state = state,
         modifier = modifier,
@@ -129,6 +138,14 @@ fun Slider(
 
     state.onValueChange = onValueChange
     state.value = value
+
+    val currentOnValueChange by rememberUpdatedState(onValueChange)
+    LaunchedEffect(state) {
+        val snapped = snapValueToTick(value, state.tickFractions, valueRange)
+        if (snapped != value) {
+            currentOnValueChange?.invoke(snapped)
+        }
+    }
 
     Slider(
         state = state,
@@ -254,6 +271,15 @@ fun RangeSlider(
     state.activeRangeStart = value.start
     state.activeRangeEnd = value.endInclusive
 
+    val currentOnValueChange by rememberUpdatedState(onValueChange)
+    LaunchedEffect(state) {
+        val snappedStart = snapValueToTick(value.start, state.tickFractions, valueRange)
+        val snappedEnd = snapValueToTick(value.endInclusive, state.tickFractions, valueRange)
+        if (snappedStart != value.start || snappedEnd != value.endInclusive) {
+            currentOnValueChange?.invoke(snappedStart..snappedEnd)
+        }
+    }
+
     RangeSlider(
         state = state,
         modifier = modifier,
@@ -284,6 +310,15 @@ fun RangeSlider(
     state.onValueChange = onValueChange
     state.activeRangeStart = value.start
     state.activeRangeEnd = value.endInclusive
+
+    val currentOnValueChange by rememberUpdatedState(onValueChange)
+    LaunchedEffect(state) {
+        val snappedStart = snapValueToTick(value.start, state.tickFractions, valueRange)
+        val snappedEnd = snapValueToTick(value.endInclusive, state.tickFractions, valueRange)
+        if (snappedStart != value.start || snappedEnd != value.endInclusive) {
+            currentOnValueChange?.invoke(snappedStart..snappedEnd)
+        }
+    }
 
     RangeSlider(
         state = state,
