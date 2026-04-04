@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 enum class CoreComponent : CatalogItem {
     Button,
+    Slider,
     Text,
     TextField,
     ;

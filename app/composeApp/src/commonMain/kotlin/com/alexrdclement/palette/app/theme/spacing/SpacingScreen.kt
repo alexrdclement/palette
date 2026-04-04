@@ -161,5 +161,6 @@ private fun makeControlForToken(
             themeController.setSpacing(spacing)
         },
         valueRange = { 0f..64f },
+        stepIncrement = 8f,
     )
 }
