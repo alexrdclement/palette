@@ -78,9 +78,9 @@ HSPLcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;->createColorSplitS
 PLcom/alexrdclement/palette/modifiers/FadeKt;->$r8$lambda$-gMSqUcuMXok67uxaIam2N7zvyU(IFLandroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/drawscope/ContentDrawScope;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/FadeKt;->$r8$lambda$H4ycrAPLNW-NfMG4gDlA4JUiNvE(Landroidx/compose/ui/graphics/GraphicsLayerScope;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/FadeKt;->bottomFade-V5MJSes(Landroidx/compose/ui/Modifier;FLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
-PLcom/alexrdclement/palette/modifiers/FadeKt;->fade-ddyKRco(Landroidx/compose/ui/Modifier;IFLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
+HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade-ddyKRco(Landroidx/compose/ui/Modifier;IFLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/modifiers/FadeKt;->fade-ddyKRco(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/modifiers/FadeSide;FLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
-HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$0(Landroidx/compose/ui/graphics/GraphicsLayerScope;)Lkotlin/Unit;
+PLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$0(Landroidx/compose/ui/graphics/GraphicsLayerScope;)Lkotlin/Unit;
 HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$1(IFLandroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/drawscope/ContentDrawScope;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/FadeKt$$ExternalSyntheticLambda0;-><init>()V
 PLcom/alexrdclement/palette/modifiers/FadeKt$$ExternalSyntheticLambda0;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
@@ -410,7 +410,7 @@ PLcom/alexrdclement/palette/modifiers/demo/WarpDemoKt;->WarpDemo$lambda$13$0(Lco
 PLcom/alexrdclement/palette/modifiers/demo/WarpDemoKt;->WarpDemo$lambda$15$0()Lkotlin/ranges/ClosedFloatingPointRange;
 PLcom/alexrdclement/palette/modifiers/demo/WarpDemoKt;->WarpDemo$lambda$3(Landroidx/compose/runtime/MutableState;J)V
 PLcom/alexrdclement/palette/modifiers/demo/WarpDemoKt;->WarpDemo$lambda$9$0(Landroidx/compose/runtime/MutableState;Landroidx/compose/ui/unit/IntSize;)Lkotlin/Unit;
-PLcom/alexrdclement/palette/modifiers/demo/WarpDemoKt;->WarpDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+HPLcom/alexrdclement/palette/modifiers/demo/WarpDemoKt;->WarpDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/modifiers/demo/WarpDemoKt;->WarpStateSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/modifiers/demo/WarpState;)Ljava/util/Map;
 PLcom/alexrdclement/palette/modifiers/demo/WarpDemoKt;->access$WarpDemo$lambda$3(Landroidx/compose/runtime/MutableState;J)V
 PLcom/alexrdclement/palette/modifiers/demo/WarpDemoKt$$ExternalSyntheticLambda0;-><init>()V
