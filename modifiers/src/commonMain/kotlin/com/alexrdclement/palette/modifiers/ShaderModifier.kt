@@ -73,6 +73,8 @@ open class ShaderNode<T: Shader>(
                 record { this@draw.drawContent() }
                 drawLayer(this)
             }
+
+            if (currentValueOf(LocalInspectionMode)) invalidateDraw()
         }
     }
 }
