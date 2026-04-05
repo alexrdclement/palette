@@ -1,7 +1,5 @@
 package com.alexrdclement.palette.modifiers
 
-import androidx.compose.ui.graphics.RenderEffect
-
 private const val UniformShaderName = "composable"
 private const val UniformSizeName = "size"
 private const val UniformSubdivisionsName = "subdivisions"
@@ -20,22 +18,21 @@ half4 main(float2 fragCoord) {
 }
 """
 
-actual fun createPixelateShader(
-    configure: PixelateShader.() -> Unit
-): PixelateShader {
-    return PixelateShaderImpl(configure)
+actual fun createPixelateShader(): PixelateShader {
+    return PixelateShaderImpl()
 }
 
-class PixelateShaderImpl(
-    configure: PixelateShader.() -> Unit
-): PixelateShader {
-    private val control = createShaderControl(ShaderSource, UniformShaderName, configure = { configure() })
+class PixelateShaderImpl : PixelateShader {
+    private val control = createShaderControl(ShaderSource, UniformShaderName)
 
-    override fun createRenderEffect(): RenderEffect? {
-        return control.createRenderEffect()
-    }
+    private var subdivisions: Int = 0
+
+    override fun isActive(): Boolean = subdivisions != 0
+
+    override fun createRenderEffect() = control.createRenderEffect()
 
     override fun setSubdivisions(subdivisions: Int) {
+        this.subdivisions = subdivisions
         control.setFloatUniform(UniformSubdivisionsName, subdivisions.toFloat())
     }
 

@@ -9,16 +9,14 @@ import androidx.compose.ui.graphics.asComposeRenderEffect
 internal actual fun createShaderControl(
     source: String,
     uniformName: String,
-    configure: ShaderControl.() -> Unit
 ): ShaderControl {
-    return ShaderControlImpl(source, uniformName, configure)
+    return ShaderControlImpl(source, uniformName)
 }
 
 @SuppressLint("NewApi")
 private class ShaderControlImpl(
     source: String,
     val uniformName: String,
-    val configure: ShaderControl.() -> Unit,
 ): ShaderControl {
     private val runtimeShader: RuntimeShader? = createRuntimeShader(source)
 
@@ -26,8 +24,6 @@ private class ShaderControlImpl(
         if (runtimeShader == null) {
             return null
         }
-
-        configure()
 
         return android.graphics.RenderEffect
             .createRuntimeShaderEffect(runtimeShader, uniformName)

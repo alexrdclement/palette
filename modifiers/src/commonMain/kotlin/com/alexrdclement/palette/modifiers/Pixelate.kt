@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 fun Modifier.pixelate(
     subdivisions: () -> Int,
 ): Modifier = this then ShaderElement(
-    shader = createPixelateShader {
+    shader = createPixelateShader().apply {
         setSubdivisions(subdivisions())
     },
     traceLabel = "pixelate",
@@ -60,6 +60,4 @@ interface PixelateShader : Shader {
     fun setSubdivisions(subdivisions: Int)
 }
 
-expect fun createPixelateShader(
-    configure: PixelateShader.() -> Unit = {},
-): PixelateShader
+expect fun createPixelateShader(): PixelateShader

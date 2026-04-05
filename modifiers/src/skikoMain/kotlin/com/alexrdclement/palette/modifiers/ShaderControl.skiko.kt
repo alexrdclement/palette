@@ -9,22 +9,18 @@ import org.jetbrains.skia.RuntimeShaderBuilder
 internal actual fun createShaderControl(
     source: String,
     uniformName: String,
-    configure: ShaderControl.() -> Unit
 ): ShaderControl {
-    return ShaderControlImpl(source, uniformName, configure)
+    return ShaderControlImpl(source, uniformName)
 }
 
 private class ShaderControlImpl(
     source: String,
     val uniformName: String,
-    val configure: ShaderControl.() -> Unit,
 ): ShaderControl {
     private val runtimeEffect = RuntimeEffect.makeForShader(source)
     private val runtimeShaderBuilder = RuntimeShaderBuilder(runtimeEffect)
 
     override fun createRenderEffect(): RenderEffect {
-        configure()
-
         return ImageFilter.makeRuntimeShader(
             runtimeShaderBuilder = runtimeShaderBuilder,
             shaderName = uniformName,

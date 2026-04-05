@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 fun Modifier.colorInvert(
     amount: () -> Float,
 ): Modifier = this then ShaderElement(
-    shader = createColorInvertShader {
+    shader = createColorInvertShader().apply {
         setAmount(amount())
     },
     traceLabel = "colorInvert",
@@ -60,6 +60,4 @@ interface ColorInvertShader : Shader {
     fun setAmount(amount: Float)
 }
 
-expect fun createColorInvertShader(
-    configure: ColorInvertShader.() -> Unit = {},
-): ColorInvertShader
+expect fun createColorInvertShader(): ColorInvertShader

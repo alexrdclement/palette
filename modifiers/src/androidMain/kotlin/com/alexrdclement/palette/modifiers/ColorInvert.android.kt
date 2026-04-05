@@ -29,23 +29,22 @@ half4 main(float2 fragCoord) {
 }
 """
 
-actual fun createColorInvertShader(
-    configure: ColorInvertShader.() -> Unit
-): ColorInvertShader {
-    return ColorInvertShaderImpl(configure)
+actual fun createColorInvertShader(): ColorInvertShader {
+    return ColorInvertShaderImpl()
 }
 
-class ColorInvertShaderImpl(
-    configure: ColorInvertShader.() -> Unit,
-) : ColorInvertShader {
+class ColorInvertShaderImpl : ColorInvertShader {
 
-    private val control = createShaderControl(ShaderSource, UniformShaderName, configure = { configure() })
+    private val control = createShaderControl(ShaderSource, UniformShaderName)
 
-    override fun createRenderEffect(): RenderEffect? {
-        return control.createRenderEffect()
-    }
+    private var amount: Float = 0f
+
+    override fun isActive(): Boolean = amount != 0f
+
+    override fun createRenderEffect(): RenderEffect? = control.createRenderEffect()
 
     override fun setAmount(amount: Float) {
+        this.amount = amount
         control.setFloatUniform(UniformAmount, amount)
     }
 }

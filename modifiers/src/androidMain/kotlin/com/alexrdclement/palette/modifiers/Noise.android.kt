@@ -59,20 +59,18 @@ half4 main(float2 fragCoord) {
 }
 """
 
-actual fun createNoiseShader(
-    configure: NoiseShader.() -> Unit
-): NoiseShader {
-    return NoiseShaderImpl(configure)
+actual fun createNoiseShader(): NoiseShader {
+    return NoiseShaderImpl()
 }
 
-class NoiseShaderImpl(
-    configure: NoiseShader.() -> Unit
-): NoiseShader {
-    private val control = createShaderControl(ShaderSource, UniformShaderName, configure = { configure() })
+class NoiseShaderImpl : NoiseShader {
+    private val control = createShaderControl(ShaderSource, UniformShaderName)
 
-    override fun createRenderEffect(): RenderEffect? {
-        return control.createRenderEffect()
-    }
+    private var amount: Float = 0f
+
+    override fun isActive(): Boolean = amount != 0f
+
+    override fun createRenderEffect(): RenderEffect? = control.createRenderEffect()
 
     override fun setColorMode(colorMode: NoiseColorMode) {
         val colorEnabled = when (colorMode) {
@@ -88,6 +86,7 @@ class NoiseShaderImpl(
     }
 
     override fun setAmount(amount: Float) {
+        this.amount = amount
         control.setFloatUniform(UniformAmount, amount)
     }
 
