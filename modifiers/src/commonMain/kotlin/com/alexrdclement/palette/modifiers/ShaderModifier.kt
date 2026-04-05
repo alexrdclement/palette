@@ -12,6 +12,7 @@ import androidx.compose.ui.node.currentValueOf
 import androidx.compose.ui.node.invalidateDraw
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalGraphicsContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.IntSize
 import com.alexrdclement.palette.modifiers.util.useGraphicsLayer
 import com.alexrdclement.trace.trace
@@ -41,14 +42,17 @@ open class ShaderNode<T: Shader>(
 
     override fun onPlaced(coordinates: LayoutCoordinates) {
         shader.onRemeasured(coordinates.size.width, coordinates.size.height)
+        if (currentValueOf(LocalInspectionMode)) invalidateDraw()
     }
 
     override fun onRemeasured(size: IntSize) {
         shader.onRemeasured(size.width, size.height)
+        if (currentValueOf(LocalInspectionMode)) invalidateDraw()
     }
 
     override fun onDensityChange() {
         shader.onDensityChanged(currentValueOf(LocalDensity))
+        if (currentValueOf(LocalInspectionMode)) invalidateDraw()
     }
 
     override fun ContentDrawScope.draw() {
