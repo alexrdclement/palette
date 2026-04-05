@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.components.layout
 
 import androidx.compose.animation.core.AnimationSpec
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.AnchoredDraggableState
 import androidx.compose.foundation.gestures.DraggableAnchors
@@ -17,10 +18,15 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.util.Spacer
 import com.alexrdclement.trace.trace
@@ -81,6 +87,41 @@ class PeekSheetState(
 
     val isExpanded: Boolean get() = targetValue == PeekSheetAnchor.Expanded
 
+    internal val nestedScrollConnection: NestedScrollConnection = object : NestedScrollConnection {
+        override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
+            // Lock content scroll while sheet is mid-drag; move sheet back toward expanded instead
+            if (available.y < 0f && partialToFullProgress < 1f) {
+                val delta = anchoredDraggableState.dispatchRawDelta(available.y)
+                return Offset(0f, delta)
+            }
+            return Offset.Zero
+        }
+
+        override fun onPostScroll(
+            consumed: Offset,
+            available: Offset,
+            source: NestedScrollSource,
+        ): Offset {
+            if (available.y <= 0f) return Offset.Zero
+
+            return if (source == NestedScrollSource.UserInput || partialToFullProgress < 1f) {
+                // Allow deliberate drags and continuations of in-progress sheet drag
+                val delta = anchoredDraggableState.dispatchRawDelta(available.y)
+                Offset(0f, delta)
+            } else {
+                // Absorb fling momentum that hits the top boundary without having
+                // moved the sheet yet (i.e. accidental overscroll from list scrolling)
+                Offset(0f, available.y)
+            }
+        }
+
+        override suspend fun onPostFling(consumed: Velocity, available: Velocity): Velocity {
+            // Snap to nearest anchor; absorb any remaining downward velocity
+            anchoredDraggableState.settle(spring())
+            return if (available.y > 0f) available else Velocity.Zero
+        }
+    }
+
     companion object {
         fun Saver(): Saver<PeekSheetState, PeekSheetAnchor> = Saver(
             save = { it.currentValue },
@@ -116,6 +157,7 @@ fun PeekSheet(
 
             Column(
                 modifier = Modifier
+                    .nestedScroll(state.nestedScrollConnection)
                     .offset { IntOffset(0, state.offset.toInt()) }
                     .anchoredDraggable(
                         state = state.anchoredDraggableState,
