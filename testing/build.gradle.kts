@@ -1,5 +1,6 @@
 plugins {
     id(libs.plugins.alexrdclement.android.library.asProvider().get().pluginId)
+    id(libs.plugins.alexrdclement.android.library.compose.get().pluginId)
     alias(libs.plugins.paparazzi)
 }
 
