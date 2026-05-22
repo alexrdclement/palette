@@ -4672,7 +4672,6 @@ HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->clear()V
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->clear(Ljava/lang/Object;)V
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->drainChanges()Z
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->ensureMap(Lkotlin/jvm/functions/Function1;)Landroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap;
-HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->observeReads(Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)V
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->readObserver$lambda$0(Landroidx/compose/runtime/snapshots/SnapshotStateObserver;Ljava/lang/Object;)Lkotlin/Unit;
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->removeChanges()Ljava/util/Set;
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->sendNotifications$lambda$0(Landroidx/compose/runtime/snapshots/SnapshotStateObserver;)Lkotlin/Unit;
@@ -9942,7 +9941,6 @@ PLandroidx/emoji2/text/flatbuffer/MetadataList;->__assign(ILjava/nio/ByteBuffer;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->__init(ILjava/nio/ByteBuffer;)V
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataList;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;Landroidx/emoji2/text/flatbuffer/MetadataList;)Landroidx/emoji2/text/flatbuffer/MetadataList;
-HPLandroidx/emoji2/text/flatbuffer/MetadataList;->list(Landroidx/emoji2/text/flatbuffer/MetadataItem;I)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->listLength()I
 PLandroidx/emoji2/text/flatbuffer/Table;-><init>()V
 HPLandroidx/emoji2/text/flatbuffer/Table;->__indirect(I)I
@@ -13429,6 +13427,8 @@ Lkotlin/coroutines/jvm/internal/DebugProbesKt;
 HSPLkotlin/coroutines/jvm/internal/DebugProbesKt;->probeCoroutineCreated(Lkotlin/coroutines/Continuation;)Lkotlin/coroutines/Continuation;
 HSPLkotlin/coroutines/jvm/internal/DebugProbesKt;->probeCoroutineResumed(Lkotlin/coroutines/Continuation;)V
 HSPLkotlin/coroutines/jvm/internal/DebugProbesKt;->probeCoroutineSuspended(Lkotlin/coroutines/Continuation;)V
+Lkotlin/coroutines/jvm/internal/SpillingKt;
+HSPLkotlin/coroutines/jvm/internal/SpillingKt;->nullOutSpilledVariable(Ljava/lang/Object;)Ljava/lang/Object;
 Lkotlin/coroutines/jvm/internal/SuspendFunction;
 Lkotlin/coroutines/jvm/internal/SuspendLambda;
 HSPLkotlin/coroutines/jvm/internal/SuspendLambda;-><init>(ILkotlin/coroutines/Continuation;)V
@@ -14383,8 +14383,7 @@ PLkotlinx/coroutines/flow/internal/ChannelFlowTransformLatest$flowCollect$3$1$2;
 PLkotlinx/coroutines/flow/internal/ChannelFlowTransformLatest$flowCollect$3$1$2;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
 PLkotlinx/coroutines/flow/internal/ChannelFlowTransformLatest$flowCollect$3$1$emit$1;-><init>(Lkotlinx/coroutines/flow/internal/ChannelFlowTransformLatest$flowCollect$3$1;Lkotlin/coroutines/Continuation;)V
 Lkotlinx/coroutines/flow/internal/FusibleFlow;
-Lkotlinx/coroutines/flow/internal/FusibleFlow$DefaultImpls;
-HSPLkotlinx/coroutines/flow/internal/FusibleFlow$DefaultImpls;->fuse$default(Lkotlinx/coroutines/flow/internal/FusibleFlow;Lkotlin/coroutines/CoroutineContext;ILkotlinx/coroutines/channels/BufferOverflow;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+HSPLkotlinx/coroutines/flow/internal/FusibleFlow;->fuse$default(Lkotlinx/coroutines/flow/internal/FusibleFlow;Lkotlin/coroutines/CoroutineContext;ILkotlinx/coroutines/channels/BufferOverflow;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
 PLkotlinx/coroutines/flow/internal/NoOpContinuation;-><clinit>()V
 PLkotlinx/coroutines/flow/internal/NoOpContinuation;-><init>()V
 Lkotlinx/coroutines/flow/internal/NopCollector;
@@ -14452,7 +14451,7 @@ HSPLkotlinx/coroutines/internal/DispatchedContinuation;->tryReleaseClaimedContin
 Lkotlinx/coroutines/internal/DispatchedContinuationKt;
 HSPLkotlinx/coroutines/internal/DispatchedContinuationKt;-><clinit>()V
 HSPLkotlinx/coroutines/internal/DispatchedContinuationKt;->access$getUNDEFINED$p()Lkotlinx/coroutines/internal/Symbol;
-HSPLkotlinx/coroutines/internal/DispatchedContinuationKt;->resumeCancellableWith(Lkotlin/coroutines/Continuation;Ljava/lang/Object;)V
+HSPLkotlinx/coroutines/internal/DispatchedContinuationKt;->resumeCancellableWithInternal(Lkotlin/coroutines/Continuation;Ljava/lang/Object;)V
 HSPLkotlinx/coroutines/internal/DispatchedContinuationKt;->safeDispatch(Lkotlinx/coroutines/CoroutineDispatcher;Lkotlin/coroutines/CoroutineContext;Ljava/lang/Runnable;)V
 HSPLkotlinx/coroutines/internal/DispatchedContinuationKt;->safeIsDispatchNeeded(Lkotlinx/coroutines/CoroutineDispatcher;Lkotlin/coroutines/CoroutineContext;)Z
 Lkotlinx/coroutines/internal/FastServiceLoader;
@@ -14554,8 +14553,8 @@ Lkotlinx/coroutines/intrinsics/CancellableKt;
 HSPLkotlinx/coroutines/intrinsics/CancellableKt;->startCoroutineCancellable(Lkotlin/jvm/functions/Function2;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)V
 Lkotlinx/coroutines/intrinsics/UndispatchedKt;
 HSPLkotlinx/coroutines/intrinsics/UndispatchedKt;->startCoroutineUndispatched(Lkotlin/jvm/functions/Function2;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)V
+HSPLkotlinx/coroutines/intrinsics/UndispatchedKt;->startUndispatched(Lkotlinx/coroutines/internal/ScopeCoroutine;ZLjava/lang/Object;Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
 HSPLkotlinx/coroutines/intrinsics/UndispatchedKt;->startUndispatchedOrReturn(Lkotlinx/coroutines/internal/ScopeCoroutine;Ljava/lang/Object;Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
-HSPLkotlinx/coroutines/intrinsics/UndispatchedKt;->startUndspatched(Lkotlinx/coroutines/internal/ScopeCoroutine;ZLjava/lang/Object;Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
 Lkotlinx/coroutines/scheduling/CoroutineScheduler;
 HSPLkotlinx/coroutines/scheduling/CoroutineScheduler;-><clinit>()V
 HSPLkotlinx/coroutines/scheduling/CoroutineScheduler;-><init>(IIJLjava/lang/String;)V
@@ -14772,8 +14771,8 @@ HSPLkotlinx/serialization/json/JsonBuilder;->setClassDiscriminator(Ljava/lang/St
 HSPLkotlinx/serialization/json/JsonBuilder;->setIgnoreUnknownKeys(Z)V
 HSPLkotlinx/serialization/json/JsonBuilder;->setSerializersModule(Lkotlinx/serialization/modules/SerializersModule;)V
 Lkotlinx/serialization/json/JsonConfiguration;
-HSPLkotlinx/serialization/json/JsonConfiguration;-><init>(ZZZZZZLjava/lang/String;ZZLjava/lang/String;ZZLkotlinx/serialization/json/JsonNamingStrategy;ZZZLkotlinx/serialization/json/ClassDiscriminatorMode;)V
-HSPLkotlinx/serialization/json/JsonConfiguration;-><init>(ZZZZZZLjava/lang/String;ZZLjava/lang/String;ZZLkotlinx/serialization/json/JsonNamingStrategy;ZZZLkotlinx/serialization/json/ClassDiscriminatorMode;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+HSPLkotlinx/serialization/json/JsonConfiguration;-><init>(ZZZZZZLjava/lang/String;ZZLjava/lang/String;ZZLkotlinx/serialization/json/JsonNamingStrategy;ZZZLkotlinx/serialization/json/ClassDiscriminatorMode;Z)V
+HSPLkotlinx/serialization/json/JsonConfiguration;-><init>(ZZZZZZLjava/lang/String;ZZLjava/lang/String;ZZLkotlinx/serialization/json/JsonNamingStrategy;ZZZLkotlinx/serialization/json/ClassDiscriminatorMode;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLkotlinx/serialization/json/JsonConfiguration;->getAllowComments()Z
 HSPLkotlinx/serialization/json/JsonConfiguration;->getAllowSpecialFloatingPointValues()Z
 HSPLkotlinx/serialization/json/JsonConfiguration;->getAllowStructuredMapKeys()Z
@@ -14783,6 +14782,7 @@ HSPLkotlinx/serialization/json/JsonConfiguration;->getClassDiscriminatorMode()Lk
 HSPLkotlinx/serialization/json/JsonConfiguration;->getCoerceInputValues()Z
 HSPLkotlinx/serialization/json/JsonConfiguration;->getDecodeEnumsCaseInsensitive()Z
 HSPLkotlinx/serialization/json/JsonConfiguration;->getEncodeDefaults()Z
+HSPLkotlinx/serialization/json/JsonConfiguration;->getExceptionsWithDebugInfo()Z
 HSPLkotlinx/serialization/json/JsonConfiguration;->getExplicitNulls()Z
 HSPLkotlinx/serialization/json/JsonConfiguration;->getIgnoreUnknownKeys()Z
 HSPLkotlinx/serialization/json/JsonConfiguration;->getNamingStrategy()Lkotlinx/serialization/json/JsonNamingStrategy;
