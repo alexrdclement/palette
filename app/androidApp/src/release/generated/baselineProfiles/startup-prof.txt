@@ -4672,7 +4672,6 @@ HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->clear()V
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->clear(Ljava/lang/Object;)V
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->drainChanges()Z
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->ensureMap(Lkotlin/jvm/functions/Function1;)Landroidx/compose/runtime/snapshots/SnapshotStateObserver$ObservedScopeMap;
-HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->observeReads(Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)V
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->readObserver$lambda$0(Landroidx/compose/runtime/snapshots/SnapshotStateObserver;Ljava/lang/Object;)Lkotlin/Unit;
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->removeChanges()Ljava/util/Set;
 HSPLandroidx/compose/runtime/snapshots/SnapshotStateObserver;->sendNotifications$lambda$0(Landroidx/compose/runtime/snapshots/SnapshotStateObserver;)Lkotlin/Unit;
@@ -7081,7 +7080,7 @@ HSPLandroidx/compose/ui/node/NodeCoordinator$Companion$onCommitAffectingLayerPar
 Landroidx/compose/ui/node/NodeCoordinator$HitTestSource;
 Landroidx/compose/ui/node/NodeCoordinator$drawBlock$1;
 HSPLandroidx/compose/ui/node/NodeCoordinator$drawBlock$1;-><init>(Landroidx/compose/ui/node/NodeCoordinator;Lkotlin/jvm/functions/Function0;)V
-PLandroidx/compose/ui/node/NodeCoordinator$drawBlock$1;->invoke(Landroidx/compose/ui/graphics/Canvas;Landroidx/compose/ui/graphics/layer/GraphicsLayer;)V
+HPLandroidx/compose/ui/node/NodeCoordinator$drawBlock$1;->invoke(Landroidx/compose/ui/graphics/Canvas;Landroidx/compose/ui/graphics/layer/GraphicsLayer;)V
 PLandroidx/compose/ui/node/NodeCoordinator$drawBlock$1;->invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 Landroidx/compose/ui/node/NodeCoordinator$drawBlock$drawBlockCallToDrawModifiers$1;
 HSPLandroidx/compose/ui/node/NodeCoordinator$drawBlock$drawBlockCallToDrawModifiers$1;-><init>(Landroidx/compose/ui/node/NodeCoordinator;)V
@@ -9942,7 +9941,6 @@ PLandroidx/emoji2/text/flatbuffer/MetadataList;->__assign(ILjava/nio/ByteBuffer;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->__init(ILjava/nio/ByteBuffer;)V
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataList;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;Landroidx/emoji2/text/flatbuffer/MetadataList;)Landroidx/emoji2/text/flatbuffer/MetadataList;
-HPLandroidx/emoji2/text/flatbuffer/MetadataList;->list(Landroidx/emoji2/text/flatbuffer/MetadataItem;I)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->listLength()I
 PLandroidx/emoji2/text/flatbuffer/Table;-><init>()V
 HPLandroidx/emoji2/text/flatbuffer/Table;->__indirect(I)I
@@ -10458,15 +10456,15 @@ HSPLandroidx/navigation3/ui/NavDisplayKt;->defaultPredictivePopTransitionSpec()L
 HSPLandroidx/navigation3/ui/NavDisplayKt;->defaultTransitionSpec()Lkotlin/jvm/functions/Function1;
 Landroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->$r8$lambda$6WUP_MmF2ACzmwTrp2aBzvnS0Ug(Landroidx/navigation3/scene/Scene;)Ljava/lang/Object;
-HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->$r8$lambda$CReYQfHCCeA7rw5Std-qD523IsI(Landroidx/navigation3/scene/Scene;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
+HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->$r8$lambda$6meK3rcdj_SbQiBBexE_CVd-d90(Landroidx/compose/animation/core/Transition;Landroidx/compose/runtime/snapshots/SnapshotStateList;Lkotlin/jvm/internal/Ref$ObjectRef;Ljava/util/Map;Landroidx/compose/animation/AnimatedContentScope;Landroidx/navigation3/scene/Scene;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->$r8$lambda$DEpDt4b-_73nHf6rDOOBatOXNV8(ZLandroidx/navigation3/scene/Scene;ILkotlin/jvm/functions/Function2;ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/animation/AnimatedContentTransitionScope;)Landroidx/compose/animation/ContentTransform;
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->$r8$lambda$OO9GgxnLAIBfMXURmhWq76Z3KmY(Lkotlin/jvm/functions/Function1;FLandroidx/compose/animation/SizeTransform;Landroidx/compose/animation/AnimatedContentTransitionScope;)Landroidx/compose/animation/ContentTransform;
-HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->$r8$lambda$oA_G-gk1NTmFeeepApq9PtMhCgw(Landroidx/compose/animation/core/Transition;Landroidx/compose/runtime/snapshots/SnapshotStateList;Ljava/util/Map;Landroidx/compose/animation/AnimatedContentScope;Landroidx/navigation3/scene/Scene;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
+HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->$r8$lambda$XP_-QN-B82CWFFU8xBP8sTt5GYo(Landroidx/navigation3/scene/Scene;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->NavDisplay$lambda$22$0$NavDisplayKt__NavDisplayKt(ZLandroidx/navigation3/scene/Scene;ILkotlin/jvm/functions/Function2;ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/animation/AnimatedContentTransitionScope;)Landroidx/compose/animation/ContentTransform;
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->NavDisplay$lambda$23$0$NavDisplayKt__NavDisplayKt(Lkotlin/jvm/functions/Function1;FLandroidx/compose/animation/SizeTransform;Landroidx/compose/animation/AnimatedContentTransitionScope;)Landroidx/compose/animation/ContentTransform;
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->NavDisplay$lambda$24$0$NavDisplayKt__NavDisplayKt(Landroidx/navigation3/scene/Scene;)Ljava/lang/Object;
-HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->NavDisplay$lambda$25$0$NavDisplayKt__NavDisplayKt(Landroidx/navigation3/scene/Scene;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
-HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->NavDisplay$lambda$25$NavDisplayKt__NavDisplayKt(Landroidx/compose/animation/core/Transition;Landroidx/compose/runtime/snapshots/SnapshotStateList;Ljava/util/Map;Landroidx/compose/animation/AnimatedContentScope;Landroidx/navigation3/scene/Scene;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
+HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->NavDisplay$lambda$25$1$NavDisplayKt__NavDisplayKt(Landroidx/navigation3/scene/Scene;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
+HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->NavDisplay$lambda$25$NavDisplayKt__NavDisplayKt(Landroidx/compose/animation/core/Transition;Landroidx/compose/runtime/snapshots/SnapshotStateList;Lkotlin/jvm/internal/Ref$ObjectRef;Ljava/util/Map;Landroidx/compose/animation/AnimatedContentScope;Landroidx/navigation3/scene/Scene;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->NavDisplay(Landroidx/navigation3/scene/SceneState;Landroidx/navigationevent/compose/NavigationEventState;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;Landroidx/compose/animation/SizeTransform;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->NavDisplay(Ljava/util/List;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;Ljava/util/List;Ljava/util/List;Landroidx/compose/animation/SharedTransitionScope;Landroidx/compose/animation/SizeTransform;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;III)V
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt;->NavDisplay(Ljava/util/List;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;Lkotlin/jvm/functions/Function0;Ljava/util/List;Ljava/util/List;Ljava/util/List;Landroidx/compose/animation/SharedTransitionScope;Landroidx/compose/animation/SizeTransform;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
@@ -10481,7 +10479,7 @@ Landroidx/navigation3/ui/NavDisplayKt__NavDisplayKt$$ExternalSyntheticLambda11;
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt$$ExternalSyntheticLambda11;-><init>()V
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt$$ExternalSyntheticLambda11;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
 Landroidx/navigation3/ui/NavDisplayKt__NavDisplayKt$$ExternalSyntheticLambda12;
-HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt$$ExternalSyntheticLambda12;-><init>(Landroidx/compose/animation/core/Transition;Landroidx/compose/runtime/snapshots/SnapshotStateList;Ljava/util/Map;)V
+HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt$$ExternalSyntheticLambda12;-><init>(Landroidx/compose/animation/core/Transition;Landroidx/compose/runtime/snapshots/SnapshotStateList;Lkotlin/jvm/internal/Ref$ObjectRef;Ljava/util/Map;)V
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt$$ExternalSyntheticLambda12;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 Landroidx/navigation3/ui/NavDisplayKt__NavDisplayKt$$ExternalSyntheticLambda2;
 HSPLandroidx/navigation3/ui/NavDisplayKt__NavDisplayKt$$ExternalSyntheticLambda2;-><init>(Ljava/util/List;Landroidx/navigation3/scene/Scene;Lkotlin/jvm/functions/Function0;)V
