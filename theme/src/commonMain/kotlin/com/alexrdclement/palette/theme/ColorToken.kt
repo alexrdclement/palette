@@ -14,17 +14,19 @@ enum class ColorToken {
     Outline,
 }
 
-@Composable
-fun ColorToken.toColor(): androidx.compose.ui.graphics.Color {
+fun ColorToken.toColor(scheme: ColorScheme): androidx.compose.ui.graphics.Color {
     return when (this) {
-        ColorToken.Primary -> PaletteTheme.colorScheme.primary
-        ColorToken.OnPrimary -> PaletteTheme.colorScheme.onPrimary
-        ColorToken.Secondary -> PaletteTheme.colorScheme.secondary
-        ColorToken.OnSecondary -> PaletteTheme.colorScheme.onSecondary
-        ColorToken.Background -> PaletteTheme.colorScheme.background
-        ColorToken.OnBackground -> PaletteTheme.colorScheme.onBackground
-        ColorToken.Surface -> PaletteTheme.colorScheme.surface
-        ColorToken.OnSurface -> PaletteTheme.colorScheme.onSurface
-        ColorToken.Outline -> PaletteTheme.colorScheme.outline
+        ColorToken.Primary -> scheme.primary
+        ColorToken.OnPrimary -> scheme.onPrimary
+        ColorToken.Secondary -> scheme.secondary
+        ColorToken.OnSecondary -> scheme.onSecondary
+        ColorToken.Background -> scheme.background
+        ColorToken.OnBackground -> scheme.onBackground
+        ColorToken.Surface -> scheme.surface
+        ColorToken.OnSurface -> scheme.onSurface
+        ColorToken.Outline -> scheme.outline
     }
 }
+
+@Composable
+fun ColorToken.toColor(): androidx.compose.ui.graphics.Color = toColor(PaletteTheme.colorScheme)
