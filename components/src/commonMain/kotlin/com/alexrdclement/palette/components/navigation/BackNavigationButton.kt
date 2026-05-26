@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.GenericShape
+import androidx.compose.foundation.style.Style
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -16,6 +17,8 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.style.background
+import com.alexrdclement.palette.theme.toColor
 
 @Composable
 fun BackNavigationButton(
@@ -24,9 +27,8 @@ fun BackNavigationButton(
 ) {
     Button(
         onClick = onClick,
-        contentColor = ColorToken.Primary,
-        containerColor = ColorToken.Surface,
-        borderStyle = null,
+        style = BackNavigationButtonDefaults.style,
+        contentColor = PaletteTheme.colorScheme.primary,
         contentPadding = PaddingValues(PaletteTheme.spacing.medium),
         modifier = modifier.size(48.dp),
     ) {
@@ -36,6 +38,12 @@ fun BackNavigationButton(
                 .clip(BackNavigationIconShape)
                 .background(PaletteTheme.colorScheme.primary)
         )
+    }
+}
+
+private object BackNavigationButtonDefaults {
+    val style: Style get() = Style {
+        background(ColorToken.Surface)
     }
 }
 

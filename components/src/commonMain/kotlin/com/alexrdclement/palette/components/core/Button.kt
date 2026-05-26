@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.style.Style
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
@@ -22,16 +24,16 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
-import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
-import com.alexrdclement.palette.theme.modifiers.toStyle
+import com.alexrdclement.palette.theme.Shape
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.theme.styles.toRenderStyle
 import com.alexrdclement.palette.theme.styles.toStyle
 import com.alexrdclement.palette.theme.toColor
 import com.alexrdclement.palette.theme.toShape
 
+// Public token overload — unchanged external signature. Callers using ButtonStyleToken.Primary,
+// Secondary, or Tertiary continue to compile without modification.
 @Composable
 fun Button(
     onClick: () -> Unit,
@@ -46,7 +48,10 @@ fun Button(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable RowScope.(PaddingValues) -> Unit
 ) {
-    val style = style.toStyle()
+    val buttonStyle = style.toStyle()
+    val contentColor = buttonStyle.contentColor.toColor().copy(
+        alpha = if (enabled) 1f else PaletteTheme.colorScheme.disabledContentAlpha,
+    )
     Button(
         onClick = onClick,
         modifier = modifier,
@@ -54,40 +59,37 @@ fun Button(
         onLongClick = onLongClick,
         onDoubleClick = onDoubleClick,
         hapticFeedbackEnabled = hapticFeedbackEnabled,
+        style = buttonStyle.toRenderStyle(),
+        shape = buttonStyle.shape.toShape(),
+        contentColor = contentColor,
         enabled = enabled,
-        contentColor = style.contentColor,
         contentPadding = contentPadding,
-        containerColor = style.containerColor,
-        shape = style.shape,
-        borderStyle = style.borderStyle,
         interactionSource = interactionSource,
         content = content,
     )
 }
 
+// Style escape hatch — callers who need appearance beyond the three built-in tokens can pass any
+// Foundation Style. The style handles background and border (including disabled-state dimming);
+// contentColor sets LocalContentColor for Palette's Text components.
+// shape defaults to the primary shape (Circle in the default palette) to match the established
+// visual language for interactive controls. Override when a different shape is needed.
 @Composable
-internal fun Button(
+fun Button(
     onClick: () -> Unit,
+    style: Style,
+    contentColor: Color,
     modifier: Modifier = Modifier,
+    shape: Shape = PaletteTheme.shapeScheme.primary,
     onLongClickLabel: String? = null,
     onLongClick: (() -> Unit)? = null,
     onDoubleClick: (() -> Unit)? = null,
     hapticFeedbackEnabled: Boolean = true,
     enabled: Boolean = true,
-    contentColor: ColorToken = ColorToken.Primary,
     contentPadding: PaddingValues = ButtonDefaults.ContentPaddingDefault,
-    containerColor: ColorToken = ColorToken.Surface,
-    shape: ShapeToken = ShapeToken.Primary,
-    borderStyle: BorderStyleToken? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable RowScope.(PaddingValues) -> Unit
 ) {
-    val containerColor = containerColor.toColor().copy(
-        alpha = if (enabled) 1f else PaletteTheme.colorScheme.disabledContainerAlpha,
-    )
-    val contentColor = contentColor.toColor().copy(
-        alpha = if (enabled) 1f else PaletteTheme.colorScheme.disabledContentAlpha,
-    )
     Surface(
         onClick = onClick,
         onLongClickLabel = onLongClickLabel,
@@ -95,10 +97,9 @@ internal fun Button(
         onDoubleClick = onDoubleClick,
         hapticFeedbackEnabled = hapticFeedbackEnabled,
         enabled = enabled,
-        shape = shape.toShape(),
-        color = containerColor,
+        shape = shape,
         contentColor = contentColor,
-        borderStyle = borderStyle?.toStyle(),
+        style = style,
         interactionSource = interactionSource,
         modifier = modifier.semantics { role = Role.Button }
     ) { shapePadding ->
