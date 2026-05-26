@@ -1,10 +1,13 @@
 package com.alexrdclement.palette.components.core
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.style.MutableStyleState
+import androidx.compose.foundation.style.Style
+import androidx.compose.foundation.style.rememberUpdatedStyleState
+import androidx.compose.foundation.style.styleable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
@@ -22,35 +25,42 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
 import com.alexrdclement.palette.components.LocalContentColor
-import com.alexrdclement.palette.components.contentColorFor
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.Shape
-import com.alexrdclement.palette.theme.modifiers.BorderStyle
-import com.alexrdclement.palette.theme.modifiers.border
+import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
+import com.alexrdclement.palette.theme.style.background
+import com.alexrdclement.palette.theme.style.border
 import com.alexrdclement.palette.theme.toComposeShape
 import kotlin.math.sqrt
+
+// The shape parameter is kept separate from style because Surface uses it for ShapeContent —
+// computing the inscribed-rectangle inset for Circle, Diamond, and Triangle shapes. That
+// inset/path logic is not expressible via StyleScope.shape().
+//
+// contentColor is kept as an explicit parameter rather than living inside the Style lambda
+// because Foundation's StyleScope.contentColor() propagates via modifier node traversal
+// (TextStyleProviderNode), not CompositionLocals. Palette's Text reads LocalContentColor.current
+// directly and bypasses that traversal, so contentColor() in a Style has no effect on Palette
+// text. Surface continues to set LocalContentColor via CompositionLocalProvider.
 
 @Composable
 fun Surface(
     modifier: Modifier = Modifier,
     shape: Shape = PaletteTheme.shapeScheme.surface,
-    color: Color = PaletteTheme.colorScheme.surface,
-    contentColor: Color = contentColorFor(color),
-    borderStyle: BorderStyle? = null,
+    contentColor: Color = PaletteTheme.colorScheme.onSurface,
+    style: Style = SurfaceDefaults.style,
     content: @Composable (PaddingValues) -> Unit
 ) {
+    val styleState = remember { MutableStyleState() }
     CompositionLocalProvider(
         LocalContentColor provides contentColor,
     ) {
         Box(
             modifier = modifier
                 .shapeLayout(shape)
-                .surface(
-                    composeShape = shape.toComposeShape(),
-                    backgroundColor = color,
-                    borderStyle = borderStyle,
-                )
+                .graphicsLayer(shape = shape.toComposeShape(), clip = true)
+                .styleable(styleState, style)
                 .semantics(mergeDescendants = false) {
                     isTraversalGroup = true
                 }
@@ -72,12 +82,12 @@ fun Surface(
     hapticFeedbackEnabled: Boolean = true,
     enabled: Boolean = true,
     shape: Shape = PaletteTheme.shapeScheme.surface,
-    color: Color = PaletteTheme.colorScheme.surface,
-    contentColor: Color = contentColorFor(color),
-    borderStyle: BorderStyle? = null,
+    contentColor: Color = PaletteTheme.colorScheme.onSurface,
+    style: Style = SurfaceDefaults.style,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable (PaddingValues) -> Unit
 ) {
+    val styleState = rememberUpdatedStyleState(interactionSource) { it.isEnabled = enabled }
     CompositionLocalProvider(
         LocalContentColor provides contentColor
     ) {
@@ -96,14 +106,17 @@ fun Surface(
                     onDoubleClick = onDoubleClick,
                     hapticFeedbackEnabled = hapticFeedbackEnabled,
                 )
-                .surface(
-                    composeShape = shape.toComposeShape(),
-                    backgroundColor = color,
-                    borderStyle = borderStyle,
-                )
+                .graphicsLayer(shape = shape.toComposeShape(), clip = true)
+                .styleable(styleState, style)
         ) {
             ShapeContent(shape, content)
         }
+    }
+}
+
+object SurfaceDefaults {
+    val style: Style get() = Style {
+        background(com.alexrdclement.palette.theme.ColorToken.Surface)
     }
 }
 
@@ -163,16 +176,6 @@ private fun ShapeContent(
         }
     }
 }
-
-@Composable
-private fun Modifier.surface(
-    composeShape: androidx.compose.ui.graphics.Shape,
-    backgroundColor: Color,
-    borderStyle: BorderStyle?,
-) = this
-    .graphicsLayer(shape = composeShape, clip = true)
-    .then(if (borderStyle != null) Modifier.border(style = borderStyle) else Modifier)
-    .background(color = backgroundColor, shape = composeShape)
 
 @Preview
 @Composable

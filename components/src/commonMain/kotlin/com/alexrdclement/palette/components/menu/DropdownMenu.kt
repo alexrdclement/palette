@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.style.Style
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -49,10 +50,11 @@ import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDe
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuVerticalPadding
 import com.alexrdclement.palette.components.menu.MenuDefaults.InTransitionDuration
 import com.alexrdclement.palette.components.menu.MenuDefaults.OutTransitionDuration
-import com.alexrdclement.palette.theme.ColorScheme
 import com.alexrdclement.palette.theme.LocalPaletteIndication
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.ShapeToken
+import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
+import com.alexrdclement.palette.theme.style.border
 import kotlin.math.max
 import kotlin.math.min
 
@@ -147,7 +149,7 @@ internal fun DropdownMenuContent(
     }
 
     Surface(
-        borderStyle = PaletteTheme.styles.border.surface,
+        style = Style { border(BorderStyleToken.Surface) },
         modifier = Modifier.graphicsLayer {
             scaleX = scale
             scaleY = scale
