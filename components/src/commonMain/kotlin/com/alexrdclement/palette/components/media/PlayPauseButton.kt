@@ -5,11 +5,13 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.style.Style
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -18,9 +20,10 @@ import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPau
 import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPlaying
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
-import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.ShapeToken
+import com.alexrdclement.palette.theme.styles.PaletteButtonStyleScheme
+import com.alexrdclement.palette.theme.styles.toRenderStyle
+import com.alexrdclement.palette.theme.toColor
 
 @Composable
 fun PlayPauseButton(
@@ -29,13 +32,14 @@ fun PlayPauseButton(
     onLongClick: (() -> Unit)? = null,
     isPlaying: Boolean = false,
     isEnabled: Boolean = true,
+    style: Style = PlayPauseButtonDefaults.style,
+    contentColor: Color = PaletteTheme.colorScheme.onPrimary,
 ) {
     Button(
         onClick = onClick,
         onLongClick = onLongClick,
-        contentColor = ColorToken.OnPrimary,
-        containerColor = ColorToken.Primary,
-        shape = ShapeToken.Primary,
+        style = style,
+        contentColor = contentColor,
         enabled = isEnabled,
         contentPadding = PaddingValues(vertical = 2.dp, horizontal = 2.dp),
         modifier = modifier
@@ -52,6 +56,10 @@ fun PlayPauseButton(
                 .padding(shapePadding)
         )
     }
+}
+
+object PlayPauseButtonDefaults {
+    val style: Style get() = PaletteButtonStyleScheme.primary.toRenderStyle()
 }
 
 @Preview

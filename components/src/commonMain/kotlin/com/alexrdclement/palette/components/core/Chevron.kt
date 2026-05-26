@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.shape.GenericShape
+import androidx.compose.foundation.style.Style
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -14,6 +15,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.style.background
 
 enum class ChevronDirection {
     Up,
@@ -26,19 +28,27 @@ enum class ChevronDirection {
 fun ChevronButton(
     direction: ChevronDirection,
     modifier: Modifier = Modifier,
+    style: Style = ChevronButtonDefaults.style,
+    contentColor: androidx.compose.ui.graphics.Color = PaletteTheme.colorScheme.primary,
     contentPadding: PaddingValues = PaddingValues(PaletteTheme.spacing.medium),
     onClick: () -> Unit,
 ) {
     Button(
         onClick = onClick,
-        contentColor = ColorToken.Primary,
-        containerColor = ColorToken.Surface,
+        style = style,
+        contentColor = contentColor,
         contentPadding = contentPadding,
         modifier = modifier
     ) {
         ChevronIcon(
             direction = direction,
         )
+    }
+}
+
+object ChevronButtonDefaults {
+    val style: Style get() = Style {
+        background(ColorToken.Surface)
     }
 }
 

@@ -1,14 +1,18 @@
 package com.alexrdclement.palette.components.auth
 
+import androidx.compose.foundation.style.Style
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.theme.styles.PaletteButtonStyleScheme
+import com.alexrdclement.palette.theme.styles.toRenderStyle
+import com.alexrdclement.palette.theme.toColor
 
 enum class AuthState {
     Loading,
@@ -16,16 +20,11 @@ enum class AuthState {
     LoggedIn,
 }
 
-enum class AuthButtonStyle {
-    Primary,
-    Secondary,
-    Tertiary,
-}
-
 @Composable
 fun AuthButton(
     authState: AuthState,
-    style: AuthButtonStyle,
+    style: Style,
+    contentColor: Color,
     onLogInClick: () -> Unit,
     onLogOutClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -33,16 +32,17 @@ fun AuthButton(
     when (authState) {
         AuthState.Loading -> AuthButtonText(
             authState = authState,
-            style = style,
             modifier = modifier,
         )
         AuthState.LoggedOut -> LogInButton(
             style = style,
+            contentColor = contentColor,
             onLogInClick = onLogInClick,
             modifier = modifier,
         )
         AuthState.LoggedIn -> LogOutButton(
             style = style,
+            contentColor = contentColor,
             onLogOutClick = onLogOutClick,
             modifier = modifier,
         )
@@ -51,13 +51,15 @@ fun AuthButton(
 
 @Composable
 fun LogInButton(
-    style: AuthButtonStyle,
     onLogInClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: Style = AuthButtonDefaults.logInStyle,
+    contentColor: Color = PaletteTheme.colorScheme.onPrimary,
 ) {
     AuthButton(
         authState = AuthState.LoggedOut,
         style = style,
+        contentColor = contentColor,
         onClick = onLogInClick,
         modifier = modifier,
     )
@@ -65,13 +67,15 @@ fun LogInButton(
 
 @Composable
 fun LogOutButton(
-    style: AuthButtonStyle,
     onLogOutClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: Style = AuthButtonDefaults.logOutStyle,
+    contentColor: Color = PaletteTheme.colorScheme.secondary,
 ) {
     AuthButton(
         authState = AuthState.LoggedIn,
         style = style,
+        contentColor = contentColor,
         onClick = onLogOutClick,
         modifier = modifier,
     )
@@ -80,30 +84,24 @@ fun LogOutButton(
 @Composable
 fun AuthButton(
     authState: AuthState,
-    style: AuthButtonStyle,
+    style: Style,
+    contentColor: Color,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Button(
-        style = when (style) {
-            AuthButtonStyle.Primary -> ButtonStyleToken.Primary
-            AuthButtonStyle.Secondary -> ButtonStyleToken.Secondary
-            AuthButtonStyle.Tertiary -> ButtonStyleToken.Tertiary
-        },
+        style = style,
+        contentColor = contentColor,
         onClick = onClick,
         modifier = modifier,
     ) {
-        AuthButtonText(
-            authState = authState,
-            style = style,
-        )
+        AuthButtonText(authState = authState)
     }
 }
 
 @Composable
 fun AuthButtonText(
     authState: AuthState,
-    style: AuthButtonStyle,
     modifier: Modifier = Modifier,
 ) {
     Text(
@@ -112,33 +110,46 @@ fun AuthButtonText(
             AuthState.LoggedIn -> "Log out"
             AuthState.LoggedOut -> "Log in"
         },
-        style = when (style) {
-            AuthButtonStyle.Primary -> PaletteTheme.styles.text.labelLarge
-            AuthButtonStyle.Secondary -> PaletteTheme.styles.text.labelSmall
-            AuthButtonStyle.Tertiary -> PaletteTheme.styles.text.labelSmall
-        },
+        style = PaletteTheme.styles.text.labelLarge,
         modifier = modifier,
     )
+}
+
+object AuthButtonDefaults {
+    val logInStyle: Style get() = PaletteButtonStyleScheme.primary.toRenderStyle()
+    val logOutStyle: Style get() = PaletteButtonStyleScheme.secondary.toRenderStyle()
 }
 
 internal class AuthStatePreviewParameterProvider : PreviewParameterProvider<AuthState> {
     override val values = sequenceOf(AuthState.Loading, AuthState.LoggedOut, AuthState.LoggedIn)
 }
 
-internal class AuthButtonStylePreviewParameterProvider : PreviewParameterProvider<AuthButtonStyle> {
-    override val values = sequenceOf(AuthButtonStyle.Primary, AuthButtonStyle.Secondary)
-}
-
 @Preview
 @Composable
-fun PreviewAuthButton(
+fun PreviewLogInButton(
     @PreviewParameter(AuthStatePreviewParameterProvider::class) authState: AuthState,
-    @PreviewParameter(AuthButtonStylePreviewParameterProvider::class) buttonStyle: AuthButtonStyle,
 ) {
     PaletteTheme {
         AuthButton(
             authState = authState,
-            style = buttonStyle,
+            style = AuthButtonDefaults.logInStyle,
+            contentColor = PaletteTheme.colorScheme.onPrimary,
+            onLogInClick = {},
+            onLogOutClick = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewLogOutButton(
+    @PreviewParameter(AuthStatePreviewParameterProvider::class) authState: AuthState,
+) {
+    PaletteTheme {
+        AuthButton(
+            authState = authState,
+            style = AuthButtonDefaults.logOutStyle,
+            contentColor = PaletteTheme.colorScheme.secondary,
             onLogInClick = {},
             onLogOutClick = {},
         )
