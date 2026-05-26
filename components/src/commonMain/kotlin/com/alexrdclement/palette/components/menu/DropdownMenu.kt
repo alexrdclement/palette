@@ -20,22 +20,20 @@ import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.style.Style
+import androidx.compose.foundation.style.rememberUpdatedStyleState
+import androidx.compose.foundation.style.styleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.IntRect
@@ -167,18 +165,32 @@ internal fun DropdownMenuContent(
     }
 }
 
+// contentColor drives the text/icon color for enabled items.
+// disabled items use PaletteTheme.colorScheme.onSurface at disabledContentAlpha — a deliberate
+// choice to show a muted neutral rather than a dimmed primary, matching the visual convention
+// that disabled menu text recedes further than a simple alpha reduction of the active color.
 @Composable
 fun DropdownMenuItem(
     text: @Composable () -> Unit,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    colors: MenuItemColors = MenuDefaults.itemColors(),
+    style: Style = MenuDefaults.itemStyle,
+    contentColor: Color = MenuDefaults.contentColor,
     contentPadding: PaddingValues = MenuDefaults.DropdownMenuItemContentPadding,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
+    val resolvedContentColor = if (enabled) {
+        contentColor
+    } else {
+        PaletteTheme.colorScheme.onSurface.copy(
+            alpha = PaletteTheme.colorScheme.disabledContentAlpha
+        )
+    }
+    val styleState = rememberUpdatedStyleState(interactionSource) { it.isEnabled = enabled }
     Row(
         modifier = modifier
+            .styleable(styleState, style)
             .clickable(
                 enabled = enabled,
                 onClick = onClick,
@@ -196,7 +208,7 @@ fun DropdownMenuItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         CompositionLocalProvider(
-            LocalContentColor provides colors.textColor(enabled).value,
+            LocalContentColor provides resolvedContentColor,
         ) {
             Box(modifier = Modifier.weight(1f)) {
                 text()
@@ -234,67 +246,13 @@ internal fun calculateTransformOrigin(
     return TransformOrigin(pivotX, pivotY)
 }
 
-@Immutable
-class MenuItemColors(
-    val textColor: Color,
-    val disabledTextColor: Color,
-) {
-    fun copy(
-        textColor: Color = this.textColor,
-        disabledTextColor: Color = this.disabledTextColor,
-    ) = MenuItemColors(
-        textColor.takeOrElse { this.textColor },
-        disabledTextColor.takeOrElse { this.disabledTextColor },
-    )
-
-    @Composable
-    internal fun textColor(enabled: Boolean): State<Color> {
-        return rememberUpdatedState(if (enabled) textColor else disabledTextColor)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || other !is MenuItemColors) return false
-
-        if (textColor != other.textColor) return false
-        if (disabledTextColor != other.disabledTextColor) return false
-
-        return true
-    }
-
-
-    override fun hashCode(): Int {
-        var result = textColor.hashCode()
-        result = 31 * result + disabledTextColor.hashCode()
-        return result
-    }
-
-}
-
 object MenuDefaults {
 
-    @Composable
-    fun itemColors() = PaletteTheme.colorScheme.defaultMenuItemColors
+    // No background by default — the menu container Surface provides the background.
+    val itemStyle: Style get() = Style { }
 
-    @Composable
-    fun itemColors(
-        textColor: Color = Color.Unspecified,
-        disabledTextColor: Color = Color.Unspecified,
-    ): MenuItemColors = PaletteTheme.colorScheme.defaultMenuItemColors.copy(
-        textColor = textColor,
-        disabledTextColor = disabledTextColor,
-    )
-
-    internal val ColorScheme.defaultMenuItemColors: MenuItemColors
-        @Composable
-        get() = with(PaletteTheme.colorScheme) {
-            remember(this) {
-                MenuItemColors(
-                    textColor = primary,
-                    disabledTextColor = onSurface.copy(alpha = 0.38f)
-                )
-            }
-        }
+    val contentColor: Color
+        @Composable get() = PaletteTheme.colorScheme.primary
 
     // Size defaults.
     internal val MenuVerticalMargin = 48.dp
