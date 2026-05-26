@@ -10,7 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.style.MutableStyleState
+import androidx.compose.foundation.style.Style
+import androidx.compose.foundation.style.styleable
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,19 +24,24 @@ import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.navigation.BackNavigationButton
 import com.alexrdclement.palette.components.util.copy
+import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.style.background
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier,
+    style: Style = TopBarDefaults.style,
     navButton: @Composable (() -> Unit)? = null,
     actions: @Composable (() -> Unit)? = null,
     title: @Composable (() -> Unit)? = null,
 ) {
+    val styleState = remember { MutableStyleState() }
     val windowInsetsPaddingValues = WindowInsets.systemBars.asPaddingValues().copy(bottom = 0.dp)
     Row(
         modifier = modifier
+            .styleable(styleState, style)
             .fillMaxWidth()
             .padding(windowInsetsPaddingValues)
             .consumeWindowInsets(windowInsetsPaddingValues)
@@ -53,6 +62,14 @@ fun TopBar(
         Box(modifier = Modifier.padding(end = PaletteTheme.spacing.small)) {
             actions?.invoke()
         }
+    }
+}
+
+object TopBarDefaults {
+    // TopBar background defaults to Background so it sits above page content without
+    // blending into it. Override to Color.Transparent when the bar should be see-through.
+    val style: Style get() = Style {
+        background(ColorToken.Background)
     }
 }
 
