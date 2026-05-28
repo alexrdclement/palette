@@ -52,6 +52,13 @@ fun Checkbox(
 }
 
 object CheckboxDefaults {
+    // style handles container color (background + disabled dimming) only.
+    // contentColor is NOT encoded here because Foundation's StyleScope.contentColor()
+    // propagates via modifier node traversal (TextStyleProviderNode), not CompositionLocals.
+    // Palette's Text reads LocalContentColor.current and never observes the node value, so
+    // calling contentColor() inside a Style would silently have no effect on the checkmark
+    // glyph. contentColor: Color on Checkbox is the correct entry point and flows through
+    // CompositionLocalProvider(LocalContentColor provides ...) before the Text call.
     val style: Style get() = Style {
         background(ColorToken.Surface)
         disabled {

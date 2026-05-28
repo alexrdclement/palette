@@ -11,8 +11,8 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.PaletteButtonStyleScheme
+import com.alexrdclement.palette.theme.styles.TextStyle
 import com.alexrdclement.palette.theme.styles.toRenderStyle
-import com.alexrdclement.palette.theme.toColor
 
 enum class AuthState {
     Loading,
@@ -28,21 +28,25 @@ fun AuthButton(
     onLogInClick: () -> Unit,
     onLogOutClick: () -> Unit,
     modifier: Modifier = Modifier,
+    textStyle: TextStyle = PaletteTheme.styles.text.labelLarge,
 ) {
     when (authState) {
         AuthState.Loading -> AuthButtonText(
             authState = authState,
+            textStyle = textStyle,
             modifier = modifier,
         )
         AuthState.LoggedOut -> LogInButton(
             style = style,
             contentColor = contentColor,
+            textStyle = textStyle,
             onLogInClick = onLogInClick,
             modifier = modifier,
         )
         AuthState.LoggedIn -> LogOutButton(
             style = style,
             contentColor = contentColor,
+            textStyle = textStyle,
             onLogOutClick = onLogOutClick,
             modifier = modifier,
         )
@@ -55,11 +59,13 @@ fun LogInButton(
     modifier: Modifier = Modifier,
     style: Style = AuthButtonDefaults.logInStyle,
     contentColor: Color = PaletteTheme.colorScheme.onPrimary,
+    textStyle: TextStyle = PaletteTheme.styles.text.labelLarge,
 ) {
     AuthButton(
         authState = AuthState.LoggedOut,
         style = style,
         contentColor = contentColor,
+        textStyle = textStyle,
         onClick = onLogInClick,
         modifier = modifier,
     )
@@ -71,11 +77,13 @@ fun LogOutButton(
     modifier: Modifier = Modifier,
     style: Style = AuthButtonDefaults.logOutStyle,
     contentColor: Color = PaletteTheme.colorScheme.secondary,
+    textStyle: TextStyle = PaletteTheme.styles.text.labelSmall,
 ) {
     AuthButton(
         authState = AuthState.LoggedIn,
         style = style,
         contentColor = contentColor,
+        textStyle = textStyle,
         onClick = onLogOutClick,
         modifier = modifier,
     )
@@ -88,6 +96,7 @@ fun AuthButton(
     contentColor: Color,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    textStyle: TextStyle = PaletteTheme.styles.text.labelLarge,
 ) {
     Button(
         style = style,
@@ -95,7 +104,7 @@ fun AuthButton(
         onClick = onClick,
         modifier = modifier,
     ) {
-        AuthButtonText(authState = authState)
+        AuthButtonText(authState = authState, textStyle = textStyle)
     }
 }
 
@@ -103,6 +112,7 @@ fun AuthButton(
 fun AuthButtonText(
     authState: AuthState,
     modifier: Modifier = Modifier,
+    textStyle: TextStyle = PaletteTheme.styles.text.labelLarge,
 ) {
     Text(
         text = when (authState) {
@@ -110,7 +120,7 @@ fun AuthButtonText(
             AuthState.LoggedIn -> "Log out"
             AuthState.LoggedOut -> "Log in"
         },
-        style = PaletteTheme.styles.text.labelLarge,
+        style = textStyle,
         modifier = modifier,
     )
 }
