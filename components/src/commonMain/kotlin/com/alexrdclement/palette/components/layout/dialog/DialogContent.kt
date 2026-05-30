@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.style.Style
+import com.alexrdclement.palette.theme.style.PaletteStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,7 +14,6 @@ import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
-import com.alexrdclement.palette.theme.style.border
 import com.alexrdclement.palette.theme.styles.copy
 
 @Composable
@@ -99,7 +98,7 @@ fun DialogContent(
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Surface(
-        style = Style { border(BorderStyleToken.Surface) },
+        style = PaletteStyle { border(BorderStyleToken.Surface) },
         modifier = modifier,
     ) {
         Column(

@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.components.core
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.style.Style
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,8 +17,7 @@ import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.LocalPaletteColorScheme
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.style.background
-import com.alexrdclement.palette.theme.style.contentColor
+import com.alexrdclement.palette.theme.style.PaletteStyle
 import com.alexrdclement.palette.theme.toColor
 
 @Composable
@@ -28,7 +26,7 @@ fun Checkbox(
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    style: Style = CheckboxDefaults.style,
+    style: PaletteStyle = CheckboxDefaults.style,
     contentColor: Color = PaletteTheme.colorScheme.primary,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
@@ -56,7 +54,7 @@ object CheckboxDefaults {
     // contentColor() is included in the Style so Foundation's TextStyleProviderNode carries it
     // to the checkmark Text. The explicit contentColor: Color parameter on Checkbox is kept as a
     // bridge for LocalContentColor (read by Canvas/Image draw code in parent components).
-    val style: Style get() = Style {
+    val style: PaletteStyle get() = PaletteStyle {
         background(ColorToken.Surface)
         contentColor(ColorToken.Primary)
         disabled {
@@ -75,7 +73,6 @@ private fun Preview(
     PaletteTheme {
         Surface {
             var isChecked by remember { mutableStateOf(isChecked) }
-
             Checkbox(
                 isChecked = isChecked,
                 onCheckedChange = { isChecked = !it },

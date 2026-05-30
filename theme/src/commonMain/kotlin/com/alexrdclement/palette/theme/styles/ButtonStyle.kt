@@ -1,15 +1,12 @@
 package com.alexrdclement.palette.theme.styles
 
-import androidx.compose.foundation.style.Style
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.LocalPaletteColorScheme
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
-import com.alexrdclement.palette.theme.style.background
-import com.alexrdclement.palette.theme.style.border
-import com.alexrdclement.palette.theme.style.contentColor
+import com.alexrdclement.palette.theme.style.PaletteStyle
 import com.alexrdclement.palette.theme.toColor
 
 enum class ButtonStyleToken {
@@ -26,12 +23,12 @@ data class ButtonStyle(
     val borderStyle: BorderStyleToken?,
 )
 
-// Converts a ButtonStyle to a Foundation Style for use with Modifier.styleable.
+// Converts a ButtonStyle to a PaletteStyle for use with Modifier.styleable.
 // Encodes background, border, contentColor, and their disabled-state variants.
 // contentColor() propagates to child BasicText via Foundation's TextStyleProviderNode.
 // LocalContentColor is still separately provided by Button via CompositionLocalProvider
 // for non-text drawing code (Canvas, Image) that can't observe the modifier-node path.
-fun ButtonStyle.toRenderStyle(): Style = Style {
+fun ButtonStyle.toRenderStyle(): PaletteStyle = PaletteStyle {
     background(containerColor)
     contentColor(contentColor)
     borderStyle?.let { border(it) }

@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.style.Style
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
@@ -26,6 +25,7 @@ import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.Shape
+import com.alexrdclement.palette.theme.style.PaletteStyle
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.styles.toRenderStyle
 import com.alexrdclement.palette.theme.styles.toStyle
@@ -70,14 +70,15 @@ fun Button(
 }
 
 // Style escape hatch — callers who need appearance beyond the three built-in tokens can pass any
-// Foundation Style. The style handles background and border (including disabled-state dimming);
-// contentColor sets LocalContentColor for Palette's Text components.
+// PaletteStyle. The style handles background, border, contentColor, and disabled-state variants;
+// contentColor also sets LocalContentColor for draw code (Canvas, Image) that can't observe the
+// modifier-node path.
 // shape defaults to the primary shape (Circle in the default palette) to match the established
 // visual language for interactive controls. Override when a different shape is needed.
 @Composable
 fun Button(
     onClick: () -> Unit,
-    style: Style,
+    style: PaletteStyle,
     contentColor: Color,
     modifier: Modifier = Modifier,
     shape: Shape = PaletteTheme.shapeScheme.primary,

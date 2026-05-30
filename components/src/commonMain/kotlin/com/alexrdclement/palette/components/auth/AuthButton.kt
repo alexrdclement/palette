@@ -14,16 +14,12 @@ import com.alexrdclement.palette.theme.styles.PaletteButtonStyleScheme
 import com.alexrdclement.palette.theme.styles.TextStyle
 import com.alexrdclement.palette.theme.styles.toRenderStyle
 
-// Typed alias for the Style DSL scoped to AuthButton's visual surface (background, contentColor,
-// border, disabled variants). Today this resolves to Style (fully compatible with all Style APIs).
-// When Foundation ships CustomStyle<T> in Compose Multiplatform, this becomes:
+// AuthButtonStyle is PaletteStyle — callers write PaletteStyle { background(...); contentColor(...) }
+// or retrieve a pre-built style from AuthButtonDefaults. No separate scope is needed; the full
+// PaletteStyleScope DSL is available and appropriate here.
 //
-//   typealias AuthButtonStyle = CustomStyle<AuthButtonStyleScope>
-//
-// where AuthButtonStyleScope : PaletteStyleScope restricts the DSL to the button's surface.
-// At that point the explicit contentColor: Color bridge params on LogInButton/LogOutButton are
-// removed — BasicText already reads contentColor from the StyleOuterNode via Foundation's
-// TextStyleProviderNode, so the LocalContentColor bridge is no longer needed here.
+// The explicit contentColor: Color bridge params on LogInButton/LogOutButton exist only for
+// LocalContentColor (Canvas/Image draw code). They can be removed once those callers are gone.
 typealias AuthButtonStyle = PaletteStyle
 
 enum class AuthState {

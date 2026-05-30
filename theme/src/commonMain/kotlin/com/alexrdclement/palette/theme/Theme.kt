@@ -4,7 +4,6 @@ import androidx.compose.foundation.Indication
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.style.MutableStyleState
-import androidx.compose.foundation.style.Style
 import androidx.compose.foundation.style.styleable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -21,7 +20,7 @@ import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.format.core.PaletteTextFormatScheme
 import com.alexrdclement.palette.theme.format.datetime.PaletteDateTimeFormats
 import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
-import com.alexrdclement.palette.theme.style.contentColor
+import com.alexrdclement.palette.theme.style.PaletteStyle
 import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 
 val LocalPaletteColorScheme = staticCompositionLocalOf {
@@ -114,7 +113,7 @@ fun PaletteTheme(
     // PaletteTheme (outside a Surface or Button) inherits the default content color via
     // Foundation's TextStyleProviderNode traversal, not through LocalContentColor.
     val rootStyleState = remember { MutableStyleState() }
-    val rootStyle = Style { contentColor(ColorToken.OnBackground) }
+    val rootStyle = PaletteStyle { contentColor(ColorToken.OnBackground) }
     CompositionLocalProvider(
         LocalPaletteColorScheme provides colorScheme,
         LocalPaletteTypography provides typography,

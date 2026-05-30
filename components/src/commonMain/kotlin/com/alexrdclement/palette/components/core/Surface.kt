@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.style.MutableStyleState
-import androidx.compose.foundation.style.Style
 import androidx.compose.foundation.style.rememberUpdatedStyleState
 import androidx.compose.foundation.style.styleable
 import androidx.compose.runtime.Composable
@@ -30,9 +29,7 @@ import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.Shape
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.style.background
-import com.alexrdclement.palette.theme.style.border
-import com.alexrdclement.palette.theme.style.contentColor
+import com.alexrdclement.palette.theme.style.PaletteStyle
 import com.alexrdclement.palette.theme.toComposeShape
 import kotlin.math.sqrt
 
@@ -53,7 +50,7 @@ fun Surface(
     modifier: Modifier = Modifier,
     shape: Shape = PaletteTheme.shapeScheme.surface,
     contentColor: Color = PaletteTheme.colorScheme.onSurface,
-    style: Style = SurfaceDefaults.style,
+    style: PaletteStyle = SurfaceDefaults.style,
     content: @Composable (PaddingValues) -> Unit
 ) {
     val styleState = remember { MutableStyleState() }
@@ -87,7 +84,7 @@ fun Surface(
     enabled: Boolean = true,
     shape: Shape = PaletteTheme.shapeScheme.surface,
     contentColor: Color = PaletteTheme.colorScheme.onSurface,
-    style: Style = SurfaceDefaults.style,
+    style: PaletteStyle = SurfaceDefaults.style,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable (PaddingValues) -> Unit
 ) {
@@ -119,7 +116,7 @@ fun Surface(
 }
 
 object SurfaceDefaults {
-    val style: Style get() = Style {
+    val style: PaletteStyle get() = PaletteStyle {
         background(ColorToken.Surface)
         contentColor(ColorToken.OnSurface)
     }

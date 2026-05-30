@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.style.Style
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.PlayArrow
@@ -21,9 +20,9 @@ import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPla
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.style.PaletteStyle
 import com.alexrdclement.palette.theme.styles.PaletteButtonStyleScheme
 import com.alexrdclement.palette.theme.styles.toRenderStyle
-import com.alexrdclement.palette.theme.toColor
 
 @Composable
 fun PlayPauseButton(
@@ -32,7 +31,7 @@ fun PlayPauseButton(
     onLongClick: (() -> Unit)? = null,
     isPlaying: Boolean = false,
     isEnabled: Boolean = true,
-    style: Style = PlayPauseButtonDefaults.style,
+    style: PaletteStyle = PlayPauseButtonDefaults.style,
     contentColor: Color = PaletteTheme.colorScheme.onPrimary,
 ) {
     Button(
@@ -59,7 +58,7 @@ fun PlayPauseButton(
 }
 
 object PlayPauseButtonDefaults {
-    val style: Style get() = PaletteButtonStyleScheme.primary.toRenderStyle()
+    val style: PaletteStyle get() = PaletteButtonStyleScheme.primary.toRenderStyle()
 }
 
 @Preview

@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.style.Style
 import androidx.compose.foundation.style.rememberUpdatedStyleState
 import androidx.compose.foundation.style.styleable
 import androidx.compose.foundation.verticalScroll
@@ -44,7 +43,7 @@ import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.LocalPaletteColorScheme
-import com.alexrdclement.palette.theme.style.contentColor
+import com.alexrdclement.palette.theme.style.PaletteStyle
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMaxWidth
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMinHeight
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMinWidth
@@ -55,7 +54,6 @@ import com.alexrdclement.palette.theme.LocalPaletteIndication
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
-import com.alexrdclement.palette.theme.style.border
 import kotlin.math.max
 import kotlin.math.min
 
@@ -150,7 +148,7 @@ internal fun DropdownMenuContent(
     }
 
     Surface(
-        style = Style { border(BorderStyleToken.Surface) },
+        style = PaletteStyle { border(BorderStyleToken.Surface) },
         modifier = Modifier.graphicsLayer {
             scaleX = scale
             scaleY = scale
@@ -178,7 +176,7 @@ fun DropdownMenuItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    style: Style = MenuDefaults.itemStyle,
+    style: PaletteStyle = MenuDefaults.itemStyle,
     contentColor: Color = MenuDefaults.contentColor,
     contentPadding: PaddingValues = MenuDefaults.DropdownMenuItemContentPadding,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
@@ -252,7 +250,7 @@ internal fun calculateTransformOrigin(
 object MenuDefaults {
 
     // No background by default — the menu container Surface provides the background.
-    val itemStyle: Style get() = Style {
+    val itemStyle: PaletteStyle get() = PaletteStyle {
         contentColor(ColorToken.Primary)
         disabled {
             val scheme = LocalPaletteColorScheme.currentValue
