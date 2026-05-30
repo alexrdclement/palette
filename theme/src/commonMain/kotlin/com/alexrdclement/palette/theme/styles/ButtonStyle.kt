@@ -9,6 +9,7 @@ import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 import com.alexrdclement.palette.theme.style.background
 import com.alexrdclement.palette.theme.style.border
+import com.alexrdclement.palette.theme.style.contentColor
 import com.alexrdclement.palette.theme.toColor
 
 enum class ButtonStyleToken {
@@ -26,17 +27,18 @@ data class ButtonStyle(
 )
 
 // Converts a ButtonStyle to a Foundation Style for use with Modifier.styleable.
-// Handles background and border rendering including disabled-state dimming.
-// ContentColor is intentionally excluded — it must be passed as an explicit parameter
-// to Surface/Button because Foundation's StyleScope.contentColor() propagates via
-// modifier node traversal, not CompositionLocals, and Palette's Text reads
-// LocalContentColor.current rather than the Foundation node.
+// Encodes background, border, contentColor, and their disabled-state variants.
+// contentColor() propagates to child BasicText via Foundation's TextStyleProviderNode.
+// LocalContentColor is still separately provided by Button via CompositionLocalProvider
+// for non-text drawing code (Canvas, Image) that can't observe the modifier-node path.
 fun ButtonStyle.toRenderStyle(): Style = Style {
     background(containerColor)
+    contentColor(contentColor)
     borderStyle?.let { border(it) }
     disabled {
         val scheme = LocalPaletteColorScheme.currentValue
         background(containerColor.toColor(scheme).copy(alpha = scheme.disabledContainerAlpha))
+        contentColor(contentColor.toColor(scheme).copy(alpha = scheme.disabledContentAlpha))
     }
 }
 

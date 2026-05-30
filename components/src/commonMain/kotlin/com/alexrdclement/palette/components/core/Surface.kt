@@ -29,8 +29,10 @@ import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.Shape
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
+import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.style.background
 import com.alexrdclement.palette.theme.style.border
+import com.alexrdclement.palette.theme.style.contentColor
 import com.alexrdclement.palette.theme.toComposeShape
 import kotlin.math.sqrt
 
@@ -38,11 +40,13 @@ import kotlin.math.sqrt
 // computing the inscribed-rectangle inset for Circle, Diamond, and Triangle shapes. That
 // inset/path logic is not expressible via StyleScope.shape().
 //
-// contentColor is kept as an explicit parameter rather than living inside the Style lambda
-// because Foundation's StyleScope.contentColor() propagates via modifier node traversal
-// (TextStyleProviderNode), not CompositionLocals. Palette's Text reads LocalContentColor.current
-// directly and bypasses that traversal, so contentColor() in a Style has no effect on Palette
-// text. Surface continues to set LocalContentColor via CompositionLocalProvider.
+// contentColor is provided via two parallel paths:
+//   1. Style lambda — contentColor() sets a value in the StyleOuterNode, which Foundation's
+//      TextStyleProviderNode traversal delivers to child BasicText composables. Palette's Text
+//      composable relies solely on this path after removing the LocalContentColor fallback.
+//   2. CompositionLocalProvider(LocalContentColor provides ...) — kept as a bridge for draw
+//      code (Canvas, Image) that captures colors at composition time and cannot observe the
+//      modifier-node path. Will be removed once those callers are refactored.
 
 @Composable
 fun Surface(
@@ -116,7 +120,8 @@ fun Surface(
 
 object SurfaceDefaults {
     val style: Style get() = Style {
-        background(com.alexrdclement.palette.theme.ColorToken.Surface)
+        background(ColorToken.Surface)
+        contentColor(ColorToken.OnSurface)
     }
 }
 

@@ -42,6 +42,9 @@ import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.theme.ColorToken
+import com.alexrdclement.palette.theme.LocalPaletteColorScheme
+import com.alexrdclement.palette.theme.style.contentColor
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMaxWidth
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMinHeight
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMinWidth
@@ -249,7 +252,13 @@ internal fun calculateTransformOrigin(
 object MenuDefaults {
 
     // No background by default — the menu container Surface provides the background.
-    val itemStyle: Style get() = Style { }
+    val itemStyle: Style get() = Style {
+        contentColor(ColorToken.Primary)
+        disabled {
+            val scheme = LocalPaletteColorScheme.currentValue
+            contentColor(scheme.onSurface.copy(alpha = scheme.disabledContentAlpha))
+        }
+    }
 
     val contentColor: Color
         @Composable get() = PaletteTheme.colorScheme.primary

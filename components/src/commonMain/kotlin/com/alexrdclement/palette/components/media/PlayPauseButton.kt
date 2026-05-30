@@ -50,7 +50,7 @@ fun PlayPauseButton(
             contentDescription = if (isPlaying) {
                 PlayPauseButtonContentDescriptionPlaying
             } else PlayPauseButtonContentDescriptionPaused,
-            colorFilter = ColorFilter.tint(PaletteTheme.colorScheme.onPrimary),
+            colorFilter = ColorFilter.tint(contentColor),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(shapePadding)

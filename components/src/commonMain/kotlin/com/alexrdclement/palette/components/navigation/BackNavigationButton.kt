@@ -13,12 +13,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.style.background
-import com.alexrdclement.palette.theme.toColor
+import com.alexrdclement.palette.theme.style.contentColor
 
 @Composable
 fun BackNavigationButton(
@@ -32,11 +33,12 @@ fun BackNavigationButton(
         contentPadding = PaddingValues(PaletteTheme.spacing.medium),
         modifier = modifier.size(48.dp),
     ) {
+        val iconColor = LocalContentColor.current
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .clip(BackNavigationIconShape)
-                .background(PaletteTheme.colorScheme.primary)
+                .background(iconColor)
         )
     }
 }
@@ -44,6 +46,7 @@ fun BackNavigationButton(
 private object BackNavigationButtonDefaults {
     val style: Style get() = Style {
         background(ColorToken.Surface)
+        contentColor(ColorToken.Primary)
     }
 }
 

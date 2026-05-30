@@ -13,9 +13,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
+import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.style.background
+import com.alexrdclement.palette.theme.style.contentColor
 
 enum class ChevronDirection {
     Up,
@@ -49,6 +51,7 @@ fun ChevronButton(
 object ChevronButtonDefaults {
     val style: Style get() = Style {
         background(ColorToken.Surface)
+        contentColor(ColorToken.Primary)
     }
 }
 
@@ -63,13 +66,16 @@ fun ChevronIcon(
         ChevronDirection.Down -> 270f
         ChevronDirection.Right -> 180f
     }
+    // Color is read from LocalContentColor rather than hardcoded so ChevronIcon responds to
+    // the content color set by the enclosing Button / Surface style.
+    val color = LocalContentColor.current
     Box(
         modifier = modifier
             .fillMaxHeight()
             .aspectRatio(1f, matchHeightConstraintsFirst = false)
             .rotate(rotation)
             .clip(ChevronIconShape)
-            .background(PaletteTheme.colorScheme.primary)
+            .background(color)
     )
 }
 

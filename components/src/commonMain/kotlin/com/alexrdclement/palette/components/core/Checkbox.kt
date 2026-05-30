@@ -19,6 +19,7 @@ import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.LocalPaletteColorScheme
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.style.background
+import com.alexrdclement.palette.theme.style.contentColor
 import com.alexrdclement.palette.theme.toColor
 
 @Composable
@@ -52,18 +53,16 @@ fun Checkbox(
 }
 
 object CheckboxDefaults {
-    // style handles container color (background + disabled dimming) only.
-    // contentColor is NOT encoded here because Foundation's StyleScope.contentColor()
-    // propagates via modifier node traversal (TextStyleProviderNode), not CompositionLocals.
-    // Palette's Text reads LocalContentColor.current and never observes the node value, so
-    // calling contentColor() inside a Style would silently have no effect on the checkmark
-    // glyph. contentColor: Color on Checkbox is the correct entry point and flows through
-    // CompositionLocalProvider(LocalContentColor provides ...) before the Text call.
+    // contentColor() is included in the Style so Foundation's TextStyleProviderNode carries it
+    // to the checkmark Text. The explicit contentColor: Color parameter on Checkbox is kept as a
+    // bridge for LocalContentColor (read by Canvas/Image draw code in parent components).
     val style: Style get() = Style {
         background(ColorToken.Surface)
+        contentColor(ColorToken.Primary)
         disabled {
             val scheme = LocalPaletteColorScheme.currentValue
             background(ColorToken.Surface.toColor(scheme).copy(alpha = scheme.disabledContainerAlpha))
+            contentColor(ColorToken.Primary.toColor(scheme).copy(alpha = scheme.disabledContentAlpha))
         }
     }
 }

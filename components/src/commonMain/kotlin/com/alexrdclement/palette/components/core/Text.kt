@@ -6,17 +6,22 @@ import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.formats.core.format
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.TextStyle
 import com.alexrdclement.palette.theme.preview.TextStylePreviewParameterProvider
+
+// Color resolution: if TextStyle has an explicit color, BasicText uses it directly. Otherwise
+// BasicText inherits from the nearest ancestor StyleOuterNode (set by Modifier.styleable on
+// Surface, Button, etc.) via Foundation's TextStyleProviderNode traversal. This replaces the
+// previous LocalContentColor.current fallback.
+// ComposeFoundationFlags.isInheritedTextStyleEnabled defaults to true, so no app-level opt-in
+// is required.
 
 @Composable
 fun Text(
@@ -31,11 +36,10 @@ fun Text(
     autoSize: TextAutoSize? = null,
 ) {
     val formattedText = remember(text, style.format) { style.format.format(text) }
-    val color = style.composeTextStyle.color.takeOrElse { LocalContentColor.current }
     BasicText(
         text = formattedText,
         modifier = modifier,
-        style = style.composeTextStyle.copy(color = color),
+        style = style.composeTextStyle,
         overflow = overflow,
         softWrap = softWrap,
         maxLines = maxLines,
@@ -58,11 +62,10 @@ fun Text(
     inlineContent: Map<String, InlineTextContent> = mapOf(),
     autoSize: TextAutoSize? = null,
 ) {
-    val color = style.composeTextStyle.color.takeOrElse { LocalContentColor.current }
     BasicText(
         text = text,
         modifier = modifier,
-        style = style.composeTextStyle.copy(color = color),
+        style = style.composeTextStyle,
         onTextLayout = onTextLayout,
         overflow = overflow,
         softWrap = softWrap,

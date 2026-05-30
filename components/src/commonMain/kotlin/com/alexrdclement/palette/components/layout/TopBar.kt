@@ -27,6 +27,7 @@ import com.alexrdclement.palette.components.util.copy
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.style.background
+import com.alexrdclement.palette.theme.style.contentColor
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 @Composable
@@ -70,6 +71,7 @@ object TopBarDefaults {
     // blending into it. Override to Color.Transparent when the bar should be see-through.
     val style: Style get() = Style {
         background(ColorToken.Background)
+        contentColor(ColorToken.OnBackground)
     }
 }
 

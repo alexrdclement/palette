@@ -2,9 +2,15 @@ package com.alexrdclement.palette.theme
 
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.style.MutableStyleState
+import androidx.compose.foundation.style.Style
+import androidx.compose.foundation.style.styleable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import com.alexrdclement.palette.formats.core.NumberFormat
@@ -15,6 +21,7 @@ import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.format.core.PaletteTextFormatScheme
 import com.alexrdclement.palette.theme.format.datetime.PaletteDateTimeFormats
 import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
+import com.alexrdclement.palette.theme.style.contentColor
 import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 
 val LocalPaletteColorScheme = staticCompositionLocalOf {
@@ -103,6 +110,11 @@ fun PaletteTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = if (isDarkMode) darkColorScheme else lightColorScheme
+    // Root styleable Box establishes a StyleOuterNode so any BasicText placed directly inside
+    // PaletteTheme (outside a Surface or Button) inherits the default content color via
+    // Foundation's TextStyleProviderNode traversal, not through LocalContentColor.
+    val rootStyleState = remember { MutableStyleState() }
+    val rootStyle = Style { contentColor(ColorToken.OnBackground) }
     CompositionLocalProvider(
         LocalPaletteColorScheme provides colorScheme,
         LocalPaletteTypography provides typography,
@@ -111,8 +123,11 @@ fun PaletteTheme(
         LocalPaletteSpacing provides spacing,
         LocalPaletteStyles provides styles,
         LocalPaletteFormats provides formats,
-        content = content,
-    )
+    ) {
+        Box(modifier = Modifier.styleable(rootStyleState, rootStyle)) {
+            content()
+        }
+    }
 }
 
 object PaletteTheme {
