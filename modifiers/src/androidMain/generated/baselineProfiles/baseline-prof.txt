@@ -66,8 +66,8 @@ PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->createRenderEffect(
 PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->isActive()Z
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->onRemeasured(II)V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setColorMode(Lcom/alexrdclement/palette/modifiers/ColorSplitMode;)V
-PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
-PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setYAmount(F)V
+HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
+HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setYAmount(F)V
 Lcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;-><clinit>()V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;->access$getShaderSource$p()Ljava/lang/String;
