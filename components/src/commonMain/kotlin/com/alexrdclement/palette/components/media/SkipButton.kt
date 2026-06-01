@@ -14,18 +14,14 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.styles.ButtonStyle
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.components.core.ButtonStyle
 
 @Composable
 fun SkipButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    style: ButtonStyleToken = ButtonStyleToken.Secondary,
+    style: ButtonStyle = ButtonStyle(),
     contentPadding: PaddingValues = PaddingValues(6.dp),
 ) {
     Button(
@@ -71,15 +67,11 @@ fun SkipIcon(
 @Preview
 @Composable
 private fun SkipButtonPreview() {
-    PaletteTheme {
-        SkipButton(onClick = {})
-    }
+    SkipButton(onClick = {})
 }
 
 @Preview
 @Composable
 private fun SkipIconPreview() {
-    PaletteTheme {
-        SkipIcon()
-    }
+    SkipIcon()
 }

@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.components.demo.control
 
+import com.alexrdclement.palette.components.core.TextStyle
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Checkbox
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
 fun ToggleControl(
@@ -32,8 +32,8 @@ fun ToggleControl(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         if (includeTitle) {
-            Text(control.name, style = PaletteTheme.styles.text.labelLarge)
-            Spacer(modifier = Modifier.height(PaletteTheme.spacing.small))
+            Text(control.name, style = TextStyle())
+            Spacer(modifier = Modifier.height(8.dp))
         }
 
         Checkbox(checked, onCheckedChange = control.onValueChange)
@@ -54,8 +54,8 @@ fun ToggleControlRow(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (includeTitle) {
-            Text(control.name, style = PaletteTheme.styles.text.labelLarge)
-            Spacer(modifier = Modifier.height(PaletteTheme.spacing.small))
+            Text(control.name, style = TextStyle())
+            Spacer(modifier = Modifier.height(8.dp))
         }
 
         Checkbox(isChecked, onCheckedChange = control.onValueChange)
@@ -65,7 +65,7 @@ fun ToggleControlRow(
 @Preview
 @Composable
 private fun ToggleControlPreview() {
-    PaletteTheme {
+    run {
         var on by remember { mutableStateOf(false) }
         val control = Control.Toggle(
             name = "Color",
@@ -79,7 +79,7 @@ private fun ToggleControlPreview() {
 @Preview
 @Composable
 private fun ToggleControlRowPreview() {
-    PaletteTheme {
+    run {
         var on by remember { mutableStateOf(false) }
         val control = Control.Toggle(
             name = "Color",

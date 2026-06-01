@@ -9,10 +9,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.components.core.BorderStyle
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.copy
+import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.components.core.copy
 
 @Composable
 fun DialogContent(
@@ -72,6 +75,8 @@ fun DialogContent(
     onDismissRequest: () -> Unit,
     buttonRow: @Composable (onDismissRequest: () -> Unit, modifier: Modifier) -> Unit,
     modifier: Modifier = Modifier,
+    messageStyle: TextStyle = TextStyle(),
+    messageBottomPadding: Dp = 24.dp,
 ) {
     DialogContent(
         title = title,
@@ -79,11 +84,11 @@ fun DialogContent(
     ) {
         Text(
             text = message,
-            style = PaletteTheme.styles.text.bodyLarge.copy(
+            style = messageStyle.copy(
                 textAlign = TextAlign.Center,
             ),
             modifier = Modifier
-                .padding(bottom = PaletteTheme.spacing.large)
+                .padding(bottom = messageBottomPadding)
         )
         buttonRow(onDismissRequest, Modifier.align(Alignment.End))
     }
@@ -93,25 +98,30 @@ fun DialogContent(
 fun DialogContent(
     title: String,
     modifier: Modifier = Modifier,
+    titleStyle: TextStyle = TextStyle(),
+    borderStyle: BorderStyle? = null,
+    spacing: Dp = 16.dp,
+    padding: Dp = 24.dp,
+    titleBottomPadding: Dp = 16.dp,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Surface(
-        borderStyle = PaletteTheme.styles.border.surface,
+        borderStyle = borderStyle,
         modifier = modifier,
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+            verticalArrangement = Arrangement.spacedBy(spacing),
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .padding(PaletteTheme.spacing.large)
+                .padding(padding)
         ) {
             Text(
                 text = title,
-                style = PaletteTheme.styles.text.titleLarge.copy(
+                style = titleStyle.copy(
                     textAlign = TextAlign.Center,
                 ),
                 modifier = Modifier
-                    .padding(bottom = PaletteTheme.spacing.medium)
+                    .padding(bottom = titleBottomPadding)
             )
             content()
         }
@@ -121,27 +131,23 @@ fun DialogContent(
 @Preview
 @Composable
 private fun DialogContentPreview() {
-    PaletteTheme {
-        DialogContent(
-            title = "Title",
-            message = "Long message to show in the dialog content area.",
-            onDismissRequest = {},
-            onConfirm = {},
-            modifier = Modifier
-                .padding(PaletteTheme.spacing.medium)
-        )
-    }
+    DialogContent(
+        title = "Title",
+        message = "Long message to show in the dialog content area.",
+        onDismissRequest = {},
+        onConfirm = {},
+        modifier = Modifier
+            .padding(16.dp)
+    )
 }
 
 @Preview
 @Composable
 private fun ErrorDialogContentPreview() {
-    PaletteTheme {
-        ErrorDialogContent(
-            message = "An error occurred while processing your request.",
-            onDismissRequest = {},
-            modifier = Modifier
-                .padding(PaletteTheme.spacing.medium)
-        )
-    }
+    ErrorDialogContent(
+        message = "An error occurred while processing your request.",
+        onDismissRequest = {},
+        modifier = Modifier
+            .padding(16.dp)
+    )
 }

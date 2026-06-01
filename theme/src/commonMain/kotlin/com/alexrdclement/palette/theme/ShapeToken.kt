@@ -1,6 +1,8 @@
 package com.alexrdclement.palette.theme
 
 import androidx.compose.runtime.Composable
+import com.alexrdclement.palette.components.core.Shape
+import com.alexrdclement.palette.components.core.toComposeShape
 import androidx.compose.ui.graphics.Shape as ComposeShape
 
 enum class ShapeToken {

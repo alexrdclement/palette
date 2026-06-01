@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
+import com.alexrdclement.palette.components.core.ButtonStyle
+import com.alexrdclement.palette.components.core.TextStyle
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,8 +22,6 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.menu.DropdownMenu
 import com.alexrdclement.palette.components.menu.DropdownMenuItem
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
@@ -38,8 +38,8 @@ fun <T> DropdownControl(
 
     Column(modifier = modifier) {
         if (control.includeLabel) {
-            Text(control.name, style = PaletteTheme.styles.text.labelLarge)
-            Spacer(modifier = Modifier.height(PaletteTheme.spacing.small))
+            Text(control.name, style = TextStyle())
+            Spacer(modifier = Modifier.height(8.dp))
         }
 
         DropdownMenuControlButton(
@@ -75,11 +75,11 @@ fun <T> DropdownControlRow(
         if (control.includeLabel) {
             Text(
                 text = control.name,
-                style = PaletteTheme.styles.text.labelLarge,
+                style = TextStyle(),
                 softWrap = true,
                 modifier = Modifier.weight(1f, fill = false)
             )
-            Spacer(modifier = Modifier.width(PaletteTheme.spacing.medium))
+            Spacer(modifier = Modifier.width(16.dp))
         }
 
         DropdownMenuControlButton(
@@ -103,11 +103,11 @@ private fun <T> DropdownMenuControlButton(
     modifier: Modifier = Modifier,
 ) {
     Button(
-        style = ButtonStyleToken.Secondary,
+        style = ButtonStyle(),
         onClick = onClick,
         modifier = modifier,
     ) {
-        Text(text = selectedValue.name, style = PaletteTheme.styles.text.labelLarge)
+        Text(text = selectedValue.name, style = TextStyle())
     }
 }
 
@@ -124,7 +124,7 @@ private fun <T> DropdownControlMenu(
     ) {
         values.forEachIndexed { index, value ->
             DropdownMenuItem(
-                text = { Text(text = value.name, style = PaletteTheme.styles.text.labelLarge) },
+                text = { Text(text = value.name, style = TextStyle()) },
                 onClick = {
                     onMenuDismissRequest()
                     control.onValueChange(index)
@@ -137,7 +137,7 @@ private fun <T> DropdownControlMenu(
 @Preview
 @Composable
 private fun DropdownControlPreview() {
-    PaletteTheme {
+    run {
         var selectedIndex by remember { mutableStateOf(0) }
         val control by remember {
             mutableStateOf(
@@ -163,7 +163,7 @@ private fun DropdownControlPreview() {
 @Preview
 @Composable
 private fun DropdownControlRowPreview() {
-    PaletteTheme {
+    run {
         var selectedIndex by remember { mutableStateOf(0) }
         val control by remember {
             mutableStateOf(

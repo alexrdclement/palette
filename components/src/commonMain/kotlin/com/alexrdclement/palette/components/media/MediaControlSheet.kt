@@ -28,7 +28,6 @@ import com.alexrdclement.palette.components.layout.rememberPeekSheetState
 import com.alexrdclement.palette.components.media.model.Artist
 import com.alexrdclement.palette.components.media.model.MediaItem
 import com.alexrdclement.palette.components.util.calculateHorizontalPaddingValues
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.coroutines.launch
 
 @Composable
@@ -75,7 +74,7 @@ fun MediaControlSheet(
 @Preview
 @Composable
 private fun Preview() {
-    PaletteTheme {
+    run {
         val state = rememberPeekSheetState(initialValue = PeekSheetAnchor.Peek)
         val coroutineScope = rememberCoroutineScope()
         var isPlaying by remember { mutableStateOf(false) }

@@ -25,7 +25,6 @@ import com.alexrdclement.palette.components.core.VerticalDivider
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.Controls
 import com.alexrdclement.palette.components.util.horizontalPaddingValues
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -67,7 +66,7 @@ fun Demo(
                             .fillMaxWidth()
                             .heightIn(max = 300.dp)
                             .verticalScroll(rememberScrollState())
-                            .padding(PaletteTheme.spacing.medium)
+                            .padding(16.dp)
                             .navigationBarsPadding(),
                     )
                 }
@@ -93,7 +92,7 @@ fun Demo(
                             .fillMaxHeight()
                             .widthIn(max = 300.dp)
                             .verticalScroll(rememberScrollState())
-                            .padding(horizontal = PaletteTheme.spacing.medium)
+                            .padding(horizontal = 16.dp)
                             .navigationBarsPadding(),
                     )
                 }

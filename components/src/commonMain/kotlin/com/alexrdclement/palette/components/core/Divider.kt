@@ -11,7 +11,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
 fun HorizontalDivider(
@@ -43,5 +42,5 @@ fun VerticalDivider(
 
 object DividerDefaults {
     val Thickness: Dp = 1.dp
-    val color: Color @Composable get() = PaletteTheme.colorScheme.outline
+    val color: Color = Color.Unspecified
 }

@@ -11,18 +11,14 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.formats.core.format
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.TextStyle
-import com.alexrdclement.palette.theme.preview.TextStylePreviewParameterProvider
 
 @Composable
 fun Text(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = PaletteTheme.styles.text.bodyMedium,
+    style: TextStyle = TextStyle(),
     onTextLayout: ((TextLayoutResult) -> Unit)? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     softWrap: Boolean = true,
@@ -49,7 +45,7 @@ fun Text(
 fun Text(
     text: AnnotatedString,
     modifier: Modifier = Modifier,
-    style: TextStyle = PaletteTheme.styles.text.bodyMedium,
+    style: TextStyle = TextStyle(),
     onTextLayout: (TextLayoutResult) -> Unit = {},
     overflow: TextOverflow = TextOverflow.Clip,
     softWrap: Boolean = true,
@@ -75,15 +71,10 @@ fun Text(
 
 @Preview
 @Composable
-private fun Preview(
-    @PreviewParameter(TextStylePreviewParameterProvider::class) textStylePair: Pair<String, TextStyle>,
-) {
-    PaletteTheme {
-        Surface {
-            Text(
-                text = textStylePair.first,
-                style = textStylePair.second,
-            )
-        }
+private fun Preview() {
+    Surface {
+        Text(
+            text = "Hello world",
+        )
     }
 }

@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.theme.styles
 
 import androidx.compose.runtime.Composable
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.theme.TypographyToken
 import com.alexrdclement.palette.theme.format.core.TextFormatToken
 

@@ -21,7 +21,7 @@ kotlin {
                 api(libs.trace)
 
                 api(projects.formats)
-                api(projects.theme)
+                api(projects.modifiers)
 
                 implementation(libs.compose.material.icons.extended)
             }

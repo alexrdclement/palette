@@ -4,17 +4,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 @Composable
 fun ConfirmButton(
     onConfirm: () -> Unit,
     modifier: Modifier = Modifier,
+    style: ButtonStyle = ButtonStyle(),
 ) {
     Button(
-        style = ButtonStyleToken.Secondary,
+        style = style,
         onClick = onConfirm,
         modifier = modifier,
     ) {
@@ -26,9 +26,10 @@ fun ConfirmButton(
 fun CancelButton(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
+    style: ButtonStyle = ButtonStyle(),
 ) {
     Button(
-        style = ButtonStyleToken.Secondary,
+        style = style,
         onClick = onDismiss,
         modifier = modifier,
     ) {
@@ -39,19 +40,15 @@ fun CancelButton(
 @Preview
 @Composable
 private fun ConfirmButtonPreview() {
-    PaletteTheme {
-        ConfirmButton(
-            onConfirm = {},
-        )
-    }
+    ConfirmButton(
+        onConfirm = {},
+    )
 }
 
 @Preview
 @Composable
 private fun CancelButtonPreview() {
-    PaletteTheme {
-        CancelButton(
-            onDismiss = {},
-        )
-    }
+    CancelButton(
+        onDismiss = {},
+    )
 }

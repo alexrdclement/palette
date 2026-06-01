@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.components.demo.control
 
+import com.alexrdclement.palette.components.core.TextStyle
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 @Composable
@@ -49,25 +49,25 @@ fun CharControl(
     }
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .then(
-                if (control.includeLabel) Modifier.padding(vertical = PaletteTheme.spacing.small)
-                else Modifier.padding(bottom = PaletteTheme.spacing.small)
+                if (control.includeLabel) Modifier.padding(vertical = 8.dp)
+                else Modifier.padding(bottom = 8.dp)
             ),
     ) {
         if (control.includeLabel) {
             Text(
                 text = control.name,
-                style = PaletteTheme.styles.text.labelLarge,
+                style = TextStyle(),
                 modifier = Modifier.weight(1f, fill = false),
             )
-            Spacer(modifier = Modifier.width(PaletteTheme.spacing.small))
+            Spacer(modifier = Modifier.width(8.dp))
         }
         TextField(
             state = textFieldState,
-            textStyle = PaletteTheme.styles.text.labelLarge,
+            textStyle = TextStyle(),
             inputTransformation = InputTransformation {
                 val text = asCharSequence().toString()
                 val newText = text.lastOrNull()?.toString() ?: ""
@@ -84,7 +84,7 @@ fun CharControl(
 @Preview
 @Composable
 fun CharControlPreview() {
-    PaletteTheme {
+    run {
         CharControl(
             control = Control.CharField(
                 name = "Label",

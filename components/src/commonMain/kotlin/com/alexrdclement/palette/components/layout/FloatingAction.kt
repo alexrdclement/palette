@@ -8,13 +8,14 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.util.copy
-import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
 fun FloatingAction(
     modifier: Modifier = Modifier,
+    spacing: Dp = 8.dp,
     content: @Composable () -> Unit,
 ) {
     Box(
@@ -23,7 +24,7 @@ fun FloatingAction(
             .padding(
                 WindowInsets.safeDrawing.asPaddingValues().copy(top = 0.dp)
             )
-            .padding(vertical = PaletteTheme.spacing.small)
+            .padding(vertical = spacing)
     ) {
         content()
     }

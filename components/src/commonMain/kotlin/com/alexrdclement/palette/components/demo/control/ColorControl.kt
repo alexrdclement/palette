@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
+import com.alexrdclement.palette.components.core.ButtonStyle
+import com.alexrdclement.palette.components.core.TextStyle
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -23,8 +25,6 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 @Composable
 fun ColorControl(
@@ -36,19 +36,19 @@ fun ColorControl(
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier,
     ) {
         Text(
             text = control.name,
-            style = PaletteTheme.styles.text.labelLarge,
+            style = TextStyle(),
         )
         Button(
-            style = ButtonStyleToken.Secondary,
+            style = ButtonStyle(),
             onClick = { showDialog = true },
         ) {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .height(IntrinsicSize.Max)
@@ -58,7 +58,7 @@ fun ColorControl(
                     modifier = Modifier
                         .fillMaxHeight()
                 )
-                Text(color.toString(), style = PaletteTheme.styles.text.labelLarge)
+                Text(color.toString(), style = TextStyle())
             }
         }
     }
@@ -82,14 +82,14 @@ private fun ColorPickerDialog(
         onDismissRequest = onDismissRequest,
     ) {
         Surface(
-            borderStyle = PaletteTheme.styles.border.surface,
+            borderStyle = null,
         ) {
             ColorPickerDialogContent(
                 color = color,
                 onColorSelected = onColorSelected,
                 onDismissRequest = onDismissRequest,
                 modifier = Modifier
-                    .padding(PaletteTheme.spacing.medium)
+                    .padding(16.dp)
             )
         }
     }
@@ -105,10 +105,10 @@ private fun ColorPickerDialogContent(
     var currentColor by remember { mutableStateOf(color) }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
-            .padding(PaletteTheme.spacing.large)
+            .padding(24.dp)
     ) {
         ColorPicker(
             color = currentColor,
@@ -123,7 +123,7 @@ private fun ColorPickerDialogContent(
             },
             onDismiss = onDismissRequest,
             modifier = Modifier
-                .padding(top = PaletteTheme.spacing.large)
+                .padding(top = 24.dp)
         )
     }
 }

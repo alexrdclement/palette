@@ -5,7 +5,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.IndeterminateProgressIndicator
-import com.alexrdclement.palette.theme.PaletteTheme
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -26,9 +25,7 @@ fun IndeterminateProgressDialogContent(
 @Preview
 @Composable
 private fun IndeterminateProgressDialogContentPreview() {
-    PaletteTheme {
-        IndeterminateProgressDialogContent(
-            title = "Doing something"
-        )
-    }
+    IndeterminateProgressDialogContent(
+        title = "Doing something"
+    )
 }

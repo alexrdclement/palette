@@ -25,7 +25,6 @@ import androidx.compose.ui.semantics.onLongClick
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.IntSize
-import com.alexrdclement.palette.theme.Shape
 import kotlinx.coroutines.launch
 import kotlin.math.sqrt
 

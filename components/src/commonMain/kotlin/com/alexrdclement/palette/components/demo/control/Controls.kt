@@ -16,7 +16,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -27,8 +26,8 @@ fun Controls(
     name: String? = null,
     indent: Boolean = false,
     expandedInitial: Boolean = true,
-    contentPadding: PaddingValues = PaddingValues(vertical = PaletteTheme.spacing.small),
-    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(PaletteTheme.spacing.medium)
+    contentPadding: PaddingValues = PaddingValues(vertical = 8.dp),
+    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(16.dp)
 ) {
     Column(
         verticalArrangement = verticalArrangement,
@@ -52,7 +51,7 @@ fun Controls(
                     .fillMaxWidth()
                     .then(
                         if (indent)
-                            Modifier.padding(start = PaletteTheme.spacing.medium)
+                            Modifier.padding(start = 16.dp)
                         else Modifier
                     )
             ) {
@@ -72,7 +71,7 @@ fun Controls(
                             name = control.name,
                             indent = control.indent,
                             expandedInitial = control.expandedInitial,
-                            contentPadding = PaddingValues(vertical = PaletteTheme.spacing.small),
+                            contentPadding = PaddingValues(vertical = 8.dp),
                         )
                     }
                     is Control.ControlRow -> {
@@ -92,7 +91,7 @@ fun ControlsRow(
     equalWeight: Boolean = true,
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
@@ -118,7 +117,7 @@ fun ControlsRow(
                             name = control.name,
                             indent = control.indent,
                             expandedInitial = control.expandedInitial,
-                            contentPadding = PaddingValues(horizontal = PaletteTheme.spacing.small),
+                            contentPadding = PaddingValues(horizontal = 8.dp),
                         )
                     }
                     is Control.ControlRow -> {
@@ -134,7 +133,7 @@ fun ControlsRow(
 @Preview
 @Composable
 private fun Preview() {
-    PaletteTheme {
+    run {
         var expanded by remember { mutableStateOf(true) }
         Controls(
             controls = persistentListOf(

@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.theme
 
 import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.components.core.Shape
 
 data class ShapeScheme(
     val primary: Shape,

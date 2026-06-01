@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
+import androidx.compose.ui.graphics.Color
+import com.alexrdclement.palette.components.core.TextStyle
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ChevronDirection
 import com.alexrdclement.palette.components.core.ChevronIcon
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
 fun ExpandableHeader(
@@ -26,17 +27,17 @@ fun ExpandableHeader(
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
             .height(IntrinsicSize.Min)
             .clickable { onExpandedChange(!expanded) }
     ) {
         Text(
             text = name,
-            style = PaletteTheme.styles.text.labelSmall,
+            style = TextStyle(),
             modifier = Modifier
-                .border(1.dp, PaletteTheme.colorScheme.outline)
-                .padding(PaletteTheme.spacing.xs)
+                .border(1.dp, Color.Unspecified)
+                .padding(4.dp)
         )
         ChevronIcon(
             direction = if (expanded) ChevronDirection.Up else ChevronDirection.Down,

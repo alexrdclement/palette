@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
 fun DialogContentButtonRow(
@@ -43,26 +42,22 @@ fun DialogContentSingleButtonRow(
 @Preview
 @Composable
 fun DialogContentButtonRowPreview() {
-    PaletteTheme {
-        DialogContentButtonRow {
-            CancelButton(
-                onDismiss = {},
-            )
-            ConfirmButton(
-                onConfirm = {},
-            )
-        }
+    DialogContentButtonRow {
+        CancelButton(
+            onDismiss = {},
+        )
+        ConfirmButton(
+            onConfirm = {},
+        )
     }
 }
 
 @Preview
 @Composable
 fun DialogContentSingleButtonRowPreview() {
-    PaletteTheme {
-        DialogContentSingleButtonRow {
-            ConfirmButton(
-                onConfirm = {},
-            )
-        }
+    DialogContentSingleButtonRow {
+        ConfirmButton(
+            onConfirm = {},
+        )
     }
 }

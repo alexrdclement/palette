@@ -15,7 +15,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
@@ -30,7 +29,7 @@ fun <T> DynamicListControl(
     var addingItem by remember { mutableStateOf<T?>(null) }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.fillMaxWidth()
     ) {
         if (control.includeLabel) {
@@ -44,10 +43,10 @@ fun <T> DynamicListControl(
         if (!expanded && control.includeLabel) return@Column
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = modifier
                 .fillMaxWidth()
-                .then(if (control.indent) Modifier.padding(start = PaletteTheme.spacing.medium) else Modifier)
+                .then(if (control.indent) Modifier.padding(start = 16.dp) else Modifier)
         ) {
             items.forEachIndexed { index, item ->
                 DynamicListItem(
@@ -101,7 +100,7 @@ private fun <T> DynamicListItem(
     val itemControl = control.createControl(item, onItemChange)
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
@@ -109,7 +108,7 @@ private fun <T> DynamicListItem(
         Controls(
             controls = listOf(itemControl).toPersistentList(),
             contentPadding = PaddingValues(0.dp),
-            verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.xs),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
             modifier = Modifier.weight(1f)
         )
 
@@ -134,14 +133,14 @@ private fun <T> DynamicListAddItem(
     val addItemControl = control.createControl(item, onItemChange)
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
             .fillMaxWidth()
     ) {
         Controls(
             controls = listOf(addItemControl).toPersistentList(),
             contentPadding = PaddingValues(0.dp),
-            verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.xs),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
         )
 
         DynamicListActionButtons(
@@ -158,7 +157,7 @@ private fun DynamicListActionButtons(
     modifier: Modifier = Modifier,
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.fillMaxWidth()
     ) {
         ButtonControl(

@@ -13,20 +13,19 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
-import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
 fun Checkbox(
     isChecked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
+    style: ButtonStyle = ButtonStyle(),
+    textStyle: TextStyle = TextStyle(),
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     Button(
-        contentColor = ColorToken.Primary,
-        containerColor = ColorToken.Surface,
+        style = style,
         onClick = { onCheckedChange(!isChecked) },
         modifier = modifier.semantics(mergeDescendants = true) {
             role = Role.Checkbox
@@ -36,7 +35,7 @@ fun Checkbox(
     ) {
         Text(
             text = if (isChecked) "☑︎" else "☐",
-            style = PaletteTheme.styles.text.titleLarge
+            style = textStyle,
         )
     }
 }
@@ -46,14 +45,12 @@ fun Checkbox(
 private fun Preview(
     @PreviewParameter(BoolPreviewParameterProvider::class) isChecked: Boolean,
 ) {
-    PaletteTheme {
-        Surface {
-            var isChecked by remember { mutableStateOf(isChecked) }
+    Surface {
+        var isChecked by remember { mutableStateOf(isChecked) }
 
-            Checkbox(
-                isChecked = isChecked,
-                onCheckedChange = { isChecked = !it },
-            )
-        }
+        Checkbox(
+            isChecked = isChecked,
+            onCheckedChange = { isChecked = !it },
+        )
     }
 }

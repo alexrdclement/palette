@@ -10,17 +10,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.components.core.ButtonStyle
 
 @Composable
 fun SkipBackButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    style: ButtonStyleToken = ButtonStyleToken.Secondary,
+    style: ButtonStyle = ButtonStyle(),
     contentPadding: PaddingValues = PaddingValues(6.dp),
 ) {
     Button(
@@ -43,7 +40,5 @@ fun SkipBackButton(
 @Preview
 @Composable
 private fun SkipBackButtonPreview() {
-    PaletteTheme {
-        SkipBackButton(onClick = {})
-    }
+    SkipBackButton(onClick = {})
 }

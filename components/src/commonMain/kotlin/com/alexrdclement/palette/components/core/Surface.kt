@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.components.core
 
+import androidx.compose.foundation.Indication
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -12,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.semantics.isTraversalGroup
@@ -22,21 +25,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
 import com.alexrdclement.palette.components.LocalContentColor
-import com.alexrdclement.palette.components.contentColorFor
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.Shape
-import com.alexrdclement.palette.theme.modifiers.BorderStyle
-import com.alexrdclement.palette.theme.modifiers.border
-import com.alexrdclement.palette.theme.toComposeShape
 import kotlin.math.sqrt
 
 @Composable
 fun Surface(
     modifier: Modifier = Modifier,
-    shape: Shape = PaletteTheme.shapeScheme.surface,
-    color: Color = PaletteTheme.colorScheme.surface,
-    contentColor: Color = contentColorFor(color),
+    shape: Shape = Shape.Rectangle(),
+    color: Color = Color.Unspecified,
+    contentColor: Color = LocalContentColor.current,
     borderStyle: BorderStyle? = null,
     content: @Composable (PaddingValues) -> Unit
 ) {
@@ -71,10 +68,11 @@ fun Surface(
     onDoubleClick: (() -> Unit)? = null,
     hapticFeedbackEnabled: Boolean = true,
     enabled: Boolean = true,
-    shape: Shape = PaletteTheme.shapeScheme.surface,
-    color: Color = PaletteTheme.colorScheme.surface,
-    contentColor: Color = contentColorFor(color),
+    shape: Shape = Shape.Rectangle(),
+    color: Color = Color.Unspecified,
+    contentColor: Color = LocalContentColor.current,
     borderStyle: BorderStyle? = null,
+    indication: Indication? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable (PaddingValues) -> Unit
 ) {
@@ -88,7 +86,7 @@ fun Surface(
                 .shapeClickable(
                     shape = shape,
                     interactionSource = interactionSource,
-                    indication = PaletteTheme.indication,
+                    indication = indication ?: LocalIndication.current,
                     enabled = enabled,
                     onClick = onClick,
                     onLongClickLabel = onLongClickLabel,
@@ -179,25 +177,20 @@ private fun Modifier.surface(
 private fun Preview(
     @PreviewParameter(BoolPreviewParameterProvider::class) isDarkTheme: Boolean,
 ) {
-    PaletteTheme(isDarkMode = isDarkTheme) {
-        Surface {
-            Text("Hello world")
-        }
+    Surface {
+        Text("Hello world")
     }
 }
 
 @Preview
 @Composable
 private fun PreviewClickable(
-    @PreviewParameter(BoolPreviewParameterProvider::class) isDarkTheme: Boolean,
     @PreviewParameter(BoolPreviewParameterProvider::class) enabled: Boolean,
 ) {
-    PaletteTheme(isDarkMode = isDarkTheme) {
-        Surface(
-            onClick = {},
-            enabled = enabled,
-        ) {
-            Text("Hello world")
-        }
+    Surface(
+        onClick = {},
+        enabled = enabled,
+    ) {
+        Text("Hello world")
     }
 }

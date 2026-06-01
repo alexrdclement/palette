@@ -39,9 +39,9 @@ import com.alexrdclement.palette.components.util.calculateEndPadding
 import com.alexrdclement.palette.components.util.calculateHorizontalPadding
 import com.alexrdclement.palette.components.util.calculateStartPadding
 import com.alexrdclement.palette.components.util.calculateVerticalPadding
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.util.toIntSize
 import com.alexrdclement.palette.components.util.toPx
-import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.trace.trace
 import kotlin.math.roundToInt
 
@@ -68,6 +68,9 @@ fun MediaControlBar(
     contentPadding: PaddingValues = PaddingValues(0.dp),
     minContentSize: DpSize = DpSize(width = 64.dp, height = 64.dp),
     maxContentSize: DpSize = DpSize(width = Dp.Infinity, height = Dp.Infinity),
+    titleStyle: TextStyle = TextStyle(),
+    artistStyle: TextStyle = TextStyle(),
+    contentSpacing: Dp = 8.dp,
     progress: () -> Float = { 0f },
     onClick: () -> Unit = {},
     stateDescription: String? = null,
@@ -181,21 +184,21 @@ fun MediaControlBar(
                         verticalArrangement = Arrangement.Center,
                         modifier = Modifier
                             .weight(1f)
-                            .padding(horizontal = PaletteTheme.spacing.small)
+                            .padding(horizontal = contentSpacing)
                             .graphicsLayer {
                                 alpha = 1f - progress()
                             }
                     ) {
                         Text(
                             text = mediaItem.title,
-                            style = PaletteTheme.styles.text.titleMedium,
+                            style = titleStyle,
                             maxLines = 1,
                             modifier = Modifier
                                 .basicMarquee()
                         )
                         Text(
                             text = mediaItem.artists.joinToString { it.name },
-                            style = PaletteTheme.styles.text.bodyMedium,
+                            style = artistStyle,
                             maxLines = 1,
                             modifier = Modifier
                                 .basicMarquee()
@@ -207,7 +210,7 @@ fun MediaControlBar(
                         isPlaying = isPlaying,
                         modifier = Modifier
                             .size(52.dp)
-                            .padding(PaletteTheme.spacing.small)
+                            .padding(contentSpacing)
                             .graphicsLayer {
                                 alpha = 1f - progress()
                             }
@@ -229,19 +232,17 @@ private class ProgressPreviewParameterProvider : PreviewParameterProvider<Float>
 private fun Preview(
     @PreviewParameter(ProgressPreviewParameterProvider::class) progress: Float
 ) {
-    PaletteTheme {
-        var isPlaying by remember { mutableStateOf(false) }
-        MediaControlBar(
-            mediaItem = MediaItem(
-                artworkThumbnailUrl = null,
-                artworkLargeUrl = null,
-                title = "Title",
-                artists = listOf(Artist("Artist 1"), Artist("Artist 2")),
-            ),
-            isPlaying = isPlaying,
-            onPlayPauseClick = { isPlaying = !isPlaying },
-            progress = { progress },
-            minContentSize = DpSize(64.dp, 64.dp),
-        )
-    }
+    var isPlaying by remember { mutableStateOf(false) }
+    MediaControlBar(
+        mediaItem = MediaItem(
+            artworkThumbnailUrl = null,
+            artworkLargeUrl = null,
+            title = "Title",
+            artists = listOf(Artist("Artist 1"), Artist("Artist 2")),
+        ),
+        isPlaying = isPlaying,
+        onPlayPauseClick = { isPlaying = !isPlaying },
+        progress = { progress },
+        minContentSize = DpSize(64.dp, 64.dp),
+    )
 }

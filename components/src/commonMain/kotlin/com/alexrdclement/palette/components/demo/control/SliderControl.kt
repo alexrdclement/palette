@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.components.demo.control
 
+import com.alexrdclement.palette.components.core.TextStyle
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
@@ -16,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Slider
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.stepsForIncrement
-import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
 fun SliderControl(
@@ -28,7 +28,7 @@ fun SliderControl(
     val valueRange by rememberUpdatedState(control.valueRange())
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier,
     ) {
         val label by derivedStateOf {
@@ -37,7 +37,7 @@ fun SliderControl(
         }
         Text(
             text = label,
-            style = PaletteTheme.styles.text.labelLarge,
+            style = TextStyle(),
         )
         val steps = control.stepIncrement?.let { stepsForIncrement(valueRange, it) } ?: 0
         Slider(
@@ -55,7 +55,7 @@ fun SliderControl(
 @Preview
 @Composable
 private fun Preview() {
-    PaletteTheme {
+    run {
         var value by remember { mutableStateOf(0.5f) }
         val control = remember {
             Control.Slider(

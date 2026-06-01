@@ -10,10 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.PaletteTheme
+import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.components.LocalContentColor
 
 enum class ChevronDirection {
     Up,
@@ -26,18 +27,20 @@ enum class ChevronDirection {
 fun ChevronButton(
     direction: ChevronDirection,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaddingValues(PaletteTheme.spacing.medium),
+    style: ButtonStyle = ButtonStyle(),
+    contentPadding: PaddingValues = PaddingValues(16.dp),
+    color: Color = Color.Unspecified,
     onClick: () -> Unit,
 ) {
     Button(
         onClick = onClick,
-        contentColor = ColorToken.Primary,
-        containerColor = ColorToken.Surface,
+        style = style,
         contentPadding = contentPadding,
         modifier = modifier
     ) {
         ChevronIcon(
             direction = direction,
+            color = color,
         )
     }
 }
@@ -46,6 +49,7 @@ fun ChevronButton(
 fun ChevronIcon(
     direction: ChevronDirection,
     modifier: Modifier = Modifier,
+    color: Color = LocalContentColor.current,
 ) {
     val rotation = when (direction) {
         ChevronDirection.Left -> 0f
@@ -59,7 +63,7 @@ fun ChevronIcon(
             .aspectRatio(1f, matchHeightConstraintsFirst = false)
             .rotate(rotation)
             .clip(ChevronIconShape)
-            .background(PaletteTheme.colorScheme.primary)
+            .background(color)
     )
 }
 
@@ -75,24 +79,20 @@ private val ChevronIconShape: Shape = GenericShape { size, _ ->
 @Preview
 @Composable
 private fun ChevronButtonPreview() {
-    PaletteTheme {
-        Surface {
-            ChevronButton(
-                direction = ChevronDirection.Right,
-                onClick = {},
-            )
-        }
+    Surface {
+        ChevronButton(
+            direction = ChevronDirection.Right,
+            onClick = {},
+        )
     }
 }
 
 @Preview
 @Composable
 private fun ChevronIconPreview() {
-    PaletteTheme {
-        Surface {
-            ChevronIcon(
-                direction = ChevronDirection.Right,
-            )
-        }
+    Surface {
+        ChevronIcon(
+            direction = ChevronDirection.Right,
+        )
     }
 }

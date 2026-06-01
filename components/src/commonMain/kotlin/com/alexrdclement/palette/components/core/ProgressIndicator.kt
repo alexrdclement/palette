@@ -3,7 +3,6 @@ package com.alexrdclement.palette.components.core
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
 fun IndeterminateProgressIndicator(
@@ -15,7 +14,5 @@ fun IndeterminateProgressIndicator(
 @Preview
 @Composable
 fun PreviewIndeterminateProgressIndicator() {
-    PaletteTheme {
-        IndeterminateProgressIndicator()
-    }
+    IndeterminateProgressIndicator()
 }

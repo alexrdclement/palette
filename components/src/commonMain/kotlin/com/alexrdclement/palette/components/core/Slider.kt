@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.Layout
@@ -43,7 +44,6 @@ import androidx.compose.ui.semantics.setProgress
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.coroutines.coroutineScope
 import kotlin.math.abs
 import kotlin.math.max
@@ -160,12 +160,13 @@ fun Slider(
     state: SliderState,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    colors: SliderColors = SliderColors(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     Layout(
         content = {
-            SliderDefaults.Track(tickFractions = state.tickFractions)
-            SliderDefaults.Thumb()
+            SliderDefaults.Track(tickFractions = state.tickFractions, colors = colors)
+            SliderDefaults.Thumb(colors = colors)
         },
         modifier = modifier
             .requiredSizeIn(
@@ -332,10 +333,11 @@ fun RangeSlider(
     state: RangeSliderState,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    colors: SliderColors = SliderColors(),
 ) {
     Layout(
         content = {
-            SliderDefaults.Track(tickFractions = state.tickFractions)
+            SliderDefaults.Track(tickFractions = state.tickFractions, colors = colors)
             Box(
                 modifier = Modifier.then(
                     if (enabled) {
@@ -349,7 +351,7 @@ fun RangeSlider(
                     } else Modifier
                 )
             ) {
-                SliderDefaults.Thumb()
+                SliderDefaults.Thumb(colors = colors)
             }
             Box(
                 modifier = Modifier.then(
@@ -364,7 +366,7 @@ fun RangeSlider(
                     } else Modifier
                 )
             ) {
-                SliderDefaults.Thumb()
+                SliderDefaults.Thumb(colors = colors)
             }
         },
         modifier = modifier
@@ -437,52 +439,31 @@ private fun Modifier.sliderSemantics(
     state.steps,
 )
 
+data class SliderColors(
+    val trackColor: Color = Color.Unspecified,
+    val thumbColor: Color = Color.Unspecified,
+    val thumbPointColor: Color = Color.Unspecified,
+    val thumbBackgroundColor: Color = Color.Unspecified,
+)
+
 object SliderDefaults {
     val TrackHeight = 1.dp
     val TickSize = 2.dp
-    val TrackBrush: Brush
-        @Composable
-        get() = with(PaletteTheme.colorScheme) {
-            remember(this) {
-                SolidColor(primary)
-            }
-        }
 
     val ThumbSize = 20.dp
-    val ThumbBorderStroke: BorderStroke
-        @Composable
-        get() = with(PaletteTheme.colorScheme) {
-            remember(this) {
-                BorderStroke(
-                    width = 1.dp,
-                    color = primary,
-                )
-            }
-        }
     val ThumbPointSizeDp = 4.dp
     val ThumbPointSize: Size
         @Composable
         get() = with(LocalDensity.current) {
             Size(ThumbPointSizeDp.toPx(), ThumbPointSizeDp.toPx())
         }
-    val ThumbPointBrush: Brush
-        @Composable
-        get() = with(PaletteTheme.colorScheme) {
-            remember(this) {
-                SolidColor(primary)
-            }
-        }
-    val ThumbBackgroundBrush: Brush
-        @Composable
-        get() = with(PaletteTheme.colorScheme) {
-            remember(this) {
-                SolidColor(surface)
-            }
-        }
 
     @Composable
-    fun Track(tickFractions: FloatArray = floatArrayOf()) {
-        val brush = TrackBrush
+    fun Track(
+        tickFractions: FloatArray = floatArrayOf(),
+        colors: SliderColors = SliderColors(),
+    ) {
+        val brush = remember(colors.trackColor) { SolidColor(colors.trackColor) }
         val tickRadius = with(LocalDensity.current) { TickSize.toPx() }
         Canvas(
             modifier = Modifier
@@ -506,16 +487,21 @@ object SliderDefaults {
     }
 
     @Composable
-    fun Thumb() {
+    fun Thumb(
+        colors: SliderColors = SliderColors(),
+    ) {
+        val borderStroke = remember(colors.thumbColor) {
+            BorderStroke(width = 1.dp, color = colors.thumbColor)
+        }
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .size(ThumbSize)
-                .border(ThumbBorderStroke)
+                .border(borderStroke)
         ) {
-            val pointBrush = ThumbPointBrush
+            val pointBrush = remember(colors.thumbPointColor) { SolidColor(colors.thumbPointColor) }
             val pointSize = ThumbPointSize
-            val backgroundBrush = ThumbBackgroundBrush
+            val backgroundBrush = remember(colors.thumbBackgroundColor) { SolidColor(colors.thumbBackgroundColor) }
             Canvas(modifier = Modifier.fillMaxSize()) {
                 drawRect(
                     brush = backgroundBrush,
@@ -815,10 +801,8 @@ private fun calcFraction(a: Float, b: Float, pos: Float) =
 @Preview
 @Composable
 private fun Preview() {
-    PaletteTheme {
-        Surface {
-            val state = remember { SliderState(value = 0.5f) }
-            Slider(state = state)
-        }
+    Surface {
+        val state = remember { SliderState(value = 0.5f) }
+        Slider(state = state)
     }
 }

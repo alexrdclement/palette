@@ -13,11 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 @Composable
 fun <T : CatalogItem> Catalog(
@@ -25,11 +25,13 @@ fun <T : CatalogItem> Catalog(
     onItemClick: (T) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
+    itemSpacing: Dp = 16.dp,
+    itemStyle: ButtonStyle = ButtonStyle(),
 ) {
     LazyColumn(
         state = rememberLazyListState(),
         verticalArrangement = Arrangement.spacedBy(
-            space = PaletteTheme.spacing.medium,
+            space = itemSpacing,
             alignment = Alignment.CenterVertically,
         ),
         contentPadding = contentPadding,
@@ -41,7 +43,7 @@ fun <T : CatalogItem> Catalog(
             key = { it.title }
         ) { item ->
             Button(
-                style = ButtonStyleToken.Secondary,
+                style = itemStyle,
                 onClick = { onItemClick(item) },
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -66,10 +68,8 @@ private enum class MainCatalogItem : CatalogItem {
 @Preview
 @Composable
 private fun Preview() {
-    PaletteTheme {
-        Catalog(
-            items = MainCatalogItem.entries.toList(),
-            onItemClick = {}
-        )
-    }
+    Catalog(
+        items = MainCatalogItem.entries.toList(),
+        onItemClick = {}
+    )
 }

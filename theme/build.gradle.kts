@@ -13,6 +13,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                api(projects.components)
                 implementation(projects.formats)
                 implementation(projects.modifiers)
             }

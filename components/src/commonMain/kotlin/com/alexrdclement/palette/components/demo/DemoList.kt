@@ -8,8 +8,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.PersistentList
 
 @Composable
@@ -19,7 +19,7 @@ fun <T> DemoList(
     modifier: Modifier = Modifier,
     key: ((item: T) -> Any)? = null,
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(
-        space = PaletteTheme.spacing.large,
+        space = 24.dp,
         alignment = Alignment.CenterVertically,
     ),
     horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
@@ -32,7 +32,7 @@ fun <T> DemoList(
         LazyColumn(
             verticalArrangement = verticalArrangement,
             horizontalAlignment = horizontalAlignment,
-            contentPadding = PaddingValues(PaletteTheme.spacing.medium),
+            contentPadding = PaddingValues(16.dp),
             modifier = Modifier
                 .fillMaxHeight()
                 .align(Alignment.Center)

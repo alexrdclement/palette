@@ -10,17 +10,17 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPaused
 import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPlaying
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
-import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.ShapeToken
 
 @Composable
 fun PlayPauseButton(
@@ -29,13 +29,13 @@ fun PlayPauseButton(
     onLongClick: (() -> Unit)? = null,
     isPlaying: Boolean = false,
     isEnabled: Boolean = true,
+    style: ButtonStyle = ButtonStyle(),
+    iconColor: Color = Color.Unspecified,
 ) {
     Button(
         onClick = onClick,
         onLongClick = onLongClick,
-        contentColor = ColorToken.OnPrimary,
-        containerColor = ColorToken.Primary,
-        shape = ShapeToken.Primary,
+        style = style,
         enabled = isEnabled,
         contentPadding = PaddingValues(vertical = 2.dp, horizontal = 2.dp),
         modifier = modifier
@@ -46,7 +46,7 @@ fun PlayPauseButton(
             contentDescription = if (isPlaying) {
                 PlayPauseButtonContentDescriptionPlaying
             } else PlayPauseButtonContentDescriptionPaused,
-            colorFilter = ColorFilter.tint(PaletteTheme.colorScheme.onPrimary),
+            colorFilter = ColorFilter.tint(iconColor.takeIf { it != Color.Unspecified } ?: LocalContentColor.current),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(shapePadding)
@@ -59,13 +59,11 @@ fun PlayPauseButton(
 private fun PlayPreview(
     @PreviewParameter(BoolPreviewParameterProvider::class) isEnabled: Boolean,
 ) {
-    PaletteTheme {
-        PlayPauseButton(
-            isEnabled = isEnabled,
-            isPlaying = false,
-            onClick = {},
-        )
-    }
+    PlayPauseButton(
+        isEnabled = isEnabled,
+        isPlaying = false,
+        onClick = {},
+    )
 }
 
 @Preview
@@ -73,11 +71,9 @@ private fun PlayPreview(
 private fun PausePreview(
     @PreviewParameter(BoolPreviewParameterProvider::class) isEnabled: Boolean,
 ) {
-    PaletteTheme {
-        PlayPauseButton(
-            isEnabled = isEnabled,
-            isPlaying = true,
-            onClick = {},
-        )
-    }
+    PlayPauseButton(
+        isEnabled = isEnabled,
+        isPlaying = true,
+        onClick = {},
+    )
 }
