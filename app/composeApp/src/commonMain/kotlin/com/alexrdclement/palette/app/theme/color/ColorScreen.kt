@@ -21,9 +21,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.core.ButtonDefaults
-import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.theme.components.Button
+import com.alexrdclement.palette.theme.components.ButtonDefaults
+import com.alexrdclement.palette.theme.components.Text
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.Scaffold

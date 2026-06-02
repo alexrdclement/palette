@@ -14,7 +14,7 @@ import com.alexrdclement.palette.formats.demo.money.MoneyFormatDemoControl
 import com.alexrdclement.palette.formats.demo.money.MoneyFormatDemoState
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.layout.BoxWithLabel
+import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.money.MoneyFormat

@@ -17,7 +17,7 @@ import com.alexrdclement.palette.components.demo.core.TextDemo
 import com.alexrdclement.palette.components.demo.core.TextDemoControl
 import com.alexrdclement.palette.components.demo.core.TextDemoState
 import com.alexrdclement.palette.components.demo.core.TextDemoStateSaver
-import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.theme.components.Button
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl

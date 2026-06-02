@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.DpSize
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.media.MediaControlBar
+import com.alexrdclement.palette.theme.components.media.MediaControlBar
 import com.alexrdclement.palette.components.media.model.Artist
 import com.alexrdclement.palette.components.media.model.MediaItem
 import kotlinx.collections.immutable.persistentListOf

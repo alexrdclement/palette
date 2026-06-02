@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.theme.components.Surface
 import com.alexrdclement.palette.testing.PaparazziTestRule
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.google.testing.junit.testparameterinjector.TestParameter

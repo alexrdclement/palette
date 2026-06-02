@@ -12,8 +12,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.alexrdclement.palette.components.auth.AuthButton
-import com.alexrdclement.palette.components.auth.AuthButtonStyle
+import com.alexrdclement.palette.theme.components.auth.AuthButton
+import com.alexrdclement.palette.theme.components.auth.AuthButtonStyle
 import com.alexrdclement.palette.components.auth.AuthState
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control

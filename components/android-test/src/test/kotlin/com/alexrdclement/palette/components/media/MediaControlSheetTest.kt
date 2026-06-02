@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.theme.components.Text
 import com.alexrdclement.palette.components.layout.PeekSheetAnchor
 import com.alexrdclement.palette.components.layout.rememberPeekSheetState
 import com.alexrdclement.palette.testing.PaparazziTestRule

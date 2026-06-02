@@ -3,7 +3,7 @@ package com.alexrdclement.palette.app
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.app.navigation.PaletteNav
 import com.alexrdclement.palette.app.navigation.rememberPaletteNavController
-import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.theme.components.Surface
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.theme.PaletteTheme

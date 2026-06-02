@@ -3,7 +3,7 @@ package com.alexrdclement.palette.components.geometry
 import androidx.compose.foundation.layout.size
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.theme.components.Surface
 import com.alexrdclement.palette.components.util.ViewingAngle
 import com.alexrdclement.palette.testing.PaparazziTestRule
 import com.alexrdclement.palette.theme.PaletteTheme

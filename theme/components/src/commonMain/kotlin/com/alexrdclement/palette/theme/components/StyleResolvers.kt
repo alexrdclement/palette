@@ -2,6 +2,7 @@ package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.modifiers.BorderStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 import com.alexrdclement.palette.theme.modifiers.toStyle
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
@@ -12,18 +13,22 @@ import com.alexrdclement.palette.components.core.BorderStyle as ComponentBorderS
 import com.alexrdclement.palette.components.core.ButtonStyle as ComponentButtonStyle
 
 /**
+ * Resolves a theme [BorderStyle] (token-based) into the unopinionated component
+ * [ComponentBorderStyle], reading the current [PaletteTheme] for colors and shapes.
+ */
+@Composable
+fun BorderStyle.toComponentStyle(): ComponentBorderStyle = ComponentBorderStyle(
+    width = this.width,
+    color = this.color.toColor(),
+    shape = this.shape.toShape(),
+)
+
+/**
  * Resolves a theme [BorderStyleToken] into the unopinionated component [ComponentBorderStyle],
  * reading the current [PaletteTheme] for colors and shapes.
  */
 @Composable
-fun BorderStyleToken.toComponentStyle(): ComponentBorderStyle {
-    val style = this.toStyle()
-    return ComponentBorderStyle(
-        width = style.width,
-        color = style.color.toColor(),
-        shape = style.shape.toShape(),
-    )
-}
+fun BorderStyleToken.toComponentStyle(): ComponentBorderStyle = this.toStyle().toComponentStyle()
 
 /**
  * Resolves a theme [ButtonStyleToken] into the unopinionated component [ComponentButtonStyle],

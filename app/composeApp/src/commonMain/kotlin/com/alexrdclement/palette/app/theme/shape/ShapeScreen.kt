@@ -12,16 +12,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.theme.components.Text
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.components.core.ShapeType
+import com.alexrdclement.palette.components.core.toShape as shapeTypeToShape
 import com.alexrdclement.palette.theme.ShapeScheme
 import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.ShapeType
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
@@ -150,7 +151,7 @@ private fun makeControlForToken(
         onValueChange = { shapeType ->
             val shapeScheme = state.shapeScheme.copy(
                 token = token,
-                shape = shapeType.toShape(
+                shape = shapeType.shapeTypeToShape(
                     cornerRadius = state.cornerRadiusByShapeToken[token]!!
                 )
             )
@@ -164,7 +165,7 @@ private fun makeControlForToken(
         onValueChange = { radius ->
             val shapeScheme = state.shapeScheme.copy(
                 token = token,
-                shape = ShapeType.Rectangle.toShape(
+                shape = ShapeType.Rectangle.shapeTypeToShape(
                     cornerRadius = radius.dp,
                 )
             )

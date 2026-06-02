@@ -14,7 +14,7 @@ import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemoControl
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemoState
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemoStateSaver
-import com.alexrdclement.palette.theme.styles.TextStyle
+import com.alexrdclement.palette.components.core.TextStyle
 import kotlinx.collections.immutable.persistentListOf
 
 val TextStyleDemoDefault = TextStyle(

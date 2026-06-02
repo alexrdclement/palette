@@ -15,10 +15,10 @@ import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.demo.core.ComposeTextStyleDemoControl
 import com.alexrdclement.palette.components.demo.core.rememberComposeTextStyleDemoState
-import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.theme.components.Text
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.layout.BoxWithLabel
+import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
@@ -28,7 +28,7 @@ import com.alexrdclement.palette.theme.TypographyToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.copy
-import com.alexrdclement.palette.theme.styles.TextStyle
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.theme.toComposeTextStyle
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf

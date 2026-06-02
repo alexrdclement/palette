@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.media.PlayPauseButton
+import com.alexrdclement.palette.theme.components.media.PlayPauseButton
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable

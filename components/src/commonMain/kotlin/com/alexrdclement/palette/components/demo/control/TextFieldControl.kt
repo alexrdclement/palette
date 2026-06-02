@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.components.demo.control
 
+import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.TextStyle
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
