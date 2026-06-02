@@ -39,6 +39,8 @@ import com.alexrdclement.palette.components.util.calculateEndPadding
 import com.alexrdclement.palette.components.util.calculateHorizontalPadding
 import com.alexrdclement.palette.components.util.calculateStartPadding
 import com.alexrdclement.palette.components.util.calculateVerticalPadding
+import androidx.compose.ui.graphics.Color
+import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.util.toIntSize
 import com.alexrdclement.palette.components.util.toPx
@@ -71,6 +73,8 @@ fun MediaControlBar(
     titleStyle: TextStyle = TextStyle(),
     artistStyle: TextStyle = TextStyle(),
     contentSpacing: Dp = 8.dp,
+    playPauseButtonStyle: ButtonStyle = ButtonStyle(),
+    playPauseIconColor: Color = Color.Unspecified,
     progress: () -> Float = { 0f },
     onClick: () -> Unit = {},
     stateDescription: String? = null,
@@ -208,6 +212,8 @@ fun MediaControlBar(
                     PlayPauseButton(
                         onClick = onPlayPauseClick,
                         isPlaying = isPlaying,
+                        style = playPauseButtonStyle,
+                        iconColor = playPauseIconColor,
                         modifier = Modifier
                             .size(52.dp)
                             .padding(contentSpacing)

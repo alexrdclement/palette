@@ -61,6 +61,7 @@ fun Slider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     stepIncrement: Float,
     onValueChangeFinished: (() -> Unit)? = null,
+    colors: SliderColors = SliderColors(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     Slider(
@@ -71,6 +72,7 @@ fun Slider(
         valueRange = valueRange,
         steps = stepsForIncrement(valueRange, stepIncrement),
         onValueChangeFinished = onValueChangeFinished,
+        colors = colors,
         interactionSource = interactionSource,
     )
 }
@@ -84,6 +86,7 @@ fun Slider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
+    colors: SliderColors = SliderColors(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
@@ -111,6 +114,7 @@ fun Slider(
         state = state,
         modifier = modifier,
         enabled = enabled,
+        colors = colors,
         interactionSource = interactionSource,
     )
 }
@@ -124,6 +128,7 @@ fun Slider(
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     onValueChangeFinished: (() -> Unit)? = null,
+    colors: SliderColors = SliderColors(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
@@ -151,6 +156,7 @@ fun Slider(
         state = state,
         modifier = modifier,
         enabled = enabled,
+        colors = colors,
         interactionSource = interactionSource,
     )
 }
@@ -236,6 +242,7 @@ fun RangeSlider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     stepIncrement: Float,
     onValueChangeFinished: (() -> Unit)? = null,
+    colors: SliderColors = SliderColors(),
 ) {
     RangeSlider(
         value = value,
@@ -245,6 +252,7 @@ fun RangeSlider(
         valueRange = valueRange,
         steps = stepsForIncrement(valueRange, stepIncrement),
         onValueChangeFinished = onValueChangeFinished,
+        colors = colors,
     )
 }
 
@@ -257,6 +265,7 @@ fun RangeSlider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
+    colors: SliderColors = SliderColors(),
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
     val state = remember(valueRange, steps) {
@@ -285,6 +294,7 @@ fun RangeSlider(
         state = state,
         modifier = modifier,
         enabled = enabled,
+        colors = colors,
     )
 }
 
@@ -297,6 +307,7 @@ fun RangeSlider(
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     onValueChangeFinished: (() -> Unit)? = null,
+    colors: SliderColors = SliderColors(),
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
     val state = remember(valueRange, snapValues) {
@@ -325,6 +336,7 @@ fun RangeSlider(
         state = state,
         modifier = modifier,
         enabled = enabled,
+        colors = colors,
     )
 }
 

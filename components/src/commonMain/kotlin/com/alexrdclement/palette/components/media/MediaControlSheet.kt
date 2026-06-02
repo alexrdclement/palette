@@ -13,14 +13,17 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionExpanded
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionPartiallyExpanded
+import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.layout.PeekSheet
 import com.alexrdclement.palette.components.layout.PeekSheetAnchor
 import com.alexrdclement.palette.components.layout.PeekSheetState
@@ -41,6 +44,11 @@ fun MediaControlSheet(
     contentPadding: PaddingValues = PaddingValues(0.dp),
     minContentSize: DpSize = DpSize(64.dp, 64.dp),
     maxContentSize: DpSize = DpSize(Dp.Infinity, 600.dp),
+    titleStyle: TextStyle = TextStyle(),
+    artistStyle: TextStyle = TextStyle(),
+    contentSpacing: Dp = 8.dp,
+    playPauseButtonStyle: ButtonStyle = ButtonStyle(),
+    playPauseIconColor: Color = Color.Unspecified,
     aboveControlBar: @Composable () -> Unit = {},
     belowControlBar: @Composable () -> Unit = {},
 ) {
@@ -60,6 +68,11 @@ fun MediaControlSheet(
                 contentPadding = contentPadding.calculateHorizontalPaddingValues(),
                 minContentSize = minContentSize,
                 maxContentSize = maxContentSize,
+                titleStyle = titleStyle,
+                artistStyle = artistStyle,
+                contentSpacing = contentSpacing,
+                playPauseButtonStyle = playPauseButtonStyle,
+                playPauseIconColor = playPauseIconColor,
                 stateDescription = when (state.currentValue) {
                     PeekSheetAnchor.Peek -> MediaControlBarStateDescriptionPartiallyExpanded
                     PeekSheetAnchor.Expanded -> MediaControlBarStateDescriptionExpanded
