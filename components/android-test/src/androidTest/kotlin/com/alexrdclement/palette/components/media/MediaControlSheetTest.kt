@@ -19,6 +19,8 @@ import androidx.compose.ui.test.performClick
 import com.alexrdclement.palette.components.MediaControlBarContentDescription
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionExpanded
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionPartiallyExpanded
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.components.Text
 import com.alexrdclement.palette.components.layout.PeekSheetAnchor
 import com.alexrdclement.palette.components.layout.rememberPeekSheetState
@@ -63,6 +65,7 @@ class MediaControlSheetTest {
                 }
             },
             state = state,
+            style = PaletteTheme.components.mediaControlSheetStyle,
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,

@@ -33,6 +33,10 @@ import com.alexrdclement.palette.components.media.model.MediaItem
 import com.alexrdclement.palette.components.util.calculateHorizontalPaddingValues
 import kotlinx.coroutines.launch
 
+data class MediaControlSheetStyle(
+    val controlBarStyle: MediaControlBarStyle = MediaControlBarStyle(),
+)
+
 @Composable
 fun MediaControlSheet(
     mediaItem: MediaItem,
@@ -44,11 +48,7 @@ fun MediaControlSheet(
     contentPadding: PaddingValues = PaddingValues(0.dp),
     minContentSize: DpSize = DpSize(64.dp, 64.dp),
     maxContentSize: DpSize = DpSize(Dp.Infinity, 600.dp),
-    titleStyle: TextStyle = TextStyle(),
-    artistStyle: TextStyle = TextStyle(),
-    contentSpacing: Dp = 8.dp,
-    playPauseButtonStyle: ButtonStyle = ButtonStyle(),
-    playPauseIconColor: Color = Color.Unspecified,
+    style: MediaControlSheetStyle = MediaControlSheetStyle(),
     aboveControlBar: @Composable () -> Unit = {},
     belowControlBar: @Composable () -> Unit = {},
 ) {
@@ -68,11 +68,7 @@ fun MediaControlSheet(
                 contentPadding = contentPadding.calculateHorizontalPaddingValues(),
                 minContentSize = minContentSize,
                 maxContentSize = maxContentSize,
-                titleStyle = titleStyle,
-                artistStyle = artistStyle,
-                contentSpacing = contentSpacing,
-                playPauseButtonStyle = playPauseButtonStyle,
-                playPauseIconColor = playPauseIconColor,
+                style = style.controlBarStyle,
                 stateDescription = when (state.currentValue) {
                     PeekSheetAnchor.Peek -> MediaControlBarStateDescriptionPartiallyExpanded
                     PeekSheetAnchor.Expanded -> MediaControlBarStateDescriptionExpanded

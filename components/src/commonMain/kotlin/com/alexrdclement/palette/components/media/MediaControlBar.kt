@@ -50,6 +50,14 @@ import kotlin.math.roundToInt
 private const val TraceName = "MediaControlBar"
 private const val ArtworkTraceName = "$TraceName:MediaItemArtwork"
 
+data class MediaControlBarStyle(
+    val titleStyle: TextStyle = TextStyle(),
+    val artistStyle: TextStyle = TextStyle(),
+    val contentSpacing: Dp = 8.dp,
+    val artworkStyle: MediaItemArtworkStyle = MediaItemArtworkStyle(),
+    val playPauseButtonStyle: PlayPauseButtonStyle = PlayPauseButtonStyle(),
+)
+
 private data class CachedSizes(
     val minContentWidth: Float,
     val minContentHeight: Float,
@@ -70,11 +78,7 @@ fun MediaControlBar(
     contentPadding: PaddingValues = PaddingValues(0.dp),
     minContentSize: DpSize = DpSize(width = 64.dp, height = 64.dp),
     maxContentSize: DpSize = DpSize(width = Dp.Infinity, height = Dp.Infinity),
-    titleStyle: TextStyle = TextStyle(),
-    artistStyle: TextStyle = TextStyle(),
-    contentSpacing: Dp = 8.dp,
-    playPauseButtonStyle: ButtonStyle = ButtonStyle(),
-    playPauseIconColor: Color = Color.Unspecified,
+    style: MediaControlBarStyle = MediaControlBarStyle(),
     progress: () -> Float = { 0f },
     onClick: () -> Unit = {},
     stateDescription: String? = null,
@@ -155,6 +159,7 @@ fun MediaControlBar(
 
                     MediaItemArtwork(
                         imageUrl = mediaItem.artworkLargeUrl,
+                        style = style.artworkStyle,
                         modifier = Modifier
                             .layout { measurable, constraints ->
                                 trace("$ArtworkTraceName:layout") {
@@ -188,21 +193,21 @@ fun MediaControlBar(
                         verticalArrangement = Arrangement.Center,
                         modifier = Modifier
                             .weight(1f)
-                            .padding(horizontal = contentSpacing)
+                            .padding(horizontal = style.contentSpacing)
                             .graphicsLayer {
                                 alpha = 1f - progress()
                             }
                     ) {
                         Text(
                             text = mediaItem.title,
-                            style = titleStyle,
+                            style = style.titleStyle,
                             maxLines = 1,
                             modifier = Modifier
                                 .basicMarquee()
                         )
                         Text(
                             text = mediaItem.artists.joinToString { it.name },
-                            style = artistStyle,
+                            style = style.artistStyle,
                             maxLines = 1,
                             modifier = Modifier
                                 .basicMarquee()
@@ -212,11 +217,10 @@ fun MediaControlBar(
                     PlayPauseButton(
                         onClick = onPlayPauseClick,
                         isPlaying = isPlaying,
-                        style = playPauseButtonStyle,
-                        iconColor = playPauseIconColor,
+                        style = style.playPauseButtonStyle,
                         modifier = Modifier
                             .size(52.dp)
-                            .padding(contentSpacing)
+                            .padding(style.contentSpacing)
                             .graphicsLayer {
                                 alpha = 1f - progress()
                             }

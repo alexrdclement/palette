@@ -22,6 +22,11 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 
+data class PlayPauseButtonStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val iconColor: Color = Color.Unspecified,
+)
+
 @Composable
 fun PlayPauseButton(
     onClick: () -> Unit,
@@ -29,13 +34,12 @@ fun PlayPauseButton(
     onLongClick: (() -> Unit)? = null,
     isPlaying: Boolean = false,
     isEnabled: Boolean = true,
-    style: ButtonStyle = ButtonStyle(),
-    iconColor: Color = Color.Unspecified,
+    style: PlayPauseButtonStyle = PlayPauseButtonStyle(),
 ) {
     Button(
         onClick = onClick,
         onLongClick = onLongClick,
-        style = style,
+        style = style.buttonStyle,
         enabled = isEnabled,
         contentPadding = PaddingValues(vertical = 2.dp, horizontal = 2.dp),
         modifier = modifier
@@ -46,7 +50,7 @@ fun PlayPauseButton(
             contentDescription = if (isPlaying) {
                 PlayPauseButtonContentDescriptionPlaying
             } else PlayPauseButtonContentDescriptionPaused,
-            colorFilter = ColorFilter.tint(iconColor.takeIf { it != Color.Unspecified } ?: LocalContentColor.current),
+            colorFilter = ColorFilter.tint(style.iconColor.takeIf { it != Color.Unspecified } ?: LocalContentColor.current),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(shapePadding)

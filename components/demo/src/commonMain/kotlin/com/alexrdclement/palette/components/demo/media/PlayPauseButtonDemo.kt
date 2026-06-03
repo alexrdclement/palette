@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.components.demo.media
 
+import com.alexrdclement.palette.theme.components
+import com.alexrdclement.palette.theme.PaletteTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -13,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.theme.components.media.PlayPauseButton
+import com.alexrdclement.palette.components.media.PlayPauseButton
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -60,6 +62,7 @@ fun DemoScope.PlayPauseButtonDemo(
         onClick = onPlayPauseClick,
         isPlaying = isPlaying,
         isEnabled = isEnabled,
+        style = PaletteTheme.components.playPauseButtonStyle,
         modifier = modifier
             .size(52.dp)
             .align(Alignment.Center),

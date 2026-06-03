@@ -14,12 +14,16 @@ import com.alexrdclement.palette.components.core.TextStyle
 
 private const val DisabledAlpha = 0.35f
 
+data class MediaItemArtworkStyle(
+    val fallbackTextStyle: TextStyle = TextStyle(),
+)
+
 @Composable
 fun MediaItemArtwork(
     imageUrl: String?,
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
-    fallbackTextStyle: TextStyle = TextStyle(),
+    style: MediaItemArtworkStyle = MediaItemArtworkStyle(),
 ) {
     if (imageUrl != null) {
         AsyncImage(
@@ -38,7 +42,7 @@ fun MediaItemArtwork(
         ) {
             Text(
                 "Art",
-                style = fallbackTextStyle,
+                style = style.fallbackTextStyle,
             )
         }
     }

@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.components.demo.media
 
+import com.alexrdclement.palette.theme.components
+import com.alexrdclement.palette.theme.PaletteTheme
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +17,7 @@ import androidx.compose.ui.unit.DpSize
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.theme.components.media.MediaControlBar
+import com.alexrdclement.palette.components.media.MediaControlBar
 import com.alexrdclement.palette.components.media.model.Artist
 import com.alexrdclement.palette.components.media.model.MediaItem
 import kotlinx.collections.immutable.persistentListOf
@@ -74,6 +76,7 @@ fun DemoScope.MediaControlBarDemo(
             isPlaying = isPlaying,
             onPlayPauseClick = onPlayPauseClick,
             progress = progress,
+            style = PaletteTheme.components.mediaControlBarStyle,
             maxContentSize = DpSize(
                 width = maxWidth,
                 height = with(LocalDensity.current) { maxHeight.toDp() / 2f },

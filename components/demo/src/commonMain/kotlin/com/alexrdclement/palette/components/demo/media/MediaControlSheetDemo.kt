@@ -19,10 +19,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.components.Text
 import com.alexrdclement.palette.components.layout.PeekSheetAnchor
 import com.alexrdclement.palette.components.layout.rememberPeekSheetState
-import com.alexrdclement.palette.theme.components.media.MediaControlSheet
+import com.alexrdclement.palette.components.media.MediaControlSheet
 import com.alexrdclement.palette.components.media.model.Artist
 import com.alexrdclement.palette.components.media.model.MediaItem
 import com.alexrdclement.palette.components.util.copy
@@ -72,6 +73,7 @@ fun MediaControlSheetDemo(
                 }
             },
             state = state,
+            style = PaletteTheme.components.mediaControlSheetStyle,
             maxContentSize = DpSize(
                 width = Dp.Infinity,
                 height = with(LocalDensity.current) { maxHeight.toDp() / 2f },
