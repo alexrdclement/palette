@@ -64,11 +64,13 @@ fun Button(
         onDoubleClick = onDoubleClick,
         hapticFeedbackEnabled = hapticFeedbackEnabled,
         enabled = enabled,
-        shape = style.shape,
-        color = containerColor,
-        contentColor = contentColor,
-        borderStyle = style.borderStyle,
-        indication = indication,
+        style = SurfaceStyle(
+            shape = style.shape,
+            color = containerColor,
+            contentColor = contentColor,
+            borderStyle = style.borderStyle,
+            indication = indication,
+        ),
         interactionSource = interactionSource,
         modifier = modifier.semantics { role = Role.Button }
     ) { shapePadding ->

@@ -28,25 +28,31 @@ import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 import kotlin.math.sqrt
 
+data class SurfaceStyle(
+    val shape: Shape = Shape.Rectangle(),
+    val color: Color = Color.Unspecified,
+    val contentColor: Color = Color.Unspecified,
+    val borderStyle: BorderStyle? = null,
+    val indication: Indication? = null,
+)
+
 @Composable
 fun Surface(
     modifier: Modifier = Modifier,
-    shape: Shape = Shape.Rectangle(),
-    color: Color = Color.Unspecified,
-    contentColor: Color = LocalContentColor.current,
-    borderStyle: BorderStyle? = null,
+    style: SurfaceStyle = SurfaceStyle(),
     content: @Composable (PaddingValues) -> Unit
 ) {
+    val contentColor = style.contentColor.takeOrElse { LocalContentColor.current }
     CompositionLocalProvider(
         LocalContentColor provides contentColor,
     ) {
         Box(
             modifier = modifier
-                .shapeLayout(shape)
+                .shapeLayout(style.shape)
                 .surface(
-                    composeShape = shape.toComposeShape(),
-                    backgroundColor = color,
-                    borderStyle = borderStyle,
+                    composeShape = style.shape.toComposeShape(),
+                    backgroundColor = style.color,
+                    borderStyle = style.borderStyle,
                 )
                 .semantics(mergeDescendants = false) {
                     isTraversalGroup = true
@@ -54,7 +60,7 @@ fun Surface(
                 .pointerInput(Unit) {},
             propagateMinConstraints = true
         ) {
-            ShapeContent(shape, content)
+            ShapeContent(style.shape, content)
         }
     }
 }
@@ -68,25 +74,22 @@ fun Surface(
     onDoubleClick: (() -> Unit)? = null,
     hapticFeedbackEnabled: Boolean = true,
     enabled: Boolean = true,
-    shape: Shape = Shape.Rectangle(),
-    color: Color = Color.Unspecified,
-    contentColor: Color = LocalContentColor.current,
-    borderStyle: BorderStyle? = null,
-    indication: Indication? = null,
+    style: SurfaceStyle = SurfaceStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable (PaddingValues) -> Unit
 ) {
+    val contentColor = style.contentColor.takeOrElse { LocalContentColor.current }
     CompositionLocalProvider(
         LocalContentColor provides contentColor
     ) {
         Box(
             propagateMinConstraints = true,
             modifier = modifier
-                .shapeLayout(shape)
+                .shapeLayout(style.shape)
                 .shapeClickable(
-                    shape = shape,
+                    shape = style.shape,
                     interactionSource = interactionSource,
-                    indication = indication ?: LocalIndication.current,
+                    indication = style.indication ?: LocalIndication.current,
                     enabled = enabled,
                     onClick = onClick,
                     onLongClickLabel = onLongClickLabel,
@@ -95,12 +98,12 @@ fun Surface(
                     hapticFeedbackEnabled = hapticFeedbackEnabled,
                 )
                 .surface(
-                    composeShape = shape.toComposeShape(),
-                    backgroundColor = color,
-                    borderStyle = borderStyle,
+                    composeShape = style.shape.toComposeShape(),
+                    backgroundColor = style.color,
+                    borderStyle = style.borderStyle,
                 )
         ) {
-            ShapeContent(shape, content)
+            ShapeContent(style.shape, content)
         }
     }
 }

@@ -1,11 +1,9 @@
-package com.alexrdclement.palette.theme.components
+package com.alexrdclement.palette.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
 import com.alexrdclement.palette.components.LocalContentColor
-import com.alexrdclement.palette.theme.ColorScheme
-import com.alexrdclement.palette.theme.PaletteTheme
 
 fun ColorScheme.contentColorFor(backgroundColor: Color): Color =
     when (backgroundColor) {

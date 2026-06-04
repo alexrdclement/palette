@@ -24,6 +24,7 @@ import com.alexrdclement.palette.components.color.ColorDisplay
 import com.alexrdclement.palette.components.color.ColorPicker
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
 
@@ -82,9 +83,7 @@ private fun ColorPickerDialog(
     Dialog(
         onDismissRequest = onDismissRequest,
     ) {
-        Surface(
-            borderStyle = null,
-        ) {
+        Surface {
             ColorPickerDialogContent(
                 color = color,
                 onColorSelected = onColorSelected,

@@ -2,6 +2,7 @@ package com.alexrdclement.palette.theme
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.ButtonStyle
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.media.MediaControlBarStyle
 import com.alexrdclement.palette.components.media.MediaControlSheetStyle
 import com.alexrdclement.palette.components.media.MediaItemArtworkStyle
@@ -16,6 +17,14 @@ import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
  * resolved styles so a widget looks the same standalone or nested.
  */
 object PaletteComponentStyles {
+
+    val surfaceStyle: SurfaceStyle
+        @Composable get() = SurfaceStyle(
+            shape = PaletteTheme.shapeScheme.surface,
+            color = PaletteTheme.colorScheme.surface,
+            contentColor = PaletteTheme.colorScheme.contentColorFor(PaletteTheme.colorScheme.surface),
+            indication = PaletteTheme.indication,
+        )
 
     val playPauseButtonStyle: PlayPauseButtonStyle
         @Composable get() = PlayPauseButtonStyle(

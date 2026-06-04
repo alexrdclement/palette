@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.BorderStyle
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.core.copy
@@ -106,7 +107,7 @@ fun DialogContent(
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Surface(
-        borderStyle = borderStyle,
+        style = SurfaceStyle(borderStyle = borderStyle),
         modifier = modifier,
     ) {
         Column(

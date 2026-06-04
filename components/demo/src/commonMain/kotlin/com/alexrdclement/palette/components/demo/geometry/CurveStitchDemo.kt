@@ -24,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.theme.components.Surface
+import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
@@ -37,6 +37,7 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import kotlinx.collections.immutable.toPersistentList
 import kotlin.math.roundToInt
 
@@ -387,7 +388,7 @@ class CurveStitchDemoControl(
 @Composable
 fun CurveStitchDemoPreview() {
     PaletteTheme {
-        Surface {
+        Surface(style = PaletteTheme.components.surfaceStyle) {
             CurveStitchDemo()
         }
     }

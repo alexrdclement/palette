@@ -5,9 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.theme.components.Surface
+import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.testing.PaparazziTestRule
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
@@ -37,7 +38,7 @@ class CurveStitchTest(
     fun curveStitch() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.components.surfaceStyle) {
                     CurveStitch(
                         start = Offset(0.1f, 0.1f),
                         vertex = Offset(0.1f, 0.9f),
@@ -56,7 +57,7 @@ class CurveStitchTest(
     fun curveStitchStar() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.components.surfaceStyle) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
@@ -76,7 +77,7 @@ class CurveStitchTest(
     fun curveStitchStarInsideOnly() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.components.surfaceStyle) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
@@ -95,7 +96,7 @@ class CurveStitchTest(
     fun curveStitchStarOutsideOnly() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.components.surfaceStyle) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
@@ -114,7 +115,7 @@ class CurveStitchTest(
     fun curveStitchStarInnerRadius0() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.components.surfaceStyle) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
@@ -132,7 +133,7 @@ class CurveStitchTest(
     fun curveStitchShape() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.components.surfaceStyle) {
                     CurveStitchShape(
                         numLines = numLines,
                         numPoints = numPoints,

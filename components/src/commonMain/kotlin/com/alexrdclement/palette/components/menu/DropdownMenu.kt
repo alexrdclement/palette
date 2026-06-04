@@ -47,6 +47,7 @@ import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.core.BorderStyle
 import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMaxWidth
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMinHeight
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMinWidth
@@ -150,7 +151,7 @@ internal fun DropdownMenuContent(
     }
 
     Surface(
-        borderStyle = borderStyle,
+        style = SurfaceStyle(borderStyle = borderStyle),
         modifier = Modifier.graphicsLayer {
             scaleX = scale
             scaleY = scale
