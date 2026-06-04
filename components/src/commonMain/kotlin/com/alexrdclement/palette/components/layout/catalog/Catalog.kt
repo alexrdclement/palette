@@ -19,19 +19,23 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Text
 
+data class CatalogStyle(
+    val itemSpacing: Dp = 16.dp,
+    val itemStyle: ButtonStyle = ButtonStyle(),
+)
+
 @Composable
 fun <T : CatalogItem> Catalog(
     items: List<T>,
     onItemClick: (T) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
-    itemSpacing: Dp = 16.dp,
-    itemStyle: ButtonStyle = ButtonStyle(),
+    style: CatalogStyle = CatalogStyle(),
 ) {
     LazyColumn(
         state = rememberLazyListState(),
         verticalArrangement = Arrangement.spacedBy(
-            space = itemSpacing,
+            space = style.itemSpacing,
             alignment = Alignment.CenterVertically,
         ),
         contentPadding = contentPadding,
@@ -43,7 +47,7 @@ fun <T : CatalogItem> Catalog(
             key = { it.title }
         ) { item ->
             Button(
-                style = itemStyle,
+                style = style.itemStyle,
                 onClick = { onItemClick(item) },
                 modifier = Modifier.fillMaxWidth()
             ) {

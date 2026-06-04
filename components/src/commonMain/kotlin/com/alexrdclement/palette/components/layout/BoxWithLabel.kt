@@ -13,27 +13,31 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextStyle
 
+data class BoxWithLabelStyle(
+    val spacing: Dp = 8.dp,
+    val labelPadding: Dp = 4.dp,
+    val labelStyle: TextStyle = TextStyle(),
+    val borderColor: Color = Color.Unspecified,
+)
+
 @Composable
 fun BoxWithLabel(
     label: String,
     modifier: Modifier = Modifier,
-    spacing: Dp = 8.dp,
-    labelPadding: Dp = 4.dp,
-    labelStyle: TextStyle = TextStyle(),
-    borderColor: Color = Color.Unspecified,
+    style: BoxWithLabelStyle = BoxWithLabelStyle(),
     content: @Composable () -> Unit,
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(spacing),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         horizontalAlignment = Alignment.Start,
         modifier = modifier,
     ) {
         Text(
             text = label,
-            style = labelStyle,
+            style = style.labelStyle,
             modifier = Modifier
-                .border(1.dp, borderColor)
-                .padding(labelPadding)
+                .border(1.dp, style.borderColor)
+                .padding(style.labelPadding)
                 .align(Alignment.Start)
         )
         content()

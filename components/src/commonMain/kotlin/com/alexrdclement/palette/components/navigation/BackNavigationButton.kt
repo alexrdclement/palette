@@ -18,25 +18,29 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Surface
 
+data class BackNavigationButtonStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val contentPadding: PaddingValues = PaddingValues(16.dp),
+    val iconColor: Color = Color.Unspecified,
+)
+
 @Composable
 fun BackNavigationButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    style: ButtonStyle = ButtonStyle(),
-    contentPadding: PaddingValues = PaddingValues(16.dp),
-    iconColor: Color = Color.Unspecified,
+    style: BackNavigationButtonStyle = BackNavigationButtonStyle(),
 ) {
     Button(
         onClick = onClick,
-        style = style,
-        contentPadding = contentPadding,
+        style = style.buttonStyle,
+        contentPadding = style.contentPadding,
         modifier = modifier.size(48.dp),
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .clip(BackNavigationIconShape)
-                .background(iconColor.takeIf { it != Color.Unspecified } ?: LocalContentColor.current)
+                .background(style.iconColor.takeIf { it != Color.Unspecified } ?: LocalContentColor.current)
         )
     }
 }

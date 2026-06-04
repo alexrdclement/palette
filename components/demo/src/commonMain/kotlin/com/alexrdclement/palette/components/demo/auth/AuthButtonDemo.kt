@@ -12,15 +12,37 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.alexrdclement.palette.theme.components.auth.AuthButton
-import com.alexrdclement.palette.theme.components.auth.AuthButtonStyle
+import com.alexrdclement.palette.components.auth.AuthButton
 import com.alexrdclement.palette.components.auth.AuthState
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.theme.toComponentStyle
 import kotlinx.collections.immutable.persistentListOf
+
+enum class AuthButtonStyle {
+    Primary,
+    Secondary,
+    Tertiary,
+}
+
+private val AuthButtonStyle.buttonStyleToken: ButtonStyleToken
+    get() = when (this) {
+        AuthButtonStyle.Primary -> ButtonStyleToken.Primary
+        AuthButtonStyle.Secondary -> ButtonStyleToken.Secondary
+        AuthButtonStyle.Tertiary -> ButtonStyleToken.Tertiary
+    }
+
+private val AuthButtonStyle.textStyle: TextStyle
+    @Composable get() = when (this) {
+        AuthButtonStyle.Primary -> PaletteTheme.styles.text.labelLarge
+        AuthButtonStyle.Secondary -> PaletteTheme.styles.text.labelSmall
+        AuthButtonStyle.Tertiary -> PaletteTheme.styles.text.labelSmall
+    }
 
 @Composable
 fun AuthButtonDemo(
@@ -48,7 +70,8 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
 ) {
     AuthButton(
         authState = state.authState,
-        style = state.style,
+        buttonStyle = state.style.buttonStyleToken.toComponentStyle(),
+        textStyle = state.style.textStyle,
         onLogInClick = {},
         onLogOutClick = {},
         modifier = modifier

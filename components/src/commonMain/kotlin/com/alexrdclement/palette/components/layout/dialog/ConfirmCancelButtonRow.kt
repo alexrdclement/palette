@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.components.core.ButtonStyle
 
 @Composable
 fun ConfirmCancelButtonRow(
@@ -13,15 +14,18 @@ fun ConfirmCancelButtonRow(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
     spacing: Dp = 16.dp,
+    buttonStyle: ButtonStyle = ButtonStyle(),
 ) {
     DialogContentButtonRow(
         modifier = modifier,
     ) {
         CancelButton(
             onDismiss = onDismiss,
+            style = buttonStyle,
         )
         ConfirmButton(
             onConfirm = onConfirm,
+            style = buttonStyle,
             modifier = Modifier
                 .padding(start = spacing)
         )

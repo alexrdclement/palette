@@ -27,8 +27,15 @@ import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Dp
 import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.formats.core.inputTransformation
+
+data class TextFieldStyle(
+    val cursorBrush: Brush = SolidColor(Color.Unspecified),
+    val borderStroke: BorderStroke = BorderStroke(1.dp, Color.Unspecified),
+    val contentPadding: Dp = 8.dp,
+)
 
 @Composable
 fun TextField(
@@ -43,11 +50,13 @@ fun TextField(
     lineLimits: TextFieldLineLimits = TextFieldLineLimits.Default,
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     interactionSource: MutableInteractionSource? = null,
-    cursorBrush: Brush = TextFieldDefaults.CursorBrush,
+    style: TextFieldStyle = TextFieldStyle(),
     outputTransformation: OutputTransformation? = null,
-    decorator: TextFieldDecorator? = TextFieldDefaults.textFieldDecorator(),
+    decorator: TextFieldDecorator? = null,
     scrollState: ScrollState = rememberScrollState(),
 ) {
+    val resolvedDecorator = decorator
+        ?: TextFieldDefaults.textFieldDecorator(style.borderStroke, style.contentPadding)
     val color = textStyle.composeTextStyle.color.takeOrElse { LocalContentColor.current }
 
     val formatInputTransformation = textStyle.format.inputTransformation
@@ -68,9 +77,9 @@ fun TextField(
         lineLimits = lineLimits,
         onTextLayout = onTextLayout,
         interactionSource = interactionSource,
-        cursorBrush = cursorBrush,
+        cursorBrush = style.cursorBrush,
         outputTransformation = outputTransformation,
-        decorator = decorator,
+        decorator = resolvedDecorator,
         scrollState = scrollState,
     )
 }

@@ -17,16 +17,20 @@ import com.alexrdclement.palette.components.core.Slider
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextStyle
 
+data class ColorPickerStyle(
+    val spacing: Dp = 16.dp,
+    val labelStyle: TextStyle = TextStyle(),
+)
+
 @Composable
 fun ColorPicker(
     color: Color,
     onColorChange: (Color) -> Unit,
     modifier: Modifier = Modifier,
-    spacing: Dp = 16.dp,
-    labelStyle: TextStyle = TextStyle(),
+    style: ColorPickerStyle = ColorPickerStyle(),
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(spacing),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier,
     ) {
@@ -41,7 +45,7 @@ fun ColorPicker(
         ColorPickerControls(
             color = color,
             onColorChange = onColorChange,
-            labelStyle = labelStyle,
+            labelStyle = style.labelStyle,
             modifier = Modifier.fillMaxWidth()
         )
     }

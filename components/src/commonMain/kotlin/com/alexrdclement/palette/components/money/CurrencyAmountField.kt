@@ -12,36 +12,46 @@ import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
+import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.formats.core.NumberFormatInputTransformation
 import com.alexrdclement.palette.formats.core.NumberFormatOutputTransformation
 import com.alexrdclement.palette.formats.money.MoneyFormat
 
+data class CurrencyAmountFieldStyle(
+    val textStyle: TextStyle = TextStyle(),
+    val placeholderColor: Color = Color.Unspecified,
+    val cursorBrush: Brush = SolidColor(Color.Unspecified),
+    val padding: Dp = 16.dp,
+    val spacing: Dp = 8.dp,
+)
+
 @Composable
 fun CurrencyAmountField(
     moneyFormat: MoneyFormat,
     textFieldState: TextFieldState = rememberTextFieldState(),
-    textStyle: TextStyle = TextStyle(),
+    style: CurrencyAmountFieldStyle = CurrencyAmountFieldStyle(),
     placeholder: String = "0",
-    placeholderColor: Color = Color.Unspecified,
     includeCurrencyPrefix: Boolean = true,
     maxNumDecimalValues: Int = 2,
-    padding: Dp = 16.dp,
-    spacing: Dp = 8.dp,
 ) {
+    val textStyle = style.textStyle
     TextField(
         state = textFieldState,
         textStyle = textStyle,
+        style = TextFieldStyle(cursorBrush = style.cursorBrush),
         modifier = Modifier
             .width(IntrinsicSize.Min)
-            .padding(padding),
+            .padding(style.padding),
         inputTransformation = NumberFormatInputTransformation(
             numberFormat = moneyFormat.numberFormat,
             maxNumDecimalValues = maxNumDecimalValues,
@@ -52,7 +62,7 @@ fun CurrencyAmountField(
         lineLimits = TextFieldLineLimits.SingleLine,
         decorator = { textField ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(spacing),
+                horizontalArrangement = Arrangement.spacedBy(style.spacing),
             ) {
                 if (includeCurrencyPrefix) {
                     Text(
@@ -66,13 +76,13 @@ fun CurrencyAmountField(
                         Text(
                             text = placeholder,
                             style = textStyle.copy(
-                                color = placeholderColor,
+                                color = style.placeholderColor,
                             )
                         )
                     }
 
                     // Min width to ensure cursor still appears
-                    Box(modifier = Modifier.widthIn(min = spacing)) {
+                    Box(modifier = Modifier.widthIn(min = style.spacing)) {
                         textField()
                     }
                 }

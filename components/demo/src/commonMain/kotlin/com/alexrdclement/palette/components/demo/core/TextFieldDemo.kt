@@ -25,7 +25,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.theme.components.TextField
+import com.alexrdclement.palette.components.core.TextField
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
@@ -38,6 +38,7 @@ import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.formats.core.format
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.components.core.TextStyle
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -85,6 +86,7 @@ fun DemoScope.TextFieldDemo(
     TextField(
         state = state.textFieldState,
         textStyle = state.textStyleDemoState.textStyle,
+        style = PaletteTheme.components.textFieldStyle,
         enabled = state.enabled,
         lineLimits = when (state.lineLimits) {
             LineLimits.SingleLine -> TextFieldLineLimits.SingleLine

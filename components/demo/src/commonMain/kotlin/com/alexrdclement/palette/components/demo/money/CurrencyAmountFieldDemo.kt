@@ -18,11 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.Demo
-import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
-import com.alexrdclement.palette.theme.components.money.CurrencyAmountField
+import com.alexrdclement.palette.components.layout.BoxWithLabel
+import com.alexrdclement.palette.components.money.CurrencyAmountField
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.formats.money.format
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 
 @Composable
 fun CurrencyAmountFieldDemo(
@@ -46,6 +47,7 @@ fun CurrencyAmountFieldDemo(
                 .align(Alignment.Center),
         ) {
             BoxWithLabel(
+                style = PaletteTheme.components.boxWithLabelStyle,
                 label = "Raw",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -66,6 +68,7 @@ fun CurrencyAmountFieldDemo(
                 )
             }
             CurrencyAmountField(
+                style = PaletteTheme.components.currencyAmountFieldStyle,
                 moneyFormat = PaletteTheme.formats.moneyFormats.default,
                 textFieldState = textFieldState,
             )

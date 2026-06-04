@@ -6,8 +6,9 @@ import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.alexrdclement.palette.theme.components.TextField
+import com.alexrdclement.palette.components.core.TextField
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.components.core.TextStyle
 
 @Composable
@@ -19,6 +20,7 @@ fun DemoTextField(
         TextField(
             state = rememberTextFieldState(),
             textStyle = textStyle,
+            style = PaletteTheme.components.textFieldStyle,
             modifier = modifier.align(Alignment.Center)
         )
     }

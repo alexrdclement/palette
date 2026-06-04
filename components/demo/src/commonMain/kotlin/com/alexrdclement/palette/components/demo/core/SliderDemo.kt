@@ -14,14 +14,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.alexrdclement.palette.theme.components.RangeSlider
-import com.alexrdclement.palette.theme.components.Slider
+import com.alexrdclement.palette.components.core.RangeSlider
+import com.alexrdclement.palette.components.core.Slider
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import kotlinx.collections.immutable.toPersistentList
 import kotlin.math.roundToInt
 
@@ -66,6 +67,7 @@ fun DemoScope.SliderDemo(
     when (state.sliderType) {
         SliderType.Continuous -> when (state.stepMode) {
             StepMode.Uniform -> Slider(
+                colors = PaletteTheme.components.sliderColors,
                 value = state.value,
                 onValueChange = { state.value = it },
                 enabled = state.enabled,
@@ -73,6 +75,7 @@ fun DemoScope.SliderDemo(
                 modifier = sliderModifier,
             )
             StepMode.Custom -> Slider(
+                colors = PaletteTheme.components.sliderColors,
                 value = state.value,
                 onValueChange = { state.value = it },
                 enabled = state.enabled,
@@ -82,6 +85,7 @@ fun DemoScope.SliderDemo(
         }
         SliderType.Range -> when (state.stepMode) {
             StepMode.Uniform -> RangeSlider(
+                colors = PaletteTheme.components.sliderColors,
                 value = state.rangeStart..state.rangeEnd,
                 onValueChange = {
                     state.rangeStart = it.start
@@ -92,6 +96,7 @@ fun DemoScope.SliderDemo(
                 modifier = sliderModifier,
             )
             StepMode.Custom -> RangeSlider(
+                colors = PaletteTheme.components.sliderColors,
                 value = state.rangeStart..state.rangeEnd,
                 onValueChange = {
                     state.rangeStart = it.start

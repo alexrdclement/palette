@@ -14,11 +14,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.components.core.Surface
-import com.alexrdclement.palette.theme.components.color.ColorPicker
-import com.alexrdclement.palette.theme.components.layout.dialog.ConfirmCancelButtonRow
+import com.alexrdclement.palette.components.color.ColorPicker
+import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
 import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.toColor
 
@@ -64,12 +65,14 @@ fun ColorPickerDialogContent(
             .padding(PaletteTheme.spacing.large)
     ) {
         ColorPicker(
+            style = PaletteTheme.components.colorPickerStyle,
             color = color,
             onColorChange = { color = it },
             modifier = Modifier
                 .weight(1f, fill = false)
         )
         ConfirmCancelButtonRow(
+            buttonStyle = ButtonStyleToken.Secondary.toComponentStyle(),
             onConfirm = {
                 onColorSelected(color)
                 onDismissRequest()

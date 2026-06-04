@@ -14,11 +14,12 @@ import com.alexrdclement.palette.formats.demo.money.MoneyFormatDemoControl
 import com.alexrdclement.palette.formats.demo.money.MoneyFormatDemoState
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
+import com.alexrdclement.palette.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
@@ -53,6 +54,7 @@ fun MoneyFormatScreen(
                 .padding(paddingValues)
         ) { (token, _) ->
             BoxWithLabel(
+                style = PaletteTheme.components.boxWithLabelStyle,
                 label = token.name,
                 modifier = Modifier
                     .padding(horizontal = PaletteTheme.spacing.medium)

@@ -10,13 +10,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.main.MainCatalogItem
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.Scaffold
-import com.alexrdclement.palette.theme.components.layout.TopBar
-import com.alexrdclement.palette.theme.components.layout.catalog.Catalog
+import com.alexrdclement.palette.components.layout.TopBar
+import com.alexrdclement.palette.components.layout.catalog.Catalog
 import com.alexrdclement.palette.components.layout.catalog.CatalogItem
-import com.alexrdclement.palette.theme.components.navigation.BackNavigationButton
+import com.alexrdclement.palette.components.navigation.BackNavigationButton
 import com.alexrdclement.palette.components.util.horizontalPaddingValues
 import com.alexrdclement.palette.components.util.plus
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.trace.ReportDrawn
 
 @Composable
@@ -36,13 +37,14 @@ fun <T : CatalogItem> CatalogScreen(
                     { Text(title, style = PaletteTheme.styles.text.titleMedium) }
                 },
                 navButton = onNavigateUp?.let {
-                    { BackNavigationButton(onNavigateUp) }
+                    { BackNavigationButton(onNavigateUp, style = PaletteTheme.components.backNavigationButtonStyle) }
                 },
                 actions = actions,
             )
         },
     ) { innerPadding ->
         Catalog(
+            style = PaletteTheme.components.catalogStyle,
             items = items,
             onItemClick = onItemClick,
             contentPadding = innerPadding.plus(WindowInsets.safeDrawing.horizontalPaddingValues()),

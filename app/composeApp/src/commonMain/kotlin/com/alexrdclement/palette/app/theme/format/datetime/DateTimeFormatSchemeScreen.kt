@@ -14,12 +14,13 @@ import com.alexrdclement.palette.formats.demo.datetime.DateTimeFormatDemoState
 import com.alexrdclement.palette.formats.demo.datetime.rememberDateTimeFormatDemoControl
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
+import com.alexrdclement.palette.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.datetime.DateTimeFormatValue
 import com.alexrdclement.palette.formats.datetime.toFormat
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.datetime.DateTimeFormatScheme
@@ -60,6 +61,7 @@ fun DateTimeFormatSchemeScreen(
                 .padding(paddingValues)
         ) { (token, format) ->
             BoxWithLabel(
+                style = PaletteTheme.components.boxWithLabelStyle,
                 label = token.name,
                 modifier = Modifier
                     .padding(horizontal = PaletteTheme.spacing.medium)

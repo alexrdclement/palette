@@ -48,7 +48,6 @@ include(":modifiers:demo")
 include(":navigation")
 include(":testing")
 include(":theme")
-include(":theme:components")
 
 val localPropsFile = rootDir.resolve("local.properties").takeIf { it.exists() }
 val localProps = java.util.Properties().apply {

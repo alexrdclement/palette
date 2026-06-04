@@ -15,7 +15,9 @@ import com.alexrdclement.palette.formats.demo.core.NumberFormatDemoState
 import com.alexrdclement.palette.formats.demo.core.rememberNumberFormatDemoControl
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
+import com.alexrdclement.palette.components.layout.BoxWithLabel
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.core.NumberFormat
@@ -53,6 +55,7 @@ fun NumberFormatScreen(
                 .padding(paddingValues)
         ) { (token, _) ->
             BoxWithLabel(
+                style = PaletteTheme.components.boxWithLabelStyle,
                 label = token.name,
             ) {
                 NumberFormatDemo(
