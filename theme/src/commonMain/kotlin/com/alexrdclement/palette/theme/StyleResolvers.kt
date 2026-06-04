@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.components
+package com.alexrdclement.palette.theme
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.PaletteTheme

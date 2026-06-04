@@ -16,7 +16,7 @@ import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.theme.components.color.ColorPicker
 import com.alexrdclement.palette.theme.components.layout.dialog.ConfirmCancelButtonRow
-import com.alexrdclement.palette.theme.components.toComponentStyle
+import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components

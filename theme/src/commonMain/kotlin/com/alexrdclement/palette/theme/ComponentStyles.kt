@@ -1,9 +1,15 @@
 package com.alexrdclement.palette.theme
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.ButtonStyle
+import com.alexrdclement.palette.components.core.CheckboxStyle
+import com.alexrdclement.palette.components.core.ChevronButtonStyle
+import com.alexrdclement.palette.components.core.DividerStyle
 import com.alexrdclement.palette.components.core.SurfaceStyle
+import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.media.MediaControlBarStyle
+import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 import com.alexrdclement.palette.components.media.MediaControlSheetStyle
 import com.alexrdclement.palette.components.media.MediaItemArtworkStyle
 import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
@@ -24,6 +30,36 @@ object PaletteComponentStyles {
             color = PaletteTheme.colorScheme.surface,
             contentColor = PaletteTheme.colorScheme.contentColorFor(PaletteTheme.colorScheme.surface),
             indication = PaletteTheme.indication,
+        )
+
+    val dividerStyle: DividerStyle
+        @Composable get() = DividerStyle(
+            color = PaletteTheme.colorScheme.outline,
+        )
+
+    val checkboxStyle: CheckboxStyle
+        @Composable get() = CheckboxStyle(
+            buttonStyle = ButtonStyle(
+                contentColor = ColorToken.Primary.toColor(),
+                containerColor = ColorToken.Surface.toColor(),
+            ),
+            textStyle = PaletteTheme.styles.text.titleLarge,
+        )
+
+    val chevronButtonStyle: ChevronButtonStyle
+        @Composable get() = ChevronButtonStyle(
+            buttonStyle = ButtonStyle(
+                contentColor = ColorToken.Primary.toColor(),
+                containerColor = ColorToken.Surface.toColor(),
+            ),
+            iconColor = PaletteTheme.colorScheme.primary,
+            contentPadding = PaddingValues(PaletteTheme.spacing.medium),
+        )
+
+    val colorDisplayStyle: ColorDisplayStyle
+        @Composable get() = ColorDisplayStyle(
+            shape = PaletteTheme.shapeScheme.primary,
+            borderStyle = BorderStyleToken.Primary.toComponentStyle(),
         )
 
     val playPauseButtonStyle: PlayPauseButtonStyle

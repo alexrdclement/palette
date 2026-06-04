@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.layout.catalog.CatalogItem
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.components.toComponentStyle
+import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.components.layout.catalog.Catalog as ComponentCatalog
 
 @Composable

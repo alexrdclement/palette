@@ -13,18 +13,22 @@ import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.components.core.border
 import com.alexrdclement.palette.components.core.toComposeShape
 
+data class ColorDisplayStyle(
+    val shape: Shape = Shape.Circle,
+    val borderStyle: BorderStyle? = null,
+)
+
 @Composable
 fun ColorDisplay(
     color: Color,
     modifier: Modifier = Modifier,
-    shape: Shape = Shape.Circle,
-    borderStyle: BorderStyle? = null,
+    style: ColorDisplayStyle = ColorDisplayStyle(),
 ) {
     Box(
         modifier = modifier
             .aspectRatio(1f)
-            .background(color = color, shape = shape.toComposeShape())
-            .then(if (borderStyle != null) Modifier.border(style = borderStyle) else Modifier),
+            .background(color = color, shape = style.shape.toComposeShape())
+            .then(if (style.borderStyle != null) Modifier.border(style = style.borderStyle) else Modifier),
     )
 }
 

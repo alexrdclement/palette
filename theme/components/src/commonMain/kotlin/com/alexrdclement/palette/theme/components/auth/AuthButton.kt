@@ -6,7 +6,7 @@ import com.alexrdclement.palette.components.auth.AuthState
 import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.components.toComponentStyle
+import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.components.auth.AuthButton as ComponentAuthButton
 import com.alexrdclement.palette.components.auth.AuthButtonText as ComponentAuthButtonText
 

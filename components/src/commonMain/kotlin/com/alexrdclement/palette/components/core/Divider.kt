@@ -12,35 +12,33 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+data class DividerStyle(
+    val thickness: Dp = 1.dp,
+    val color: Color = Color.Unspecified,
+)
+
 @Composable
 fun HorizontalDivider(
     modifier: Modifier = Modifier,
-    thickness: Dp = DividerDefaults.Thickness,
-    color: Color = DividerDefaults.color,
-) = Canvas(modifier.fillMaxWidth().height(thickness)) {
+    style: DividerStyle = DividerStyle(),
+) = Canvas(modifier.fillMaxWidth().height(style.thickness)) {
     drawLine(
-        color = color,
-        strokeWidth = thickness.toPx(),
-        start = Offset(0f, thickness.toPx() / 2),
-        end = Offset(size.width, thickness.toPx() / 2),
+        color = style.color,
+        strokeWidth = style.thickness.toPx(),
+        start = Offset(0f, style.thickness.toPx() / 2),
+        end = Offset(size.width, style.thickness.toPx() / 2),
     )
 }
 
 @Composable
 fun VerticalDivider(
     modifier: Modifier = Modifier,
-    thickness: Dp = DividerDefaults.Thickness,
-    color: Color = DividerDefaults.color,
-) = Canvas(modifier.fillMaxHeight().width(thickness)) {
+    style: DividerStyle = DividerStyle(),
+) = Canvas(modifier.fillMaxHeight().width(style.thickness)) {
     drawLine(
-        color = color,
-        strokeWidth = thickness.toPx(),
-        start = Offset(thickness.toPx() / 2, 0f),
-        end = Offset(thickness.toPx() / 2, size.height),
+        color = style.color,
+        strokeWidth = style.thickness.toPx(),
+        start = Offset(style.thickness.toPx() / 2, 0f),
+        end = Offset(style.thickness.toPx() / 2, size.height),
     )
-}
-
-object DividerDefaults {
-    val Thickness: Dp = 1.dp
-    val color: Color = Color.Unspecified
 }

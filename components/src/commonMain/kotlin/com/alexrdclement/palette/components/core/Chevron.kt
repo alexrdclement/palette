@@ -23,24 +23,28 @@ enum class ChevronDirection {
     Right,
 }
 
+data class ChevronButtonStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val iconColor: Color = Color.Unspecified,
+    val contentPadding: PaddingValues = PaddingValues(16.dp),
+)
+
 @Composable
 fun ChevronButton(
     direction: ChevronDirection,
     modifier: Modifier = Modifier,
-    style: ButtonStyle = ButtonStyle(),
-    contentPadding: PaddingValues = PaddingValues(16.dp),
-    color: Color = Color.Unspecified,
+    style: ChevronButtonStyle = ChevronButtonStyle(),
     onClick: () -> Unit,
 ) {
     Button(
         onClick = onClick,
-        style = style,
-        contentPadding = contentPadding,
+        style = style.buttonStyle,
+        contentPadding = style.contentPadding,
         modifier = modifier
     ) {
         ChevronIcon(
             direction = direction,
-            color = color,
+            color = style.iconColor.takeIf { it != Color.Unspecified } ?: LocalContentColor.current,
         )
     }
 }

@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.components.toComponentStyle
+import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.components.media.SkipButton as ComponentSkipButton
 import com.alexrdclement.palette.components.media.SkipBackButton as ComponentSkipBackButton
 

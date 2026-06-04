@@ -7,7 +7,7 @@ import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.components.toComponentStyle
+import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.components.layout.dialog.CancelButton as ComponentCancelButton
 import com.alexrdclement.palette.components.layout.dialog.ConfirmButton as ComponentConfirmButton
 import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonRow as ComponentConfirmButtonRow

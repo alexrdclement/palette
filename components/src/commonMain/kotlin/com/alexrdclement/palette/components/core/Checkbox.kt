@@ -14,18 +14,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 
+data class CheckboxStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val textStyle: TextStyle = TextStyle(),
+)
+
 @Composable
 fun Checkbox(
     isChecked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
-    style: ButtonStyle = ButtonStyle(),
-    textStyle: TextStyle = TextStyle(),
+    style: CheckboxStyle = CheckboxStyle(),
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     Button(
-        style = style,
+        style = style.buttonStyle,
         onClick = { onCheckedChange(!isChecked) },
         modifier = modifier.semantics(mergeDescendants = true) {
             role = Role.Checkbox
@@ -35,7 +39,7 @@ fun Checkbox(
     ) {
         Text(
             text = if (isChecked) "☑︎" else "☐",
-            style = textStyle,
+            style = style.textStyle,
         )
     }
 }

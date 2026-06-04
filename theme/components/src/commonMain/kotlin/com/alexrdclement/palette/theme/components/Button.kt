@@ -8,6 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.components.core.Button as ComponentButton
 import com.alexrdclement.palette.components.core.ButtonDefaults as ComponentButtonDefaults
