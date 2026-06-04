@@ -21,9 +21,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.theme.components.Button
-import com.alexrdclement.palette.theme.components.ButtonDefaults
-import com.alexrdclement.palette.theme.components.Text
+import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.ButtonDefaults
+import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.layout.Scaffold
@@ -32,6 +32,7 @@ import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteDarkColorScheme
 import com.alexrdclement.palette.theme.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
@@ -105,7 +106,7 @@ private fun ColorDisplay(
         modifier = modifier
     ) {
         Button(
-            style = ButtonStyleToken.Secondary,
+            style = ButtonStyleToken.Secondary.toComponentStyle(),
             onClick = { onColorClick(color) },
             contentPadding = PaddingValues(0.dp),
             modifier = Modifier.size(ButtonDefaults.MinHeight)

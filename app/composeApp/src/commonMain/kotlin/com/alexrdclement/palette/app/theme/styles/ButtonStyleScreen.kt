@@ -17,7 +17,7 @@ import com.alexrdclement.palette.components.demo.core.TextDemo
 import com.alexrdclement.palette.components.demo.core.TextDemoControl
 import com.alexrdclement.palette.components.demo.core.TextDemoState
 import com.alexrdclement.palette.components.demo.core.TextDemoStateSaver
-import com.alexrdclement.palette.theme.components.Button
+import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
@@ -32,6 +32,7 @@ import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.theme.styles.copy
 import com.alexrdclement.palette.theme.styles.toStyle
 import kotlinx.collections.immutable.PersistentList
@@ -63,7 +64,7 @@ fun ButtonStyleScreen(
                 .padding(paddingValues)
         ) { style ->
             Button(
-                style = style,
+                style = style.toComponentStyle(),
                 onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()

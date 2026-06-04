@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.theme.components
-import com.alexrdclement.palette.theme.components.Text
+import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.PeekSheetAnchor
 import com.alexrdclement.palette.components.layout.rememberPeekSheetState
 import com.alexrdclement.palette.components.media.MediaControlSheet

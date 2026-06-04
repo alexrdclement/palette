@@ -21,7 +21,7 @@ import com.alexrdclement.palette.components.MediaControlBarStateDescriptionExpan
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionPartiallyExpanded
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components
-import com.alexrdclement.palette.theme.components.Text
+import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.PeekSheetAnchor
 import com.alexrdclement.palette.components.layout.rememberPeekSheetState
 import com.alexrdclement.palette.components.media.model.Artist
@@ -72,7 +72,7 @@ class MediaControlSheetTest {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize(),
             ) {
-                Text("Content")
+                Text("Content", style = PaletteTheme.styles.text.bodyMedium)
             }
         }
     }

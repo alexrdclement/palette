@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.main.MainCatalogItem
-import com.alexrdclement.palette.theme.components.Text
+import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.theme.components.layout.TopBar
 import com.alexrdclement.palette.theme.components.layout.catalog.Catalog

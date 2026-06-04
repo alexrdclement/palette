@@ -16,7 +16,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexrdclement.palette.theme.components.Text
+import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.Demo
 import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
 import com.alexrdclement.palette.theme.components.money.CurrencyAmountField
