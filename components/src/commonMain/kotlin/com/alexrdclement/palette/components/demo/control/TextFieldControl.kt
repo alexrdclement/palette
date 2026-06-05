@@ -69,13 +69,11 @@ fun TextFieldControl(
 @Composable
 fun TextFieldControlPreview() {
     val textFieldState = rememberTextFieldState(initialText = "Text Field")
-    run {
-        TextFieldControl(
-            control = Control.TextField(
-                name = "Label",
-                textFieldState = textFieldState,
-                includeLabel = true,
-            ),
-        )
-    }
+    TextFieldControl(
+        control = Control.TextField(
+            name = "Label",
+            textFieldState = textFieldState,
+            includeLabel = true,
+        ),
+    )
 }

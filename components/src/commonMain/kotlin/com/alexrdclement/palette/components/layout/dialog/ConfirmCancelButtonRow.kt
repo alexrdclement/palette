@@ -14,7 +14,7 @@ fun ConfirmCancelButtonRow(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
     spacing: Dp = 16.dp,
-    buttonStyle: ButtonStyle = ButtonStyle(),
+    buttonStyle: ButtonStyle = ButtonStyle.Default(),
 ) {
     DialogContentButtonRow(
         modifier = modifier,

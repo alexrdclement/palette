@@ -5,17 +5,21 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.components.auth.AuthButtonStyle
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.CheckboxStyle
 import com.alexrdclement.palette.components.core.ChevronButtonStyle
 import com.alexrdclement.palette.components.core.DividerStyle
 import com.alexrdclement.palette.components.core.SliderColors
+import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
 import com.alexrdclement.palette.components.layout.BoxWithLabelStyle
+import com.alexrdclement.palette.components.layout.FloatingActionStyle
+import com.alexrdclement.palette.components.layout.TopBarStyle
 import com.alexrdclement.palette.components.layout.catalog.CatalogStyle
 import com.alexrdclement.palette.components.media.MediaControlBarStyle
 import com.alexrdclement.palette.components.money.CurrencyAmountFieldStyle
@@ -41,6 +45,18 @@ object PaletteComponentStyles {
     fun button(token: ButtonStyleToken = ButtonStyleToken.Primary): ButtonStyle =
         token.toComponentStyle()
 
+    /** Resolved [AuthButtonStyle] for the given [ButtonStyleToken] variant. */
+    @Composable
+    fun authButton(token: ButtonStyleToken = ButtonStyleToken.Secondary): AuthButtonStyle =
+        AuthButtonStyle(
+            buttonStyle = button(token),
+            textStyle = when (token) {
+                ButtonStyleToken.Primary -> PaletteTheme.styles.text.labelLarge
+                ButtonStyleToken.Secondary -> PaletteTheme.styles.text.labelSmall
+                ButtonStyleToken.Tertiary -> PaletteTheme.styles.text.labelSmall
+            },
+        )
+
     val surface: SurfaceStyle
         @Composable get() = SurfaceStyle(
             shape = PaletteTheme.shapeScheme.surface,
@@ -56,7 +72,7 @@ object PaletteComponentStyles {
 
     val checkbox: CheckboxStyle
         @Composable get() = CheckboxStyle(
-            buttonStyle = ButtonStyle(
+            buttonStyle = ButtonStyle.Default(
                 contentColor = ColorToken.Primary.toColor(),
                 containerColor = ColorToken.Surface.toColor(),
             ),
@@ -65,7 +81,7 @@ object PaletteComponentStyles {
 
     val chevronButton: ChevronButtonStyle
         @Composable get() = ChevronButtonStyle(
-            buttonStyle = ButtonStyle(
+            buttonStyle = ButtonStyle.Default(
                 contentColor = ColorToken.Primary.toColor(),
                 containerColor = ColorToken.Surface.toColor(),
             ),
@@ -85,12 +101,24 @@ object PaletteComponentStyles {
             labelStyle = PaletteTheme.styles.text.labelLarge,
         )
 
-    val sliderColors: SliderColors
-        @Composable get() = SliderColors(
-            trackColor = PaletteTheme.colorScheme.primary,
-            thumbColor = PaletteTheme.colorScheme.primary,
-            thumbPointColor = PaletteTheme.colorScheme.primary,
-            thumbBackgroundColor = PaletteTheme.colorScheme.surface,
+    val slider: SliderStyle
+        @Composable get() = SliderStyle(
+            colors = SliderColors(
+                trackColor = PaletteTheme.colorScheme.primary,
+                thumbColor = PaletteTheme.colorScheme.primary,
+                thumbPointColor = PaletteTheme.colorScheme.primary,
+                thumbBackgroundColor = PaletteTheme.colorScheme.surface,
+            ),
+        )
+
+    val floatingAction: FloatingActionStyle
+        @Composable get() = FloatingActionStyle(
+            spacing = PaletteTheme.spacing.small,
+        )
+
+    val topBar: TopBarStyle
+        @Composable get() = TopBarStyle(
+            spacing = PaletteTheme.spacing.small,
         )
 
     val textField: TextFieldStyle
@@ -111,7 +139,7 @@ object PaletteComponentStyles {
 
     val backNavigationButton: BackNavigationButtonStyle
         @Composable get() = BackNavigationButtonStyle(
-            buttonStyle = ButtonStyle(
+            buttonStyle = ButtonStyle.Default(
                 contentColor = ColorToken.Primary.toColor(),
                 containerColor = ColorToken.Surface.toColor(),
             ),
@@ -135,7 +163,7 @@ object PaletteComponentStyles {
 
     val playPauseButton: PlayPauseButtonStyle
         @Composable get() = PlayPauseButtonStyle(
-            buttonStyle = ButtonStyle(
+            buttonStyle = ButtonStyle.Default(
                 contentColor = ColorToken.OnPrimary.toColor(),
                 containerColor = ColorToken.Primary.toColor(),
                 shape = ShapeToken.Primary.toShape(),

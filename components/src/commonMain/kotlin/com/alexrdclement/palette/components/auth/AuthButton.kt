@@ -17,30 +17,32 @@ enum class AuthState {
     LoggedIn,
 }
 
+data class AuthButtonStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val textStyle: TextStyle = TextStyle(),
+)
+
 @Composable
 fun AuthButton(
     authState: AuthState,
     onLogInClick: () -> Unit,
     onLogOutClick: () -> Unit,
     modifier: Modifier = Modifier,
-    buttonStyle: ButtonStyle = ButtonStyle(),
-    textStyle: TextStyle = TextStyle(),
+    style: AuthButtonStyle = AuthButtonStyle(),
 ) {
     when (authState) {
         AuthState.Loading -> AuthButtonText(
             authState = authState,
-            textStyle = textStyle,
+            style = style,
             modifier = modifier,
         )
         AuthState.LoggedOut -> LogInButton(
-            buttonStyle = buttonStyle,
-            textStyle = textStyle,
+            style = style,
             onLogInClick = onLogInClick,
             modifier = modifier,
         )
         AuthState.LoggedIn -> LogOutButton(
-            buttonStyle = buttonStyle,
-            textStyle = textStyle,
+            style = style,
             onLogOutClick = onLogOutClick,
             modifier = modifier,
         )
@@ -51,13 +53,11 @@ fun AuthButton(
 fun LogInButton(
     onLogInClick: () -> Unit,
     modifier: Modifier = Modifier,
-    buttonStyle: ButtonStyle = ButtonStyle(),
-    textStyle: TextStyle = TextStyle(),
+    style: AuthButtonStyle = AuthButtonStyle(),
 ) {
     AuthButton(
         authState = AuthState.LoggedOut,
-        buttonStyle = buttonStyle,
-        textStyle = textStyle,
+        style = style,
         onClick = onLogInClick,
         modifier = modifier,
     )
@@ -67,13 +67,11 @@ fun LogInButton(
 fun LogOutButton(
     onLogOutClick: () -> Unit,
     modifier: Modifier = Modifier,
-    buttonStyle: ButtonStyle = ButtonStyle(),
-    textStyle: TextStyle = TextStyle(),
+    style: AuthButtonStyle = AuthButtonStyle(),
 ) {
     AuthButton(
         authState = AuthState.LoggedIn,
-        buttonStyle = buttonStyle,
-        textStyle = textStyle,
+        style = style,
         onClick = onLogOutClick,
         modifier = modifier,
     )
@@ -84,17 +82,16 @@ fun AuthButton(
     authState: AuthState,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    buttonStyle: ButtonStyle = ButtonStyle(),
-    textStyle: TextStyle = TextStyle(),
+    style: AuthButtonStyle = AuthButtonStyle(),
 ) {
     Button(
-        style = buttonStyle,
+        style = style.buttonStyle,
         onClick = onClick,
         modifier = modifier,
     ) {
         AuthButtonText(
             authState = authState,
-            textStyle = textStyle,
+            style = style,
         )
     }
 }
@@ -103,7 +100,7 @@ fun AuthButton(
 fun AuthButtonText(
     authState: AuthState,
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = TextStyle(),
+    style: AuthButtonStyle = AuthButtonStyle(),
 ) {
     Text(
         text = when (authState) {
@@ -111,7 +108,7 @@ fun AuthButtonText(
             AuthState.LoggedIn -> "Log out"
             AuthState.LoggedOut -> "Log in"
         },
-        style = textStyle,
+        style = style.textStyle,
         modifier = modifier,
     )
 }

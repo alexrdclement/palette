@@ -51,6 +51,10 @@ import kotlin.math.roundToInt
 
 // Adapted from Material3's Slider. Does not support RTL layout.
 
+data class SliderStyle(
+    val colors: SliderColors = SliderColors(),
+)
+
 @Composable
 fun Slider(
     value: Float,
@@ -60,7 +64,7 @@ fun Slider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     stepIncrement: Float,
     onValueChangeFinished: (() -> Unit)? = null,
-    colors: SliderColors = SliderColors(),
+    style: SliderStyle = SliderStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     Slider(
@@ -71,7 +75,7 @@ fun Slider(
         valueRange = valueRange,
         steps = stepsForIncrement(valueRange, stepIncrement),
         onValueChangeFinished = onValueChangeFinished,
-        colors = colors,
+        style = style,
         interactionSource = interactionSource,
     )
 }
@@ -85,7 +89,7 @@ fun Slider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    colors: SliderColors = SliderColors(),
+    style: SliderStyle = SliderStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
@@ -113,7 +117,7 @@ fun Slider(
         state = state,
         modifier = modifier,
         enabled = enabled,
-        colors = colors,
+        style = style,
         interactionSource = interactionSource,
     )
 }
@@ -127,7 +131,7 @@ fun Slider(
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     onValueChangeFinished: (() -> Unit)? = null,
-    colors: SliderColors = SliderColors(),
+    style: SliderStyle = SliderStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
@@ -155,7 +159,7 @@ fun Slider(
         state = state,
         modifier = modifier,
         enabled = enabled,
-        colors = colors,
+        style = style,
         interactionSource = interactionSource,
     )
 }
@@ -165,13 +169,13 @@ fun Slider(
     state: SliderState,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    colors: SliderColors = SliderColors(),
+    style: SliderStyle = SliderStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     Layout(
         content = {
-            SliderDefaults.Track(tickFractions = state.tickFractions, colors = colors)
-            SliderDefaults.Thumb(colors = colors)
+            SliderDefaults.Track(tickFractions = state.tickFractions, colors = style.colors)
+            SliderDefaults.Thumb(colors = style.colors)
         },
         modifier = modifier
             .requiredSizeIn(
@@ -241,7 +245,7 @@ fun RangeSlider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     stepIncrement: Float,
     onValueChangeFinished: (() -> Unit)? = null,
-    colors: SliderColors = SliderColors(),
+    style: SliderStyle = SliderStyle(),
 ) {
     RangeSlider(
         value = value,
@@ -251,7 +255,7 @@ fun RangeSlider(
         valueRange = valueRange,
         steps = stepsForIncrement(valueRange, stepIncrement),
         onValueChangeFinished = onValueChangeFinished,
-        colors = colors,
+        style = style,
     )
 }
 
@@ -264,7 +268,7 @@ fun RangeSlider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    colors: SliderColors = SliderColors(),
+    style: SliderStyle = SliderStyle(),
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
     val state = remember(valueRange, steps) {
@@ -293,7 +297,7 @@ fun RangeSlider(
         state = state,
         modifier = modifier,
         enabled = enabled,
-        colors = colors,
+        style = style,
     )
 }
 
@@ -306,7 +310,7 @@ fun RangeSlider(
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     onValueChangeFinished: (() -> Unit)? = null,
-    colors: SliderColors = SliderColors(),
+    style: SliderStyle = SliderStyle(),
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
     val state = remember(valueRange, snapValues) {
@@ -335,7 +339,7 @@ fun RangeSlider(
         state = state,
         modifier = modifier,
         enabled = enabled,
-        colors = colors,
+        style = style,
     )
 }
 
@@ -344,11 +348,11 @@ fun RangeSlider(
     state: RangeSliderState,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    colors: SliderColors = SliderColors(),
+    style: SliderStyle = SliderStyle(),
 ) {
     Layout(
         content = {
-            SliderDefaults.Track(tickFractions = state.tickFractions, colors = colors)
+            SliderDefaults.Track(tickFractions = state.tickFractions, colors = style.colors)
             Box(
                 modifier = Modifier.then(
                     if (enabled) {
@@ -362,7 +366,7 @@ fun RangeSlider(
                     } else Modifier
                 )
             ) {
-                SliderDefaults.Thumb(colors = colors)
+                SliderDefaults.Thumb(colors = style.colors)
             }
             Box(
                 modifier = Modifier.then(
@@ -377,7 +381,7 @@ fun RangeSlider(
                     } else Modifier
                 )
             ) {
-                SliderDefaults.Thumb(colors = colors)
+                SliderDefaults.Thumb(colors = style.colors)
             }
         },
         modifier = modifier

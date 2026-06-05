@@ -37,12 +37,16 @@ fun BorderStyleToken.toComponentStyle(): ComponentBorderStyle = this.toStyle().t
 @Composable
 fun ButtonStyleToken.toComponentStyle(): ComponentButtonStyle {
     val style = this.toStyle()
-    return ComponentButtonStyle(
+    return ComponentButtonStyle.Default(
         contentColor = style.contentColor.toColor(),
         containerColor = style.containerColor.toColor(),
         shape = style.shape.toShape(),
         borderStyle = style.borderStyle?.toComponentStyle(),
         disabledContentAlpha = PaletteTheme.colorScheme.disabledContentAlpha,
         disabledContainerAlpha = PaletteTheme.colorScheme.disabledContainerAlpha,
+        contentPadding = androidx.compose.foundation.layout.PaddingValues(
+            horizontal = PaletteTheme.spacing.large,
+            vertical = PaletteTheme.spacing.medium,
+        ),
     )
 }

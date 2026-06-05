@@ -197,105 +197,93 @@ private fun DrawScope.drawCurveStitch(
 @Preview
 @Composable
 fun CurveStitchPreview() {
-    run {
-        Surface {
-            CurveStitch(
-                start = Offset(0.1f, 0.1f),
-                vertex = Offset(0.1f, 0.9f),
-                end = Offset(0.9f, 0.9f),
-                numLines = 12,
-                strokeWidth = Dp.Hairline,
-                color = Color(0xFF6200EE),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitch(
+            start = Offset(0.1f, 0.1f),
+            vertex = Offset(0.1f, 0.9f),
+            end = Offset(0.9f, 0.9f),
+            numLines = 12,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CurveStitchStarInnerRadius0Preview() {
-    run {
-        Surface {
-            CurveStitchStar(
-                numLines = 12,
-                numPoints = 5,
-                innerRadius = 0f,
-                strokeWidth = Dp.Hairline,
-                color = Color(0xFF6200EE),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitchStar(
+            numLines = 12,
+            numPoints = 5,
+            innerRadius = 0f,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CurveStitchStarPreview() {
-    run {
-        Surface {
-            CurveStitchStar(
-                drawInsidePoints = true,
-                drawOutsidePoints = true,
-                numLines = 12,
-                numPoints = 6,
-                innerRadius = 0.5f,
-                strokeWidth = Dp.Hairline,
-                color = Color(0xFF6200EE),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitchStar(
+            drawInsidePoints = true,
+            drawOutsidePoints = true,
+            numLines = 12,
+            numPoints = 6,
+            innerRadius = 0.5f,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CurveStitchStarInsideOnlyPreview() {
-    run {
-        Surface {
-            CurveStitchStar(
-                drawOutsidePoints = false,
-                numLines = 12,
-                numPoints = 6,
-                innerRadius = 0.5f,
-                strokeWidth = Dp.Hairline,
-                color = Color(0xFF6200EE),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitchStar(
+            drawOutsidePoints = false,
+            numLines = 12,
+            numPoints = 6,
+            innerRadius = 0.5f,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CurveStitchStarOutsideOnlyPreview() {
-    run {
-        Surface {
-            CurveStitchStar(
-                drawInsidePoints = false,
-                numLines = 12,
-                numPoints = 6,
-                innerRadius = 0.5f,
-                strokeWidth = Dp.Hairline,
-                color = Color(0xFF6200EE),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitchStar(
+            drawInsidePoints = false,
+            numLines = 12,
+            numPoints = 6,
+            innerRadius = 0.5f,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CurveStitchShapePreview() {
-    run {
-        Surface {
-            CurveStitchShape(
-                numLines = 12,
-                numPoints = 4,
-                strokeWidth = Dp.Hairline,
-                color = Color(0xFF6200EE),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitchShape(
+            numLines = 12,
+            numPoints = 4,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }

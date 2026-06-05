@@ -11,7 +11,7 @@ import com.alexrdclement.palette.components.core.Text
 fun ConfirmButton(
     onConfirm: () -> Unit,
     modifier: Modifier = Modifier,
-    style: ButtonStyle = ButtonStyle(),
+    style: ButtonStyle = ButtonStyle.Default(),
 ) {
     Button(
         style = style,
@@ -26,7 +26,7 @@ fun ConfirmButton(
 fun CancelButton(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
-    style: ButtonStyle = ButtonStyle(),
+    style: ButtonStyle = ButtonStyle.Default(),
 ) {
     Button(
         style = style,

@@ -56,15 +56,13 @@ fun SliderControl(
 @Preview
 @Composable
 private fun Preview() {
-    run {
-        var value by remember { mutableStateOf(0.5f) }
-        val control = remember {
-            Control.Slider(
-                name = "Amount",
-                value = { value },
-                onValueChange = { value = it },
-            )
-        }
-        SliderControl(control = control)
+    var value by remember { mutableStateOf(0.5f) }
+    val control = remember {
+        Control.Slider(
+            name = "Amount",
+            value = { value },
+            onValueChange = { value = it },
+        )
     }
+    SliderControl(control = control)
 }

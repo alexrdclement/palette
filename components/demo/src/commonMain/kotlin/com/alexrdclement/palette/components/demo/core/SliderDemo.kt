@@ -68,7 +68,7 @@ fun DemoScope.SliderDemo(
     when (state.sliderType) {
         SliderType.Continuous -> when (state.stepMode) {
             StepMode.Uniform -> Slider(
-                colors = PaletteTheme.components.sliderColors,
+                style = PaletteTheme.components.slider,
                 value = state.value,
                 onValueChange = { state.value = it },
                 enabled = state.enabled,
@@ -76,7 +76,7 @@ fun DemoScope.SliderDemo(
                 modifier = sliderModifier,
             )
             StepMode.Custom -> Slider(
-                colors = PaletteTheme.components.sliderColors,
+                style = PaletteTheme.components.slider,
                 value = state.value,
                 onValueChange = { state.value = it },
                 enabled = state.enabled,
@@ -86,7 +86,7 @@ fun DemoScope.SliderDemo(
         }
         SliderType.Range -> when (state.stepMode) {
             StepMode.Uniform -> RangeSlider(
-                colors = PaletteTheme.components.sliderColors,
+                style = PaletteTheme.components.slider,
                 value = state.rangeStart..state.rangeEnd,
                 onValueChange = {
                     state.rangeStart = it.start
@@ -97,7 +97,7 @@ fun DemoScope.SliderDemo(
                 modifier = sliderModifier,
             )
             StepMode.Custom -> RangeSlider(
-                colors = PaletteTheme.components.sliderColors,
+                style = PaletteTheme.components.slider,
                 value = state.rangeStart..state.rangeEnd,
                 onValueChange = {
                     state.rangeStart = it.start

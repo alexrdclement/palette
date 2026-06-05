@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonDefaults
+import com.alexrdclement.palette.components.core.withContentPadding
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
@@ -107,9 +108,8 @@ private fun ColorDisplay(
         modifier = modifier
     ) {
         Button(
-            style = PaletteTheme.components.button(ButtonStyleToken.Secondary),
+            style = PaletteTheme.components.button(ButtonStyleToken.Secondary).withContentPadding(PaddingValues(0.dp)),
             onClick = { onColorClick(color) },
-            contentPadding = PaddingValues(0.dp),
             modifier = Modifier.size(ButtonDefaults.MinHeight)
         ) {
             Box(

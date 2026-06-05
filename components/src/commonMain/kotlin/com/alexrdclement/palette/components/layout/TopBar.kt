@@ -22,14 +22,19 @@ import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.navigation.BackNavigationButton
 import com.alexrdclement.palette.components.util.copy
 
+data class TopBarStyle(
+    val spacing: Dp = 8.dp,
+)
+
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier,
-    spacing: Dp = 8.dp,
+    style: TopBarStyle = TopBarStyle(),
     navButton: @Composable (() -> Unit)? = null,
     actions: @Composable (() -> Unit)? = null,
     title: @Composable (() -> Unit)? = null,
 ) {
+    val spacing = style.spacing
     val windowInsetsPaddingValues = WindowInsets.systemBars.asPaddingValues().copy(bottom = 0.dp)
     Row(
         modifier = modifier

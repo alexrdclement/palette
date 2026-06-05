@@ -84,13 +84,11 @@ fun CharControl(
 @Preview
 @Composable
 fun CharControlPreview() {
-    run {
-        CharControl(
-            control = Control.CharField(
-                name = "Label",
-                value = { 'a' },
-                includeLabel = true,
-            ),
-        )
-    }
+    CharControl(
+        control = Control.CharField(
+            name = "Label",
+            value = { 'a' },
+            includeLabel = true,
+        ),
+    )
 }

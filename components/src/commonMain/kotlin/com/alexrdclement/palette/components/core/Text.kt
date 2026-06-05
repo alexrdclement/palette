@@ -6,13 +6,32 @@ import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.LocalContentColor
+import com.alexrdclement.palette.formats.core.TextFormat
 import com.alexrdclement.palette.formats.core.format
+import androidx.compose.ui.text.TextStyle as ComposeTextStyle
+
+data class TextStyle(
+    val composeTextStyle: ComposeTextStyle = ComposeTextStyle(),
+    val format: TextFormat = TextFormat(),
+)
+
+fun TextStyle.copy(
+    color: Color = this.composeTextStyle.color,
+    textAlign: TextAlign = this.composeTextStyle.textAlign,
+) = copy(
+    composeTextStyle = this.composeTextStyle.copy(
+        color = color,
+        textAlign = textAlign,
+    ),
+)
 
 @Composable
 fun Text(

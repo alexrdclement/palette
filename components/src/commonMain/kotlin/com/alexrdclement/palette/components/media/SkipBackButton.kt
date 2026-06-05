@@ -10,6 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.withContentPadding
 import com.alexrdclement.palette.components.core.ButtonStyle
 
 @Composable
@@ -17,14 +18,13 @@ fun SkipBackButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    style: ButtonStyle = ButtonStyle(),
+    style: ButtonStyle = ButtonStyle.Default(),
     contentPadding: PaddingValues = PaddingValues(6.dp),
 ) {
     Button(
         onClick = onClick,
         enabled = enabled,
-        style = style,
-        contentPadding = contentPadding,
+        style = style.withContentPadding(contentPadding),
         modifier = modifier
             .aspectRatio(1f)
     ) { shapePadding ->

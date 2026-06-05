@@ -19,11 +19,12 @@ import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPaused
 import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPlaying
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.withContentPadding
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 
 data class PlayPauseButtonStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
     val iconColor: Color = Color.Unspecified,
 )
 
@@ -39,9 +40,8 @@ fun PlayPauseButton(
     Button(
         onClick = onClick,
         onLongClick = onLongClick,
-        style = style.buttonStyle,
+        style = style.buttonStyle.withContentPadding(PaddingValues(vertical = 2.dp, horizontal = 2.dp)),
         enabled = isEnabled,
-        contentPadding = PaddingValues(vertical = 2.dp, horizontal = 2.dp),
         modifier = modifier
             .aspectRatio(1f)
     ) { shapePadding ->

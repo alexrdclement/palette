@@ -12,10 +12,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.util.copy
 
+data class FloatingActionStyle(
+    val spacing: Dp = 8.dp,
+)
+
 @Composable
 fun FloatingAction(
     modifier: Modifier = Modifier,
-    spacing: Dp = 8.dp,
+    style: FloatingActionStyle = FloatingActionStyle(),
     content: @Composable () -> Unit,
 ) {
     Box(
@@ -24,7 +28,7 @@ fun FloatingAction(
             .padding(
                 WindowInsets.safeDrawing.asPaddingValues().copy(top = 0.dp)
             )
-            .padding(vertical = spacing)
+            .padding(vertical = style.spacing)
     ) {
         content()
     }

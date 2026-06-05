@@ -137,51 +137,47 @@ private fun <T> DropdownControlMenu(
 @Preview
 @Composable
 private fun DropdownControlPreview() {
-    run {
-        var selectedIndex by remember { mutableStateOf(0) }
-        val control by remember {
-            mutableStateOf(
-                Control.Dropdown(
-                    name = "Options",
-                    values = {
-                        listOf("A", "B", "C").map {
-                            Control.Dropdown.DropdownItem(
-                                name = it,
-                                value = it
-                            )
-                        }.toPersistentList()
-                    },
-                    selectedIndex = { selectedIndex },
-                    onValueChange = { selectedIndex = it }
-                )
+    var selectedIndex by remember { mutableStateOf(0) }
+    val control by remember {
+        mutableStateOf(
+            Control.Dropdown(
+                name = "Options",
+                values = {
+                    listOf("A", "B", "C").map {
+                        Control.Dropdown.DropdownItem(
+                            name = it,
+                            value = it
+                        )
+                    }.toPersistentList()
+                },
+                selectedIndex = { selectedIndex },
+                onValueChange = { selectedIndex = it }
             )
-        }
-        DropdownControl(control = control)
+        )
     }
+    DropdownControl(control = control)
 }
 
 @Preview
 @Composable
 private fun DropdownControlRowPreview() {
-    run {
-        var selectedIndex by remember { mutableStateOf(0) }
-        val control by remember {
-            mutableStateOf(
-                Control.Dropdown(
-                    name = "Options",
-                    values = {
-                        listOf("A", "B", "C").map {
-                            Control.Dropdown.DropdownItem(
-                                name = it,
-                                value = it
-                            )
-                        }.toPersistentList()
-                    },
-                    selectedIndex = { selectedIndex },
-                    onValueChange = { selectedIndex = it }
-                )
+    var selectedIndex by remember { mutableStateOf(0) }
+    val control by remember {
+        mutableStateOf(
+            Control.Dropdown(
+                name = "Options",
+                values = {
+                    listOf("A", "B", "C").map {
+                        Control.Dropdown.DropdownItem(
+                            name = it,
+                            value = it
+                        )
+                    }.toPersistentList()
+                },
+                selectedIndex = { selectedIndex },
+                onValueChange = { selectedIndex = it }
             )
-        }
-        DropdownControlRow(control = control)
+        )
     }
+    DropdownControlRow(control = control)
 }

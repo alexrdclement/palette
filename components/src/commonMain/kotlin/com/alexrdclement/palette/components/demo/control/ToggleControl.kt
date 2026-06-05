@@ -66,27 +66,23 @@ fun ToggleControlRow(
 @Preview
 @Composable
 private fun ToggleControlPreview() {
-    run {
-        var on by remember { mutableStateOf(false) }
-        val control = Control.Toggle(
-            name = "Color",
-            value = { on },
-            onValueChange = { on = it }
-        )
-        ToggleControl(control = control)
-    }
+    var on by remember { mutableStateOf(false) }
+    val control = Control.Toggle(
+        name = "Color",
+        value = { on },
+        onValueChange = { on = it }
+    )
+    ToggleControl(control = control)
 }
 
 @Preview
 @Composable
 private fun ToggleControlRowPreview() {
-    run {
-        var on by remember { mutableStateOf(false) }
-        val control = Control.Toggle(
-            name = "Color",
-            value = { on },
-            onValueChange = { on = it }
-        )
-        ToggleControlRow(control = control)
-    }
+    var on by remember { mutableStateOf(false) }
+    val control = Control.Toggle(
+        name = "Color",
+        value = { on },
+        onValueChange = { on = it }
+    )
+    ToggleControlRow(control = control)
 }

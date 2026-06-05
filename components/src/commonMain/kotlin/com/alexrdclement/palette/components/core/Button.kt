@@ -23,14 +23,41 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.LocalContentColor
 
-data class ButtonStyle(
-    val contentColor: Color = Color.Unspecified,
-    val containerColor: Color = Color.Unspecified,
-    val shape: Shape = Shape.Rectangle(),
-    val borderStyle: BorderStyle? = null,
-    val disabledContentAlpha: Float = 1f,
-    val disabledContainerAlpha: Float = 1f,
-)
+sealed class ButtonStyle {
+    abstract val contentColor: Color
+    abstract val containerColor: Color
+    abstract val shape: Shape
+    abstract val borderStyle: BorderStyle?
+    abstract val disabledContentAlpha: Float
+    abstract val disabledContainerAlpha: Float
+    abstract val contentPadding: PaddingValues
+
+    data class Default(
+        override val contentColor: Color = Color.Unspecified,
+        override val containerColor: Color = Color.Unspecified,
+        override val shape: Shape = Shape.Rectangle(),
+        override val borderStyle: BorderStyle? = null,
+        override val disabledContentAlpha: Float = 1f,
+        override val disabledContainerAlpha: Float = 1f,
+        override val contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    ) : ButtonStyle()
+
+    data class Compact(
+        override val contentColor: Color = Color.Unspecified,
+        override val containerColor: Color = Color.Unspecified,
+        override val shape: Shape = Shape.Rectangle(),
+        override val borderStyle: BorderStyle? = null,
+        override val disabledContentAlpha: Float = 1f,
+        override val disabledContainerAlpha: Float = 1f,
+        override val contentPadding: PaddingValues = ButtonDefaults.ContentPaddingCompact,
+    ) : ButtonStyle()
+}
+
+/** Returns a copy of this [ButtonStyle] with [contentPadding] overridden, preserving the variant. */
+fun ButtonStyle.withContentPadding(contentPadding: PaddingValues): ButtonStyle = when (this) {
+    is ButtonStyle.Default -> copy(contentPadding = contentPadding)
+    is ButtonStyle.Compact -> copy(contentPadding = contentPadding)
+}
 
 @Composable
 fun Button(
@@ -40,9 +67,8 @@ fun Button(
     onLongClick: (() -> Unit)? = null,
     onDoubleClick: (() -> Unit)? = null,
     hapticFeedbackEnabled: Boolean = true,
-    style: ButtonStyle = ButtonStyle(),
+    style: ButtonStyle = ButtonStyle.Default(),
     enabled: Boolean = true,
-    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     indication: Indication? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable RowScope.(PaddingValues) -> Unit
@@ -79,7 +105,7 @@ fun Button(
                         minWidth = ButtonDefaults.MinWidth,
                         minHeight = ButtonDefaults.MinHeight
                     )
-                    .padding(contentPadding),
+                    .padding(style.contentPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
             ) {

@@ -80,34 +80,32 @@ fun MediaControlSheet(
 @Preview
 @Composable
 private fun Preview() {
-    run {
-        val state = rememberPeekSheetState(initialValue = PeekSheetAnchor.Peek)
-        val coroutineScope = rememberCoroutineScope()
-        var isPlaying by remember { mutableStateOf(false) }
-        Surface {
-            MediaControlSheet(
-                mediaItem = MediaItem(
-                    artworkThumbnailUrl = null,
-                    artworkLargeUrl = null,
-                    title = "Title",
-                    artists = listOf(Artist("Artist 1"), Artist("Artist 2")),
-                ),
-                isPlaying = isPlaying,
-                onPlayPauseClick = { isPlaying = !isPlaying },
-                onControlBarClick = {
-                    coroutineScope.launch {
-                        if (state.isExpanded) state.peek() else state.expand()
-                    }
-                },
-                state = state,
-            ) {
-                Column(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxSize(),
-                ) {
-                    Text("Content")
+    val state = rememberPeekSheetState(initialValue = PeekSheetAnchor.Peek)
+    val coroutineScope = rememberCoroutineScope()
+    var isPlaying by remember { mutableStateOf(false) }
+    Surface {
+        MediaControlSheet(
+            mediaItem = MediaItem(
+                artworkThumbnailUrl = null,
+                artworkLargeUrl = null,
+                title = "Title",
+                artists = listOf(Artist("Artist 1"), Artist("Artist 2")),
+            ),
+            isPlaying = isPlaying,
+            onPlayPauseClick = { isPlaying = !isPlaying },
+            onControlBarClick = {
+                coroutineScope.launch {
+                    if (state.isExpanded) state.peek() else state.expand()
                 }
+            },
+            state = state,
+        ) {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize(),
+            ) {
+                Text("Content")
             }
         }
     }

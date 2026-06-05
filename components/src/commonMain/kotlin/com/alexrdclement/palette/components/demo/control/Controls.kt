@@ -134,23 +134,21 @@ fun ControlsRow(
 @Preview
 @Composable
 private fun Preview() {
-    run {
-        var expanded by remember { mutableStateOf(true) }
-        Controls(
-            controls = persistentListOf(
-                Control.Slider(
-                    name = "Amount",
-                    value = { 0.5f },
-                    onValueChange = {},
-                ),
-                Control.Slider(
-                    name = "Amount 2",
-                    value = { 0.5f },
-                    onValueChange = {},
-                )
+    var expanded by remember { mutableStateOf(true) }
+    Controls(
+        controls = persistentListOf(
+            Control.Slider(
+                name = "Amount",
+                value = { 0.5f },
+                onValueChange = {},
             ),
-            expandedInitial = expanded,
-            name = "Sliders",
-        )
-    }
+            Control.Slider(
+                name = "Amount 2",
+                value = { 0.5f },
+                onValueChange = {},
+            )
+        ),
+        expandedInitial = expanded,
+        name = "Sliders",
+    )
 }
