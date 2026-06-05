@@ -86,7 +86,7 @@ fun DemoScope.TextFieldDemo(
     TextField(
         state = state.textFieldState,
         textStyle = state.textStyleDemoState.textStyle,
-        style = PaletteTheme.components.textFieldStyle,
+        style = PaletteTheme.components.textField,
         enabled = state.enabled,
         lineLimits = when (state.lineLimits) {
             LineLimits.SingleLine -> TextFieldLineLimits.SingleLine

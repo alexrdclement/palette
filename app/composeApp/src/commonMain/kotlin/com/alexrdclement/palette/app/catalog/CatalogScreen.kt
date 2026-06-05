@@ -37,14 +37,14 @@ fun <T : CatalogItem> CatalogScreen(
                     { Text(title, style = PaletteTheme.styles.text.titleMedium) }
                 },
                 navButton = onNavigateUp?.let {
-                    { BackNavigationButton(onNavigateUp, style = PaletteTheme.components.backNavigationButtonStyle) }
+                    { BackNavigationButton(onNavigateUp, style = PaletteTheme.components.backNavigationButton) }
                 },
                 actions = actions,
             )
         },
     ) { innerPadding ->
         Catalog(
-            style = PaletteTheme.components.catalogStyle,
+            style = PaletteTheme.components.catalog,
             items = items,
             onItemClick = onItemClick,
             contentPadding = innerPadding.plus(WindowInsets.safeDrawing.horizontalPaddingValues()),

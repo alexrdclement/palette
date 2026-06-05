@@ -859,7 +859,7 @@ class GridVertexControl(
 @Composable
 fun GridDemoPreview() {
     PaletteTheme {
-        Surface(style = PaletteTheme.components.surfaceStyle) {
+        Surface(style = PaletteTheme.components.surface) {
             GridDemo()
         }
     }

@@ -61,7 +61,7 @@ fun TypographyScreen(
                 .padding(paddingValues)
         ) { textStyle ->
             BoxWithLabel(
-                style = PaletteTheme.components.boxWithLabelStyle,
+                style = PaletteTheme.components.boxWithLabel,
                 label = textStyle.name,
                 modifier = Modifier
                     .fillMaxWidth()

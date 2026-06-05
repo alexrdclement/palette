@@ -28,14 +28,14 @@ import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
 /**
  * Theme-resolved default [androidx.compose.runtime.Composable] styles for [com.alexrdclement.palette.components]
  * widgets. Clients pass these explicitly, e.g.
- * `MediaControlSheet(style = PaletteTheme.components.mediaControlSheetStyle)`.
+ * `MediaControlSheet(style = PaletteTheme.components.mediaControlSheet)`.
  *
  * Each style is built from the current [PaletteTheme]; composite styles reuse their children's
  * resolved styles so a widget looks the same standalone or nested.
  */
 object PaletteComponentStyles {
 
-    val surfaceStyle: SurfaceStyle
+    val surface: SurfaceStyle
         @Composable get() = SurfaceStyle(
             shape = PaletteTheme.shapeScheme.surface,
             color = PaletteTheme.colorScheme.surface,
@@ -43,12 +43,12 @@ object PaletteComponentStyles {
             indication = PaletteTheme.indication,
         )
 
-    val dividerStyle: DividerStyle
+    val divider: DividerStyle
         @Composable get() = DividerStyle(
             color = PaletteTheme.colorScheme.outline,
         )
 
-    val checkboxStyle: CheckboxStyle
+    val checkbox: CheckboxStyle
         @Composable get() = CheckboxStyle(
             buttonStyle = ButtonStyle(
                 contentColor = ColorToken.Primary.toColor(),
@@ -57,7 +57,7 @@ object PaletteComponentStyles {
             textStyle = PaletteTheme.styles.text.titleLarge,
         )
 
-    val chevronButtonStyle: ChevronButtonStyle
+    val chevronButton: ChevronButtonStyle
         @Composable get() = ChevronButtonStyle(
             buttonStyle = ButtonStyle(
                 contentColor = ColorToken.Primary.toColor(),
@@ -67,13 +67,13 @@ object PaletteComponentStyles {
             contentPadding = PaddingValues(PaletteTheme.spacing.medium),
         )
 
-    val colorDisplayStyle: ColorDisplayStyle
+    val colorDisplay: ColorDisplayStyle
         @Composable get() = ColorDisplayStyle(
             shape = PaletteTheme.shapeScheme.primary,
             borderStyle = BorderStyleToken.Primary.toComponentStyle(),
         )
 
-    val colorPickerStyle: ColorPickerStyle
+    val colorPicker: ColorPickerStyle
         @Composable get() = ColorPickerStyle(
             spacing = PaletteTheme.spacing.medium,
             labelStyle = PaletteTheme.styles.text.labelLarge,
@@ -87,14 +87,14 @@ object PaletteComponentStyles {
             thumbBackgroundColor = PaletteTheme.colorScheme.surface,
         )
 
-    val textFieldStyle: TextFieldStyle
+    val textField: TextFieldStyle
         @Composable get() = TextFieldStyle(
             cursorBrush = SolidColor(PaletteTheme.colorScheme.primary),
             borderStroke = BorderStroke(1.dp, PaletteTheme.colorScheme.outline),
             contentPadding = PaletteTheme.spacing.small,
         )
 
-    val currencyAmountFieldStyle: CurrencyAmountFieldStyle
+    val currencyAmountField: CurrencyAmountFieldStyle
         @Composable get() = CurrencyAmountFieldStyle(
             textStyle = PaletteTheme.styles.text.headline,
             placeholderColor = PaletteTheme.colorScheme.primary.copy(alpha = 0.5f),
@@ -103,7 +103,7 @@ object PaletteComponentStyles {
             spacing = PaletteTheme.spacing.small,
         )
 
-    val backNavigationButtonStyle: BackNavigationButtonStyle
+    val backNavigationButton: BackNavigationButtonStyle
         @Composable get() = BackNavigationButtonStyle(
             buttonStyle = ButtonStyle(
                 contentColor = ColorToken.Primary.toColor(),
@@ -113,13 +113,13 @@ object PaletteComponentStyles {
             iconColor = PaletteTheme.colorScheme.primary,
         )
 
-    val catalogStyle: CatalogStyle
+    val catalog: CatalogStyle
         @Composable get() = CatalogStyle(
             itemSpacing = PaletteTheme.spacing.medium,
             itemStyle = ButtonStyleToken.Secondary.toComponentStyle(),
         )
 
-    val boxWithLabelStyle: BoxWithLabelStyle
+    val boxWithLabel: BoxWithLabelStyle
         @Composable get() = BoxWithLabelStyle(
             spacing = PaletteTheme.spacing.small,
             labelPadding = PaletteTheme.spacing.xs,
@@ -127,7 +127,7 @@ object PaletteComponentStyles {
             borderColor = PaletteTheme.colorScheme.outline,
         )
 
-    val playPauseButtonStyle: PlayPauseButtonStyle
+    val playPauseButton: PlayPauseButtonStyle
         @Composable get() = PlayPauseButtonStyle(
             buttonStyle = ButtonStyle(
                 contentColor = ColorToken.OnPrimary.toColor(),
@@ -137,23 +137,23 @@ object PaletteComponentStyles {
             iconColor = PaletteTheme.colorScheme.onPrimary,
         )
 
-    val mediaItemArtworkStyle: MediaItemArtworkStyle
+    val mediaItemArtwork: MediaItemArtworkStyle
         @Composable get() = MediaItemArtworkStyle(
             fallbackTextStyle = PaletteTheme.styles.text.labelLarge,
         )
 
-    val mediaControlBarStyle: MediaControlBarStyle
+    val mediaControlBar: MediaControlBarStyle
         @Composable get() = MediaControlBarStyle(
             titleStyle = PaletteTheme.styles.text.titleMedium,
             artistStyle = PaletteTheme.styles.text.bodyMedium,
             contentSpacing = PaletteTheme.spacing.small,
-            artworkStyle = mediaItemArtworkStyle,
-            playPauseButtonStyle = playPauseButtonStyle,
+            artworkStyle = mediaItemArtwork,
+            playPauseButtonStyle = playPauseButton,
         )
 
-    val mediaControlSheetStyle: MediaControlSheetStyle
+    val mediaControlSheet: MediaControlSheetStyle
         @Composable get() = MediaControlSheetStyle(
-            controlBarStyle = mediaControlBarStyle,
+            controlBarStyle = mediaControlBar,
         )
 }
 

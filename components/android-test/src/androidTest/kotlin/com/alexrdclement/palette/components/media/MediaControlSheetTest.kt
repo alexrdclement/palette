@@ -65,7 +65,7 @@ class MediaControlSheetTest {
                 }
             },
             state = state,
-            style = PaletteTheme.components.mediaControlSheetStyle,
+            style = PaletteTheme.components.mediaControlSheet,
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,

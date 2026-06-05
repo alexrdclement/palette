@@ -64,7 +64,7 @@ fun TextStyleScreen(
             val tokenSet = state.textStylesByToken[token]!!
             val textStyle = tokenSet.toTextStyle()
             BoxWithLabel(
-                style = PaletteTheme.components.boxWithLabelStyle,
+                style = PaletteTheme.components.boxWithLabel,
                 label = token.name,
                 modifier = Modifier
                     .fillMaxWidth()

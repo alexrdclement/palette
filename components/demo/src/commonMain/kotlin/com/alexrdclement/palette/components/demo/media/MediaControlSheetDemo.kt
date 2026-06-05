@@ -73,7 +73,7 @@ fun MediaControlSheetDemo(
                 }
             },
             state = state,
-            style = PaletteTheme.components.mediaControlSheetStyle,
+            style = PaletteTheme.components.mediaControlSheet,
             maxContentSize = DpSize(
                 width = Dp.Infinity,
                 height = with(LocalDensity.current) { maxHeight.toDp() / 2f },

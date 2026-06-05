@@ -12,7 +12,7 @@ fun PalettePreview(
 ) {
     PaletteTheme {
         Surface(
-            style = PaletteTheme.components.surfaceStyle,
+            style = PaletteTheme.components.surface,
             content = content,
         )
     }

@@ -33,7 +33,7 @@ fun ColorPickerDialog(
         onDismissRequest = onDismissRequest,
     ) {
         Surface(
-            style = PaletteTheme.components.surfaceStyle.copy(
+            style = PaletteTheme.components.surface.copy(
                 borderStyle = PaletteTheme.styles.border.surface.toComponentStyle(),
             ),
         ) {
@@ -65,7 +65,7 @@ fun ColorPickerDialogContent(
             .padding(PaletteTheme.spacing.large)
     ) {
         ColorPicker(
-            style = PaletteTheme.components.colorPickerStyle,
+            style = PaletteTheme.components.colorPicker,
             color = color,
             onColorChange = { color = it },
             modifier = Modifier

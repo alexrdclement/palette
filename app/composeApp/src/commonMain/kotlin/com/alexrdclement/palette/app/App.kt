@@ -27,7 +27,7 @@ fun App(
         styles = themeController.styles,
         formats = themeController.formats,
     ) {
-        Surface(style = PaletteTheme.components.surfaceStyle) {
+        Surface(style = PaletteTheme.components.surface) {
             PaletteNav(
                 themeController = themeController,
                 navController = navController,

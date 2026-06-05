@@ -54,7 +54,7 @@ fun MoneyFormatScreen(
                 .padding(paddingValues)
         ) { (token, _) ->
             BoxWithLabel(
-                style = PaletteTheme.components.boxWithLabelStyle,
+                style = PaletteTheme.components.boxWithLabel,
                 label = token.name,
                 modifier = Modifier
                     .padding(horizontal = PaletteTheme.spacing.medium)

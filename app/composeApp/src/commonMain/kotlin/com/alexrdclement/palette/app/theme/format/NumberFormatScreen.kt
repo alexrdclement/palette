@@ -55,7 +55,7 @@ fun NumberFormatScreen(
                 .padding(paddingValues)
         ) { (token, _) ->
             BoxWithLabel(
-                style = PaletteTheme.components.boxWithLabelStyle,
+                style = PaletteTheme.components.boxWithLabel,
                 label = token.name,
             ) {
                 NumberFormatDemo(

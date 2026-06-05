@@ -61,7 +61,7 @@ fun TimeFormatSchemeScreen(
                 .padding(paddingValues)
         ) { (token, format) ->
             BoxWithLabel(
-                style = PaletteTheme.components.boxWithLabelStyle,
+                style = PaletteTheme.components.boxWithLabel,
                 label = token.name,
                 modifier = Modifier
                     .padding(horizontal = PaletteTheme.spacing.medium)
