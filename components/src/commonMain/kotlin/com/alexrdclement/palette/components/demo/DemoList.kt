@@ -18,6 +18,7 @@ fun <T> DemoList(
     controls: PersistentList<Control>,
     modifier: Modifier = Modifier,
     key: ((item: T) -> Any)? = null,
+    style: DemoStyle = DemoStyle(),
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(
         space = 24.dp,
         alignment = Alignment.CenterVertically,
@@ -27,6 +28,7 @@ fun <T> DemoList(
 ) {
     Demo(
         controls = controls,
+        style = style,
         modifier = modifier,
     ) {
         LazyColumn(

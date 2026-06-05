@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -72,7 +72,7 @@ fun ColorPickerDialogContent(
                 .weight(1f, fill = false)
         )
         ConfirmCancelButtonRow(
-            buttonStyle = ButtonStyleToken.Secondary.toComponentStyle(),
+            buttonStyle = PaletteTheme.components.button(ButtonStyleToken.Secondary),
             onConfirm = {
                 onColorSelected(color)
                 onDismissRequest()

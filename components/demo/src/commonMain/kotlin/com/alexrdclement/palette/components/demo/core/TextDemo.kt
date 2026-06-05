@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.components.demo.core
 
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -11,12 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.LineHeightStyle
@@ -32,6 +31,7 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.components.core.TextStyle
 import kotlinx.collections.immutable.persistentListOf
 
@@ -42,6 +42,7 @@ fun TextDemo(
     control: TextDemoControl = rememberTextDemoControl(state),
 ) {
     Demo(
+        style = PaletteTheme.components.demo,
         controls = control.controls,
         modifier = modifier.fillMaxSize()
     ) {

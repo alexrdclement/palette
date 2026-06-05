@@ -3,10 +3,10 @@ package com.alexrdclement.palette.components.demo.geometry
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,6 +25,7 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import kotlinx.collections.immutable.persistentListOf
 import kotlin.math.roundToInt
 
@@ -35,6 +36,7 @@ fun SphereDemo(
     control: SphereDemoControl = rememberSphereDemoControl(state),
 ) {
     Demo(
+        style = PaletteTheme.components.demo,
         controls = control.controls,
         modifier = modifier.fillMaxSize(),
     ) {

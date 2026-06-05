@@ -1,8 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
+import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.core.ButtonStyle
-import com.alexrdclement.palette.components.core.TextStyle
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -11,10 +10,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,7 +23,6 @@ import com.alexrdclement.palette.components.color.ColorDisplay
 import com.alexrdclement.palette.components.color.ColorPicker
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Surface
-import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
 
@@ -43,10 +41,10 @@ fun ColorControl(
     ) {
         Text(
             text = control.name,
-            style = TextStyle(),
+            style = LocalDemoStyle.current.labelStyle,
         )
         Button(
-            style = ButtonStyle(),
+            style = LocalDemoStyle.current.buttonStyle,
             onClick = { showDialog = true },
         ) {
             Row(
@@ -60,7 +58,7 @@ fun ColorControl(
                     modifier = Modifier
                         .fillMaxHeight()
                 )
-                Text(color.toString(), style = TextStyle())
+                Text(color.toString(), style = LocalDemoStyle.current.labelStyle)
             }
         }
     }
@@ -83,7 +81,7 @@ private fun ColorPickerDialog(
     Dialog(
         onDismissRequest = onDismissRequest,
     ) {
-        Surface {
+        Surface(style = LocalDemoStyle.current.surfaceStyle) {
             ColorPickerDialogContent(
                 color = color,
                 onColorSelected = onColorSelected,
@@ -111,12 +109,14 @@ private fun ColorPickerDialogContent(
             .padding(24.dp)
     ) {
         ColorPicker(
+            style = LocalDemoStyle.current.colorPickerStyle,
             color = currentColor,
             onColorChange = { currentColor = it },
             modifier = Modifier
                 .weight(1f, fill = false)
         )
         ConfirmCancelButtonRow(
+            buttonStyle = LocalDemoStyle.current.buttonStyle,
             onConfirm = {
                 onColorSelected(currentColor)
                 onDismissRequest()

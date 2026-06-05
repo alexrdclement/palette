@@ -19,6 +19,7 @@ import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.components.core.ShapeType
 import com.alexrdclement.palette.components.core.toShape as shapeTypeToShape
 import com.alexrdclement.palette.theme.ShapeScheme
@@ -51,6 +52,7 @@ fun ShapeScreen(
         },
     ) { paddingValues ->
         DemoList(
+            style = PaletteTheme.components.demo,
             items = ShapeToken.entries.toList(),
             controls = control.controls,
             modifier = Modifier

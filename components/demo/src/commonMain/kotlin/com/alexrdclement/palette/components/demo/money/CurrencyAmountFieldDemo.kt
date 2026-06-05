@@ -11,8 +11,8 @@ import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +35,7 @@ fun CurrencyAmountFieldDemo(
         .collectAsState(initial = textFieldState.text.toString())
 
     Demo(
+        style = PaletteTheme.components.demo,
         modifier = modifier
             .fillMaxSize(),
     ) {

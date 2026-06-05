@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.toComponentStyle
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 @Composable
@@ -14,7 +14,7 @@ fun ThemeButton(
     modifier: Modifier = Modifier,
 ) {
     Button(
-        style = ButtonStyleToken.Tertiary.toComponentStyle(),
+        style = PaletteTheme.components.button(ButtonStyleToken.Tertiary),
         onClick = onClick,
         modifier = modifier,
     ) {

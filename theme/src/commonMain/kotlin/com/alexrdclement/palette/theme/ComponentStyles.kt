@@ -14,6 +14,7 @@ import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPickerStyle
+import com.alexrdclement.palette.components.demo.DemoStyle
 import com.alexrdclement.palette.components.layout.BoxWithLabelStyle
 import com.alexrdclement.palette.components.layout.catalog.CatalogStyle
 import com.alexrdclement.palette.components.media.MediaControlBarStyle
@@ -34,6 +35,11 @@ import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
  * resolved styles so a widget looks the same standalone or nested.
  */
 object PaletteComponentStyles {
+
+    /** Resolved [ButtonStyle] for the given [ButtonStyleToken] variant. */
+    @Composable
+    fun button(token: ButtonStyleToken = ButtonStyleToken.Primary): ButtonStyle =
+        token.toComponentStyle()
 
     val surface: SurfaceStyle
         @Composable get() = SurfaceStyle(
@@ -154,6 +160,18 @@ object PaletteComponentStyles {
     val mediaControlSheet: MediaControlSheetStyle
         @Composable get() = MediaControlSheetStyle(
             controlBarStyle = mediaControlBar,
+        )
+
+    val demo: DemoStyle
+        @Composable get() = DemoStyle(
+            labelStyle = PaletteTheme.styles.text.labelLarge,
+            headerStyle = PaletteTheme.styles.text.labelSmall,
+            fieldTextStyle = PaletteTheme.styles.text.bodyMedium,
+            buttonStyle = button(ButtonStyleToken.Secondary),
+            textFieldStyle = textField,
+            borderColor = PaletteTheme.colorScheme.outline,
+            colorPickerStyle = colorPicker,
+            surfaceStyle = surface,
         )
 }
 

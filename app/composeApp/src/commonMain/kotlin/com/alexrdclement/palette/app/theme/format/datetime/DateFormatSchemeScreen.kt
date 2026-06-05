@@ -53,6 +53,7 @@ fun DateFormatSchemeScreen(
         },
     ) { paddingValues ->
         DemoList(
+            style = PaletteTheme.components.demo,
             items = state.dateFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,

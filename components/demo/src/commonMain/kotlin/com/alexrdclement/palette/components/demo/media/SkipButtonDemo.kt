@@ -1,11 +1,13 @@
 package com.alexrdclement.palette.components.demo.media
 
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,7 +18,6 @@ import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.media.SkipBackButton
 import com.alexrdclement.palette.components.media.SkipButton
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.toComponentStyle
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -34,6 +35,7 @@ fun SkipButtonDemo(
     )
 
     Demo(
+        style = PaletteTheme.components.demo,
         controls = controls,
         modifier = modifier.fillMaxSize(),
     ) {
@@ -49,7 +51,7 @@ fun DemoScope.SkipButtonDemo(
     SkipBackButton(
         onClick = {},
         enabled = enabled,
-        style = ButtonStyleToken.Secondary.toComponentStyle(),
+        style = PaletteTheme.components.button(ButtonStyleToken.Secondary),
         modifier = modifier
             .size(52.dp)
             .align(Alignment.CenterStart),
@@ -57,7 +59,7 @@ fun DemoScope.SkipButtonDemo(
     SkipButton(
         onClick = {},
         enabled = enabled,
-        style = ButtonStyleToken.Secondary.toComponentStyle(),
+        style = PaletteTheme.components.button(ButtonStyleToken.Secondary),
         modifier = Modifier
             .size(52.dp)
             .align(Alignment.CenterEnd),

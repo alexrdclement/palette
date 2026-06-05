@@ -1,14 +1,16 @@
 package com.alexrdclement.palette.app.theme.styles
 
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
@@ -32,7 +34,6 @@ import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.theme.styles.copy
 import com.alexrdclement.palette.theme.styles.toStyle
 import kotlinx.collections.immutable.PersistentList
@@ -57,6 +58,7 @@ fun ButtonStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
+            style = PaletteTheme.components.demo,
             items = state.buttonStylesByToken.keys.toList(),
             controls = control.controls,
             modifier = Modifier
@@ -64,7 +66,7 @@ fun ButtonStyleScreen(
                 .padding(paddingValues)
         ) { style ->
             Button(
-                style = style.toComponentStyle(),
+                style = PaletteTheme.components.button(style),
                 onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()

@@ -8,7 +8,6 @@ import com.alexrdclement.palette.app.theme.navigation.ThemeGraph
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.NavKey
-import com.alexrdclement.palette.navigation.PathSegment
 
 fun NavGraphBuilder.dateTimeFormatsNavGraph() = navGraph(
     root = DateTimeFormatsGraph,

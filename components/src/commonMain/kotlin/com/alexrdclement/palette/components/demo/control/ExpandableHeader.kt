@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.components.demo.control
 
-import androidx.compose.ui.graphics.Color
-import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -34,9 +33,9 @@ fun ExpandableHeader(
     ) {
         Text(
             text = name,
-            style = TextStyle(),
+            style = LocalDemoStyle.current.headerStyle,
             modifier = Modifier
-                .border(1.dp, Color.Unspecified)
+                .border(1.dp, LocalDemoStyle.current.borderColor)
                 .padding(4.dp)
         )
         ChevronIcon(

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -39,8 +40,10 @@ private class DemoScopeImpl(
 fun Demo(
     modifier: Modifier = Modifier,
     controls: PersistentList<Control> = persistentListOf(),
+    style: DemoStyle = DemoStyle(),
     content: @Composable DemoScope.() -> Unit,
 ) {
+    CompositionLocalProvider(LocalDemoStyle provides style) {
     BoxWithConstraints(
         modifier = modifier
             .padding(WindowInsets.safeDrawing.horizontalPaddingValues()),
@@ -98,5 +101,6 @@ fun Demo(
                 }
             }
         }
+    }
     }
 }

@@ -47,6 +47,7 @@ fun TextFormatScreen(
         },
     ) { paddingValues ->
         DemoList(
+            style = PaletteTheme.components.demo,
             items = state.textFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,

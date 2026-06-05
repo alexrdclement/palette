@@ -47,6 +47,7 @@ fun NumberFormatScreen(
         },
     ) { paddingValues ->
         DemoList(
+            style = PaletteTheme.components.demo,
             items = state.numberFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,

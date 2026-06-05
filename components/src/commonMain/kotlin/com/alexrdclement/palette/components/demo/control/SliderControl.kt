@@ -1,15 +1,15 @@
 package com.alexrdclement.palette.components.demo.control
 
+import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.core.TextStyle
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
@@ -38,7 +38,7 @@ fun SliderControl(
         }
         Text(
             text = label,
-            style = TextStyle(),
+            style = LocalDemoStyle.current.labelStyle,
         )
         val steps = control.stepIncrement?.let { stepsForIncrement(valueRange, it) } ?: 0
         Slider(

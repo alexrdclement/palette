@@ -3,10 +3,10 @@ package com.alexrdclement.palette.components.demo.geometry
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -54,6 +54,7 @@ fun GridDemo(
     control: GridDemoControl = rememberGridDemoControl(state),
 ) {
     Demo(
+        style = PaletteTheme.components.demo,
         controls = control.controls,
         modifier = modifier.fillMaxSize(),
     ) {

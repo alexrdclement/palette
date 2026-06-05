@@ -1,10 +1,9 @@
 package com.alexrdclement.palette.components.demo.control
 
-import com.alexrdclement.palette.components.core.ButtonStyle
-import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
@@ -16,12 +15,12 @@ fun ButtonControl(
 ) {
     val enabled by rememberUpdatedState(control.enabled())
     Button(
-        style = ButtonStyle(),
+        style = LocalDemoStyle.current.buttonStyle,
         onClick = control.onClick,
         enabled = enabled,
         modifier = modifier
             .then(control.modifier)
     ) {
-        Text(control.name, style = TextStyle())
+        Text(control.name, style = LocalDemoStyle.current.labelStyle)
     }
 }

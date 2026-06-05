@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.components.core
 
 import androidx.compose.foundation.Indication
-import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Arrangement
@@ -17,15 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.LocalContentColor
-import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 
 data class ButtonStyle(
     val contentColor: Color = Color.Unspecified,

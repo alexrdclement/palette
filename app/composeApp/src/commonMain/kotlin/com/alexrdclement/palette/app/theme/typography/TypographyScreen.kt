@@ -54,6 +54,7 @@ fun TypographyScreen(
         },
     ) { paddingValues ->
         DemoList(
+            style = PaletteTheme.components.demo,
             items = TypographyToken.entries.toList(),
             controls = control.controls,
             modifier = Modifier

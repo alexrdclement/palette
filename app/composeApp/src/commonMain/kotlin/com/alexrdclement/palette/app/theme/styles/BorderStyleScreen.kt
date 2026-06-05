@@ -20,6 +20,7 @@ import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.Styles
 import com.alexrdclement.palette.theme.control.ThemeController
@@ -51,6 +52,7 @@ fun BorderStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
+            style = PaletteTheme.components.demo,
             items = state.borderStylesByToken.keys.toList(),
             controls = control.controls,
             modifier = Modifier

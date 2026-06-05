@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,8 +20,8 @@ import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.toComponentStyle
 import kotlinx.collections.immutable.persistentListOf
 
 enum class AuthButtonStyle {
@@ -51,6 +51,7 @@ fun AuthButtonDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
+        style = PaletteTheme.components.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()
@@ -70,7 +71,7 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
 ) {
     AuthButton(
         authState = state.authState,
-        buttonStyle = state.style.buttonStyleToken.toComponentStyle(),
+        buttonStyle = PaletteTheme.components.button(state.style.buttonStyleToken),
         textStyle = state.style.textStyle,
         onLogInClick = {},
         onLogOutClick = {},

@@ -12,9 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,8 +39,6 @@ import com.alexrdclement.palette.components.util.calculateEndPadding
 import com.alexrdclement.palette.components.util.calculateHorizontalPadding
 import com.alexrdclement.palette.components.util.calculateStartPadding
 import com.alexrdclement.palette.components.util.calculateVerticalPadding
-import androidx.compose.ui.graphics.Color
-import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.util.toIntSize
 import com.alexrdclement.palette.components.util.toPx

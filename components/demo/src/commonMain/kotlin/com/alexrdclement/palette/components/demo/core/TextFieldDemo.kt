@@ -11,13 +11,13 @@ import androidx.compose.foundation.text.input.allCaps
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -50,6 +50,7 @@ fun TextFieldDemo(
     control: TextFieldDemoControl = rememberTextFieldDemoControl(state = state),
 ) {
     Demo(
+        style = PaletteTheme.components.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize(),

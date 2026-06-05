@@ -7,9 +7,9 @@ import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
@@ -55,6 +55,7 @@ fun TextStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
+            style = PaletteTheme.components.demo,
             items = state.textStylesByToken.keys.toList(),
             controls = control.controls,
             modifier = Modifier

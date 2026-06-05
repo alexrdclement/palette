@@ -10,10 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,7 +32,7 @@ import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteDarkColorScheme
 import com.alexrdclement.palette.theme.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.toComponentStyle
+import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
@@ -63,6 +63,7 @@ fun ColorScreen(
         },
     ) { paddingValues ->
         DemoList(
+            style = PaletteTheme.components.demo,
             items = ColorToken.entries.toList(),
             key = { it.name },
             controls = control.controls,
@@ -106,7 +107,7 @@ private fun ColorDisplay(
         modifier = modifier
     ) {
         Button(
-            style = ButtonStyleToken.Secondary.toComponentStyle(),
+            style = PaletteTheme.components.button(ButtonStyleToken.Secondary),
             onClick = { onColorClick(color) },
             contentPadding = PaddingValues(0.dp),
             modifier = Modifier.size(ButtonDefaults.MinHeight)
