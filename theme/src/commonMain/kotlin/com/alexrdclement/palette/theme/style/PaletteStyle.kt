@@ -1,4 +1,15 @@
-@file:Suppress("UNRESOLVED_REFERENCE")
+// StyleScope is a sealed interface in the current CMP release. Inheriting from it in a
+// different module requires suppressing both the unresolved CustomStyle reference and the
+// sealed-inheritor error. When Foundation 1.12.0-alpha03+ lands in JetBrains CMP, these
+// suppressions are removed and the file compiles cleanly.
+@file:Suppress(
+    "UNRESOLVED_REFERENCE",
+    "SEALED_INHERITOR_IN_DIFFERENT_PACKAGE",
+    "SEALED_INHERITOR_IN_DIFFERENT_MODULE",
+)
+// Foundation's experimental opt-in is scoped to this file so PaletteStyle / PaletteStyleScope
+// are usable by callers without requiring @OptIn(ExperimentalFoundationStyleApi::class).
+@file:OptIn(ExperimentalFoundationStyleApi::class)
 package com.alexrdclement.palette.theme.style
 
 import androidx.compose.foundation.Indication
@@ -36,9 +47,11 @@ import com.alexrdclement.palette.theme.toSpacing
 // type has a shorthand method. Reads use .currentValue (draw/layout phase), not .current
 // (Composition), because Style lambdas execute outside of Composition.
 //
-// Requires CustomStyle<T> from Foundation 1.12.0-alpha03+ / CMP (pending).
-// @file:Suppress("UNRESOLVED_REFERENCE") allows this file to sit in the tree uncompiled.
-@ExperimentalFoundationStyleApi
+// Limitation: StyleScope.disabled { } has StyleScope as its inner receiver, not
+// PaletteStyleScope, so token overloads (background(ColorToken) etc.) are unavailable
+// inside disabled blocks. Workaround: read LocalPaletteXxx.currentValue manually and call
+// the raw Color/Dp overloads. This resolves when Foundation ships
+// CustomStyle<T>.disabled(T.() -> Unit).
 interface PaletteStyleScope : StyleScope {
 
     // ── Theme objects ────────────────────────────────────────────────────────────────────────
@@ -80,5 +93,10 @@ interface PaletteStyleScope : StyleScope {
     fun contentPaddingBottom(token: SpacingToken) = contentPaddingBottom(token.toSpacing(spacing))
 }
 
-@ExperimentalFoundationStyleApi
 typealias PaletteStyle = CustomStyle<PaletteStyleScope>
+
+// Chains two PaletteStyle lambdas; the second wins on conflicting properties.
+// Mirrors Modifier.then() — use to layer overrides on top of a default style:
+//   Surface(style = SurfaceDefaults.style.then(PaletteStyle { background(ColorToken.Primary) }))
+operator fun PaletteStyle.then(other: PaletteStyle): PaletteStyle =
+    PaletteStyle { this@then.invoke(this); other.invoke(this) }
