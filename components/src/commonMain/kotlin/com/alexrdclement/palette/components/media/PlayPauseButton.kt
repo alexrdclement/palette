@@ -19,7 +19,6 @@ import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPaused
 import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPlaying
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.core.withContentPadding
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 
@@ -40,7 +39,7 @@ fun PlayPauseButton(
     Button(
         onClick = onClick,
         onLongClick = onLongClick,
-        style = style.buttonStyle.withContentPadding(PaddingValues(vertical = 2.dp, horizontal = 2.dp)),
+        style = style.buttonStyle.copy(contentPadding = PaddingValues(vertical = 2.dp, horizontal = 2.dp)),
         enabled = isEnabled,
         modifier = modifier
             .aspectRatio(1f)

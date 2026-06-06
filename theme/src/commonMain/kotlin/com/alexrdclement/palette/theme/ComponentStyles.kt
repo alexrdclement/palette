@@ -19,7 +19,6 @@ import com.alexrdclement.palette.components.core.SliderColors
 import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
-import com.alexrdclement.palette.components.core.withContentPadding
 import com.alexrdclement.palette.components.demo.DemoStyle
 import com.alexrdclement.palette.components.demo.control.CharControlStyle
 import com.alexrdclement.palette.components.demo.control.ColorControlStyle
@@ -137,7 +136,7 @@ object PaletteComponentStyles {
         @Composable get() = ColorDisplayStyle(
             shape = PaletteTheme.shapeScheme.primary,
             borderStyle = BorderStyleToken.Primary.toComponentStyle(),
-            buttonStyle = button(ButtonStyleToken.Secondary).withContentPadding(PaddingValues(0.dp)),
+            buttonStyle = button(ButtonStyleToken.Secondary).copy(contentPadding = PaddingValues(0.dp)),
         )
 
     val colorPicker: ColorPickerStyle

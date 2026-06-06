@@ -36,10 +36,6 @@ data class ButtonStyle(
     val indication: Indication? = null,
 )
 
-/** Returns a copy of this [ButtonStyle] with [contentPadding] overridden. */
-fun ButtonStyle.withContentPadding(contentPadding: PaddingValues): ButtonStyle =
-    copy(contentPadding = contentPadding)
-
 @Composable
 fun Button(
     onClick: () -> Unit,

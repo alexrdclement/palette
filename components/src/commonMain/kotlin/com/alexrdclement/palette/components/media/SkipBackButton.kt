@@ -6,11 +6,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.core.withContentPadding
 import com.alexrdclement.palette.components.core.ButtonStyle
 
 @Composable
@@ -24,7 +23,7 @@ fun SkipBackButton(
     Button(
         onClick = onClick,
         enabled = enabled,
-        style = style.withContentPadding(contentPadding),
+        style = style.copy(contentPadding = contentPadding),
         modifier = modifier
             .aspectRatio(1f)
     ) { shapePadding ->

@@ -42,7 +42,7 @@ fun ChevronButton(
 ) {
     Button(
         onClick = onClick,
-        style = style.buttonStyle.withContentPadding(style.contentPadding),
+        style = style.buttonStyle.copy(contentPadding = style.contentPadding),
         modifier = modifier
     ) {
         ChevronIcon(

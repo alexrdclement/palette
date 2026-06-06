@@ -15,7 +15,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.core.withContentPadding
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Surface
 
@@ -33,7 +32,7 @@ fun BackNavigationButton(
 ) {
     Button(
         onClick = onClick,
-        style = style.buttonStyle.withContentPadding(style.contentPadding),
+        style = style.buttonStyle.copy(contentPadding = style.contentPadding),
         modifier = modifier.size(48.dp),
     ) {
         Box(
