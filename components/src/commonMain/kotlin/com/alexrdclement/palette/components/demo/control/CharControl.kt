@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
 import com.alexrdclement.palette.components.demo.LocalDemoStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -22,11 +23,17 @@ import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
 import kotlinx.coroutines.flow.distinctUntilChanged
 
+data class CharControlStyle(
+    val spacing: Dp = 8.dp,
+    val verticalPadding: Dp = 8.dp,
+)
+
 @Composable
 fun CharControl(
     control: Control.CharField,
     modifier: Modifier = Modifier,
 ) {
+    val style = LocalDemoStyle.current.charControl
     val value by rememberUpdatedState(control.value())
     val enabled by rememberUpdatedState(control.enabled())
     val onValueChange by rememberUpdatedState(control.onValueChange)
@@ -48,12 +55,12 @@ fun CharControl(
     }
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(style.spacing),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .then(
-                if (control.includeLabel) Modifier.padding(vertical = 8.dp)
-                else Modifier.padding(bottom = 8.dp)
+                if (control.includeLabel) Modifier.padding(vertical = style.verticalPadding)
+                else Modifier.padding(bottom = style.verticalPadding)
             ),
     ) {
         if (control.includeLabel) {
@@ -62,7 +69,7 @@ fun CharControl(
                 style = LocalDemoStyle.current.labelStyle,
                 modifier = Modifier.weight(1f, fill = false),
             )
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(style.spacing))
         }
         TextField(
             state = textFieldState,

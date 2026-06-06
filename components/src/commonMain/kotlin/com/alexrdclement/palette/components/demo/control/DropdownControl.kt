@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
 import com.alexrdclement.palette.components.demo.LocalDemoStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,11 +25,17 @@ import com.alexrdclement.palette.components.menu.DropdownMenu
 import com.alexrdclement.palette.components.menu.DropdownMenuItem
 import kotlinx.collections.immutable.toPersistentList
 
+data class DropdownControlStyle(
+    val labelSpacing: Dp = 8.dp,
+    val rowSpacing: Dp = 16.dp,
+)
+
 @Composable
 fun <T> DropdownControl(
     control: Control.Dropdown<T>,
     modifier: Modifier = Modifier,
 ) {
+    val style = LocalDemoStyle.current.dropdownControl
     var isMenuExpanded by remember { mutableStateOf(false) }
     val values by rememberUpdatedState(control.values())
     val selectedIndex by rememberUpdatedState(control.selectedIndex())
@@ -39,7 +46,7 @@ fun <T> DropdownControl(
     Column(modifier = modifier) {
         if (control.includeLabel) {
             Text(control.name, style = LocalDemoStyle.current.labelStyle)
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(style.labelSpacing))
         }
 
         DropdownMenuControlButton(
@@ -60,6 +67,7 @@ fun <T> DropdownControlRow(
     control: Control.Dropdown<T>,
     modifier: Modifier = Modifier,
 ) {
+    val style = LocalDemoStyle.current.dropdownControl
     var isMenuExpanded by remember { mutableStateOf(false) }
     val values by rememberUpdatedState(control.values())
     val selectedIndex by rememberUpdatedState(control.selectedIndex())
@@ -79,7 +87,7 @@ fun <T> DropdownControlRow(
                 softWrap = true,
                 modifier = Modifier.weight(1f, fill = false)
             )
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(style.rowSpacing))
         }
 
         DropdownMenuControlButton(

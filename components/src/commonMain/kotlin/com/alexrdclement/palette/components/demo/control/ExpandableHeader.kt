@@ -12,10 +12,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ChevronDirection
 import com.alexrdclement.palette.components.core.ChevronIcon
 import com.alexrdclement.palette.components.core.Text
+
+data class ExpandableHeaderStyle(
+    val spacing: Dp = 8.dp,
+    val borderWidth: Dp = 1.dp,
+    val labelPadding: Dp = 4.dp,
+    val iconPadding: Dp = 6.dp,
+)
 
 @Composable
 fun ExpandableHeader(
@@ -24,9 +32,10 @@ fun ExpandableHeader(
     onExpandedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val style = LocalDemoStyle.current.expandableHeader
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier
             .height(IntrinsicSize.Min)
             .clickable { onExpandedChange(!expanded) }
@@ -35,14 +44,14 @@ fun ExpandableHeader(
             text = name,
             style = LocalDemoStyle.current.headerStyle,
             modifier = Modifier
-                .border(1.dp, LocalDemoStyle.current.borderColor)
-                .padding(4.dp)
+                .border(style.borderWidth, LocalDemoStyle.current.borderColor)
+                .padding(style.labelPadding)
         )
         ChevronIcon(
             direction = if (expanded) ChevronDirection.Up else ChevronDirection.Down,
             modifier = Modifier
                 .fillMaxHeight()
-                .padding(6.dp)
+                .padding(style.iconPadding)
         )
     }
 }

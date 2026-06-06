@@ -19,7 +19,6 @@ import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
 import com.alexrdclement.palette.theme.toComponentStyle
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.toColor
 

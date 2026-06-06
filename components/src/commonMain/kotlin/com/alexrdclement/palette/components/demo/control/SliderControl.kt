@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
 import com.alexrdclement.palette.components.demo.LocalDemoStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,17 +20,22 @@ import com.alexrdclement.palette.components.core.Slider
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.stepsForIncrement
 
+data class SliderControlStyle(
+    val spacing: Dp = 8.dp,
+)
+
 @Composable
 fun SliderControl(
     control: Control.Slider,
     modifier: Modifier = Modifier
 ) {
+    val style = LocalDemoStyle.current.sliderControl
     val name by rememberUpdatedState(control.name())
     val value by rememberUpdatedState(control.value())
     val valueRange by rememberUpdatedState(control.valueRange())
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier,
     ) {
         val label by derivedStateOf {

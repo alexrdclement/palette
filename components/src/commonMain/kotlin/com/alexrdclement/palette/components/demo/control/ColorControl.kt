@@ -26,18 +26,26 @@ import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
+import androidx.compose.ui.unit.Dp
+
+data class ColorControlStyle(
+    val spacing: Dp = 16.dp,
+    val contentSpacing: Dp = 8.dp,
+    val dialogPadding: Dp = 24.dp,
+)
 
 @Composable
 fun ColorControl(
     control: Control.Color,
     modifier: Modifier = Modifier,
 ) {
+    val style = LocalDemoStyle.current.colorControl
     val color by rememberUpdatedState(control.color())
     var showDialog by remember { mutableStateOf(false) }
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier,
     ) {
         Text(
@@ -49,7 +57,7 @@ fun ColorControl(
             onClick = { showDialog = true },
         ) {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(style.contentSpacing),
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .height(IntrinsicSize.Max)
@@ -79,6 +87,7 @@ private fun ColorPickerDialog(
     onColorSelected: (Color) -> Unit,
     onDismissRequest: () -> Unit,
 ) {
+    val style = LocalDemoStyle.current.colorControl
     Dialog(
         onDismissRequest = onDismissRequest,
     ) {
@@ -88,7 +97,7 @@ private fun ColorPickerDialog(
                 onColorSelected = onColorSelected,
                 onDismissRequest = onDismissRequest,
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(style.spacing)
             )
         }
     }
@@ -101,13 +110,14 @@ private fun ColorPickerDialogContent(
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val style = LocalDemoStyle.current.colorControl
     var currentColor by remember { mutableStateOf(color) }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
-            .padding(24.dp)
+            .padding(style.dialogPadding)
     ) {
         ColorPicker(
             style = LocalDemoStyle.current.colorPickerStyle,
@@ -124,7 +134,7 @@ private fun ColorPickerDialogContent(
             },
             onDismiss = onDismissRequest,
             modifier = Modifier
-                .padding(top = 24.dp)
+                .padding(top = style.dialogPadding)
         )
     }
 }

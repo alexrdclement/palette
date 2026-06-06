@@ -18,6 +18,15 @@ import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
 import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
+import com.alexrdclement.palette.components.demo.control.CharControlStyle
+import com.alexrdclement.palette.components.demo.control.ColorControlStyle
+import com.alexrdclement.palette.components.demo.control.ControlsStyle
+import com.alexrdclement.palette.components.demo.control.DropdownControlStyle
+import com.alexrdclement.palette.components.demo.control.DynamicListControlStyle
+import com.alexrdclement.palette.components.demo.control.ExpandableHeaderStyle
+import com.alexrdclement.palette.components.demo.control.SliderControlStyle
+import com.alexrdclement.palette.components.demo.control.TextFieldControlStyle
+import com.alexrdclement.palette.components.demo.control.ToggleControlStyle
 import com.alexrdclement.palette.components.layout.BoxWithLabelStyle
 import com.alexrdclement.palette.components.layout.FloatingActionStyle
 import com.alexrdclement.palette.components.layout.TopBarStyle
@@ -224,6 +233,45 @@ object PaletteComponentStyles {
             borderColor = PaletteTheme.colorScheme.outline,
             colorPickerStyle = colorPicker,
             surfaceStyle = surface,
+            colorControl = ColorControlStyle(
+                spacing = PaletteTheme.spacing.medium,
+                contentSpacing = PaletteTheme.spacing.small,
+                dialogPadding = PaletteTheme.spacing.large,
+            ),
+            sliderControl = SliderControlStyle(
+                spacing = PaletteTheme.spacing.small,
+            ),
+            toggleControl = ToggleControlStyle(
+                spacing = PaletteTheme.spacing.small,
+            ),
+            charControl = CharControlStyle(
+                spacing = PaletteTheme.spacing.small,
+                verticalPadding = PaletteTheme.spacing.small,
+            ),
+            textFieldControl = TextFieldControlStyle(
+                spacing = PaletteTheme.spacing.small,
+                verticalPadding = PaletteTheme.spacing.small,
+            ),
+            dropdownControl = DropdownControlStyle(
+                labelSpacing = PaletteTheme.spacing.small,
+                rowSpacing = PaletteTheme.spacing.medium,
+            ),
+            expandableHeader = ExpandableHeaderStyle(
+                spacing = PaletteTheme.spacing.small,
+                labelPadding = PaletteTheme.spacing.xs,
+            ),
+            dynamicListControl = DynamicListControlStyle(
+                spacing = PaletteTheme.spacing.medium,
+                itemSpacing = PaletteTheme.spacing.small,
+                itemControlSpacing = PaletteTheme.spacing.xs,
+                indent = PaletteTheme.spacing.medium,
+            ),
+            controls = ControlsStyle(
+                spacing = PaletteTheme.spacing.medium,
+                contentPadding = PaletteTheme.spacing.small,
+                rowSpacing = PaletteTheme.spacing.small,
+                indent = PaletteTheme.spacing.medium,
+            ),
         )
 }
 

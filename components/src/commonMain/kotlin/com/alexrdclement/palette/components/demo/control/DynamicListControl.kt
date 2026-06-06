@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.components.demo.control
 
+import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,14 +15,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.toPersistentList
+
+data class DynamicListControlStyle(
+    val spacing: Dp = 16.dp,
+    val itemSpacing: Dp = 8.dp,
+    val itemControlSpacing: Dp = 4.dp,
+    val indent: Dp = 16.dp,
+)
 
 @Composable
 fun <T> DynamicListControl(
     control: Control.DynamicList<T>,
     modifier: Modifier = Modifier,
 ) {
+    val style = LocalDemoStyle.current.dynamicListControl
     val items by rememberUpdatedState(control.items())
     val onItemsChange by rememberUpdatedState(control.onItemsChange)
 
@@ -29,7 +39,7 @@ fun <T> DynamicListControl(
     var addingItem by remember { mutableStateOf<T?>(null) }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier.fillMaxWidth()
     ) {
         if (control.includeLabel) {
@@ -43,10 +53,10 @@ fun <T> DynamicListControl(
         if (!expanded && control.includeLabel) return@Column
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(style.spacing),
             modifier = modifier
                 .fillMaxWidth()
-                .then(if (control.indent) Modifier.padding(start = 16.dp) else Modifier)
+                .then(if (control.indent) Modifier.padding(start = style.indent) else Modifier)
         ) {
             items.forEachIndexed { index, item ->
                 DynamicListItem(
@@ -97,10 +107,11 @@ private fun <T> DynamicListItem(
     onDelete: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val style = LocalDemoStyle.current.dynamicListControl
     val itemControl = control.createControl(item, onItemChange)
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(style.itemSpacing),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
@@ -108,7 +119,7 @@ private fun <T> DynamicListItem(
         Controls(
             controls = listOf(itemControl).toPersistentList(),
             contentPadding = PaddingValues(0.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+            verticalArrangement = Arrangement.spacedBy(style.itemControlSpacing),
             modifier = Modifier.weight(1f)
         )
 
@@ -130,17 +141,18 @@ private fun <T> DynamicListAddItem(
     onCancel: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val style = LocalDemoStyle.current.dynamicListControl
     val addItemControl = control.createControl(item, onItemChange)
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier
             .fillMaxWidth()
     ) {
         Controls(
             controls = listOf(addItemControl).toPersistentList(),
             contentPadding = PaddingValues(0.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+            verticalArrangement = Arrangement.spacedBy(style.itemControlSpacing),
         )
 
         DynamicListActionButtons(
@@ -156,8 +168,9 @@ private fun DynamicListActionButtons(
     onCancel: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val style = LocalDemoStyle.current.dynamicListControl
     Row(
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier.fillMaxWidth()
     ) {
         ButtonControl(

@@ -23,8 +23,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.HorizontalDivider
 import com.alexrdclement.palette.components.core.VerticalDivider
+import com.alexrdclement.palette.components.demo.control.CharControlStyle
+import com.alexrdclement.palette.components.demo.control.ColorControlStyle
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.Controls
+import com.alexrdclement.palette.components.demo.control.ControlsStyle
+import com.alexrdclement.palette.components.demo.control.DropdownControlStyle
+import com.alexrdclement.palette.components.demo.control.DynamicListControlStyle
+import com.alexrdclement.palette.components.demo.control.ExpandableHeaderStyle
+import com.alexrdclement.palette.components.demo.control.SliderControlStyle
+import com.alexrdclement.palette.components.demo.control.TextFieldControlStyle
+import com.alexrdclement.palette.components.demo.control.ToggleControlStyle
 import com.alexrdclement.palette.components.util.horizontalPaddingValues
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
@@ -49,6 +58,15 @@ data class DemoStyle(
     val borderColor: Color = Color.Unspecified,
     val colorPickerStyle: ColorPickerStyle = ColorPickerStyle(),
     val surfaceStyle: SurfaceStyle = SurfaceStyle(),
+    val colorControl: ColorControlStyle = ColorControlStyle(),
+    val sliderControl: SliderControlStyle = SliderControlStyle(),
+    val toggleControl: ToggleControlStyle = ToggleControlStyle(),
+    val charControl: CharControlStyle = CharControlStyle(),
+    val textFieldControl: TextFieldControlStyle = TextFieldControlStyle(),
+    val dropdownControl: DropdownControlStyle = DropdownControlStyle(),
+    val expandableHeader: ExpandableHeaderStyle = ExpandableHeaderStyle(),
+    val dynamicListControl: DynamicListControlStyle = DynamicListControlStyle(),
+    val controls: ControlsStyle = ControlsStyle(),
 )
 
 val LocalDemoStyle = compositionLocalOf { DemoStyle() }

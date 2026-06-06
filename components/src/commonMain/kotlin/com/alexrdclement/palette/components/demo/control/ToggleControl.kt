@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
 import com.alexrdclement.palette.components.demo.LocalDemoStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,12 +20,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Checkbox
 import com.alexrdclement.palette.components.core.Text
 
+data class ToggleControlStyle(
+    val spacing: Dp = 8.dp,
+)
+
 @Composable
 fun ToggleControl(
     control: Control.Toggle,
     modifier: Modifier = Modifier,
     includeTitle: Boolean = true,
 ) {
+    val style = LocalDemoStyle.current.toggleControl
     val checked by rememberUpdatedState(control.value())
 
     Column(
@@ -34,7 +40,7 @@ fun ToggleControl(
     ) {
         if (includeTitle) {
             Text(control.name, style = LocalDemoStyle.current.labelStyle)
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(style.spacing))
         }
 
         Checkbox(checked, onCheckedChange = control.onValueChange)
@@ -47,6 +53,7 @@ fun ToggleControlRow(
     modifier: Modifier = Modifier,
     includeTitle: Boolean = true,
 ) {
+    val style = LocalDemoStyle.current.toggleControl
     val isChecked by rememberUpdatedState(control.value())
 
     Row(
@@ -56,7 +63,7 @@ fun ToggleControlRow(
     ) {
         if (includeTitle) {
             Text(control.name, style = LocalDemoStyle.current.labelStyle)
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(style.spacing))
         }
 
         Checkbox(isChecked, onCheckedChange = control.onValueChange)

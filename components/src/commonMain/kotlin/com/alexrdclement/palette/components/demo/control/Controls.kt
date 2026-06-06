@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
+import com.alexrdclement.palette.components.demo.LocalDemoStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,6 +22,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
+data class ControlsStyle(
+    val spacing: Dp = 16.dp,
+    val contentPadding: Dp = 8.dp,
+    val rowSpacing: Dp = 8.dp,
+    val indent: Dp = 16.dp,
+)
+
 @Composable
 fun Controls(
     controls: ImmutableList<Control>,
@@ -27,9 +36,10 @@ fun Controls(
     name: String? = null,
     indent: Boolean = false,
     expandedInitial: Boolean = true,
-    contentPadding: PaddingValues = PaddingValues(vertical = 8.dp),
-    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(16.dp)
+    contentPadding: PaddingValues = PaddingValues(vertical = LocalDemoStyle.current.controls.contentPadding),
+    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(LocalDemoStyle.current.controls.spacing)
 ) {
+    val style = LocalDemoStyle.current.controls
     Column(
         verticalArrangement = verticalArrangement,
         modifier = modifier
@@ -52,7 +62,7 @@ fun Controls(
                     .fillMaxWidth()
                     .then(
                         if (indent)
-                            Modifier.padding(start = 16.dp)
+                            Modifier.padding(start = style.indent)
                         else Modifier
                     )
             ) {
@@ -72,7 +82,7 @@ fun Controls(
                             name = control.name,
                             indent = control.indent,
                             expandedInitial = control.expandedInitial,
-                            contentPadding = PaddingValues(vertical = 8.dp),
+                            contentPadding = PaddingValues(vertical = style.contentPadding),
                         )
                     }
                     is Control.ControlRow -> {
@@ -91,8 +101,9 @@ fun ControlsRow(
     modifier: Modifier = Modifier,
     equalWeight: Boolean = true,
 ) {
+    val style = LocalDemoStyle.current.controls
     Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(style.rowSpacing),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
@@ -118,7 +129,7 @@ fun ControlsRow(
                             name = control.name,
                             indent = control.indent,
                             expandedInitial = control.expandedInitial,
-                            contentPadding = PaddingValues(horizontal = 8.dp),
+                            contentPadding = PaddingValues(horizontal = style.contentPadding),
                         )
                     }
                     is Control.ControlRow -> {
