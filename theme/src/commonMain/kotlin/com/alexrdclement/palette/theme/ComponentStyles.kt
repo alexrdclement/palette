@@ -9,6 +9,7 @@ import com.alexrdclement.palette.components.auth.AuthButtonStyle
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.CheckboxStyle
 import com.alexrdclement.palette.components.core.ChevronButtonStyle
+import com.alexrdclement.palette.components.core.ChevronIconStyle
 import com.alexrdclement.palette.components.core.DividerStyle
 import com.alexrdclement.palette.components.core.SliderColors
 import com.alexrdclement.palette.components.core.SliderStyle
@@ -37,7 +38,9 @@ import com.alexrdclement.palette.components.media.MediaControlBarStyle
 import com.alexrdclement.palette.components.money.CurrencyAmountFieldStyle
 import com.alexrdclement.palette.components.navigation.BackNavigationButtonStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
+import com.alexrdclement.palette.theme.styles.AuthButtonStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.theme.styles.toButtonStyleToken
 import com.alexrdclement.palette.components.media.MediaControlSheetStyle
 import com.alexrdclement.palette.components.media.MediaItemArtworkStyle
 import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
@@ -57,15 +60,15 @@ object PaletteComponentStyles {
     fun button(token: ButtonStyleToken = ButtonStyleToken.Primary): ButtonStyle =
         token.toComponentStyle()
 
-    /** Resolved [AuthButtonStyle] for the given [ButtonStyleToken] variant. */
+    /** Resolved [AuthButtonStyle] for the given [AuthButtonStyleToken] variant. */
     @Composable
-    fun authButton(token: ButtonStyleToken = ButtonStyleToken.Secondary): AuthButtonStyle =
+    fun authButton(token: AuthButtonStyleToken = AuthButtonStyleToken.Secondary): AuthButtonStyle =
         AuthButtonStyle(
-            buttonStyle = button(token),
+            buttonStyle = button(token.toButtonStyleToken()),
             textStyle = when (token) {
-                ButtonStyleToken.Primary -> PaletteTheme.styles.text.labelLarge
-                ButtonStyleToken.Secondary -> PaletteTheme.styles.text.labelSmall
-                ButtonStyleToken.Tertiary -> PaletteTheme.styles.text.labelSmall
+                AuthButtonStyleToken.Primary -> PaletteTheme.styles.text.labelLarge
+                AuthButtonStyleToken.Secondary -> PaletteTheme.styles.text.labelSmall
+                AuthButtonStyleToken.Tertiary -> PaletteTheme.styles.text.labelSmall
             },
         )
 
@@ -99,6 +102,11 @@ object PaletteComponentStyles {
             ),
             iconColor = PaletteTheme.colorScheme.primary,
             contentPadding = PaddingValues(PaletteTheme.spacing.medium),
+        )
+
+    val chevronIcon: ChevronIconStyle
+        @Composable get() = ChevronIconStyle(
+            color = PaletteTheme.colorScheme.primary,
         )
 
     val colorDisplay: ColorDisplayStyle

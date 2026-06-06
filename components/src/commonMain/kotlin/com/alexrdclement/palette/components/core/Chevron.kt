@@ -29,6 +29,10 @@ data class ChevronButtonStyle(
     val contentPadding: PaddingValues = PaddingValues(16.dp),
 )
 
+data class ChevronIconStyle(
+    val color: Color = Color.Unspecified,
+)
+
 @Composable
 fun ChevronButton(
     direction: ChevronDirection,
@@ -43,7 +47,7 @@ fun ChevronButton(
     ) {
         ChevronIcon(
             direction = direction,
-            color = style.iconColor.takeIf { it != Color.Unspecified } ?: LocalContentColor.current,
+            style = ChevronIconStyle(color = style.iconColor),
         )
     }
 }
@@ -52,8 +56,9 @@ fun ChevronButton(
 fun ChevronIcon(
     direction: ChevronDirection,
     modifier: Modifier = Modifier,
-    color: Color = LocalContentColor.current,
+    style: ChevronIconStyle = ChevronIconStyle(),
 ) {
+    val color = style.color.takeIf { it != Color.Unspecified } ?: LocalContentColor.current
     val rotation = when (direction) {
         ChevronDirection.Left -> 0f
         ChevronDirection.Up -> 90f

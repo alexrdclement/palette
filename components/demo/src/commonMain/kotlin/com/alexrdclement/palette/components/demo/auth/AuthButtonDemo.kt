@@ -20,7 +20,7 @@ import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.theme.styles.AuthButtonStyleToken
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -62,7 +62,7 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
 @Composable
 fun rememberAuthButtonDemoState(
     authStateInitial: AuthState = AuthState.LoggedOut,
-    styleInitial: ButtonStyleToken = ButtonStyleToken.Secondary,
+    styleInitial: AuthButtonStyleToken = AuthButtonStyleToken.Secondary,
 ): AuthButtonDemoState = rememberSaveable(
     saver = AuthButtonDemoStateSaver,
 ) {
@@ -75,7 +75,7 @@ fun rememberAuthButtonDemoState(
 @Stable
 class AuthButtonDemoState(
     authStateInitial: AuthState,
-    styleInitial: ButtonStyleToken,
+    styleInitial: AuthButtonStyleToken,
 ) {
     var authState by mutableStateOf(authStateInitial)
         internal set
@@ -97,7 +97,7 @@ val AuthButtonDemoStateSaver = mapSaverSafe(
     restore = { map ->
         AuthButtonDemoState(
             authStateInitial = map[authStateKey] as AuthState,
-            styleInitial = map[styleKey] as ButtonStyleToken,
+            styleInitial = map[styleKey] as AuthButtonStyleToken,
         )
     },
 )
@@ -120,7 +120,7 @@ class AuthButtonDemoControl(
         ),
         enumControl(
             name = "Style",
-            values = { ButtonStyleToken.entries },
+            values = { AuthButtonStyleToken.entries },
             selectedValue = { state.style },
             onValueChange = { state.style = it },
         ),

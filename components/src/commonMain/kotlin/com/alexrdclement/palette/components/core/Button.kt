@@ -20,8 +20,10 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.LocalContentColor
+import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 
 sealed class ButtonStyle {
     abstract val contentColor: Color
@@ -132,12 +134,15 @@ object ButtonDefaults {
 
 @Preview
 @Composable
-private fun ButtonPreview() {
+private fun ButtonPreview(
+    @PreviewParameter(BoolPreviewParameterProvider::class) isEnabled: Boolean,
+) {
     val interactionSource = MutableInteractionSource().apply {
         this.tryEmit(PressInteraction.Press(Offset.Zero))
     }
     Surface {
         Button(
+            enabled = isEnabled,
             interactionSource = interactionSource,
             onClick = {},
         ) {
