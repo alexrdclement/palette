@@ -32,6 +32,7 @@ import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.formats.core.inputTransformation
 
 data class TextFieldStyle(
+    val textStyle: TextStyle = TextStyle(),
     val cursorBrush: Brush = SolidColor(Color.Unspecified),
     val borderStroke: BorderStroke = BorderStroke(1.dp, Color.Unspecified),
     val contentPadding: Dp = 8.dp,
@@ -40,8 +41,8 @@ data class TextFieldStyle(
 @Composable
 fun TextField(
     state: TextFieldState,
-    textStyle: TextStyle,
     modifier: Modifier = Modifier,
+    style: TextFieldStyle = TextFieldStyle(),
     enabled: Boolean = true,
     readOnly: Boolean = false,
     inputTransformation: InputTransformation? = null,
@@ -50,11 +51,11 @@ fun TextField(
     lineLimits: TextFieldLineLimits = TextFieldLineLimits.Default,
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     interactionSource: MutableInteractionSource? = null,
-    style: TextFieldStyle = TextFieldStyle(),
     outputTransformation: OutputTransformation? = null,
     decorator: TextFieldDecorator? = null,
     scrollState: ScrollState = rememberScrollState(),
 ) {
+    val textStyle = style.textStyle
     val resolvedDecorator = decorator
         ?: TextFieldDefaults.textFieldDecorator(style.borderStroke, style.contentPadding)
     val color = textStyle.composeTextStyle.color.takeOrElse { LocalContentColor.current }
@@ -115,7 +116,6 @@ private fun Preview() {
     Surface {
         TextField(
             state = rememberTextFieldState("text"),
-            textStyle = TextStyle(),
         )
     }
 }

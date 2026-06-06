@@ -29,8 +29,8 @@ fun <T : CatalogItem> Catalog(
     items: List<T>,
     onItemClick: (T) -> Unit,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaddingValues(0.dp),
     style: CatalogStyle = CatalogStyle(),
+    contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
     LazyColumn(
         state = rememberLazyListState(),

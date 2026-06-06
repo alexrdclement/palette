@@ -52,7 +52,6 @@ import kotlinx.collections.immutable.persistentListOf
 data class DemoStyle(
     val labelStyle: TextStyle = TextStyle(),
     val headerStyle: TextStyle = TextStyle(),
-    val fieldTextStyle: TextStyle = TextStyle(),
     val buttonStyle: ButtonStyle = ButtonStyle.Default(),
     val textFieldStyle: TextFieldStyle = TextFieldStyle(),
     val borderColor: Color = Color.Unspecified,
@@ -81,8 +80,8 @@ private class DemoScopeImpl(
 @Composable
 fun Demo(
     modifier: Modifier = Modifier,
-    controls: PersistentList<Control> = persistentListOf(),
     style: DemoStyle = DemoStyle(),
+    controls: PersistentList<Control> = persistentListOf(),
     content: @Composable DemoScope.() -> Unit,
 ) {
     CompositionLocalProvider(LocalDemoStyle provides style) {

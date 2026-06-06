@@ -32,10 +32,10 @@ data class PlayPauseButtonStyle(
 fun PlayPauseButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: PlayPauseButtonStyle = PlayPauseButtonStyle(),
     onLongClick: (() -> Unit)? = null,
     isPlaying: Boolean = false,
     isEnabled: Boolean = true,
-    style: PlayPauseButtonStyle = PlayPauseButtonStyle(),
 ) {
     Button(
         onClick = onClick,

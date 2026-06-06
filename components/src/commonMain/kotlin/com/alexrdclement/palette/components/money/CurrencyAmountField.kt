@@ -47,8 +47,7 @@ fun CurrencyAmountField(
     val textStyle = style.textStyle
     TextField(
         state = textFieldState,
-        textStyle = textStyle,
-        style = TextFieldStyle(cursorBrush = style.cursorBrush),
+        style = TextFieldStyle(textStyle = textStyle, cursorBrush = style.cursorBrush),
         modifier = Modifier
             .width(IntrinsicSize.Min)
             .padding(style.padding),

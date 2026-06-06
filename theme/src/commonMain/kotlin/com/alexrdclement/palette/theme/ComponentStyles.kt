@@ -164,6 +164,7 @@ object PaletteComponentStyles {
 
     val textField: TextFieldStyle
         @Composable get() = TextFieldStyle(
+            textStyle = PaletteTheme.styles.text.bodyMedium,
             cursorBrush = SolidColor(PaletteTheme.colorScheme.primary),
             borderStroke = BorderStroke(1.dp, PaletteTheme.colorScheme.outline),
             contentPadding = PaletteTheme.spacing.small,
@@ -235,7 +236,6 @@ object PaletteComponentStyles {
         @Composable get() = DemoStyle(
             labelStyle = PaletteTheme.styles.text.labelLarge,
             headerStyle = PaletteTheme.styles.text.labelSmall,
-            fieldTextStyle = PaletteTheme.styles.text.bodyMedium,
             buttonStyle = button(ButtonStyleToken.Secondary),
             textFieldStyle = textField,
             borderColor = PaletteTheme.colorScheme.outline,

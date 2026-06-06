@@ -65,11 +65,11 @@ fun ButtonStyle.withContentPadding(contentPadding: PaddingValues): ButtonStyle =
 fun Button(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: ButtonStyle = ButtonStyle.Default(),
     onLongClickLabel: String? = null,
     onLongClick: (() -> Unit)? = null,
     onDoubleClick: (() -> Unit)? = null,
     hapticFeedbackEnabled: Boolean = true,
-    style: ButtonStyle = ButtonStyle.Default(),
     enabled: Boolean = true,
     indication: Indication? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },

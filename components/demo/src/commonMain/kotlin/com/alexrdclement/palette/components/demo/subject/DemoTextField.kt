@@ -19,8 +19,7 @@ fun DemoTextField(
     Box(modifier = modifier.fillMaxSize()) {
         TextField(
             state = rememberTextFieldState(),
-            textStyle = textStyle,
-            style = PaletteTheme.components.textField,
+            style = PaletteTheme.components.textField.copy(textStyle = textStyle),
             modifier = modifier.align(Alignment.Center)
         )
     }

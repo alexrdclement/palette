@@ -73,7 +73,6 @@ fun CharControl(
         }
         TextField(
             state = textFieldState,
-            textStyle = LocalDemoStyle.current.fieldTextStyle,
             style = LocalDemoStyle.current.textFieldStyle,
             inputTransformation = InputTransformation {
                 val text = asCharSequence().toString()

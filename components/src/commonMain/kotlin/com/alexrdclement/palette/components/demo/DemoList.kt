@@ -17,8 +17,8 @@ fun <T> DemoList(
     items: List<T>,
     controls: PersistentList<Control>,
     modifier: Modifier = Modifier,
-    key: ((item: T) -> Any)? = null,
     style: DemoStyle = DemoStyle(),
+    key: ((item: T) -> Any)? = null,
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(
         space = 24.dp,
         alignment = Alignment.CenterVertically,

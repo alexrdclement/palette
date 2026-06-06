@@ -63,7 +63,6 @@ fun TextFieldControl(
         }
         TextField(
             state = control.textFieldState,
-            textStyle = LocalDemoStyle.current.fieldTextStyle,
             style = LocalDemoStyle.current.textFieldStyle,
             enabled = enabled,
             inputTransformation = inputTransformation,

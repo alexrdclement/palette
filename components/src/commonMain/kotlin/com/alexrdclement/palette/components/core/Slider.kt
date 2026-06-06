@@ -60,11 +60,11 @@ fun Slider(
     value: Float,
     onValueChange: ((Float) -> Unit)?,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     stepIncrement: Float,
     onValueChangeFinished: (() -> Unit)? = null,
-    style: SliderStyle = SliderStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     Slider(
@@ -85,11 +85,11 @@ fun Slider(
     value: Float,
     onValueChange: ((Float) -> Unit)?,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    style: SliderStyle = SliderStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
@@ -128,10 +128,10 @@ fun Slider(
     onValueChange: ((Float) -> Unit)?,
     snapValues: List<Float>,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     onValueChangeFinished: (() -> Unit)? = null,
-    style: SliderStyle = SliderStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
@@ -168,8 +168,8 @@ fun Slider(
 fun Slider(
     state: SliderState,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
     style: SliderStyle = SliderStyle(),
+    enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     Layout(
@@ -241,11 +241,11 @@ fun RangeSlider(
     value: ClosedFloatingPointRange<Float>,
     onValueChange: ((ClosedFloatingPointRange<Float>) -> Unit)?,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     stepIncrement: Float,
     onValueChangeFinished: (() -> Unit)? = null,
-    style: SliderStyle = SliderStyle(),
 ) {
     RangeSlider(
         value = value,
@@ -264,11 +264,11 @@ fun RangeSlider(
     value: ClosedFloatingPointRange<Float>,
     onValueChange: ((ClosedFloatingPointRange<Float>) -> Unit)?,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    style: SliderStyle = SliderStyle(),
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
     val state = remember(valueRange, steps) {
@@ -307,10 +307,10 @@ fun RangeSlider(
     onValueChange: ((ClosedFloatingPointRange<Float>) -> Unit)?,
     snapValues: List<Float>,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     onValueChangeFinished: (() -> Unit)? = null,
-    style: SliderStyle = SliderStyle(),
 ) {
     val onValueChangeFinishedState = rememberUpdatedState(onValueChangeFinished)
     val state = remember(valueRange, snapValues) {
@@ -347,8 +347,8 @@ fun RangeSlider(
 fun RangeSlider(
     state: RangeSliderState,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
     style: SliderStyle = SliderStyle(),
+    enabled: Boolean = true,
 ) {
     Layout(
         content = {

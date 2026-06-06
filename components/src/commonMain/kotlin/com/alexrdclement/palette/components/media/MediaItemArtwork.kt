@@ -22,8 +22,8 @@ data class MediaItemArtworkStyle(
 fun MediaItemArtwork(
     imageUrl: String?,
     modifier: Modifier = Modifier,
-    isEnabled: Boolean = true,
     style: MediaItemArtworkStyle = MediaItemArtworkStyle(),
+    isEnabled: Boolean = true,
 ) {
     if (imageUrl != null) {
         AsyncImage(

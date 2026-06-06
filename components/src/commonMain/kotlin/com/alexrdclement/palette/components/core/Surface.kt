@@ -69,12 +69,12 @@ fun Surface(
 fun Surface(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: SurfaceStyle = SurfaceStyle(),
     onLongClickLabel: String? = null,
     onLongClick: (() -> Unit)? = null,
     onDoubleClick: (() -> Unit)? = null,
     hapticFeedbackEnabled: Boolean = true,
     enabled: Boolean = true,
-    style: SurfaceStyle = SurfaceStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable (PaddingValues) -> Unit
 ) {

@@ -41,11 +41,11 @@ fun MediaControlSheet(
     onPlayPauseClick: () -> Unit,
     onControlBarClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: MediaControlSheetStyle = MediaControlSheetStyle(),
     state: PeekSheetState = rememberPeekSheetState(),
     contentPadding: PaddingValues = PaddingValues(0.dp),
     minContentSize: DpSize = DpSize(64.dp, 64.dp),
     maxContentSize: DpSize = DpSize(Dp.Infinity, 600.dp),
-    style: MediaControlSheetStyle = MediaControlSheetStyle(),
     aboveControlBar: @Composable () -> Unit = {},
     belowControlBar: @Composable () -> Unit = {},
 ) {

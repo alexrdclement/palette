@@ -5,14 +5,14 @@ import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
 data class ButtonStyleScheme(
-    val primary: ButtonStyle,
-    val secondary: ButtonStyle,
-    val tertiary: ButtonStyle,
+    val primary: ButtonStyleTokenSet,
+    val secondary: ButtonStyleTokenSet,
+    val tertiary: ButtonStyleTokenSet,
 )
 
 fun ButtonStyleScheme.copy(
     token: ButtonStyleToken,
-    value: ButtonStyle,
+    value: ButtonStyleTokenSet,
 ) = this.copy(
     primary = if (token == ButtonStyleToken.Primary) value else this.primary,
     secondary = if (token == ButtonStyleToken.Secondary) value else this.secondary,
@@ -20,21 +20,21 @@ fun ButtonStyleScheme.copy(
 )
 
 val PaletteButtonStyleScheme = ButtonStyleScheme(
-    primary = ButtonStyle(
+    primary = ButtonStyleTokenSet(
         token = ButtonStyleToken.Primary,
         contentColor = ColorToken.OnPrimary,
         containerColor = ColorToken.Primary,
         shape = ShapeToken.Primary,
         borderStyle = BorderStyleToken.Primary,
     ),
-    secondary = ButtonStyle(
+    secondary = ButtonStyleTokenSet(
         token = ButtonStyleToken.Secondary,
         contentColor = ColorToken.Secondary,
         containerColor = ColorToken.Surface,
         shape = ShapeToken.Secondary,
         borderStyle = BorderStyleToken.Secondary,
     ),
-    tertiary = ButtonStyle(
+    tertiary = ButtonStyleTokenSet(
         token = ButtonStyleToken.Tertiary,
         contentColor = ColorToken.Primary,
         containerColor = ColorToken.OnPrimary,

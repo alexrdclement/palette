@@ -17,8 +17,8 @@ import com.alexrdclement.palette.components.core.ButtonStyle
 fun SkipBackButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
     style: ButtonStyle = ButtonStyle.Default(),
+    enabled: Boolean = true,
     contentPadding: PaddingValues = PaddingValues(6.dp),
 ) {
     Button(
