@@ -7,7 +7,7 @@ PLcom/alexrdclement/palette/app/demo/formats/datetime/DateTimeFormatScreenKt;->D
 PLcom/alexrdclement/palette/app/demo/formats/datetime/DateTimeFormatScreenKt;->DateTimeFormatScreen$lambda$1$2$0(Lkotlin/time/Instant;Lkotlinx/datetime/LocalDateTime;Lcom/alexrdclement/palette/formats/datetime/InstantFormatValue;)Ljava/lang/String;
 PLcom/alexrdclement/palette/app/demo/formats/datetime/DateTimeFormatScreenKt;->DateTimeFormatScreen$lambda$1$3$0(Lkotlin/time/Instant;Lkotlinx/datetime/LocalDateTime;Lcom/alexrdclement/palette/formats/datetime/TimeFormatValue;)Ljava/lang/String;
 HSPLcom/alexrdclement/palette/components/core/TextStyle;-><init>(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)V
-HSPLcom/alexrdclement/palette/components/core/TextStyle;-><init>(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/core/TextStyle;-><init>(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/core/TextStyle;->copy$default(Lcom/alexrdclement/palette/components/core/TextStyle;Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;ILjava/lang/Object;)Lcom/alexrdclement/palette/components/core/TextStyle;
 PLcom/alexrdclement/palette/components/core/TextStyle;->copy(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)Lcom/alexrdclement/palette/components/core/TextStyle;
 HSPLcom/alexrdclement/palette/components/core/TextStyle;->getFormat()Lcom/alexrdclement/palette/formats/core/TextFormat;
@@ -25,10 +25,11 @@ PLcom/alexrdclement/palette/formats/core/Capitalization$Key;-><init>(Ljava/lang/
 Lcom/alexrdclement/palette/formats/core/Capitalization$None;
 HSPLcom/alexrdclement/palette/formats/core/Capitalization$None;-><clinit>()V
 HSPLcom/alexrdclement/palette/formats/core/Capitalization$None;-><init>()V
+HSPLcom/alexrdclement/palette/formats/core/Capitalization$None;->equals(Ljava/lang/Object;)Z
 Lcom/alexrdclement/palette/formats/core/Capitalization$Sentence;
 HSPLcom/alexrdclement/palette/formats/core/Capitalization$Sentence;-><clinit>()V
 HSPLcom/alexrdclement/palette/formats/core/Capitalization$Sentence;-><init>()V
-HSPLcom/alexrdclement/palette/formats/core/Capitalization$Sentence;->equals(Ljava/lang/Object;)Z
+PLcom/alexrdclement/palette/formats/core/Capitalization$Sentence;->equals(Ljava/lang/Object;)Z
 Lcom/alexrdclement/palette/formats/core/Capitalization$Title;
 HSPLcom/alexrdclement/palette/formats/core/Capitalization$Title;-><clinit>()V
 HSPLcom/alexrdclement/palette/formats/core/Capitalization$Title;-><init>()V
@@ -65,7 +66,7 @@ PLcom/alexrdclement/palette/formats/core/NumberFormatKt;->splitNumberParts(Ljava
 Lcom/alexrdclement/palette/formats/core/TextFormat;
 HSPLcom/alexrdclement/palette/formats/core/TextFormat;-><clinit>()V
 HSPLcom/alexrdclement/palette/formats/core/TextFormat;-><init>(Lcom/alexrdclement/palette/formats/core/Capitalization;Ljava/lang/String;Ljava/util/Map;)V
-HSPLcom/alexrdclement/palette/formats/core/TextFormat;-><init>(Lcom/alexrdclement/palette/formats/core/Capitalization;Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/formats/core/TextFormat;-><init>(Lcom/alexrdclement/palette/formats/core/Capitalization;Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/formats/core/TextFormat;->copy$default(Lcom/alexrdclement/palette/formats/core/TextFormat;Lcom/alexrdclement/palette/formats/core/Capitalization;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lcom/alexrdclement/palette/formats/core/TextFormat;
 PLcom/alexrdclement/palette/formats/core/TextFormat;->copy(Lcom/alexrdclement/palette/formats/core/Capitalization;Ljava/lang/String;Ljava/util/Map;)Lcom/alexrdclement/palette/formats/core/TextFormat;
 PLcom/alexrdclement/palette/formats/core/TextFormat;->equals(Ljava/lang/Object;)Z
