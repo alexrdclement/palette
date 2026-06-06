@@ -23,11 +23,13 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.menu.DropdownMenu
 import com.alexrdclement.palette.components.menu.DropdownMenuItem
+import com.alexrdclement.palette.components.menu.DropdownMenuStyle
 import kotlinx.collections.immutable.toPersistentList
 
 data class DropdownControlStyle(
     val labelSpacing: Dp = 8.dp,
     val rowSpacing: Dp = 16.dp,
+    val menuStyle: DropdownMenuStyle = DropdownMenuStyle(),
 )
 
 @Composable
@@ -129,6 +131,7 @@ private fun <T> DropdownControlMenu(
     DropdownMenu(
         expanded = isMenuExpanded,
         onDismissRequest = onMenuDismissRequest,
+        style = LocalDemoStyle.current.dropdownControl.menuStyle,
     ) {
         values.forEachIndexed { index, value ->
             DropdownMenuItem(

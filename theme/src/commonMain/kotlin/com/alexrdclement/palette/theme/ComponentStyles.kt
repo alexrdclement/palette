@@ -6,20 +6,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.auth.AuthButtonStyle
+import com.alexrdclement.palette.components.color.ColorDisplayStyle
+import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
+import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.CheckboxStyle
 import com.alexrdclement.palette.components.core.ChevronButtonStyle
 import com.alexrdclement.palette.components.core.ChevronIconStyle
 import com.alexrdclement.palette.components.core.DividerStyle
+import com.alexrdclement.palette.components.core.ProgressIndicatorStyle
 import com.alexrdclement.palette.components.core.SliderColors
 import com.alexrdclement.palette.components.core.SliderStyle
-import com.alexrdclement.palette.components.core.ProgressIndicatorStyle
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.components.core.withContentPadding
-import com.alexrdclement.palette.components.color.ColorDisplayStyle
-import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
-import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
 import com.alexrdclement.palette.components.demo.control.CharControlStyle
 import com.alexrdclement.palette.components.demo.control.ColorControlStyle
@@ -39,15 +39,17 @@ import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
 import com.alexrdclement.palette.components.media.MediaControlBarStyle
+import com.alexrdclement.palette.components.media.MediaControlSheetStyle
+import com.alexrdclement.palette.components.media.MediaItemArtworkStyle
+import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
+import com.alexrdclement.palette.components.menu.DropdownMenuStyle
+import com.alexrdclement.palette.components.menu.MenuDefaults
 import com.alexrdclement.palette.components.money.CurrencyAmountFieldStyle
 import com.alexrdclement.palette.components.navigation.BackNavigationButtonStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 import com.alexrdclement.palette.theme.styles.AuthButtonStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.styles.toButtonStyleToken
-import com.alexrdclement.palette.components.media.MediaControlSheetStyle
-import com.alexrdclement.palette.components.media.MediaItemArtworkStyle
-import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
 
 object PaletteComponentStyles {
 
@@ -88,6 +90,22 @@ object PaletteComponentStyles {
         @Composable get() = ProgressIndicatorStyle(
             textStyle = PaletteTheme.styles.text.bodyMedium,
         )
+
+    val dropdownMenu: DropdownMenuStyle
+        @Composable get() {
+            val contentColor = PaletteTheme.colorScheme.contentColorFor(PaletteTheme.colorScheme.surface)
+            return DropdownMenuStyle(
+                surfaceStyle = surface.copy(
+                    borderStyle = PaletteTheme.styles.border.surface.toComponentStyle(),
+                ),
+                itemColors = MenuDefaults.itemColors(
+                    textColor = contentColor,
+                    disabledTextColor = contentColor.copy(
+                        alpha = PaletteTheme.colorScheme.disabledContentAlpha,
+                    ),
+                ),
+            )
+        }
 
     val checkbox: CheckboxStyle
         @Composable get() = CheckboxStyle(
@@ -278,6 +296,7 @@ object PaletteComponentStyles {
             dropdownControl = DropdownControlStyle(
                 labelSpacing = PaletteTheme.spacing.small,
                 rowSpacing = PaletteTheme.spacing.medium,
+                menuStyle = dropdownMenu,
             ),
             expandableHeader = ExpandableHeaderStyle(
                 spacing = PaletteTheme.spacing.small,

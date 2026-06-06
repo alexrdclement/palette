@@ -27,6 +27,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
@@ -44,7 +45,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import com.alexrdclement.palette.components.LocalContentColor
-import com.alexrdclement.palette.components.core.BorderStyle
 import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.SurfaceStyle
@@ -59,6 +59,14 @@ import kotlin.math.min
 
 // Adapted from Material3's DropdownMenu.
 
+data class DropdownMenuStyle(
+    val surfaceStyle: SurfaceStyle = SurfaceStyle(),
+    val itemColors: MenuItemColors = MenuDefaults.itemColors(),
+)
+
+/** Item colors provided by [DropdownMenu] so nested [DropdownMenuItem]s pick them up by default. */
+val LocalMenuItemColors = compositionLocalOf { MenuDefaults.itemColors() }
+
 @Composable
 fun DropdownMenu(
     expanded: Boolean,
@@ -66,7 +74,7 @@ fun DropdownMenu(
     modifier: Modifier = Modifier,
     offset: DpOffset = DpOffset(0.dp, 0.dp),
     scrollState: ScrollState = rememberScrollState(),
-    borderStyle: BorderStyle? = null,
+    style: DropdownMenuStyle = DropdownMenuStyle(),
     properties: PopupProperties = PopupProperties(focusable = true),
     content: @Composable ColumnScope.() -> Unit
 ) {
@@ -94,7 +102,7 @@ fun DropdownMenu(
                 expandedState = expandedState,
                 transformOriginState = transformOriginState,
                 scrollState = scrollState,
-                borderStyle = borderStyle,
+                style = style,
                 modifier = modifier,
                 content = content
             )
@@ -108,7 +116,7 @@ internal fun DropdownMenuContent(
     transformOriginState: MutableState<TransformOrigin>,
     scrollState: ScrollState,
     modifier: Modifier = Modifier,
-    borderStyle: BorderStyle? = null,
+    style: DropdownMenuStyle = DropdownMenuStyle(),
     content: @Composable ColumnScope.() -> Unit
 ) {
     // Menu open/close animation.
@@ -151,7 +159,7 @@ internal fun DropdownMenuContent(
     }
 
     Surface(
-        style = SurfaceStyle(borderStyle = borderStyle),
+        style = style.surfaceStyle,
         modifier = Modifier.graphicsLayer {
             scaleX = scale
             scaleY = scale
@@ -159,13 +167,15 @@ internal fun DropdownMenuContent(
             transformOrigin = transformOriginState.value
         }
     ) {
-        Column(
-            modifier = modifier
-                .padding(vertical = DropdownMenuVerticalPadding)
-                .width(IntrinsicSize.Max)
-                .verticalScroll(scrollState),
-            content = content
-        )
+        CompositionLocalProvider(LocalMenuItemColors provides style.itemColors) {
+            Column(
+                modifier = modifier
+                    .padding(vertical = DropdownMenuVerticalPadding)
+                    .width(IntrinsicSize.Max)
+                    .verticalScroll(scrollState),
+                content = content
+            )
+        }
     }
 }
 
@@ -175,7 +185,7 @@ fun DropdownMenuItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    colors: MenuItemColors = MenuDefaults.itemColors(),
+    colors: MenuItemColors = LocalMenuItemColors.current,
     contentPadding: PaddingValues = MenuDefaults.DropdownMenuItemContentPadding,
     indication: Indication? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
@@ -199,7 +209,8 @@ fun DropdownMenuItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         CompositionLocalProvider(
-            LocalContentColor provides colors.textColor(enabled).value,
+            LocalContentColor provides colors.textColor(enabled).value
+                .takeOrElse { LocalContentColor.current },
         ) {
             Box(modifier = Modifier.weight(1f)) {
                 text()
