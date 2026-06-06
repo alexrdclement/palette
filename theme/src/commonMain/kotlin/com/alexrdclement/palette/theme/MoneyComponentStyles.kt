@@ -1,0 +1,18 @@
+package com.alexrdclement.palette.theme
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.SolidColor
+import com.alexrdclement.palette.components.money.CurrencyAmountFieldStyle
+
+/** Resolved styles for [com.alexrdclement.palette.components.money]; surfaced via [PaletteTheme.components]. */
+object MoneyComponentStyles {
+
+    val currencyAmountField: CurrencyAmountFieldStyle
+        @Composable get() = CurrencyAmountFieldStyle(
+            textStyle = PaletteTheme.styles.text.headline,
+            placeholderColor = PaletteTheme.colorScheme.primary.copy(alpha = 0.5f),
+            cursorBrush = SolidColor(PaletteTheme.colorScheme.primary),
+            padding = PaletteTheme.spacing.medium,
+            spacing = PaletteTheme.spacing.small,
+        )
+}
