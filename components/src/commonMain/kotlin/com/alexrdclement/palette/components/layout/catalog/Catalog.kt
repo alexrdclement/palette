@@ -22,7 +22,7 @@ import com.alexrdclement.palette.components.core.TextStyle
 
 data class CatalogStyle(
     val itemSpacing: Dp = 16.dp,
-    val itemStyle: ButtonStyle = ButtonStyle.Default(),
+    val itemStyle: ButtonStyle = ButtonStyle(),
     val itemTextStyle: TextStyle = TextStyle(),
 )
 

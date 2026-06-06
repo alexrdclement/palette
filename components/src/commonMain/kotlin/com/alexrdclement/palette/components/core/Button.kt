@@ -25,47 +25,26 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 
-sealed class ButtonStyle {
-    abstract val contentColor: Color
-    abstract val containerColor: Color
-    abstract val shape: Shape
-    abstract val borderStyle: BorderStyle?
-    abstract val disabledContentAlpha: Float
-    abstract val disabledContainerAlpha: Float
-    abstract val contentPadding: PaddingValues
+data class ButtonStyle(
+    val contentColor: Color = Color.Unspecified,
+    val containerColor: Color = Color.Unspecified,
+    val shape: Shape = Shape.Rectangle(),
+    val borderStyle: BorderStyle? = null,
+    val disabledContentAlpha: Float = 1f,
+    val disabledContainerAlpha: Float = 1f,
+    val contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    val indication: Indication? = null,
+)
 
-    data class Default(
-        override val contentColor: Color = Color.Unspecified,
-        override val containerColor: Color = Color.Unspecified,
-        override val shape: Shape = Shape.Rectangle(),
-        override val borderStyle: BorderStyle? = null,
-        override val disabledContentAlpha: Float = 1f,
-        override val disabledContainerAlpha: Float = 1f,
-        override val contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
-    ) : ButtonStyle()
-
-    data class Compact(
-        override val contentColor: Color = Color.Unspecified,
-        override val containerColor: Color = Color.Unspecified,
-        override val shape: Shape = Shape.Rectangle(),
-        override val borderStyle: BorderStyle? = null,
-        override val disabledContentAlpha: Float = 1f,
-        override val disabledContainerAlpha: Float = 1f,
-        override val contentPadding: PaddingValues = ButtonDefaults.ContentPaddingCompact,
-    ) : ButtonStyle()
-}
-
-/** Returns a copy of this [ButtonStyle] with [contentPadding] overridden, preserving the variant. */
-fun ButtonStyle.withContentPadding(contentPadding: PaddingValues): ButtonStyle = when (this) {
-    is ButtonStyle.Default -> copy(contentPadding = contentPadding)
-    is ButtonStyle.Compact -> copy(contentPadding = contentPadding)
-}
+/** Returns a copy of this [ButtonStyle] with [contentPadding] overridden. */
+fun ButtonStyle.withContentPadding(contentPadding: PaddingValues): ButtonStyle =
+    copy(contentPadding = contentPadding)
 
 @Composable
 fun Button(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    style: ButtonStyle = ButtonStyle.Default(),
+    style: ButtonStyle = ButtonStyle(),
     onLongClickLabel: String? = null,
     onLongClick: (() -> Unit)? = null,
     onDoubleClick: (() -> Unit)? = null,
@@ -93,7 +72,7 @@ fun Button(
             color = containerColor,
             contentColor = contentColor,
             borderStyle = style.borderStyle,
-            indication = indication,
+            indication = indication ?: style.indication,
         ),
         interactionSource = interactionSource,
         modifier = modifier.semantics { role = Role.Button }
@@ -124,11 +103,6 @@ object ButtonDefaults {
     val ContentPadding: PaddingValues = PaddingValues(
         horizontal = 24.dp,
         vertical = 8.dp,
-    )
-
-    val ContentPaddingCompact: PaddingValues = PaddingValues(
-        horizontal = 16.dp,
-        vertical = 0.dp,
     )
 }
 

@@ -53,7 +53,7 @@ import kotlinx.collections.immutable.persistentListOf
 data class DemoStyle(
     val labelStyle: TextStyle = TextStyle(),
     val headerStyle: TextStyle = TextStyle(),
-    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
     val textFieldStyle: TextFieldStyle = TextFieldStyle(),
     val borderColor: Color = Color.Unspecified,
     val colorPickerStyle: ColorPickerStyle = ColorPickerStyle(),

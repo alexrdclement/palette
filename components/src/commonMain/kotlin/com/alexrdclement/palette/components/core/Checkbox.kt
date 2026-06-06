@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 
 data class CheckboxStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
     val textStyle: TextStyle = TextStyle(),
 )
 

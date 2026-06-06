@@ -9,7 +9,7 @@ import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextStyle
 
 data class ConfirmButtonStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
     val textStyle: TextStyle = TextStyle(),
 )
 

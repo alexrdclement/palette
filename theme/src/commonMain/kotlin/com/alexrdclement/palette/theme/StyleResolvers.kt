@@ -37,7 +37,7 @@ fun BorderStyleToken.toComponentStyle(): ComponentBorderStyle = this.toStyle().t
 @Composable
 fun ButtonStyleToken.toComponentStyle(): ComponentButtonStyle {
     val style = this.toStyle()
-    return ComponentButtonStyle.Default(
+    return ComponentButtonStyle(
         contentColor = style.contentColor.toColor(),
         containerColor = style.containerColor.toColor(),
         shape = style.shape.toShape(),
@@ -48,5 +48,6 @@ fun ButtonStyleToken.toComponentStyle(): ComponentButtonStyle {
             horizontal = PaletteTheme.spacing.large,
             vertical = PaletteTheme.spacing.medium,
         ),
+        indication = PaletteTheme.indication,
     )
 }

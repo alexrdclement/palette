@@ -91,18 +91,20 @@ object PaletteComponentStyles {
 
     val checkbox: CheckboxStyle
         @Composable get() = CheckboxStyle(
-            buttonStyle = ButtonStyle.Default(
+            buttonStyle = ButtonStyle(
                 contentColor = ColorToken.Primary.toColor(),
                 containerColor = ColorToken.Surface.toColor(),
+                indication = PaletteTheme.indication,
             ),
             textStyle = PaletteTheme.styles.text.titleLarge,
         )
 
     val chevronButton: ChevronButtonStyle
         @Composable get() = ChevronButtonStyle(
-            buttonStyle = ButtonStyle.Default(
+            buttonStyle = ButtonStyle(
                 contentColor = ColorToken.Primary.toColor(),
                 containerColor = ColorToken.Surface.toColor(),
+                indication = PaletteTheme.indication,
             ),
             iconColor = PaletteTheme.colorScheme.primary,
             contentPadding = PaddingValues(PaletteTheme.spacing.medium),
@@ -189,9 +191,10 @@ object PaletteComponentStyles {
 
     val backNavigationButton: BackNavigationButtonStyle
         @Composable get() = BackNavigationButtonStyle(
-            buttonStyle = ButtonStyle.Default(
+            buttonStyle = ButtonStyle(
                 contentColor = ColorToken.Primary.toColor(),
                 containerColor = ColorToken.Surface.toColor(),
+                indication = PaletteTheme.indication,
             ),
             contentPadding = PaddingValues(PaletteTheme.spacing.medium),
             iconColor = PaletteTheme.colorScheme.primary,
@@ -214,10 +217,11 @@ object PaletteComponentStyles {
 
     val playPauseButton: PlayPauseButtonStyle
         @Composable get() = PlayPauseButtonStyle(
-            buttonStyle = ButtonStyle.Default(
+            buttonStyle = ButtonStyle(
                 contentColor = ColorToken.OnPrimary.toColor(),
                 containerColor = ColorToken.Primary.toColor(),
                 shape = ShapeToken.Primary.toShape(),
+                indication = PaletteTheme.indication,
             ),
             iconColor = PaletteTheme.colorScheme.onPrimary,
         )

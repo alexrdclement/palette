@@ -24,7 +24,7 @@ import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 
 data class PlayPauseButtonStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
     val iconColor: Color = Color.Unspecified,
 )
 

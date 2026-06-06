@@ -17,7 +17,7 @@ import com.alexrdclement.palette.components.core.toComposeShape
 data class ColorDisplayStyle(
     val shape: Shape = Shape.Circle,
     val borderStyle: BorderStyle? = null,
-    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
 )
 
 @Composable

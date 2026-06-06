@@ -18,7 +18,7 @@ enum class AuthState {
 }
 
 data class AuthButtonStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
     val textStyle: TextStyle = TextStyle(),
 )
 

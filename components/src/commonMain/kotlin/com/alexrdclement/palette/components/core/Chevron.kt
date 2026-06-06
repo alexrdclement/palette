@@ -24,7 +24,7 @@ enum class ChevronDirection {
 }
 
 data class ChevronButtonStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
     val iconColor: Color = Color.Unspecified,
     val contentPadding: PaddingValues = PaddingValues(16.dp),
 )

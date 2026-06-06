@@ -20,7 +20,7 @@ import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Surface
 
 data class BackNavigationButtonStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
     val contentPadding: PaddingValues = PaddingValues(16.dp),
     val iconColor: Color = Color.Unspecified,
 )
