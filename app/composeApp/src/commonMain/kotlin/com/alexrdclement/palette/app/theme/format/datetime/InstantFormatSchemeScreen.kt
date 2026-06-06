@@ -43,6 +43,7 @@ fun InstantFormatSchemeScreen(
     )
 
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Instant",

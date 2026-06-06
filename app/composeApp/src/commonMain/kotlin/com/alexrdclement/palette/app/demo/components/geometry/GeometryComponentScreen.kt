@@ -9,6 +9,8 @@ import com.alexrdclement.palette.components.demo.geometry.CurveStitchDemo
 import com.alexrdclement.palette.components.demo.geometry.GridDemo
 import com.alexrdclement.palette.components.demo.geometry.SphereDemo
 import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 
 @Composable
 fun GeometryComponentScreen(
@@ -17,6 +19,7 @@ fun GeometryComponentScreen(
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = component.title,

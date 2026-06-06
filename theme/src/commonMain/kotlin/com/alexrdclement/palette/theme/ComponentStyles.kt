@@ -30,6 +30,7 @@ import com.alexrdclement.palette.components.demo.control.TextFieldControlStyle
 import com.alexrdclement.palette.components.demo.control.ToggleControlStyle
 import com.alexrdclement.palette.components.layout.BoxWithLabelStyle
 import com.alexrdclement.palette.components.layout.FloatingActionStyle
+import com.alexrdclement.palette.components.layout.ScaffoldStyle
 import com.alexrdclement.palette.components.layout.TopBarStyle
 import com.alexrdclement.palette.components.layout.catalog.CatalogStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
@@ -45,22 +46,12 @@ import com.alexrdclement.palette.components.media.MediaControlSheetStyle
 import com.alexrdclement.palette.components.media.MediaItemArtworkStyle
 import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
 
-/**
- * Theme-resolved default [androidx.compose.runtime.Composable] styles for [com.alexrdclement.palette.components]
- * widgets. Clients pass these explicitly, e.g.
- * `MediaControlSheet(style = PaletteTheme.components.mediaControlSheet)`.
- *
- * Each style is built from the current [PaletteTheme]; composite styles reuse their children's
- * resolved styles so a widget looks the same standalone or nested.
- */
 object PaletteComponentStyles {
 
-    /** Resolved [ButtonStyle] for the given [ButtonStyleToken] variant. */
     @Composable
     fun button(token: ButtonStyleToken = ButtonStyleToken.Primary): ButtonStyle =
         token.toComponentStyle()
 
-    /** Resolved [AuthButtonStyle] for the given [AuthButtonStyleToken] variant. */
     @Composable
     fun authButton(token: AuthButtonStyleToken = AuthButtonStyleToken.Secondary): AuthButtonStyle =
         AuthButtonStyle(
@@ -78,6 +69,11 @@ object PaletteComponentStyles {
             color = PaletteTheme.colorScheme.surface,
             contentColor = PaletteTheme.colorScheme.contentColorFor(PaletteTheme.colorScheme.surface),
             indication = PaletteTheme.indication,
+        )
+
+    val scaffold: ScaffoldStyle
+        @Composable get() = ScaffoldStyle(
+            surfaceStyle = surface,
         )
 
     val divider: DividerStyle

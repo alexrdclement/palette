@@ -7,6 +7,8 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.formats.money.navigation.MoneyFormat
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.formats.demo.money.MoneyFormatDemo
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 
 @Composable
 fun MoneyFormatScreen(
@@ -15,6 +17,7 @@ fun MoneyFormatScreen(
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = format.title,

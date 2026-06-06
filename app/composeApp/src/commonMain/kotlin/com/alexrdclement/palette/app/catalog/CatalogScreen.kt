@@ -31,6 +31,7 @@ fun <T : CatalogItem> CatalogScreen(
     ReportDrawn()
 
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             TopBar(
                 title = title?.let {

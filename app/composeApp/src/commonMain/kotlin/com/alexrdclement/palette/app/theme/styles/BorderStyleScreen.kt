@@ -42,6 +42,7 @@ fun BorderStyleScreen(
     val control = rememberBorderStyleScreenControl(state = state, themeController = themeController)
 
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Border style",

@@ -8,6 +8,8 @@ import com.alexrdclement.palette.app.demo.formats.core.navigation.CoreFormat
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.formats.demo.core.NumberFormatDemo
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemo
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 
 @Composable
 fun CoreFormatScreen(
@@ -16,6 +18,7 @@ fun CoreFormatScreen(
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = format.title,

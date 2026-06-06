@@ -48,6 +48,7 @@ fun ButtonStyleScreen(
     val control = rememberButtonStyleScreenControl(state = state, themeController = themeController)
 
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Button style",

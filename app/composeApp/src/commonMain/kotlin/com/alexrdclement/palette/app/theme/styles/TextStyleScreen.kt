@@ -45,6 +45,7 @@ fun TextStyleScreen(
     val control = rememberTextStyleScreenControl(state = state, themeController = themeController)
 
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Text",

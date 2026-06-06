@@ -37,6 +37,7 @@ fun NumberFormatScreen(
     val control = rememberNumberFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Number",

@@ -36,6 +36,7 @@ fun MoneyFormatScreen(
     val control = rememberMoneyFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Money format",

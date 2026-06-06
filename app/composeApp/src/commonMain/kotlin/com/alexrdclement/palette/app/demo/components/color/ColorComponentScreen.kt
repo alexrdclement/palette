@@ -7,6 +7,8 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.components.color.navigation.ColorComponent
 import com.alexrdclement.palette.components.demo.color.ColorPickerDemo
 import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 
 @Composable
 fun ColorComponentScreen(
@@ -15,6 +17,7 @@ fun ColorComponentScreen(
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = component.title,

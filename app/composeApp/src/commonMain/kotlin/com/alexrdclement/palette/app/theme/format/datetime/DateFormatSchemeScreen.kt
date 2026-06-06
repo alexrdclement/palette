@@ -43,6 +43,7 @@ fun DateFormatSchemeScreen(
     )
 
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Date",

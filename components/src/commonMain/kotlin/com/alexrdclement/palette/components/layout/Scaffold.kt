@@ -8,6 +8,11 @@ import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastMap
 import androidx.compose.ui.util.fastMaxOfOrNull
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.components.core.SurfaceStyle
+
+data class ScaffoldStyle(
+    val surfaceStyle: SurfaceStyle = SurfaceStyle(),
+)
 
 @Composable
 fun Scaffold(
@@ -15,10 +20,12 @@ fun Scaffold(
     floatingAction: @Composable () -> Unit = {},
     navigationBar: @Composable () -> Unit = {},
     modifier: Modifier = Modifier,
+    style: ScaffoldStyle = ScaffoldStyle(),
     content: @Composable (PaddingValues) -> Unit,
 ) {
     Surface(
-        modifier = modifier
+        modifier = modifier,
+        style = style.surfaceStyle,
     ) {
         // Layout top bar on top of content to center content whether or not top bar exists.
         // Pass constraints to content with top bar height removed to allow to respect or ignore.

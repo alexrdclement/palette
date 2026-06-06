@@ -14,6 +14,8 @@ import com.alexrdclement.palette.modifiers.demo.FadeDemo
 import com.alexrdclement.palette.modifiers.demo.NoiseDemo
 import com.alexrdclement.palette.modifiers.demo.PixelateDemo
 import com.alexrdclement.palette.modifiers.demo.WarpDemo
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 
 @Composable
 fun ModifierScreen(
@@ -22,6 +24,7 @@ fun ModifierScreen(
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = modifierType.name,

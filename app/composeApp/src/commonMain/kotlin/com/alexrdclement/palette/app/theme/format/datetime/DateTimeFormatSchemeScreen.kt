@@ -43,6 +43,7 @@ fun DateTimeFormatSchemeScreen(
     )
 
     Scaffold(
+        style = PaletteTheme.components.scaffold,
         topBar = {
             DemoTopBar(
                 title = "DateTime",
