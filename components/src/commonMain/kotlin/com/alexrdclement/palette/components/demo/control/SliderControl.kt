@@ -16,12 +16,14 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Slider
+import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.core.stepsForIncrement
 
 data class SliderControlStyle(
     val labelStyle: TextStyle = TextStyle(),
+    val sliderStyle: SliderStyle = SliderStyle(),
     val spacing: Dp = 8.dp,
 )
 
@@ -53,6 +55,7 @@ fun SliderControl(
             onValueChange = control.onValueChange,
             valueRange = valueRange,
             steps = steps,
+            style = style.sliderStyle,
             modifier = Modifier.semantics {
                 contentDescription = name
             }

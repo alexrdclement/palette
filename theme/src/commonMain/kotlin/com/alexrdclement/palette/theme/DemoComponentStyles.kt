@@ -32,6 +32,7 @@ object DemoComponentStyles {
                     ),
                     slider = SliderControlStyle(
                         labelStyle = label,
+                        sliderStyle = CoreComponentStyles.slider,
                         spacing = PaletteTheme.spacing.small,
                     ),
                     color = ColorControlStyle(
