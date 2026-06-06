@@ -6,10 +6,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.core.ButtonStyle
-
 data class ConfirmCancelButtonRowStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val buttonStyle: ConfirmButtonStyle = ConfirmButtonStyle(),
     val spacing: Dp = 16.dp,
 )
 

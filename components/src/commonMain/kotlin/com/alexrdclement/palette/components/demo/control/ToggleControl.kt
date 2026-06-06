@@ -18,10 +18,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Checkbox
+import com.alexrdclement.palette.components.core.CheckboxStyle
 import com.alexrdclement.palette.components.core.Text
 
 data class ToggleControlStyle(
     val spacing: Dp = 8.dp,
+    val checkboxStyle: CheckboxStyle = CheckboxStyle(),
 )
 
 @Composable
@@ -43,7 +45,7 @@ fun ToggleControl(
             Spacer(modifier = Modifier.height(style.spacing))
         }
 
-        Checkbox(checked, onCheckedChange = control.onValueChange)
+        Checkbox(checked, onCheckedChange = control.onValueChange, style = style.checkboxStyle)
     }
 }
 
@@ -66,7 +68,7 @@ fun ToggleControlRow(
             Spacer(modifier = Modifier.height(style.spacing))
         }
 
-        Checkbox(isChecked, onCheckedChange = control.onValueChange)
+        Checkbox(isChecked, onCheckedChange = control.onValueChange, style = style.checkboxStyle)
     }
 }
 

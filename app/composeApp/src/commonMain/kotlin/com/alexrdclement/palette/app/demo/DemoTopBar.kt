@@ -32,5 +32,6 @@ fun DemoTopBar(
         },
         navButton = navButton,
         actions = actions,
+        style = PaletteTheme.components.topBar,
     )
 }

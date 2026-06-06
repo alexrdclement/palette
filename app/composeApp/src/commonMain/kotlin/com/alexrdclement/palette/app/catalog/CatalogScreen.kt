@@ -34,6 +34,7 @@ fun <T : CatalogItem> CatalogScreen(
         style = PaletteTheme.components.scaffold,
         topBar = {
             TopBar(
+                style = PaletteTheme.components.topBar,
                 title = title?.let {
                     { Text(title, style = PaletteTheme.styles.text.titleMedium) }
                 },

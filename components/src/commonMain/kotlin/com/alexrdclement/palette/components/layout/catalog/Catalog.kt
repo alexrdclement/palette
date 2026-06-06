@@ -18,10 +18,12 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.TextStyle
 
 data class CatalogStyle(
     val itemSpacing: Dp = 16.dp,
     val itemStyle: ButtonStyle = ButtonStyle.Default(),
+    val itemTextStyle: TextStyle = TextStyle(),
 )
 
 @Composable
@@ -51,7 +53,7 @@ fun <T : CatalogItem> Catalog(
                 onClick = { onItemClick(item) },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(item.title)
+                Text(item.title, style = style.itemTextStyle)
             }
         }
         item {

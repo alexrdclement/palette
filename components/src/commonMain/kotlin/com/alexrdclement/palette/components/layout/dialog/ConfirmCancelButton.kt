@@ -6,19 +6,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.TextStyle
+
+data class ConfirmButtonStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val textStyle: TextStyle = TextStyle(),
+)
 
 @Composable
 fun ConfirmButton(
     onConfirm: () -> Unit,
     modifier: Modifier = Modifier,
-    style: ButtonStyle = ButtonStyle.Default(),
+    style: ConfirmButtonStyle = ConfirmButtonStyle(),
 ) {
     Button(
-        style = style,
+        style = style.buttonStyle,
         onClick = onConfirm,
         modifier = modifier,
     ) {
-        Text("OK")
+        Text("OK", style = style.textStyle)
     }
 }
 
@@ -26,14 +32,14 @@ fun ConfirmButton(
 fun CancelButton(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
-    style: ButtonStyle = ButtonStyle.Default(),
+    style: ConfirmButtonStyle = ConfirmButtonStyle(),
 ) {
     Button(
-        style = style,
+        style = style.buttonStyle,
         onClick = onDismiss,
         modifier = modifier,
     ) {
-        Text("Cancel")
+        Text("Cancel", style = style.textStyle)
     }
 }
 

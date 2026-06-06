@@ -25,6 +25,7 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
+import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import androidx.compose.ui.unit.Dp
 
@@ -127,7 +128,12 @@ private fun ColorPickerDialogContent(
                 .weight(1f, fill = false)
         )
         ConfirmCancelButtonRow(
-            style = ConfirmCancelButtonRowStyle(buttonStyle = LocalDemoStyle.current.buttonStyle),
+            style = ConfirmCancelButtonRowStyle(
+                buttonStyle = ConfirmButtonStyle(
+                    buttonStyle = LocalDemoStyle.current.buttonStyle,
+                    textStyle = LocalDemoStyle.current.labelStyle,
+                ),
+            ),
             onConfirm = {
                 onColorSelected(currentColor)
                 onDismissRequest()

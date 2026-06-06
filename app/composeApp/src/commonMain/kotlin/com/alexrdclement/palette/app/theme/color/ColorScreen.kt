@@ -3,7 +3,6 @@ package com.alexrdclement.palette.app.theme.color
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,9 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
+import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonDefaults
-import com.alexrdclement.palette.components.core.withContentPadding
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
@@ -38,7 +37,6 @@ import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.copy
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.toColor
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
@@ -78,6 +76,7 @@ fun ColorScreen(
                 label = colorToken.name,
                 color = colorToken.toColor(),
                 onColorClick = { selectedColorToken = colorToken },
+                style = PaletteTheme.components.colorDisplay,
             )
         }
     }
@@ -102,6 +101,7 @@ private fun ColorDisplay(
     color: Color,
     onColorClick: (Color) -> Unit,
     modifier: Modifier = Modifier,
+    style: ColorDisplayStyle = ColorDisplayStyle(),
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
@@ -109,7 +109,7 @@ private fun ColorDisplay(
         modifier = modifier
     ) {
         Button(
-            style = PaletteTheme.components.button(ButtonStyleToken.Secondary).withContentPadding(PaddingValues(0.dp)),
+            style = style.buttonStyle,
             onClick = { onColorClick(color) },
             modifier = Modifier.size(ButtonDefaults.MinHeight)
         ) {

@@ -39,6 +39,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.components.core.ButtonStyle
+import com.alexrdclement.palette.components.core.DividerStyle
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.components.core.TextStyle
@@ -57,6 +58,7 @@ data class DemoStyle(
     val borderColor: Color = Color.Unspecified,
     val colorPickerStyle: ColorPickerStyle = ColorPickerStyle(),
     val surfaceStyle: SurfaceStyle = SurfaceStyle(),
+    val dividerStyle: DividerStyle = DividerStyle(),
     val colorControl: ColorControlStyle = ColorControlStyle(),
     val sliderControl: SliderControlStyle = SliderControlStyle(),
     val toggleControl: ToggleControlStyle = ToggleControlStyle(),
@@ -103,7 +105,7 @@ fun Demo(
                     scope.content()
                 }
                 if (controls.isNotEmpty()) {
-                    HorizontalDivider(modifier = Modifier.fillMaxWidth())
+                    HorizontalDivider(modifier = Modifier.fillMaxWidth(), style = style.dividerStyle)
                     Controls(
                         controls = controls,
                         modifier = Modifier
@@ -129,7 +131,7 @@ fun Demo(
                     scope.content()
                 }
                 if (controls.isNotEmpty()) {
-                    VerticalDivider(modifier = Modifier.fillMaxHeight())
+                    VerticalDivider(modifier = Modifier.fillMaxHeight(), style = style.dividerStyle)
                     Controls(
                         controls = controls,
                         modifier = Modifier

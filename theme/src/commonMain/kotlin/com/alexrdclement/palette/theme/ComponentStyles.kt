@@ -13,8 +13,10 @@ import com.alexrdclement.palette.components.core.ChevronIconStyle
 import com.alexrdclement.palette.components.core.DividerStyle
 import com.alexrdclement.palette.components.core.SliderColors
 import com.alexrdclement.palette.components.core.SliderStyle
+import com.alexrdclement.palette.components.core.ProgressIndicatorStyle
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
+import com.alexrdclement.palette.components.core.withContentPadding
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
 import com.alexrdclement.palette.components.color.ColorPickerStyle
@@ -33,6 +35,7 @@ import com.alexrdclement.palette.components.layout.FloatingActionStyle
 import com.alexrdclement.palette.components.layout.ScaffoldStyle
 import com.alexrdclement.palette.components.layout.TopBarStyle
 import com.alexrdclement.palette.components.layout.catalog.CatalogStyle
+import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
 import com.alexrdclement.palette.components.media.MediaControlBarStyle
@@ -81,6 +84,11 @@ object PaletteComponentStyles {
             color = PaletteTheme.colorScheme.outline,
         )
 
+    val progressIndicator: ProgressIndicatorStyle
+        @Composable get() = ProgressIndicatorStyle(
+            textStyle = PaletteTheme.styles.text.bodyMedium,
+        )
+
     val checkbox: CheckboxStyle
         @Composable get() = CheckboxStyle(
             buttonStyle = ButtonStyle.Default(
@@ -109,6 +117,7 @@ object PaletteComponentStyles {
         @Composable get() = ColorDisplayStyle(
             shape = PaletteTheme.shapeScheme.primary,
             borderStyle = BorderStyleToken.Primary.toComponentStyle(),
+            buttonStyle = button(ButtonStyleToken.Secondary).withContentPadding(PaddingValues(0.dp)),
         )
 
     val colorPicker: ColorPickerStyle
@@ -123,7 +132,10 @@ object PaletteComponentStyles {
 
     val confirmCancelButtonRow: ConfirmCancelButtonRowStyle
         @Composable get() = ConfirmCancelButtonRowStyle(
-            buttonStyle = button(ButtonStyleToken.Secondary),
+            buttonStyle = ConfirmButtonStyle(
+                buttonStyle = button(ButtonStyleToken.Secondary),
+                textStyle = PaletteTheme.styles.text.bodyMedium,
+            ),
             spacing = PaletteTheme.spacing.medium,
         )
 
@@ -189,6 +201,7 @@ object PaletteComponentStyles {
         @Composable get() = CatalogStyle(
             itemSpacing = PaletteTheme.spacing.medium,
             itemStyle = ButtonStyleToken.Secondary.toComponentStyle(),
+            itemTextStyle = PaletteTheme.styles.text.bodyMedium,
         )
 
     val boxWithLabel: BoxWithLabelStyle
@@ -237,6 +250,7 @@ object PaletteComponentStyles {
             borderColor = PaletteTheme.colorScheme.outline,
             colorPickerStyle = colorPicker,
             surfaceStyle = surface,
+            dividerStyle = divider,
             colorControl = ColorControlStyle(
                 spacing = PaletteTheme.spacing.medium,
                 contentSpacing = PaletteTheme.spacing.small,
@@ -247,6 +261,7 @@ object PaletteComponentStyles {
             ),
             toggleControl = ToggleControlStyle(
                 spacing = PaletteTheme.spacing.small,
+                checkboxStyle = checkbox,
             ),
             charControl = CharControlStyle(
                 spacing = PaletteTheme.spacing.small,
@@ -263,6 +278,7 @@ object PaletteComponentStyles {
             expandableHeader = ExpandableHeaderStyle(
                 spacing = PaletteTheme.spacing.small,
                 labelPadding = PaletteTheme.spacing.xs,
+                chevronIconStyle = chevronIcon,
             ),
             dynamicListControl = DynamicListControlStyle(
                 spacing = PaletteTheme.spacing.medium,
