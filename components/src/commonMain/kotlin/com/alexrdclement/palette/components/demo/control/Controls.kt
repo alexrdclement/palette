@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.demo.control
 
-import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
@@ -33,13 +32,14 @@ data class ControlsStyle(
 fun Controls(
     controls: ImmutableList<Control>,
     modifier: Modifier = Modifier,
+    controlStyle: ControlStyle = ControlStyle(),
     name: String? = null,
     indent: Boolean = false,
     expandedInitial: Boolean = true,
-    contentPadding: PaddingValues = PaddingValues(vertical = LocalDemoStyle.current.controls.contentPadding),
-    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(LocalDemoStyle.current.controls.spacing)
+    contentPadding: PaddingValues = PaddingValues(vertical = controlStyle.controls.contentPadding),
+    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(controlStyle.controls.spacing)
 ) {
-    val style = LocalDemoStyle.current.controls
+    val style = controlStyle.controls
     Column(
         verticalArrangement = verticalArrangement,
         modifier = modifier
@@ -50,7 +50,8 @@ fun Controls(
             ExpandableHeader(
                 name = it,
                 expanded = expanded,
-                onExpandedChange = { expanded = it }
+                onExpandedChange = { expanded = it },
+                style = controlStyle.expandableHeader,
             )
         }
 
@@ -67,18 +68,19 @@ fun Controls(
                     )
             ) {
                 when (control) {
-                    is Control.Button -> ButtonControl(control = control)
-                    is Control.Color -> ColorControl(control = control)
-                    is Control.Slider -> SliderControl(control = control)
-                    is Control.Dropdown<*> -> DropdownControlRow(control = control)
-                    is Control.Toggle -> ToggleControlRow(control = control)
-                    is Control.CharField -> CharControl(control = control)
-                    is Control.TextField -> TextFieldControl(control = control)
-                    is Control.DynamicList<*> -> DynamicListControl(control = control)
+                    is Control.Button -> ButtonControl(control = control, style = controlStyle.button)
+                    is Control.Color -> ColorControl(control = control, style = controlStyle.color)
+                    is Control.Slider -> SliderControl(control = control, style = controlStyle.slider)
+                    is Control.Dropdown<*> -> DropdownControlRow(control = control, style = controlStyle.dropdown)
+                    is Control.Toggle -> ToggleControlRow(control = control, style = controlStyle.toggle)
+                    is Control.CharField -> CharControl(control = control, style = controlStyle.char)
+                    is Control.TextField -> TextFieldControl(control = control, style = controlStyle.textField)
+                    is Control.DynamicList<*> -> DynamicListControl(control = control, controlStyle = controlStyle)
                     is Control.ControlColumn -> {
                         val controls by rememberUpdatedState(control.controls())
                         Controls(
                             controls = controls,
+                            controlStyle = controlStyle,
                             name = control.name,
                             indent = control.indent,
                             expandedInitial = control.expandedInitial,
@@ -87,7 +89,7 @@ fun Controls(
                     }
                     is Control.ControlRow -> {
                         val controls by rememberUpdatedState(control.controls())
-                        ControlsRow(controls = controls)
+                        ControlsRow(controls = controls, controlStyle = controlStyle)
                     }
                 }
             }
@@ -99,9 +101,10 @@ fun Controls(
 fun ControlsRow(
     controls: ImmutableList<Control>,
     modifier: Modifier = Modifier,
+    controlStyle: ControlStyle = ControlStyle(),
     equalWeight: Boolean = true,
 ) {
-    val style = LocalDemoStyle.current.controls
+    val style = controlStyle.controls
     Row(
         horizontalArrangement = Arrangement.spacedBy(style.rowSpacing),
         verticalAlignment = Alignment.CenterVertically,
@@ -114,18 +117,19 @@ fun ControlsRow(
                     .then(if (equalWeight) Modifier.weight(1f, fill = false) else Modifier)
             ) {
                 when (control) {
-                    is Control.Button -> ButtonControl(control = control)
-                    is Control.Color -> ColorControl(control = control)
-                    is Control.Slider -> SliderControl(control = control)
-                    is Control.Dropdown<*> -> DropdownControl(control = control)
-                    is Control.Toggle -> ToggleControl(control = control)
-                    is Control.CharField -> CharControl(control = control)
-                    is Control.TextField -> TextFieldControl(control = control)
-                    is Control.DynamicList<*> -> DynamicListControl(control = control)
+                    is Control.Button -> ButtonControl(control = control, style = controlStyle.button)
+                    is Control.Color -> ColorControl(control = control, style = controlStyle.color)
+                    is Control.Slider -> SliderControl(control = control, style = controlStyle.slider)
+                    is Control.Dropdown<*> -> DropdownControl(control = control, style = controlStyle.dropdown)
+                    is Control.Toggle -> ToggleControl(control = control, style = controlStyle.toggle)
+                    is Control.CharField -> CharControl(control = control, style = controlStyle.char)
+                    is Control.TextField -> TextFieldControl(control = control, style = controlStyle.textField)
+                    is Control.DynamicList<*> -> DynamicListControl(control = control, controlStyle = controlStyle)
                     is Control.ControlColumn -> {
                         val controls by rememberUpdatedState(control.controls())
                         Controls(
                             controls = controls,
+                            controlStyle = controlStyle,
                             name = control.name,
                             indent = control.indent,
                             expandedInitial = control.expandedInitial,
@@ -134,7 +138,7 @@ fun ControlsRow(
                     }
                     is Control.ControlRow -> {
                         val controls by rememberUpdatedState(control.controls())
-                        Controls(controls = controls)
+                        Controls(controls = controls, controlStyle = controlStyle)
                     }
                 }
             }

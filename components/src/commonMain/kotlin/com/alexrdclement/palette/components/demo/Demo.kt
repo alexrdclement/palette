@@ -17,60 +17,28 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.components.core.DividerStyle
 import com.alexrdclement.palette.components.core.HorizontalDivider
 import com.alexrdclement.palette.components.core.VerticalDivider
-import com.alexrdclement.palette.components.demo.control.CharControlStyle
-import com.alexrdclement.palette.components.demo.control.ColorControlStyle
 import com.alexrdclement.palette.components.demo.control.Control
+import com.alexrdclement.palette.components.demo.control.ControlStyle
 import com.alexrdclement.palette.components.demo.control.Controls
-import com.alexrdclement.palette.components.demo.control.ControlsStyle
-import com.alexrdclement.palette.components.demo.control.DropdownControlStyle
-import com.alexrdclement.palette.components.demo.control.DynamicListControlStyle
-import com.alexrdclement.palette.components.demo.control.ExpandableHeaderStyle
-import com.alexrdclement.palette.components.demo.control.SliderControlStyle
-import com.alexrdclement.palette.components.demo.control.TextFieldControlStyle
-import com.alexrdclement.palette.components.demo.control.ToggleControlStyle
 import com.alexrdclement.palette.components.util.horizontalPaddingValues
-import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.ui.graphics.Color
-import com.alexrdclement.palette.components.color.ColorPickerStyle
-import com.alexrdclement.palette.components.core.ButtonStyle
-import com.alexrdclement.palette.components.core.DividerStyle
-import com.alexrdclement.palette.components.core.SurfaceStyle
-import com.alexrdclement.palette.components.core.TextFieldStyle
-import com.alexrdclement.palette.components.core.TextStyle
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
 /**
- * Styling for the demo control framework. Supplied explicitly to [Demo]/[DemoList]; distributed to
- * the (recursive, data-driven) control renderers via [LocalDemoStyle].
+ * Styling for the demo framework: the [ControlStyle] threaded to the control panel plus the
+ * [dividerStyle] separating content from controls. Supplied explicitly to [Demo]/[DemoList]; themed
+ * callers build it from their theme, keeping this framework theme-agnostic.
  */
 data class DemoStyle(
-    val labelStyle: TextStyle = TextStyle(),
-    val headerStyle: TextStyle = TextStyle(),
-    val buttonStyle: ButtonStyle = ButtonStyle(),
-    val textFieldStyle: TextFieldStyle = TextFieldStyle(),
-    val borderColor: Color = Color.Unspecified,
-    val colorPickerStyle: ColorPickerStyle = ColorPickerStyle(),
-    val surfaceStyle: SurfaceStyle = SurfaceStyle(),
+    val controlStyle: ControlStyle = ControlStyle(),
     val dividerStyle: DividerStyle = DividerStyle(),
-    val colorControl: ColorControlStyle = ColorControlStyle(),
-    val sliderControl: SliderControlStyle = SliderControlStyle(),
-    val toggleControl: ToggleControlStyle = ToggleControlStyle(),
-    val charControl: CharControlStyle = CharControlStyle(),
-    val textFieldControl: TextFieldControlStyle = TextFieldControlStyle(),
-    val dropdownControl: DropdownControlStyle = DropdownControlStyle(),
-    val expandableHeader: ExpandableHeaderStyle = ExpandableHeaderStyle(),
-    val dynamicListControl: DynamicListControlStyle = DynamicListControlStyle(),
-    val controls: ControlsStyle = ControlsStyle(),
 )
-
-val LocalDemoStyle = compositionLocalOf { DemoStyle() }
 
 @Stable
 interface DemoScope : BoxWithConstraintsScope
@@ -86,7 +54,6 @@ fun Demo(
     controls: PersistentList<Control> = persistentListOf(),
     content: @Composable DemoScope.() -> Unit,
 ) {
-    CompositionLocalProvider(LocalDemoStyle provides style) {
     BoxWithConstraints(
         modifier = modifier
             .padding(WindowInsets.safeDrawing.horizontalPaddingValues()),
@@ -108,6 +75,7 @@ fun Demo(
                     HorizontalDivider(modifier = Modifier.fillMaxWidth(), style = style.dividerStyle)
                     Controls(
                         controls = controls,
+                        controlStyle = style.controlStyle,
                         modifier = Modifier
                             .fillMaxWidth()
                             .heightIn(max = 300.dp)
@@ -134,6 +102,7 @@ fun Demo(
                     VerticalDivider(modifier = Modifier.fillMaxHeight(), style = style.dividerStyle)
                     Controls(
                         controls = controls,
+                        controlStyle = style.controlStyle,
                         modifier = Modifier
                             .fillMaxHeight()
                             .widthIn(max = 300.dp)
@@ -144,6 +113,5 @@ fun Demo(
                 }
             }
         }
-    }
     }
 }

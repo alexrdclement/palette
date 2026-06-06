@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.demo.control
 
-import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
@@ -20,19 +19,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Checkbox
 import com.alexrdclement.palette.components.core.CheckboxStyle
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.TextStyle
 
 data class ToggleControlStyle(
-    val spacing: Dp = 8.dp,
+    val labelStyle: TextStyle = TextStyle(),
     val checkboxStyle: CheckboxStyle = CheckboxStyle(),
+    val spacing: Dp = 8.dp,
 )
 
 @Composable
 fun ToggleControl(
     control: Control.Toggle,
     modifier: Modifier = Modifier,
+    style: ToggleControlStyle = ToggleControlStyle(),
     includeTitle: Boolean = true,
 ) {
-    val style = LocalDemoStyle.current.toggleControl
     val checked by rememberUpdatedState(control.value())
 
     Column(
@@ -41,7 +42,7 @@ fun ToggleControl(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         if (includeTitle) {
-            Text(control.name, style = LocalDemoStyle.current.labelStyle)
+            Text(control.name, style = style.labelStyle)
             Spacer(modifier = Modifier.height(style.spacing))
         }
 
@@ -53,9 +54,9 @@ fun ToggleControl(
 fun ToggleControlRow(
     control: Control.Toggle,
     modifier: Modifier = Modifier,
+    style: ToggleControlStyle = ToggleControlStyle(),
     includeTitle: Boolean = true,
 ) {
-    val style = LocalDemoStyle.current.toggleControl
     val isChecked by rememberUpdatedState(control.value())
 
     Row(
@@ -64,7 +65,7 @@ fun ToggleControlRow(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (includeTitle) {
-            Text(control.name, style = LocalDemoStyle.current.labelStyle)
+            Text(control.name, style = style.labelStyle)
             Spacer(modifier = Modifier.height(style.spacing))
         }
 

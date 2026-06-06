@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.demo.control
 
-import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
@@ -19,9 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
+import com.alexrdclement.palette.components.core.TextFieldStyle
+import com.alexrdclement.palette.components.core.TextStyle
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 data class TextFieldControlStyle(
+    val labelStyle: TextStyle = TextStyle(),
+    val textFieldStyle: TextFieldStyle = TextFieldStyle(),
     val spacing: Dp = 8.dp,
     val verticalPadding: Dp = 8.dp,
 )
@@ -30,8 +33,8 @@ data class TextFieldControlStyle(
 fun TextFieldControl(
     control: Control.TextField,
     modifier: Modifier = Modifier,
+    style: TextFieldControlStyle = TextFieldControlStyle(),
 ) {
-    val style = LocalDemoStyle.current.textFieldControl
     val enabled by rememberUpdatedState(control.enabled())
     val keyboardOptions by rememberUpdatedState(control.keyboardOptions())
     val inputTransformation by rememberUpdatedState(control.inputTransformation())
@@ -56,14 +59,14 @@ fun TextFieldControl(
         if (control.includeLabel) {
             Text(
                 text = control.name,
-                style = LocalDemoStyle.current.labelStyle,
+                style = style.labelStyle,
                 modifier = Modifier.weight(1f, fill = false),
             )
             Spacer(modifier = Modifier.width(style.spacing))
         }
         TextField(
             state = control.textFieldState,
-            style = LocalDemoStyle.current.textFieldStyle,
+            style = style.textFieldStyle,
             enabled = enabled,
             inputTransformation = inputTransformation,
             keyboardOptions = keyboardOptions,

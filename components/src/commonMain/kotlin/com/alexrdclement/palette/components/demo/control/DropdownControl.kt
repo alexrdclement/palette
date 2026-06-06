@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.demo.control
 
-import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Column
@@ -20,24 +19,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.menu.DropdownMenu
 import com.alexrdclement.palette.components.menu.DropdownMenuItem
 import com.alexrdclement.palette.components.menu.DropdownMenuStyle
 import kotlinx.collections.immutable.toPersistentList
 
 data class DropdownControlStyle(
+    val labelStyle: TextStyle = TextStyle(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val menuStyle: DropdownMenuStyle = DropdownMenuStyle(),
     val labelSpacing: Dp = 8.dp,
     val rowSpacing: Dp = 16.dp,
-    val menuStyle: DropdownMenuStyle = DropdownMenuStyle(),
 )
 
 @Composable
 fun <T> DropdownControl(
     control: Control.Dropdown<T>,
     modifier: Modifier = Modifier,
+    style: DropdownControlStyle = DropdownControlStyle(),
 ) {
-    val style = LocalDemoStyle.current.dropdownControl
     var isMenuExpanded by remember { mutableStateOf(false) }
     val values by rememberUpdatedState(control.values())
     val selectedIndex by rememberUpdatedState(control.selectedIndex())
@@ -47,19 +50,21 @@ fun <T> DropdownControl(
 
     Column(modifier = modifier) {
         if (control.includeLabel) {
-            Text(control.name, style = LocalDemoStyle.current.labelStyle)
+            Text(control.name, style = style.labelStyle)
             Spacer(modifier = Modifier.height(style.labelSpacing))
         }
 
         DropdownMenuControlButton(
             selectedValue = selectedValue,
             onClick = { isMenuExpanded = true },
+            style = style,
         )
 
         DropdownControlMenu(
             control = control,
             isMenuExpanded = isMenuExpanded,
             onMenuDismissRequest = { isMenuExpanded = false },
+            style = style,
         )
     }
 }
@@ -68,8 +73,8 @@ fun <T> DropdownControl(
 fun <T> DropdownControlRow(
     control: Control.Dropdown<T>,
     modifier: Modifier = Modifier,
+    style: DropdownControlStyle = DropdownControlStyle(),
 ) {
-    val style = LocalDemoStyle.current.dropdownControl
     var isMenuExpanded by remember { mutableStateOf(false) }
     val values by rememberUpdatedState(control.values())
     val selectedIndex by rememberUpdatedState(control.selectedIndex())
@@ -85,7 +90,7 @@ fun <T> DropdownControlRow(
         if (control.includeLabel) {
             Text(
                 text = control.name,
-                style = LocalDemoStyle.current.labelStyle,
+                style = style.labelStyle,
                 softWrap = true,
                 modifier = Modifier.weight(1f, fill = false)
             )
@@ -95,6 +100,7 @@ fun <T> DropdownControlRow(
         DropdownMenuControlButton(
             selectedValue = selectedValue,
             onClick = { isMenuExpanded = true },
+            style = style,
             modifier = Modifier.weight(1f, fill = false)
         )
 
@@ -102,6 +108,7 @@ fun <T> DropdownControlRow(
             control = control,
             isMenuExpanded = isMenuExpanded,
             onMenuDismissRequest = { isMenuExpanded = false },
+            style = style,
         )
     }
 }
@@ -110,14 +117,15 @@ fun <T> DropdownControlRow(
 private fun <T> DropdownMenuControlButton(
     selectedValue: Control.Dropdown.DropdownItem<T>,
     onClick: () -> Unit,
+    style: DropdownControlStyle,
     modifier: Modifier = Modifier,
 ) {
     Button(
-        style = LocalDemoStyle.current.buttonStyle,
+        style = style.buttonStyle,
         onClick = onClick,
         modifier = modifier,
     ) {
-        Text(text = selectedValue.name, style = LocalDemoStyle.current.labelStyle)
+        Text(text = selectedValue.name, style = style.labelStyle)
     }
 }
 
@@ -126,16 +134,17 @@ private fun <T> DropdownControlMenu(
     control: Control.Dropdown<T>,
     isMenuExpanded: Boolean,
     onMenuDismissRequest: () -> Unit,
+    style: DropdownControlStyle,
 ) {
     val values by rememberUpdatedState(control.values())
     DropdownMenu(
         expanded = isMenuExpanded,
         onDismissRequest = onMenuDismissRequest,
-        style = LocalDemoStyle.current.dropdownControl.menuStyle,
+        style = style.menuStyle,
     ) {
         values.forEachIndexed { index, value ->
             DropdownMenuItem(
-                text = { Text(text = value.name, style = LocalDemoStyle.current.labelStyle) },
+                text = { Text(text = value.name, style = style.labelStyle) },
                 onClick = {
                     onMenuDismissRequest()
                     control.onValueChange(index)

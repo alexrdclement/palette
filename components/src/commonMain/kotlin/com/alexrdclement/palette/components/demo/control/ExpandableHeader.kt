@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.demo.control
 
-import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,14 +11,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ChevronDirection
 import com.alexrdclement.palette.components.core.ChevronIcon
 import com.alexrdclement.palette.components.core.ChevronIconStyle
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.TextStyle
 
 data class ExpandableHeaderStyle(
+    val headerStyle: TextStyle = TextStyle(),
+    val borderColor: Color = Color.Unspecified,
     val spacing: Dp = 8.dp,
     val borderWidth: Dp = 1.dp,
     val labelPadding: Dp = 4.dp,
@@ -33,8 +36,8 @@ fun ExpandableHeader(
     expanded: Boolean,
     onExpandedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
+    style: ExpandableHeaderStyle = ExpandableHeaderStyle(),
 ) {
-    val style = LocalDemoStyle.current.expandableHeader
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(style.spacing),
@@ -44,9 +47,9 @@ fun ExpandableHeader(
     ) {
         Text(
             text = name,
-            style = LocalDemoStyle.current.headerStyle,
+            style = style.headerStyle,
             modifier = Modifier
-                .border(style.borderWidth, LocalDemoStyle.current.borderColor)
+                .border(style.borderWidth, style.borderColor)
                 .padding(style.labelPadding)
         )
         ChevronIcon(

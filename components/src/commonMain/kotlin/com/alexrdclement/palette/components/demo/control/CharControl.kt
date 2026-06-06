@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.demo.control
 
-import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
@@ -21,9 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
+import com.alexrdclement.palette.components.core.TextFieldStyle
+import com.alexrdclement.palette.components.core.TextStyle
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 data class CharControlStyle(
+    val labelStyle: TextStyle = TextStyle(),
+    val textFieldStyle: TextFieldStyle = TextFieldStyle(),
     val spacing: Dp = 8.dp,
     val verticalPadding: Dp = 8.dp,
 )
@@ -32,8 +35,8 @@ data class CharControlStyle(
 fun CharControl(
     control: Control.CharField,
     modifier: Modifier = Modifier,
+    style: CharControlStyle = CharControlStyle(),
 ) {
-    val style = LocalDemoStyle.current.charControl
     val value by rememberUpdatedState(control.value())
     val enabled by rememberUpdatedState(control.enabled())
     val onValueChange by rememberUpdatedState(control.onValueChange)
@@ -66,14 +69,14 @@ fun CharControl(
         if (control.includeLabel) {
             Text(
                 text = control.name,
-                style = LocalDemoStyle.current.labelStyle,
+                style = style.labelStyle,
                 modifier = Modifier.weight(1f, fill = false),
             )
             Spacer(modifier = Modifier.width(style.spacing))
         }
         TextField(
             state = textFieldState,
-            style = LocalDemoStyle.current.textFieldStyle,
+            style = style.textFieldStyle,
             inputTransformation = InputTransformation {
                 val text = asCharSequence().toString()
                 val newText = text.lastOrNull()?.toString() ?: ""

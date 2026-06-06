@@ -124,3 +124,22 @@ inline fun <T : Enum<T>> enumControl(
         includeLabel = includeLabel,
     )
 }
+
+/**
+ * Styling for the demo control framework, composed of one style per [Control] type. Threaded
+ * explicitly through [Controls]/[ControlsRow] (and container controls) to each renderer, keeping
+ * `components.demo` theme-agnostic. Themed callers build this from their theme and hand it to
+ * [com.alexrdclement.palette.components.demo.Demo].
+ */
+data class ControlStyle(
+    val button: ButtonControlStyle = ButtonControlStyle(),
+    val slider: SliderControlStyle = SliderControlStyle(),
+    val color: ColorControlStyle = ColorControlStyle(),
+    val toggle: ToggleControlStyle = ToggleControlStyle(),
+    val char: CharControlStyle = CharControlStyle(),
+    val textField: TextFieldControlStyle = TextFieldControlStyle(),
+    val dropdown: DropdownControlStyle = DropdownControlStyle(),
+    val expandableHeader: ExpandableHeaderStyle = ExpandableHeaderStyle(),
+    val dynamicList: DynamicListControlStyle = DynamicListControlStyle(),
+    val controls: ControlsStyle = ControlsStyle(),
+)

@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.demo.control
 
-import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,15 +20,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.components.color.ColorDisplay
 import com.alexrdclement.palette.components.color.ColorPicker
+import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
 import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import androidx.compose.ui.unit.Dp
 
 data class ColorControlStyle(
+    val labelStyle: TextStyle = TextStyle(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val colorPickerStyle: ColorPickerStyle = ColorPickerStyle(),
+    val surfaceStyle: SurfaceStyle = SurfaceStyle(),
     val spacing: Dp = 16.dp,
     val contentSpacing: Dp = 8.dp,
     val dialogPadding: Dp = 24.dp,
@@ -39,8 +46,8 @@ data class ColorControlStyle(
 fun ColorControl(
     control: Control.Color,
     modifier: Modifier = Modifier,
+    style: ColorControlStyle = ColorControlStyle(),
 ) {
-    val style = LocalDemoStyle.current.colorControl
     val color by rememberUpdatedState(control.color())
     var showDialog by remember { mutableStateOf(false) }
 
@@ -51,10 +58,10 @@ fun ColorControl(
     ) {
         Text(
             text = control.name,
-            style = LocalDemoStyle.current.labelStyle,
+            style = style.labelStyle,
         )
         Button(
-            style = LocalDemoStyle.current.buttonStyle,
+            style = style.buttonStyle,
             onClick = { showDialog = true },
         ) {
             Row(
@@ -68,7 +75,7 @@ fun ColorControl(
                     modifier = Modifier
                         .fillMaxHeight()
                 )
-                Text(color.toString(), style = LocalDemoStyle.current.labelStyle)
+                Text(color.toString(), style = style.labelStyle)
             }
         }
     }
@@ -78,6 +85,7 @@ fun ColorControl(
             color = color,
             onColorSelected = control.onColorChange,
             onDismissRequest = { showDialog = false },
+            style = style,
         )
     }
 }
@@ -87,16 +95,17 @@ private fun ColorPickerDialog(
     color: Color,
     onColorSelected: (Color) -> Unit,
     onDismissRequest: () -> Unit,
+    style: ColorControlStyle,
 ) {
-    val style = LocalDemoStyle.current.colorControl
     Dialog(
         onDismissRequest = onDismissRequest,
     ) {
-        Surface(style = LocalDemoStyle.current.surfaceStyle) {
+        Surface(style = style.surfaceStyle) {
             ColorPickerDialogContent(
                 color = color,
                 onColorSelected = onColorSelected,
                 onDismissRequest = onDismissRequest,
+                style = style,
                 modifier = Modifier
                     .padding(style.spacing)
             )
@@ -109,9 +118,9 @@ private fun ColorPickerDialogContent(
     color: Color,
     onColorSelected: (Color) -> Unit,
     onDismissRequest: () -> Unit,
+    style: ColorControlStyle,
     modifier: Modifier = Modifier,
 ) {
-    val style = LocalDemoStyle.current.colorControl
     var currentColor by remember { mutableStateOf(color) }
 
     Column(
@@ -121,7 +130,7 @@ private fun ColorPickerDialogContent(
             .padding(style.dialogPadding)
     ) {
         ColorPicker(
-            style = LocalDemoStyle.current.colorPickerStyle,
+            style = style.colorPickerStyle,
             color = currentColor,
             onColorChange = { currentColor = it },
             modifier = Modifier
@@ -130,8 +139,8 @@ private fun ColorPickerDialogContent(
         ConfirmCancelButtonRow(
             style = ConfirmCancelButtonRowStyle(
                 buttonStyle = ConfirmButtonStyle(
-                    buttonStyle = LocalDemoStyle.current.buttonStyle,
-                    textStyle = LocalDemoStyle.current.labelStyle,
+                    buttonStyle = style.buttonStyle,
+                    textStyle = style.labelStyle,
                 ),
             ),
             onConfirm = {

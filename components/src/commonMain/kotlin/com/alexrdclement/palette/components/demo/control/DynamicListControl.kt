@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.demo.control
 
-import com.alexrdclement.palette.components.demo.LocalDemoStyle
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -30,8 +29,9 @@ data class DynamicListControlStyle(
 fun <T> DynamicListControl(
     control: Control.DynamicList<T>,
     modifier: Modifier = Modifier,
+    controlStyle: ControlStyle = ControlStyle(),
 ) {
-    val style = LocalDemoStyle.current.dynamicListControl
+    val style = controlStyle.dynamicList
     val items by rememberUpdatedState(control.items())
     val onItemsChange by rememberUpdatedState(control.onItemsChange)
 
@@ -46,7 +46,8 @@ fun <T> DynamicListControl(
             ExpandableHeader(
                 name = control.name,
                 expanded = expanded,
-                onExpandedChange = { expanded = it }
+                onExpandedChange = { expanded = it },
+                style = controlStyle.expandableHeader,
             )
         }
 
@@ -62,6 +63,7 @@ fun <T> DynamicListControl(
                 DynamicListItem(
                     control = control,
                     item = item,
+                    controlStyle = controlStyle,
                     onItemChange = { newItem ->
                         val newList = items.toMutableList()
                         newList[index] = newItem
@@ -80,6 +82,7 @@ fun <T> DynamicListControl(
                 DynamicListAddItem(
                     control = control,
                     item = currentAddingItem,
+                    controlStyle = controlStyle,
                     onItemChange = { addingItem = it },
                     onConfirm = {
                         val newList = items.toMutableList()
@@ -92,6 +95,7 @@ fun <T> DynamicListControl(
             } else {
                 DynamicListAddButton(
                     text = control.addButtonText,
+                    style = controlStyle.button,
                     onClick = { addingItem = control.newItemDefault() }
                 )
             }
@@ -106,8 +110,9 @@ private fun <T> DynamicListItem(
     onItemChange: (T) -> Unit,
     onDelete: () -> Unit,
     modifier: Modifier = Modifier,
+    controlStyle: ControlStyle = ControlStyle(),
 ) {
-    val style = LocalDemoStyle.current.dynamicListControl
+    val style = controlStyle.dynamicList
     val itemControl = control.createControl(item, onItemChange)
 
     Row(
@@ -118,6 +123,7 @@ private fun <T> DynamicListItem(
     ) {
         Controls(
             controls = listOf(itemControl).toPersistentList(),
+            controlStyle = controlStyle,
             contentPadding = PaddingValues(0.dp),
             verticalArrangement = Arrangement.spacedBy(style.itemControlSpacing),
             modifier = Modifier.weight(1f)
@@ -127,7 +133,8 @@ private fun <T> DynamicListItem(
             control = Control.Button(
                 name = "Delete",
                 onClick = onDelete
-            )
+            ),
+            style = controlStyle.button,
         )
     }
 }
@@ -140,8 +147,9 @@ private fun <T> DynamicListAddItem(
     onConfirm: () -> Unit,
     onCancel: () -> Unit,
     modifier: Modifier = Modifier,
+    controlStyle: ControlStyle = ControlStyle(),
 ) {
-    val style = LocalDemoStyle.current.dynamicListControl
+    val style = controlStyle.dynamicList
     val addItemControl = control.createControl(item, onItemChange)
 
     Column(
@@ -151,13 +159,15 @@ private fun <T> DynamicListAddItem(
     ) {
         Controls(
             controls = listOf(addItemControl).toPersistentList(),
+            controlStyle = controlStyle,
             contentPadding = PaddingValues(0.dp),
             verticalArrangement = Arrangement.spacedBy(style.itemControlSpacing),
         )
 
         DynamicListActionButtons(
             onConfirm = onConfirm,
-            onCancel = onCancel
+            onCancel = onCancel,
+            controlStyle = controlStyle,
         )
     }
 }
@@ -167,8 +177,9 @@ private fun DynamicListActionButtons(
     onConfirm: () -> Unit,
     onCancel: () -> Unit,
     modifier: Modifier = Modifier,
+    controlStyle: ControlStyle = ControlStyle(),
 ) {
-    val style = LocalDemoStyle.current.dynamicListControl
+    val style = controlStyle.dynamicList
     Row(
         horizontalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier.fillMaxWidth()
@@ -177,13 +188,15 @@ private fun DynamicListActionButtons(
             control = Control.Button(
                 name = "Confirm",
                 onClick = onConfirm
-            )
+            ),
+            style = controlStyle.button,
         )
         ButtonControl(
             control = Control.Button(
                 name = "Cancel",
                 onClick = onCancel
-            )
+            ),
+            style = controlStyle.button,
         )
     }
 }
@@ -193,12 +206,14 @@ private fun DynamicListAddButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: ButtonControlStyle = ButtonControlStyle(),
 ) {
     ButtonControl(
         control = Control.Button(
             name = text,
             onClick = onClick
         ),
+        style = style,
         modifier = modifier
     )
 }
