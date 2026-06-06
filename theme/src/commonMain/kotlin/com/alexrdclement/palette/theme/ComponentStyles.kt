@@ -15,12 +15,15 @@ import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
+import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
 import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
 import com.alexrdclement.palette.components.layout.BoxWithLabelStyle
 import com.alexrdclement.palette.components.layout.FloatingActionStyle
 import com.alexrdclement.palette.components.layout.TopBarStyle
 import com.alexrdclement.palette.components.layout.catalog.CatalogStyle
+import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
+import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
 import com.alexrdclement.palette.components.media.MediaControlBarStyle
 import com.alexrdclement.palette.components.money.CurrencyAmountFieldStyle
 import com.alexrdclement.palette.components.navigation.BackNavigationButtonStyle
@@ -98,7 +101,28 @@ object PaletteComponentStyles {
     val colorPicker: ColorPickerStyle
         @Composable get() = ColorPickerStyle(
             spacing = PaletteTheme.spacing.medium,
-            labelStyle = PaletteTheme.styles.text.labelLarge,
+            controlsStyle = ColorPickerControlsStyle(
+                labelStyle = PaletteTheme.styles.text.labelLarge,
+                sliderStyle = slider,
+                spacing = PaletteTheme.spacing.small,
+            ),
+        )
+
+    val confirmCancelButtonRow: ConfirmCancelButtonRowStyle
+        @Composable get() = ConfirmCancelButtonRowStyle(
+            buttonStyle = button(ButtonStyleToken.Secondary),
+            spacing = PaletteTheme.spacing.medium,
+        )
+
+    val dialogContent: DialogContentStyle
+        @Composable get() = DialogContentStyle(
+            titleStyle = PaletteTheme.styles.text.titleLarge,
+            messageStyle = PaletteTheme.styles.text.bodyLarge,
+            borderStyle = BorderStyleToken.Surface.toComponentStyle(),
+            spacing = PaletteTheme.spacing.medium,
+            padding = PaletteTheme.spacing.large,
+            titleBottomPadding = PaletteTheme.spacing.medium,
+            messageBottomPadding = PaletteTheme.spacing.large,
         )
 
     val slider: SliderStyle

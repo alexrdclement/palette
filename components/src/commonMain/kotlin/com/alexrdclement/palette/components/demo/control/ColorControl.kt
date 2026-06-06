@@ -25,6 +25,7 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
+import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 
 @Composable
 fun ColorControl(
@@ -116,7 +117,7 @@ private fun ColorPickerDialogContent(
                 .weight(1f, fill = false)
         )
         ConfirmCancelButtonRow(
-            buttonStyle = LocalDemoStyle.current.buttonStyle,
+            style = ConfirmCancelButtonRowStyle(buttonStyle = LocalDemoStyle.current.buttonStyle),
             onConfirm = {
                 onColorSelected(currentColor)
                 onDismissRequest()

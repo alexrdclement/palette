@@ -72,7 +72,7 @@ fun ColorPickerDialogContent(
                 .weight(1f, fill = false)
         )
         ConfirmCancelButtonRow(
-            buttonStyle = PaletteTheme.components.button(ButtonStyleToken.Secondary),
+            style = PaletteTheme.components.confirmCancelButtonRow,
             onConfirm = {
                 onColorSelected(color)
                 onDismissRequest()

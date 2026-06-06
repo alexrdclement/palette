@@ -18,12 +18,23 @@ import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.core.copy
 
+data class DialogContentStyle(
+    val titleStyle: TextStyle = TextStyle(),
+    val messageStyle: TextStyle = TextStyle(),
+    val borderStyle: BorderStyle? = null,
+    val spacing: Dp = 16.dp,
+    val padding: Dp = 24.dp,
+    val titleBottomPadding: Dp = 16.dp,
+    val messageBottomPadding: Dp = 24.dp,
+)
+
 @Composable
 fun DialogContent(
     title: String,
     message: String,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
+    style: DialogContentStyle = DialogContentStyle(),
     onConfirm: (() -> Unit)? = null,
 ) {
     DialogContent(
@@ -45,6 +56,7 @@ fun DialogContent(
         },
         onDismissRequest = onDismissRequest,
         modifier = modifier,
+        style = style,
     )
 }
 
@@ -54,6 +66,7 @@ fun ErrorDialogContent(
     message: String,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
+    style: DialogContentStyle = DialogContentStyle(),
 ) {
     DialogContent(
         title = title,
@@ -66,6 +79,7 @@ fun ErrorDialogContent(
         },
         onDismissRequest = onDismissRequest,
         modifier = modifier,
+        style = style,
     )
 }
 
@@ -76,20 +90,20 @@ fun DialogContent(
     onDismissRequest: () -> Unit,
     buttonRow: @Composable (onDismissRequest: () -> Unit, modifier: Modifier) -> Unit,
     modifier: Modifier = Modifier,
-    messageStyle: TextStyle = TextStyle(),
-    messageBottomPadding: Dp = 24.dp,
+    style: DialogContentStyle = DialogContentStyle(),
 ) {
     DialogContent(
         title = title,
         modifier = modifier,
+        style = style,
     ) {
         Text(
             text = message,
-            style = messageStyle.copy(
+            style = style.messageStyle.copy(
                 textAlign = TextAlign.Center,
             ),
             modifier = Modifier
-                .padding(bottom = messageBottomPadding)
+                .padding(bottom = style.messageBottomPadding)
         )
         buttonRow(onDismissRequest, Modifier.align(Alignment.End))
     }
@@ -99,30 +113,26 @@ fun DialogContent(
 fun DialogContent(
     title: String,
     modifier: Modifier = Modifier,
-    titleStyle: TextStyle = TextStyle(),
-    borderStyle: BorderStyle? = null,
-    spacing: Dp = 16.dp,
-    padding: Dp = 24.dp,
-    titleBottomPadding: Dp = 16.dp,
+    style: DialogContentStyle = DialogContentStyle(),
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Surface(
-        style = SurfaceStyle(borderStyle = borderStyle),
+        style = SurfaceStyle(borderStyle = style.borderStyle),
         modifier = modifier,
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(spacing),
+            verticalArrangement = Arrangement.spacedBy(style.spacing),
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .padding(padding)
+                .padding(style.padding)
         ) {
             Text(
                 text = title,
-                style = titleStyle.copy(
+                style = style.titleStyle.copy(
                     textAlign = TextAlign.Center,
                 ),
                 modifier = Modifier
-                    .padding(bottom = titleBottomPadding)
+                    .padding(bottom = style.titleBottomPadding)
             )
             content()
         }

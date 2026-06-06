@@ -14,12 +14,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Slider
+import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextStyle
 
+data class ColorPickerControlsStyle(
+    val labelStyle: TextStyle = TextStyle(),
+    val sliderStyle: SliderStyle = SliderStyle(),
+    val spacing: Dp = 8.dp,
+)
+
 data class ColorPickerStyle(
     val spacing: Dp = 16.dp,
-    val labelStyle: TextStyle = TextStyle(),
+    val controlsStyle: ColorPickerControlsStyle = ColorPickerControlsStyle(),
 )
 
 @Composable
@@ -45,7 +52,7 @@ fun ColorPicker(
         ColorPickerControls(
             color = color,
             onColorChange = onColorChange,
-            labelStyle = style.labelStyle,
+            style = style.controlsStyle,
             modifier = Modifier.fillMaxWidth()
         )
     }
@@ -57,7 +64,7 @@ fun ColorPickerControls(
     onColorChange: (Color) -> Unit,
     colorSpace: ColorSpace = color.colorSpace,
     modifier: Modifier = Modifier,
-    labelStyle: TextStyle = TextStyle(),
+    style: ColorPickerControlsStyle = ColorPickerControlsStyle(),
 ) {
     data class ColorComponentInfo(
         val name: String,
@@ -100,7 +107,7 @@ fun ColorPickerControls(
                 value = colorComponent.value,
                 onValueChange = { onColorChange(colorComponent.onValueChange(it)) },
                 label = colorComponent.name,
-                labelStyle = labelStyle,
+                style = style,
                 valueRange = colorComponent.valueRange,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -115,19 +122,19 @@ private fun ColorSlider(
     onValueChange: (Float) -> Unit,
     label: String,
     modifier: Modifier = Modifier,
-    labelStyle: TextStyle = TextStyle(),
-    spacing: Dp = 8.dp,
+    style: ColorPickerControlsStyle = ColorPickerControlsStyle(),
     valueRange: ClosedFloatingPointRange<Float> = 0f..255f,
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(spacing),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier,
     ) {
-        Text(text = label, style = labelStyle)
+        Text(text = label, style = style.labelStyle)
         Slider(
             value = value,
             onValueChange = onValueChange,
             valueRange = valueRange,
+            style = style.sliderStyle,
             modifier = Modifier.semantics {
                 contentDescription = label
             }

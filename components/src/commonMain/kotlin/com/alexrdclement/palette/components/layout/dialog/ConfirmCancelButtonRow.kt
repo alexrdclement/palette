@@ -8,26 +8,30 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ButtonStyle
 
+data class ConfirmCancelButtonRowStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    val spacing: Dp = 16.dp,
+)
+
 @Composable
 fun ConfirmCancelButtonRow(
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
-    spacing: Dp = 16.dp,
-    buttonStyle: ButtonStyle = ButtonStyle.Default(),
+    style: ConfirmCancelButtonRowStyle = ConfirmCancelButtonRowStyle(),
 ) {
     DialogContentButtonRow(
         modifier = modifier,
     ) {
         CancelButton(
             onDismiss = onDismiss,
-            style = buttonStyle,
+            style = style.buttonStyle,
         )
         ConfirmButton(
             onConfirm = onConfirm,
-            style = buttonStyle,
+            style = style.buttonStyle,
             modifier = Modifier
-                .padding(start = spacing)
+                .padding(start = style.spacing)
         )
     }
 }
