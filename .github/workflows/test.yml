@@ -20,6 +20,14 @@ jobs:
     name: "Test"
     runs-on: ubuntu-latest
 
+    # Serialize with the other auto-committing job (Generate Baseline Profiles) so
+    # their generated commits can't race each other to push to the same branch.
+    # git-auto-commit-action pushes without rebasing, so concurrent pushes fail
+    # with a non-fast-forward error.
+    concurrency:
+      group: auto-commit-${{ github.ref }}
+      cancel-in-progress: false
+
     permissions:
       contents: write
       pull-requests: write
