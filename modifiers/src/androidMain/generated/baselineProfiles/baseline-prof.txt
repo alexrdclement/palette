@@ -64,11 +64,11 @@ Lcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;-><clinit>()V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;-><init>()V
 PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->createRenderEffect()Landroidx/compose/ui/graphics/RenderEffect;
-PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->isActive()Z
+HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->isActive()Z
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->onRemeasured(II)V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setColorMode(Lcom/alexrdclement/palette/modifiers/ColorSplitMode;)V
-PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
-PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setYAmount(F)V
+HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
+HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setYAmount(F)V
 Lcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;-><clinit>()V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;->access$getShaderSource$p()Ljava/lang/String;
@@ -190,7 +190,6 @@ PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$l
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$lambda$3$0(Lcom/alexrdclement/palette/modifiers/demo/ColorInvertState;F)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$lambda$4$0()Lkotlin/ranges/ClosedFloatingPointRange;
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$lambda$5(Landroidx/compose/ui/Modifier;IILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
-PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 HPLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertStateSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/modifiers/demo/ColorInvertState;)Ljava/util/Map;
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt$$ExternalSyntheticLambda0;-><init>()V

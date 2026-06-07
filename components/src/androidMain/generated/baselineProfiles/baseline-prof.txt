@@ -1180,7 +1180,6 @@ PLcom/alexrdclement/palette/components/util/SaverKt$$ExternalSyntheticLambda1;->
 Lcom/alexrdclement/palette/components/util/WindowInsetsKt;
 HSPLcom/alexrdclement/palette/components/util/WindowInsetsKt;->horizontalPaddingValues(Landroidx/compose/foundation/layout/WindowInsets;Landroidx/compose/runtime/Composer;I)Landroidx/compose/foundation/layout/PaddingValues;
 PLcom/alexrdclement/palette/theme/ColorComponentStyles;->getColorPicker(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/color/ColorPickerStyle;
-HSPLcom/alexrdclement/palette/theme/CoreComponentStyles;->button(Lcom/alexrdclement/palette/theme/styles/ButtonStyleToken;Landroidx/compose/runtime/Composer;II)Lcom/alexrdclement/palette/components/core/ButtonStyle;
 PLcom/alexrdclement/palette/theme/CoreComponentStyles;->getCheckbox(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/CheckboxStyle;
 PLcom/alexrdclement/palette/theme/CoreComponentStyles;->getChevronIcon(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ChevronIconStyle;
 PLcom/alexrdclement/palette/theme/CoreComponentStyles;->getDivider(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/DividerStyle;
@@ -1195,7 +1194,7 @@ PLcom/alexrdclement/palette/theme/MenuComponentStyles;->getDropdownMenu(Landroid
 PLcom/alexrdclement/palette/theme/NavigationComponentStyles;->getBackNavigationButton(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;
 PLcom/alexrdclement/palette/theme/PaletteComponentStyles;->getDemo(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/demo/DemoStyle;
 HSPLcom/alexrdclement/palette/theme/ShapeScheme;-><init>(Lcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/Shape;)V
-PLcom/alexrdclement/palette/theme/ShapeScheme;->getPrimary()Lcom/alexrdclement/palette/components/core/Shape;
+HSPLcom/alexrdclement/palette/theme/ShapeScheme;->getPrimary()Lcom/alexrdclement/palette/components/core/Shape;
 HSPLcom/alexrdclement/palette/theme/ShapeScheme;->getSecondary()Lcom/alexrdclement/palette/components/core/Shape;
 HSPLcom/alexrdclement/palette/theme/ShapeScheme;->getSurface()Lcom/alexrdclement/palette/components/core/Shape;
 HSPLcom/alexrdclement/palette/theme/ShapeScheme;->getTertiary()Lcom/alexrdclement/palette/components/core/Shape;
@@ -1204,6 +1203,10 @@ HSPLcom/alexrdclement/palette/theme/ShapeTokenKt;->toShape(Lcom/alexrdclement/pa
 HSPLcom/alexrdclement/palette/theme/StyleResolversKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/modifiers/BorderStyle;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/BorderStyle;
 HSPLcom/alexrdclement/palette/theme/StyleResolversKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/modifiers/BorderStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/BorderStyle;
 HSPLcom/alexrdclement/palette/theme/StyleResolversKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/styles/ButtonStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ButtonStyle;
+HSPLcom/alexrdclement/palette/theme/styles/ResolvedButtonStyleScheme;-><init>(Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/core/ButtonStyle;)V
+PLcom/alexrdclement/palette/theme/styles/ResolvedButtonStyleScheme;->get(Lcom/alexrdclement/palette/theme/styles/ButtonStyleToken;)Lcom/alexrdclement/palette/components/core/ButtonStyle;
+HSPLcom/alexrdclement/palette/theme/styles/ResolvedButtonStyleScheme;->getSecondary()Lcom/alexrdclement/palette/components/core/ButtonStyle;
+HSPLcom/alexrdclement/palette/theme/styles/ResolvedButtonStyleScheme;->getTertiary()Lcom/alexrdclement/palette/components/core/ButtonStyle;
 HSPLcom/alexrdclement/palette/theme/styles/ResolvedTextStyleScheme;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextStyle;)V
 HSPLcom/alexrdclement/palette/theme/styles/ResolvedTextStyleScheme;->getBodyMedium()Lcom/alexrdclement/palette/components/core/TextStyle;
 PLcom/alexrdclement/palette/theme/styles/ResolvedTextStyleScheme;->getLabelLarge()Lcom/alexrdclement/palette/components/core/TextStyle;
