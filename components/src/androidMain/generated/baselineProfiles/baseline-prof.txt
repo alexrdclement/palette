@@ -1193,14 +1193,7 @@ HSPLcom/alexrdclement/palette/theme/LayoutComponentStyles;->getScaffold(Landroid
 HSPLcom/alexrdclement/palette/theme/LayoutComponentStyles;->getTopBar(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/TopBarStyle;
 PLcom/alexrdclement/palette/theme/MenuComponentStyles;->getDropdownMenu(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/menu/DropdownMenuStyle;
 PLcom/alexrdclement/palette/theme/NavigationComponentStyles;->getBackNavigationButton(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;
-HSPLcom/alexrdclement/palette/theme/PaletteComponentStyles;->button(Lcom/alexrdclement/palette/theme/styles/ButtonStyleToken;Landroidx/compose/runtime/Composer;II)Lcom/alexrdclement/palette/components/core/ButtonStyle;
-PLcom/alexrdclement/palette/theme/PaletteComponentStyles;->getBackNavigationButton(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;
-HSPLcom/alexrdclement/palette/theme/PaletteComponentStyles;->getCatalog(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/catalog/CatalogStyle;
 PLcom/alexrdclement/palette/theme/PaletteComponentStyles;->getDemo(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/demo/DemoStyle;
-HSPLcom/alexrdclement/palette/theme/PaletteComponentStyles;->getScaffold(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/ScaffoldStyle;
-HSPLcom/alexrdclement/palette/theme/PaletteComponentStyles;->getSurface(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
-PLcom/alexrdclement/palette/theme/PaletteComponentStyles;->getTextField(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextFieldStyle;
-HSPLcom/alexrdclement/palette/theme/PaletteComponentStyles;->getTopBar(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/TopBarStyle;
 HSPLcom/alexrdclement/palette/theme/ShapeScheme;-><init>(Lcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/Shape;)V
 PLcom/alexrdclement/palette/theme/ShapeScheme;->getPrimary()Lcom/alexrdclement/palette/components/core/Shape;
 HSPLcom/alexrdclement/palette/theme/ShapeScheme;->getSecondary()Lcom/alexrdclement/palette/components/core/Shape;
