@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.theme
 
 import androidx.compose.runtime.Composable
+import com.alexrdclement.palette.components.demo.DemoListStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
 
 /**
@@ -25,6 +26,9 @@ object PaletteComponentStyles {
 
     val demo: DemoStyle
         @Composable get() = DemoComponentStyles.demo
+
+    val demoList: DemoListStyle
+        @Composable get() = DemoComponentStyles.demoList
 }
 
 val PaletteTheme.components: PaletteComponentStyles

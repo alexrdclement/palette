@@ -54,7 +54,7 @@ fun InstantFormatSchemeScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demo,
+            style = PaletteTheme.components.demoList,
             items = state.instantFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,

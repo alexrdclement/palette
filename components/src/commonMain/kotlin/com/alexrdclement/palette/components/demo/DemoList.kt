@@ -12,12 +12,17 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.demo.control.Control
 import kotlinx.collections.immutable.PersistentList
 
+/** Styling for [DemoList]: wraps the [DemoStyle] used for the underlying [Demo]. */
+data class DemoListStyle(
+    val demoStyle: DemoStyle = DemoStyle(),
+)
+
 @Composable
 fun <T> DemoList(
     items: List<T>,
     controls: PersistentList<Control>,
     modifier: Modifier = Modifier,
-    style: DemoStyle = DemoStyle(),
+    style: DemoListStyle = DemoListStyle(),
     key: ((item: T) -> Any)? = null,
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(
         space = 24.dp,
@@ -28,7 +33,7 @@ fun <T> DemoList(
 ) {
     Demo(
         controls = controls,
-        style = style,
+        style = style.demoStyle,
         modifier = modifier,
     ) {
         LazyColumn(

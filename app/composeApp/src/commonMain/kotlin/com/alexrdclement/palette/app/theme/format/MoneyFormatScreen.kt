@@ -47,7 +47,7 @@ fun MoneyFormatScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demo,
+            style = PaletteTheme.components.demoList,
             items = state.moneyFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,

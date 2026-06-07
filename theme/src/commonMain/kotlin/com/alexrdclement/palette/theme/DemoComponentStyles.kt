@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.theme
 
 import androidx.compose.runtime.Composable
+import com.alexrdclement.palette.components.demo.DemoListStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
 import com.alexrdclement.palette.components.demo.control.ButtonControlStyle
 import com.alexrdclement.palette.components.demo.control.CharControlStyle
@@ -17,6 +18,9 @@ import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 /** Resolved style for the [com.alexrdclement.palette.components.demo] framework; surfaced via [PaletteTheme.components]. */
 object DemoComponentStyles {
+
+    val demoList: DemoListStyle
+        @Composable get() = DemoListStyle(demoStyle = demo)
 
     val demo: DemoStyle
         @Composable get() {

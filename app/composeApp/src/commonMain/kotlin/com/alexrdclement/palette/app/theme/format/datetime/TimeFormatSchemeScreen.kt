@@ -54,7 +54,7 @@ fun TimeFormatSchemeScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demo,
+            style = PaletteTheme.components.demoList,
             items = state.timeFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,

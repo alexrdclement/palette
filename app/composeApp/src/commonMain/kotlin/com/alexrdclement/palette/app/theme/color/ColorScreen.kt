@@ -63,7 +63,7 @@ fun ColorScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demo,
+            style = PaletteTheme.components.demoList,
             items = ColorToken.entries.toList(),
             key = { it.name },
             controls = control.controls,

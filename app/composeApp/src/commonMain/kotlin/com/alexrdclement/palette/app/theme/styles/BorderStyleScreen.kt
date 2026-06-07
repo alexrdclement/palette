@@ -53,7 +53,7 @@ fun BorderStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demo,
+            style = PaletteTheme.components.demoList,
             items = state.borderStylesByToken.keys.toList(),
             controls = control.controls,
             modifier = Modifier

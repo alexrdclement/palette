@@ -59,7 +59,7 @@ fun ButtonStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demo,
+            style = PaletteTheme.components.demoList,
             items = state.buttonStylesByToken.keys.toList(),
             controls = control.controls,
             modifier = Modifier
