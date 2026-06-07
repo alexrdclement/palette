@@ -35,6 +35,7 @@ import com.alexrdclement.palette.modifiers.bottomFade
 import com.alexrdclement.palette.modifiers.fade
 import com.alexrdclement.palette.theme.PaletteSpacing
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -44,6 +45,7 @@ fun FadeDemo(
     control: FadeDemoControl = rememberFadeDemoControl(state),
 ) {
     Demo(
+        style = PaletteTheme.components.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()

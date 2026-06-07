@@ -29,6 +29,7 @@ import com.alexrdclement.palette.formats.core.IntGrouping
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.core.format
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
@@ -39,6 +40,7 @@ fun NumberFormatDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
+        style = PaletteTheme.components.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()

@@ -24,6 +24,7 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.core.Capitalization
 import com.alexrdclement.palette.formats.core.TextFormat
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
@@ -35,6 +36,7 @@ fun TextFormatDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
+        style = PaletteTheme.components.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()

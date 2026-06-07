@@ -25,6 +25,7 @@ import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.formats.money.format
 import com.alexrdclement.palette.formats.money.update
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -35,6 +36,7 @@ fun MoneyFormatDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
+        style = PaletteTheme.components.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()
