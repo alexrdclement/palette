@@ -21,7 +21,6 @@ import com.alexrdclement.palette.formats.datetime.InstantFormatValue
 import com.alexrdclement.palette.formats.datetime.format
 import com.alexrdclement.palette.formats.datetime.toFormat
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.datetime.InstantFormatScheme

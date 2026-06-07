@@ -20,7 +20,6 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.datetime.DateTimeFormatValue
 import com.alexrdclement.palette.formats.datetime.toFormat
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.datetime.DateTimeFormatScheme

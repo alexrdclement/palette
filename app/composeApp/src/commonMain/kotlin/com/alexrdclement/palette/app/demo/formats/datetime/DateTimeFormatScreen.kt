@@ -14,7 +14,6 @@ import com.alexrdclement.palette.formats.datetime.TimeFormatValue
 import com.alexrdclement.palette.formats.datetime.toFormat
 import com.alexrdclement.palette.formats.demo.datetime.DateTimeFormatDemo
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import kotlinx.datetime.format
 
 @Composable

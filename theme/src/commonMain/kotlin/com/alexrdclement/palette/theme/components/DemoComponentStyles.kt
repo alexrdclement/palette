@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.demo.DemoListStyle
@@ -14,6 +14,7 @@ import com.alexrdclement.palette.components.demo.control.ExpandableHeaderStyle
 import com.alexrdclement.palette.components.demo.control.SliderControlStyle
 import com.alexrdclement.palette.components.demo.control.TextFieldControlStyle
 import com.alexrdclement.palette.components.demo.control.ToggleControlStyle
+import com.alexrdclement.palette.theme.PaletteTheme
 
 /** Resolved style for the [com.alexrdclement.palette.components.demo] framework; surfaced via [PaletteTheme.components]. */
 object DemoComponentStyles {

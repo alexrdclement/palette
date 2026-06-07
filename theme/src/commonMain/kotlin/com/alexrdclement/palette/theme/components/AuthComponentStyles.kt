@@ -1,7 +1,8 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.auth.AuthButtonStyle
+import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.AuthButtonStyleToken
 import com.alexrdclement.palette.theme.styles.toButtonStyleToken
 

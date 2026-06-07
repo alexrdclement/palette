@@ -20,9 +20,8 @@ import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.Styles
+import com.alexrdclement.palette.theme.styles.Styles
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.modifiers.BorderStyle

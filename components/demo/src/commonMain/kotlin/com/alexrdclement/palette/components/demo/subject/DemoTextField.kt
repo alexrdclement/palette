@@ -8,7 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.components.core.TextField
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.components.core.TextStyle
 
 @Composable

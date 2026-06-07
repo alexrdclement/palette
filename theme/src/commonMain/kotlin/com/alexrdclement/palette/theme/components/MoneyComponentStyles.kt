@@ -1,8 +1,9 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.SolidColor
 import com.alexrdclement.palette.components.money.CurrencyAmountFieldStyle
+import com.alexrdclement.palette.theme.PaletteTheme
 
 /** Resolved styles for [com.alexrdclement.palette.components.money]; surfaced via [PaletteTheme.components]. */
 object MoneyComponentStyles {

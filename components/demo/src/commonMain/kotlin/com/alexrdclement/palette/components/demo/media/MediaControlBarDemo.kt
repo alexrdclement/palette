@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.components.demo.media
 
-import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.PaletteTheme
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize

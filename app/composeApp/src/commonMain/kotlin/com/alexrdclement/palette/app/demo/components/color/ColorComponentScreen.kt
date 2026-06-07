@@ -8,7 +8,6 @@ import com.alexrdclement.palette.app.demo.components.color.navigation.ColorCompo
 import com.alexrdclement.palette.components.demo.color.ColorPickerDemo
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 
 @Composable
 fun ColorComponentScreen(

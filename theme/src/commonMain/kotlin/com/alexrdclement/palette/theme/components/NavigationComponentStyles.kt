@@ -1,9 +1,12 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.navigation.BackNavigationButtonStyle
+import com.alexrdclement.palette.theme.ColorToken
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.toColor
 
 /** Resolved styles for [com.alexrdclement.palette.components.navigation]; surfaced via [PaletteTheme.components]. */
 object NavigationComponentStyles {

@@ -5,7 +5,6 @@ import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 
 @Composable
 fun ThemeButton(

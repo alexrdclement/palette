@@ -35,7 +35,6 @@ import com.alexrdclement.palette.modifiers.bottomFade
 import com.alexrdclement.palette.modifiers.fade
 import com.alexrdclement.palette.theme.PaletteSpacing
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable

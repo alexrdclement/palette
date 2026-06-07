@@ -1,8 +1,9 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.demo.DemoListStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
+import com.alexrdclement.palette.theme.PaletteTheme
 
 /**
  * Entry point for theme-resolved [androidx.compose.runtime.Composable] styles for
@@ -30,6 +31,3 @@ object PaletteComponentStyles {
     val demoList: DemoListStyle
         @Composable get() = DemoComponentStyles.demoList
 }
-
-val PaletteTheme.components: PaletteComponentStyles
-    get() = PaletteComponentStyles

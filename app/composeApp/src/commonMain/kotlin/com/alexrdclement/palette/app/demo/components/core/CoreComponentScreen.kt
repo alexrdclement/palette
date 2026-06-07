@@ -11,7 +11,6 @@ import com.alexrdclement.palette.components.demo.core.TextDemo
 import com.alexrdclement.palette.components.demo.core.TextFieldDemo
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 
 @Composable
 fun CoreComponentScreen(

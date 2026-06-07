@@ -19,7 +19,6 @@ import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.styles.AuthButtonStyleToken
 import kotlinx.collections.immutable.persistentListOf
 

@@ -9,7 +9,6 @@ import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.formats.demo.core.NumberFormatDemo
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemo
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 
 @Composable
 fun CoreFormatScreen(

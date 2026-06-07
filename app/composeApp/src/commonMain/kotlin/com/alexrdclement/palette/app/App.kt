@@ -6,7 +6,6 @@ import com.alexrdclement.palette.app.navigation.rememberPaletteNavController
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.rememberThemeController
 

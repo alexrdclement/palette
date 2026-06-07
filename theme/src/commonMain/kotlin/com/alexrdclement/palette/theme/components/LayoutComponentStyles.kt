@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.layout.BoxWithLabelStyle
@@ -9,6 +9,7 @@ import com.alexrdclement.palette.components.layout.catalog.CatalogStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
+import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
 /** Resolved styles for [com.alexrdclement.palette.components.layout]; surfaced via [PaletteTheme.components]. */

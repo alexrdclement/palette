@@ -20,7 +20,6 @@ import com.alexrdclement.palette.components.MediaControlBarContentDescription
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionExpanded
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionPartiallyExpanded
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.PeekSheetAnchor
 import com.alexrdclement.palette.components.layout.rememberPeekSheetState

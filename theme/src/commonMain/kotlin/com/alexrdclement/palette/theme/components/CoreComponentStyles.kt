@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,8 +15,12 @@ import com.alexrdclement.palette.components.core.SliderColors
 import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
+import com.alexrdclement.palette.theme.ColorToken
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.contentColorFor
 import com.alexrdclement.palette.theme.styles.ResolvedButtonStyleScheme
 import com.alexrdclement.palette.theme.styles.resolve
+import com.alexrdclement.palette.theme.toColor
 
 /** Resolved styles for [com.alexrdclement.palette.components.core]; surfaced via [PaletteTheme.components]. */
 object CoreComponentStyles {

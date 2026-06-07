@@ -7,7 +7,6 @@ import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.util.ViewingAngle
 import com.alexrdclement.palette.testing.PaparazziTestRule
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
 import org.junit.Test

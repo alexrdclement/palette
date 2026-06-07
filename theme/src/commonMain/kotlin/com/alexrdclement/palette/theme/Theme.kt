@@ -6,17 +6,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 import androidx.compose.ui.unit.Dp
 import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.money.MoneyFormat
+import com.alexrdclement.palette.theme.components.PaletteComponentStyles
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.PaletteFormats
 import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.format.core.PaletteTextFormatScheme
 import com.alexrdclement.palette.theme.format.datetime.PaletteDateTimeFormats
 import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
-import androidx.compose.ui.text.TextStyle as ComposeTextStyle
+import com.alexrdclement.palette.theme.styles.PaletteStyles
+import com.alexrdclement.palette.theme.styles.Styles
 
 val LocalPaletteColorScheme = staticCompositionLocalOf {
     ColorScheme(
@@ -144,4 +147,7 @@ object PaletteTheme {
     val styles: Styles
         @Composable
         get() = LocalPaletteStyles.current
+
+    val components: PaletteComponentStyles
+        get() = PaletteComponentStyles
 }

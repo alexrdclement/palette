@@ -1,6 +1,8 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
+import com.alexrdclement.palette.components.core.BorderStyle as ComponentBorderStyle
+import com.alexrdclement.palette.components.core.ButtonStyle as ComponentButtonStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.modifiers.BorderStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
@@ -9,8 +11,6 @@ import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.styles.toStyle
 import com.alexrdclement.palette.theme.toColor
 import com.alexrdclement.palette.theme.toShape
-import com.alexrdclement.palette.components.core.BorderStyle as ComponentBorderStyle
-import com.alexrdclement.palette.components.core.ButtonStyle as ComponentButtonStyle
 
 /**
  * Resolves a theme [BorderStyle] (token-based) into the unopinionated component

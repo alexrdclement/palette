@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -6,6 +6,7 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
 import com.alexrdclement.palette.components.color.ColorPickerStyle
+import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
 /** Resolved styles for [com.alexrdclement.palette.components.color]; surfaced via [PaletteTheme.components]. */

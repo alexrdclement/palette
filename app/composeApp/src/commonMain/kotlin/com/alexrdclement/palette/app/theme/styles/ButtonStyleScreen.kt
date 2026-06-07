@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.app.theme.styles
 
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -29,7 +28,7 @@ import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.Styles
+import com.alexrdclement.palette.theme.styles.Styles
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken

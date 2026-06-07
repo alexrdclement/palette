@@ -6,7 +6,7 @@ import com.alexrdclement.palette.theme.ColorScheme
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.ShapeScheme
 import com.alexrdclement.palette.theme.Spacing
-import com.alexrdclement.palette.theme.Styles
+import com.alexrdclement.palette.theme.styles.Styles
 import com.alexrdclement.palette.theme.Typography
 
 class ThemeController internal constructor(

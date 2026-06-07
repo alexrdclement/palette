@@ -1,14 +1,8 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.styles
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.modifiers.BorderStyleScheme
 import com.alexrdclement.palette.theme.modifiers.PaletteBorderStyleScheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleScheme
-import com.alexrdclement.palette.theme.styles.PaletteButtonStyleScheme
-import com.alexrdclement.palette.theme.styles.PaletteTextStyleScheme
-import com.alexrdclement.palette.theme.styles.ResolvedTextStyleScheme
-import com.alexrdclement.palette.theme.styles.TextStyleScheme
-import com.alexrdclement.palette.theme.styles.resolve
 
 class Styles(
     val border: BorderStyleScheme,

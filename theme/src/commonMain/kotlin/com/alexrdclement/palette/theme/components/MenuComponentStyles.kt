@@ -1,8 +1,10 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.menu.DropdownMenuStyle
 import com.alexrdclement.palette.components.menu.MenuDefaults
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.contentColorFor
 
 /** Resolved styles for [com.alexrdclement.palette.components.menu]; surfaced via [PaletteTheme.components]. */
 object MenuComponentStyles {

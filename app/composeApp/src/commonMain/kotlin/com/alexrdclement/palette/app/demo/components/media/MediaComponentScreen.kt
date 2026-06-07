@@ -12,7 +12,6 @@ import com.alexrdclement.palette.components.demo.media.PlayPauseButtonDemo
 import com.alexrdclement.palette.components.demo.media.SkipButtonDemo
 import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 
 @Composable
 fun MediaComponentScreen(

@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.ShapeToken
+import com.alexrdclement.palette.theme.components.toComponentStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
-import com.alexrdclement.palette.theme.toComponentStyle
 
 data class ButtonStyleScheme(
     val primary: ButtonStyleTokenSet,

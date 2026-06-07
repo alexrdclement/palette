@@ -15,7 +15,6 @@ import com.alexrdclement.palette.modifiers.demo.NoiseDemo
 import com.alexrdclement.palette.modifiers.demo.PixelateDemo
 import com.alexrdclement.palette.modifiers.demo.WarpDemo
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components
 
 @Composable
 fun ModifierScreen(
