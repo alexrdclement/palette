@@ -60,7 +60,7 @@ fun DemoScope.ButtonDemo(
     }
     Button(
         onClick = {},
-        style = PaletteTheme.components.core.button(state.style),
+        style = PaletteTheme.components.core.button[state.style],
         enabled = state.enabled,
         modifier = modifier
             .width(state.width)

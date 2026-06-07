@@ -6,7 +6,6 @@ import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 @Composable
 fun ThemeButton(
@@ -14,7 +13,7 @@ fun ThemeButton(
     modifier: Modifier = Modifier,
 ) {
     Button(
-        style = PaletteTheme.components.core.button(ButtonStyleToken.Tertiary),
+        style = PaletteTheme.components.core.button.tertiary,
         onClick = onClick,
         modifier = modifier,
     ) {

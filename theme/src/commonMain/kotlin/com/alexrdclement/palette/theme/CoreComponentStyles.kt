@@ -15,14 +15,15 @@ import com.alexrdclement.palette.components.core.SliderColors
 import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.theme.styles.ResolvedButtonStyleScheme
+import com.alexrdclement.palette.theme.styles.resolve
 
 /** Resolved styles for [com.alexrdclement.palette.components.core]; surfaced via [PaletteTheme.components]. */
 object CoreComponentStyles {
 
-    @Composable
-    fun button(token: ButtonStyleToken = ButtonStyleToken.Primary): ButtonStyle =
-        token.toComponentStyle()
+    /** Resolved button styles per variant, e.g. `button.primary`; index by token with `button[token]`. */
+    val button: ResolvedButtonStyleScheme
+        @Composable get() = PaletteTheme.styles.button.resolve()
 
     val surface: SurfaceStyle
         @Composable get() = SurfaceStyle(

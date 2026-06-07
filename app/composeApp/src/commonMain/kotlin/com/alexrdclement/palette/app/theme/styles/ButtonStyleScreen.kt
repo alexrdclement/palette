@@ -67,7 +67,7 @@ fun ButtonStyleScreen(
                 .padding(paddingValues)
         ) { style ->
             Button(
-                style = PaletteTheme.components.core.button(style),
+                style = PaletteTheme.components.core.button[style],
                 onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()

@@ -10,7 +10,6 @@ import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 /** Resolved styles for [com.alexrdclement.palette.components.layout]; surfaced via [PaletteTheme.components]. */
 object LayoutComponentStyles {
@@ -41,14 +40,14 @@ object LayoutComponentStyles {
     val catalog: CatalogStyle
         @Composable get() = CatalogStyle(
             itemSpacing = PaletteTheme.spacing.medium,
-            itemStyle = ButtonStyleToken.Secondary.toComponentStyle(),
+            itemStyle = CoreComponentStyles.button.secondary,
             itemTextStyle = PaletteTheme.styles.text.bodyMedium,
         )
 
     val confirmCancelButtonRow: ConfirmCancelButtonRowStyle
         @Composable get() = ConfirmCancelButtonRowStyle(
             buttonStyle = ConfirmButtonStyle(
-                buttonStyle = CoreComponentStyles.button(ButtonStyleToken.Secondary),
+                buttonStyle = CoreComponentStyles.button.secondary,
                 textStyle = PaletteTheme.styles.text.bodyMedium,
             ),
             spacing = PaletteTheme.spacing.medium,

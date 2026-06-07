@@ -14,7 +14,6 @@ import com.alexrdclement.palette.components.demo.control.ExpandableHeaderStyle
 import com.alexrdclement.palette.components.demo.control.SliderControlStyle
 import com.alexrdclement.palette.components.demo.control.TextFieldControlStyle
 import com.alexrdclement.palette.components.demo.control.ToggleControlStyle
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 /** Resolved style for the [com.alexrdclement.palette.components.demo] framework; surfaced via [PaletteTheme.components]. */
 object DemoComponentStyles {
@@ -25,7 +24,7 @@ object DemoComponentStyles {
     val demo: DemoStyle
         @Composable get() {
             val label = PaletteTheme.styles.text.labelLarge
-            val button = CoreComponentStyles.button(ButtonStyleToken.Secondary)
+            val button = CoreComponentStyles.button.secondary
             val textField = CoreComponentStyles.textField
             return DemoStyle(
                 dividerStyle = CoreComponentStyles.divider,

@@ -7,7 +7,6 @@ import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
 import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 
 /** Resolved styles for [com.alexrdclement.palette.components.color]; surfaced via [PaletteTheme.components]. */
 object ColorComponentStyles {
@@ -16,7 +15,7 @@ object ColorComponentStyles {
         @Composable get() = ColorDisplayStyle(
             shape = PaletteTheme.shapeScheme.primary,
             borderStyle = BorderStyleToken.Primary.toComponentStyle(),
-            buttonStyle = CoreComponentStyles.button(ButtonStyleToken.Secondary)
+            buttonStyle = CoreComponentStyles.button.secondary
                 .copy(contentPadding = PaddingValues(0.dp)),
         )
 
