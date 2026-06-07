@@ -25,7 +25,7 @@ class PlayPauseButtonTest {
                 PlayPauseButton(
                     isPlaying = isPlaying,
                     isEnabled = isEnabled,
-                    style = PaletteTheme.components.playPauseButton,
+                    style = PaletteTheme.components.media.playPauseButton,
                     onClick = {}
                 )
             }

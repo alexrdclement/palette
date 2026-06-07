@@ -49,7 +49,7 @@ fun DemoScope.MediaItemArtworkDemo(
     MediaItemArtwork(
         imageUrl = null,
         isEnabled = isEnabled,
-        style = PaletteTheme.components.mediaItemArtwork,
+        style = PaletteTheme.components.media.mediaItemArtwork,
         modifier = modifier
             .size(200.dp)
             .align(Alignment.Center),

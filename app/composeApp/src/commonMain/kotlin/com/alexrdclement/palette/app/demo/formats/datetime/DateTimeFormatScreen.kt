@@ -24,7 +24,7 @@ fun DateTimeFormatScreen(
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = format.title,

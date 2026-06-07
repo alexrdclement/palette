@@ -37,7 +37,7 @@ fun SpacingScreen(
     val control = rememberSpacingScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Spacing",

@@ -16,7 +16,7 @@ fun DemoTopBar(
     onNavigateUp: () -> Unit,
     onThemeClick: () -> Unit,
     navButton: @Composable () -> Unit = {
-        BackNavigationButton(onNavigateUp, style = PaletteTheme.components.backNavigationButton)
+        BackNavigationButton(onNavigateUp, style = PaletteTheme.components.navigation.backNavigationButton)
     },
     actions: @Composable () -> Unit = {
         ThemeButton(onClick = onThemeClick)
@@ -32,6 +32,6 @@ fun DemoTopBar(
         },
         navButton = navButton,
         actions = actions,
-        style = PaletteTheme.components.topBar,
+        style = PaletteTheme.components.layout.topBar,
     )
 }

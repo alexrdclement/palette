@@ -50,7 +50,7 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
 ) {
     AuthButton(
         authState = state.authState,
-        style = PaletteTheme.components.authButton(state.style),
+        style = PaletteTheme.components.auth.authButton(state.style),
         onLogInClick = {},
         onLogOutClick = {},
         modifier = modifier

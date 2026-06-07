@@ -48,7 +48,7 @@ fun ButtonStyleScreen(
     val control = rememberButtonStyleScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Button style",
@@ -67,7 +67,7 @@ fun ButtonStyleScreen(
                 .padding(paddingValues)
         ) { style ->
             Button(
-                style = PaletteTheme.components.button(style),
+                style = PaletteTheme.components.core.button(style),
                 onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()

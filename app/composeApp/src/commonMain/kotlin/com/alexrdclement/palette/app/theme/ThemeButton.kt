@@ -14,7 +14,7 @@ fun ThemeButton(
     modifier: Modifier = Modifier,
 ) {
     Button(
-        style = PaletteTheme.components.button(ButtonStyleToken.Tertiary),
+        style = PaletteTheme.components.core.button(ButtonStyleToken.Tertiary),
         onClick = onClick,
         modifier = modifier,
     ) {

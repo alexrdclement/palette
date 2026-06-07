@@ -46,7 +46,7 @@ class MediaControlSheetTest(
                     onPlayPauseClick = {},
                     onControlBarClick = {},
                     state = state,
-                    style = PaletteTheme.components.mediaControlSheet,
+                    style = PaletteTheme.components.media.mediaControlSheet,
                 ) {
                     Column(
                         verticalArrangement = Arrangement.Center,

@@ -45,7 +45,7 @@ fun TextStyleScreen(
     val control = rememberTextStyleScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Text",
@@ -66,7 +66,7 @@ fun TextStyleScreen(
             val tokenSet = state.textStylesByToken[token]!!
             val textStyle = tokenSet.toTextStyle()
             BoxWithLabel(
-                style = PaletteTheme.components.boxWithLabel,
+                style = PaletteTheme.components.layout.boxWithLabel,
                 label = token.name,
                 modifier = Modifier
                     .fillMaxWidth()

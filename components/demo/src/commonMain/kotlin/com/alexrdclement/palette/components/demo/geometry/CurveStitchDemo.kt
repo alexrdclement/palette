@@ -389,7 +389,7 @@ class CurveStitchDemoControl(
 @Composable
 fun CurveStitchDemoPreview() {
     PaletteTheme {
-        Surface(style = PaletteTheme.components.surface) {
+        Surface(style = PaletteTheme.components.core.surface) {
             CurveStitchDemo()
         }
     }

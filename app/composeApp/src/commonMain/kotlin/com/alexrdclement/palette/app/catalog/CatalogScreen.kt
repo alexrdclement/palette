@@ -31,22 +31,22 @@ fun <T : CatalogItem> CatalogScreen(
     ReportDrawn()
 
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             TopBar(
-                style = PaletteTheme.components.topBar,
+                style = PaletteTheme.components.layout.topBar,
                 title = title?.let {
                     { Text(title, style = PaletteTheme.styles.text.titleMedium) }
                 },
                 navButton = onNavigateUp?.let {
-                    { BackNavigationButton(onNavigateUp, style = PaletteTheme.components.backNavigationButton) }
+                    { BackNavigationButton(onNavigateUp, style = PaletteTheme.components.navigation.backNavigationButton) }
                 },
                 actions = actions,
             )
         },
     ) { innerPadding ->
         Catalog(
-            style = PaletteTheme.components.catalog,
+            style = PaletteTheme.components.layout.catalog,
             items = items,
             onItemClick = onItemClick,
             contentPadding = innerPadding.plus(WindowInsets.safeDrawing.horizontalPaddingValues()),

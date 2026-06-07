@@ -52,7 +52,7 @@ fun ColorScreen(
     var selectedColorToken by remember { mutableStateOf<ColorToken?>(null) }
 
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Color",
@@ -76,7 +76,7 @@ fun ColorScreen(
                 label = colorToken.name,
                 color = colorToken.toColor(),
                 onColorClick = { selectedColorToken = colorToken },
-                style = PaletteTheme.components.colorDisplay,
+                style = PaletteTheme.components.color.colorDisplay,
             )
         }
     }

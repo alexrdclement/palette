@@ -42,7 +42,7 @@ fun ShapeScreen(
     val control = rememberShapeScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Shape",

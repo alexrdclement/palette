@@ -37,7 +37,7 @@ fun NumberFormatScreen(
     val control = rememberNumberFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Number",
@@ -57,7 +57,7 @@ fun NumberFormatScreen(
                 .padding(paddingValues)
         ) { (token, _) ->
             BoxWithLabel(
-                style = PaletteTheme.components.boxWithLabel,
+                style = PaletteTheme.components.layout.boxWithLabel,
                 label = token.name,
             ) {
                 NumberFormatDemo(

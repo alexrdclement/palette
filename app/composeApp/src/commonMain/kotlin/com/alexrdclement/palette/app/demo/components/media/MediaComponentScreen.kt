@@ -21,7 +21,7 @@ fun MediaComponentScreen(
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = component.title,

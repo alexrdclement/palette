@@ -63,7 +63,7 @@ fun DemoScope.PlayPauseButtonDemo(
         onClick = onPlayPauseClick,
         isPlaying = isPlaying,
         isEnabled = isEnabled,
-        style = PaletteTheme.components.playPauseButton,
+        style = PaletteTheme.components.media.playPauseButton,
         modifier = modifier
             .size(52.dp)
             .align(Alignment.Center),

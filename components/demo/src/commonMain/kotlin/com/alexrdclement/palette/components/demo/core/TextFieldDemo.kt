@@ -86,7 +86,7 @@ fun DemoScope.TextFieldDemo(
 
     TextField(
         state = state.textFieldState,
-        style = PaletteTheme.components.textField.copy(
+        style = PaletteTheme.components.core.textField.copy(
             textStyle = state.textStyleDemoState.textStyle,
         ),
         enabled = state.enabled,

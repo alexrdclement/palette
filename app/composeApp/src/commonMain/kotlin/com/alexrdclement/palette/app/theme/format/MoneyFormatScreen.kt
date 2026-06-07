@@ -36,7 +36,7 @@ fun MoneyFormatScreen(
     val control = rememberMoneyFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Money format",
@@ -56,7 +56,7 @@ fun MoneyFormatScreen(
                 .padding(paddingValues)
         ) { (token, _) ->
             BoxWithLabel(
-                style = PaletteTheme.components.boxWithLabel,
+                style = PaletteTheme.components.layout.boxWithLabel,
                 label = token.name,
                 modifier = Modifier
                     .padding(horizontal = PaletteTheme.spacing.medium)

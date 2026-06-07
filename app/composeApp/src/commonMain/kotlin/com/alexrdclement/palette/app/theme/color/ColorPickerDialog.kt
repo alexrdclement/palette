@@ -32,7 +32,7 @@ fun ColorPickerDialog(
         onDismissRequest = onDismissRequest,
     ) {
         Surface(
-            style = PaletteTheme.components.surface.copy(
+            style = PaletteTheme.components.core.surface.copy(
                 borderStyle = PaletteTheme.styles.border.surface.toComponentStyle(),
             ),
         ) {
@@ -64,14 +64,14 @@ fun ColorPickerDialogContent(
             .padding(PaletteTheme.spacing.large)
     ) {
         ColorPicker(
-            style = PaletteTheme.components.colorPicker,
+            style = PaletteTheme.components.color.colorPicker,
             color = color,
             onColorChange = { color = it },
             modifier = Modifier
                 .weight(1f, fill = false)
         )
         ConfirmCancelButtonRow(
-            style = PaletteTheme.components.confirmCancelButtonRow,
+            style = PaletteTheme.components.layout.confirmCancelButtonRow,
             onConfirm = {
                 onColorSelected(color)
                 onDismissRequest()

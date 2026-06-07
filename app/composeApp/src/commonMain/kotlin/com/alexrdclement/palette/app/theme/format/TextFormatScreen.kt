@@ -37,7 +37,7 @@ fun TextFormatScreen(
     val control = rememberTextFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Text",
@@ -57,7 +57,7 @@ fun TextFormatScreen(
                 .padding(paddingValues)
         ) { (token, _) ->
             BoxWithLabel(
-                style = PaletteTheme.components.boxWithLabel,
+                style = PaletteTheme.components.layout.boxWithLabel,
                 label = token.name,
             ) {
                 TextFormatDemo(

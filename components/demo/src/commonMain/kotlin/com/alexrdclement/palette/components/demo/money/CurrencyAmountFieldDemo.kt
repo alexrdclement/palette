@@ -48,7 +48,7 @@ fun CurrencyAmountFieldDemo(
                 .align(Alignment.Center),
         ) {
             BoxWithLabel(
-                style = PaletteTheme.components.boxWithLabel,
+                style = PaletteTheme.components.layout.boxWithLabel,
                 label = "Raw",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -69,7 +69,7 @@ fun CurrencyAmountFieldDemo(
                 )
             }
             CurrencyAmountField(
-                style = PaletteTheme.components.currencyAmountField,
+                style = PaletteTheme.components.money.currencyAmountField,
                 moneyFormat = PaletteTheme.formats.moneyFormats.default,
                 textFieldState = textFieldState,
             )

@@ -41,7 +41,7 @@ fun IndicationScreen(
     val control = rememberIndicationScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.scaffold,
+        style = PaletteTheme.components.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Indication",

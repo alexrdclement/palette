@@ -51,7 +51,7 @@ fun DemoScope.SkipButtonDemo(
     SkipBackButton(
         onClick = {},
         enabled = enabled,
-        style = PaletteTheme.components.button(ButtonStyleToken.Secondary),
+        style = PaletteTheme.components.core.button(ButtonStyleToken.Secondary),
         modifier = modifier
             .size(52.dp)
             .align(Alignment.CenterStart),
@@ -59,7 +59,7 @@ fun DemoScope.SkipButtonDemo(
     SkipButton(
         onClick = {},
         enabled = enabled,
-        style = PaletteTheme.components.button(ButtonStyleToken.Secondary),
+        style = PaletteTheme.components.core.button(ButtonStyleToken.Secondary),
         modifier = Modifier
             .size(52.dp)
             .align(Alignment.CenterEnd),

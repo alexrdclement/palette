@@ -26,7 +26,7 @@ class GridTest {
     fun cartesianGrid() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.components.surface) {
+                Surface(style = PaletteTheme.components.core.surface) {
                     CartesianGrid(
                         xSpacing = { 20.dp.toPx() },
                         ySpacing = { 20.dp.toPx() },
@@ -46,7 +46,7 @@ class GridTest {
     fun cartesianGridLogarithmicScale() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.components.surface) {
+                Surface(style = PaletteTheme.components.core.surface) {
                     Grid(
                         coordinateSystem = GridCoordinateSystem.Cartesian(
                             scaleX = GridScale.Logarithmic(spacing = 1.dp, base = 2f),
@@ -67,7 +67,7 @@ class GridTest {
     fun cartesianGridLogarithmicDecayScale() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.components.surface) {
+                Surface(style = PaletteTheme.components.core.surface) {
                     Grid(
                         coordinateSystem = GridCoordinateSystem.Cartesian(
                             scaleX = GridScale.LogarithmicDecay(spacing = 50.dp, base = 2f),
@@ -88,7 +88,7 @@ class GridTest {
     fun cartesianGridExponentialScale() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.components.surface) {
+                Surface(style = PaletteTheme.components.core.surface) {
                     Grid(
                         coordinateSystem = GridCoordinateSystem.Cartesian(
                             scaleX = GridScale.Exponential(spacing = 1.dp, exponent = 2f),
@@ -109,7 +109,7 @@ class GridTest {
     fun cartesianGridExponentialDecayScale() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.components.surface) {
+                Surface(style = PaletteTheme.components.core.surface) {
                     Grid(
                         coordinateSystem = GridCoordinateSystem.Cartesian(
                             scaleX = GridScale.ExponentialDecay(spacing = 100.dp, exponent = 2f),
@@ -130,7 +130,7 @@ class GridTest {
     fun polarGrid() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.components.surface) {
+                Surface(style = PaletteTheme.components.core.surface) {
                     PolarGrid(
                         radiusSpacing = { 30.dp.toPx() },
                         theta = { (PI / 3).toFloat() },
@@ -150,7 +150,7 @@ class GridTest {
         val coordinateSystem = GridCoordinateSystem.Cartesian(spacing = 20.dp)
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.components.surface) {
+                Surface(style = PaletteTheme.components.core.surface) {
                     Grid(
                         coordinateSystem = coordinateSystem,
                         lineStyle = null,
@@ -175,7 +175,7 @@ class GridTest {
         val coordinateSystem = GridCoordinateSystem.Cartesian(spacing = 20.dp)
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.components.surface) {
+                Surface(style = PaletteTheme.components.core.surface) {
                     Grid(
                         coordinateSystem = coordinateSystem,
                         lineStyle = null,
@@ -200,7 +200,7 @@ class GridTest {
         val coordinateSystem = GridCoordinateSystem.Cartesian(spacing = 20.dp)
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.components.surface) {
+                Surface(style = PaletteTheme.components.core.surface) {
                     Grid(
                         coordinateSystem = coordinateSystem,
                         lineStyle = null,

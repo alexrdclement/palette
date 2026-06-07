@@ -77,7 +77,7 @@ fun DemoScope.MediaControlBarDemo(
             isPlaying = isPlaying,
             onPlayPauseClick = onPlayPauseClick,
             progress = progress,
-            style = PaletteTheme.components.mediaControlBar,
+            style = PaletteTheme.components.media.mediaControlBar,
             maxContentSize = DpSize(
                 width = maxWidth,
                 height = with(LocalDensity.current) { maxHeight.toDp() / 2f },

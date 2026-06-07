@@ -51,7 +51,7 @@ fun BoxWithConstraintsScope.ColorPickerDemo(
     control: ColorPickerDemoControl = rememberColorPickerDemoControl(state),
 ) {
     ColorPicker(
-        style = PaletteTheme.components.colorPicker,
+        style = PaletteTheme.components.color.colorPicker,
         color = state.color,
         onColorChange = control::onColorChange,
         modifier = modifier
