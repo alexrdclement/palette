@@ -420,10 +420,9 @@ HSPLcom/alexrdclement/palette/theme/format/core/NumberFormatScheme;->getCurrency
 HSPLcom/alexrdclement/palette/theme/format/core/NumberFormatTokenKt;->toFormat(Lcom/alexrdclement/palette/theme/format/core/NumberFormatToken;)Lcom/alexrdclement/palette/formats/core/NumberFormat;
 HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;-><init>(Lcom/alexrdclement/palette/formats/core/TextFormat;Lcom/alexrdclement/palette/formats/core/TextFormat;Lcom/alexrdclement/palette/formats/core/TextFormat;Lcom/alexrdclement/palette/formats/core/TextFormat;Lcom/alexrdclement/palette/formats/core/TextFormat;)V
 HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getBody()Lcom/alexrdclement/palette/formats/core/TextFormat;
-HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getDisplay()Lcom/alexrdclement/palette/formats/core/TextFormat;
-HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getHeadline()Lcom/alexrdclement/palette/formats/core/TextFormat;
+PLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getHeadline()Lcom/alexrdclement/palette/formats/core/TextFormat;
 HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getLabel()Lcom/alexrdclement/palette/formats/core/TextFormat;
-HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getTitle()Lcom/alexrdclement/palette/formats/core/TextFormat;
+PLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getTitle()Lcom/alexrdclement/palette/formats/core/TextFormat;
 HSPLcom/alexrdclement/palette/theme/format/core/TextFormatTokenKt;->toFormat(Lcom/alexrdclement/palette/theme/format/core/TextFormatToken;)Lcom/alexrdclement/palette/formats/core/TextFormat;
 HSPLcom/alexrdclement/palette/theme/format/core/TextFormatTokenKt;->toFormat(Lcom/alexrdclement/palette/theme/format/core/TextFormatToken;Lcom/alexrdclement/palette/theme/format/core/TextFormatScheme;)Lcom/alexrdclement/palette/formats/core/TextFormat;
 HSPLcom/alexrdclement/palette/theme/format/datetime/DateFormatScheme;-><init>(Lcom/alexrdclement/palette/formats/datetime/DateFormatValue;Lcom/alexrdclement/palette/formats/datetime/DateFormatValue;Lcom/alexrdclement/palette/formats/datetime/DateFormatValue;)V
