@@ -34,7 +34,7 @@ fun CurrencyAmountFieldDemo(
         .collectAsState(initial = textFieldState.text.toString())
 
     Demo(
-        style = PaletteTheme.styles.demo,
+        style = PaletteTheme.styles.demo.style,
         modifier = modifier
             .fillMaxSize(),
     ) {

@@ -52,7 +52,7 @@ fun ShapeScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.styles.demoList,
+            style = PaletteTheme.styles.demo.list,
             items = ShapeToken.entries.toList(),
             controls = control.controls,
             modifier = Modifier

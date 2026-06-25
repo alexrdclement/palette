@@ -53,7 +53,7 @@ fun TimeFormatSchemeScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.styles.demoList,
+            style = PaletteTheme.styles.demo.list,
             items = state.timeFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,

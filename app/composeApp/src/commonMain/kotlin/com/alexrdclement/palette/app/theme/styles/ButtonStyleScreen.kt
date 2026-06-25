@@ -56,7 +56,7 @@ fun ButtonStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.styles.demoList,
+            style = PaletteTheme.styles.demo.list,
             items = ButtonStyleToken.entries,
             controls = control.controls,
             modifier = Modifier

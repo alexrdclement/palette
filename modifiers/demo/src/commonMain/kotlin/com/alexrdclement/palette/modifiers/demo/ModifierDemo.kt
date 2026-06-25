@@ -31,7 +31,7 @@ fun ModifierDemo(
     control: ModifierDemoControl = rememberModifierDemoControl(state = state, modifierControls = controls),
 ) {
     Demo(
-        style = PaletteTheme.styles.demo,
+        style = PaletteTheme.styles.demo.style,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()

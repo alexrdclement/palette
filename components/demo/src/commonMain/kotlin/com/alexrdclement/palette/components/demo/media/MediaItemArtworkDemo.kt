@@ -32,7 +32,7 @@ fun MediaItemArtworkDemo(
     )
 
     Demo(
-        style = PaletteTheme.styles.demo,
+        style = PaletteTheme.styles.demo.style,
         controls = controls,
         modifier = modifier.fillMaxSize(),
     ) {

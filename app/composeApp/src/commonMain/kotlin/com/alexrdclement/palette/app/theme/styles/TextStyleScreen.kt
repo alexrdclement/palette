@@ -52,7 +52,7 @@ fun TextStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.styles.demoList,
+            style = PaletteTheme.styles.demo.list,
             items = TextStyleToken.entries,
             controls = control.controls,
             modifier = Modifier

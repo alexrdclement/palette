@@ -47,7 +47,7 @@ fun SpacingScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.styles.demoList,
+            style = PaletteTheme.styles.demo.list,
             items = state.spacingByToken.keys.toList(),
             controls = control.controls,
             modifier = Modifier

@@ -53,7 +53,7 @@ fun GridDemo(
     control: GridDemoControl = rememberGridDemoControl(state),
 ) {
     Demo(
-        style = PaletteTheme.styles.demo,
+        style = PaletteTheme.styles.demo.style,
         controls = control.controls,
         modifier = modifier.fillMaxSize(),
     ) {

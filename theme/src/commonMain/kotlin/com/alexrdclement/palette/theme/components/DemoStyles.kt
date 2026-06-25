@@ -19,10 +19,10 @@ import com.alexrdclement.palette.theme.PaletteTheme
 /** Resolved style for the [com.alexrdclement.palette.components.demo] framework; surfaced via [PaletteTheme.styles]. */
 object DemoStyles {
 
-    val demoList: DemoListStyle
-        @Composable get() = DemoListStyle(demoStyle = demo)
+    val list: DemoListStyle
+        @Composable get() = DemoListStyle(demoStyle = style)
 
-    val demo: DemoStyle
+    val style: DemoStyle
         @Composable get() {
             val label = TextStyles.labelLarge
             val button = CoreStyles.button.secondary
