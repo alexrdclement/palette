@@ -1196,13 +1196,12 @@ PLcom/alexrdclement/palette/theme/components/CoreStyles;->getDivider(Landroidx/c
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getSlider(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SliderStyle;
 HSPLcom/alexrdclement/palette/theme/components/CoreStyles;->getSurface(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getTextField(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextFieldStyle;
-HPLcom/alexrdclement/palette/theme/components/DemoStyles;->getDemo(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/demo/DemoStyle;
+HPLcom/alexrdclement/palette/theme/components/DemoStyles;->getStyle(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/demo/DemoStyle;
 HSPLcom/alexrdclement/palette/theme/components/LayoutStyles;->getCatalog(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/catalog/CatalogStyle;
 HSPLcom/alexrdclement/palette/theme/components/LayoutStyles;->getScaffold(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/ScaffoldStyle;
 HSPLcom/alexrdclement/palette/theme/components/LayoutStyles;->getTopBar(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/TopBarStyle;
 PLcom/alexrdclement/palette/theme/components/MenuStyles;->getDropdownMenu(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/menu/DropdownMenuStyle;
 PLcom/alexrdclement/palette/theme/components/NavigationStyles;->getBackNavigationButton(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;
-PLcom/alexrdclement/palette/theme/components/PaletteStyles;->getDemo(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/demo/DemoStyle;
 HSPLcom/alexrdclement/palette/theme/components/StyleResolversKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/modifiers/BorderStyle;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/BorderStyle;
 HSPLcom/alexrdclement/palette/theme/components/StyleResolversKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/modifiers/BorderStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/BorderStyle;
 HSPLcom/alexrdclement/palette/theme/components/StyleResolversKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ButtonStyle;
