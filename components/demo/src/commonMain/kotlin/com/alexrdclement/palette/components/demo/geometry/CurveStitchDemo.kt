@@ -47,7 +47,7 @@ fun CurveStitchDemo(
     control: CurveStitchDemoControl = rememberCurveStitchDemoControl(state),
 ) {
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = control.controls,
         modifier = modifier.fillMaxSize(),
     ) {
@@ -388,7 +388,7 @@ class CurveStitchDemoControl(
 @Composable
 fun CurveStitchDemoPreview() {
     PaletteTheme {
-        Surface(style = PaletteTheme.components.core.surface) {
+        Surface(style = PaletteTheme.styles.core.surface) {
             CurveStitchDemo()
         }
     }

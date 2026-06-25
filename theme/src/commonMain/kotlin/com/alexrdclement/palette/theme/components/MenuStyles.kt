@@ -6,15 +6,15 @@ import com.alexrdclement.palette.components.menu.MenuDefaults
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.contentColorFor
 
-/** Resolved styles for [com.alexrdclement.palette.components.menu]; surfaced via [PaletteTheme.components]. */
-object MenuComponentStyles {
+/** Resolved styles for [com.alexrdclement.palette.components.menu]; surfaced via [PaletteTheme.styles]. */
+object MenuStyles {
 
     val dropdownMenu: DropdownMenuStyle
         @Composable get() {
             val contentColor = PaletteTheme.colorScheme.contentColorFor(PaletteTheme.colorScheme.surface)
             return DropdownMenuStyle(
-                surfaceStyle = CoreComponentStyles.surface.copy(
-                    borderStyle = PaletteTheme.styles.border.surface.toComponentStyle(),
+                surfaceStyle = CoreStyles.surface.copy(
+                    borderStyle = BorderStyles.surface.toComponentStyle(),
                 ),
                 itemColors = MenuDefaults.itemColors(
                     textColor = contentColor,

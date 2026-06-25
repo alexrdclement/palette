@@ -31,7 +31,7 @@ fun ColorPickerDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()
@@ -50,7 +50,7 @@ fun BoxWithConstraintsScope.ColorPickerDemo(
     control: ColorPickerDemoControl = rememberColorPickerDemoControl(state),
 ) {
     ColorPicker(
-        style = PaletteTheme.components.color.colorPicker,
+        style = PaletteTheme.styles.color.colorPicker,
         color = state.color,
         onColorChange = control::onColorChange,
         modifier = modifier

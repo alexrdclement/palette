@@ -13,11 +13,10 @@ import com.alexrdclement.palette.theme.PaletteIndication
 import com.alexrdclement.palette.theme.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.PaletteShapeScheme
 import com.alexrdclement.palette.theme.PaletteSpacing
-import com.alexrdclement.palette.theme.styles.PaletteStyles
 import com.alexrdclement.palette.theme.PaletteTypography
 import com.alexrdclement.palette.theme.ShapeScheme
 import com.alexrdclement.palette.theme.Spacing
-import com.alexrdclement.palette.theme.styles.Styles
+import com.alexrdclement.palette.theme.styles.StyleOverrides
 import com.alexrdclement.palette.theme.Typography
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.PaletteFormats
@@ -31,7 +30,7 @@ interface ThemeState {
     val shapeScheme: ShapeScheme
     val spacing: Spacing
     val formats: Formats
-    val styles: Styles
+    val styleOverrides: StyleOverrides
 
     val colorScheme: ColorScheme
         get() = if (isDarkMode) darkColorScheme else lightColorScheme
@@ -46,7 +45,7 @@ internal class ThemeStateImpl(
     indicationInitial: Indication = PaletteIndication,
     spacingInitial: Spacing = PaletteSpacing,
     formatsInitial: Formats = PaletteFormats,
-    stylesInitial: Styles = PaletteStyles,
+    styleOverridesInitial: StyleOverrides = StyleOverrides(),
 ) : ThemeState {
     override var typography by mutableStateOf(typographyInitial)
     override var shapeScheme by mutableStateOf(shapeSchemeInitial)
@@ -56,7 +55,7 @@ internal class ThemeStateImpl(
     override var isDarkMode by mutableStateOf(isDarkModeInitial)
     override var spacing by mutableStateOf(spacingInitial)
     override var formats by mutableStateOf(formatsInitial)
-    override var styles by mutableStateOf(stylesInitial)
+    override var styleOverrides by mutableStateOf(styleOverridesInitial)
 }
 
 @Composable

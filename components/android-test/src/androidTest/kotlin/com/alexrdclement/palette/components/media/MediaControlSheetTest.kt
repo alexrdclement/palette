@@ -64,14 +64,14 @@ class MediaControlSheetTest {
                 }
             },
             state = state,
-            style = PaletteTheme.components.media.mediaControlSheet,
+            style = PaletteTheme.styles.media.mediaControlSheet,
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize(),
             ) {
-                Text("Content", style = PaletteTheme.styles.text.bodyMedium)
+                Text("Content", style = PaletteTheme.styles.core.text.bodyMedium)
             }
         }
     }

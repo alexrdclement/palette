@@ -1,0 +1,13 @@
+package com.alexrdclement.palette.theme.modifiers
+
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.theme.ColorToken
+import com.alexrdclement.palette.theme.ShapeToken
+
+enum class BorderStyleToken(val default: BorderStyle) {
+    Surface(BorderStyle(width = 1.dp, color = ColorToken.Outline, shape = ShapeToken.Surface)),
+    Primary(BorderStyle(width = 1.dp, color = ColorToken.Outline, shape = ShapeToken.Primary)),
+    Secondary(BorderStyle(width = 1.dp, color = ColorToken.Outline, shape = ShapeToken.Secondary)),
+    Tertiary(BorderStyle(width = Dp.Hairline, color = ColorToken.Outline, shape = ShapeToken.Tertiary)),
+}

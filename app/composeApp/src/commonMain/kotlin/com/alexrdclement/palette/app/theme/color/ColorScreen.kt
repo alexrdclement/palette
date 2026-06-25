@@ -51,7 +51,7 @@ fun ColorScreen(
     var selectedColorToken by remember { mutableStateOf<ColorToken?>(null) }
 
     Scaffold(
-        style = PaletteTheme.components.layout.scaffold,
+        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Color",
@@ -62,7 +62,7 @@ fun ColorScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demoList,
+            style = PaletteTheme.styles.demoList,
             items = ColorToken.entries.toList(),
             key = { it.name },
             controls = control.controls,
@@ -75,7 +75,7 @@ fun ColorScreen(
                 label = colorToken.name,
                 color = colorToken.toColor(),
                 onColorClick = { selectedColorToken = colorToken },
-                style = PaletteTheme.components.color.colorDisplay,
+                style = PaletteTheme.styles.color.colorDisplay,
             )
         }
     }
@@ -120,7 +120,7 @@ private fun ColorDisplay(
         }
         Text(
             text = label,
-            style = PaletteTheme.styles.text.labelMedium,
+            style = PaletteTheme.styles.core.text.labelMedium,
             modifier = Modifier
                 .padding(end = PaletteTheme.spacing.medium)
         )

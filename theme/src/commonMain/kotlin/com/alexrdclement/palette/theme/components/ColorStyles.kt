@@ -9,14 +9,14 @@ import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
-/** Resolved styles for [com.alexrdclement.palette.components.color]; surfaced via [PaletteTheme.components]. */
-object ColorComponentStyles {
+/** Resolved styles for [com.alexrdclement.palette.components.color]; surfaced via [PaletteTheme.styles]. */
+object ColorStyles {
 
     val colorDisplay: ColorDisplayStyle
         @Composable get() = ColorDisplayStyle(
             shape = PaletteTheme.shapeScheme.primary,
             borderStyle = BorderStyleToken.Primary.toComponentStyle(),
-            buttonStyle = CoreComponentStyles.button.secondary
+            buttonStyle = CoreStyles.button.secondary
                 .copy(contentPadding = PaddingValues(0.dp)),
         )
 
@@ -24,8 +24,8 @@ object ColorComponentStyles {
         @Composable get() = ColorPickerStyle(
             spacing = PaletteTheme.spacing.medium,
             controlsStyle = ColorPickerControlsStyle(
-                labelStyle = PaletteTheme.styles.text.labelLarge,
-                sliderStyle = CoreComponentStyles.slider,
+                labelStyle = TextStyles.labelLarge,
+                sliderStyle = CoreStyles.slider,
                 spacing = PaletteTheme.spacing.small,
             ),
         )

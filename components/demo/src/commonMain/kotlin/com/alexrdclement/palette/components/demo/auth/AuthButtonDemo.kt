@@ -29,7 +29,7 @@ fun AuthButtonDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()
@@ -49,7 +49,7 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
 ) {
     AuthButton(
         authState = state.authState,
-        style = PaletteTheme.components.auth.authButton[state.style],
+        style = PaletteTheme.styles.auth.authButton[state.style],
         onLogInClick = {},
         onLogOutClick = {},
         modifier = modifier

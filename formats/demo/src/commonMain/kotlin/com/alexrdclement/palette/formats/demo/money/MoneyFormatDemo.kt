@@ -35,7 +35,7 @@ fun MoneyFormatDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()
@@ -54,7 +54,7 @@ fun DemoScope.MoneyFormatDemo(
 ) {
     Text(
         text = state.text,
-        style = PaletteTheme.styles.text.headline,
+        style = PaletteTheme.styles.core.text.headline,
         modifier = modifier.align(Alignment.Center)
     )
 }

@@ -41,7 +41,7 @@ fun ShapeScreen(
     val control = rememberShapeScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.layout.scaffold,
+        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Shape",
@@ -52,7 +52,7 @@ fun ShapeScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demoList,
+            style = PaletteTheme.styles.demoList,
             items = ShapeToken.entries.toList(),
             controls = control.controls,
             modifier = Modifier
@@ -69,7 +69,7 @@ fun ShapeScreen(
             ) {
                 Text(
                     text = shape.name,
-                    style = PaletteTheme.styles.text.headline,
+                    style = PaletteTheme.styles.core.text.headline,
                 )
             }
         }

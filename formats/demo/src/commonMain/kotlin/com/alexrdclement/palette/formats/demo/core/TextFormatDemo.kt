@@ -35,7 +35,7 @@ fun TextFormatDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()
@@ -53,7 +53,7 @@ fun DemoScope.TextFormatDemo(
 ) {
     Text(
         text = state.text,
-        style = PaletteTheme.styles.text.headline.copy(
+        style = PaletteTheme.styles.core.text.headline.copy(
             format = state.textFormat
         ),
         modifier = modifier.align(Alignment.Center)

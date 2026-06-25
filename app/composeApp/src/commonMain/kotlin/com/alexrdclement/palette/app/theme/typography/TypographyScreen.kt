@@ -43,7 +43,7 @@ fun TypographyScreen(
     val control = rememberTypographyScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.layout.scaffold,
+        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Typography",
@@ -54,7 +54,7 @@ fun TypographyScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demoList,
+            style = PaletteTheme.styles.demoList,
             items = TypographyToken.entries.toList(),
             controls = control.controls,
             modifier = Modifier
@@ -62,7 +62,7 @@ fun TypographyScreen(
                 .padding(paddingValues)
         ) { textStyle ->
             BoxWithLabel(
-                style = PaletteTheme.components.layout.boxWithLabel,
+                style = PaletteTheme.styles.layout.boxWithLabel,
                 label = textStyle.name,
                 modifier = Modifier
                     .fillMaxWidth()

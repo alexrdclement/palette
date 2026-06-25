@@ -34,7 +34,7 @@ fun CurrencyAmountFieldDemo(
         .collectAsState(initial = textFieldState.text.toString())
 
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         modifier = modifier
             .fillMaxSize(),
     ) {
@@ -47,14 +47,14 @@ fun CurrencyAmountFieldDemo(
                 .align(Alignment.Center),
         ) {
             BoxWithLabel(
-                style = PaletteTheme.components.layout.boxWithLabel,
+                style = PaletteTheme.styles.layout.boxWithLabel,
                 label = "Raw",
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
                 Text(
                     text = text,
-                    style = PaletteTheme.styles.text.headline,
+                    style = PaletteTheme.styles.core.text.headline,
                 )
             }
             BoxWithLabel(
@@ -64,11 +64,11 @@ fun CurrencyAmountFieldDemo(
             ) {
                 Text(
                     text = moneyFormat.format(text),
-                    style = PaletteTheme.styles.text.headline,
+                    style = PaletteTheme.styles.core.text.headline,
                 )
             }
             CurrencyAmountField(
-                style = PaletteTheme.components.money.currencyAmountField,
+                style = PaletteTheme.styles.money.currencyAmountField,
                 moneyFormat = PaletteTheme.formats.moneyFormats.default,
                 textFieldState = textFieldState,
             )

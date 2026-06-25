@@ -12,10 +12,10 @@ fun ThemeButton(
     modifier: Modifier = Modifier,
 ) {
     Button(
-        style = PaletteTheme.components.core.button.tertiary,
+        style = PaletteTheme.styles.core.button.tertiary,
         onClick = onClick,
         modifier = modifier,
     ) {
-        Text("Theme", style = PaletteTheme.styles.text.labelSmall)
+        Text("Theme", style = PaletteTheme.styles.core.text.labelSmall)
     }
 }

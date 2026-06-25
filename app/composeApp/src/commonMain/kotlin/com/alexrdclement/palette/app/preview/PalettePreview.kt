@@ -11,7 +11,7 @@ fun PalettePreview(
 ) {
     PaletteTheme {
         Surface(
-            style = PaletteTheme.components.core.surface,
+            style = PaletteTheme.styles.core.surface,
             content = content,
         )
     }

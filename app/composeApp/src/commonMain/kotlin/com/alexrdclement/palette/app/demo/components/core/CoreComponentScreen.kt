@@ -19,7 +19,7 @@ fun CoreComponentScreen(
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
-        style = PaletteTheme.components.layout.scaffold,
+        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = component.title,

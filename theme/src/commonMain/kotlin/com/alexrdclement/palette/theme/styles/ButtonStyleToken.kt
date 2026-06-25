@@ -1,23 +1,44 @@
 package com.alexrdclement.palette.theme.styles
 
 import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.components.core.ButtonStyle
+import com.alexrdclement.palette.theme.ColorToken
+import com.alexrdclement.palette.theme.ShapeToken
+import com.alexrdclement.palette.theme.components.toComponentStyle
+import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
-enum class ButtonStyleToken {
-    Primary,
-    Secondary,
-    Tertiary,
+enum class ButtonStyleToken(val default: ButtonStyleTokenSet) {
+    Primary(
+        ButtonStyleTokenSet(
+            contentColor = ColorToken.OnPrimary,
+            containerColor = ColorToken.Primary,
+            shape = ShapeToken.Primary,
+            borderStyle = BorderStyleToken.Primary,
+        ),
+    ),
+    Secondary(
+        ButtonStyleTokenSet(
+            contentColor = ColorToken.Secondary,
+            containerColor = ColorToken.Surface,
+            shape = ShapeToken.Secondary,
+            borderStyle = BorderStyleToken.Secondary,
+        ),
+    ),
+    Tertiary(
+        ButtonStyleTokenSet(
+            contentColor = ColorToken.Primary,
+            containerColor = ColorToken.OnPrimary,
+            shape = ShapeToken.Tertiary,
+            borderStyle = BorderStyleToken.Tertiary,
+        ),
+    ),
 }
 
-fun ButtonStyleToken.toStyle(buttonStyles: ButtonStyleScheme): ButtonStyleTokenSet {
-    return when (this) {
-        ButtonStyleToken.Primary -> buttonStyles.primary
-        ButtonStyleToken.Secondary -> buttonStyles.secondary
-        ButtonStyleToken.Tertiary -> buttonStyles.tertiary
-    }
-}
-
+/** The current token set for this token — a theme override if present, else the [default]. */
 @Composable
-fun ButtonStyleToken.toStyle(): ButtonStyleTokenSet {
-    return toStyle(PaletteTheme.styles.button)
-}
+fun ButtonStyleToken.tokenSet(): ButtonStyleTokenSet =
+    LocalStyleOverrides.current.button[this] ?: default
+
+/** Resolves this token to a component [ButtonStyle] using the current theme. */
+@Composable
+fun ButtonStyleToken.resolve(): ButtonStyle = tokenSet().toComponentStyle()

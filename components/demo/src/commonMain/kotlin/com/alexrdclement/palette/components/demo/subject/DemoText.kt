@@ -14,7 +14,7 @@ import com.alexrdclement.palette.components.core.TextStyle
 @Composable
 fun DemoText(
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = PaletteTheme.styles.text.display,
+    textStyle: TextStyle = PaletteTheme.styles.core.text.display,
 ) {
     Box(
         modifier = modifier

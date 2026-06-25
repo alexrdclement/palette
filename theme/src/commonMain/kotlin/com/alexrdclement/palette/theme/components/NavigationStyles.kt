@@ -8,8 +8,8 @@ import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.toColor
 
-/** Resolved styles for [com.alexrdclement.palette.components.navigation]; surfaced via [PaletteTheme.components]. */
-object NavigationComponentStyles {
+/** Resolved styles for [com.alexrdclement.palette.components.navigation]; surfaced via [PaletteTheme.styles]. */
+object NavigationStyles {
 
     val backNavigationButton: BackNavigationButtonStyle
         @Composable get() = BackNavigationButtonStyle(

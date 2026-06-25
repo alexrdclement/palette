@@ -32,7 +32,7 @@ fun MediaItemArtworkDemo(
     )
 
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = controls,
         modifier = modifier.fillMaxSize(),
     ) {
@@ -48,7 +48,7 @@ fun DemoScope.MediaItemArtworkDemo(
     MediaItemArtwork(
         imageUrl = null,
         isEnabled = isEnabled,
-        style = PaletteTheme.components.media.mediaItemArtwork,
+        style = PaletteTheme.styles.media.mediaItemArtwork,
         modifier = modifier
             .size(200.dp)
             .align(Alignment.Center),

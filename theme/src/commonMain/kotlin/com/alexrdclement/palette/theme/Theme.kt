@@ -11,15 +11,15 @@ import androidx.compose.ui.unit.Dp
 import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.money.MoneyFormat
-import com.alexrdclement.palette.theme.components.PaletteComponentStyles
+import com.alexrdclement.palette.theme.components.PaletteStyles
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.PaletteFormats
 import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.format.core.PaletteTextFormatScheme
 import com.alexrdclement.palette.theme.format.datetime.PaletteDateTimeFormats
 import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
-import com.alexrdclement.palette.theme.styles.PaletteStyles
-import com.alexrdclement.palette.theme.styles.Styles
+import com.alexrdclement.palette.theme.styles.LocalStyleOverrides
+import com.alexrdclement.palette.theme.styles.StyleOverrides
 
 val LocalPaletteColorScheme = staticCompositionLocalOf {
     ColorScheme(
@@ -75,10 +75,6 @@ val LocalPaletteIndication = staticCompositionLocalOf<Indication> {
     NoOpIndication
 }
 
-val LocalPaletteStyles = staticCompositionLocalOf<Styles> {
-    error("Styles not provided")
-}
-
 val LocalPaletteFormats = staticCompositionLocalOf {
     Formats(
         dateTimeFormats = PaletteDateTimeFormats,
@@ -102,7 +98,7 @@ fun PaletteTheme(
     shapeScheme: ShapeScheme = PaletteShapeScheme,
     indication: Indication = PaletteIndication,
     spacing: Spacing = PaletteSpacing,
-    styles: Styles = PaletteStyles,
+    styleOverrides: StyleOverrides = StyleOverrides(),
     formats: Formats = PaletteFormats,
     content: @Composable () -> Unit
 ) {
@@ -113,7 +109,7 @@ fun PaletteTheme(
         LocalPaletteShapes provides shapeScheme,
         LocalPaletteIndication provides indication,
         LocalPaletteSpacing provides spacing,
-        LocalPaletteStyles provides styles,
+        LocalStyleOverrides provides styleOverrides,
         LocalPaletteFormats provides formats,
         content = content,
     )
@@ -144,10 +140,6 @@ object PaletteTheme {
         @Composable
         get() = LocalPaletteIndication.current
 
-    val styles: Styles
-        @Composable
-        get() = LocalPaletteStyles.current
-
-    val components: PaletteComponentStyles
-        get() = PaletteComponentStyles
+    val styles: PaletteStyles
+        get() = PaletteStyles
 }

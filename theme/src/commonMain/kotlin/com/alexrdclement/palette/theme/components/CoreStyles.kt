@@ -18,16 +18,19 @@ import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.contentColorFor
-import com.alexrdclement.palette.theme.styles.ResolvedButtonStyleScheme
-import com.alexrdclement.palette.theme.styles.resolve
 import com.alexrdclement.palette.theme.toColor
 
-/** Resolved styles for [com.alexrdclement.palette.components.core]; surfaced via [PaletteTheme.components]. */
-object CoreComponentStyles {
+/** Resolved styles for [com.alexrdclement.palette.components.core]; surfaced via [PaletteTheme.styles]. */
+object CoreStyles {
 
-    /** Resolved button styles per variant, e.g. `button.primary`; index by token with `button[token]`. */
-    val button: ResolvedButtonStyleScheme
-        @Composable get() = PaletteTheme.styles.button.resolve()
+    /** Resolved text styles per token, e.g. `text.titleMedium`. */
+    val text get() = TextStyles
+
+    /** Resolved button styles per token, e.g. `button.primary`. */
+    val button get() = ButtonStyles
+
+    /** Border token sets per token (consumed by `Modifier.border`). */
+    val border get() = BorderStyles
 
     val surface: SurfaceStyle
         @Composable get() = SurfaceStyle(
@@ -44,7 +47,7 @@ object CoreComponentStyles {
 
     val progressIndicator: ProgressIndicatorStyle
         @Composable get() = ProgressIndicatorStyle(
-            textStyle = PaletteTheme.styles.text.bodyMedium,
+            textStyle = text.bodyMedium,
         )
 
     val checkbox: CheckboxStyle
@@ -54,7 +57,7 @@ object CoreComponentStyles {
                 containerColor = ColorToken.Surface.toColor(),
                 indication = PaletteTheme.indication,
             ),
-            textStyle = PaletteTheme.styles.text.titleLarge,
+            textStyle = text.titleLarge,
         )
 
     val chevronButton: ChevronButtonStyle
@@ -85,7 +88,7 @@ object CoreComponentStyles {
 
     val textField: TextFieldStyle
         @Composable get() = TextFieldStyle(
-            textStyle = PaletteTheme.styles.text.bodyMedium,
+            textStyle = text.bodyMedium,
             cursorBrush = SolidColor(PaletteTheme.colorScheme.primary),
             borderStroke = BorderStroke(1.dp, PaletteTheme.colorScheme.outline),
             contentPadding = PaletteTheme.spacing.small,

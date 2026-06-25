@@ -40,7 +40,7 @@ fun IndicationScreen(
     val control = rememberIndicationScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.layout.scaffold,
+        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Indication",
@@ -51,7 +51,7 @@ fun IndicationScreen(
         },
     ) { paddingValues ->
         Demo(
-            style = PaletteTheme.components.demo,
+            style = PaletteTheme.styles.demo,
             controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()

@@ -49,7 +49,7 @@ fun TextFieldDemo(
     control: TextFieldDemoControl = rememberTextFieldDemoControl(state = state),
 ) {
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize(),
@@ -85,7 +85,7 @@ fun DemoScope.TextFieldDemo(
 
     TextField(
         state = state.textFieldState,
-        style = PaletteTheme.components.core.textField.copy(
+        style = PaletteTheme.styles.core.textField.copy(
             textStyle = state.textStyleDemoState.textStyle,
         ),
         enabled = state.enabled,

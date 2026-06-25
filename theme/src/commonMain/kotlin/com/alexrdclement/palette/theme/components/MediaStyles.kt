@@ -12,8 +12,8 @@ import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.toColor
 import com.alexrdclement.palette.theme.toShape
 
-/** Resolved styles for [com.alexrdclement.palette.components.media]; surfaced via [PaletteTheme.components]. */
-object MediaComponentStyles {
+/** Resolved styles for [com.alexrdclement.palette.components.media]; surfaced via [PaletteTheme.styles]. */
+object MediaStyles {
 
     val playPauseButton: PlayPauseButtonStyle
         @Composable get() = PlayPauseButtonStyle(
@@ -28,13 +28,13 @@ object MediaComponentStyles {
 
     val mediaItemArtwork: MediaItemArtworkStyle
         @Composable get() = MediaItemArtworkStyle(
-            fallbackTextStyle = PaletteTheme.styles.text.labelLarge,
+            fallbackTextStyle = TextStyles.labelLarge,
         )
 
     val mediaControlBar: MediaControlBarStyle
         @Composable get() = MediaControlBarStyle(
-            titleStyle = PaletteTheme.styles.text.titleMedium,
-            artistStyle = PaletteTheme.styles.text.bodyMedium,
+            titleStyle = TextStyles.titleMedium,
+            artistStyle = TextStyles.bodyMedium,
             contentSpacing = PaletteTheme.spacing.small,
             artworkStyle = mediaItemArtwork,
             playPauseButtonStyle = playPauseButton,

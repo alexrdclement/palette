@@ -42,7 +42,7 @@ fun InstantFormatSchemeScreen(
     )
 
     Scaffold(
-        style = PaletteTheme.components.layout.scaffold,
+        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Instant",
@@ -53,7 +53,7 @@ fun InstantFormatSchemeScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demoList,
+            style = PaletteTheme.styles.demoList,
             items = state.instantFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,
@@ -62,7 +62,7 @@ fun InstantFormatSchemeScreen(
                 .padding(paddingValues)
         ) { (token, format) ->
             BoxWithLabel(
-                style = PaletteTheme.components.layout.boxWithLabel,
+                style = PaletteTheme.styles.layout.boxWithLabel,
                 label = token.name,
                 modifier = Modifier
                     .padding(horizontal = PaletteTheme.spacing.medium)

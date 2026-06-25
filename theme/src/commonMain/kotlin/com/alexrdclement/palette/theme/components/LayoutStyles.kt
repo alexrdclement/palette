@@ -12,12 +12,12 @@ import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
-/** Resolved styles for [com.alexrdclement.palette.components.layout]; surfaced via [PaletteTheme.components]. */
-object LayoutComponentStyles {
+/** Resolved styles for [com.alexrdclement.palette.components.layout]; surfaced via [PaletteTheme.styles]. */
+object LayoutStyles {
 
     val scaffold: ScaffoldStyle
         @Composable get() = ScaffoldStyle(
-            surfaceStyle = CoreComponentStyles.surface,
+            surfaceStyle = CoreStyles.surface,
         )
 
     val floatingAction: FloatingActionStyle
@@ -34,30 +34,30 @@ object LayoutComponentStyles {
         @Composable get() = BoxWithLabelStyle(
             spacing = PaletteTheme.spacing.small,
             labelPadding = PaletteTheme.spacing.xs,
-            labelStyle = PaletteTheme.styles.text.labelSmall,
+            labelStyle = TextStyles.labelSmall,
             borderColor = PaletteTheme.colorScheme.outline,
         )
 
     val catalog: CatalogStyle
         @Composable get() = CatalogStyle(
             itemSpacing = PaletteTheme.spacing.medium,
-            itemStyle = CoreComponentStyles.button.secondary,
-            itemTextStyle = PaletteTheme.styles.text.bodyMedium,
+            itemStyle = CoreStyles.button.secondary,
+            itemTextStyle = TextStyles.bodyMedium,
         )
 
     val confirmCancelButtonRow: ConfirmCancelButtonRowStyle
         @Composable get() = ConfirmCancelButtonRowStyle(
             buttonStyle = ConfirmButtonStyle(
-                buttonStyle = CoreComponentStyles.button.secondary,
-                textStyle = PaletteTheme.styles.text.bodyMedium,
+                buttonStyle = CoreStyles.button.secondary,
+                textStyle = TextStyles.bodyMedium,
             ),
             spacing = PaletteTheme.spacing.medium,
         )
 
     val dialogContent: DialogContentStyle
         @Composable get() = DialogContentStyle(
-            titleStyle = PaletteTheme.styles.text.titleLarge,
-            messageStyle = PaletteTheme.styles.text.bodyLarge,
+            titleStyle = TextStyles.titleLarge,
+            messageStyle = TextStyles.bodyLarge,
             borderStyle = BorderStyleToken.Surface.toComponentStyle(),
             spacing = PaletteTheme.spacing.medium,
             padding = PaletteTheme.spacing.large,

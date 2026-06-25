@@ -22,15 +22,12 @@ import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
-import com.alexrdclement.palette.theme.styles.Styles
 import com.alexrdclement.palette.theme.TypographyToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.format.core.TextFormatToken
-import com.alexrdclement.palette.theme.styles.TextStyleScheme
 import com.alexrdclement.palette.theme.styles.TextStyleToken
-import com.alexrdclement.palette.theme.styles.copy
-import com.alexrdclement.palette.theme.styles.toStyle
+import com.alexrdclement.palette.theme.styles.TextStyleTokenSet
 import com.alexrdclement.palette.theme.styles.toTextStyle
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
@@ -44,7 +41,7 @@ fun TextStyleScreen(
     val control = rememberTextStyleScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.components.layout.scaffold,
+        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Text",
@@ -55,17 +52,16 @@ fun TextStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.components.demoList,
-            items = state.textStylesByToken.keys.toList(),
+            style = PaletteTheme.styles.demoList,
+            items = TextStyleToken.entries,
             controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
         ) { token ->
-            val tokenSet = state.textStylesByToken[token]!!
-            val textStyle = tokenSet.toTextStyle()
+            val textStyle = state.tokenSet(token).toTextStyle()
             BoxWithLabel(
-                style = PaletteTheme.components.layout.boxWithLabel,
+                style = PaletteTheme.styles.layout.boxWithLabel,
                 label = token.name,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -101,15 +97,9 @@ class TextStyleScreenState(
     val themeState: ThemeState,
     val demoTextFieldState: TextFieldState = TextFieldState("Sphinx of black quartz, judge my vow"),
 ) {
-    val styles: Styles
-        get() = themeState.styles
-
-    val textStyleScheme: TextStyleScheme
-        get() = styles.textStyleScheme
-
-    val textStylesByToken get() = TextStyleToken.entries.associateWith { token ->
-        token.toStyle(textStyleScheme)
-    }
+    /** The current token set for [token] — a theme override if present, else the default. */
+    fun tokenSet(token: TextStyleToken): TextStyleTokenSet =
+        themeState.styleOverrides.text[token] ?: token.default
 
     val text by derivedStateOf {
         demoTextFieldState.text.toString()
@@ -172,39 +162,28 @@ private fun makeControlForToken(
     state: TextStyleScreenState,
     themeController: ThemeController,
 ): Control {
+    fun setTokenSet(value: TextStyleTokenSet) {
+        val overrides = state.themeState.styleOverrides
+        themeController.setStyleOverrides(
+            overrides.copy(text = overrides.text + (token to value))
+        )
+    }
+
     val typographyTokenControl = enumControl(
         name = "Typography token",
         values = { TypographyToken.entries },
-        selectedValue = { state.textStylesByToken[token]!!.typographyToken },
+        selectedValue = { state.tokenSet(token).typographyToken },
         onValueChange = { newValue ->
-            val textStyleScheme = state.textStyleScheme.copy(
-                token = token,
-                value = state.textStylesByToken[token]!!.copy(
-                    typographyToken = newValue
-                )
-            )
-            val styles = state.styles.copy(
-                text = textStyleScheme,
-            )
-            themeController.setStyles(styles)
+            setTokenSet(state.tokenSet(token).copy(typographyToken = newValue))
         },
     )
 
     val textFormatTokenControl = enumControl(
         name = "Text format token",
         values = { TextFormatToken.entries },
-        selectedValue = { state.textStylesByToken[token]!!.textFormatToken },
+        selectedValue = { state.tokenSet(token).textFormatToken },
         onValueChange = { newValue ->
-            val textStyleScheme = state.textStyleScheme.copy(
-                token = token,
-                value = state.textStylesByToken[token]!!.copy(
-                    textFormatToken = newValue
-                )
-            )
-            val styles = state.styles.copy(
-                text = textStyleScheme,
-            )
-            themeController.setStyles(styles)
+            setTokenSet(state.tokenSet(token).copy(textFormatToken = newValue))
         },
     )
 

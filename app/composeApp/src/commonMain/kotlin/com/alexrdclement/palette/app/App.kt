@@ -22,10 +22,10 @@ fun App(
         shapeScheme = themeController.shapeScheme,
         indication = themeController.indication,
         spacing = themeController.spacing,
-        styles = themeController.styles,
+        styleOverrides = themeController.styleOverrides,
         formats = themeController.formats,
     ) {
-        Surface(style = PaletteTheme.components.core.surface) {
+        Surface(style = PaletteTheme.styles.core.surface) {
             PaletteNav(
                 themeController = themeController,
                 navController = navController,

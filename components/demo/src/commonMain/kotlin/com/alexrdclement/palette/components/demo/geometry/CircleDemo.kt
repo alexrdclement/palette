@@ -39,7 +39,7 @@ fun CircleDemo(
     control: CircleDemoControl = rememberCircleDemoControl(state),
 ) {
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = control.controls,
         modifier = modifier.fillMaxSize(),
     ) {

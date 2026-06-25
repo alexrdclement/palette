@@ -49,8 +49,8 @@ fun MediaControlSheetDemo(
             .fillMaxSize()
             .padding(WindowInsets.safeDrawing.horizontalPaddingValues())
     ) {
-        Text(text = "Current value ${state.currentValue}", style = PaletteTheme.styles.text.labelLarge)
-        Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.text.labelLarge)
+        Text(text = "Current value ${state.currentValue}", style = PaletteTheme.styles.core.text.labelLarge)
+        Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.core.text.labelLarge)
     }
 
     BoxWithConstraints(
@@ -72,7 +72,7 @@ fun MediaControlSheetDemo(
                 }
             },
             state = state,
-            style = PaletteTheme.components.media.mediaControlSheet,
+            style = PaletteTheme.styles.media.mediaControlSheet,
             maxContentSize = DpSize(
                 width = Dp.Infinity,
                 height = with(LocalDensity.current) { maxHeight.toDp() / 2f },
@@ -87,8 +87,8 @@ fun MediaControlSheetDemo(
                         alpha = state.partialToFullProgress
                     }
             ) {
-                Text(text = "Current value ${state.currentValue}", style = PaletteTheme.styles.text.labelLarge)
-                Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.text.labelLarge)
+                Text(text = "Current value ${state.currentValue}", style = PaletteTheme.styles.core.text.labelLarge)
+                Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.core.text.labelLarge)
             }
         }
     }

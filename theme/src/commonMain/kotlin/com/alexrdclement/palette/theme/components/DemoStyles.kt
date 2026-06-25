@@ -16,19 +16,19 @@ import com.alexrdclement.palette.components.demo.control.TextFieldControlStyle
 import com.alexrdclement.palette.components.demo.control.ToggleControlStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 
-/** Resolved style for the [com.alexrdclement.palette.components.demo] framework; surfaced via [PaletteTheme.components]. */
-object DemoComponentStyles {
+/** Resolved style for the [com.alexrdclement.palette.components.demo] framework; surfaced via [PaletteTheme.styles]. */
+object DemoStyles {
 
     val demoList: DemoListStyle
         @Composable get() = DemoListStyle(demoStyle = demo)
 
     val demo: DemoStyle
         @Composable get() {
-            val label = PaletteTheme.styles.text.labelLarge
-            val button = CoreComponentStyles.button.secondary
-            val textField = CoreComponentStyles.textField
+            val label = TextStyles.labelLarge
+            val button = CoreStyles.button.secondary
+            val textField = CoreStyles.textField
             return DemoStyle(
-                dividerStyle = CoreComponentStyles.divider,
+                dividerStyle = CoreStyles.divider,
                 controlStyle = ControlStyle(
                     button = ButtonControlStyle(
                         labelStyle = label,
@@ -36,21 +36,21 @@ object DemoComponentStyles {
                     ),
                     slider = SliderControlStyle(
                         labelStyle = label,
-                        sliderStyle = CoreComponentStyles.slider,
+                        sliderStyle = CoreStyles.slider,
                         spacing = PaletteTheme.spacing.small,
                     ),
                     color = ColorControlStyle(
                         labelStyle = label,
                         buttonStyle = button,
-                        colorPickerStyle = ColorComponentStyles.colorPicker,
-                        surfaceStyle = CoreComponentStyles.surface,
+                        colorPickerStyle = ColorStyles.colorPicker,
+                        surfaceStyle = CoreStyles.surface,
                         spacing = PaletteTheme.spacing.medium,
                         contentSpacing = PaletteTheme.spacing.small,
                         dialogPadding = PaletteTheme.spacing.large,
                     ),
                     toggle = ToggleControlStyle(
                         labelStyle = label,
-                        checkboxStyle = CoreComponentStyles.checkbox,
+                        checkboxStyle = CoreStyles.checkbox,
                         spacing = PaletteTheme.spacing.small,
                     ),
                     char = CharControlStyle(
@@ -68,14 +68,14 @@ object DemoComponentStyles {
                     dropdown = DropdownControlStyle(
                         labelStyle = label,
                         buttonStyle = button,
-                        menuStyle = MenuComponentStyles.dropdownMenu,
+                        menuStyle = MenuStyles.dropdownMenu,
                         labelSpacing = PaletteTheme.spacing.small,
                         rowSpacing = PaletteTheme.spacing.medium,
                     ),
                     expandableHeader = ExpandableHeaderStyle(
-                        headerStyle = PaletteTheme.styles.text.labelSmall,
+                        headerStyle = TextStyles.labelSmall,
                         borderColor = PaletteTheme.colorScheme.outline,
-                        chevronIconStyle = CoreComponentStyles.chevronIcon,
+                        chevronIconStyle = CoreStyles.chevronIcon,
                         spacing = PaletteTheme.spacing.small,
                         labelPadding = PaletteTheme.spacing.xs,
                     ),

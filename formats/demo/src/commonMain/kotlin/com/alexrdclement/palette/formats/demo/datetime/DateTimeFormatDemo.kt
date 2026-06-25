@@ -50,7 +50,7 @@ fun <T : Enum<T>> DateTimeFormatDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()
@@ -75,7 +75,7 @@ fun <T> DemoScope.DateTimeFormatDemo(
         .collectAsStateWithLifecycle("")
     Text(
         text = formatted,
-        style = PaletteTheme.styles.text.headline,
+        style = PaletteTheme.styles.core.text.headline,
         modifier = modifier,
     )
 }

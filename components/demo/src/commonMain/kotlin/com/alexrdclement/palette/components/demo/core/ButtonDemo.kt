@@ -36,7 +36,7 @@ fun ButtonDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()
@@ -59,7 +59,7 @@ fun DemoScope.ButtonDemo(
     }
     Button(
         onClick = {},
-        style = PaletteTheme.components.core.button[state.style],
+        style = PaletteTheme.styles.core.button[state.style],
         enabled = state.enabled,
         modifier = modifier
             .width(state.width)

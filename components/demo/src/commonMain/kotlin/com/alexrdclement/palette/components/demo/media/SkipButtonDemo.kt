@@ -33,7 +33,7 @@ fun SkipButtonDemo(
     )
 
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = controls,
         modifier = modifier.fillMaxSize(),
     ) {
@@ -49,7 +49,7 @@ fun DemoScope.SkipButtonDemo(
     SkipBackButton(
         onClick = {},
         enabled = enabled,
-        style = PaletteTheme.components.core.button.secondary,
+        style = PaletteTheme.styles.core.button.secondary,
         modifier = modifier
             .size(52.dp)
             .align(Alignment.CenterStart),
@@ -57,7 +57,7 @@ fun DemoScope.SkipButtonDemo(
     SkipButton(
         onClick = {},
         enabled = enabled,
-        style = PaletteTheme.components.core.button.secondary,
+        style = PaletteTheme.styles.core.button.secondary,
         modifier = Modifier
             .size(52.dp)
             .align(Alignment.CenterEnd),

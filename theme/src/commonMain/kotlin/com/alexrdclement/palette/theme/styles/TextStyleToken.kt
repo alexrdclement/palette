@@ -1,39 +1,29 @@
 package com.alexrdclement.palette.theme.styles
 
 import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.theme.TypographyToken
+import com.alexrdclement.palette.theme.format.core.TextFormatToken
 
-enum class TextStyleToken {
-    Display,
-    Headline,
-    TitleLarge,
-    TitleMedium,
-    TitleSmall,
-    BodyLarge,
-    BodyMedium,
-    BodySmall,
-    LabelLarge,
-    LabelMedium,
-    LabelSmall,
+enum class TextStyleToken(val default: TextStyleTokenSet) {
+    Display(TextStyleTokenSet(TypographyToken.Display, TextFormatToken.Display)),
+    Headline(TextStyleTokenSet(TypographyToken.Headline, TextFormatToken.Headline)),
+    TitleLarge(TextStyleTokenSet(TypographyToken.TitleLarge, TextFormatToken.Title)),
+    TitleMedium(TextStyleTokenSet(TypographyToken.TitleMedium, TextFormatToken.Title)),
+    TitleSmall(TextStyleTokenSet(TypographyToken.TitleSmall, TextFormatToken.Title)),
+    BodyLarge(TextStyleTokenSet(TypographyToken.BodyLarge, TextFormatToken.Body)),
+    BodyMedium(TextStyleTokenSet(TypographyToken.BodyMedium, TextFormatToken.Body)),
+    BodySmall(TextStyleTokenSet(TypographyToken.BodySmall, TextFormatToken.Body)),
+    LabelLarge(TextStyleTokenSet(TypographyToken.LabelLarge, TextFormatToken.Label)),
+    LabelMedium(TextStyleTokenSet(TypographyToken.LabelMedium, TextFormatToken.Label)),
+    LabelSmall(TextStyleTokenSet(TypographyToken.LabelSmall, TextFormatToken.Label)),
 }
 
+/** The current token set for this token — a theme override if present, else the [default]. */
 @Composable
-fun TextStyleToken.toStyle(): TextStyleTokenSet {
-    return toStyle(PaletteTheme.styles.textStyleScheme)
-}
+fun TextStyleToken.tokenSet(): TextStyleTokenSet =
+    LocalStyleOverrides.current.text[this] ?: default
 
-fun TextStyleToken.toStyle(textStyleScheme: TextStyleScheme): TextStyleTokenSet {
-    return when (this) {
-        TextStyleToken.Display -> textStyleScheme.display
-        TextStyleToken.Headline -> textStyleScheme.headline
-        TextStyleToken.TitleLarge -> textStyleScheme.titleLarge
-        TextStyleToken.TitleMedium -> textStyleScheme.titleMedium
-        TextStyleToken.TitleSmall -> textStyleScheme.titleSmall
-        TextStyleToken.BodyLarge -> textStyleScheme.bodyLarge
-        TextStyleToken.BodyMedium -> textStyleScheme.bodyMedium
-        TextStyleToken.BodySmall -> textStyleScheme.bodySmall
-        TextStyleToken.LabelLarge -> textStyleScheme.labelLarge
-        TextStyleToken.LabelMedium -> textStyleScheme.labelMedium
-        TextStyleToken.LabelSmall -> textStyleScheme.labelSmall
-    }
-}
+/** Resolves this token to a component [TextStyle] using the current theme. */
+@Composable
+fun TextStyleToken.resolve(): TextStyle = tokenSet().toTextStyle()

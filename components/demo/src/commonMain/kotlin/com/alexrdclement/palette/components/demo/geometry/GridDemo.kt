@@ -53,7 +53,7 @@ fun GridDemo(
     control: GridDemoControl = rememberGridDemoControl(state),
 ) {
     Demo(
-        style = PaletteTheme.components.demo,
+        style = PaletteTheme.styles.demo,
         controls = control.controls,
         modifier = modifier.fillMaxSize(),
     ) {
@@ -859,7 +859,7 @@ class GridVertexControl(
 @Composable
 fun GridDemoPreview() {
     PaletteTheme {
-        Surface(style = PaletteTheme.components.core.surface) {
+        Surface(style = PaletteTheme.styles.core.surface) {
             GridDemo()
         }
     }
