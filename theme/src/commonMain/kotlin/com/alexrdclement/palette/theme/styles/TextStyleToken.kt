@@ -19,10 +19,10 @@ enum class TextStyleToken(val default: TextStyleTokenSet) {
     LabelSmall(TextStyleTokenSet(TypographyToken.LabelSmall, TextFormatToken.Label)),
 }
 
-/** The current token set for this token — a theme override if present, else the [default]. */
+/** The current token set for this token — the theme's current [Styles]. */
 @Composable
 fun TextStyleToken.tokenSet(): TextStyleTokenSet =
-    LocalStyleOverrides.current.text[this] ?: default
+    LocalStyles.current.text.getValue(this)
 
 /** Resolves this token to a component [TextStyle] using the current theme. */
 @Composable

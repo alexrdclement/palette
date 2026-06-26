@@ -97,9 +97,9 @@ class TextStyleScreenState(
     val themeState: ThemeState,
     val demoTextFieldState: TextFieldState = TextFieldState("Sphinx of black quartz, judge my vow"),
 ) {
-    /** The current token set for [token] — a theme override if present, else the default. */
+    /** The current token set for [token] — the theme's current styles. */
     fun tokenSet(token: TextStyleToken): TextStyleTokenSet =
-        themeState.styleOverrides.text[token] ?: token.default
+        themeState.styles.text.getValue(token)
 
     val text by derivedStateOf {
         demoTextFieldState.text.toString()
@@ -163,9 +163,9 @@ private fun makeControlForToken(
     themeController: ThemeController,
 ): Control {
     fun setTokenSet(value: TextStyleTokenSet) {
-        val overrides = state.themeState.styleOverrides
-        themeController.setStyleOverrides(
-            overrides.copy(text = overrides.text + (token to value))
+        val styles = state.themeState.styles
+        themeController.setStyles(
+            styles.copy(text = styles.text + (token to value))
         )
     }
 

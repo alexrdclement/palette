@@ -89,9 +89,9 @@ fun rememberBorderStyleScreenState(
 class BorderStyleScreenState(
     val themeState: ThemeState,
 ) {
-    /** The current token set for [token] — a theme override if present, else the default. */
+    /** The current token set for [token] — the theme's current styles. */
     fun tokenSet(token: BorderStyleToken): BorderStyle =
-        themeState.styleOverrides.border[token] ?: token.default
+        themeState.styles.border.getValue(token)
 }
 
 fun BorderStyleScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
@@ -139,9 +139,9 @@ private fun makeControlForToken(
     themeController: ThemeController,
 ): Control {
     fun setTokenSet(value: BorderStyle) {
-        val overrides = state.themeState.styleOverrides
-        themeController.setStyleOverrides(
-            overrides.copy(border = overrides.border + (token to value))
+        val styles = state.themeState.styles
+        themeController.setStyles(
+            styles.copy(border = styles.border + (token to value))
         )
     }
 

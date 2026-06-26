@@ -6,7 +6,7 @@ import com.alexrdclement.palette.theme.ColorScheme
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.ShapeScheme
 import com.alexrdclement.palette.theme.Spacing
-import com.alexrdclement.palette.theme.styles.StyleOverrides
+import com.alexrdclement.palette.theme.styles.Styles
 import com.alexrdclement.palette.theme.Typography
 
 class ThemeController internal constructor(
@@ -48,8 +48,8 @@ class ThemeController internal constructor(
         return true
     }
 
-    fun setStyleOverrides(styleOverrides: StyleOverrides): Boolean {
-        state.styleOverrides = styleOverrides
+    fun setStyles(styles: Styles): Boolean {
+        state.styles = styles
         return true
     }
 

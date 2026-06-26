@@ -103,9 +103,9 @@ class ButtonStyleScreenState(
     val themeState: ThemeState,
     textDemoStateInitial: TextDemoState,
 ) {
-    /** The current token set for [token] — a theme override if present, else the default. */
+    /** The current token set for [token] — the theme's current styles. */
     fun tokenSet(token: ButtonStyleToken): ButtonStyleTokenSet =
-        themeState.styleOverrides.button[token] ?: token.default
+        themeState.styles.button.getValue(token)
 
     var textDemoState by mutableStateOf(textDemoStateInitial)
         internal set
@@ -169,9 +169,9 @@ private fun makeControlForToken(
     themeController: ThemeController,
 ): Control {
     fun setTokenSet(value: ButtonStyleTokenSet) {
-        val overrides = state.themeState.styleOverrides
-        themeController.setStyleOverrides(
-            overrides.copy(button = overrides.button + (token to value))
+        val styles = state.themeState.styles
+        themeController.setStyles(
+            styles.copy(button = styles.button + (token to value))
         )
     }
 

@@ -34,10 +34,10 @@ enum class ButtonStyleToken(val default: ButtonStyleTokenSet) {
     ),
 }
 
-/** The current token set for this token — a theme override if present, else the [default]. */
+/** The current token set for this token — the theme's current [Styles]. */
 @Composable
 fun ButtonStyleToken.tokenSet(): ButtonStyleTokenSet =
-    LocalStyleOverrides.current.button[this] ?: default
+    LocalStyles.current.button.getValue(this)
 
 /** Resolves this token to a component [ButtonStyle] using the current theme. */
 @Composable

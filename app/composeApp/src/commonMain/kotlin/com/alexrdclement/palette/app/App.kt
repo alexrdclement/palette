@@ -22,7 +22,7 @@ fun App(
         shapeScheme = themeController.shapeScheme,
         indication = themeController.indication,
         spacing = themeController.spacing,
-        styleOverrides = themeController.styleOverrides,
+        styles = themeController.styles,
         formats = themeController.formats,
     ) {
         Surface(style = PaletteTheme.styles.core.surface) {

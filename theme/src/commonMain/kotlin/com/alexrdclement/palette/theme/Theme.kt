@@ -18,8 +18,8 @@ import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.format.core.PaletteTextFormatScheme
 import com.alexrdclement.palette.theme.format.datetime.PaletteDateTimeFormats
 import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
-import com.alexrdclement.palette.theme.styles.LocalStyleOverrides
-import com.alexrdclement.palette.theme.styles.StyleOverrides
+import com.alexrdclement.palette.theme.styles.LocalStyles
+import com.alexrdclement.palette.theme.styles.Styles
 
 val LocalPaletteColorScheme = staticCompositionLocalOf {
     ColorScheme(
@@ -98,7 +98,7 @@ fun PaletteTheme(
     shapeScheme: ShapeScheme = PaletteShapeScheme,
     indication: Indication = PaletteIndication,
     spacing: Spacing = PaletteSpacing,
-    styleOverrides: StyleOverrides = StyleOverrides(),
+    styles: Styles = Styles(),
     formats: Formats = PaletteFormats,
     content: @Composable () -> Unit
 ) {
@@ -109,7 +109,7 @@ fun PaletteTheme(
         LocalPaletteShapes provides shapeScheme,
         LocalPaletteIndication provides indication,
         LocalPaletteSpacing provides spacing,
-        LocalStyleOverrides provides styleOverrides,
+        LocalStyles provides styles,
         LocalPaletteFormats provides formats,
         content = content,
     )
