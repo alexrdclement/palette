@@ -11,7 +11,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.core.BorderStyle
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
@@ -21,7 +20,7 @@ import com.alexrdclement.palette.components.core.copy
 data class DialogContentStyle(
     val titleStyle: TextStyle = TextStyle(),
     val messageStyle: TextStyle = TextStyle(),
-    val borderStyle: BorderStyle? = null,
+    val surfaceStyle: SurfaceStyle = SurfaceStyle(),
     val spacing: Dp = 16.dp,
     val padding: Dp = 24.dp,
     val titleBottomPadding: Dp = 16.dp,
@@ -117,7 +116,7 @@ fun DialogContent(
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Surface(
-        style = SurfaceStyle(borderStyle = style.borderStyle),
+        style = style.surfaceStyle,
         modifier = modifier,
     ) {
         Column(

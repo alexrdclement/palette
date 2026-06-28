@@ -58,7 +58,9 @@ object LayoutStyles {
         @Composable get() = DialogContentStyle(
             titleStyle = TextStyles.titleLarge,
             messageStyle = TextStyles.bodyLarge,
-            borderStyle = BorderStyleToken.Surface.toComponentStyle(),
+            surfaceStyle = CoreStyles.surface.copy(
+                borderStyle = BorderStyleToken.Surface.toComponentStyle(),
+            ),
             spacing = PaletteTheme.spacing.medium,
             padding = PaletteTheme.spacing.large,
             titleBottomPadding = PaletteTheme.spacing.medium,
