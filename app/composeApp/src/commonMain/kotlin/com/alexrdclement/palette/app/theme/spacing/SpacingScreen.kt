@@ -13,9 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.Spacing
@@ -36,7 +36,6 @@ fun SpacingScreen(
     val control = rememberSpacingScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Spacing",
@@ -47,7 +46,6 @@ fun SpacingScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.styles.demo.list,
             items = state.spacingByToken.keys.toList(),
             controls = control.controls,
             modifier = Modifier

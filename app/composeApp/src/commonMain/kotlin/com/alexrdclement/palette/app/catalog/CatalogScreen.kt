@@ -9,8 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.main.MainCatalogItem
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.layout.Scaffold
-import com.alexrdclement.palette.components.layout.TopBar
+import com.alexrdclement.palette.theme.components.Scaffold
+import com.alexrdclement.palette.theme.components.TopBar
 import com.alexrdclement.palette.components.layout.catalog.Catalog
 import com.alexrdclement.palette.components.layout.catalog.CatalogItem
 import com.alexrdclement.palette.components.navigation.BackNavigationButton
@@ -30,10 +30,8 @@ fun <T : CatalogItem> CatalogScreen(
     ReportDrawn()
 
     Scaffold(
-        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             TopBar(
-                style = PaletteTheme.styles.layout.topBar,
                 title = title?.let {
                     { Text(title, style = PaletteTheme.styles.core.text.titleMedium) }
                 },

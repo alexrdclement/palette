@@ -20,7 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
@@ -39,7 +39,6 @@ fun NumberFormatDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
-        style = PaletteTheme.styles.demo.style,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()

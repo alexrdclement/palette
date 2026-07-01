@@ -9,7 +9,7 @@ import com.alexrdclement.palette.components.demo.core.ButtonDemo
 import com.alexrdclement.palette.components.demo.core.SliderDemo
 import com.alexrdclement.palette.components.demo.core.TextDemo
 import com.alexrdclement.palette.components.demo.core.TextFieldDemo
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.Scaffold
 import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
@@ -19,7 +19,6 @@ fun CoreComponentScreen(
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
-        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = component.title,

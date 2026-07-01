@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
@@ -39,7 +39,6 @@ fun CircleDemo(
     control: CircleDemoControl = rememberCircleDemoControl(state),
 ) {
     Demo(
-        style = PaletteTheme.styles.demo.style,
         controls = control.controls,
         modifier = modifier.fillMaxSize(),
     ) {

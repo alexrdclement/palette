@@ -13,12 +13,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.components.layout.BoxWithLabel
+import com.alexrdclement.palette.theme.components.BoxWithLabel
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
@@ -41,7 +41,6 @@ fun TextStyleScreen(
     val control = rememberTextStyleScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Text",
@@ -52,7 +51,6 @@ fun TextStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.styles.demo.list,
             items = TextStyleToken.entries,
             controls = control.controls,
             modifier = Modifier
@@ -61,7 +59,6 @@ fun TextStyleScreen(
         ) { token ->
             val textStyle = state.tokenSet(token).toTextStyle()
             BoxWithLabel(
-                style = PaletteTheme.styles.layout.boxWithLabel,
                 label = token.name,
                 modifier = Modifier
                     .fillMaxWidth()

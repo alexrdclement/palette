@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.components.auth.AuthButton
 import com.alexrdclement.palette.components.auth.AuthState
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -29,7 +29,6 @@ fun AuthButtonDemo(
     modifier: Modifier = Modifier,
 ) {
     Demo(
-        style = PaletteTheme.styles.demo.style,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()

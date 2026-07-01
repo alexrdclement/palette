@@ -13,11 +13,11 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemo
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemoState
 import com.alexrdclement.palette.formats.demo.core.rememberTextFormatDemoControl
-import com.alexrdclement.palette.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.layout.BoxWithLabel
+import com.alexrdclement.palette.theme.components.BoxWithLabel
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.format.Formats
@@ -36,7 +36,6 @@ fun TextFormatScreen(
     val control = rememberTextFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Text",
@@ -47,7 +46,6 @@ fun TextFormatScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.styles.demo.list,
             items = state.textFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,
@@ -56,7 +54,6 @@ fun TextFormatScreen(
                 .padding(paddingValues)
         ) { (token, _) ->
             BoxWithLabel(
-                style = PaletteTheme.styles.layout.boxWithLabel,
                 label = token.name,
             ) {
                 TextFormatDemo(

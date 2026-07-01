@@ -13,7 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.DpSize
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.media.MediaControlBar
@@ -49,7 +49,6 @@ fun MediaControlBarDemo(
     )
 
     Demo(
-        style = PaletteTheme.styles.demo.style,
         controls = controls,
         modifier = modifier
             .fillMaxSize()

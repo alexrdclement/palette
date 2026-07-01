@@ -12,10 +12,10 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.formats.demo.datetime.DateTimeFormatDemo
 import com.alexrdclement.palette.formats.demo.datetime.DateTimeFormatDemoState
 import com.alexrdclement.palette.formats.demo.datetime.rememberDateTimeFormatDemoControl
-import com.alexrdclement.palette.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.layout.BoxWithLabel
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.BoxWithLabel
+import com.alexrdclement.palette.theme.components.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.datetime.DateTimeFormatValue
 import com.alexrdclement.palette.formats.datetime.toFormat
@@ -42,7 +42,6 @@ fun DateTimeFormatSchemeScreen(
     )
 
     Scaffold(
-        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "DateTime",
@@ -53,7 +52,6 @@ fun DateTimeFormatSchemeScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.styles.demo.list,
             items = state.dateFormatsByToken.entries.toList(),
             controls = control.controls,
             horizontalAlignment = Alignment.Start,
@@ -62,7 +60,6 @@ fun DateTimeFormatSchemeScreen(
                 .padding(paddingValues)
         ) { (token, format) ->
             BoxWithLabel(
-                style = PaletteTheme.styles.layout.boxWithLabel,
                 label = token.name,
                 modifier = Modifier
                     .padding(horizontal = PaletteTheme.spacing.medium)

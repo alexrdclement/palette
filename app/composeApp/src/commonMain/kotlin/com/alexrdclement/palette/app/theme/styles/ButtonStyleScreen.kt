@@ -19,10 +19,10 @@ import com.alexrdclement.palette.components.demo.core.TextDemoControl
 import com.alexrdclement.palette.components.demo.core.TextDemoState
 import com.alexrdclement.palette.components.demo.core.TextDemoStateSaver
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
@@ -45,7 +45,6 @@ fun ButtonStyleScreen(
     val control = rememberButtonStyleScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Button style",
@@ -56,7 +55,6 @@ fun ButtonStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
-            style = PaletteTheme.styles.demo.list,
             items = ButtonStyleToken.entries,
             controls = control.controls,
             modifier = Modifier

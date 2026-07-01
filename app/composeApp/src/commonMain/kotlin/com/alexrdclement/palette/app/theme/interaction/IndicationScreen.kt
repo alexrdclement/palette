@@ -16,10 +16,10 @@ import com.alexrdclement.palette.components.demo.core.ButtonDemo
 import com.alexrdclement.palette.components.demo.core.ButtonDemoControl
 import com.alexrdclement.palette.components.demo.core.ButtonDemoState
 import com.alexrdclement.palette.components.demo.core.ButtonDemoStateSaver
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
@@ -40,7 +40,6 @@ fun IndicationScreen(
     val control = rememberIndicationScreenControl(state = state, themeController = themeController)
 
     Scaffold(
-        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = "Indication",
@@ -51,7 +50,6 @@ fun IndicationScreen(
         },
     ) { paddingValues ->
         Demo(
-            style = PaletteTheme.styles.demo.style,
             controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()

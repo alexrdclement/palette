@@ -15,7 +15,7 @@ import com.alexrdclement.palette.components.demo.ComponentDemo
 import com.alexrdclement.palette.components.demo.ComponentDemoControl
 import com.alexrdclement.palette.components.demo.ComponentDemoState
 import com.alexrdclement.palette.components.demo.ComponentDemoType
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
@@ -31,7 +31,6 @@ fun ModifierDemo(
     control: ModifierDemoControl = rememberModifierDemoControl(state = state, modifierControls = controls),
 ) {
     Demo(
-        style = PaletteTheme.styles.demo.style,
         controls = control.controls,
         modifier = modifier
             .fillMaxSize()

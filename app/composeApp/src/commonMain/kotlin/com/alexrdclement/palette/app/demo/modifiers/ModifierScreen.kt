@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.preview.PalettePreview
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.Scaffold
 import com.alexrdclement.palette.modifiers.demo.ColorInvertDemo
 import com.alexrdclement.palette.modifiers.demo.ColorSplitDemo
 import com.alexrdclement.palette.modifiers.demo.FadeDemo
@@ -23,7 +23,6 @@ fun ModifierScreen(
     onThemeClick: () -> Unit,
 ) {
     Scaffold(
-        style = PaletteTheme.styles.layout.scaffold,
         topBar = {
             DemoTopBar(
                 title = modifierType.name,

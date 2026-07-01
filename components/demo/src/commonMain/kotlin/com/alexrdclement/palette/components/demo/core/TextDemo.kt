@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
@@ -41,7 +41,6 @@ fun TextDemo(
     control: TextDemoControl = rememberTextDemoControl(state),
 ) {
     Demo(
-        style = PaletteTheme.styles.demo.style,
         controls = control.controls,
         modifier = modifier.fillMaxSize()
     ) {
