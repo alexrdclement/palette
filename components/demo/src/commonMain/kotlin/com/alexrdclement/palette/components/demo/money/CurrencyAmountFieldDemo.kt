@@ -17,8 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.components.Demo
-import com.alexrdclement.palette.theme.components.BoxWithLabel
+import com.alexrdclement.palette.theme.components.demo.Demo
+import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.money.CurrencyAmountField
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.formats.money.format

@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.components
+package com.alexrdclement.palette.theme.components.layout
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable

@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.preview.PalettePreview
-import com.alexrdclement.palette.theme.components.Scaffold
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.modifiers.demo.ColorInvertDemo
 import com.alexrdclement.palette.modifiers.demo.ColorSplitDemo
 import com.alexrdclement.palette.modifiers.demo.FadeDemo

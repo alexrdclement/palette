@@ -9,11 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.main.MainCatalogItem
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.components.Scaffold
-import com.alexrdclement.palette.theme.components.TopBar
+import com.alexrdclement.palette.theme.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.layout.TopBar
 import com.alexrdclement.palette.components.layout.catalog.Catalog
 import com.alexrdclement.palette.components.layout.catalog.CatalogItem
-import com.alexrdclement.palette.components.navigation.BackNavigationButton
+import com.alexrdclement.palette.theme.components.navigation.BackNavigationButton
 import com.alexrdclement.palette.components.util.horizontalPaddingValues
 import com.alexrdclement.palette.components.util.plus
 import com.alexrdclement.palette.theme.PaletteTheme
@@ -36,7 +36,7 @@ fun <T : CatalogItem> CatalogScreen(
                     { Text(title, style = PaletteTheme.styles.core.text.titleMedium) }
                 },
                 navButton = onNavigateUp?.let {
-                    { BackNavigationButton(onNavigateUp, style = PaletteTheme.styles.navigation.backNavigationButton) }
+                    { BackNavigationButton(onNavigateUp) }
                 },
                 actions = actions,
             )

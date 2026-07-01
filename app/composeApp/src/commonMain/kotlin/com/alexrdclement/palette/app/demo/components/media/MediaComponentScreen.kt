@@ -10,7 +10,7 @@ import com.alexrdclement.palette.components.demo.media.MediaControlSheetDemo
 import com.alexrdclement.palette.components.demo.media.MediaItemArtworkDemo
 import com.alexrdclement.palette.components.demo.media.PlayPauseButtonDemo
 import com.alexrdclement.palette.components.demo.media.SkipButtonDemo
-import com.alexrdclement.palette.theme.components.Scaffold
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable

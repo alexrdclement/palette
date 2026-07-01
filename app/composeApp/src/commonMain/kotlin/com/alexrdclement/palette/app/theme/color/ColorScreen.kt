@@ -24,9 +24,9 @@ import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonDefaults
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.components.DemoList
+import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.theme.components.Scaffold
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteDarkColorScheme

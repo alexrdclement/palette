@@ -9,7 +9,7 @@ import com.alexrdclement.palette.components.demo.core.ButtonDemo
 import com.alexrdclement.palette.components.demo.core.SliderDemo
 import com.alexrdclement.palette.components.demo.core.TextDemo
 import com.alexrdclement.palette.components.demo.core.TextFieldDemo
-import com.alexrdclement.palette.theme.components.Scaffold
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable

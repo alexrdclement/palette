@@ -8,7 +8,7 @@ import com.alexrdclement.palette.app.demo.components.geometry.navigation.Geometr
 import com.alexrdclement.palette.components.demo.geometry.CurveStitchDemo
 import com.alexrdclement.palette.components.demo.geometry.GridDemo
 import com.alexrdclement.palette.components.demo.geometry.SphereDemo
-import com.alexrdclement.palette.theme.components.Scaffold
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable

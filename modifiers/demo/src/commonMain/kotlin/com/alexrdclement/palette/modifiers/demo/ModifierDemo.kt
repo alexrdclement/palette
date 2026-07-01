@@ -15,7 +15,7 @@ import com.alexrdclement.palette.components.demo.ComponentDemo
 import com.alexrdclement.palette.components.demo.ComponentDemoControl
 import com.alexrdclement.palette.components.demo.ComponentDemoState
 import com.alexrdclement.palette.components.demo.ComponentDemoType
-import com.alexrdclement.palette.theme.components.Demo
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme

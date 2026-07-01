@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.theme.ThemeButton
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.components.TopBar
-import com.alexrdclement.palette.components.navigation.BackNavigationButton
+import com.alexrdclement.palette.theme.components.layout.TopBar
+import com.alexrdclement.palette.theme.components.navigation.BackNavigationButton
 import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
@@ -15,7 +15,7 @@ fun DemoTopBar(
     onNavigateUp: () -> Unit,
     onThemeClick: () -> Unit,
     navButton: @Composable () -> Unit = {
-        BackNavigationButton(onNavigateUp, style = PaletteTheme.styles.navigation.backNavigationButton)
+        BackNavigationButton(onNavigateUp)
     },
     actions: @Composable () -> Unit = {
         ThemeButton(onClick = onThemeClick)

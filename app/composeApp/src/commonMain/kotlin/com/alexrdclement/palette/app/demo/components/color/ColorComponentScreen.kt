@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.components.color.navigation.ColorComponent
 import com.alexrdclement.palette.components.demo.color.ColorPickerDemo
-import com.alexrdclement.palette.theme.components.Scaffold
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable

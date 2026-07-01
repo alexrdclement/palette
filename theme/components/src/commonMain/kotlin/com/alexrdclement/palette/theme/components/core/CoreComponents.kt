@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.components
+package com.alexrdclement.palette.theme.components.core
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues

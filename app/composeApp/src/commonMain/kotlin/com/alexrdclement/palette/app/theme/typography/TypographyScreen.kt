@@ -16,11 +16,11 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.demo.core.ComposeTextStyleDemoControl
 import com.alexrdclement.palette.components.demo.core.rememberComposeTextStyleDemoState
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.components.DemoList
+import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.theme.components.BoxWithLabel
+import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components.Scaffold
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save

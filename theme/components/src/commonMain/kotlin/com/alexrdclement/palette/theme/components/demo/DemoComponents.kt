@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.components
+package com.alexrdclement.palette.theme.components.demo
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
