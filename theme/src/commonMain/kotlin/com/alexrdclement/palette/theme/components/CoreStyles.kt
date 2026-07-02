@@ -13,11 +13,9 @@ import com.alexrdclement.palette.components.core.DividerStyle
 import com.alexrdclement.palette.components.core.ProgressIndicatorStyle
 import com.alexrdclement.palette.components.core.SliderColors
 import com.alexrdclement.palette.components.core.SliderStyle
-import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.contentColorFor
 import com.alexrdclement.palette.theme.toColor
 
 /** Resolved styles for [com.alexrdclement.palette.components.core]; surfaced via [PaletteTheme.styles]. */
@@ -32,13 +30,8 @@ object CoreStyles {
     /** Border token sets per token (consumed by `Modifier.border`). */
     val border get() = BorderStyles
 
-    val surface: SurfaceStyle
-        @Composable get() = SurfaceStyle(
-            shape = PaletteTheme.shapeScheme.surface,
-            color = PaletteTheme.colorScheme.surface,
-            contentColor = PaletteTheme.colorScheme.contentColorFor(PaletteTheme.colorScheme.surface),
-            indication = PaletteTheme.indication,
-        )
+    /** Resolved surface styles per token, e.g. `surface.default` / `surface.container`. */
+    val surface get() = SurfaceStyles
 
     val divider: DividerStyle
         @Composable get() = DividerStyle(

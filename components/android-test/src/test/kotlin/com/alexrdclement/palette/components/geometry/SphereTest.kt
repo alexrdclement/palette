@@ -21,7 +21,7 @@ class SphereTest {
     fun gridSphere() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface) {
+                Surface(style = PaletteTheme.styles.core.surface.default) {
                     GridSphere(
                         numLatitudeLines = 20,
                         numLongitudeLines = 10,

@@ -4,10 +4,13 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.BorderStyle as ComponentBorderStyle
 import com.alexrdclement.palette.components.core.ButtonStyle as ComponentButtonStyle
+import com.alexrdclement.palette.components.core.SurfaceStyle as ComponentSurfaceStyle
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.contentColorFor
 import com.alexrdclement.palette.theme.modifiers.BorderStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleTokenSet
+import com.alexrdclement.palette.theme.styles.SurfaceStyleTokenSet
 import com.alexrdclement.palette.theme.styles.tokenSet
 import com.alexrdclement.palette.theme.toColor
 import com.alexrdclement.palette.theme.toShape
@@ -46,5 +49,18 @@ fun ButtonStyleTokenSet.toComponentStyle(): ComponentButtonStyle = ComponentButt
         horizontal = PaletteTheme.spacing.large,
         vertical = PaletteTheme.spacing.medium,
     ),
+    indication = PaletteTheme.indication,
+)
+
+/**
+ * Resolves a theme [SurfaceStyleTokenSet] into the unopinionated component [ComponentSurfaceStyle],
+ * reading the current [PaletteTheme] for colors, shapes, and borders.
+ */
+@Composable
+fun SurfaceStyleTokenSet.toComponentStyle(): ComponentSurfaceStyle = ComponentSurfaceStyle(
+    shape = shape.toShape(),
+    color = color.toColor(),
+    contentColor = PaletteTheme.colorScheme.contentColorFor(color.toColor()),
+    borderStyle = borderStyle?.toComponentStyle(),
     indication = PaletteTheme.indication,
 )

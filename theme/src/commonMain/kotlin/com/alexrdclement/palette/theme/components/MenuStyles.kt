@@ -13,9 +13,7 @@ object MenuStyles {
         @Composable get() {
             val contentColor = PaletteTheme.colorScheme.contentColorFor(PaletteTheme.colorScheme.surface)
             return DropdownMenuStyle(
-                surfaceStyle = CoreStyles.surface.copy(
-                    borderStyle = BorderStyles.surface.toComponentStyle(),
-                ),
+                surfaceStyle = CoreStyles.surface.container,
                 itemColors = MenuDefaults.itemColors(
                     textColor = contentColor,
                     disabledTextColor = contentColor.copy(

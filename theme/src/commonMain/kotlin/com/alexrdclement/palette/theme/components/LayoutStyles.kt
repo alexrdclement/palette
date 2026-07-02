@@ -10,14 +10,13 @@ import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
 /** Resolved styles for [com.alexrdclement.palette.components.layout]; surfaced via [PaletteTheme.styles]. */
 object LayoutStyles {
 
     val scaffold: ScaffoldStyle
         @Composable get() = ScaffoldStyle(
-            surfaceStyle = CoreStyles.surface,
+            surfaceStyle = CoreStyles.surface.default,
         )
 
     val floatingAction: FloatingActionStyle
@@ -58,9 +57,7 @@ object LayoutStyles {
         @Composable get() = DialogContentStyle(
             titleStyle = TextStyles.titleLarge,
             messageStyle = TextStyles.bodyLarge,
-            surfaceStyle = CoreStyles.surface.copy(
-                borderStyle = BorderStyleToken.Surface.toComponentStyle(),
-            ),
+            surfaceStyle = CoreStyles.surface.container,
             spacing = PaletteTheme.spacing.medium,
             padding = PaletteTheme.spacing.large,
             titleBottomPadding = PaletteTheme.spacing.medium,

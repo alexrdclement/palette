@@ -16,7 +16,6 @@ import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.theme.components.core.Surface
 import com.alexrdclement.palette.components.color.ColorPicker
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
-import com.alexrdclement.palette.theme.components.toComponentStyle
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.toColor
@@ -31,9 +30,7 @@ fun ColorPickerDialog(
         onDismissRequest = onDismissRequest,
     ) {
         Surface(
-            style = PaletteTheme.styles.core.surface.copy(
-                borderStyle = PaletteTheme.styles.core.border.surface.toComponentStyle(),
-            ),
+            style = PaletteTheme.styles.core.surface.container,
         ) {
             ColorPickerDialogContent(
                 colorToken = colorToken,

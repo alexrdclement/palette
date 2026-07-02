@@ -43,7 +43,7 @@ object DemoStyles {
                         labelStyle = label,
                         buttonStyle = button,
                         colorPickerStyle = ColorStyles.colorPicker,
-                        surfaceStyle = CoreStyles.surface,
+                        surfaceStyle = CoreStyles.surface.default,
                         spacing = PaletteTheme.spacing.medium,
                         contentSpacing = PaletteTheme.spacing.small,
                         dialogPadding = PaletteTheme.spacing.large,

@@ -18,6 +18,8 @@ data class Styles(
         TextStyleToken.entries.associateWith { it.default },
     val button: Map<ButtonStyleToken, ButtonStyleTokenSet> =
         ButtonStyleToken.entries.associateWith { it.default },
+    val surface: Map<SurfaceStyleToken, SurfaceStyleTokenSet> =
+        SurfaceStyleToken.entries.associateWith { it.default },
     val border: Map<BorderStyleToken, BorderStyle> =
         BorderStyleToken.entries.associateWith { it.default },
 )
