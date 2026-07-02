@@ -317,10 +317,7 @@ PLcom/alexrdclement/palette/components/core/SurfaceKt$Surface$1$2$1;->invoke(Lan
 Lcom/alexrdclement/palette/components/core/SurfaceStyle;
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;-><clinit>()V
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;-><init>(Lcom/alexrdclement/palette/components/core/Shape;JJLcom/alexrdclement/palette/components/core/BorderStyle;Landroidx/compose/foundation/Indication;)V
-HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;-><init>(Lcom/alexrdclement/palette/components/core/Shape;JJLcom/alexrdclement/palette/components/core/BorderStyle;Landroidx/compose/foundation/Indication;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;-><init>(Lcom/alexrdclement/palette/components/core/Shape;JJLcom/alexrdclement/palette/components/core/BorderStyle;Landroidx/compose/foundation/Indication;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-PLcom/alexrdclement/palette/components/core/SurfaceStyle;->copy-1wkBAMs$default(Lcom/alexrdclement/palette/components/core/SurfaceStyle;Lcom/alexrdclement/palette/components/core/Shape;JJLcom/alexrdclement/palette/components/core/BorderStyle;Landroidx/compose/foundation/Indication;ILjava/lang/Object;)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
-PLcom/alexrdclement/palette/components/core/SurfaceStyle;->copy-1wkBAMs(Lcom/alexrdclement/palette/components/core/Shape;JJLcom/alexrdclement/palette/components/core/BorderStyle;Landroidx/compose/foundation/Indication;)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
 PLcom/alexrdclement/palette/components/core/SurfaceStyle;->equals(Ljava/lang/Object;)Z
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;->getBorderStyle()Lcom/alexrdclement/palette/components/core/BorderStyle;
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;->getColor-0d7_KjU()J
@@ -1177,7 +1174,6 @@ PLcom/alexrdclement/palette/theme/components/CoreStyles;->getCheckbox(Landroidx/
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getChevronIcon(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ChevronIconStyle;
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getDivider(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/DividerStyle;
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getSlider(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SliderStyle;
-HSPLcom/alexrdclement/palette/theme/components/CoreStyles;->getSurface(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getTextField(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextFieldStyle;
 HPLcom/alexrdclement/palette/theme/components/DemoStyles;->getStyle(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/demo/DemoStyle;
 HSPLcom/alexrdclement/palette/theme/components/LayoutStyles;->getCatalog(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/catalog/CatalogStyle;
@@ -1188,6 +1184,9 @@ PLcom/alexrdclement/palette/theme/components/NavigationStyles;->getBackNavigatio
 HSPLcom/alexrdclement/palette/theme/components/StyleResolversKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/modifiers/BorderStyle;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/BorderStyle;
 HSPLcom/alexrdclement/palette/theme/components/StyleResolversKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/modifiers/BorderStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/BorderStyle;
 HSPLcom/alexrdclement/palette/theme/components/StyleResolversKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ButtonStyle;
+HSPLcom/alexrdclement/palette/theme/components/StyleResolversKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/styles/SurfaceStyleTokenSet;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
+PLcom/alexrdclement/palette/theme/components/SurfaceStyles;->getContainer(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
+HSPLcom/alexrdclement/palette/theme/components/SurfaceStyles;->getDefault(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
 HSPLcom/alexrdclement/palette/theme/components/TextStyles;->getBodyMedium(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextStyle;
 PLcom/alexrdclement/palette/theme/components/TextStyles;->getLabelLarge(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextStyle;
 HSPLcom/alexrdclement/palette/theme/components/TextStyles;->getLabelSmall(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextStyle;
@@ -1199,6 +1198,7 @@ HSPLcom/alexrdclement/palette/theme/components/layout/LayoutComponentsKt;->Scaff
 HSPLcom/alexrdclement/palette/theme/components/layout/LayoutComponentsKt;->TopBar(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/layout/TopBarStyle;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/theme/components/navigation/NavigationComponentsKt;->BackNavigationButton(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;Landroidx/compose/runtime/Composer;II)V
 HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenKt;->resolve(Lcom/alexrdclement/palette/theme/styles/ButtonStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ButtonStyle;
+HSPLcom/alexrdclement/palette/theme/styles/SurfaceStyleTokenKt;->resolve(Lcom/alexrdclement/palette/theme/styles/SurfaceStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
 HSPLcom/alexrdclement/palette/theme/styles/TextStyleTokenKt;->resolve(Lcom/alexrdclement/palette/theme/styles/TextStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextStyle;
 HSPLcom/alexrdclement/palette/theme/styles/TextStyleTokenSetKt;->toTextStyle(Lcom/alexrdclement/palette/theme/styles/TextStyleTokenSet;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextStyle;
 HSPLcom/alexrdclement/palette/theme/styles/TextStyleTokenSetKt;->toTextStyle(Lcom/alexrdclement/palette/theme/styles/TextStyleTokenSet;Lcom/alexrdclement/palette/theme/Typography;Lcom/alexrdclement/palette/theme/format/core/TextFormatScheme;)Lcom/alexrdclement/palette/components/core/TextStyle;

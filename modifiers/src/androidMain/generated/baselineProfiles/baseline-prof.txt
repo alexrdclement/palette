@@ -67,7 +67,7 @@ PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->createRenderEffect(
 HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->isActive()Z
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->onRemeasured(II)V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setColorMode(Lcom/alexrdclement/palette/modifiers/ColorSplitMode;)V
-PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
+HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
 HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setYAmount(F)V
 Lcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;-><clinit>()V
@@ -76,7 +76,7 @@ HSPLcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;->createColorSplitS
 PLcom/alexrdclement/palette/modifiers/FadeKt;->$r8$lambda$-gMSqUcuMXok67uxaIam2N7zvyU(IFLandroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/drawscope/ContentDrawScope;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/FadeKt;->$r8$lambda$H4ycrAPLNW-NfMG4gDlA4JUiNvE(Landroidx/compose/ui/graphics/GraphicsLayerScope;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/FadeKt;->bottomFade-V5MJSes(Landroidx/compose/ui/Modifier;FLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
-PLcom/alexrdclement/palette/modifiers/FadeKt;->fade-ddyKRco(Landroidx/compose/ui/Modifier;IFLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
+HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade-ddyKRco(Landroidx/compose/ui/Modifier;IFLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/modifiers/FadeKt;->fade-ddyKRco(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/modifiers/FadeSide;FLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
 HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$0(Landroidx/compose/ui/graphics/GraphicsLayerScope;)Lkotlin/Unit;
 HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$1(IFLandroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/drawscope/ContentDrawScope;)Lkotlin/Unit;
@@ -138,7 +138,7 @@ PLcom/alexrdclement/palette/modifiers/ShaderElement;-><clinit>()V
 PLcom/alexrdclement/palette/modifiers/ShaderElement;-><init>(Lcom/alexrdclement/palette/modifiers/Shader;Ljava/lang/String;)V
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->create()Landroidx/compose/ui/Modifier$Node;
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->create()Lcom/alexrdclement/palette/modifiers/ShaderNode;
-HPLcom/alexrdclement/palette/modifiers/ShaderElement;->equals(Ljava/lang/Object;)Z
+PLcom/alexrdclement/palette/modifiers/ShaderElement;->equals(Ljava/lang/Object;)Z
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->update(Landroidx/compose/ui/Modifier$Node;)V
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->update(Lcom/alexrdclement/palette/modifiers/ShaderNode;)V
 Lcom/alexrdclement/palette/modifiers/ShaderIndicationNode;
@@ -414,7 +414,6 @@ PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$3$0(Lcom/alexrdclement/palette/modifiers/demo/PixelateState;F)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$4$0()Lkotlin/ranges/ClosedFloatingPointRange;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$5(Landroidx/compose/ui/Modifier;IILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
-PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 HPLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateStateSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/modifiers/demo/PixelateState;)Ljava/util/Map;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt$$ExternalSyntheticLambda0;-><init>()V
