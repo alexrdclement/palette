@@ -8,6 +8,8 @@ import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.toColor
 import com.alexrdclement.palette.theme.toComposeShape
+import com.alexrdclement.palette.theme.toShape
+import com.alexrdclement.palette.components.core.BorderStyle as ComponentBorderStyle
 
 // TODO token-system: Move to modifiers
 
@@ -24,4 +26,11 @@ fun Modifier.border(
     width = style.width,
     color = style.color.toColor(),
     shape = style.shape.toComposeShape(),
+)
+
+@Composable
+fun BorderStyle.toComponentStyle(): ComponentBorderStyle = ComponentBorderStyle(
+    width = this.width,
+    color = this.color.toColor(),
+    shape = this.shape.toShape(),
 )

@@ -8,8 +8,8 @@ import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
 import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
+import com.alexrdclement.palette.theme.modifiers.toComponentStyle
 
-/** Resolved styles for [com.alexrdclement.palette.components.color]; surfaced via [PaletteTheme.styles]. */
 object ColorStyles {
 
     val colorDisplay: ColorDisplayStyle
