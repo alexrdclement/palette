@@ -67,8 +67,8 @@ PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->createRenderEffect(
 HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->isActive()Z
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->onRemeasured(II)V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setColorMode(Lcom/alexrdclement/palette/modifiers/ColorSplitMode;)V
-HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
-HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setYAmount(F)V
+PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
+PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setYAmount(F)V
 Lcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;-><clinit>()V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplit_androidKt;->access$getShaderSource$p()Ljava/lang/String;
@@ -138,7 +138,7 @@ PLcom/alexrdclement/palette/modifiers/ShaderElement;-><clinit>()V
 PLcom/alexrdclement/palette/modifiers/ShaderElement;-><init>(Lcom/alexrdclement/palette/modifiers/Shader;Ljava/lang/String;)V
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->create()Landroidx/compose/ui/Modifier$Node;
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->create()Lcom/alexrdclement/palette/modifiers/ShaderNode;
-HPLcom/alexrdclement/palette/modifiers/ShaderElement;->equals(Ljava/lang/Object;)Z
+PLcom/alexrdclement/palette/modifiers/ShaderElement;->equals(Ljava/lang/Object;)Z
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->update(Landroidx/compose/ui/Modifier$Node;)V
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->update(Lcom/alexrdclement/palette/modifiers/ShaderNode;)V
 Lcom/alexrdclement/palette/modifiers/ShaderIndicationNode;
@@ -325,7 +325,7 @@ PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;-><init>(JFZFLkotlin/jv
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getBorderColor-0d7_KjU()J
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getFadeLength-D9Ej5fM()F
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getShowBorder()Z
-HPLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getWidth-D9Ej5fM()F
+PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getWidth-D9Ej5fM()F
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->setFadeLength-0680j_4$demo(F)V
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->setWidth-0680j_4$demo(F)V
 PLcom/alexrdclement/palette/modifiers/demo/ModifierDemoControl;->$r8$lambda$UkqdC-gt8q_l132ixmbPrcwnRt8(Lcom/alexrdclement/palette/modifiers/demo/ModifierDemoControl;)Lkotlinx/collections/immutable/ImmutableList;
