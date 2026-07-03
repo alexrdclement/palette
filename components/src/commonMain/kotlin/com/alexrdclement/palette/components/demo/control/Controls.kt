@@ -26,20 +26,28 @@ data class ControlsStyle(
     val contentPadding: Dp = 8.dp,
     val rowSpacing: Dp = 8.dp,
     val indent: Dp = 16.dp,
+    val button: ButtonControlStyle = ButtonControlStyle(),
+    val slider: SliderControlStyle = SliderControlStyle(),
+    val color: ColorControlStyle = ColorControlStyle(),
+    val toggle: ToggleControlStyle = ToggleControlStyle(),
+    val char: CharControlStyle = CharControlStyle(),
+    val textField: TextFieldControlStyle = TextFieldControlStyle(),
+    val dropdown: DropdownControlStyle = DropdownControlStyle(),
+    val expandableHeader: ExpandableHeaderStyle = ExpandableHeaderStyle(),
+    val dynamicList: DynamicListControlStyle = DynamicListControlStyle(),
 )
 
 @Composable
 fun Controls(
     controls: ImmutableList<Control>,
     modifier: Modifier = Modifier,
-    controlStyle: ControlStyle = ControlStyle(),
+    controlsStyle: ControlsStyle = ControlsStyle(),
     name: String? = null,
     indent: Boolean = false,
     expandedInitial: Boolean = true,
-    contentPadding: PaddingValues = PaddingValues(vertical = controlStyle.controls.contentPadding),
-    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(controlStyle.controls.spacing)
+    contentPadding: PaddingValues = PaddingValues(vertical = controlsStyle.contentPadding),
+    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(controlsStyle.spacing)
 ) {
-    val style = controlStyle.controls
     Column(
         verticalArrangement = verticalArrangement,
         modifier = modifier
@@ -51,7 +59,7 @@ fun Controls(
                 name = it,
                 expanded = expanded,
                 onExpandedChange = { expanded = it },
-                style = controlStyle.expandableHeader,
+                style = controlsStyle.expandableHeader,
             )
         }
 
@@ -63,33 +71,33 @@ fun Controls(
                     .fillMaxWidth()
                     .then(
                         if (indent)
-                            Modifier.padding(start = style.indent)
+                            Modifier.padding(start = controlsStyle.indent)
                         else Modifier
                     )
             ) {
                 when (control) {
-                    is Control.Button -> ButtonControl(control = control, style = controlStyle.button)
-                    is Control.Color -> ColorControl(control = control, style = controlStyle.color)
-                    is Control.Slider -> SliderControl(control = control, style = controlStyle.slider)
-                    is Control.Dropdown<*> -> DropdownControlRow(control = control, style = controlStyle.dropdown)
-                    is Control.Toggle -> ToggleControlRow(control = control, style = controlStyle.toggle)
-                    is Control.CharField -> CharControl(control = control, style = controlStyle.char)
-                    is Control.TextField -> TextFieldControl(control = control, style = controlStyle.textField)
-                    is Control.DynamicList<*> -> DynamicListControl(control = control, controlStyle = controlStyle)
+                    is Control.Button -> ButtonControl(control = control, style = controlsStyle.button)
+                    is Control.Color -> ColorControl(control = control, style = controlsStyle.color)
+                    is Control.Slider -> SliderControl(control = control, style = controlsStyle.slider)
+                    is Control.Dropdown<*> -> DropdownControlRow(control = control, style = controlsStyle.dropdown)
+                    is Control.Toggle -> ToggleControlRow(control = control, style = controlsStyle.toggle)
+                    is Control.CharField -> CharControl(control = control, style = controlsStyle.char)
+                    is Control.TextField -> TextFieldControl(control = control, style = controlsStyle.textField)
+                    is Control.DynamicList<*> -> DynamicListControl(control = control, controlsStyle = controlsStyle)
                     is Control.ControlColumn -> {
                         val controls by rememberUpdatedState(control.controls())
                         Controls(
                             controls = controls,
-                            controlStyle = controlStyle,
+                            controlsStyle = controlsStyle,
                             name = control.name,
                             indent = control.indent,
                             expandedInitial = control.expandedInitial,
-                            contentPadding = PaddingValues(vertical = style.contentPadding),
+                            contentPadding = PaddingValues(vertical = controlsStyle.contentPadding),
                         )
                     }
                     is Control.ControlRow -> {
                         val controls by rememberUpdatedState(control.controls())
-                        ControlsRow(controls = controls, controlStyle = controlStyle)
+                        ControlsRow(controls = controls, controlsStyle = controlsStyle)
                     }
                 }
             }
@@ -101,12 +109,11 @@ fun Controls(
 fun ControlsRow(
     controls: ImmutableList<Control>,
     modifier: Modifier = Modifier,
-    controlStyle: ControlStyle = ControlStyle(),
+    controlsStyle: ControlsStyle = ControlsStyle(),
     equalWeight: Boolean = true,
 ) {
-    val style = controlStyle.controls
     Row(
-        horizontalArrangement = Arrangement.spacedBy(style.rowSpacing),
+        horizontalArrangement = Arrangement.spacedBy(controlsStyle.rowSpacing),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
@@ -117,28 +124,28 @@ fun ControlsRow(
                     .then(if (equalWeight) Modifier.weight(1f, fill = false) else Modifier)
             ) {
                 when (control) {
-                    is Control.Button -> ButtonControl(control = control, style = controlStyle.button)
-                    is Control.Color -> ColorControl(control = control, style = controlStyle.color)
-                    is Control.Slider -> SliderControl(control = control, style = controlStyle.slider)
-                    is Control.Dropdown<*> -> DropdownControl(control = control, style = controlStyle.dropdown)
-                    is Control.Toggle -> ToggleControl(control = control, style = controlStyle.toggle)
-                    is Control.CharField -> CharControl(control = control, style = controlStyle.char)
-                    is Control.TextField -> TextFieldControl(control = control, style = controlStyle.textField)
-                    is Control.DynamicList<*> -> DynamicListControl(control = control, controlStyle = controlStyle)
+                    is Control.Button -> ButtonControl(control = control, style = controlsStyle.button)
+                    is Control.Color -> ColorControl(control = control, style = controlsStyle.color)
+                    is Control.Slider -> SliderControl(control = control, style = controlsStyle.slider)
+                    is Control.Dropdown<*> -> DropdownControl(control = control, style = controlsStyle.dropdown)
+                    is Control.Toggle -> ToggleControl(control = control, style = controlsStyle.toggle)
+                    is Control.CharField -> CharControl(control = control, style = controlsStyle.char)
+                    is Control.TextField -> TextFieldControl(control = control, style = controlsStyle.textField)
+                    is Control.DynamicList<*> -> DynamicListControl(control = control, controlsStyle = controlsStyle)
                     is Control.ControlColumn -> {
                         val controls by rememberUpdatedState(control.controls())
                         Controls(
                             controls = controls,
-                            controlStyle = controlStyle,
+                            controlsStyle = controlsStyle,
                             name = control.name,
                             indent = control.indent,
                             expandedInitial = control.expandedInitial,
-                            contentPadding = PaddingValues(horizontal = style.contentPadding),
+                            contentPadding = PaddingValues(horizontal = controlsStyle.contentPadding),
                         )
                     }
                     is Control.ControlRow -> {
                         val controls by rememberUpdatedState(control.controls())
-                        Controls(controls = controls, controlStyle = controlStyle)
+                        Controls(controls = controls, controlsStyle = controlsStyle)
                     }
                 }
             }

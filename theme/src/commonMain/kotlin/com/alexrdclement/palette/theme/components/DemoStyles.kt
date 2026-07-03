@@ -6,7 +6,6 @@ import com.alexrdclement.palette.components.demo.DemoStyle
 import com.alexrdclement.palette.components.demo.control.ButtonControlStyle
 import com.alexrdclement.palette.components.demo.control.CharControlStyle
 import com.alexrdclement.palette.components.demo.control.ColorControlStyle
-import com.alexrdclement.palette.components.demo.control.ControlStyle
 import com.alexrdclement.palette.components.demo.control.ControlsStyle
 import com.alexrdclement.palette.components.demo.control.DropdownControlStyle
 import com.alexrdclement.palette.components.demo.control.DynamicListControlStyle
@@ -29,7 +28,11 @@ object DemoStyles {
             val textField = CoreStyles.textField
             return DemoStyle(
                 dividerStyle = CoreStyles.divider,
-                controlStyle = ControlStyle(
+                controlsStyle = ControlsStyle(
+                    spacing = PaletteTheme.spacing.medium,
+                    contentPadding = PaletteTheme.spacing.small,
+                    rowSpacing = PaletteTheme.spacing.small,
+                    indent = PaletteTheme.spacing.medium,
                     button = ButtonControlStyle(
                         labelStyle = label,
                         buttonStyle = button,
@@ -83,12 +86,6 @@ object DemoStyles {
                         spacing = PaletteTheme.spacing.medium,
                         itemSpacing = PaletteTheme.spacing.small,
                         itemControlSpacing = PaletteTheme.spacing.xs,
-                        indent = PaletteTheme.spacing.medium,
-                    ),
-                    controls = ControlsStyle(
-                        spacing = PaletteTheme.spacing.medium,
-                        contentPadding = PaletteTheme.spacing.small,
-                        rowSpacing = PaletteTheme.spacing.small,
                         indent = PaletteTheme.spacing.medium,
                     ),
                 ),

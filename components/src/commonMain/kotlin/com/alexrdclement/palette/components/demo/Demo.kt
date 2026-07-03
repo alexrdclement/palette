@@ -24,8 +24,8 @@ import com.alexrdclement.palette.components.core.DividerStyle
 import com.alexrdclement.palette.components.core.HorizontalDivider
 import com.alexrdclement.palette.components.core.VerticalDivider
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.demo.control.ControlStyle
 import com.alexrdclement.palette.components.demo.control.Controls
+import com.alexrdclement.palette.components.demo.control.ControlsStyle
 import com.alexrdclement.palette.components.util.horizontalPaddingValues
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
@@ -36,7 +36,7 @@ import kotlinx.collections.immutable.persistentListOf
  * callers build it from their theme, keeping this framework theme-agnostic.
  */
 data class DemoStyle(
-    val controlStyle: ControlStyle = ControlStyle(),
+    val controlsStyle: ControlsStyle = ControlsStyle(),
     val dividerStyle: DividerStyle = DividerStyle(),
 )
 
@@ -75,7 +75,7 @@ fun Demo(
                     HorizontalDivider(modifier = Modifier.fillMaxWidth(), style = style.dividerStyle)
                     Controls(
                         controls = controls,
-                        controlStyle = style.controlStyle,
+                        controlsStyle = style.controlsStyle,
                         modifier = Modifier
                             .fillMaxWidth()
                             .heightIn(max = 300.dp)
@@ -102,7 +102,7 @@ fun Demo(
                     VerticalDivider(modifier = Modifier.fillMaxHeight(), style = style.dividerStyle)
                     Controls(
                         controls = controls,
-                        controlStyle = style.controlStyle,
+                        controlsStyle = style.controlsStyle,
                         modifier = Modifier
                             .fillMaxHeight()
                             .widthIn(max = 300.dp)
