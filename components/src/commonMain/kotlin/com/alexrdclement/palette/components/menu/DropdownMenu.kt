@@ -6,7 +6,6 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.rememberTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Indication
-import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -62,10 +61,14 @@ import kotlin.math.min
 data class DropdownMenuStyle(
     val surfaceStyle: SurfaceStyle = SurfaceStyle(),
     val itemColors: MenuItemColors = MenuDefaults.itemColors(),
+    val indication: Indication? = null,
 )
 
 /** Item colors provided by [DropdownMenu] so nested [DropdownMenuItem]s pick them up by default. */
 val LocalMenuItemColors = compositionLocalOf { MenuDefaults.itemColors() }
+
+/** Item indication provided by [DropdownMenu] so nested [DropdownMenuItem]s pick it up by default. */
+val LocalMenuItemIndication = compositionLocalOf<Indication?> { null }
 
 @Composable
 fun DropdownMenu(
@@ -167,7 +170,10 @@ internal fun DropdownMenuContent(
             transformOrigin = transformOriginState.value
         }
     ) {
-        CompositionLocalProvider(LocalMenuItemColors provides style.itemColors) {
+        CompositionLocalProvider(
+            LocalMenuItemColors provides style.itemColors,
+            LocalMenuItemIndication provides style.indication,
+        ) {
             Column(
                 modifier = modifier
                     .padding(vertical = DropdownMenuVerticalPadding)
@@ -187,7 +193,7 @@ fun DropdownMenuItem(
     enabled: Boolean = true,
     colors: MenuItemColors = LocalMenuItemColors.current,
     contentPadding: PaddingValues = MenuDefaults.DropdownMenuItemContentPadding,
-    indication: Indication? = null,
+    indication: Indication? = LocalMenuItemIndication.current,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     Row(
@@ -196,7 +202,7 @@ fun DropdownMenuItem(
                 enabled = enabled,
                 onClick = onClick,
                 interactionSource = interactionSource,
-                indication = indication ?: LocalIndication.current,
+                indication = indication,
             )
             .fillMaxWidth()
             // Preferred min and max width used during the intrinsic measurement.

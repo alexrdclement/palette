@@ -20,6 +20,7 @@ object MenuStyles {
                         alpha = PaletteTheme.colorScheme.disabledContentAlpha,
                     ),
                 ),
+                indication = PaletteTheme.indication,
             )
         }
 }
