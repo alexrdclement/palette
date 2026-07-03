@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
 enum class ButtonStyleToken(val default: ButtonStyleTokenSet) {
     Primary(

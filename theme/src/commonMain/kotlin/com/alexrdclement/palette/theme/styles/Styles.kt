@@ -1,8 +1,6 @@
 package com.alexrdclement.palette.theme.styles
 
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.alexrdclement.palette.theme.modifiers.BorderStyle
-import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 
 /**
  * The single in-memory source of truth for the theme's editable token styles: the current token set
@@ -19,7 +17,7 @@ data class Styles(
         ButtonStyleToken.entries.associateWith { it.default },
     val surface: Map<SurfaceStyleToken, SurfaceStyleTokenSet> =
         SurfaceStyleToken.entries.associateWith { it.default },
-    val border: Map<BorderStyleToken, BorderStyle> =
+    val border: Map<BorderStyleToken, BorderStyleTokenSet> =
         BorderStyleToken.entries.associateWith { it.default },
 )
 

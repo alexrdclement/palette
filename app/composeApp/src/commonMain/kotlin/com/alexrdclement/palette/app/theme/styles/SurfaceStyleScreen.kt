@@ -21,7 +21,7 @@ import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
+import com.alexrdclement.palette.theme.styles.BorderStyleToken
 import com.alexrdclement.palette.theme.styles.SurfaceStyleToken
 import com.alexrdclement.palette.theme.styles.SurfaceStyleTokenSet
 import kotlinx.collections.immutable.PersistentList

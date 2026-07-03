@@ -13,19 +13,19 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.ShapeToken
+import com.alexrdclement.palette.theme.components.core.border
+import com.alexrdclement.palette.theme.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.modifiers.BorderStyle
-import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
-import com.alexrdclement.palette.theme.modifiers.border
+import com.alexrdclement.palette.theme.styles.BorderStyleToken
+import com.alexrdclement.palette.theme.styles.BorderStyleTokenSet
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -88,7 +88,7 @@ class BorderStyleScreenState(
     val themeState: ThemeState,
 ) {
     /** The current token set for [token] — the theme's current styles. */
-    fun tokenSet(token: BorderStyleToken): BorderStyle =
+    fun tokenSet(token: BorderStyleToken): BorderStyleTokenSet =
         themeState.styles.border.getValue(token)
 }
 
@@ -136,7 +136,7 @@ private fun makeControlForToken(
     state: BorderStyleScreenState,
     themeController: ThemeController,
 ): Control {
-    fun setTokenSet(value: BorderStyle) {
+    fun setTokenSet(value: BorderStyleTokenSet) {
         val styles = state.themeState.styles
         themeController.setStyles(
             styles.copy(border = styles.border + (token to value))
@@ -182,11 +182,11 @@ private fun makeControlForToken(
     )
 }
 
-fun BorderStyle.update(
+fun BorderStyleTokenSet.update(
     color: ColorToken? = null,
     width: Dp? = null,
     shape: ShapeToken? = null
-): BorderStyle = this.copy(
+): BorderStyleTokenSet = this.copy(
     color = color ?: this.color,
     width = width ?: this.width,
     shape = shape ?: this.shape,
