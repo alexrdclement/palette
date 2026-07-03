@@ -18,7 +18,6 @@ import com.alexrdclement.palette.components.util.Point3D
 import com.alexrdclement.palette.components.util.ViewingAngle
 import com.alexrdclement.palette.components.util.rotatePoint3D
 import com.alexrdclement.palette.components.util.toRadians
-import com.alexrdclement.palette.components.LocalContentColor
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -66,7 +65,7 @@ fun GridSphere(
     modifier: Modifier = Modifier,
     viewingAngle: ViewingAngle = ViewingAngle(),
     precisionDegree: Int = 1,
-    strokeColor: Color = LocalContentColor.current,
+    strokeColor: Color = Color.Unspecified,
     strokeWidth: Dp = Dp.Hairline,
     outlineStrokeColor: Color? = strokeColor,
     outlineStrokeWidth: Dp = strokeWidth,
@@ -200,6 +199,7 @@ fun GridSpherePreview() {
         GridSphere(
             numLatitudeLines = 20,
             numLongitudeLines = 10,
+            strokeColor = Color.Gray,
             modifier = Modifier.size(200.dp),
             viewingAngle = ViewingAngle(
                 rotationX = 20f,

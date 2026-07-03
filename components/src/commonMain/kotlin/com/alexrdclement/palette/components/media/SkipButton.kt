@@ -9,10 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
 
@@ -23,6 +23,7 @@ fun SkipButton(
     style: ButtonStyle = ButtonStyle(),
     enabled: Boolean = true,
     contentPadding: PaddingValues = PaddingValues(6.dp),
+    iconColor: Color = Color.Unspecified,
 ) {
     Button(
         onClick = onClick,
@@ -31,6 +32,7 @@ fun SkipButton(
         modifier = modifier.aspectRatio(1f),
     ) { shapePadding ->
         SkipIcon(
+            color = iconColor,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(shapePadding),
@@ -41,8 +43,8 @@ fun SkipButton(
 @Composable
 fun SkipIcon(
     modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
 ) {
-    val color = LocalContentColor.current
     Canvas(modifier = modifier) {
         val barWidth = size.width * 0.15f
         val gap = size.width * 0.08f

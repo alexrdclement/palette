@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.LocalContentColor
 
 enum class ChevronDirection {
     Up,
@@ -58,7 +57,7 @@ fun ChevronIcon(
     modifier: Modifier = Modifier,
     style: ChevronIconStyle = ChevronIconStyle(),
 ) {
-    val color = style.color.takeIf { it != Color.Unspecified } ?: LocalContentColor.current
+    val color = style.color
     val rotation = when (direction) {
         ChevronDirection.Left -> 0f
         ChevronDirection.Up -> 90f

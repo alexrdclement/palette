@@ -7,13 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.formats.core.TextFormat
 import com.alexrdclement.palette.formats.core.format
 import androidx.compose.ui.text.TextStyle as ComposeTextStyle
@@ -46,7 +44,7 @@ fun Text(
     autoSize: TextAutoSize? = null,
 ) {
     val formattedText = remember(text, style.format) { style.format.format(text) }
-    val color = style.composeTextStyle.color.takeOrElse { LocalContentColor.current }
+    val color = style.composeTextStyle.color
     BasicText(
         text = formattedText,
         modifier = modifier,
@@ -73,7 +71,7 @@ fun Text(
     inlineContent: Map<String, InlineTextContent> = mapOf(),
     autoSize: TextAutoSize? = null,
 ) {
-    val color = style.composeTextStyle.color.takeOrElse { LocalContentColor.current }
+    val color = style.composeTextStyle.color
     BasicText(
         text = text,
         modifier = modifier,

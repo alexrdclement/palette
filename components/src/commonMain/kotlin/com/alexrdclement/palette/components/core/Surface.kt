@@ -7,13 +7,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.semantics.isTraversalGroup
@@ -23,14 +21,12 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
-import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 import kotlin.math.sqrt
 
 data class SurfaceStyle(
     val shape: Shape = Shape.Rectangle(),
     val color: Color = Color.Unspecified,
-    val contentColor: Color = Color.Unspecified,
     val borderStyle: BorderStyle? = null,
     val indication: Indication? = null,
 )
@@ -41,26 +37,21 @@ fun Surface(
     style: SurfaceStyle = SurfaceStyle(),
     content: @Composable (PaddingValues) -> Unit
 ) {
-    val contentColor = style.contentColor.takeOrElse { LocalContentColor.current }
-    CompositionLocalProvider(
-        LocalContentColor provides contentColor,
+    Box(
+        modifier = modifier
+            .shapeLayout(style.shape)
+            .surface(
+                composeShape = style.shape.toComposeShape(),
+                backgroundColor = style.color,
+                borderStyle = style.borderStyle,
+            )
+            .semantics(mergeDescendants = false) {
+                isTraversalGroup = true
+            }
+            .pointerInput(Unit) {},
+        propagateMinConstraints = true
     ) {
-        Box(
-            modifier = modifier
-                .shapeLayout(style.shape)
-                .surface(
-                    composeShape = style.shape.toComposeShape(),
-                    backgroundColor = style.color,
-                    borderStyle = style.borderStyle,
-                )
-                .semantics(mergeDescendants = false) {
-                    isTraversalGroup = true
-                }
-                .pointerInput(Unit) {},
-            propagateMinConstraints = true
-        ) {
-            ShapeContent(style.shape, content)
-        }
+        ShapeContent(style.shape, content)
     }
 }
 
@@ -77,33 +68,28 @@ fun Surface(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable (PaddingValues) -> Unit
 ) {
-    val contentColor = style.contentColor.takeOrElse { LocalContentColor.current }
-    CompositionLocalProvider(
-        LocalContentColor provides contentColor
+    Box(
+        propagateMinConstraints = true,
+        modifier = modifier
+            .shapeLayout(style.shape)
+            .shapeClickable(
+                shape = style.shape,
+                interactionSource = interactionSource,
+                indication = style.indication,
+                enabled = enabled,
+                onClick = onClick,
+                onLongClickLabel = onLongClickLabel,
+                onLongClick = onLongClick,
+                onDoubleClick = onDoubleClick,
+                hapticFeedbackEnabled = hapticFeedbackEnabled,
+            )
+            .surface(
+                composeShape = style.shape.toComposeShape(),
+                backgroundColor = style.color,
+                borderStyle = style.borderStyle,
+            )
     ) {
-        Box(
-            propagateMinConstraints = true,
-            modifier = modifier
-                .shapeLayout(style.shape)
-                .shapeClickable(
-                    shape = style.shape,
-                    interactionSource = interactionSource,
-                    indication = style.indication,
-                    enabled = enabled,
-                    onClick = onClick,
-                    onLongClickLabel = onLongClickLabel,
-                    onLongClick = onLongClick,
-                    onDoubleClick = onDoubleClick,
-                    hapticFeedbackEnabled = hapticFeedbackEnabled,
-                )
-                .surface(
-                    composeShape = style.shape.toComposeShape(),
-                    backgroundColor = style.color,
-                    borderStyle = style.borderStyle,
-                )
-        ) {
-            ShapeContent(style.shape, content)
-        }
+        ShapeContent(style.shape, content)
     }
 }
 

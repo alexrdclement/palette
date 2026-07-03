@@ -2,8 +2,6 @@ package com.alexrdclement.palette.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.takeOrElse
-import com.alexrdclement.palette.components.LocalContentColor
 
 fun ColorScheme.contentColorFor(backgroundColor: Color): Color =
     when (backgroundColor) {
@@ -16,6 +14,4 @@ fun ColorScheme.contentColorFor(backgroundColor: Color): Color =
 
 @Composable
 fun contentColorFor(backgroundColor: Color) =
-    PaletteTheme.colorScheme.contentColorFor(backgroundColor).takeOrElse {
-        LocalContentColor.current
-    }
+    PaletteTheme.colorScheme.contentColorFor(backgroundColor)

@@ -49,6 +49,7 @@ fun DemoScope.SkipButtonDemo(
         onClick = {},
         enabled = enabled,
         style = PaletteTheme.styles.core.button.secondary,
+        iconColor = PaletteTheme.colorScheme.secondary,
         modifier = modifier
             .size(52.dp)
             .align(Alignment.CenterStart),
@@ -57,6 +58,7 @@ fun DemoScope.SkipButtonDemo(
         onClick = {},
         enabled = enabled,
         style = PaletteTheme.styles.core.button.secondary,
+        iconColor = PaletteTheme.colorScheme.secondary,
         modifier = Modifier
             .size(52.dp)
             .align(Alignment.CenterEnd),

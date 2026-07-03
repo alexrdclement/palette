@@ -22,13 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Dp
-import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.formats.core.inputTransformation
 
 data class TextFieldStyle(
@@ -58,7 +56,7 @@ fun TextField(
     val textStyle = style.textStyle
     val resolvedDecorator = decorator
         ?: TextFieldDefaults.textFieldDecorator(style.borderStroke, style.contentPadding)
-    val color = textStyle.composeTextStyle.color.takeOrElse { LocalContentColor.current }
+    val color = textStyle.composeTextStyle.color
 
     val formatInputTransformation = textStyle.format.inputTransformation
     val combinedInputTransformation = when {

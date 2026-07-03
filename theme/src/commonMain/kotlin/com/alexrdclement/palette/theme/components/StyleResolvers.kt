@@ -6,7 +6,6 @@ import com.alexrdclement.palette.components.core.BorderStyle as ComponentBorderS
 import com.alexrdclement.palette.components.core.ButtonStyle as ComponentButtonStyle
 import com.alexrdclement.palette.components.core.SurfaceStyle as ComponentSurfaceStyle
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.contentColorFor
 import com.alexrdclement.palette.theme.modifiers.BorderStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleTokenSet
@@ -39,7 +38,6 @@ fun BorderStyleToken.toComponentStyle(): ComponentBorderStyle = this.tokenSet().
  */
 @Composable
 fun ButtonStyleTokenSet.toComponentStyle(): ComponentButtonStyle = ComponentButtonStyle(
-    contentColor = contentColor.toColor(),
     containerColor = containerColor.toColor(),
     shape = shape.toShape(),
     borderStyle = borderStyle?.toComponentStyle(),
@@ -60,7 +58,6 @@ fun ButtonStyleTokenSet.toComponentStyle(): ComponentButtonStyle = ComponentButt
 fun SurfaceStyleTokenSet.toComponentStyle(): ComponentSurfaceStyle = ComponentSurfaceStyle(
     shape = shape.toShape(),
     color = color.toColor(),
-    contentColor = PaletteTheme.colorScheme.contentColorFor(color.toColor()),
     borderStyle = borderStyle?.toComponentStyle(),
     indication = PaletteTheme.indication,
 )

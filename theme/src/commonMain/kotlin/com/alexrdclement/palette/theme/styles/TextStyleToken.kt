@@ -2,8 +2,11 @@ package com.alexrdclement.palette.theme.styles
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.components.core.copy
+import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.TypographyToken
 import com.alexrdclement.palette.theme.format.core.TextFormatToken
+import com.alexrdclement.palette.theme.toColor
 
 enum class TextStyleToken(val default: TextStyleTokenSet) {
     Display(TextStyleTokenSet(TypographyToken.Display, TextFormatToken.Display)),
@@ -26,4 +29,5 @@ fun TextStyleToken.tokenSet(): TextStyleTokenSet =
 
 /** Resolves this token to a component [TextStyle] using the current theme. */
 @Composable
-fun TextStyleToken.resolve(): TextStyle = tokenSet().toTextStyle()
+fun TextStyleToken.resolve(): TextStyle =
+    tokenSet().toTextStyle().copy(color = ColorToken.OnSurface.toColor())

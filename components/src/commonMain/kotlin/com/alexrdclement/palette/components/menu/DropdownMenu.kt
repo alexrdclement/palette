@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -42,7 +41,6 @@ import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
-import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.SurfaceStyle
@@ -63,7 +61,6 @@ data class DropdownMenuStyle(
 )
 
 data class DropdownMenuItemStyle(
-    val colors: MenuItemColors = MenuDefaults.itemColors(),
     val indication: Indication? = null,
     val contentPadding: PaddingValues = MenuDefaults.DropdownMenuItemContentPadding,
 )
@@ -205,13 +202,8 @@ fun DropdownMenuItem(
             .padding(style.contentPadding),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        CompositionLocalProvider(
-            LocalContentColor provides style.colors.textColor(enabled).value
-                .takeOrElse { LocalContentColor.current },
-        ) {
-            Box(modifier = Modifier.weight(1f)) {
-                text()
-            }
+        Box(modifier = Modifier.weight(1f)) {
+            text()
         }
     }
 }

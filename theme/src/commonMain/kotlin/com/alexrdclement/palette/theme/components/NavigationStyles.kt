@@ -14,7 +14,6 @@ object NavigationStyles {
     val backNavigationButton: BackNavigationButtonStyle
         @Composable get() = BackNavigationButtonStyle(
             buttonStyle = ButtonStyle(
-                contentColor = ColorToken.Primary.toColor(),
                 containerColor = ColorToken.Surface.toColor(),
                 indication = PaletteTheme.indication,
             ),

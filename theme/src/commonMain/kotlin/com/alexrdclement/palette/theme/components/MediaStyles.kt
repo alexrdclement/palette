@@ -18,7 +18,6 @@ object MediaStyles {
     val playPauseButton: PlayPauseButtonStyle
         @Composable get() = PlayPauseButtonStyle(
             buttonStyle = ButtonStyle(
-                contentColor = ColorToken.OnPrimary.toColor(),
                 containerColor = ColorToken.Primary.toColor(),
                 shape = ShapeToken.Primary.toShape(),
                 indication = PaletteTheme.indication,

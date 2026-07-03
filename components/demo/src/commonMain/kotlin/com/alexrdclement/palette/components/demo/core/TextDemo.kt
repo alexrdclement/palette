@@ -18,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -56,6 +57,7 @@ fun DemoScope.TextDemo(
     modifier: Modifier = Modifier,
     state: TextDemoState = rememberTextDemoState(),
     control: TextDemoControl = rememberTextDemoControl(state),
+    color: Color = PaletteTheme.colorScheme.onSurface,
 ) {
     val text by state.text.collectAsState(initial = state.text.toString())
 
@@ -67,6 +69,7 @@ fun DemoScope.TextDemo(
         style = with(state.textStyleDemoState.textStyle) {
             copy(
                 composeTextStyle = composeTextStyle.copy(
+                    color = color,
                     textAlign = state.textAlign.toCompose(),
                     lineHeightStyle = TextDemoState.lineHeightStyleDefault.copy(
                         alignment = state.lineHeightAlignment.toCompose(),

@@ -9,7 +9,11 @@ import com.alexrdclement.palette.components.layout.catalog.CatalogStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
+import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.theme.styles.tokenSet
+import com.alexrdclement.palette.theme.toColor
 
 /** Resolved styles for [com.alexrdclement.palette.components.layout]; surfaced via [PaletteTheme.styles]. */
 object LayoutStyles {
@@ -41,14 +45,18 @@ object LayoutStyles {
         @Composable get() = CatalogStyle(
             itemSpacing = PaletteTheme.spacing.medium,
             itemStyle = CoreStyles.button.secondary,
-            itemTextStyle = TextStyles.bodyMedium,
+            itemTextStyle = TextStyles.bodyMedium.copy(
+                color = ButtonStyleToken.Secondary.tokenSet().contentColor.toColor(),
+            ),
         )
 
     val confirmCancelButtonRow: ConfirmCancelButtonRowStyle
         @Composable get() = ConfirmCancelButtonRowStyle(
             buttonStyle = ConfirmButtonStyle(
                 buttonStyle = CoreStyles.button.secondary,
-                textStyle = TextStyles.bodyMedium,
+                textStyle = TextStyles.bodyMedium.copy(
+                    color = ButtonStyleToken.Secondary.tokenSet().contentColor.toColor(),
+                ),
             ),
             spacing = PaletteTheme.spacing.medium,
         )

@@ -27,6 +27,8 @@ import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.theme.styles.tokenSet
+import com.alexrdclement.palette.theme.toColor
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -69,6 +71,7 @@ fun DemoScope.ButtonDemo(
         this@ButtonDemo.TextDemo(
             state = state.textDemoState,
             control = control.textDemoControl,
+            color = state.style.tokenSet().contentColor.toColor(),
         )
     }
 }

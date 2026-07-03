@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPaused
 import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPlaying
 import com.alexrdclement.palette.components.core.Button
@@ -49,7 +48,7 @@ fun PlayPauseButton(
             contentDescription = if (isPlaying) {
                 PlayPauseButtonContentDescriptionPlaying
             } else PlayPauseButtonContentDescriptionPaused,
-            colorFilter = ColorFilter.tint(style.iconColor.takeIf { it != Color.Unspecified } ?: LocalContentColor.current),
+            colorFilter = ColorFilter.tint(style.iconColor),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(shapePadding)

@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.LocalContentColor
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Surface
@@ -39,7 +38,7 @@ fun BackNavigationButton(
             modifier = Modifier
                 .fillMaxSize()
                 .clip(BackNavigationIconShape)
-                .background(style.iconColor.takeIf { it != Color.Unspecified } ?: LocalContentColor.current)
+                .background(style.iconColor)
         )
     }
 }
