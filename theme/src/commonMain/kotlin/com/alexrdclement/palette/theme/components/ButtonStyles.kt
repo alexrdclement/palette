@@ -5,7 +5,6 @@ import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.styles.resolve
 
-/** Resolved button styles per token, e.g. `button.primary`; index dynamically with `button[token]`. */
 object ButtonStyles {
     val primary: ButtonStyle @Composable get() = ButtonStyleToken.Primary.resolve()
     val secondary: ButtonStyle @Composable get() = ButtonStyleToken.Secondary.resolve()

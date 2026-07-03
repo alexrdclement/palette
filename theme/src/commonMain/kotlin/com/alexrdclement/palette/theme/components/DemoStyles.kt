@@ -15,7 +15,6 @@ import com.alexrdclement.palette.components.demo.control.TextFieldControlStyle
 import com.alexrdclement.palette.components.demo.control.ToggleControlStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 
-/** Resolved style for the [com.alexrdclement.palette.components.demo] framework; surfaced via [PaletteTheme.styles]. */
 object DemoStyles {
 
     val list: DemoListStyle

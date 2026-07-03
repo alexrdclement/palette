@@ -5,7 +5,6 @@ import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.theme.styles.TextStyleToken
 import com.alexrdclement.palette.theme.styles.resolve
 
-/** Resolved text styles per token, e.g. `text.titleMedium`; index dynamically with `text[token]`. */
 object TextStyles {
     val display: TextStyle @Composable get() = TextStyleToken.Display.resolve()
     val headline: TextStyle @Composable get() = TextStyleToken.Headline.resolve()

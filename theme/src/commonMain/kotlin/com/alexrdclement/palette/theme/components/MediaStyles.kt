@@ -12,7 +12,6 @@ import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.toColor
 import com.alexrdclement.palette.theme.toShape
 
-/** Resolved styles for [com.alexrdclement.palette.components.media]; surfaced via [PaletteTheme.styles]. */
 object MediaStyles {
 
     val playPauseButton: PlayPauseButtonStyle

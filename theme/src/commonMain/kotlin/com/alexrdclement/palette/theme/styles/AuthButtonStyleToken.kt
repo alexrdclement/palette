@@ -6,7 +6,6 @@ enum class AuthButtonStyleToken {
     Tertiary,
 }
 
-/** The [ButtonStyleToken] variant backing each [AuthButtonStyleToken]. */
 fun AuthButtonStyleToken.toButtonStyleToken(): ButtonStyleToken = when (this) {
     AuthButtonStyleToken.Primary -> ButtonStyleToken.Primary
     AuthButtonStyleToken.Secondary -> ButtonStyleToken.Secondary

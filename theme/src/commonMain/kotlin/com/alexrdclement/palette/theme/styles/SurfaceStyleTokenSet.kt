@@ -13,7 +13,6 @@ import com.alexrdclement.palette.components.core.SurfaceStyle as ComponentSurfac
 data class SurfaceStyleTokenSet(
     val color: ColorToken,
     val shape: ShapeToken,
-    /** Border applied to the surface; `null` for no border. Referenced by [BorderStyleToken], not raw values. */
     val borderStyle: BorderStyleToken?,
 )
 

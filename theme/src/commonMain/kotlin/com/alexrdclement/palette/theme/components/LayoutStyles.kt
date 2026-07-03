@@ -15,7 +15,6 @@ import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.styles.tokenSet
 import com.alexrdclement.palette.theme.toColor
 
-/** Resolved styles for [com.alexrdclement.palette.components.layout]; surfaced via [PaletteTheme.styles]. */
 object LayoutStyles {
 
     val scaffold: ScaffoldStyle

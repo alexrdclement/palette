@@ -23,11 +23,9 @@ enum class SurfaceStyleToken(val default: SurfaceStyleTokenSet) {
     ),
 }
 
-/** The current token set for this token — the theme's current [Styles]. */
 @Composable
 fun SurfaceStyleToken.tokenSet(): SurfaceStyleTokenSet =
     LocalStyles.current.surface.getValue(this)
 
-/** Resolves this token to a component [SurfaceStyle] using the current theme. */
 @Composable
 fun SurfaceStyleToken.resolve(): SurfaceStyle = tokenSet().toComponentStyle()

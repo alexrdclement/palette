@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.theme.styles
 
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.alexrdclement.palette.theme.modifiers.BorderStyle
 import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
@@ -25,7 +24,3 @@ data class Styles(
 )
 
 val LocalStyles = staticCompositionLocalOf { Styles() }
-
-/** The current border token set from the theme's [LocalStyles]. */
-@Composable
-fun BorderStyleToken.tokenSet(): BorderStyle = LocalStyles.current.border.getValue(this)

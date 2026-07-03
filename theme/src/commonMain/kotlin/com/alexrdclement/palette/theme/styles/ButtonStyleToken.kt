@@ -33,11 +33,9 @@ enum class ButtonStyleToken(val default: ButtonStyleTokenSet) {
     ),
 }
 
-/** The current token set for this token — the theme's current [Styles]. */
 @Composable
 fun ButtonStyleToken.tokenSet(): ButtonStyleTokenSet =
     LocalStyles.current.button.getValue(this)
 
-/** Resolves this token to a component [ButtonStyle] using the current theme. */
 @Composable
 fun ButtonStyleToken.resolve(): ButtonStyle = tokenSet().toComponentStyle()

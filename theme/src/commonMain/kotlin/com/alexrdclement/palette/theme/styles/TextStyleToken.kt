@@ -22,12 +22,10 @@ enum class TextStyleToken(val default: TextStyleTokenSet) {
     LabelSmall(TextStyleTokenSet(TypographyToken.LabelSmall, TextFormatToken.Label)),
 }
 
-/** The current token set for this token — the theme's current [Styles]. */
 @Composable
 fun TextStyleToken.tokenSet(): TextStyleTokenSet =
     LocalStyles.current.text.getValue(this)
 
-/** Resolves this token to a component [TextStyle] using the current theme. */
 @Composable
 fun TextStyleToken.resolve(): TextStyle =
     tokenSet().toTextStyle().copy(color = ColorToken.OnSurface.toColor())

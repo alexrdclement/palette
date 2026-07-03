@@ -9,7 +9,6 @@ import com.alexrdclement.palette.theme.styles.toButtonStyleToken
 import com.alexrdclement.palette.theme.styles.tokenSet
 import com.alexrdclement.palette.theme.toColor
 
-/** Resolved auth button styles per token, e.g. `authButton.secondary`; index dynamically with `authButton[token]`. */
 object AuthButtonStyles {
     val primary: AuthButtonStyle @Composable get() = authButtonStyle(AuthButtonStyleToken.Primary)
     val secondary: AuthButtonStyle @Composable get() = authButtonStyle(AuthButtonStyleToken.Secondary)
