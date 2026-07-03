@@ -1,37 +1,35 @@
 package com.alexrdclement.palette.app.theme.color
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
+import com.alexrdclement.palette.components.color.ColorDisplay
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
-import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonDefaults
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteDarkColorScheme
 import com.alexrdclement.palette.theme.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
@@ -69,7 +67,7 @@ fun ColorScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) { colorToken ->
-            ColorDisplay(
+            ColorDisplayRow(
                 label = colorToken.name,
                 color = colorToken.toColor(),
                 onColorClick = { selectedColorToken = colorToken },
@@ -93,7 +91,7 @@ fun ColorScreen(
 }
 
 @Composable
-private fun ColorDisplay(
+private fun ColorDisplayRow(
     label: String,
     color: Color,
     onColorClick: (Color) -> Unit,
@@ -104,18 +102,14 @@ private fun ColorDisplay(
         horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
+            .clickable { onColorClick(color) },
     ) {
-        Button(
-            style = style.buttonStyle,
-            onClick = { onColorClick(color) },
-            modifier = Modifier.size(ButtonDefaults.MinHeight)
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(color)
-            )
-        }
+        ColorDisplay(
+            color = color,
+            style = style,
+            modifier = Modifier
+                .size(ButtonDefaults.MinHeight)
+        )
         Text(
             text = label,
             style = PaletteTheme.styles.core.text.labelMedium,

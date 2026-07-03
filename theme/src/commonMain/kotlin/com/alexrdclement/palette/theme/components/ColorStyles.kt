@@ -1,8 +1,6 @@
 package com.alexrdclement.palette.theme.components
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
 import com.alexrdclement.palette.components.color.ColorPickerStyle
@@ -16,8 +14,6 @@ object ColorStyles {
         @Composable get() = ColorDisplayStyle(
             shape = PaletteTheme.shapeScheme.primary,
             borderStyle = BorderStyleToken.Primary.toComponentStyle(),
-            buttonStyle = CoreStyles.button.secondary
-                .copy(contentPadding = PaddingValues(0.dp)),
         )
 
     val colorPicker: ColorPickerStyle

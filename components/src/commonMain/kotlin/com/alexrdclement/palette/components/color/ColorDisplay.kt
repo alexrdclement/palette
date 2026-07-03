@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.BorderStyle
-import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.components.core.border
 import com.alexrdclement.palette.components.core.toComposeShape
@@ -17,7 +16,6 @@ import com.alexrdclement.palette.components.core.toComposeShape
 data class ColorDisplayStyle(
     val shape: Shape = Shape.Circle,
     val borderStyle: BorderStyle? = null,
-    val buttonStyle: ButtonStyle = ButtonStyle(),
 )
 
 @Composable
