@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.components.core
 
 import androidx.compose.foundation.Indication
-import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -89,7 +88,7 @@ fun Surface(
                 .shapeClickable(
                     shape = style.shape,
                     interactionSource = interactionSource,
-                    indication = style.indication ?: LocalIndication.current,
+                    indication = style.indication,
                     enabled = enabled,
                     onClick = onClick,
                     onLongClickLabel = onLongClickLabel,
