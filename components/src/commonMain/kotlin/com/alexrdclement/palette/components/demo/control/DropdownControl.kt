@@ -148,7 +148,8 @@ private fun <T> DropdownControlMenu(
                 onClick = {
                     onMenuDismissRequest()
                     control.onValueChange(index)
-                }
+                },
+                style = style.menuStyle.itemStyle,
             )
         }
     }

@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
+import com.alexrdclement.palette.components.menu.DropdownMenuItemStyle
 import com.alexrdclement.palette.components.menu.DropdownMenuStyle
 import com.alexrdclement.palette.components.menu.MenuDefaults
 import com.alexrdclement.palette.theme.PaletteTheme
@@ -14,13 +15,15 @@ object MenuStyles {
             val contentColor = PaletteTheme.colorScheme.contentColorFor(PaletteTheme.colorScheme.surface)
             return DropdownMenuStyle(
                 surfaceStyle = CoreStyles.surface.container,
-                itemColors = MenuDefaults.itemColors(
-                    textColor = contentColor,
-                    disabledTextColor = contentColor.copy(
-                        alpha = PaletteTheme.colorScheme.disabledContentAlpha,
+                itemStyle = DropdownMenuItemStyle(
+                    colors = MenuDefaults.itemColors(
+                        textColor = contentColor,
+                        disabledTextColor = contentColor.copy(
+                            alpha = PaletteTheme.colorScheme.disabledContentAlpha,
+                        ),
                     ),
+                    indication = PaletteTheme.indication,
                 ),
-                indication = PaletteTheme.indication,
             )
         }
 }

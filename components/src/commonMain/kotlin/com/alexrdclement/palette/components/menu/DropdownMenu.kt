@@ -26,7 +26,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
-import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
@@ -60,15 +59,14 @@ import kotlin.math.min
 
 data class DropdownMenuStyle(
     val surfaceStyle: SurfaceStyle = SurfaceStyle(),
-    val itemColors: MenuItemColors = MenuDefaults.itemColors(),
-    val indication: Indication? = null,
+    val itemStyle: DropdownMenuItemStyle = DropdownMenuItemStyle(),
 )
 
-/** Item colors provided by [DropdownMenu] so nested [DropdownMenuItem]s pick them up by default. */
-val LocalMenuItemColors = compositionLocalOf { MenuDefaults.itemColors() }
-
-/** Item indication provided by [DropdownMenu] so nested [DropdownMenuItem]s pick it up by default. */
-val LocalMenuItemIndication = compositionLocalOf<Indication?> { null }
+data class DropdownMenuItemStyle(
+    val colors: MenuItemColors = MenuDefaults.itemColors(),
+    val indication: Indication? = null,
+    val contentPadding: PaddingValues = MenuDefaults.DropdownMenuItemContentPadding,
+)
 
 @Composable
 fun DropdownMenu(
@@ -170,18 +168,13 @@ internal fun DropdownMenuContent(
             transformOrigin = transformOriginState.value
         }
     ) {
-        CompositionLocalProvider(
-            LocalMenuItemColors provides style.itemColors,
-            LocalMenuItemIndication provides style.indication,
-        ) {
-            Column(
-                modifier = modifier
-                    .padding(vertical = DropdownMenuVerticalPadding)
-                    .width(IntrinsicSize.Max)
-                    .verticalScroll(scrollState),
-                content = content
-            )
-        }
+        Column(
+            modifier = modifier
+                .padding(vertical = DropdownMenuVerticalPadding)
+                .width(IntrinsicSize.Max)
+                .verticalScroll(scrollState),
+            content = content
+        )
     }
 }
 
@@ -191,9 +184,7 @@ fun DropdownMenuItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    colors: MenuItemColors = LocalMenuItemColors.current,
-    contentPadding: PaddingValues = MenuDefaults.DropdownMenuItemContentPadding,
-    indication: Indication? = LocalMenuItemIndication.current,
+    style: DropdownMenuItemStyle = DropdownMenuItemStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     Row(
@@ -202,7 +193,7 @@ fun DropdownMenuItem(
                 enabled = enabled,
                 onClick = onClick,
                 interactionSource = interactionSource,
-                indication = indication,
+                indication = style.indication,
             )
             .fillMaxWidth()
             // Preferred min and max width used during the intrinsic measurement.
@@ -211,11 +202,11 @@ fun DropdownMenuItem(
                 maxWidth = DropdownMenuItemDefaultMaxWidth,
                 minHeight = DropdownMenuItemDefaultMinHeight,
             )
-            .padding(contentPadding),
+            .padding(style.contentPadding),
         verticalAlignment = Alignment.CenterVertically
     ) {
         CompositionLocalProvider(
-            LocalContentColor provides colors.textColor(enabled).value
+            LocalContentColor provides style.colors.textColor(enabled).value
                 .takeOrElse { LocalContentColor.current },
         ) {
             Box(modifier = Modifier.weight(1f)) {
