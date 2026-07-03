@@ -7,8 +7,8 @@ PLcom/alexrdclement/palette/app/demo/formats/datetime/DateTimeFormatScreenKt;->D
 PLcom/alexrdclement/palette/app/demo/formats/datetime/DateTimeFormatScreenKt;->DateTimeFormatScreen$lambda$1$2$0(Lkotlin/time/Instant;Lkotlinx/datetime/LocalDateTime;Lcom/alexrdclement/palette/formats/datetime/InstantFormatValue;)Ljava/lang/String;
 PLcom/alexrdclement/palette/app/demo/formats/datetime/DateTimeFormatScreenKt;->DateTimeFormatScreen$lambda$1$3$0(Lkotlin/time/Instant;Lkotlinx/datetime/LocalDateTime;Lcom/alexrdclement/palette/formats/datetime/TimeFormatValue;)Ljava/lang/String;
 HSPLcom/alexrdclement/palette/components/core/TextStyle;-><init>(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)V
-PLcom/alexrdclement/palette/components/core/TextStyle;->copy$default(Lcom/alexrdclement/palette/components/core/TextStyle;Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;ILjava/lang/Object;)Lcom/alexrdclement/palette/components/core/TextStyle;
-PLcom/alexrdclement/palette/components/core/TextStyle;->copy(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)Lcom/alexrdclement/palette/components/core/TextStyle;
+HSPLcom/alexrdclement/palette/components/core/TextStyle;->copy$default(Lcom/alexrdclement/palette/components/core/TextStyle;Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;ILjava/lang/Object;)Lcom/alexrdclement/palette/components/core/TextStyle;
+HSPLcom/alexrdclement/palette/components/core/TextStyle;->copy(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)Lcom/alexrdclement/palette/components/core/TextStyle;
 HSPLcom/alexrdclement/palette/components/core/TextStyle;->getFormat()Lcom/alexrdclement/palette/formats/core/TextFormat;
 Lcom/alexrdclement/palette/formats/core/Capitalization;
 HSPLcom/alexrdclement/palette/formats/core/Capitalization;-><clinit>()V
