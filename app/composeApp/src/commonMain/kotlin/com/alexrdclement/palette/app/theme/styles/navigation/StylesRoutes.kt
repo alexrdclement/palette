@@ -33,6 +33,12 @@ data object ButtonStylesRoute : StylesRoute {
 }
 
 @Serializable
+@SerialName("surfaceStyles")
+data object SurfaceStylesRoute : StylesRoute {
+    override val pathSegment = "surface".toPathSegment()
+}
+
+@Serializable
 @SerialName("textStyles")
 data object TextStylesRoute : StylesRoute {
     override val pathSegment = "text".toPathSegment()
