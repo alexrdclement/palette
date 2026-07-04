@@ -760,7 +760,7 @@ PLcom/alexrdclement/palette/components/demo/core/TextDemoControl$special$$inline
 PLcom/alexrdclement/palette/components/demo/core/TextDemoControl$special$$inlined$enumControl$default$8;->invoke()Ljava/lang/Integer;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoControl$special$$inlined$enumControl$default$8;->invoke()Ljava/lang/Object;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoControl$special$$inlined$enumControl$default$9;-><init>(Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;)V
-PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->$r8$lambda$1BosZak7V440FVY-Xio1t23hxYg(Lcom/alexrdclement/palette/components/demo/DemoScope;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/demo/core/TextDemoState;Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;JIILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
+PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->$r8$lambda$0i8NUo4PPKAQ7XGkVkwvdzsQKMw(Lcom/alexrdclement/palette/components/demo/DemoScope;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/demo/core/TextDemoState;Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;JIILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->$r8$lambda$JuJsE2hVmRFYZU7GKM2bTcnbPv0(Lcom/alexrdclement/palette/components/demo/core/TextDemoState;Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;Lcom/alexrdclement/palette/components/demo/DemoScope;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->$r8$lambda$NyZnltLLKjBP8a7LeZ2Xhorhw8Y(Ljava/lang/String;)Lcom/alexrdclement/palette/components/demo/core/TextDemoState;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->$r8$lambda$XQEKrRY9ulpkhP0EMF9-iOv9VFc(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/components/demo/core/TextDemoState;)Ljava/util/Map;
@@ -769,8 +769,8 @@ PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->TextDemo$lambda$0(
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->TextDemo(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/demo/core/TextDemoState;Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->TextDemo-yrwZFoE(Lcom/alexrdclement/palette/components/demo/DemoScope;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/demo/core/TextDemoState;Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;JLandroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->TextDemoStateSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/components/demo/core/TextDemoState;)Ljava/util/Map;
-PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->TextDemo_yrwZFoE$lambda$0(Landroidx/compose/runtime/State;)Ljava/lang/String;
-PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->TextDemo_yrwZFoE$lambda$3(Lcom/alexrdclement/palette/components/demo/DemoScope;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/demo/core/TextDemoState;Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;JIILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
+PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->TextDemo_yrwZFoE$lambda$1(Landroidx/compose/runtime/State;)Ljava/lang/String;
+PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->TextDemo_yrwZFoE$lambda$4(Lcom/alexrdclement/palette/components/demo/DemoScope;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/demo/core/TextDemoState;Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;JIILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->access$toDomain-Oa1mYHo(F)Lcom/alexrdclement/palette/components/demo/core/LineHeightAlignment;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->access$toDomain-XeJ9Kts(I)Lcom/alexrdclement/palette/components/demo/core/LineHeightTrim;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt;->access$toDomain-reH4dfM(I)Lcom/alexrdclement/palette/components/demo/core/LineHeightMode;
@@ -794,9 +794,9 @@ PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$$ExternalSyntheticLa
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$$ExternalSyntheticLambda4;->invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$$ExternalSyntheticLambda5;-><init>(Ljava/lang/String;)V
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$$ExternalSyntheticLambda5;->invoke()Ljava/lang/Object;
-PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$TextDemo$3$1;-><init>(Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;Lcom/alexrdclement/palette/components/demo/DemoScope;Lkotlin/coroutines/Continuation;)V
-PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$TextDemo$3$1;->create(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Lkotlin/coroutines/Continuation;
-PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$TextDemo$3$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
+PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$TextDemo$4$1;-><init>(Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;Lcom/alexrdclement/palette/components/demo/DemoScope;Lkotlin/coroutines/Continuation;)V
+PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$TextDemo$4$1;->create(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Lkotlin/coroutines/Continuation;
+PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$TextDemo$4$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoKt$WhenMappings;-><clinit>()V
 PLcom/alexrdclement/palette/components/demo/core/TextDemoState;->$r8$lambda$EXg8zyGsRBDWdv1jISJKimP1B8g(Lcom/alexrdclement/palette/components/demo/core/TextDemoState;)Ljava/lang/String;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoState;-><clinit>()V
@@ -816,6 +816,7 @@ PLcom/alexrdclement/palette/components/demo/core/TextDemoState;->getSoftWrap()Z
 PLcom/alexrdclement/palette/components/demo/core/TextDemoState;->getText()Lkotlinx/coroutines/flow/Flow;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoState;->getTextAlign()Lcom/alexrdclement/palette/components/demo/core/TextAlign;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoState;->getTextFieldState$demo()Landroidx/compose/foundation/text/input/TextFieldState;
+PLcom/alexrdclement/palette/components/demo/core/TextDemoState;->getTextStyle()Lcom/alexrdclement/palette/components/core/TextStyle;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoState;->getTextStyleDemoState()Lcom/alexrdclement/palette/components/demo/core/TextStyleDemoState;
 PLcom/alexrdclement/palette/components/demo/core/TextDemoState;->getWidth-D9Ej5fM()F
 PLcom/alexrdclement/palette/components/demo/core/TextDemoState;->setMaxWidth-0680j_4$demo(F)V
