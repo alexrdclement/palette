@@ -2,24 +2,22 @@ package com.alexrdclement.palette.theme.styles
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.TextStyle
-import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.TypographyToken
 import com.alexrdclement.palette.theme.format.core.TextFormatToken
-import com.alexrdclement.palette.theme.toColor
 
 enum class TextStyleToken(val default: TextStyleTokenSet) {
-    Display(TextStyleTokenSet(TypographyToken.Display, TextFormatToken.Display)),
-    Headline(TextStyleTokenSet(TypographyToken.Headline, TextFormatToken.Headline)),
-    TitleLarge(TextStyleTokenSet(TypographyToken.TitleLarge, TextFormatToken.Title)),
-    TitleMedium(TextStyleTokenSet(TypographyToken.TitleMedium, TextFormatToken.Title)),
-    TitleSmall(TextStyleTokenSet(TypographyToken.TitleSmall, TextFormatToken.Title)),
-    BodyLarge(TextStyleTokenSet(TypographyToken.BodyLarge, TextFormatToken.Body)),
-    BodyMedium(TextStyleTokenSet(TypographyToken.BodyMedium, TextFormatToken.Body)),
-    BodySmall(TextStyleTokenSet(TypographyToken.BodySmall, TextFormatToken.Body)),
-    LabelLarge(TextStyleTokenSet(TypographyToken.LabelLarge, TextFormatToken.Label)),
-    LabelMedium(TextStyleTokenSet(TypographyToken.LabelMedium, TextFormatToken.Label)),
-    LabelSmall(TextStyleTokenSet(TypographyToken.LabelSmall, TextFormatToken.Label)),
+    Display(TextStyleTokenSet(TypographyToken.Display, TextFormatToken.Display, ColorToken.OnSurface)),
+    Headline(TextStyleTokenSet(TypographyToken.Headline, TextFormatToken.Headline, ColorToken.OnSurface)),
+    TitleLarge(TextStyleTokenSet(TypographyToken.TitleLarge, TextFormatToken.Title, ColorToken.OnSurface)),
+    TitleMedium(TextStyleTokenSet(TypographyToken.TitleMedium, TextFormatToken.Title, ColorToken.OnSurface)),
+    TitleSmall(TextStyleTokenSet(TypographyToken.TitleSmall, TextFormatToken.Title, ColorToken.OnSurface)),
+    BodyLarge(TextStyleTokenSet(TypographyToken.BodyLarge, TextFormatToken.Body, ColorToken.OnSurface)),
+    BodyMedium(TextStyleTokenSet(TypographyToken.BodyMedium, TextFormatToken.Body, ColorToken.OnSurface)),
+    BodySmall(TextStyleTokenSet(TypographyToken.BodySmall, TextFormatToken.Body, ColorToken.OnSurface)),
+    LabelLarge(TextStyleTokenSet(TypographyToken.LabelLarge, TextFormatToken.Label, ColorToken.OnSurface)),
+    LabelMedium(TextStyleTokenSet(TypographyToken.LabelMedium, TextFormatToken.Label, ColorToken.OnSurface)),
+    LabelSmall(TextStyleTokenSet(TypographyToken.LabelSmall, TextFormatToken.Label, ColorToken.OnSurface)),
 }
 
 @Composable
@@ -28,4 +26,4 @@ fun TextStyleToken.tokenSet(): TextStyleTokenSet =
 
 @Composable
 fun TextStyleToken.resolve(): TextStyle =
-    tokenSet().toTextStyle().copy(color = ColorToken.OnSurface.toColor())
+    tokenSet().toTextStyle()

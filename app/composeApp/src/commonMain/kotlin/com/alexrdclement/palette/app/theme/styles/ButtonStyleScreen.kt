@@ -33,8 +33,6 @@ import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.styles.BorderStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleTokenSet
-import com.alexrdclement.palette.theme.styles.tokenSet
-import com.alexrdclement.palette.theme.toColor
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -72,7 +70,6 @@ fun ButtonStyleScreen(
                 this@DemoList.TextDemo(
                     state = state.textDemoState,
                     control = control.textDemoControl,
-                    color = style.tokenSet().contentColor.toColor(),
                 )
             }
         }

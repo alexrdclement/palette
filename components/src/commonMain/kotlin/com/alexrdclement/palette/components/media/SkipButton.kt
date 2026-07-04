@@ -16,23 +16,31 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
 
+data class SkipIconStyle(
+    val color: Color = Color.Unspecified,
+)
+
+data class SkipButtonStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val iconStyle: SkipIconStyle = SkipIconStyle(),
+    val contentPadding: PaddingValues = PaddingValues(6.dp),
+)
+
 @Composable
 fun SkipButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    style: ButtonStyle = ButtonStyle(),
+    style: SkipButtonStyle = SkipButtonStyle(),
     enabled: Boolean = true,
-    contentPadding: PaddingValues = PaddingValues(6.dp),
-    iconColor: Color = Color.Unspecified,
 ) {
     Button(
         onClick = onClick,
         enabled = enabled,
-        style = style.copy(contentPadding = contentPadding),
+        style = style.buttonStyle.copy(contentPadding = style.contentPadding),
         modifier = modifier.aspectRatio(1f),
     ) { shapePadding ->
         SkipIcon(
-            color = iconColor,
+            style = style.iconStyle,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(shapePadding),
@@ -43,14 +51,14 @@ fun SkipButton(
 @Composable
 fun SkipIcon(
     modifier: Modifier = Modifier,
-    color: Color = Color.Unspecified,
+    style: SkipIconStyle = SkipIconStyle(),
 ) {
     Canvas(modifier = modifier) {
         val barWidth = size.width * 0.15f
         val gap = size.width * 0.08f
 
         drawRect(
-            color = color,
+            color = style.color,
             topLeft = Offset(size.width - barWidth, 0f),
             size = Size(barWidth, size.height),
         )
@@ -61,7 +69,7 @@ fun SkipIcon(
             lineTo(size.width - barWidth - gap, size.height / 2f) // right tip
             close()
         }
-        drawPath(path, color = color)
+        drawPath(path, color = style.color)
     }
 }
 

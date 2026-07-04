@@ -18,7 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -57,12 +57,14 @@ fun DemoScope.TextDemo(
     modifier: Modifier = Modifier,
     state: TextDemoState = rememberTextDemoState(),
     control: TextDemoControl = rememberTextDemoControl(state),
-    color: Color = PaletteTheme.colorScheme.onSurface,
 ) {
     val text by state.text.collectAsState(initial = state.text.toString())
 
     LaunchedEffect(control, this@TextDemo.maxWidth) {
         control.onSizeChanged(this@TextDemo.maxWidth)
+    }
+    val color = state.textStyle.composeTextStyle.color.takeOrElse {
+        PaletteTheme.colorScheme.onSurface
     }
     Text(
         text = text,
@@ -166,6 +168,10 @@ class TextDemoState(
         textStyleInitial = textStyleInitial,
         demoTextFieldState = textFieldState,
     )
+
+    /** Base text style whose color drives the demo. Style controls will be added later. */
+    var textStyle by mutableStateOf(textStyleInitial)
+        internal set
 
     var textAlign by mutableStateOf(textAlignInitial)
         internal set

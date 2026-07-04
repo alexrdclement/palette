@@ -6,6 +6,8 @@ import com.alexrdclement.palette.components.media.MediaControlBarStyle
 import com.alexrdclement.palette.components.media.MediaControlSheetStyle
 import com.alexrdclement.palette.components.media.MediaItemArtworkStyle
 import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
+import com.alexrdclement.palette.components.media.SkipButtonStyle
+import com.alexrdclement.palette.components.media.SkipIconStyle
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.ShapeToken
@@ -22,6 +24,14 @@ object MediaStyles {
                 indication = PaletteTheme.indication,
             ),
             iconColor = PaletteTheme.colorScheme.onPrimary,
+        )
+
+    val skipButton: SkipButtonStyle
+        @Composable get() = SkipButtonStyle(
+            buttonStyle = CoreStyles.button.secondary,
+            iconStyle = SkipIconStyle(
+                color = PaletteTheme.colorScheme.secondary,
+            ),
         )
 
     val mediaItemArtwork: MediaItemArtworkStyle

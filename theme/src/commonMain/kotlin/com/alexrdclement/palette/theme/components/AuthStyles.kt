@@ -2,12 +2,9 @@ package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.auth.AuthButtonStyle
-import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.styles.AuthButtonStyleToken
 import com.alexrdclement.palette.theme.styles.resolve
 import com.alexrdclement.palette.theme.styles.toButtonStyleToken
-import com.alexrdclement.palette.theme.styles.tokenSet
-import com.alexrdclement.palette.theme.toColor
 
 object AuthButtonStyles {
     val primary: AuthButtonStyle @Composable get() = authButtonStyle(AuthButtonStyleToken.Primary)
@@ -24,9 +21,7 @@ object AuthButtonStyles {
             AuthButtonStyleToken.Primary -> TextStyles.labelLarge
             AuthButtonStyleToken.Secondary -> TextStyles.labelSmall
             AuthButtonStyleToken.Tertiary -> TextStyles.labelSmall
-        }.copy(
-            color = token.toButtonStyleToken().tokenSet().contentColor.toColor(),
-        ),
+        },
     )
 }
 
