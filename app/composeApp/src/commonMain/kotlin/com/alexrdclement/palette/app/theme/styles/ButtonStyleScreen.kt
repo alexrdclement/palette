@@ -5,12 +5,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.demo.core.TextAlign
@@ -19,6 +17,7 @@ import com.alexrdclement.palette.components.demo.core.TextDemoControl
 import com.alexrdclement.palette.components.demo.core.TextDemoState
 import com.alexrdclement.palette.components.demo.core.TextDemoStateSaver
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
@@ -63,6 +62,11 @@ fun ButtonStyleScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) { style ->
+            val textDemoState = state.textDemoState(style)
+            val contentColor = style.tokenSet().contentColor.toColor()
+            LaunchedEffect(textDemoState, contentColor) {
+                textDemoState.textStyle = textDemoState.textStyle.copy(color = contentColor)
+            }
             Button(
                 style = PaletteTheme.styles.core.button[style],
                 onClick = {},
@@ -70,9 +74,8 @@ fun ButtonStyleScreen(
                     .fillMaxWidth()
             ) {
                 this@DemoList.TextDemo(
-                    state = state.textDemoState,
-                    control = control.textDemoControl,
-                    color = style.tokenSet().contentColor.toColor(),
+                    state = textDemoState,
+                    control = control.textDemoControl(style),
                 )
             }
         }
@@ -82,19 +85,21 @@ fun ButtonStyleScreen(
 @Composable
 fun rememberButtonStyleScreenState(
     themeState: ThemeState,
-    textDemoStateInitial: TextDemoState = TextDemoState(
-        textAlignInitial = TextAlign.Center,
-        autoSizeInitial = true,
-    ),
+    textDemoStatesInitial: Map<ButtonStyleToken, TextDemoState> =
+        ButtonStyleToken.entries.associateWith {
+            TextDemoState(
+                textAlignInitial = TextAlign.Center,
+                autoSizeInitial = true,
+            )
+        },
 ): ButtonStyleScreenState {
     return rememberSaveable(
         themeState,
-        textDemoStateInitial,
         saver = ButtonStyleScreenStateSaver(themeState),
     ) {
         ButtonStyleScreenState(
             themeState = themeState,
-            textDemoStateInitial = textDemoStateInitial,
+            textDemoStates = textDemoStatesInitial,
         )
     }
 }
@@ -102,28 +107,29 @@ fun rememberButtonStyleScreenState(
 @Stable
 class ButtonStyleScreenState(
     val themeState: ThemeState,
-    textDemoStateInitial: TextDemoState,
+    /** One [TextDemoState] per token so each button preview can carry its own content color. */
+    val textDemoStates: Map<ButtonStyleToken, TextDemoState>,
 ) {
     /** The current token set for [token] — the theme's current styles. */
     fun tokenSet(token: ButtonStyleToken): ButtonStyleTokenSet =
         themeState.styles.button.getValue(token)
 
-    var textDemoState by mutableStateOf(textDemoStateInitial)
-        internal set
+    fun textDemoState(token: ButtonStyleToken): TextDemoState =
+        textDemoStates.getValue(token)
 }
-
-private const val textDemoStateKey = "buttonDemoState"
 
 fun ButtonStyleScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
     save = { state ->
-        mapOf(
-            textDemoStateKey to save(state.textDemoState, TextDemoStateSaver, this)
-        )
+        ButtonStyleToken.entries.associate { token ->
+            token.name to save(state.textDemoState(token), TextDemoStateSaver, this)
+        }
     },
     restore = { map ->
         ButtonStyleScreenState(
             themeState = themeState,
-            textDemoStateInitial = restore(map[textDemoStateKey], TextDemoStateSaver)!!,
+            textDemoStates = ButtonStyleToken.entries.associateWith { token ->
+                restore(map[token.name], TextDemoStateSaver)!!
+            },
         )
     }
 )
@@ -143,24 +149,25 @@ class ButtonStyleScreenControl(
     val state: ButtonStyleScreenState,
     val themeController: ThemeController,
 ) {
+    private val textDemoControls: Map<ButtonStyleToken, TextDemoControl> =
+        ButtonStyleToken.entries.associateWith { token ->
+            TextDemoControl(state.textDemoState(token))
+        }
+
+    fun textDemoControl(token: ButtonStyleToken): TextDemoControl =
+        textDemoControls.getValue(token)
+
     val buttonStyleControls = ButtonStyleToken.entries.map { token ->
         makeControlForToken(
             token = token,
             state = state,
             themeController = themeController,
+            textDemoControl = textDemoControls.getValue(token),
         )
     }
 
-    val textDemoControl = TextDemoControl(state.textDemoState)
-
     val controls: PersistentList<Control> = persistentListOf(
         *buttonStyleControls.toTypedArray(),
-        Control.ControlColumn(
-            name = "Demo text controls",
-            indent = true,
-            controls = { textDemoControl.controls },
-            expandedInitial = false,
-        )
     )
 }
 
@@ -168,6 +175,7 @@ private fun makeControlForToken(
     token: ButtonStyleToken,
     state: ButtonStyleScreenState,
     themeController: ThemeController,
+    textDemoControl: TextDemoControl,
 ): Control {
     fun setTokenSet(value: ButtonStyleTokenSet) {
         val styles = state.themeState.styles
@@ -246,7 +254,13 @@ private fun makeControlForToken(
                 contentColorControl,
                 containerColorControl,
                 shapeControl,
-                *borderControls.toTypedArray()
+                *borderControls.toTypedArray(),
+                Control.ControlColumn(
+                    name = "Demo text",
+                    indent = true,
+                    controls = { textDemoControl.controls },
+                    expandedInitial = false,
+                ),
             )
         },
     )
