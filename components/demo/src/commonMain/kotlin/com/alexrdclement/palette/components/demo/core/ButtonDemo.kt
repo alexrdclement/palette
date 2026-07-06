@@ -162,7 +162,8 @@ class ButtonDemoControl(
         valueRange = { 0f..state.maxWidth.value },
     )
 
-    val textDemoControl = TextDemoControl(state.textDemoState)
+    // Color is derived from the selected button's content color, so no manual color control.
+    val textDemoControl = TextDemoControl(state.textDemoState, includeColorControl = false)
     val textDemoControls = Control.ControlColumn(
         name = "Text",
         indent = true,

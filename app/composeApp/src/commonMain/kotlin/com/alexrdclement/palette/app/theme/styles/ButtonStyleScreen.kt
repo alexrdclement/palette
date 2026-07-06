@@ -151,7 +151,8 @@ class ButtonStyleScreenControl(
 ) {
     private val textDemoControls: Map<ButtonStyleToken, TextDemoControl> =
         ButtonStyleToken.entries.associateWith { token ->
-            TextDemoControl(state.textDemoState(token))
+            // Color is driven by the token's "Content color" control, so no manual color control.
+            TextDemoControl(state.textDemoState(token), includeColorControl = false)
         }
 
     fun textDemoControl(token: ButtonStyleToken): TextDemoControl =

@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
@@ -269,11 +270,18 @@ fun rememberTextDemoControl(
 @Stable
 class TextDemoControl(
     private var state: TextDemoState,
+    includeColorControl: Boolean = true,
 ) {
     val textFieldControl = Control.TextField(
         name = "Text",
         textFieldState = state.textFieldState,
         includeLabel = false,
+    )
+
+    val colorControl = Control.Color(
+        name = "Color",
+        color = { state.textStyle.composeTextStyle.color },
+        onColorChange = { state.textStyle = state.textStyle.copy(color = it) },
     )
 
     val textStyleControl = TextStyleDemoControl(
@@ -368,7 +376,7 @@ class TextDemoControl(
         softWrapControl,
         showBorderControl,
         overflowControl,
-    )
+    ).let { if (includeColorControl) it.add(2, colorControl) else it }
 
     fun onSizeChanged(width: Dp) {
         if (state.maxWidth == 0.dp) {
