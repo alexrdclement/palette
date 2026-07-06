@@ -18,6 +18,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.isSpecified
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -227,9 +229,11 @@ private const val overflowKey = "overflow"
 
 val TextDemoStateSaver = mapSaverSafe(
     save = { value ->
+        val textColor = value.textStyle.composeTextStyle.color
         mapOf(
             textStyleDemoKey to save(value.textStyleDemoState, TextStyleDemoStateSaver, this),
-            textColorKey to save(value.textStyle.composeTextStyle.color, ColorSaver, this),
+            // Only persist a specified color; Color.Unspecified would round-trip to transparent.
+            textColorKey to save(textColor.takeIf { it.isSpecified }, ColorSaver, this),
             textAlignKey to value.textAlign.name,
             lineHeightAlignmentKey to value.lineHeightAlignment.name,
             lineHeightTrimKey to value.lineHeightTrim.name,
@@ -247,7 +251,7 @@ val TextDemoStateSaver = mapSaverSafe(
 
         TextDemoState(
             textStyleInitial = textStyleDemoState.textStyle.copy(
-                color = restore(map[textColorKey], ColorSaver)!!,
+                color = restore(map[textColorKey], ColorSaver) ?: Color.Unspecified,
             ),
             textAlignInitial = TextAlign.valueOf(map[textAlignKey] as String),
             lineHeightAlignmentInitial =
