@@ -9,10 +9,6 @@ import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.components.core.Surface as BaseSurface
 
-/**
- * [com.alexrdclement.palette.components.core.Surface] pre-bound to the palette theme: `style`
- * defaults to [PaletteTheme.styles]`.core.surface`. Pass `style` to override.
- */
 @Composable
 fun Surface(
     modifier: Modifier = Modifier,

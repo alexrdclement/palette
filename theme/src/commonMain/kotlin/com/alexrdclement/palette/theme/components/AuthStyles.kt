@@ -29,8 +29,6 @@ object AuthButtonStyles {
     )
 }
 
-/** Resolved styles for [com.alexrdclement.palette.components.auth]; surfaced via [PaletteTheme.styles]. */
 object AuthStyles {
-    /** Resolved auth button styles per token, e.g. `authButton.secondary`. */
     val authButton get() = AuthButtonStyles
 }
