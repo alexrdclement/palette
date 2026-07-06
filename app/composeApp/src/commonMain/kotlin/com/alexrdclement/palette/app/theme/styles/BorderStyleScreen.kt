@@ -87,7 +87,6 @@ fun rememberBorderStyleScreenState(
 class BorderStyleScreenState(
     val themeState: ThemeState,
 ) {
-    /** The current token set for [token] — the theme's current styles. */
     fun tokenSet(token: BorderStyleToken): BorderStyleTokenSet =
         themeState.styles.border.getValue(token)
 }

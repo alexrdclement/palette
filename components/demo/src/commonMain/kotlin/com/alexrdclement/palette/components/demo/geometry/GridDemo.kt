@@ -709,13 +709,6 @@ class GridVertexControl(
     val onStateChanged: ((GridVertexState) -> Unit)? = null,
     private val name: String? = null,
 ) {
-    enum class DemoVertexType {
-        None,
-        Oval,
-        Rect,
-        Plus,
-        X,
-    }
     val typeControl = enumControl(
         name = "Type",
         values = { DemoVertexType.entries },
@@ -754,10 +747,6 @@ class GridVertexControl(
         valueRange = { 1f..100f },
     )
 
-    enum class VertexDrawStyle {
-        Stroke,
-        Fill,
-    }
     val drawStyleControl = enumControl(
         name = "Draw Style",
         values = { VertexDrawStyle.entries },
@@ -852,6 +841,19 @@ class GridVertexControl(
             },
         )
     )
+
+    enum class DemoVertexType {
+        None,
+        Oval,
+        Rect,
+        Plus,
+        X,
+    }
+
+    enum class VertexDrawStyle {
+        Stroke,
+        Fill,
+    }
 }
 
 @Preview

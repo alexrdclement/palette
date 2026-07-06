@@ -94,13 +94,12 @@ class TextStyleScreenState(
     val themeState: ThemeState,
     val demoTextFieldState: TextFieldState = TextFieldState("Sphinx of black quartz, judge my vow"),
 ) {
-    /** The current token set for [token] — the theme's current styles. */
-    fun tokenSet(token: TextStyleToken): TextStyleTokenSet =
-        themeState.styles.text.getValue(token)
-
     val text by derivedStateOf {
         demoTextFieldState.text.toString()
     }
+
+    fun tokenSet(token: TextStyleToken): TextStyleTokenSet =
+        themeState.styles.text.getValue(token)
 }
 
 private const val demoTextFieldStateKey = "demoTextFieldState"

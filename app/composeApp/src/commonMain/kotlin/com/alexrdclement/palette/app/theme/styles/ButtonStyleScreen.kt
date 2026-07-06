@@ -110,7 +110,6 @@ class ButtonStyleScreenState(
     /** One [TextDemoState] per token so each button preview can carry its own content color. */
     val textDemoStates: Map<ButtonStyleToken, TextDemoState>,
 ) {
-    /** The current token set for [token] — the theme's current styles. */
     fun tokenSet(token: ButtonStyleToken): ButtonStyleTokenSet =
         themeState.styles.button.getValue(token)
 
@@ -154,9 +153,6 @@ class ButtonStyleScreenControl(
             TextDemoControl(state.textDemoState(token))
         }
 
-    fun textDemoControl(token: ButtonStyleToken): TextDemoControl =
-        textDemoControls.getValue(token)
-
     val buttonStyleControls = ButtonStyleToken.entries.map { token ->
         makeControlForToken(
             token = token,
@@ -169,6 +165,9 @@ class ButtonStyleScreenControl(
     val controls: PersistentList<Control> = persistentListOf(
         *buttonStyleControls.toTypedArray(),
     )
+
+    fun textDemoControl(token: ButtonStyleToken): TextDemoControl =
+        textDemoControls.getValue(token)
 }
 
 private fun makeControlForToken(

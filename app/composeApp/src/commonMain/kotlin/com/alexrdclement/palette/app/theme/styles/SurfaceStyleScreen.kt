@@ -86,7 +86,6 @@ fun rememberSurfaceStyleScreenState(
 class SurfaceStyleScreenState(
     val themeState: ThemeState,
 ) {
-    /** The current token set for [token] — the theme's current styles. */
     fun tokenSet(token: SurfaceStyleToken): SurfaceStyleTokenSet =
         themeState.styles.surface.getValue(token)
 }
