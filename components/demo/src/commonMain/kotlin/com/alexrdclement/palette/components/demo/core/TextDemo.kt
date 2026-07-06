@@ -18,7 +18,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -145,16 +144,15 @@ enum class LineHeightMode {
 @Composable
 fun rememberTextDemoState(
     initialText: String = "Hello world",
-    textColorInitial: Color = PaletteTheme.colorScheme.onSurface,
+    textStyleInitial: TextStyle = TextStyleDemoDefault.copy(color = PaletteTheme.colorScheme.onSurface),
 ) = rememberSaveable(saver = TextDemoStateSaver) {
-    TextDemoState(initialText, textColorInitial = textColorInitial)
+    TextDemoState(initialText, textStyleInitial = textStyleInitial)
 }
 
 @Stable
 class TextDemoState(
     initialText: String = "Hello world",
     textStyleInitial: TextStyle = TextStyleDemoDefault,
-    textColorInitial: Color = Color.Unspecified,
     textAlignInitial: TextAlign = TextAlign.Center,
     lineHeightAlignmentInitial: LineHeightAlignment = lineHeightAlignmentDefault,
     lineHeightTrimInitial: LineHeightTrim = lineHeightTrimDefault,
@@ -175,10 +173,10 @@ class TextDemoState(
     )
 
     /**
-     * Base text style whose color drives the demo. Seeded once from [textColorInitial] and then
+     * Base text style whose color drives the demo. Seeded once from [textStyleInitial] and then
      * owned by the caller (e.g. edited via the color control).
      */
-    var textStyle by mutableStateOf(textStyleInitial.copy(color = textColorInitial))
+    var textStyle by mutableStateOf(textStyleInitial)
 
     var textAlign by mutableStateOf(textAlignInitial)
         internal set
@@ -248,8 +246,9 @@ val TextDemoStateSaver = mapSaverSafe(
         val textStyleDemoState: TextStyleDemoState = restore(map[textStyleDemoKey], TextStyleDemoStateSaver)!!
 
         TextDemoState(
-            textStyleInitial = textStyleDemoState.textStyle,
-            textColorInitial = restore(map[textColorKey], ColorSaver)!!,
+            textStyleInitial = textStyleDemoState.textStyle.copy(
+                color = restore(map[textColorKey], ColorSaver)!!,
+            ),
             textAlignInitial = TextAlign.valueOf(map[textAlignKey] as String),
             lineHeightAlignmentInitial =
                 LineHeightAlignment.valueOf(map[lineHeightAlignmentKey] as String),

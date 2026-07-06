@@ -13,12 +13,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
@@ -78,10 +78,18 @@ fun DemoScope.ButtonDemo(
 
 @Composable
 fun rememberButtonDemoState(): ButtonDemoState {
-    // Resolve the initial demo text color once, from the initial button's content color.
-    val textColorInitial = ButtonStyleToken.Primary.tokenSet().contentColor.toColor()
+    // Seed the initial demo text style once, colored by the initial button's content color.
+    val textStyleInitial = TextStyleDemoDefault.copy(
+        color = ButtonStyleToken.Primary.tokenSet().contentColor.toColor(),
+    )
     return rememberSaveable(saver = ButtonDemoStateSaver) {
-        ButtonDemoState(textColorInitial = textColorInitial)
+        ButtonDemoState(
+            textDemoState = TextDemoState(
+                initialText = "Button",
+                textStyleInitial = textStyleInitial,
+                textAlignInitial = TextAlign.Center,
+            ),
+        )
     }
 }
 
@@ -91,10 +99,8 @@ class ButtonDemoState(
     enabledInitial: Boolean = true,
     maxWidthInitial: Dp = 0.dp,
     widthInitial: Dp = 200.dp,
-    textColorInitial: Color = Color.Unspecified,
     val textDemoState: TextDemoState = TextDemoState(
         initialText = "Button",
-        textColorInitial = textColorInitial,
         textAlignInitial = TextAlign.Center,
     ),
 ) {
