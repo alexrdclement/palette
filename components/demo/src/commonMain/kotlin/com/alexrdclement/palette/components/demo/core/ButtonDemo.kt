@@ -13,12 +13,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
@@ -59,10 +59,6 @@ fun DemoScope.ButtonDemo(
     LaunchedEffect(control, maxWidth) {
         control.onButtonSizeChanged(maxWidth)
     }
-    val contentColor = state.style.tokenSet().contentColor.toColor()
-    LaunchedEffect(contentColor) {
-        state.textDemoState.textStyle = state.textDemoState.textStyle.copy(color = contentColor)
-    }
     Button(
         onClick = {},
         style = PaletteTheme.styles.core.button[state.style],
@@ -81,9 +77,13 @@ fun DemoScope.ButtonDemo(
 }
 
 @Composable
-fun rememberButtonDemoState(): ButtonDemoState = rememberSaveable(
-    saver = ButtonDemoStateSaver,
-) { ButtonDemoState() }
+fun rememberButtonDemoState(): ButtonDemoState {
+    // Resolve the initial demo text color once, from the initial button's content color.
+    val textColorInitial = ButtonStyleToken.Primary.tokenSet().contentColor.toColor()
+    return rememberSaveable(saver = ButtonDemoStateSaver) {
+        ButtonDemoState(textColorInitial = textColorInitial)
+    }
+}
 
 @Stable
 class ButtonDemoState(
@@ -91,8 +91,10 @@ class ButtonDemoState(
     enabledInitial: Boolean = true,
     maxWidthInitial: Dp = 0.dp,
     widthInitial: Dp = 200.dp,
+    textColorInitial: Color = Color.Unspecified,
     val textDemoState: TextDemoState = TextDemoState(
         initialText = "Button",
+        textColorInitial = textColorInitial,
         textAlignInitial = TextAlign.Center,
     ),
 ) {
@@ -162,8 +164,7 @@ class ButtonDemoControl(
         valueRange = { 0f..state.maxWidth.value },
     )
 
-    // Color is derived from the selected button's content color, so no manual color control.
-    val textDemoControl = TextDemoControl(state.textDemoState, includeColorControl = false)
+    val textDemoControl = TextDemoControl(state.textDemoState)
     val textDemoControls = Control.ControlColumn(
         name = "Text",
         indent = true,

@@ -18,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -29,6 +30,7 @@ import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
+import com.alexrdclement.palette.components.util.ColorSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
@@ -143,14 +145,16 @@ enum class LineHeightMode {
 @Composable
 fun rememberTextDemoState(
     initialText: String = "Hello world",
+    textColorInitial: Color = PaletteTheme.colorScheme.onSurface,
 ) = rememberSaveable(saver = TextDemoStateSaver) {
-    TextDemoState(initialText)
+    TextDemoState(initialText, textColorInitial = textColorInitial)
 }
 
 @Stable
 class TextDemoState(
     initialText: String = "Hello world",
     textStyleInitial: TextStyle = TextStyleDemoDefault,
+    textColorInitial: Color = Color.Unspecified,
     textAlignInitial: TextAlign = TextAlign.Center,
     lineHeightAlignmentInitial: LineHeightAlignment = lineHeightAlignmentDefault,
     lineHeightTrimInitial: LineHeightTrim = lineHeightTrimDefault,
@@ -171,10 +175,10 @@ class TextDemoState(
     )
 
     /**
-     * Base text style whose color drives the demo. Settable externally (e.g. by a demo that
-     * renders the text on a colored container); style controls will be added later.
+     * Base text style whose color drives the demo. Seeded once from [textColorInitial] and then
+     * owned by the caller (e.g. edited via the color control).
      */
-    var textStyle by mutableStateOf(textStyleInitial)
+    var textStyle by mutableStateOf(textStyleInitial.copy(color = textColorInitial))
 
     var textAlign by mutableStateOf(textAlignInitial)
         internal set
@@ -211,6 +215,7 @@ class TextDemoState(
 }
 
 private const val textStyleDemoKey = "textStyleDemo"
+private const val textColorKey = "textColor"
 private const val textAlignKey = "textAlign"
 private const val lineHeightAlignmentKey = "lineHeightAlignment"
 private const val lineHeightTrimKey = "lineHeightTrim"
@@ -226,6 +231,7 @@ val TextDemoStateSaver = mapSaverSafe(
     save = { value ->
         mapOf(
             textStyleDemoKey to save(value.textStyleDemoState, TextStyleDemoStateSaver, this),
+            textColorKey to save(value.textStyle.composeTextStyle.color, ColorSaver, this),
             textAlignKey to value.textAlign.name,
             lineHeightAlignmentKey to value.lineHeightAlignment.name,
             lineHeightTrimKey to value.lineHeightTrim.name,
@@ -243,6 +249,7 @@ val TextDemoStateSaver = mapSaverSafe(
 
         TextDemoState(
             textStyleInitial = textStyleDemoState.textStyle,
+            textColorInitial = restore(map[textColorKey], ColorSaver)!!,
             textAlignInitial = TextAlign.valueOf(map[textAlignKey] as String),
             lineHeightAlignmentInitial =
                 LineHeightAlignment.valueOf(map[lineHeightAlignmentKey] as String),
