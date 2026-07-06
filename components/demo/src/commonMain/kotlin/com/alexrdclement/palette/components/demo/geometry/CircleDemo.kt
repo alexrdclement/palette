@@ -142,6 +142,11 @@ class CircleDemoControl(
         onColorChange = { state.color = it },
     )
 
+    enum class DemoDrawStyle {
+        Fill,
+        Stroke,
+    }
+
     val drawStyleControl = enumControl(
         name = "Draw Style",
         values = { DemoDrawStyle.entries },
@@ -185,11 +190,6 @@ class CircleDemoControl(
                 drawStyleControl,
             )
         }
-
-    enum class DemoDrawStyle {
-        Fill,
-        Stroke,
-    }
 }
 
 @Preview
