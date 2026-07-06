@@ -37,6 +37,7 @@ import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.components.core.TextStyle
+import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -280,7 +281,6 @@ fun rememberTextDemoControl(
 @Stable
 class TextDemoControl(
     private var state: TextDemoState,
-    includeColorControl: Boolean = true,
 ) {
     val textFieldControl = Control.TextField(
         name = "Text",
@@ -301,7 +301,10 @@ class TextDemoControl(
 
     val textStyleControls = Control.ControlColumn(
         name = "TextStyle",
-        controls = { textStyleControl.controls },
+        controls = {
+            val styleControls: PersistentList<Control> = textStyleControl.controls
+            styleControls.add(colorControl)
+        },
         indent = true,
         expandedInitial = false,
     )
@@ -386,7 +389,7 @@ class TextDemoControl(
         softWrapControl,
         showBorderControl,
         overflowControl,
-    ).let { if (includeColorControl) it.add(2, colorControl) else it }
+    )
 
     fun onSizeChanged(width: Dp) {
         if (state.maxWidth == 0.dp) {

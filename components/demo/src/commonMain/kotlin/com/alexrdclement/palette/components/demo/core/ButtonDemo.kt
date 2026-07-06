@@ -59,6 +59,14 @@ fun DemoScope.ButtonDemo(
     LaunchedEffect(control, maxWidth) {
         control.onButtonSizeChanged(maxWidth)
     }
+    // A demo text style per button variant, colored by that variant's content color. Recomputed
+    // when the theme changes, driving a single flow that re-applies the selected variant's color.
+    val textStyleByToken = ButtonStyleToken.entries.associateWith { token ->
+        TextStyleDemoDefault.copy(color = token.tokenSet().contentColor.toColor())
+    }
+    LaunchedEffect(state.style, textStyleByToken) {
+        state.textDemoState.textStyle = textStyleByToken.getValue(state.style)
+    }
     Button(
         onClick = {},
         style = PaletteTheme.styles.core.button[state.style],
@@ -77,20 +85,8 @@ fun DemoScope.ButtonDemo(
 }
 
 @Composable
-fun rememberButtonDemoState(): ButtonDemoState {
-    // Seed the initial demo text style once, colored by the initial button's content color.
-    val textStyleInitial = TextStyleDemoDefault.copy(
-        color = ButtonStyleToken.Primary.tokenSet().contentColor.toColor(),
-    )
-    return rememberSaveable(saver = ButtonDemoStateSaver) {
-        ButtonDemoState(
-            textDemoState = TextDemoState(
-                initialText = "Button",
-                textStyleInitial = textStyleInitial,
-                textAlignInitial = TextAlign.Center,
-            ),
-        )
-    }
+fun rememberButtonDemoState(): ButtonDemoState = rememberSaveable(saver = ButtonDemoStateSaver) {
+    ButtonDemoState()
 }
 
 @Stable
