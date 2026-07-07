@@ -1,10 +1,10 @@
 package com.alexrdclement.palette.theme.styles
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.ShapeToken
+import com.alexrdclement.palette.theme.SpacingToken
 import com.alexrdclement.palette.theme.toColor
 import com.alexrdclement.palette.theme.toShape
 import com.alexrdclement.palette.components.core.ButtonStyle as ComponentButtonStyle
@@ -14,6 +14,12 @@ data class ButtonStyleTokenSet(
     val containerColor: ColorToken,
     val shape: ShapeToken,
     val borderStyle: BorderStyleToken?,
+    val contentPadding: PaddingValuesTokens = PaddingValuesTokens(
+        start = SpacingToken.Large,
+        top = SpacingToken.Medium,
+        end = SpacingToken.Large,
+        bottom = SpacingToken.Medium,
+    ),
 )
 
 @Composable
@@ -23,9 +29,6 @@ fun ButtonStyleTokenSet.toComponentStyle(): ComponentButtonStyle = ComponentButt
     borderStyle = borderStyle?.resolve(),
     disabledContentAlpha = PaletteTheme.colorScheme.disabledContentAlpha,
     disabledContainerAlpha = PaletteTheme.colorScheme.disabledContainerAlpha,
-    contentPadding = PaddingValues(
-        horizontal = PaletteTheme.spacing.large,
-        vertical = PaletteTheme.spacing.medium,
-    ),
+    contentPadding = contentPadding.toPaddingValues(),
     indication = PaletteTheme.indication,
 )

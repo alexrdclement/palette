@@ -1,5 +1,8 @@
 package com.alexrdclement.palette.components.demo.core
 
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -16,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.copy
@@ -23,6 +27,7 @@ import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
+import com.alexrdclement.palette.components.demo.control.paddingValuesControls
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
@@ -69,7 +74,7 @@ fun DemoScope.ButtonDemo(
     }
     Button(
         onClick = {},
-        style = PaletteTheme.styles.core.button[state.style],
+        style = PaletteTheme.styles.core.button[state.style].copy(contentPadding = state.contentPadding),
         enabled = state.enabled,
         modifier = modifier
             .width(state.width)
@@ -85,8 +90,13 @@ fun DemoScope.ButtonDemo(
 }
 
 @Composable
-fun rememberButtonDemoState(): ButtonDemoState = rememberSaveable(saver = ButtonDemoStateSaver) {
-    ButtonDemoState()
+fun rememberButtonDemoState(
+    contentPaddingInitial: PaddingValues = PaddingValues(
+        horizontal = PaletteTheme.spacing.large,
+        vertical = PaletteTheme.spacing.medium,
+    ),
+): ButtonDemoState = rememberSaveable(saver = ButtonDemoStateSaver) {
+    ButtonDemoState(contentPaddingInitial = contentPaddingInitial)
 }
 
 @Stable
@@ -95,6 +105,7 @@ class ButtonDemoState(
     enabledInitial: Boolean = true,
     maxWidthInitial: Dp = 0.dp,
     widthInitial: Dp = 200.dp,
+    contentPaddingInitial: PaddingValues = PaddingValues(),
     val textDemoState: TextDemoState = TextDemoState(
         initialText = "Button",
         textAlignInitial = TextAlign.Center,
@@ -108,12 +119,18 @@ class ButtonDemoState(
         internal set
     var width by mutableStateOf(widthInitial)
         internal set
+    var contentPadding by mutableStateOf(contentPaddingInitial)
+        internal set
 }
 
 private const val enabledKey = "enabled"
 private const val styleKey = "style"
 private const val maxWidthKey = "maxWidth"
 private const val widthKey = "width"
+private const val contentPaddingStartKey = "contentPaddingStart"
+private const val contentPaddingTopKey = "contentPaddingTop"
+private const val contentPaddingEndKey = "contentPaddingEnd"
+private const val contentPaddingBottomKey = "contentPaddingBottom"
 private const val textDemoStateKey = "textDemoState"
 
 val ButtonDemoStateSaver = mapSaverSafe(
@@ -123,6 +140,10 @@ val ButtonDemoStateSaver = mapSaverSafe(
             styleKey to value.style,
             maxWidthKey to value.maxWidth.value,
             widthKey to value.width.value,
+            contentPaddingStartKey to value.contentPadding.calculateStartPadding(LayoutDirection.Ltr).value,
+            contentPaddingTopKey to value.contentPadding.calculateTopPadding().value,
+            contentPaddingEndKey to value.contentPadding.calculateEndPadding(LayoutDirection.Ltr).value,
+            contentPaddingBottomKey to value.contentPadding.calculateBottomPadding().value,
             textDemoStateKey to save(value.textDemoState, TextDemoStateSaver, this),
         )
     },
@@ -132,6 +153,12 @@ val ButtonDemoStateSaver = mapSaverSafe(
             styleInitial = map[styleKey] as ButtonStyleToken,
             maxWidthInitial = (map[maxWidthKey] as Float).dp,
             widthInitial = (map[widthKey] as Float).dp,
+            contentPaddingInitial = PaddingValues(
+                start = (map[contentPaddingStartKey] as Float).dp,
+                top = (map[contentPaddingTopKey] as Float).dp,
+                end = (map[contentPaddingEndKey] as Float).dp,
+                bottom = (map[contentPaddingBottomKey] as Float).dp,
+            ),
             textDemoState = restore(map[textDemoStateKey], TextDemoStateSaver)!!
         )
     },
@@ -166,6 +193,12 @@ class ButtonDemoControl(
         valueRange = { 0f..state.maxWidth.value },
     )
 
+    val contentPaddingControl = paddingValuesControls(
+        name = "Content padding",
+        value = { state.contentPadding },
+        onValueChange = { state.contentPadding = it },
+    )
+
     val textDemoControl = TextDemoControl(state.textDemoState)
     val textDemoControls = Control.ControlColumn(
         name = "Text",
@@ -177,6 +210,7 @@ class ButtonDemoControl(
         enabledControl,
         styleControl,
         widthControl,
+        contentPaddingControl,
         textDemoControls,
     )
 

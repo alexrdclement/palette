@@ -21,6 +21,7 @@ import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
+import com.alexrdclement.palette.theme.components.demo.control.spacingTokenPaddingControls
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
@@ -238,6 +239,14 @@ private fun makeControlForToken(
         },
     )
 
+    val contentPaddingControl = spacingTokenPaddingControls(
+        name = "Content padding",
+        value = { state.tokenSet(token).contentPadding },
+        onValueChange = { newValue ->
+            setTokenSet(state.tokenSet(token).copy(contentPadding = newValue))
+        },
+    )
+
     return Control.ControlColumn(
         name = token.name,
         controls = {
@@ -254,6 +263,7 @@ private fun makeControlForToken(
                 containerColorControl,
                 shapeControl,
                 *borderControls.toTypedArray(),
+                contentPaddingControl,
                 Control.ControlColumn(
                     name = "Demo text",
                     indent = true,
