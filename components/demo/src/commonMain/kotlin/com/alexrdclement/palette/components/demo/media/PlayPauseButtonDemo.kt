@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.components.demo.media
 
 import com.alexrdclement.palette.theme.PaletteTheme
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -14,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
+import com.alexrdclement.palette.components.demo.control.paddingValuesControls
 import com.alexrdclement.palette.components.media.PlayPauseButton
 import kotlinx.collections.immutable.persistentListOf
 
@@ -23,6 +25,8 @@ fun PlayPauseButtonDemo(
 ) {
     var isPlaying by remember { mutableStateOf(false) }
     var isEnabled by remember { mutableStateOf(true) }
+    val contentPaddingInitial = PaletteTheme.styles.media.playPauseButton.contentPadding
+    var contentPadding by remember { mutableStateOf(contentPaddingInitial) }
 
     val controls = persistentListOf(
         Control.Toggle(
@@ -35,6 +39,11 @@ fun PlayPauseButtonDemo(
             value = { isEnabled },
             onValueChange = { isEnabled = it },
         ),
+        paddingValuesControls(
+            name = "Content padding",
+            value = { contentPadding },
+            onValueChange = { contentPadding = it },
+        ),
     )
 
     Demo(
@@ -46,6 +55,7 @@ fun PlayPauseButtonDemo(
             isPlaying = isPlaying,
             isEnabled = isEnabled,
             onPlayPauseClick = { isPlaying = !isPlaying },
+            contentPadding = contentPadding,
         )
     }
 }
@@ -56,12 +66,13 @@ fun DemoScope.PlayPauseButtonDemo(
     isEnabled: Boolean,
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaletteTheme.styles.media.playPauseButton.contentPadding,
 ) {
     PlayPauseButton(
         onClick = onPlayPauseClick,
         isPlaying = isPlaying,
         isEnabled = isEnabled,
-        style = PaletteTheme.styles.media.playPauseButton,
+        style = PaletteTheme.styles.media.playPauseButton.copy(contentPadding = contentPadding),
         modifier = modifier
             .size(52.dp)
             .align(Alignment.Center),

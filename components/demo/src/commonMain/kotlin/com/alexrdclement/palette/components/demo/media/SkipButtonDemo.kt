@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.components.demo.media
 
 import com.alexrdclement.palette.theme.PaletteTheme
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -14,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
+import com.alexrdclement.palette.components.demo.control.paddingValuesControls
 import com.alexrdclement.palette.components.media.SkipBackButton
 import com.alexrdclement.palette.components.media.SkipButton
 import kotlinx.collections.immutable.persistentListOf
@@ -23,6 +25,8 @@ fun SkipButtonDemo(
     modifier: Modifier = Modifier,
 ) {
     var enabled by remember { mutableStateOf(true) }
+    val contentPaddingInitial = PaletteTheme.styles.media.skipButton.contentPadding
+    var contentPadding by remember { mutableStateOf(contentPaddingInitial) }
 
     val controls = persistentListOf(
         Control.Toggle(
@@ -30,13 +34,18 @@ fun SkipButtonDemo(
             value = { enabled },
             onValueChange = { enabled = it },
         ),
+        paddingValuesControls(
+            name = "Content padding",
+            value = { contentPadding },
+            onValueChange = { contentPadding = it },
+        ),
     )
 
     Demo(
         controls = controls,
         modifier = modifier.fillMaxSize(),
     ) {
-        SkipButtonDemo(enabled = enabled)
+        SkipButtonDemo(enabled = enabled, contentPadding = contentPadding)
     }
 }
 
@@ -44,11 +53,13 @@ fun SkipButtonDemo(
 fun DemoScope.SkipButtonDemo(
     enabled: Boolean,
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaletteTheme.styles.media.skipButton.contentPadding,
 ) {
+    val style = PaletteTheme.styles.media.skipButton.copy(contentPadding = contentPadding)
     SkipBackButton(
         onClick = {},
         enabled = enabled,
-        style = PaletteTheme.styles.media.skipButton,
+        style = style,
         modifier = modifier
             .size(52.dp)
             .align(Alignment.CenterStart),
@@ -56,7 +67,7 @@ fun DemoScope.SkipButtonDemo(
     SkipButton(
         onClick = {},
         enabled = enabled,
-        style = PaletteTheme.styles.media.skipButton,
+        style = style,
         modifier = Modifier
             .size(52.dp)
             .align(Alignment.CenterEnd),
