@@ -10,7 +10,6 @@ import com.alexrdclement.palette.theme.toShape
 import com.alexrdclement.palette.components.core.ButtonStyle as ComponentButtonStyle
 
 data class ButtonStyleTokenSet(
-    val contentColor: ColorToken,
     val containerColor: ColorToken,
     val shape: ShapeToken,
     val borderStyle: BorderStyleToken?,

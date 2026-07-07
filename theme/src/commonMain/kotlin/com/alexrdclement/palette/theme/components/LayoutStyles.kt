@@ -10,9 +10,8 @@ import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
 import com.alexrdclement.palette.components.core.copy
+import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.styles.tokenSet
 import com.alexrdclement.palette.theme.toColor
 
 object LayoutStyles {
@@ -45,7 +44,7 @@ object LayoutStyles {
             itemSpacing = PaletteTheme.spacing.medium,
             itemStyle = CoreStyles.button.secondary,
             itemTextStyle = TextStyles.bodyMedium.copy(
-                color = ButtonStyleToken.Secondary.tokenSet().contentColor.toColor(),
+                color = ColorToken.Secondary.toColor(),
             ),
         )
 
@@ -54,7 +53,7 @@ object LayoutStyles {
             buttonStyle = ConfirmButtonStyle(
                 buttonStyle = CoreStyles.button.secondary,
                 textStyle = TextStyles.bodyMedium.copy(
-                    color = ButtonStyleToken.Secondary.tokenSet().contentColor.toColor(),
+                    color = ColorToken.Secondary.toColor(),
                 ),
             ),
             spacing = PaletteTheme.spacing.medium,

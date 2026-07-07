@@ -8,7 +8,6 @@ import com.alexrdclement.palette.theme.ShapeToken
 enum class ButtonStyleToken(val default: ButtonStyleTokenSet) {
     Primary(
         ButtonStyleTokenSet(
-            contentColor = ColorToken.OnPrimary,
             containerColor = ColorToken.Primary,
             shape = ShapeToken.Primary,
             borderStyle = BorderStyleToken.Primary,
@@ -16,7 +15,6 @@ enum class ButtonStyleToken(val default: ButtonStyleTokenSet) {
     ),
     Secondary(
         ButtonStyleTokenSet(
-            contentColor = ColorToken.Secondary,
             containerColor = ColorToken.Surface,
             shape = ShapeToken.Secondary,
             borderStyle = BorderStyleToken.Secondary,
@@ -24,7 +22,6 @@ enum class ButtonStyleToken(val default: ButtonStyleTokenSet) {
     ),
     Tertiary(
         ButtonStyleTokenSet(
-            contentColor = ColorToken.Primary,
             containerColor = ColorToken.OnPrimary,
             shape = ShapeToken.Tertiary,
             borderStyle = BorderStyleToken.Tertiary,

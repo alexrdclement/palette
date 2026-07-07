@@ -33,7 +33,6 @@ import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.styles.BorderStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleTokenSet
-import com.alexrdclement.palette.theme.styles.tokenSet
 import com.alexrdclement.palette.theme.toColor
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
@@ -64,7 +63,11 @@ fun ButtonStyleScreen(
                 .padding(paddingValues)
         ) { style ->
             val textDemoState = state.textDemoState(style)
-            val contentColor = style.tokenSet().contentColor.toColor()
+            val contentColor = when (style) {
+                ButtonStyleToken.Primary -> ColorToken.OnPrimary
+                ButtonStyleToken.Secondary -> ColorToken.Secondary
+                ButtonStyleToken.Tertiary -> ColorToken.Primary
+            }.toColor()
             LaunchedEffect(textDemoState, contentColor) {
                 textDemoState.textStyle = textDemoState.textStyle.copy(color = contentColor)
             }
@@ -190,15 +193,6 @@ private fun makeControlForToken(
         ButtonStyleToken.Tertiary -> BorderStyleToken.Tertiary
     }
 
-    val contentColorControl = enumControl(
-        name = "Content color",
-        values = { ColorToken.entries },
-        selectedValue = { state.tokenSet(token).contentColor },
-        onValueChange = { newValue ->
-            setTokenSet(state.tokenSet(token).copy(contentColor = newValue))
-        },
-    )
-
     val containerColorControl = enumControl(
         name = "Container color",
         values = { ColorToken.entries },
@@ -259,7 +253,6 @@ private fun makeControlForToken(
                 listOf(borderStyleToggleControl)
             }
             persistentListOf(
-                contentColorControl,
                 containerColorControl,
                 shapeControl,
                 *borderControls.toTypedArray(),

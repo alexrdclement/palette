@@ -31,9 +31,9 @@ import com.alexrdclement.palette.components.demo.control.paddingValuesControls
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
+import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.styles.tokenSet
 import com.alexrdclement.palette.theme.toColor
 import kotlinx.collections.immutable.persistentListOf
 
@@ -64,13 +64,15 @@ fun DemoScope.ButtonDemo(
     LaunchedEffect(control, maxWidth) {
         control.onButtonSizeChanged(maxWidth)
     }
-    // A demo text style per button variant, colored by that variant's content color. Recomputed
-    // when the theme changes, driving a single flow that re-applies the selected variant's color.
-    val textStyleByToken = ButtonStyleToken.entries.associateWith { token ->
-        TextStyleDemoDefault.copy(color = token.tokenSet().contentColor.toColor())
-    }
-    LaunchedEffect(state.style, textStyleByToken) {
-        state.textDemoState.textStyle = textStyleByToken.getValue(state.style)
+    // A colored button container needs matching content color; the demo, as the caller, picks it
+    // per variant — the same way content on a Surface is colored by whoever places it.
+    val contentColor = when (state.style) {
+        ButtonStyleToken.Primary -> ColorToken.OnPrimary
+        ButtonStyleToken.Secondary -> ColorToken.Secondary
+        ButtonStyleToken.Tertiary -> ColorToken.Primary
+    }.toColor()
+    LaunchedEffect(state.style, contentColor) {
+        state.textDemoState.textStyle = state.textDemoState.textStyle.copy(color = contentColor)
     }
     Button(
         onClick = {},
