@@ -1123,11 +1123,13 @@ PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt$$Extern
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt$$ExternalSyntheticLambda3;-><init>()V
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt$$ExternalSyntheticLambda3;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;-><clinit>()V
-PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;-><init>(Lcom/alexrdclement/palette/components/core/ButtonStyle;Landroidx/compose/foundation/layout/PaddingValues;J)V
-PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;-><init>(Lcom/alexrdclement/palette/components/core/ButtonStyle;Landroidx/compose/foundation/layout/PaddingValues;JLkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;-><init>(Lcom/alexrdclement/palette/components/core/ButtonStyle;Landroidx/compose/foundation/layout/PaddingValues;JF)V
+PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;-><init>(Lcom/alexrdclement/palette/components/core/ButtonStyle;Landroidx/compose/foundation/layout/PaddingValues;JFILkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;-><init>(Lcom/alexrdclement/palette/components/core/ButtonStyle;Landroidx/compose/foundation/layout/PaddingValues;JFLkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;->getButtonStyle()Lcom/alexrdclement/palette/components/core/ButtonStyle;
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;->getContentPadding()Landroidx/compose/foundation/layout/PaddingValues;
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;->getIconColor-0d7_KjU()J
+PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;->getSize-D9Ej5fM()F
 PLcom/alexrdclement/palette/components/util/ColorSaverKt;-><clinit>()V
 PLcom/alexrdclement/palette/components/util/ColorSaverKt;->getColorSaver()Landroidx/compose/runtime/saveable/Saver;
 PLcom/alexrdclement/palette/components/util/ColorSaverKt$ColorSaver$1;-><clinit>()V
