@@ -1,9 +1,13 @@
+PLcom/alexrdclement/palette/components/color/ColorDisplayStyle;-><clinit>()V
+PLcom/alexrdclement/palette/components/color/ColorDisplayStyle;-><init>(Lcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/BorderStyle;)V
+PLcom/alexrdclement/palette/components/color/ColorDisplayStyle;-><init>(Lcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/BorderStyle;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;-><clinit>()V
 PLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/SliderStyle;F)V
 PLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/SliderStyle;FLkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><clinit>()V
-PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><init>(FLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;)V
-PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><init>(FLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><init>(FLcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;)V
+PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><init>(FLcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><init>(FLcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 Lcom/alexrdclement/palette/components/core/BorderKt;
 HSPLcom/alexrdclement/palette/components/core/BorderKt;->border(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/BorderStyle;)Landroidx/compose/ui/Modifier;
 Lcom/alexrdclement/palette/components/core/BorderStyle;
