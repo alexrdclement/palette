@@ -2934,7 +2934,6 @@ HSPLandroidx/compose/runtime/GapComposer;->startMovableGroup(ILjava/lang/Object;
 HSPLandroidx/compose/runtime/GapComposer;->startProvider(Landroidx/compose/runtime/ProvidedValue;)V
 HSPLandroidx/compose/runtime/GapComposer;->startProviders([Landroidx/compose/runtime/ProvidedValue;)V
 HSPLandroidx/compose/runtime/GapComposer;->startReaderGroup(ZLjava/lang/Object;)V
-HSPLandroidx/compose/runtime/GapComposer;->startReplaceGroup(I)V
 HSPLandroidx/compose/runtime/GapComposer;->startReplaceableGroup(I)V
 HSPLandroidx/compose/runtime/GapComposer;->startRestartGroup(I)Landroidx/compose/runtime/Composer;
 HSPLandroidx/compose/runtime/GapComposer;->startReusableGroup(ILjava/lang/Object;)V
@@ -5496,7 +5495,7 @@ HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;-><init>(FFFFFFFFFFJLandro
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;-><init>(FFFFFFFFFFJLandroidx/compose/ui/graphics/Shape;ZLandroidx/compose/ui/graphics/RenderEffect;JJIILandroidx/compose/ui/graphics/ColorFilter;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;->create()Landroidx/compose/ui/Modifier$Node;
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;->create()Landroidx/compose/ui/graphics/SimpleGraphicsLayerModifier;
-PLandroidx/compose/ui/graphics/GraphicsLayerElement;->equals(Ljava/lang/Object;)Z
+HPLandroidx/compose/ui/graphics/GraphicsLayerElement;->equals(Ljava/lang/Object;)Z
 Landroidx/compose/ui/graphics/GraphicsLayerModifierKt;
 HSPLandroidx/compose/ui/graphics/GraphicsLayerModifierKt;-><clinit>()V
 HSPLandroidx/compose/ui/graphics/GraphicsLayerModifierKt;->access$getReusableGraphicsLayerScope$p()Landroidx/compose/ui/graphics/ReusableGraphicsLayerScope;
@@ -10159,6 +10158,7 @@ PLandroidx/emoji2/text/flatbuffer/MetadataList;->__assign(ILjava/nio/ByteBuffer;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->__init(ILjava/nio/ByteBuffer;)V
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataList;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;Landroidx/emoji2/text/flatbuffer/MetadataList;)Landroidx/emoji2/text/flatbuffer/MetadataList;
+HPLandroidx/emoji2/text/flatbuffer/MetadataList;->list(Landroidx/emoji2/text/flatbuffer/MetadataItem;I)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->listLength()I
 PLandroidx/emoji2/text/flatbuffer/Table;-><init>()V
 HPLandroidx/emoji2/text/flatbuffer/Table;->__indirect(I)I
@@ -10932,6 +10932,8 @@ PLandroidx/profileinstaller/ProfileVerifier;->getPackageLastUpdateTime(Landroid/
 PLandroidx/profileinstaller/ProfileVerifier;->setCompilationStatus(IZZZ)Landroidx/profileinstaller/ProfileVerifier$CompilationStatus;
 PLandroidx/profileinstaller/ProfileVerifier;->writeProfileVerification(Landroid/content/Context;Z)Landroidx/profileinstaller/ProfileVerifier$CompilationStatus;
 PLandroidx/profileinstaller/ProfileVerifier$Cache;-><init>(IIJJ)V
+PLandroidx/profileinstaller/ProfileVerifier$Cache;->equals(Ljava/lang/Object;)Z
+PLandroidx/profileinstaller/ProfileVerifier$Cache;->readFromFile(Ljava/io/File;)Landroidx/profileinstaller/ProfileVerifier$Cache;
 PLandroidx/profileinstaller/ProfileVerifier$Cache;->writeOnFile(Ljava/io/File;)V
 PLandroidx/profileinstaller/ProfileVerifier$CompilationStatus;-><init>(IZZZ)V
 Landroidx/savedstate/R$id;
@@ -13306,11 +13308,10 @@ HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenKt;->resolve(Lcom/ale
 HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenKt;->tokenSet(Lcom/alexrdclement/palette/theme/styles/ButtonStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;
 Lcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;
 HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;-><clinit>()V
-HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;-><init>(Lcom/alexrdclement/palette/theme/ColorToken;Lcom/alexrdclement/palette/theme/ColorToken;Lcom/alexrdclement/palette/theme/ShapeToken;Lcom/alexrdclement/palette/theme/styles/BorderStyleToken;Lcom/alexrdclement/palette/theme/styles/PaddingValuesTokens;)V
-HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;-><init>(Lcom/alexrdclement/palette/theme/ColorToken;Lcom/alexrdclement/palette/theme/ColorToken;Lcom/alexrdclement/palette/theme/ShapeToken;Lcom/alexrdclement/palette/theme/styles/BorderStyleToken;Lcom/alexrdclement/palette/theme/styles/PaddingValuesTokens;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;-><init>(Lcom/alexrdclement/palette/theme/ColorToken;Lcom/alexrdclement/palette/theme/ShapeToken;Lcom/alexrdclement/palette/theme/styles/BorderStyleToken;Lcom/alexrdclement/palette/theme/styles/PaddingValuesTokens;)V
+HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;-><init>(Lcom/alexrdclement/palette/theme/ColorToken;Lcom/alexrdclement/palette/theme/ShapeToken;Lcom/alexrdclement/palette/theme/styles/BorderStyleToken;Lcom/alexrdclement/palette/theme/styles/PaddingValuesTokens;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;->getBorderStyle()Lcom/alexrdclement/palette/theme/styles/BorderStyleToken;
 HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;->getContainerColor()Lcom/alexrdclement/palette/theme/ColorToken;
-HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;->getContentColor()Lcom/alexrdclement/palette/theme/ColorToken;
 HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;->getContentPadding()Lcom/alexrdclement/palette/theme/styles/PaddingValuesTokens;
 HSPLcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSet;->getShape()Lcom/alexrdclement/palette/theme/ShapeToken;
 Lcom/alexrdclement/palette/theme/styles/ButtonStyleTokenSetKt;
