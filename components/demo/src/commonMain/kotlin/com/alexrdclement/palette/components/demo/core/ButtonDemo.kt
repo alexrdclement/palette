@@ -173,8 +173,8 @@ fun rememberButtonDemoControl(
 class ButtonDemoControl(
     val state: ButtonDemoState,
 ) {
-    val styleControl = enumControl(
-        name = "Style",
+    val styleTokenControl = enumControl(
+        name = "Token",
         values = { ButtonStyleToken.entries },
         selectedValue = { state.style },
         onValueChange = { state.style = it },
@@ -199,6 +199,18 @@ class ButtonDemoControl(
         onValueChange = { state.contentPadding = it },
     )
 
+    val styleControls = Control.ControlColumn(
+        name = "Style",
+        indent = true,
+        expandedInitial = true,
+        controls = {
+            persistentListOf(
+                styleTokenControl,
+                contentPaddingControl,
+            )
+        },
+    )
+
     val textDemoControl = TextDemoControl(state.textDemoState)
     val textDemoControls = Control.ControlColumn(
         name = "Text",
@@ -208,9 +220,8 @@ class ButtonDemoControl(
 
     val controls = persistentListOf(
         enabledControl,
-        styleControl,
+        styleControls,
         widthControl,
-        contentPaddingControl,
         textDemoControls,
     )
 

@@ -34,10 +34,19 @@ fun SkipButtonDemo(
             value = { enabled },
             onValueChange = { enabled = it },
         ),
-        paddingValuesControls(
-            name = "Content padding",
-            value = { contentPadding },
-            onValueChange = { contentPadding = it },
+        Control.ControlColumn(
+            name = "Style",
+            indent = true,
+            expandedInitial = true,
+            controls = {
+                persistentListOf(
+                    paddingValuesControls(
+                        name = "Content padding",
+                        value = { contentPadding },
+                        onValueChange = { contentPadding = it },
+                    ),
+                )
+            },
         ),
     )
 
