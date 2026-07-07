@@ -12,6 +12,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
@@ -21,6 +22,7 @@ data class BackNavigationButtonStyle(
     val buttonStyle: ButtonStyle = ButtonStyle(),
     val contentPadding: PaddingValues = PaddingValues(16.dp),
     val iconColor: Color = Color.Unspecified,
+    val size: Dp = 48.dp,
 )
 
 @Composable
@@ -32,7 +34,7 @@ fun BackNavigationButton(
     Button(
         onClick = onClick,
         style = style.buttonStyle.copy(contentPadding = style.contentPadding),
-        modifier = modifier.size(48.dp),
+        modifier = modifier.size(style.size),
     ) {
         Box(
             modifier = Modifier

@@ -32,6 +32,9 @@ import kotlinx.coroutines.launch
 
 data class MediaControlSheetStyle(
     val controlBarStyle: MediaControlBarStyle = MediaControlBarStyle(),
+    val contentPadding: PaddingValues = PaddingValues(0.dp),
+    val minContentSize: DpSize = DpSize(64.dp, 64.dp),
+    val maxContentSize: DpSize = DpSize(Dp.Infinity, 600.dp),
 )
 
 @Composable
@@ -43,9 +46,9 @@ fun MediaControlSheet(
     modifier: Modifier = Modifier,
     style: MediaControlSheetStyle = MediaControlSheetStyle(),
     state: PeekSheetState = rememberPeekSheetState(),
-    contentPadding: PaddingValues = PaddingValues(0.dp),
-    minContentSize: DpSize = DpSize(64.dp, 64.dp),
-    maxContentSize: DpSize = DpSize(Dp.Infinity, 600.dp),
+    contentPadding: PaddingValues = style.contentPadding,
+    minContentSize: DpSize = style.minContentSize,
+    maxContentSize: DpSize = style.maxContentSize,
     aboveControlBar: @Composable () -> Unit = {},
     belowControlBar: @Composable () -> Unit = {},
 ) {

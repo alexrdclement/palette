@@ -24,6 +24,7 @@ import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 data class PlayPauseButtonStyle(
     val buttonStyle: ButtonStyle = ButtonStyle(),
     val iconColor: Color = Color.Unspecified,
+    val contentPadding: PaddingValues = PaddingValues(2.dp),
 )
 
 @Composable
@@ -38,7 +39,7 @@ fun PlayPauseButton(
     Button(
         onClick = onClick,
         onLongClick = onLongClick,
-        style = style.buttonStyle.copy(contentPadding = PaddingValues(vertical = 2.dp, horizontal = 2.dp)),
+        style = style.buttonStyle.copy(contentPadding = style.contentPadding),
         enabled = isEnabled,
         modifier = modifier
             .aspectRatio(1f)

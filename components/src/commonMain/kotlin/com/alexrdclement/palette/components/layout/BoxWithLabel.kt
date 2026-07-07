@@ -18,6 +18,7 @@ data class BoxWithLabelStyle(
     val labelPadding: Dp = 4.dp,
     val labelStyle: TextStyle = TextStyle(),
     val borderColor: Color = Color.Unspecified,
+    val borderWidth: Dp = 1.dp,
 )
 
 @Composable
@@ -36,7 +37,7 @@ fun BoxWithLabel(
             text = label,
             style = style.labelStyle,
             modifier = Modifier
-                .border(1.dp, style.borderColor)
+                .border(style.borderWidth, style.borderColor)
                 .padding(style.labelPadding)
                 .align(Alignment.Start)
         )

@@ -466,6 +466,7 @@ object SliderDefaults {
     val TickSize = 2.dp
 
     val ThumbSize = 20.dp
+    val ThumbBorderWidth = 1.dp
     val ThumbPointSizeDp = 4.dp
     val ThumbPointSize: Size
         @Composable
@@ -506,7 +507,7 @@ object SliderDefaults {
         colors: SliderColors = SliderColors(),
     ) {
         val borderStroke = remember(colors.thumbColor) {
-            BorderStroke(width = 1.dp, color = colors.thumbColor)
+            BorderStroke(width = ThumbBorderWidth, color = colors.thumbColor)
         }
         Box(
             contentAlignment = Alignment.Center,

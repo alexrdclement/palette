@@ -52,6 +52,10 @@ data class MediaControlBarStyle(
     val titleStyle: TextStyle = TextStyle(),
     val artistStyle: TextStyle = TextStyle(),
     val contentSpacing: Dp = 8.dp,
+    val playPauseButtonSize: Dp = 52.dp,
+    val contentPadding: PaddingValues = PaddingValues(0.dp),
+    val minContentSize: DpSize = DpSize(width = 64.dp, height = 64.dp),
+    val maxContentSize: DpSize = DpSize(width = Dp.Infinity, height = Dp.Infinity),
     val artworkStyle: MediaItemArtworkStyle = MediaItemArtworkStyle(),
     val playPauseButtonStyle: PlayPauseButtonStyle = PlayPauseButtonStyle(),
 )
@@ -74,9 +78,9 @@ fun MediaControlBar(
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
     style: MediaControlBarStyle = MediaControlBarStyle(),
-    contentPadding: PaddingValues = PaddingValues(0.dp),
-    minContentSize: DpSize = DpSize(width = 64.dp, height = 64.dp),
-    maxContentSize: DpSize = DpSize(width = Dp.Infinity, height = Dp.Infinity),
+    contentPadding: PaddingValues = style.contentPadding,
+    minContentSize: DpSize = style.minContentSize,
+    maxContentSize: DpSize = style.maxContentSize,
     progress: () -> Float = { 0f },
     onClick: () -> Unit = {},
     stateDescription: String? = null,
@@ -217,7 +221,7 @@ fun MediaControlBar(
                         isPlaying = isPlaying,
                         style = style.playPauseButtonStyle,
                         modifier = Modifier
-                            .size(52.dp)
+                            .size(style.playPauseButtonSize)
                             .padding(style.contentSpacing)
                             .graphicsLayer {
                                 alpha = 1f - progress()
