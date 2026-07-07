@@ -10,6 +10,7 @@ fun DeleteConfirmationDialogContent(
     onConfirm: () -> Unit,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
+    style: DialogContentStyle = DialogContentStyle(),
 ) {
     DialogContent(
         title = "Delete \"$contentTitle\"?",
@@ -17,6 +18,7 @@ fun DeleteConfirmationDialogContent(
         onConfirm = onConfirm,
         onDismissRequest = onDismissRequest,
         modifier = modifier,
+        style = style,
     )
 }
 

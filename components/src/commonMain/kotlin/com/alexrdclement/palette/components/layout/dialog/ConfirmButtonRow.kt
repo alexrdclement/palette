@@ -8,12 +8,14 @@ import androidx.compose.ui.tooling.preview.Preview
 fun ConfirmButtonRow(
     onConfirm: () -> Unit,
     modifier: Modifier = Modifier,
+    style: ConfirmButtonStyle = ConfirmButtonStyle(),
 ) {
     DialogContentSingleButtonRow(
         modifier = modifier,
     ) {
         ConfirmButton(
             onConfirm = onConfirm,
+            style = style,
         )
     }
 }

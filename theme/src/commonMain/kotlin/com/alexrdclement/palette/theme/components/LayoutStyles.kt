@@ -64,6 +64,7 @@ object LayoutStyles {
             titleStyle = TextStyles.titleLarge,
             messageStyle = TextStyles.bodyLarge,
             surfaceStyle = CoreStyles.surface.container,
+            buttonRowStyle = confirmCancelButtonRow,
             spacing = PaletteTheme.spacing.medium,
             padding = PaletteTheme.spacing.large,
             titleBottomPadding = PaletteTheme.spacing.medium,

@@ -21,6 +21,7 @@ data class DialogContentStyle(
     val titleStyle: TextStyle = TextStyle(),
     val messageStyle: TextStyle = TextStyle(),
     val surfaceStyle: SurfaceStyle = SurfaceStyle(),
+    val buttonRowStyle: ConfirmCancelButtonRowStyle = ConfirmCancelButtonRowStyle(),
     val spacing: Dp = 16.dp,
     val padding: Dp = 24.dp,
     val titleBottomPadding: Dp = 16.dp,
@@ -44,11 +45,13 @@ fun DialogContent(
                 ConfirmCancelButtonRow(
                     onConfirm = it,
                     onDismiss = onDismissRequest,
+                    style = style.buttonRowStyle,
                     modifier = modifier,
                 )
             } ?: run {
                 ConfirmButtonRow(
                     onConfirm = onDismissRequest,
+                    style = style.buttonRowStyle.buttonStyle,
                     modifier = modifier,
                 )
             }
@@ -73,6 +76,7 @@ fun ErrorDialogContent(
         buttonRow = { onDismissRequest, modifier ->
             ConfirmButtonRow(
                 onConfirm = onDismissRequest,
+                style = style.buttonRowStyle.buttonStyle,
                 modifier = modifier,
             )
         },
