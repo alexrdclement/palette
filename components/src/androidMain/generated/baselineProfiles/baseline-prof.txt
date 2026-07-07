@@ -167,7 +167,7 @@ PLcom/alexrdclement/palette/components/core/ShapeClickableKt$clippedTapGestures$
 Lcom/alexrdclement/palette/components/core/ShapeKt;
 PLcom/alexrdclement/palette/components/core/ShapeKt;->$r8$lambda$bQnTh6sWufwU41jiF9Mcz_7M7dI(Landroidx/compose/ui/graphics/Path;Landroidx/compose/ui/geometry/Size;Landroidx/compose/ui/unit/LayoutDirection;)Lkotlin/Unit;
 HSPLcom/alexrdclement/palette/components/core/ShapeKt;-><clinit>()V
-PLcom/alexrdclement/palette/components/core/ShapeKt;->CircleShape$lambda$0(Landroidx/compose/ui/graphics/Path;Landroidx/compose/ui/geometry/Size;Landroidx/compose/ui/unit/LayoutDirection;)Lkotlin/Unit;
+HPLcom/alexrdclement/palette/components/core/ShapeKt;->CircleShape$lambda$0(Landroidx/compose/ui/graphics/Path;Landroidx/compose/ui/geometry/Size;Landroidx/compose/ui/unit/LayoutDirection;)Lkotlin/Unit;
 HSPLcom/alexrdclement/palette/components/core/ShapeKt;->toComposeShape(Lcom/alexrdclement/palette/components/core/Shape;)Landroidx/compose/ui/graphics/Shape;
 Lcom/alexrdclement/palette/components/core/ShapeKt$$ExternalSyntheticLambda0;
 HSPLcom/alexrdclement/palette/components/core/ShapeKt$$ExternalSyntheticLambda0;-><init>()V
@@ -439,6 +439,7 @@ PLcom/alexrdclement/palette/components/demo/control/ControlsStyle;-><init>(FFFFL
 PLcom/alexrdclement/palette/components/demo/control/ControlsStyle;->getContentPadding-D9Ej5fM()F
 PLcom/alexrdclement/palette/components/demo/control/ControlsStyle;->getDropdown()Lcom/alexrdclement/palette/components/demo/control/DropdownControlStyle;
 PLcom/alexrdclement/palette/components/demo/control/ControlsStyle;->getExpandableHeader()Lcom/alexrdclement/palette/components/demo/control/ExpandableHeaderStyle;
+PLcom/alexrdclement/palette/components/demo/control/ControlsStyle;->getIndent-D9Ej5fM()F
 PLcom/alexrdclement/palette/components/demo/control/ControlsStyle;->getSlider()Lcom/alexrdclement/palette/components/demo/control/SliderControlStyle;
 PLcom/alexrdclement/palette/components/demo/control/ControlsStyle;->getSpacing-D9Ej5fM()F
 PLcom/alexrdclement/palette/components/demo/control/ControlsStyle;->getTextField()Lcom/alexrdclement/palette/components/demo/control/TextFieldControlStyle;
@@ -560,6 +561,7 @@ PLcom/alexrdclement/palette/components/demo/control/ToggleControlStyle;->getLabe
 PLcom/alexrdclement/palette/components/demo/control/ToggleControlStyle;->getSpacing-D9Ej5fM()F
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->$r8$lambda$2XuU-K0BGnnzoPovth1Xlgr46T4(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)Lkotlin/ranges/ClosedFloatingPointRange;
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->$r8$lambda$4BYdvF1-UPoRTXIEPznAdLW-Cwc(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)F
+PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->$r8$lambda$9GUP79Wnbaye89283eJ3PbjjUnU(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)Lkotlinx/collections/immutable/ImmutableList;
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->$r8$lambda$BE-_m3_1snGuOcUguysKJue1jmg(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)Lkotlinx/collections/immutable/ImmutableList;
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->$r8$lambda$VjDTkS9nb2gYzuaoQXC_WYzSwTw(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)Z
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;-><clinit>()V
@@ -569,6 +571,7 @@ PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->getControls
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->getState()Lcom/alexrdclement/palette/components/demo/core/ButtonDemoState;
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->getTextDemoControl()Lcom/alexrdclement/palette/components/demo/core/TextDemoControl;
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->onButtonSizeChanged-0680j_4(F)V
+PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->styleControls$lambda$0(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)Lkotlinx/collections/immutable/ImmutableList;
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->textDemoControls$lambda$0(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)Lkotlinx/collections/immutable/ImmutableList;
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->widthControl$lambda$0(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)F
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;->widthControl$lambda$2(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)Lkotlin/ranges/ClosedFloatingPointRange;
@@ -584,6 +587,8 @@ PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl$$ExternalSynt
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl$$ExternalSyntheticLambda6;-><init>(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)V
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl$$ExternalSyntheticLambda7;-><init>(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)V
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl$$ExternalSyntheticLambda7;->invoke()Ljava/lang/Object;
+PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl$$ExternalSyntheticLambda8;-><init>(Lcom/alexrdclement/palette/components/demo/core/ButtonDemoControl;)V
+PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl$$ExternalSyntheticLambda8;->invoke()Ljava/lang/Object;
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl$special$$inlined$enumControl$default$1;-><init>()V
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl$special$$inlined$enumControl$default$1;->invoke()Ljava/lang/Object;
 PLcom/alexrdclement/palette/components/demo/core/ButtonDemoControl$special$$inlined$enumControl$default$1;->invoke()Lkotlinx/collections/immutable/ImmutableList;
