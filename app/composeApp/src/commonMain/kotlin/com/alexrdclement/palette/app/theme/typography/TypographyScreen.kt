@@ -67,7 +67,9 @@ fun TypographyScreen(
                 Text(
                     text = state.text,
                     style = TextStyle(
-                        composeTextStyle = textStyle.toComposeTextStyle(),
+                        composeTextStyle = textStyle.toComposeTextStyle().copy(
+                            color = PaletteTheme.colorScheme.onSurface,
+                        ),
                         format = TextFormat(),
                     ),
                 )
