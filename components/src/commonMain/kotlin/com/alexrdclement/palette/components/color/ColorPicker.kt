@@ -26,6 +26,7 @@ data class ColorPickerControlsStyle(
 
 data class ColorPickerStyle(
     val spacing: Dp = 16.dp,
+    val colorDisplayStyle: ColorDisplayStyle = ColorDisplayStyle(),
     val controlsStyle: ColorPickerControlsStyle = ColorPickerControlsStyle(),
 )
 
@@ -43,6 +44,7 @@ fun ColorPicker(
     ) {
         ColorDisplay(
             color = color,
+            style = style.colorDisplayStyle,
             modifier = Modifier
                 .weight(1f, fill = false)
                 .semantics {

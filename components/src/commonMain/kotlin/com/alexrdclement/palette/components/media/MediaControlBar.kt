@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.MediaControlBarContentDescription
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.media.model.Artist
 import com.alexrdclement.palette.components.media.model.MediaItem
@@ -58,6 +59,7 @@ data class MediaControlBarStyle(
     val maxContentSize: DpSize = DpSize(width = Dp.Infinity, height = Dp.Infinity),
     val artworkStyle: MediaItemArtworkStyle = MediaItemArtworkStyle(),
     val playPauseButtonStyle: PlayPauseButtonStyle = PlayPauseButtonStyle(),
+    val surfaceStyle: SurfaceStyle = SurfaceStyle(),
 )
 
 private data class CachedSizes(
@@ -141,7 +143,7 @@ fun MediaControlBar(
                 )
             }
 
-            Surface(onClick = onClick) {
+            Surface(onClick = onClick, style = style.surfaceStyle) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
