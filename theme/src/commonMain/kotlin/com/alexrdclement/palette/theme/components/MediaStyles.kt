@@ -46,6 +46,7 @@ object MediaStyles {
             contentSpacing = PaletteTheme.spacing.small,
             artworkStyle = mediaItemArtwork,
             playPauseButtonStyle = playPauseButton,
+            surfaceStyle = CoreStyles.surface.default,
         )
 
     val mediaControlSheet: MediaControlSheetStyle
