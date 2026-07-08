@@ -1,12 +1,10 @@
 PLcom/alexrdclement/palette/components/color/ColorDisplayStyle;-><clinit>()V
 PLcom/alexrdclement/palette/components/color/ColorDisplayStyle;-><init>(Lcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/BorderStyle;)V
-PLcom/alexrdclement/palette/components/color/ColorDisplayStyle;-><init>(Lcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/BorderStyle;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;-><clinit>()V
 PLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/SliderStyle;F)V
 PLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/SliderStyle;FLkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><clinit>()V
 PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><init>(FLcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;)V
-PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><init>(FLcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><init>(FLcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 Lcom/alexrdclement/palette/components/core/BorderKt;
 HSPLcom/alexrdclement/palette/components/core/BorderKt;->border(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/BorderStyle;)Landroidx/compose/ui/Modifier;
@@ -361,8 +359,8 @@ PLcom/alexrdclement/palette/components/demo/control/CharControlStyle;-><clinit>(
 PLcom/alexrdclement/palette/components/demo/control/CharControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextFieldStyle;FF)V
 PLcom/alexrdclement/palette/components/demo/control/CharControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextFieldStyle;FFLkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/demo/control/ColorControlStyle;-><clinit>()V
-PLcom/alexrdclement/palette/components/demo/control/ColorControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/color/ColorPickerStyle;Lcom/alexrdclement/palette/components/core/SurfaceStyle;FFF)V
-PLcom/alexrdclement/palette/components/demo/control/ColorControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/color/ColorPickerStyle;Lcom/alexrdclement/palette/components/core/SurfaceStyle;FFFLkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/demo/control/ColorControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerStyle;Lcom/alexrdclement/palette/components/core/SurfaceStyle;FFF)V
+PLcom/alexrdclement/palette/components/demo/control/ColorControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerStyle;Lcom/alexrdclement/palette/components/core/SurfaceStyle;FFFLkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/demo/control/Control;-><clinit>()V
 PLcom/alexrdclement/palette/components/demo/control/Control;-><init>()V
 PLcom/alexrdclement/palette/components/demo/control/Control;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -1196,6 +1194,7 @@ HSPLcom/alexrdclement/palette/theme/ShapeTokenKt;->toShape(Lcom/alexrdclement/pa
 PLcom/alexrdclement/palette/theme/components/ButtonStyles;->get(Lcom/alexrdclement/palette/theme/styles/ButtonStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ButtonStyle;
 HSPLcom/alexrdclement/palette/theme/components/ButtonStyles;->getSecondary(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ButtonStyle;
 HSPLcom/alexrdclement/palette/theme/components/ButtonStyles;->getTertiary(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ButtonStyle;
+PLcom/alexrdclement/palette/theme/components/ColorStyles;->getColorDisplay(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/color/ColorDisplayStyle;
 PLcom/alexrdclement/palette/theme/components/ColorStyles;->getColorPicker(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/color/ColorPickerStyle;
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getCheckbox(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/CheckboxStyle;
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getChevronIcon(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ChevronIconStyle;
