@@ -7,19 +7,24 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.util.copy
 import kotlinx.collections.immutable.persistentListOf
+import kotlin.math.round
 
 /**
- * A collapsed column of raw dp sliders for each edge of a [PaddingValues]. Edges are read and
- * written in [LayoutDirection.Ltr] so start/end map to left/right consistently.
+ * A collapsed column of continuous dp sliders for each edge of a [PaddingValues]. The sliders are
+ * continuous (no tick marks), but each edge value is snapped to [snapIncrement] dp. Edges are read
+ * and written in [LayoutDirection.Ltr] so start/end map to left/right consistently.
  */
 fun paddingValuesControls(
     value: () -> PaddingValues,
     onValueChange: (PaddingValues) -> Unit,
     name: String = "Padding",
     valueRange: () -> ClosedFloatingPointRange<Float> = { 0f..80f },
-    stepIncrement: Float? = 1f,
+    snapIncrement: Float = 1f,
     expandedInitial: Boolean = false,
 ): Control {
+    fun snap(value: Float): Float =
+        if (snapIncrement > 0f) round(value / snapIncrement) * snapIncrement else value
+
     fun edgeControl(
         edgeName: String,
         edgeValue: (PaddingValues) -> Float,
@@ -27,9 +32,8 @@ fun paddingValuesControls(
     ) = Control.Slider(
         name = edgeName,
         value = { edgeValue(value()) },
-        onValueChange = { onValueChange(withEdge(value(), it)) },
+        onValueChange = { onValueChange(withEdge(value(), snap(it))) },
         valueRange = valueRange,
-        stepIncrement = stepIncrement,
     )
 
     return Control.ControlColumn(
