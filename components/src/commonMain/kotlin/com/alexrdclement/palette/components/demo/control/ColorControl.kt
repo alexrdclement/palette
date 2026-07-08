@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.components.color.ColorDisplay
+import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPicker
 import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.components.core.Button
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.Dp
 data class ColorControlStyle(
     val labelStyle: TextStyle = TextStyle(),
     val buttonStyle: ButtonStyle = ButtonStyle(),
+    val colorDisplayStyle: ColorDisplayStyle = ColorDisplayStyle(),
     val colorPickerStyle: ColorPickerStyle = ColorPickerStyle(),
     val surfaceStyle: SurfaceStyle = SurfaceStyle(),
     val spacing: Dp = 16.dp,
@@ -72,6 +74,7 @@ fun ColorControl(
             ) {
                 ColorDisplay(
                     color = color,
+                    style = style.colorDisplayStyle,
                     modifier = Modifier
                         .fillMaxHeight()
                 )

@@ -19,6 +19,7 @@ object ColorStyles {
     val colorPicker: ColorPickerStyle
         @Composable get() = ColorPickerStyle(
             spacing = PaletteTheme.spacing.medium,
+            colorDisplayStyle = colorDisplay,
             controlsStyle = ColorPickerControlsStyle(
                 labelStyle = TextStyles.labelLarge,
                 sliderStyle = CoreStyles.slider,

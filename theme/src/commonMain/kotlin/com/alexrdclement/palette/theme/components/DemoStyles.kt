@@ -44,6 +44,7 @@ object DemoStyles {
                     color = ColorControlStyle(
                         labelStyle = label,
                         buttonStyle = button,
+                        colorDisplayStyle = ColorStyles.colorDisplay,
                         colorPickerStyle = ColorStyles.colorPicker,
                         surfaceStyle = CoreStyles.surface.container,
                         spacing = PaletteTheme.spacing.medium,
