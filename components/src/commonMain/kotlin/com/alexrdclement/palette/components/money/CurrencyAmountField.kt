@@ -12,9 +12,6 @@ import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -27,9 +24,8 @@ import com.alexrdclement.palette.formats.core.NumberFormatOutputTransformation
 import com.alexrdclement.palette.formats.money.MoneyFormat
 
 data class CurrencyAmountFieldStyle(
-    val textStyle: TextStyle = TextStyle(),
+    val textFieldStyle: TextFieldStyle = TextFieldStyle(),
     val placeholderStyle: TextStyle = TextStyle(),
-    val cursorBrush: Brush = SolidColor(Color.Unspecified),
     val padding: Dp = 16.dp,
     val spacing: Dp = 8.dp,
 )
@@ -43,10 +39,9 @@ fun CurrencyAmountField(
     includeCurrencyPrefix: Boolean = true,
     maxNumDecimalValues: Int = 2,
 ) {
-    val textStyle = style.textStyle
     TextField(
         state = textFieldState,
-        style = TextFieldStyle(textStyle = textStyle, cursorBrush = style.cursorBrush),
+        style = style.textFieldStyle,
         modifier = Modifier
             .width(IntrinsicSize.Min)
             .padding(style.padding),
@@ -65,7 +60,7 @@ fun CurrencyAmountField(
                 if (includeCurrencyPrefix) {
                     Text(
                         text = moneyFormat.currencySymbol.orEmpty(),
-                        style = textStyle,
+                        style = style.textFieldStyle.textStyle,
                     )
                 }
 
