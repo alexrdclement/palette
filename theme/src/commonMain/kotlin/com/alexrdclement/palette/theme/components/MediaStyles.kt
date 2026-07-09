@@ -26,6 +26,8 @@ object MediaStyles {
                 containerColor = ColorToken.Primary.toColor(),
                 shape = ShapeToken.Primary.toShape(),
                 contentPadding = PaddingValues(2.dp),
+                disabledContentAlpha = PaletteTheme.colorScheme.disabledContentAlpha,
+                disabledContainerAlpha = PaletteTheme.colorScheme.disabledContainerAlpha,
                 indication = PaletteTheme.indication,
             ),
             iconColor = PaletteTheme.colorScheme.onPrimary,

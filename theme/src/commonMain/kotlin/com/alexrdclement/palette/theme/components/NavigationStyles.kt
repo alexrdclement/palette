@@ -18,6 +18,8 @@ object NavigationStyles {
                 containerColor = ColorToken.Surface.toColor(),
                 shape = ShapeToken.Primary.toShape(),
                 contentPadding = PaddingValues(PaletteTheme.spacing.medium),
+                disabledContentAlpha = PaletteTheme.colorScheme.disabledContentAlpha,
+                disabledContainerAlpha = PaletteTheme.colorScheme.disabledContainerAlpha,
                 indication = PaletteTheme.indication,
             ),
             iconColor = PaletteTheme.colorScheme.primary,
