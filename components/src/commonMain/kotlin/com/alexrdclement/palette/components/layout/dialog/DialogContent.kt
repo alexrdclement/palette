@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -102,9 +101,7 @@ fun DialogContent(
     ) {
         Text(
             text = message,
-            style = style.messageStyle.copy(
-                textAlign = TextAlign.Center,
-            ),
+            style = style.messageStyle,
             modifier = Modifier
                 .padding(bottom = style.messageBottomPadding)
         )
@@ -131,9 +128,7 @@ fun DialogContent(
         ) {
             Text(
                 text = title,
-                style = style.titleStyle.copy(
-                    textAlign = TextAlign.Center,
-                ),
+                style = style.titleStyle,
                 modifier = Modifier
                     .padding(bottom = style.titleBottomPadding)
             )

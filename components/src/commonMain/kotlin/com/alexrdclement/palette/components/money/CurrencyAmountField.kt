@@ -22,14 +22,13 @@ import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.components.core.TextStyle
-import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.formats.core.NumberFormatInputTransformation
 import com.alexrdclement.palette.formats.core.NumberFormatOutputTransformation
 import com.alexrdclement.palette.formats.money.MoneyFormat
 
 data class CurrencyAmountFieldStyle(
     val textStyle: TextStyle = TextStyle(),
-    val placeholderColor: Color = Color.Unspecified,
+    val placeholderStyle: TextStyle = TextStyle(),
     val cursorBrush: Brush = SolidColor(Color.Unspecified),
     val padding: Dp = 16.dp,
     val spacing: Dp = 8.dp,
@@ -74,9 +73,7 @@ fun CurrencyAmountField(
                     if (textFieldState.text.isEmpty()) {
                         Text(
                             text = placeholder,
-                            style = textStyle.copy(
-                                color = style.placeholderColor,
-                            )
+                            style = style.placeholderStyle,
                         )
                     }
 

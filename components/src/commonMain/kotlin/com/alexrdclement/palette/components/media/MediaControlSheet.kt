@@ -27,7 +27,6 @@ import com.alexrdclement.palette.components.layout.PeekSheetState
 import com.alexrdclement.palette.components.layout.rememberPeekSheetState
 import com.alexrdclement.palette.components.media.model.Artist
 import com.alexrdclement.palette.components.media.model.MediaItem
-import com.alexrdclement.palette.components.util.calculateHorizontalPaddingValues
 import kotlinx.coroutines.launch
 
 data class MediaControlSheetStyle(
@@ -67,9 +66,7 @@ fun MediaControlSheet(
                 progress = progress,
                 minContentSize = minContentSize,
                 maxContentSize = maxContentSize,
-                style = style.controlBarStyle.copy(
-                    contentPadding = contentPadding.calculateHorizontalPaddingValues(),
-                ),
+                style = style.controlBarStyle,
                 stateDescription = when (state.currentValue) {
                     PeekSheetAnchor.Peek -> MediaControlBarStateDescriptionPartiallyExpanded
                     PeekSheetAnchor.Expanded -> MediaControlBarStateDescriptionExpanded

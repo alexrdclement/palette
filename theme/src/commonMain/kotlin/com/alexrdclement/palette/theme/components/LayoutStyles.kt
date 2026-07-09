@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.theme.components
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.style.TextAlign
 import com.alexrdclement.palette.components.layout.BoxWithLabelStyle
 import com.alexrdclement.palette.components.layout.FloatingActionStyle
 import com.alexrdclement.palette.components.layout.ScaffoldStyle
@@ -61,8 +62,8 @@ object LayoutStyles {
 
     val dialogContent: DialogContentStyle
         @Composable get() = DialogContentStyle(
-            titleStyle = TextStyles.titleLarge,
-            messageStyle = TextStyles.bodyLarge,
+            titleStyle = TextStyles.titleLarge.copy(textAlign = TextAlign.Center),
+            messageStyle = TextStyles.bodyLarge.copy(textAlign = TextAlign.Center),
             surfaceStyle = CoreStyles.surface.container,
             buttonRowStyle = confirmCancelButtonRow,
             spacing = PaletteTheme.spacing.medium,
