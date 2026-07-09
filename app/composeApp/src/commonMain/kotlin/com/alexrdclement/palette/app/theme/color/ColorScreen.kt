@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.color.ColorDisplay
-import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.core.ButtonDefaults
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.control.Control
@@ -71,7 +70,6 @@ fun ColorScreen(
                 label = colorToken.name,
                 color = colorToken.toColor(),
                 onColorClick = { selectedColorToken = colorToken },
-                style = PaletteTheme.styles.color.colorDisplay,
             )
         }
     }
@@ -96,7 +94,6 @@ private fun ColorDisplayRow(
     color: Color,
     onColorClick: (Color) -> Unit,
     modifier: Modifier = Modifier,
-    style: ColorDisplayStyle = ColorDisplayStyle(),
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
@@ -106,7 +103,7 @@ private fun ColorDisplayRow(
     ) {
         ColorDisplay(
             color = color,
-            style = style,
+            style = PaletteTheme.styles.color.colorDisplay,
             modifier = Modifier
                 .size(ButtonDefaults.MinHeight)
         )
