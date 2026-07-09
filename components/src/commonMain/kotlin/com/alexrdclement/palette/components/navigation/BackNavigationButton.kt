@@ -19,8 +19,7 @@ import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Surface
 
 data class BackNavigationButtonStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle(),
-    val contentPadding: PaddingValues = PaddingValues(16.dp),
+    val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(16.dp)),
     val iconColor: Color = Color.Unspecified,
     val size: Dp = 48.dp,
 )
@@ -33,7 +32,7 @@ fun BackNavigationButton(
 ) {
     Button(
         onClick = onClick,
-        style = style.buttonStyle.copy(contentPadding = style.contentPadding),
+        style = style.buttonStyle,
         modifier = modifier.size(style.size),
     ) {
         Box(

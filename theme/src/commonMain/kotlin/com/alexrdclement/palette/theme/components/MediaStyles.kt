@@ -1,6 +1,8 @@
 package com.alexrdclement.palette.theme.components
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.media.MediaControlBarStyle
 import com.alexrdclement.palette.components.media.MediaControlSheetStyle
@@ -21,6 +23,7 @@ object MediaStyles {
             buttonStyle = ButtonStyle(
                 containerColor = ColorToken.Primary.toColor(),
                 shape = ShapeToken.Primary.toShape(),
+                contentPadding = PaddingValues(2.dp),
                 indication = PaletteTheme.indication,
             ),
             iconColor = PaletteTheme.colorScheme.onPrimary,
@@ -28,7 +31,9 @@ object MediaStyles {
 
     val skipButton: SkipButtonStyle
         @Composable get() = SkipButtonStyle(
-            buttonStyle = CoreStyles.button.secondary,
+            buttonStyle = CoreStyles.button.secondary.copy(
+                contentPadding = PaddingValues(6.dp),
+            ),
             iconStyle = SkipIconStyle(
                 color = PaletteTheme.colorScheme.secondary,
             ),

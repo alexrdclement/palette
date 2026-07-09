@@ -23,9 +23,8 @@ enum class ChevronDirection {
 }
 
 data class ChevronButtonStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(16.dp)),
     val iconColor: Color = Color.Unspecified,
-    val contentPadding: PaddingValues = PaddingValues(16.dp),
 )
 
 data class ChevronIconStyle(
@@ -41,7 +40,7 @@ fun ChevronButton(
 ) {
     Button(
         onClick = onClick,
-        style = style.buttonStyle.copy(contentPadding = style.contentPadding),
+        style = style.buttonStyle,
         modifier = modifier
     ) {
         ChevronIcon(

@@ -21,9 +21,8 @@ data class SkipIconStyle(
 )
 
 data class SkipButtonStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(6.dp)),
     val iconStyle: SkipIconStyle = SkipIconStyle(),
-    val contentPadding: PaddingValues = PaddingValues(6.dp),
 )
 
 @Composable
@@ -36,7 +35,7 @@ fun SkipButton(
     Button(
         onClick = onClick,
         enabled = enabled,
-        style = style.buttonStyle.copy(contentPadding = style.contentPadding),
+        style = style.buttonStyle,
         modifier = modifier.aspectRatio(1f),
     ) { shapePadding ->
         SkipIcon(

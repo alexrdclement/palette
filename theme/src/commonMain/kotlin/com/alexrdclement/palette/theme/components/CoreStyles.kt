@@ -17,7 +17,9 @@ import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.ShapeToken
 import com.alexrdclement.palette.theme.toColor
+import com.alexrdclement.palette.theme.toShape
 
 object CoreStyles {
     val text get() = TextStyles
@@ -51,10 +53,11 @@ object CoreStyles {
         @Composable get() = ChevronButtonStyle(
             buttonStyle = ButtonStyle(
                 containerColor = ColorToken.Surface.toColor(),
+                shape = ShapeToken.Primary.toShape(),
+                contentPadding = PaddingValues(PaletteTheme.spacing.medium),
                 indication = PaletteTheme.indication,
             ),
             iconColor = PaletteTheme.colorScheme.primary,
-            contentPadding = PaddingValues(PaletteTheme.spacing.medium),
         )
 
     val chevronIcon: ChevronIconStyle

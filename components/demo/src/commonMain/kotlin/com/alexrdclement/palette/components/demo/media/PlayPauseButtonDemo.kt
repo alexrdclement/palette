@@ -25,7 +25,7 @@ fun PlayPauseButtonDemo(
 ) {
     var isPlaying by remember { mutableStateOf(false) }
     var isEnabled by remember { mutableStateOf(true) }
-    val contentPaddingInitial = PaletteTheme.styles.media.playPauseButton.contentPadding
+    val contentPaddingInitial = PaletteTheme.styles.media.playPauseButton.buttonStyle.contentPadding
     var contentPadding by remember { mutableStateOf(contentPaddingInitial) }
 
     val controls = persistentListOf(
@@ -75,13 +75,14 @@ fun DemoScope.PlayPauseButtonDemo(
     isEnabled: Boolean,
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaletteTheme.styles.media.playPauseButton.contentPadding,
+    contentPadding: PaddingValues = PaletteTheme.styles.media.playPauseButton.buttonStyle.contentPadding,
 ) {
+    val base = PaletteTheme.styles.media.playPauseButton
     PlayPauseButton(
         onClick = onPlayPauseClick,
         isPlaying = isPlaying,
         isEnabled = isEnabled,
-        style = PaletteTheme.styles.media.playPauseButton.copy(contentPadding = contentPadding),
+        style = base.copy(buttonStyle = base.buttonStyle.copy(contentPadding = contentPadding)),
         modifier = modifier
             .size(52.dp)
             .align(Alignment.Center),

@@ -25,7 +25,7 @@ fun SkipButtonDemo(
     modifier: Modifier = Modifier,
 ) {
     var enabled by remember { mutableStateOf(true) }
-    val contentPaddingInitial = PaletteTheme.styles.media.skipButton.contentPadding
+    val contentPaddingInitial = PaletteTheme.styles.media.skipButton.buttonStyle.contentPadding
     var contentPadding by remember { mutableStateOf(contentPaddingInitial) }
 
     val controls = persistentListOf(
@@ -62,9 +62,10 @@ fun SkipButtonDemo(
 fun DemoScope.SkipButtonDemo(
     enabled: Boolean,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaletteTheme.styles.media.skipButton.contentPadding,
+    contentPadding: PaddingValues = PaletteTheme.styles.media.skipButton.buttonStyle.contentPadding,
 ) {
-    val style = PaletteTheme.styles.media.skipButton.copy(contentPadding = contentPadding)
+    val base = PaletteTheme.styles.media.skipButton
+    val style = base.copy(buttonStyle = base.buttonStyle.copy(contentPadding = contentPadding))
     SkipBackButton(
         onClick = {},
         enabled = enabled,

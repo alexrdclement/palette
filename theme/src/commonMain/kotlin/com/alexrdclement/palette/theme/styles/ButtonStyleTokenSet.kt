@@ -15,9 +15,9 @@ data class ButtonStyleTokenSet(
     val borderStyle: BorderStyleToken?,
     val contentPadding: PaddingValuesTokens = PaddingValuesTokens(
         start = SpacingToken.Large,
-        top = SpacingToken.Medium,
+        top = SpacingToken.Small,
         end = SpacingToken.Large,
-        bottom = SpacingToken.Medium,
+        bottom = SpacingToken.Small,
     ),
 )
 
