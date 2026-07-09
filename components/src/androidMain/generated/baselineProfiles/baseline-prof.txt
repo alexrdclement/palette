@@ -3,6 +3,9 @@ PLcom/alexrdclement/palette/components/color/ColorDisplayStyle;-><init>(Lcom/ale
 PLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;-><clinit>()V
 PLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/SliderStyle;F)V
 PLcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/SliderStyle;FLkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/color/ColorPickerDialogContentStyle;-><clinit>()V
+PLcom/alexrdclement/palette/components/color/ColorPickerDialogContentStyle;-><init>(Lcom/alexrdclement/palette/components/color/ColorPickerStyle;Lcom/alexrdclement/palette/components/layout/dialog/ConfirmCancelButtonRowStyle;FF)V
+PLcom/alexrdclement/palette/components/color/ColorPickerDialogContentStyle;-><init>(Lcom/alexrdclement/palette/components/color/ColorPickerStyle;Lcom/alexrdclement/palette/components/layout/dialog/ConfirmCancelButtonRowStyle;FFLkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><clinit>()V
 PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><init>(FLcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;)V
 PLcom/alexrdclement/palette/components/color/ColorPickerStyle;-><init>(FLcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerControlsStyle;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -279,7 +282,6 @@ HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->ShapeContent$lambda$2$
 HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->ShapeContent(Lcom/alexrdclement/palette/components/core/Shape;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)V
 HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->Surface$lambda$0$0(Landroidx/compose/ui/semantics/SemanticsPropertyReceiver;)Lkotlin/Unit;
 HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->Surface(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/SurfaceStyle;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
-HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->Surface(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/SurfaceStyle;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->surface-FNF3uiM(Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/Shape;JLcom/alexrdclement/palette/components/core/BorderStyle;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/Modifier;
 Lcom/alexrdclement/palette/components/core/SurfaceKt$$ExternalSyntheticLambda1;
 HSPLcom/alexrdclement/palette/components/core/SurfaceKt$$ExternalSyntheticLambda1;-><init>(Lcom/alexrdclement/palette/components/core/Shape;Lkotlin/jvm/functions/Function3;)V
@@ -351,7 +353,11 @@ PLcom/alexrdclement/palette/components/demo/DemoScopeImpl;-><init>(Landroidx/com
 PLcom/alexrdclement/palette/components/demo/DemoScopeImpl;->align(Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/components/demo/DemoScopeImpl;->getMaxWidth-D9Ej5fM()F
 PLcom/alexrdclement/palette/components/demo/DemoStyle;-><clinit>()V
-PLcom/alexrdclement/palette/components/demo/DemoStyle;-><init>(Lcom/alexrdclement/palette/components/demo/control/ControlsStyle;Lcom/alexrdclement/palette/components/core/DividerStyle;)V
+PLcom/alexrdclement/palette/components/demo/DemoStyle;-><init>(Lcom/alexrdclement/palette/components/demo/control/ControlsStyle;Lcom/alexrdclement/palette/components/core/DividerStyle;FF)V
+PLcom/alexrdclement/palette/components/demo/DemoStyle;-><init>(Lcom/alexrdclement/palette/components/demo/control/ControlsStyle;Lcom/alexrdclement/palette/components/core/DividerStyle;FFILkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/demo/DemoStyle;-><init>(Lcom/alexrdclement/palette/components/demo/control/ControlsStyle;Lcom/alexrdclement/palette/components/core/DividerStyle;FFLkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/demo/DemoStyle;->getControlsMaxSize-D9Ej5fM()F
+PLcom/alexrdclement/palette/components/demo/DemoStyle;->getControlsPadding-D9Ej5fM()F
 PLcom/alexrdclement/palette/components/demo/DemoStyle;->getControlsStyle()Lcom/alexrdclement/palette/components/demo/control/ControlsStyle;
 PLcom/alexrdclement/palette/components/demo/DemoStyle;->getDividerStyle()Lcom/alexrdclement/palette/components/core/DividerStyle;
 PLcom/alexrdclement/palette/components/demo/control/ButtonControlStyle;-><clinit>()V
@@ -360,8 +366,8 @@ PLcom/alexrdclement/palette/components/demo/control/CharControlStyle;-><clinit>(
 PLcom/alexrdclement/palette/components/demo/control/CharControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextFieldStyle;FF)V
 PLcom/alexrdclement/palette/components/demo/control/CharControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/TextFieldStyle;FFLkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/demo/control/ColorControlStyle;-><clinit>()V
-PLcom/alexrdclement/palette/components/demo/control/ColorControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerStyle;Lcom/alexrdclement/palette/components/core/SurfaceStyle;FFF)V
-PLcom/alexrdclement/palette/components/demo/control/ColorControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerStyle;Lcom/alexrdclement/palette/components/core/SurfaceStyle;FFFLkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/demo/control/ColorControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerDialogContentStyle;Lcom/alexrdclement/palette/components/core/SurfaceStyle;FF)V
+PLcom/alexrdclement/palette/components/demo/control/ColorControlStyle;-><init>(Lcom/alexrdclement/palette/components/core/TextStyle;Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/color/ColorDisplayStyle;Lcom/alexrdclement/palette/components/color/ColorPickerDialogContentStyle;Lcom/alexrdclement/palette/components/core/SurfaceStyle;FFLkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/demo/control/Control;-><clinit>()V
 PLcom/alexrdclement/palette/components/demo/control/Control;-><init>()V
 PLcom/alexrdclement/palette/components/demo/control/Control;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -1137,6 +1143,11 @@ HSPLcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$Cat
 Lcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt$$ExternalSyntheticLambda0;
 HSPLcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt$$ExternalSyntheticLambda0;-><init>()V
 HSPLcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt$$ExternalSyntheticLambda0;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+PLcom/alexrdclement/palette/components/layout/dialog/ConfirmButtonStyle;-><clinit>()V
+PLcom/alexrdclement/palette/components/layout/dialog/ConfirmButtonStyle;-><init>(Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/core/TextStyle;)V
+PLcom/alexrdclement/palette/components/layout/dialog/ConfirmCancelButtonRowStyle;-><clinit>()V
+PLcom/alexrdclement/palette/components/layout/dialog/ConfirmCancelButtonRowStyle;-><init>(Lcom/alexrdclement/palette/components/layout/dialog/ConfirmButtonStyle;F)V
+PLcom/alexrdclement/palette/components/layout/dialog/ConfirmCancelButtonRowStyle;-><init>(Lcom/alexrdclement/palette/components/layout/dialog/ConfirmButtonStyle;FLkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/menu/DropdownMenuItemStyle;-><clinit>()V
 PLcom/alexrdclement/palette/components/menu/DropdownMenuItemStyle;-><init>(Landroidx/compose/foundation/Indication;Landroidx/compose/foundation/layout/PaddingValues;)V
 PLcom/alexrdclement/palette/components/menu/DropdownMenuItemStyle;-><init>(Landroidx/compose/foundation/Indication;Landroidx/compose/foundation/layout/PaddingValues;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -1182,6 +1193,13 @@ HSPLcom/alexrdclement/palette/components/util/PaddingValuesKt;->copy-cKdBLrg(Lan
 HSPLcom/alexrdclement/palette/components/util/PaddingValuesKt;->plus(Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/runtime/Composer;I)Landroidx/compose/foundation/layout/PaddingValues;
 HSPLcom/alexrdclement/palette/components/util/PaddingValuesKt;->plus(Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/ui/unit/LayoutDirection;)Landroidx/compose/foundation/layout/PaddingValues;
 HSPLcom/alexrdclement/palette/components/util/PaddingValuesKt;->plus-YLPp7PM(Landroidx/compose/foundation/layout/PaddingValues;FFFFLandroidx/compose/ui/unit/LayoutDirection;)Landroidx/compose/foundation/layout/PaddingValues;
+PLcom/alexrdclement/palette/components/util/PaddingValuesSaverKt;->$r8$lambda$f_1ingX3jQDGaEu6YxZUk5KJLTA(Landroidx/compose/runtime/saveable/SaverScope;Landroidx/compose/foundation/layout/PaddingValues;)Ljava/util/Map;
+PLcom/alexrdclement/palette/components/util/PaddingValuesSaverKt;-><clinit>()V
+PLcom/alexrdclement/palette/components/util/PaddingValuesSaverKt;->PaddingValuesSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Landroidx/compose/foundation/layout/PaddingValues;)Ljava/util/Map;
+PLcom/alexrdclement/palette/components/util/PaddingValuesSaverKt;->getPaddingValuesSaver()Landroidx/compose/runtime/saveable/Saver;
+PLcom/alexrdclement/palette/components/util/PaddingValuesSaverKt$$ExternalSyntheticLambda0;-><init>()V
+PLcom/alexrdclement/palette/components/util/PaddingValuesSaverKt$$ExternalSyntheticLambda0;->invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+PLcom/alexrdclement/palette/components/util/PaddingValuesSaverKt$$ExternalSyntheticLambda1;-><init>()V
 PLcom/alexrdclement/palette/components/util/SaverKt;->mapSaverSafe$default(Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Landroidx/compose/runtime/saveable/Saver;
 PLcom/alexrdclement/palette/components/util/SaverKt;->mapSaverSafe(Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Landroidx/compose/runtime/saveable/Saver;
 PLcom/alexrdclement/palette/components/util/SaverKt;->save(Ljava/lang/Object;Landroidx/compose/runtime/saveable/Saver;Landroidx/compose/runtime/saveable/SaverScope;)Ljava/lang/Object;
@@ -1201,6 +1219,7 @@ HSPLcom/alexrdclement/palette/theme/components/ButtonStyles;->getSecondary(Landr
 HSPLcom/alexrdclement/palette/theme/components/ButtonStyles;->getTertiary(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ButtonStyle;
 PLcom/alexrdclement/palette/theme/components/ColorStyles;->getColorDisplay(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/color/ColorDisplayStyle;
 PLcom/alexrdclement/palette/theme/components/ColorStyles;->getColorPicker(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/color/ColorPickerStyle;
+PLcom/alexrdclement/palette/theme/components/ColorStyles;->getColorPickerDialogContent(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/color/ColorPickerDialogContentStyle;
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getCheckbox(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/CheckboxStyle;
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getChevronIcon(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ChevronIconStyle;
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getDivider(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/DividerStyle;
@@ -1208,6 +1227,7 @@ PLcom/alexrdclement/palette/theme/components/CoreStyles;->getSlider(Landroidx/co
 PLcom/alexrdclement/palette/theme/components/CoreStyles;->getTextField(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextFieldStyle;
 HPLcom/alexrdclement/palette/theme/components/DemoStyles;->getStyle(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/demo/DemoStyle;
 HSPLcom/alexrdclement/palette/theme/components/LayoutStyles;->getCatalog(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/catalog/CatalogStyle;
+PLcom/alexrdclement/palette/theme/components/LayoutStyles;->getConfirmCancelButtonRow(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/dialog/ConfirmCancelButtonRowStyle;
 HSPLcom/alexrdclement/palette/theme/components/LayoutStyles;->getScaffold(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/ScaffoldStyle;
 HSPLcom/alexrdclement/palette/theme/components/LayoutStyles;->getTopBar(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/TopBarStyle;
 PLcom/alexrdclement/palette/theme/components/MenuStyles;->getDropdownMenu(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/menu/DropdownMenuStyle;
@@ -1232,4 +1252,4 @@ HSPLcom/alexrdclement/palette/theme/styles/SurfaceStyleTokenKt;->resolve(Lcom/al
 HSPLcom/alexrdclement/palette/theme/styles/SurfaceStyleTokenSetKt;->toComponentStyle(Lcom/alexrdclement/palette/theme/styles/SurfaceStyleTokenSet;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
 HSPLcom/alexrdclement/palette/theme/styles/TextStyleTokenKt;->resolve(Lcom/alexrdclement/palette/theme/styles/TextStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextStyle;
 HSPLcom/alexrdclement/palette/theme/styles/TextStyleTokenSetKt;->toTextStyle(Lcom/alexrdclement/palette/theme/styles/TextStyleTokenSet;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextStyle;
-HSPLcom/alexrdclement/palette/theme/styles/TextStyleTokenSetKt;->toTextStyle(Lcom/alexrdclement/palette/theme/styles/TextStyleTokenSet;Lcom/alexrdclement/palette/theme/Typography;Lcom/alexrdclement/palette/theme/format/core/TextFormatScheme;)Lcom/alexrdclement/palette/components/core/TextStyle;
+HSPLcom/alexrdclement/palette/theme/styles/TextStyleTokenSetKt;->toTextStyle-g2O1Hgs(Lcom/alexrdclement/palette/theme/styles/TextStyleTokenSet;Lcom/alexrdclement/palette/theme/Typography;Lcom/alexrdclement/palette/theme/format/core/TextFormatScheme;J)Lcom/alexrdclement/palette/components/core/TextStyle;
