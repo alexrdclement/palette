@@ -7,7 +7,6 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.CheckboxStyle
-import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.components.core.ChevronButtonStyle
 import com.alexrdclement.palette.components.core.ChevronIconStyle
 import com.alexrdclement.palette.components.core.DividerStyle
@@ -46,7 +45,7 @@ object CoreStyles {
                 containerColor = ColorToken.Surface.toColor(),
                 indication = PaletteTheme.indication,
             ),
-            textStyle = text.titleLarge.copy(color = ColorToken.Primary.toColor()),
+            textStyle = text.titleLarge,
         )
 
     val chevronButton: ChevronButtonStyle
