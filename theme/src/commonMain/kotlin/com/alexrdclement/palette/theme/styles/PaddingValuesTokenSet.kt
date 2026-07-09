@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.SpacingToken
 import com.alexrdclement.palette.theme.toSpacing
 
-data class PaddingValuesTokens(
+data class PaddingValuesTokenSet(
     val start: SpacingToken,
     val top: SpacingToken,
     val end: SpacingToken,
@@ -13,7 +13,7 @@ data class PaddingValuesTokens(
 )
 
 @Composable
-fun PaddingValuesTokens.toPaddingValues(): PaddingValues = PaddingValues(
+fun PaddingValuesTokenSet.toPaddingValues(): PaddingValues = PaddingValues(
     start = start.toSpacing(),
     top = top.toSpacing(),
     end = end.toSpacing(),
