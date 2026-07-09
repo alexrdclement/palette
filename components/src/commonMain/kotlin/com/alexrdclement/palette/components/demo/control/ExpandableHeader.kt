@@ -1,7 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
+import androidx.compose.foundation.Indication
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -17,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ChevronDirection
 import com.alexrdclement.palette.components.core.ChevronIcon
 import com.alexrdclement.palette.components.core.ChevronIconStyle
+import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextStyle
 
@@ -28,6 +30,7 @@ data class ExpandableHeaderStyle(
     val labelPadding: Dp = 4.dp,
     val iconPadding: Dp = 6.dp,
     val chevronIconStyle: ChevronIconStyle = ChevronIconStyle(),
+    val indication: Indication? = null,
 )
 
 @Composable
@@ -38,26 +41,31 @@ fun ExpandableHeader(
     modifier: Modifier = Modifier,
     style: ExpandableHeaderStyle = ExpandableHeaderStyle(),
 ) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(style.spacing),
-        modifier = modifier
-            .height(IntrinsicSize.Min)
-            .clickable { onExpandedChange(!expanded) }
+    Surface(
+        onClick = { onExpandedChange(!expanded) },
+        style = SurfaceStyle(indication = style.indication),
+        modifier = modifier,
     ) {
-        Text(
-            text = name,
-            style = style.headerStyle,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(style.spacing),
             modifier = Modifier
-                .border(style.borderWidth, style.borderColor)
-                .padding(style.labelPadding)
-        )
-        ChevronIcon(
-            direction = if (expanded) ChevronDirection.Up else ChevronDirection.Down,
-            style = style.chevronIconStyle,
-            modifier = Modifier
-                .fillMaxHeight()
-                .padding(style.iconPadding)
-        )
+                .height(IntrinsicSize.Min)
+        ) {
+            Text(
+                text = name,
+                style = style.headerStyle,
+                modifier = Modifier
+                    .border(style.borderWidth, style.borderColor)
+                    .padding(style.labelPadding)
+            )
+            ChevronIcon(
+                direction = if (expanded) ChevronDirection.Up else ChevronDirection.Down,
+                style = style.chevronIconStyle,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(style.iconPadding)
+            )
+        }
     }
 }

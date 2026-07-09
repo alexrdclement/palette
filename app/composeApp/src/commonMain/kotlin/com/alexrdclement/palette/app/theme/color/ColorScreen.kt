@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.app.theme.color
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.color.ColorDisplay
 import com.alexrdclement.palette.components.core.ButtonDefaults
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -27,6 +27,7 @@ import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteDarkColorScheme
 import com.alexrdclement.palette.theme.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components.core.Surface
 import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
@@ -95,24 +96,28 @@ private fun ColorDisplayRow(
     onColorClick: (Color) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .clickable { onColorClick(color) },
+    Surface(
+        onClick = { onColorClick(color) },
+        style = SurfaceStyle(indication = PaletteTheme.indication),
+        modifier = modifier,
     ) {
-        ColorDisplay(
-            color = color,
-            style = PaletteTheme.styles.color.colorDisplay,
-            modifier = Modifier
-                .size(ButtonDefaults.MinHeight)
-        )
-        Text(
-            text = label,
-            style = PaletteTheme.styles.core.text.labelMedium,
-            modifier = Modifier
-                .padding(end = PaletteTheme.spacing.medium)
-        )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            ColorDisplay(
+                color = color,
+                style = PaletteTheme.styles.color.colorDisplay,
+                modifier = Modifier
+                    .size(ButtonDefaults.MinHeight)
+            )
+            Text(
+                text = label,
+                style = PaletteTheme.styles.core.text.labelMedium,
+                modifier = Modifier
+                    .padding(end = PaletteTheme.spacing.medium)
+            )
+        }
     }
 }
 

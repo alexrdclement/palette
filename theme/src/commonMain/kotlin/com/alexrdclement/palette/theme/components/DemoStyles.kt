@@ -81,6 +81,7 @@ object DemoStyles {
                         chevronIconStyle = CoreStyles.chevronIcon,
                         spacing = PaletteTheme.spacing.small,
                         labelPadding = PaletteTheme.spacing.xs,
+                        indication = PaletteTheme.indication,
                     ),
                     dynamicList = DynamicListControlStyle(
                         spacing = PaletteTheme.spacing.medium,
