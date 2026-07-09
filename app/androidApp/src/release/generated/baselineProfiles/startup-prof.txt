@@ -2857,7 +2857,6 @@ HSPLandroidx/compose/runtime/GapComposer;->currentCompositionLocalScope()Landroi
 HSPLandroidx/compose/runtime/GapComposer;->currentCompositionLocalScope(I)Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/GapComposer;->doCompose-aFTiNEg(Landroidx/collection/MutableScatterMap;Lkotlin/jvm/functions/Function2;)V
 PLandroidx/compose/runtime/GapComposer;->doRecordDownsFor(II)V
-HSPLandroidx/compose/runtime/GapComposer;->end(Z)V
 HSPLandroidx/compose/runtime/GapComposer;->endDefaults()V
 HSPLandroidx/compose/runtime/GapComposer;->endGroup()V
 HSPLandroidx/compose/runtime/GapComposer;->endMovableGroup()V
@@ -5497,7 +5496,7 @@ HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;-><init>(FFFFFFFFFFJLandro
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;-><init>(FFFFFFFFFFJLandroidx/compose/ui/graphics/Shape;ZLandroidx/compose/ui/graphics/RenderEffect;JJIILandroidx/compose/ui/graphics/ColorFilter;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;->create()Landroidx/compose/ui/Modifier$Node;
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;->create()Landroidx/compose/ui/graphics/SimpleGraphicsLayerModifier;
-HPLandroidx/compose/ui/graphics/GraphicsLayerElement;->equals(Ljava/lang/Object;)Z
+PLandroidx/compose/ui/graphics/GraphicsLayerElement;->equals(Ljava/lang/Object;)Z
 Landroidx/compose/ui/graphics/GraphicsLayerModifierKt;
 HSPLandroidx/compose/ui/graphics/GraphicsLayerModifierKt;-><clinit>()V
 HSPLandroidx/compose/ui/graphics/GraphicsLayerModifierKt;->access$getReusableGraphicsLayerScope$p()Landroidx/compose/ui/graphics/ReusableGraphicsLayerScope;
@@ -7923,7 +7922,7 @@ HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->move--gyyYBs(J)V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->resize-ozmzZPI(J)V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->setDirty(Z)V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->triggerRepaint()V
-PLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->updateDisplayList()V
+HPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->updateDisplayList()V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->updateLayerProperties(Landroidx/compose/ui/graphics/ReusableGraphicsLayerScope;)V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->updateMatrix()V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->updateOutline()V
@@ -10142,7 +10141,6 @@ PLandroidx/emoji2/text/MetadataRepo;->put(Landroidx/emoji2/text/TypefaceEmojiRas
 HPLandroidx/emoji2/text/MetadataRepo$Node;-><init>()V
 HPLandroidx/emoji2/text/MetadataRepo$Node;-><init>(I)V
 HPLandroidx/emoji2/text/MetadataRepo$Node;->get(I)Landroidx/emoji2/text/MetadataRepo$Node;
-HPLandroidx/emoji2/text/MetadataRepo$Node;->put(Landroidx/emoji2/text/TypefaceEmojiRasterizer;II)V
 PLandroidx/emoji2/text/TypefaceEmojiRasterizer;-><clinit>()V
 HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;-><init>(Landroidx/emoji2/text/MetadataRepo;I)V
 HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getCodepointAt(I)I
@@ -10152,7 +10150,6 @@ HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getMetadataItem()Landroidx/emo
 PLandroidx/emoji2/text/flatbuffer/MetadataItem;-><init>()V
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->__assign(ILjava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->__init(ILjava/nio/ByteBuffer;)V
-HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->codepoints(I)I
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->codepointsLength()I
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->id()I
 PLandroidx/emoji2/text/flatbuffer/MetadataList;-><init>()V
@@ -10160,6 +10157,7 @@ PLandroidx/emoji2/text/flatbuffer/MetadataList;->__assign(ILjava/nio/ByteBuffer;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->__init(ILjava/nio/ByteBuffer;)V
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataList;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;Landroidx/emoji2/text/flatbuffer/MetadataList;)Landroidx/emoji2/text/flatbuffer/MetadataList;
+HPLandroidx/emoji2/text/flatbuffer/MetadataList;->list(Landroidx/emoji2/text/flatbuffer/MetadataItem;I)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->listLength()I
 PLandroidx/emoji2/text/flatbuffer/Table;-><init>()V
 HPLandroidx/emoji2/text/flatbuffer/Table;->__indirect(I)I
