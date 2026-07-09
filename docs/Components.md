@@ -17,6 +17,23 @@ each item is a rule that new and existing components are expected to follow.
 - Components MUST be headless with respect to the theme: the `:components` module MUST NOT depend on
   `:theme`. All visual values come in through the `*Style` parameter (see below); the theme supplies
   those values from the outside.
+- Component source MUST live in `commonMain`. Platform-specific `expect`/`actual` is only warranted
+  when an API genuinely has no common implementation; appearance and layout stay common.
+
+### Component signatures
+
+- Components MUST be **stateless / state-hoisted**: mutable state is exposed as a value plus an
+  `on<Value>Change` callback (`isChecked: Boolean, onCheckedChange: (Boolean) -> Unit`); a component
+  MUST NOT own state a caller cannot control.
+- Parameters MUST follow the house order: required (hoisted) state first, then
+  `modifier: Modifier = Modifier`, then `style: <ComponentName>Style = <ComponentName>Style()`, then
+  remaining optional params (`enabled`, `interactionSource`, …), with a trailing `content` lambda
+  last. `modifier` MUST be applied to the component's root once.
+- Interactive components MUST take `enabled: Boolean = true` and MUST visibly dim when disabled via
+  the style's `disabledContentAlpha` / `disabledContainerAlpha` (the theme supplies the non-`1f`
+  values). A hand-built themed `*Style` that omits these alphas is a bug — the component will not dim.
+- Components SHOULD carry the appropriate semantics (e.g. `Role.Checkbox`, `mergeDescendants`) so
+  they are accessible and testable.
 
 ## Style data classes
 
@@ -40,6 +57,19 @@ each item is a rule that new and existing components are expected to follow.
   `.copy()` to inject a value it decided itself — that value belongs in the style, supplied by the
   theme. (Building a framework value such as a `PaddingValues` from `style` fields is fine; overriding
   a themed sub-style is not.)
+- **Content color belongs to the caller, not the container.** A component that renders caller-supplied
+  content (a `Surface`, a `Button`) MUST NOT bake a content color into its own style; the caller sets
+  the content color on the content it passes (as it must already know which surface it sits on). Only
+  a component that owns its content end-to-end (e.g. an icon it draws itself) carries that color in
+  its style.
+- **Padding is styling — expose it only through `style`.** Spacing/padding that affects appearance
+  MUST live on the `*Style` (as a `PaddingValues` / `Dp` field). Components MUST NOT add a dedicated
+  `contentPadding`-style parameter that lets a caller bypass the themed value. (Params that carry a
+  genuine runtime layout choice — window insets, a caller-chosen container size — are not styling and
+  are covered by the runtime-constraints exception above.)
+- **Separate a design bound from a runtime target.** When a component has both a design-time cap and a
+  runtime-driven size, the cap (`minContentSize`, `maxContentSize`) belongs on the `*Style` and the
+  runtime target (`expandedContentSize`) is a parameter. Do not collapse the two.
 
 ## Theme & Styles
 
@@ -93,6 +123,22 @@ The `:theme:components` module contains theme-aware wrappers over the headless c
 
 Every component MUST have a demo in the `:components:demo` module. Demos are **required** and have
 their own structural requirements — see **[Demos.md](Demos.md)**.
+
+## Testing
+
+Every visually-styled component MUST have a Paparazzi screenshot test. These are the golden images CI
+verifies (`./gradlew verifyPaparazziDebug`), so a missing or stale test fails the build.
+
+- Tests live in the `:components:android-test` module, in a package that mirrors the component's
+  package, in a `<ComponentName>Test.kt` file.
+- A test MUST render the component inside `PaletteTheme` with its themed style
+  (`style = PaletteTheme.styles.<…>`) via the shared `PaparazziTestRule`.
+- A test MUST cover the states that change appearance. Sweep them with `TestParameterInjector` —
+  `@TestParameter isEnabled: Boolean`, an enum/anchor `valuesProvider`, etc. — rather than writing one
+  `@Test` per combination. At minimum an interactive component MUST snapshot both enabled and disabled
+  so the disabled dimming is guarded.
+- Golden images are committed under `src/test/snapshots/images/`. Regenerate them with
+  `./gradlew recordPaparazziDebug` and commit the result whenever the intended appearance changes.
 
 ## Demo app: component demo entry
 
