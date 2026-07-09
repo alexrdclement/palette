@@ -111,7 +111,6 @@ fun rememberButtonStyleScreenState(
 @Stable
 class ButtonStyleScreenState(
     val themeState: ThemeState,
-    /** One [TextDemoState] per token so each button preview can carry its own content color. */
     val textDemoStates: Map<ButtonStyleToken, TextDemoState>,
 ) {
     fun tokenSet(token: ButtonStyleToken): ButtonStyleTokenSet =

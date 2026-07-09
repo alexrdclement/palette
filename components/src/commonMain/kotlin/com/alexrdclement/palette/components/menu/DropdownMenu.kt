@@ -301,5 +301,5 @@ object MenuDefaults {
     )
     val DropdownMenuItemDefaultMinHeight = 48.dp
 
-    val ContainerShape: Shape = Shape.Circle
+    val ContainerShape: Shape = Shape.Rectangle()
 }

@@ -19,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.color.ColorDisplay
 import com.alexrdclement.palette.components.core.ButtonDefaults
-import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -98,7 +97,7 @@ private fun ColorDisplayRow(
 ) {
     Surface(
         onClick = { onColorClick(color) },
-        style = SurfaceStyle(indication = PaletteTheme.indication),
+        style = PaletteTheme.styles.core.surface.default,
         modifier = modifier,
     ) {
         Row(

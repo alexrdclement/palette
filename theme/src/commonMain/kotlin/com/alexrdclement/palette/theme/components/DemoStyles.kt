@@ -18,7 +18,11 @@ import com.alexrdclement.palette.theme.PaletteTheme
 object DemoStyles {
 
     val list: DemoListStyle
-        @Composable get() = DemoListStyle(demoStyle = style)
+        @Composable get() = DemoListStyle(
+            demoStyle = style,
+            itemSpacing = PaletteTheme.spacing.large,
+            contentPadding = PaletteTheme.spacing.medium,
+        )
 
     val style: DemoStyle
         @Composable get() {
@@ -27,6 +31,7 @@ object DemoStyles {
             val textField = CoreStyles.textField
             return DemoStyle(
                 dividerStyle = CoreStyles.divider,
+                controlsPadding = PaletteTheme.spacing.medium,
                 controlsStyle = ControlsStyle(
                     spacing = PaletteTheme.spacing.medium,
                     contentPadding = PaletteTheme.spacing.small,

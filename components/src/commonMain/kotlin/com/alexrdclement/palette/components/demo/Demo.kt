@@ -19,6 +19,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.DividerStyle
 import com.alexrdclement.palette.components.core.HorizontalDivider
@@ -30,14 +31,11 @@ import com.alexrdclement.palette.components.util.horizontalPaddingValues
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
-/**
- * Styling for the demo framework: the [ControlStyle] threaded to the control panel plus the
- * [dividerStyle] separating content from controls. Supplied explicitly to [Demo]/[DemoList]; themed
- * callers build it from their theme, keeping this framework theme-agnostic.
- */
 data class DemoStyle(
     val controlsStyle: ControlsStyle = ControlsStyle(),
     val dividerStyle: DividerStyle = DividerStyle(),
+    val controlsPadding: Dp = 16.dp,
+    val controlsMaxSize: Dp = 300.dp,
 )
 
 @Stable
@@ -78,9 +76,9 @@ fun Demo(
                         controlsStyle = style.controlsStyle,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .heightIn(max = 300.dp)
+                            .heightIn(max = style.controlsMaxSize)
                             .verticalScroll(rememberScrollState())
-                            .padding(16.dp)
+                            .padding(style.controlsPadding)
                             .navigationBarsPadding(),
                     )
                 }
@@ -105,9 +103,9 @@ fun Demo(
                         controlsStyle = style.controlsStyle,
                         modifier = Modifier
                             .fillMaxHeight()
-                            .widthIn(max = 300.dp)
+                            .widthIn(max = style.controlsMaxSize)
                             .verticalScroll(rememberScrollState())
-                            .padding(horizontal = 16.dp)
+                            .padding(horizontal = style.controlsPadding)
                             .navigationBarsPadding(),
                     )
                 }

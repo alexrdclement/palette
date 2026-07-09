@@ -1,8 +1,8 @@
 package com.alexrdclement.palette.theme.styles
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import com.alexrdclement.palette.components.core.TextStyle
-import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.Typography
@@ -24,14 +24,16 @@ fun TextStyleTokenSet.toTextStyle(): TextStyle =
     toTextStyle(
         typography = PaletteTheme.typography,
         textFormats = PaletteTheme.formats.textFormats,
-    ).copy(color = color.toColor())
+        color = color.toColor(),
+    )
 
 fun TextStyleTokenSet.toTextStyle(
     typography: Typography,
     textFormats: TextFormatScheme,
+    color: Color,
 ): TextStyle {
     return TextStyle(
-        composeTextStyle = typographyToken.toComposeTextStyle(typography),
+        composeTextStyle = typographyToken.toComposeTextStyle(typography).copy(color = color),
         format = textFormatToken.toFormat(textFormats),
     )
 }
