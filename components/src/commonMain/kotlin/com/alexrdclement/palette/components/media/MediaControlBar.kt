@@ -80,7 +80,6 @@ fun MediaControlBar(
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
     style: MediaControlBarStyle = MediaControlBarStyle(),
-    contentPadding: PaddingValues = style.contentPadding,
     minContentSize: DpSize = style.minContentSize,
     maxContentSize: DpSize = style.maxContentSize,
     progress: () -> Float = { 0f },
@@ -88,6 +87,7 @@ fun MediaControlBar(
     stateDescription: String? = null,
 ) {
     trace(TraceName) {
+        val contentPadding = style.contentPadding
         val paddingWidthPx = contentPadding.calculateHorizontalPadding().toPx()
         val paddingHeightPx = contentPadding.calculateVerticalPadding().toPx()
         val minContentSizePx = minContentSize.toIntSize()

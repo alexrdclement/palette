@@ -46,12 +46,12 @@ fun MediaControlSheet(
     modifier: Modifier = Modifier,
     style: MediaControlSheetStyle = MediaControlSheetStyle(),
     state: PeekSheetState = rememberPeekSheetState(),
-    contentPadding: PaddingValues = style.contentPadding,
     minContentSize: DpSize = style.minContentSize,
     maxContentSize: DpSize = style.maxContentSize,
     aboveControlBar: @Composable () -> Unit = {},
     belowControlBar: @Composable () -> Unit = {},
 ) {
+    val contentPadding = style.contentPadding
     PeekSheet(
         peekHeight = minContentSize.height,
         modifier = modifier,
@@ -65,10 +65,11 @@ fun MediaControlSheet(
                 onPlayPauseClick = onPlayPauseClick,
                 onClick = onControlBarClick,
                 progress = progress,
-                contentPadding = contentPadding.calculateHorizontalPaddingValues(),
                 minContentSize = minContentSize,
                 maxContentSize = maxContentSize,
-                style = style.controlBarStyle,
+                style = style.controlBarStyle.copy(
+                    contentPadding = contentPadding.calculateHorizontalPaddingValues(),
+                ),
                 stateDescription = when (state.currentValue) {
                     PeekSheetAnchor.Peek -> MediaControlBarStateDescriptionPartiallyExpanded
                     PeekSheetAnchor.Expanded -> MediaControlBarStateDescriptionExpanded

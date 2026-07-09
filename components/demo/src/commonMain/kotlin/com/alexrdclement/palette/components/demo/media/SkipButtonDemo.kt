@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.components.demo.media
 
 import com.alexrdclement.palette.theme.PaletteTheme
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -18,6 +17,7 @@ import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.paddingValuesControls
 import com.alexrdclement.palette.components.media.SkipBackButton
 import com.alexrdclement.palette.components.media.SkipButton
+import com.alexrdclement.palette.components.media.SkipButtonStyle
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -25,8 +25,8 @@ fun SkipButtonDemo(
     modifier: Modifier = Modifier,
 ) {
     var enabled by remember { mutableStateOf(true) }
-    val contentPaddingInitial = PaletteTheme.styles.media.skipButton.buttonStyle.contentPadding
-    var contentPadding by remember { mutableStateOf(contentPaddingInitial) }
+    val base = PaletteTheme.styles.media.skipButton
+    var contentPadding by remember { mutableStateOf(base.buttonStyle.contentPadding) }
 
     val controls = persistentListOf(
         Control.Toggle(
@@ -54,7 +54,10 @@ fun SkipButtonDemo(
         controls = controls,
         modifier = modifier.fillMaxSize(),
     ) {
-        SkipButtonDemo(enabled = enabled, contentPadding = contentPadding)
+        SkipButtonDemo(
+            enabled = enabled,
+            style = base.copy(buttonStyle = base.buttonStyle.copy(contentPadding = contentPadding)),
+        )
     }
 }
 
@@ -62,10 +65,8 @@ fun SkipButtonDemo(
 fun DemoScope.SkipButtonDemo(
     enabled: Boolean,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaletteTheme.styles.media.skipButton.buttonStyle.contentPadding,
+    style: SkipButtonStyle = PaletteTheme.styles.media.skipButton,
 ) {
-    val base = PaletteTheme.styles.media.skipButton
-    val style = base.copy(buttonStyle = base.buttonStyle.copy(contentPadding = contentPadding))
     SkipBackButton(
         onClick = {},
         enabled = enabled,

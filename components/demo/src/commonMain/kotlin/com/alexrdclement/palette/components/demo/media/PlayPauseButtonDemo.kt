@@ -1,7 +1,6 @@
 package com.alexrdclement.palette.components.demo.media
 
 import com.alexrdclement.palette.theme.PaletteTheme
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -17,6 +16,7 @@ import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.paddingValuesControls
 import com.alexrdclement.palette.components.media.PlayPauseButton
+import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -25,8 +25,8 @@ fun PlayPauseButtonDemo(
 ) {
     var isPlaying by remember { mutableStateOf(false) }
     var isEnabled by remember { mutableStateOf(true) }
-    val contentPaddingInitial = PaletteTheme.styles.media.playPauseButton.buttonStyle.contentPadding
-    var contentPadding by remember { mutableStateOf(contentPaddingInitial) }
+    val base = PaletteTheme.styles.media.playPauseButton
+    var contentPadding by remember { mutableStateOf(base.buttonStyle.contentPadding) }
 
     val controls = persistentListOf(
         Control.Toggle(
@@ -64,7 +64,7 @@ fun PlayPauseButtonDemo(
             isPlaying = isPlaying,
             isEnabled = isEnabled,
             onPlayPauseClick = { isPlaying = !isPlaying },
-            contentPadding = contentPadding,
+            style = base.copy(buttonStyle = base.buttonStyle.copy(contentPadding = contentPadding)),
         )
     }
 }
@@ -75,14 +75,13 @@ fun DemoScope.PlayPauseButtonDemo(
     isEnabled: Boolean,
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaletteTheme.styles.media.playPauseButton.buttonStyle.contentPadding,
+    style: PlayPauseButtonStyle = PaletteTheme.styles.media.playPauseButton,
 ) {
-    val base = PaletteTheme.styles.media.playPauseButton
     PlayPauseButton(
         onClick = onPlayPauseClick,
         isPlaying = isPlaying,
         isEnabled = isEnabled,
-        style = base.copy(buttonStyle = base.buttonStyle.copy(contentPadding = contentPadding)),
+        style = style,
         modifier = modifier
             .size(52.dp)
             .align(Alignment.Center),
