@@ -2,7 +2,6 @@ package com.alexrdclement.palette.components.demo.control
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -20,28 +19,24 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.components.color.ColorDisplay
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
-import com.alexrdclement.palette.components.color.ColorPicker
-import com.alexrdclement.palette.components.color.ColorPickerStyle
+import com.alexrdclement.palette.components.color.ColorPickerDialogContent
+import com.alexrdclement.palette.components.color.ColorPickerDialogContentStyle
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextStyle
-import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRow
-import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
-import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import androidx.compose.ui.unit.Dp
 
 data class ColorControlStyle(
     val labelStyle: TextStyle = TextStyle(),
     val buttonStyle: ButtonStyle = ButtonStyle(),
     val colorDisplayStyle: ColorDisplayStyle = ColorDisplayStyle(),
-    val colorPickerStyle: ColorPickerStyle = ColorPickerStyle(),
+    val colorPickerDialogContentStyle: ColorPickerDialogContentStyle = ColorPickerDialogContentStyle(),
     val surfaceStyle: SurfaceStyle = SurfaceStyle(),
     val spacing: Dp = 16.dp,
     val contentSpacing: Dp = 8.dp,
-    val dialogPadding: Dp = 24.dp,
 )
 
 @Composable
@@ -108,51 +103,10 @@ private fun ColorPickerDialog(
                 color = color,
                 onColorSelected = onColorSelected,
                 onDismissRequest = onDismissRequest,
-                style = style,
+                style = style.colorPickerDialogContentStyle,
                 modifier = Modifier
                     .padding(style.spacing)
             )
         }
-    }
-}
-
-@Composable
-private fun ColorPickerDialogContent(
-    color: Color,
-    onColorSelected: (Color) -> Unit,
-    onDismissRequest: () -> Unit,
-    style: ColorControlStyle,
-    modifier: Modifier = Modifier,
-) {
-    var currentColor by remember { mutableStateOf(color) }
-
-    Column(
-        verticalArrangement = Arrangement.spacedBy(style.spacing),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
-            .padding(style.dialogPadding)
-    ) {
-        ColorPicker(
-            style = style.colorPickerStyle,
-            color = currentColor,
-            onColorChange = { currentColor = it },
-            modifier = Modifier
-                .weight(1f, fill = false)
-        )
-        ConfirmCancelButtonRow(
-            style = ConfirmCancelButtonRowStyle(
-                buttonStyle = ConfirmButtonStyle(
-                    buttonStyle = style.buttonStyle,
-                    textStyle = style.labelStyle,
-                ),
-            ),
-            onConfirm = {
-                onColorSelected(currentColor)
-                onDismissRequest()
-            },
-            onDismiss = onDismissRequest,
-            modifier = Modifier
-                .padding(top = style.dialogPadding)
-        )
     }
 }

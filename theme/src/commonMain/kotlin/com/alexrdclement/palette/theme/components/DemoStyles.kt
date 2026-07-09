@@ -45,11 +45,10 @@ object DemoStyles {
                         labelStyle = label,
                         buttonStyle = button,
                         colorDisplayStyle = ColorStyles.colorDisplay,
-                        colorPickerStyle = ColorStyles.colorPicker,
+                        colorPickerDialogContentStyle = ColorStyles.colorPickerDialogContent,
                         surfaceStyle = CoreStyles.surface.container,
                         spacing = PaletteTheme.spacing.medium,
                         contentSpacing = PaletteTheme.spacing.small,
-                        dialogPadding = PaletteTheme.spacing.large,
                     ),
                     toggle = ToggleControlStyle(
                         labelStyle = label,

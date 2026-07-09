@@ -3,6 +3,7 @@ package com.alexrdclement.palette.theme.components
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
+import com.alexrdclement.palette.components.color.ColorPickerDialogContentStyle
 import com.alexrdclement.palette.components.color.ColorPickerStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.BorderStyleToken
@@ -25,5 +26,13 @@ object ColorStyles {
                 sliderStyle = CoreStyles.slider,
                 spacing = PaletteTheme.spacing.small,
             ),
+        )
+
+    val colorPickerDialogContent: ColorPickerDialogContentStyle
+        @Composable get() = ColorPickerDialogContentStyle(
+            colorPickerStyle = colorPicker,
+            confirmCancelButtonRowStyle = LayoutStyles.confirmCancelButtonRow,
+            spacing = PaletteTheme.spacing.medium,
+            padding = PaletteTheme.spacing.large,
         )
 }
