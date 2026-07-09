@@ -39,6 +39,7 @@ import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.formats.core.format
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.components.core.copy
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 
@@ -146,10 +147,14 @@ enum class InputTransformations {
 @Composable
 fun rememberTextFieldDemoState(
     initialText: String = "Hello world",
+    textStyleInitial: TextStyle = TextStyleDemoDefault.copy(
+        color = PaletteTheme.colorScheme.onSurface,
+    ),
 ): TextFieldDemoState {
     return rememberSaveable(saver = TextFieldDemoStateSaver) {
         TextFieldDemoState(
             initialText = initialText,
+            textStyleInitial = textStyleInitial,
         )
     }
 }

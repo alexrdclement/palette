@@ -69,7 +69,7 @@ fun ButtonStyleScreen(
                 ButtonStyleToken.Tertiary -> ColorToken.Primary
             }.toColor()
             LaunchedEffect(textDemoState, contentColor) {
-                textDemoState.textStyle = textDemoState.textStyle.copy(color = contentColor)
+                textDemoState.textStyleDemoState.color = contentColor
             }
             Button(
                 style = PaletteTheme.styles.core.button[style],

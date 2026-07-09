@@ -19,7 +19,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
@@ -70,7 +69,7 @@ fun DemoScope.ButtonDemo(
         ButtonStyleToken.Tertiary -> ColorToken.Primary
     }.toColor()
     LaunchedEffect(state.style, contentColor) {
-        state.textDemoState.textStyle = state.textDemoState.textStyle.copy(color = contentColor)
+        state.textDemoState.textStyleDemoState.color = contentColor
     }
     Button(
         onClick = {},

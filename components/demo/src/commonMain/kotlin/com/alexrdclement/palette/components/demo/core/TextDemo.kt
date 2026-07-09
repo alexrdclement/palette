@@ -18,8 +18,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.isSpecified
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -31,13 +29,11 @@ import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.components.util.ColorSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.components.core.TextStyle
-import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -68,15 +64,14 @@ fun DemoScope.TextDemo(
     LaunchedEffect(control, this@TextDemo.maxWidth) {
         control.onSizeChanged(this@TextDemo.maxWidth)
     }
-    val color = state.textStyle.composeTextStyle.color.takeOrElse {
-        PaletteTheme.colorScheme.onSurface
-    }
     Text(
         text = text,
         style = with(state.textStyleDemoState.textStyle) {
             copy(
                 composeTextStyle = composeTextStyle.copy(
-                    color = color,
+                    color = composeTextStyle.color.takeOrElse {
+                        PaletteTheme.colorScheme.onSurface
+                    },
                     textAlign = state.textAlign.toCompose(),
                     lineHeightStyle = TextDemoState.lineHeightStyleDefault.copy(
                         alignment = state.lineHeightAlignment.toCompose(),
@@ -175,12 +170,6 @@ class TextDemoState(
         demoTextFieldState = textFieldState,
     )
 
-    /**
-     * Base text style whose color drives the demo. Seeded once from [textStyleInitial] and then
-     * owned by the caller (e.g. edited via the color control).
-     */
-    var textStyle by mutableStateOf(textStyleInitial)
-
     var textAlign by mutableStateOf(textAlignInitial)
         internal set
 
@@ -216,7 +205,6 @@ class TextDemoState(
 }
 
 private const val textStyleDemoKey = "textStyleDemo"
-private const val textColorKey = "textColor"
 private const val textAlignKey = "textAlign"
 private const val lineHeightAlignmentKey = "lineHeightAlignment"
 private const val lineHeightTrimKey = "lineHeightTrim"
@@ -230,11 +218,8 @@ private const val overflowKey = "overflow"
 
 val TextDemoStateSaver = mapSaverSafe(
     save = { value ->
-        val textColor = value.textStyle.composeTextStyle.color
         mapOf(
             textStyleDemoKey to save(value.textStyleDemoState, TextStyleDemoStateSaver, this),
-            // Only persist a specified color; Color.Unspecified would round-trip to transparent.
-            textColorKey to save(textColor.takeIf { it.isSpecified }, ColorSaver, this),
             textAlignKey to value.textAlign.name,
             lineHeightAlignmentKey to value.lineHeightAlignment.name,
             lineHeightTrimKey to value.lineHeightTrim.name,
@@ -251,9 +236,7 @@ val TextDemoStateSaver = mapSaverSafe(
         val textStyleDemoState: TextStyleDemoState = restore(map[textStyleDemoKey], TextStyleDemoStateSaver)!!
 
         TextDemoState(
-            textStyleInitial = textStyleDemoState.textStyle.copy(
-                color = restore(map[textColorKey], ColorSaver) ?: Color.Unspecified,
-            ),
+            textStyleInitial = textStyleDemoState.textStyle,
             textAlignInitial = TextAlign.valueOf(map[textAlignKey] as String),
             lineHeightAlignmentInitial =
                 LineHeightAlignment.valueOf(map[lineHeightAlignmentKey] as String),
@@ -288,12 +271,6 @@ class TextDemoControl(
         includeLabel = false,
     )
 
-    val colorControl = Control.Color(
-        name = "Color",
-        color = { state.textStyle.composeTextStyle.color },
-        onColorChange = { state.textStyle = state.textStyle.copy(color = it) },
-    )
-
     val textStyleControl = TextStyleDemoControl(
         state = state.textStyleDemoState,
         includeTextFieldControl = false,
@@ -301,10 +278,7 @@ class TextDemoControl(
 
     val textStyleControls = Control.ControlColumn(
         name = "TextStyle",
-        controls = {
-            val styleControls: PersistentList<Control> = textStyleControl.controls
-            styleControls.add(colorControl)
-        },
+        controls = { textStyleControl.controls },
         indent = true,
         expandedInitial = false,
     )
