@@ -3799,6 +3799,7 @@ HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndex(I)I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndex([II)I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndexToDataAddress(I)I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndexToDataAnchor(IIII)I
+HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->endGroup()I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->endInsert()V
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->ensureStarted(I)V
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->ensureStarted(Landroidx/compose/runtime/composer/gapbuffer/GapAnchor;)V
@@ -5495,7 +5496,7 @@ HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;-><init>(FFFFFFFFFFJLandro
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;-><init>(FFFFFFFFFFJLandroidx/compose/ui/graphics/Shape;ZLandroidx/compose/ui/graphics/RenderEffect;JJIILandroidx/compose/ui/graphics/ColorFilter;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;->create()Landroidx/compose/ui/Modifier$Node;
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;->create()Landroidx/compose/ui/graphics/SimpleGraphicsLayerModifier;
-HPLandroidx/compose/ui/graphics/GraphicsLayerElement;->equals(Ljava/lang/Object;)Z
+PLandroidx/compose/ui/graphics/GraphicsLayerElement;->equals(Ljava/lang/Object;)Z
 Landroidx/compose/ui/graphics/GraphicsLayerModifierKt;
 HSPLandroidx/compose/ui/graphics/GraphicsLayerModifierKt;-><clinit>()V
 HSPLandroidx/compose/ui/graphics/GraphicsLayerModifierKt;->access$getReusableGraphicsLayerScope$p()Landroidx/compose/ui/graphics/ReusableGraphicsLayerScope;
@@ -7921,7 +7922,7 @@ HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->move--gyyYBs(J)V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->resize-ozmzZPI(J)V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->setDirty(Z)V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->triggerRepaint()V
-PLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->updateDisplayList()V
+HPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->updateDisplayList()V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->updateLayerProperties(Landroidx/compose/ui/graphics/ReusableGraphicsLayerScope;)V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->updateMatrix()V
 HSPLandroidx/compose/ui/platform/GraphicsLayerOwnerLayer;->updateOutline()V
