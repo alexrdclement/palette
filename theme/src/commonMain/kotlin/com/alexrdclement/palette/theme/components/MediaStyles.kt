@@ -2,6 +2,8 @@ package com.alexrdclement.palette.theme.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.media.MediaControlBarStyle
@@ -52,6 +54,7 @@ object MediaStyles {
             artworkStyle = mediaItemArtwork,
             playPauseButtonStyle = playPauseButton,
             surfaceStyle = CoreStyles.surface.default,
+            maxContentSize = DpSize(width = Dp.Infinity, height = 600.dp),
         )
 
     val mediaControlSheet: MediaControlSheetStyle

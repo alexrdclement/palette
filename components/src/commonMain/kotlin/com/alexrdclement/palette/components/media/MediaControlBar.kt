@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.isSpecified
 import com.alexrdclement.palette.components.MediaControlBarContentDescription
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.SurfaceStyle
@@ -73,6 +74,11 @@ private data class CachedSizes(
     val yDelta: Float,
 )
 
+/**
+ * @param expandedContentSize Size the artwork animates to at full [progress], clamped to
+ *   [MediaControlBarStyle.minContentSize]..[MediaControlBarStyle.maxContentSize] and the incoming
+ *   constraints. [DpSize.Unspecified] (default) fills the available space up to the style's max.
+ */
 @Composable
 fun MediaControlBar(
     mediaItem: MediaItem,
@@ -80,8 +86,7 @@ fun MediaControlBar(
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
     style: MediaControlBarStyle = MediaControlBarStyle(),
-    minContentSize: DpSize = style.minContentSize,
-    maxContentSize: DpSize = style.maxContentSize,
+    expandedContentSize: DpSize = DpSize.Unspecified,
     progress: () -> Float = { 0f },
     onClick: () -> Unit = {},
     stateDescription: String? = null,
@@ -90,8 +95,15 @@ fun MediaControlBar(
         val contentPadding = style.contentPadding
         val paddingWidthPx = contentPadding.calculateHorizontalPadding().toPx()
         val paddingHeightPx = contentPadding.calculateVerticalPadding().toPx()
-        val minContentSizePx = minContentSize.toIntSize()
-        val maxContentSizePx = maxContentSize.toIntSize()
+        val minContentSizePx = style.minContentSize.toIntSize()
+        val maxContentSizePx = DpSize(
+            width = if (expandedContentSize.width.isSpecified) {
+                minOf(expandedContentSize.width, style.maxContentSize.width)
+            } else style.maxContentSize.width,
+            height = if (expandedContentSize.height.isSpecified) {
+                minOf(expandedContentSize.height, style.maxContentSize.height)
+            } else style.maxContentSize.height,
+        ).toIntSize()
 
         BoxWithConstraints {
             val maxWidthPx = constraints.maxWidth
@@ -257,6 +269,5 @@ private fun Preview(
         isPlaying = isPlaying,
         onPlayPauseClick = { isPlaying = !isPlaying },
         progress = { progress },
-        minContentSize = DpSize(64.dp, 64.dp),
     )
 }

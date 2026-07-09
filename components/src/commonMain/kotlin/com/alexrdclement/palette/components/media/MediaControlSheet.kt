@@ -14,7 +14,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionExpanded
@@ -32,10 +31,13 @@ import kotlinx.coroutines.launch
 data class MediaControlSheetStyle(
     val controlBarStyle: MediaControlBarStyle = MediaControlBarStyle(),
     val contentPadding: PaddingValues = PaddingValues(0.dp),
-    val minContentSize: DpSize = DpSize(64.dp, 64.dp),
-    val maxContentSize: DpSize = DpSize(Dp.Infinity, 600.dp),
 )
 
+/**
+ * @param expandedContentSize Size the control bar's artwork animates to when expanded, forwarded to
+ *   [MediaControlBar]. [DpSize.Unspecified] (default) fills the available space up to the bar
+ *   style's max.
+ */
 @Composable
 fun MediaControlSheet(
     mediaItem: MediaItem,
@@ -45,17 +47,15 @@ fun MediaControlSheet(
     modifier: Modifier = Modifier,
     style: MediaControlSheetStyle = MediaControlSheetStyle(),
     state: PeekSheetState = rememberPeekSheetState(),
-    minContentSize: DpSize = style.minContentSize,
-    maxContentSize: DpSize = style.maxContentSize,
+    expandedContentSize: DpSize = DpSize.Unspecified,
     aboveControlBar: @Composable () -> Unit = {},
     belowControlBar: @Composable () -> Unit = {},
 ) {
-    val contentPadding = style.contentPadding
     PeekSheet(
-        peekHeight = minContentSize.height,
+        peekHeight = style.controlBarStyle.minContentSize.height,
         modifier = modifier,
         state = state,
-        contentPadding = contentPadding,
+        contentPadding = style.contentPadding,
         above = aboveControlBar,
         bar = { progress ->
             MediaControlBar(
@@ -64,8 +64,7 @@ fun MediaControlSheet(
                 onPlayPauseClick = onPlayPauseClick,
                 onClick = onControlBarClick,
                 progress = progress,
-                minContentSize = minContentSize,
-                maxContentSize = maxContentSize,
+                expandedContentSize = expandedContentSize,
                 style = style.controlBarStyle,
                 stateDescription = when (state.currentValue) {
                     PeekSheetAnchor.Peek -> MediaControlBarStateDescriptionPartiallyExpanded

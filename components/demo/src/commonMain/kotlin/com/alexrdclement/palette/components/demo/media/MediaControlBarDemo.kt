@@ -96,7 +96,7 @@ fun DemoScope.MediaControlBarDemo(
             onPlayPauseClick = onPlayPauseClick,
             progress = progress,
             style = style,
-            maxContentSize = DpSize(
+            expandedContentSize = DpSize(
                 width = maxWidth,
                 height = with(LocalDensity.current) { maxHeight.toDp() / 2f },
             ),
