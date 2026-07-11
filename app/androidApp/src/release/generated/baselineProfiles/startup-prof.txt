@@ -3179,6 +3179,7 @@ PLandroidx/compose/runtime/PausableMonotonicFrameClock$withFrameNanos$1;->invoke
 Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/PersistentCompositionLocalMap;->getCurrentValue(Landroidx/compose/runtime/CompositionLocal;)Ljava/lang/Object;
 Landroidx/compose/runtime/PersistentCompositionLocalMap$Builder;
+Landroidx/compose/runtime/PreconditionsKt;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt;
 HSPLandroidx/compose/runtime/PrimitiveSnapshotStateKt;->mutableFloatStateOf(F)Landroidx/compose/runtime/MutableFloatState;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt__SnapshotFloatStateKt;
@@ -5495,7 +5496,7 @@ HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;-><init>(FFFFFFFFFFJLandro
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;-><init>(FFFFFFFFFFJLandroidx/compose/ui/graphics/Shape;ZLandroidx/compose/ui/graphics/RenderEffect;JJIILandroidx/compose/ui/graphics/ColorFilter;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;->create()Landroidx/compose/ui/Modifier$Node;
 HSPLandroidx/compose/ui/graphics/GraphicsLayerElement;->create()Landroidx/compose/ui/graphics/SimpleGraphicsLayerModifier;
-PLandroidx/compose/ui/graphics/GraphicsLayerElement;->equals(Ljava/lang/Object;)Z
+HPLandroidx/compose/ui/graphics/GraphicsLayerElement;->equals(Ljava/lang/Object;)Z
 Landroidx/compose/ui/graphics/GraphicsLayerModifierKt;
 HSPLandroidx/compose/ui/graphics/GraphicsLayerModifierKt;-><clinit>()V
 HSPLandroidx/compose/ui/graphics/GraphicsLayerModifierKt;->access$getReusableGraphicsLayerScope$p()Landroidx/compose/ui/graphics/ReusableGraphicsLayerScope;
