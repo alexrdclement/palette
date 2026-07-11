@@ -44,7 +44,6 @@ fun Button(
     onDoubleClick: (() -> Unit)? = null,
     hapticFeedbackEnabled: Boolean = true,
     enabled: Boolean = true,
-    indication: Indication? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable RowScope.(PaddingValues) -> Unit
 ) {
@@ -62,7 +61,7 @@ fun Button(
             shape = style.shape,
             color = containerColor,
             borderStyle = style.borderStyle,
-            indication = indication ?: style.indication,
+            indication = style.indication,
         ),
         interactionSource = interactionSource,
         modifier = modifier.semantics { role = Role.Button }

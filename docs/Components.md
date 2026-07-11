@@ -38,10 +38,8 @@ screenshot tests, `:theme:components` wrappers) the relevant section says so.
   values). A hand-built themed `*Style` that omits these alphas is a bug — the component will not dim.
 - Components SHOULD carry the appropriate semantics (e.g. `Role.Checkbox`, `mergeDescendants`) so
   they are accessible and testable.
-- A value that already lives on the `*Style` SHOULD NOT also be exposed as a standalone component
-  parameter — it belongs in the style so the theme owns it. (`Button` currently takes both an
-  `indication` parameter and `ButtonStyle.indication`; the style field is the preferred home and the
-  parameter is legacy.)
+- A value that already lives on the `*Style` MUST NOT also be exposed as a standalone component
+  parameter — it belongs in the style so the theme owns it.
 - The private `@Preview` SHOULD render the component through the shared preview providers in the
   `preview` package (e.g. `@PreviewParameter(BoolPreviewParameterProvider::class)`) wrapped in a
   themed `Surface`, so the preview shows the component's real states.
