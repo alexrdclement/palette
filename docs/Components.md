@@ -1,12 +1,16 @@
 # Components
 
 Requirements for building components in Palette. This is a requirements document, not a tutorial:
-each item is a rule that new and existing components are expected to follow.
+each item is a rule that new components are expected to follow. Existing components are being
+migrated toward these rules and do not all conform yet; where current coverage is partial (e.g.
+screenshot tests, `:theme:components` wrappers) the relevant section says so.
 
 ## Summary
 
 - Components MUST live in the `:components` module and be grouped into packages by use case
-  (`core`, `layout`, `media`, `menu`, `money`, `navigation`, `auth`, `color`, `geometry`, …).
+  (`core`, `layout`, `media`, `menu`, `money`, `navigation`, `auth`, `color`, `geometry`, `demo`, …).
+  The `demo` package holds the reusable `Demo`/`DemoList` scaffolding components (distinct from the
+  `:components:demo` module, which holds the per-component demos).
 - Each component SHOULD exist in its own file. A file with tightly-coupled helpers (e.g. an icon
   drawn only for one button) MAY keep them together, but unrelated components MUST NOT share a file.
 - A component file MUST be ordered:
@@ -34,6 +38,13 @@ each item is a rule that new and existing components are expected to follow.
   values). A hand-built themed `*Style` that omits these alphas is a bug — the component will not dim.
 - Components SHOULD carry the appropriate semantics (e.g. `Role.Checkbox`, `mergeDescendants`) so
   they are accessible and testable.
+- A value that already lives on the `*Style` SHOULD NOT also be exposed as a standalone component
+  parameter — it belongs in the style so the theme owns it. (`Button` currently takes both an
+  `indication` parameter and `ButtonStyle.indication`; the style field is the preferred home and the
+  parameter is legacy.)
+- The private `@Preview` SHOULD render the component through the shared preview providers in the
+  `preview` package (e.g. `@PreviewParameter(BoolPreviewParameterProvider::class)`) wrapped in a
+  themed `Surface`, so the preview shows the component's real states.
 
 ## Style data classes
 
@@ -42,7 +53,9 @@ each item is a rule that new and existing components are expected to follow.
 - Style data classes contain the values for visually styling the component (colors, shapes, borders,
   text styles, indication, spacing/padding, sizes).
 - Style data classes MUST provide reasonable defaults:
-  - `Dp` values MUST be in increments of `4.dp`.
+  - `Dp` *defaults* SHOULD be in increments of `4.dp`. (This applies to the data-class defaults only;
+    the theme layer MAY resolve finer values where a design calls for it — e.g.
+    `MediaStyles.playPauseButton` uses `2.dp` padding.)
   - `Color` values MUST default to `Color.Unspecified`.
   - Defaults represent the *unstyled* component (transparent/neutral); the themed look is supplied
     by the theme layer, not by the defaults.
@@ -81,6 +94,10 @@ Component styles are resolved and exposed to app code through the theme.
   `PaletteTheme.styles.media.playPauseButton`, `PaletteTheme.styles.color.colorPicker`.
 - Each package's accessors live in a `*Styles` object in `:theme` (`CoreStyles`, `LayoutStyles`,
   `MediaStyles`, …) as `@Composable get()` properties that return a fully-resolved `*Style`.
+- A component that has more than one themed variant exposes them as named sub-accessors rather than a
+  single value: `PaletteTheme.styles.core.surface.default`, `…core.button.primary` /
+  `…core.button.secondary`. A component with a single themed style resolves directly
+  (`PaletteTheme.styles.core.slider`). Use the named variant where one exists.
 - A `*Style` getter MUST reuse existing theme values wherever one applies rather than inventing a
   literal:
   - content on a `Surface` uses `PaletteTheme.colorScheme.onSurface`;
@@ -107,9 +124,16 @@ aliasing layer:
 
 ## `:theme:components` wrappers
 
-The `:theme:components` module contains theme-aware wrappers over the headless components.
+The `:theme:components` module contains theme-aware wrappers over the headless components. A wrapper
+exists only to save callers from passing `style = PaletteTheme.styles.…` at every call site.
 
-- Each wrapper MUST mirror its base component's package and file structure (a base
+- Not every component has a wrapper. A wrapper is warranted only when a component has a single
+  dominant themed default that most callers want. Components whose style is a per-call choice
+  (`Text`, `Button`, `AuthButton` — variant/named-style driven, where the caller selects the style)
+  do not get a wrapper; callers pick the style explicitly. The current wrappers cover the high-traffic
+  single-default components (`Surface`, `Scaffold`, `TopBar`, `BoxWithLabel`, `Demo`, `DemoList`,
+  `BackNavigationButton`, …) and more MAY be added as call-site pressure warrants.
+- When a wrapper does exist, it MUST mirror its base component's package and file structure (a base
   `components/core/Surface.kt` has a wrapper `theme/components/core/Surface.kt`), and MUST live in
   package `com.alexrdclement.palette.theme.components.*`.
 - A wrapper MUST expose the **same API** as the base component (same name, same parameters), except
@@ -121,24 +145,28 @@ The `:theme:components` module contains theme-aware wrappers over the headless c
 
 ## Component demos
 
-Every component MUST have a demo in the `:components:demo` module. Demos are **required** and have
-their own structural requirements — see **[Demos.md](Demos.md)**.
+Every **new** component MUST have a demo in the `:components:demo` module. Demos are **required** for
+new work (most existing components already have one) and have their own structural requirements — see
+**[Demos.md](Demos.md)**.
 
 ## Testing
 
-Every visually-styled component MUST have a Paparazzi screenshot test. These are the golden images CI
-verifies (`./gradlew verifyPaparazziDebug`), so a missing or stale test fails the build.
+Components SHOULD have a Paparazzi screenshot test, and new components with non-trivial appearance
+SHOULD add one. Coverage today is partial — only the `geometry` and `media` packages have screenshot
+tests — so this is a target to grow toward, not a universally-met bar.
 
 - Tests live in the `:components:android-test` module, in a package that mirrors the component's
   package, in a `<ComponentName>Test.kt` file.
-- A test MUST render the component inside `PaletteTheme` with its themed style
+- A test SHOULD render the component inside `PaletteTheme` with its themed style
   (`style = PaletteTheme.styles.<…>`) via the shared `PaparazziTestRule`.
-- A test MUST cover the states that change appearance. Sweep them with `TestParameterInjector` —
+- A test SHOULD cover the states that change appearance. Sweep them with `TestParameterInjector` —
   `@TestParameter isEnabled: Boolean`, an enum/anchor `valuesProvider`, etc. — rather than writing one
-  `@Test` per combination. At minimum an interactive component MUST snapshot both enabled and disabled
-  so the disabled dimming is guarded.
-- Golden images are committed under `src/test/snapshots/images/`. Regenerate them with
-  `./gradlew recordPaparazziDebug` and commit the result whenever the intended appearance changes.
+  `@Test` per combination. For an interactive component, snapshotting both enabled and disabled is the
+  way to guard the disabled dimming.
+- Golden images are committed under `src/test/snapshots/images/`. Where a test exists, those goldens
+  are what CI verifies (`./gradlew verifyPaparazziDebug`), so a stale golden fails the build.
+  Regenerate them with `./gradlew recordPaparazziDebug` and commit the result whenever the intended
+  appearance changes.
 
 ## Demo app: component demo entry
 

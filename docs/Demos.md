@@ -1,7 +1,8 @@
 # Component demos
 
 Requirements for the interactive demos that accompany every component. Referenced from
-**[Components.md](Components.md)**; every component MUST have a demo that follows these rules.
+**[Components.md](Components.md)**; every new component MUST have a demo, and every demo MUST follow
+these rules.
 
 ## Location
 
