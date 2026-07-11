@@ -41,8 +41,8 @@ screenshot tests, `:theme:components` wrappers) the relevant section says so.
 - A value that already lives on the `*Style` MUST NOT also be exposed as a standalone component
   parameter — it belongs in the style so the theme owns it.
 - The private `@Preview` SHOULD render the component through the shared preview providers in the
-  `preview` package (e.g. `@PreviewParameter(BoolPreviewParameterProvider::class)`) wrapped in a
-  themed `Surface`, so the preview shows the component's real states.
+  `preview` package (e.g. `@PreviewParameter(BoolPreviewParameterProvider::class)`) so the preview
+  shows the component's real states.
 
 ## Style data classes
 
@@ -150,8 +150,8 @@ new work (most existing components already have one) and have their own structur
 ## Testing
 
 Components SHOULD have a Paparazzi screenshot test, and new components with non-trivial appearance
-SHOULD add one. Coverage today is partial — only the `geometry` and `media` packages have screenshot
-tests — so this is a target to grow toward, not a universally-met bar.
+SHOULD add one. Coverage today is partial, so this is a target to grow toward, not a universally-met
+bar.
 
 - Tests live in the `:components:android-test` module, in a package that mirrors the component's
   package, in a `<ComponentName>Test.kt` file.
