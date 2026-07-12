@@ -20,10 +20,10 @@ import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.control.ThemeController
-import com.alexrdclement.palette.theme.format.Formats
-import com.alexrdclement.palette.theme.format.core.TextFormatScheme
-import com.alexrdclement.palette.theme.format.core.TextFormatToken
-import com.alexrdclement.palette.theme.format.core.update
+import com.alexrdclement.palette.theme.semantic.format.Formats
+import com.alexrdclement.palette.theme.semantic.format.core.TextFormatScheme
+import com.alexrdclement.palette.theme.semantic.format.core.TextFormatToken
+import com.alexrdclement.palette.theme.semantic.format.core.update
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 

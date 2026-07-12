@@ -28,10 +28,10 @@ import com.alexrdclement.palette.components.util.PaddingValuesSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
-import com.alexrdclement.palette.theme.ColorToken
+import com.alexrdclement.palette.theme.semantic.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.toColor
+import com.alexrdclement.palette.theme.component.core.ButtonStyleToken
+import com.alexrdclement.palette.theme.semantic.toColor
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -73,12 +73,12 @@ fun DemoScope.ButtonDemo(
     }
     Button(
         onClick = {},
-        style = PaletteTheme.styles.core.button[state.style].copy(contentPadding = state.contentPadding),
+        style = PaletteTheme.component.core.button[state.style].copy(contentPadding = state.contentPadding),
         enabled = state.enabled,
         modifier = modifier
             .width(state.width)
             .align(Alignment.Center)
-            .padding(PaletteTheme.spacing.medium)
+            .padding(PaletteTheme.semantic.spacing.medium)
             .semantics { contentDescription = "Demo Button" }
     ) {
         this@ButtonDemo.TextDemo(
@@ -91,8 +91,8 @@ fun DemoScope.ButtonDemo(
 @Composable
 fun rememberButtonDemoState(
     contentPaddingInitial: PaddingValues = PaddingValues(
-        horizontal = PaletteTheme.spacing.large,
-        vertical = PaletteTheme.spacing.medium,
+        horizontal = PaletteTheme.semantic.spacing.large,
+        vertical = PaletteTheme.semantic.spacing.medium,
     ),
 ): ButtonDemoState = rememberSaveable(saver = ButtonDemoStateSaver) {
     ButtonDemoState(contentPaddingInitial = contentPaddingInitial)

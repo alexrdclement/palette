@@ -25,12 +25,12 @@ class GridTest {
     fun cartesianGrid() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     CartesianGrid(
                         xSpacing = { 20.dp.toPx() },
                         ySpacing = { 20.dp.toPx() },
                         lineStyle = GridLineStyle(
-                            color = PaletteTheme.colorScheme.primary,
+                            color = PaletteTheme.semantic.color.primary,
                             stroke = Stroke(width = 1f),
                         ),
                         modifier = Modifier.size(200.dp),
@@ -45,14 +45,14 @@ class GridTest {
     fun cartesianGridLogarithmicScale() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     Grid(
                         coordinateSystem = GridCoordinateSystem.Cartesian(
                             scaleX = GridScale.Logarithmic(spacing = 1.dp, base = 2f),
                             scaleY = GridScale.Logarithmic(spacing = 1.dp, base = 2f),
                         ),
                         lineStyle = GridLineStyle(
-                            color = PaletteTheme.colorScheme.primary,
+                            color = PaletteTheme.semantic.color.primary,
                             stroke = Stroke(width = 1f),
                         ),
                         modifier = Modifier.size(200.dp),
@@ -66,14 +66,14 @@ class GridTest {
     fun cartesianGridLogarithmicDecayScale() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     Grid(
                         coordinateSystem = GridCoordinateSystem.Cartesian(
                             scaleX = GridScale.LogarithmicDecay(spacing = 50.dp, base = 2f),
                             scaleY = GridScale.LogarithmicDecay(spacing = 50.dp, base = 2f),
                         ),
                         lineStyle = GridLineStyle(
-                            color = PaletteTheme.colorScheme.primary,
+                            color = PaletteTheme.semantic.color.primary,
                             stroke = Stroke(width = 1f),
                         ),
                         modifier = Modifier.size(200.dp),
@@ -87,14 +87,14 @@ class GridTest {
     fun cartesianGridExponentialScale() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     Grid(
                         coordinateSystem = GridCoordinateSystem.Cartesian(
                             scaleX = GridScale.Exponential(spacing = 1.dp, exponent = 2f),
                             scaleY = GridScale.Exponential(spacing = 1.dp, exponent = 2f),
                         ),
                         lineStyle = GridLineStyle(
-                            color = PaletteTheme.colorScheme.primary,
+                            color = PaletteTheme.semantic.color.primary,
                             stroke = Stroke(width = 1f),
                         ),
                         modifier = Modifier.size(200.dp),
@@ -108,14 +108,14 @@ class GridTest {
     fun cartesianGridExponentialDecayScale() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     Grid(
                         coordinateSystem = GridCoordinateSystem.Cartesian(
                             scaleX = GridScale.ExponentialDecay(spacing = 100.dp, exponent = 2f),
                             scaleY = GridScale.ExponentialDecay(spacing = 100.dp, exponent = 2f),
                         ),
                         lineStyle = GridLineStyle(
-                            color = PaletteTheme.colorScheme.primary,
+                            color = PaletteTheme.semantic.color.primary,
                             stroke = Stroke(width = 1f),
                         ),
                         modifier = Modifier.size(200.dp),
@@ -129,12 +129,12 @@ class GridTest {
     fun polarGrid() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     PolarGrid(
                         radiusSpacing = { 30.dp.toPx() },
                         theta = { (PI / 3).toFloat() },
                         lineStyle = GridLineStyle(
-                            color = PaletteTheme.colorScheme.primary,
+                            color = PaletteTheme.semantic.color.primary,
                             stroke = Stroke(width = 1f),
                         ),
                         modifier = Modifier.size(200.dp),
@@ -149,15 +149,15 @@ class GridTest {
         val coordinateSystem = GridCoordinateSystem.Cartesian(spacing = 20.dp)
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     Grid(
                         coordinateSystem = coordinateSystem,
                         lineStyle = null,
                         vertex = GridVertex.Oval(
-                            color = PaletteTheme.colorScheme.primary,
+                            color = PaletteTheme.semantic.color.primary,
                             size = DpSize(
-                                PaletteTheme.spacing.xs / 2f,
-                                PaletteTheme.spacing.xs / 2f
+                                PaletteTheme.semantic.spacing.xs / 2f,
+                                PaletteTheme.semantic.spacing.xs / 2f
                             ),
                             drawStyle = Stroke(width = 1f),
                         ),
@@ -174,15 +174,15 @@ class GridTest {
         val coordinateSystem = GridCoordinateSystem.Cartesian(spacing = 20.dp)
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     Grid(
                         coordinateSystem = coordinateSystem,
                         lineStyle = null,
                         vertex = GridVertex.Rect(
-                            color = PaletteTheme.colorScheme.primary,
+                            color = PaletteTheme.semantic.color.primary,
                             size = DpSize(
-                                PaletteTheme.spacing.small,
-                                PaletteTheme.spacing.small
+                                PaletteTheme.semantic.spacing.small,
+                                PaletteTheme.semantic.spacing.small
                             ),
                             drawStyle = Stroke(width = 1f),
                         ),
@@ -199,15 +199,15 @@ class GridTest {
         val coordinateSystem = GridCoordinateSystem.Cartesian(spacing = 20.dp)
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     Grid(
                         coordinateSystem = coordinateSystem,
                         lineStyle = null,
                         vertex = GridVertex.Plus(
-                            color = PaletteTheme.colorScheme.primary,
+                            color = PaletteTheme.semantic.color.primary,
                             size = DpSize(
-                                PaletteTheme.spacing.small,
-                                PaletteTheme.spacing.small
+                                PaletteTheme.semantic.spacing.small,
+                                PaletteTheme.semantic.spacing.small
                             ),
                             strokeWidth = Dp.Hairline,
                         ),

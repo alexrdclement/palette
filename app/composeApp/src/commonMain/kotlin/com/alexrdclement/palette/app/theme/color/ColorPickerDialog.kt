@@ -7,10 +7,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.components.color.ColorPickerDialogContent
-import com.alexrdclement.palette.theme.ColorToken
+import com.alexrdclement.palette.theme.semantic.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.core.Surface
-import com.alexrdclement.palette.theme.toColor
+import com.alexrdclement.palette.theme.semantic.toColor
 
 @Composable
 fun ColorPickerDialog(
@@ -22,15 +22,15 @@ fun ColorPickerDialog(
         onDismissRequest = onDismissRequest,
     ) {
         Surface(
-            style = PaletteTheme.styles.core.surface.container,
+            style = PaletteTheme.component.core.surface.container,
         ) {
             ColorPickerDialogContent(
                 color = colorToken.toColor(),
                 onColorSelected = onColorSelected,
                 onDismissRequest = onDismissRequest,
-                style = PaletteTheme.styles.color.colorPickerDialogContent,
+                style = PaletteTheme.component.color.colorPickerDialogContent,
                 modifier = Modifier
-                    .padding(PaletteTheme.spacing.medium)
+                    .padding(PaletteTheme.semantic.spacing.medium)
             )
         }
     }
@@ -44,7 +44,7 @@ fun ColorPickerDialogPreview() {
             color = ColorToken.Primary.toColor(),
             onColorSelected = {},
             onDismissRequest = {},
-            style = PaletteTheme.styles.color.colorPickerDialogContent,
+            style = PaletteTheme.component.color.colorPickerDialogContent,
         )
     }
 }

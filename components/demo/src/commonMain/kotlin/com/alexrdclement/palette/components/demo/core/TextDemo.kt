@@ -70,7 +70,7 @@ fun DemoScope.TextDemo(
             copy(
                 composeTextStyle = composeTextStyle.copy(
                     color = composeTextStyle.color.takeOrElse {
-                        PaletteTheme.colorScheme.onSurface
+                        PaletteTheme.semantic.color.onSurface
                     },
                     textAlign = state.textAlign.toCompose(),
                     lineHeightStyle = TextDemoState.lineHeightStyleDefault.copy(
@@ -93,11 +93,11 @@ fun DemoScope.TextDemo(
         modifier = modifier
             .align(Alignment.Center)
             .width(state.width)
-            .padding(vertical = PaletteTheme.spacing.medium)
+            .padding(vertical = PaletteTheme.semantic.spacing.medium)
             .then(
                 if (state.showBorder) Modifier.border(
                     1.dp,
-                    PaletteTheme.colorScheme.primary
+                    PaletteTheme.semantic.color.primary
                 )
                 else Modifier
             )
@@ -142,7 +142,7 @@ enum class LineHeightMode {
 @Composable
 fun rememberTextDemoState(
     initialText: String = "Hello world",
-    textStyleInitial: TextStyle = TextStyleDemoDefault.copy(color = PaletteTheme.colorScheme.onSurface),
+    textStyleInitial: TextStyle = TextStyleDemoDefault.copy(color = PaletteTheme.semantic.color.onSurface),
 ) = rememberSaveable(saver = TextDemoStateSaver) {
     TextDemoState(initialText, textStyleInitial = textStyleInitial)
 }

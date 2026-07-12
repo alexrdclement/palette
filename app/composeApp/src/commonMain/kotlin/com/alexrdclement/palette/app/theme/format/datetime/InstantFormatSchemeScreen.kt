@@ -22,9 +22,9 @@ import com.alexrdclement.palette.formats.datetime.format
 import com.alexrdclement.palette.formats.datetime.toFormat
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.control.ThemeController
-import com.alexrdclement.palette.theme.format.Formats
-import com.alexrdclement.palette.theme.format.datetime.InstantFormatScheme
-import com.alexrdclement.palette.theme.format.datetime.InstantFormatToken
+import com.alexrdclement.palette.theme.semantic.format.Formats
+import com.alexrdclement.palette.theme.semantic.format.datetime.InstantFormatScheme
+import com.alexrdclement.palette.theme.semantic.format.datetime.InstantFormatToken
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -62,7 +62,7 @@ fun InstantFormatSchemeScreen(
             BoxWithLabel(
                 label = token.name,
                 modifier = Modifier
-                    .padding(horizontal = PaletteTheme.spacing.medium)
+                    .padding(horizontal = PaletteTheme.semantic.spacing.medium)
             ) {
                 DateTimeFormatDemo(
                     state = state.dateTimeFormatDemoStateByToken[token]!!,

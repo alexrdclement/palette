@@ -21,9 +21,9 @@ import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.theme.control.ThemeController
-import com.alexrdclement.palette.theme.format.Formats
-import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
-import com.alexrdclement.palette.theme.format.core.NumberFormatToken
+import com.alexrdclement.palette.theme.semantic.format.Formats
+import com.alexrdclement.palette.theme.semantic.format.core.NumberFormatScheme
+import com.alexrdclement.palette.theme.semantic.format.core.NumberFormatToken
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 

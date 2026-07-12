@@ -36,7 +36,7 @@ fun MediaControlBarDemo(
 ) {
     var progress by remember { mutableFloatStateOf(0f) }
     var isPlaying by remember { mutableStateOf(false) }
-    val contentPaddingInitial = PaletteTheme.styles.media.mediaControlBar.contentPadding
+    val contentPaddingInitial = PaletteTheme.component.media.mediaControlBar.contentPadding
     var contentPadding by remember { mutableStateOf(contentPaddingInitial) }
 
     val controls = persistentListOf(
@@ -75,7 +75,7 @@ fun MediaControlBarDemo(
             progress = { progress },
             isPlaying = isPlaying,
             onPlayPauseClick = { isPlaying = !isPlaying },
-            style = PaletteTheme.styles.media.mediaControlBar.copy(contentPadding = contentPadding),
+            style = PaletteTheme.component.media.mediaControlBar.copy(contentPadding = contentPadding),
         )
     }
 }
@@ -86,7 +86,7 @@ fun DemoScope.MediaControlBarDemo(
     isPlaying: Boolean,
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
-    style: MediaControlBarStyle = PaletteTheme.styles.media.mediaControlBar,
+    style: MediaControlBarStyle = PaletteTheme.component.media.mediaControlBar,
 ) {
     BoxWithConstraints(modifier = modifier.fillMaxWidth()) {
         val maxHeight = constraints.maxHeight

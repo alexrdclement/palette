@@ -13,17 +13,17 @@ import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
-import com.alexrdclement.palette.theme.ColorToken
+import com.alexrdclement.palette.theme.semantic.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.ShapeToken
+import com.alexrdclement.palette.theme.semantic.ShapeToken
 import com.alexrdclement.palette.theme.components.core.Surface
 import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.styles.BorderStyleToken
-import com.alexrdclement.palette.theme.styles.SurfaceStyleToken
-import com.alexrdclement.palette.theme.styles.SurfaceStyleTokenSet
+import com.alexrdclement.palette.theme.component.core.BorderStyleToken
+import com.alexrdclement.palette.theme.component.core.SurfaceStyleToken
+import com.alexrdclement.palette.theme.component.core.SurfaceStyleTokenSet
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -53,15 +53,15 @@ fun SurfaceStyleScreen(
                 .padding(paddingValues)
         ) { token ->
             Surface(
-                style = PaletteTheme.styles.core.surface[token],
+                style = PaletteTheme.component.core.surface[token],
                 modifier = Modifier.fillMaxWidth(),
             ) { shapePadding ->
                 Text(
                     text = token.name,
-                    style = PaletteTheme.styles.core.text.headline,
+                    style = PaletteTheme.component.core.text.headline,
                     modifier = Modifier
                         .padding(shapePadding)
-                        .padding(PaletteTheme.spacing.large),
+                        .padding(PaletteTheme.semantic.spacing.large),
                 )
             }
         }

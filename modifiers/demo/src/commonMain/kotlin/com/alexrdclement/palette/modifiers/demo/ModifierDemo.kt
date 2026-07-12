@@ -50,7 +50,7 @@ fun rememberModifierDemoState(
     componentDemoTypeInitial: ComponentDemoType = ComponentDemoType.Circle,
 ): ModifierDemoState {
     val density = LocalDensity.current
-    val color = PaletteTheme.colorScheme.primary
+    val color = PaletteTheme.semantic.color.primary
     return rememberSaveable(
         density,
         color,

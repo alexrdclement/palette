@@ -24,15 +24,15 @@ import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
-import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.TypographyToken
+import com.alexrdclement.palette.theme.semantic.ColorToken
+import com.alexrdclement.palette.theme.semantic.TypographyToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.format.core.TextFormatToken
-import com.alexrdclement.palette.theme.styles.SurfaceStyleToken
-import com.alexrdclement.palette.theme.styles.TextStyleToken
-import com.alexrdclement.palette.theme.styles.TextStyleTokenSet
-import com.alexrdclement.palette.theme.styles.toTextStyle
+import com.alexrdclement.palette.theme.semantic.format.core.TextFormatToken
+import com.alexrdclement.palette.theme.component.core.SurfaceStyleToken
+import com.alexrdclement.palette.theme.component.core.TextStyleToken
+import com.alexrdclement.palette.theme.component.core.TextStyleTokenSet
+import com.alexrdclement.palette.theme.component.core.toTextStyle
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -68,7 +68,7 @@ fun TextStyleScreen(
                     .fillMaxWidth()
             ) {
                 Surface(
-                    style = PaletteTheme.styles.core.surface[state.surfaceToken(token)],
+                    style = PaletteTheme.component.core.surface[state.surfaceToken(token)],
                 ) { shapePadding ->
                     Text(
                         text = state.text,

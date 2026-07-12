@@ -45,14 +45,14 @@ class MediaControlSheetTest(
                     onPlayPauseClick = {},
                     onControlBarClick = {},
                     state = state,
-                    style = PaletteTheme.styles.media.mediaControlSheet,
+                    style = PaletteTheme.component.media.mediaControlSheet,
                 ) {
                     Column(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.fillMaxSize(),
                     ) {
-                        Text("Content", style = PaletteTheme.styles.core.text.bodyMedium)
+                        Text("Content", style = PaletteTheme.component.core.text.bodyMedium)
                     }
                 }
             }

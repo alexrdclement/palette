@@ -57,7 +57,7 @@ fun DemoScope.CircleDemo(
     Canvas(
         modifier = modifier
             .fillMaxSize()
-            .background(PaletteTheme.colorScheme.surface)
+            .background(PaletteTheme.semantic.color.surface)
     ) {
         drawCircle(state.color, style = state.drawStyle, radius = size.minDimension / 4f)
     }
@@ -65,7 +65,7 @@ fun DemoScope.CircleDemo(
 
 @Composable
 fun rememberCircleDemoState(
-    color: Color = PaletteTheme.colorScheme.primary,
+    color: Color = PaletteTheme.semantic.color.primary,
 ): CircleDemoState {
     val density = LocalDensity.current
     return rememberSaveable(

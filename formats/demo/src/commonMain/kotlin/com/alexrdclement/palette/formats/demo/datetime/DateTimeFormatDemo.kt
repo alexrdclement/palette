@@ -74,7 +74,7 @@ fun <T> DemoScope.DateTimeFormatDemo(
         .collectAsStateWithLifecycle("")
     Text(
         text = formatted,
-        style = PaletteTheme.styles.core.text.headline,
+        style = PaletteTheme.component.core.text.headline,
         modifier = modifier,
     )
 }

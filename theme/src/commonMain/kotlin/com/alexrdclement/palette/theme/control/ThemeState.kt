@@ -7,19 +7,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.alexrdclement.palette.theme.ColorScheme
-import com.alexrdclement.palette.theme.PaletteDarkColorScheme
-import com.alexrdclement.palette.theme.PaletteIndication
-import com.alexrdclement.palette.theme.PaletteLightColorScheme
-import com.alexrdclement.palette.theme.PaletteShapeScheme
-import com.alexrdclement.palette.theme.PaletteSpacing
-import com.alexrdclement.palette.theme.PaletteTypography
-import com.alexrdclement.palette.theme.ShapeScheme
-import com.alexrdclement.palette.theme.Spacing
-import com.alexrdclement.palette.theme.styles.Styles
-import com.alexrdclement.palette.theme.Typography
-import com.alexrdclement.palette.theme.format.Formats
-import com.alexrdclement.palette.theme.format.PaletteFormats
+import com.alexrdclement.palette.theme.semantic.ColorScheme
+import com.alexrdclement.palette.theme.semantic.PaletteDarkColorScheme
+import com.alexrdclement.palette.theme.semantic.PaletteIndication
+import com.alexrdclement.palette.theme.semantic.PaletteLightColorScheme
+import com.alexrdclement.palette.theme.semantic.PaletteShapeScheme
+import com.alexrdclement.palette.theme.semantic.PaletteSpacing
+import com.alexrdclement.palette.theme.semantic.PaletteTypography
+import com.alexrdclement.palette.theme.semantic.ShapeScheme
+import com.alexrdclement.palette.theme.semantic.Spacing
+import com.alexrdclement.palette.theme.component.core.Styles
+import com.alexrdclement.palette.theme.semantic.Typography
+import com.alexrdclement.palette.theme.semantic.format.Formats
+import com.alexrdclement.palette.theme.semantic.format.PaletteFormats
 
 interface ThemeState {
     val typography: Typography

@@ -72,7 +72,7 @@ fun DemoScope.SphereDemo(
 
 @Composable
 fun rememberSphereDemoState(
-    strokeColor: Color = PaletteTheme.colorScheme.primary,
+    strokeColor: Color = PaletteTheme.semantic.color.primary,
     outlineStrokeColor: Color = strokeColor,
 ) = rememberSaveable(
     strokeColor,

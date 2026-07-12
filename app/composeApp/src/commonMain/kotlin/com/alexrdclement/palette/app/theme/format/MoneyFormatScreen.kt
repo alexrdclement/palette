@@ -20,9 +20,9 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.control.ThemeController
-import com.alexrdclement.palette.theme.format.Formats
-import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
-import com.alexrdclement.palette.theme.format.money.MoneyFormatToken
+import com.alexrdclement.palette.theme.semantic.format.Formats
+import com.alexrdclement.palette.theme.semantic.format.money.MoneyFormatScheme
+import com.alexrdclement.palette.theme.semantic.format.money.MoneyFormatToken
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
@@ -55,7 +55,7 @@ fun MoneyFormatScreen(
             BoxWithLabel(
                 label = token.name,
                 modifier = Modifier
-                    .padding(horizontal = PaletteTheme.spacing.medium)
+                    .padding(horizontal = PaletteTheme.semantic.spacing.medium)
             ) {
                 MoneyFormatDemo(
                     state = state.moneyFormatDemoStatesByToken[token]!!,

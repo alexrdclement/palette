@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.format
+package com.alexrdclement.palette.theme.semantic.format
 
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice

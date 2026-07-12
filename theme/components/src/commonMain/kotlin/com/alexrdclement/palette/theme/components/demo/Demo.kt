@@ -13,7 +13,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun Demo(
     modifier: Modifier = Modifier,
-    style: DemoStyle = PaletteTheme.styles.demo.style,
+    style: DemoStyle = PaletteTheme.component.demo.style,
     controls: PersistentList<Control> = persistentListOf(),
     content: @Composable DemoScope.() -> Unit,
 ) = BaseDemo(

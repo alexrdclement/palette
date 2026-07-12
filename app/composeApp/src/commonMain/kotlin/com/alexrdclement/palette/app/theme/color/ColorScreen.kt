@@ -22,9 +22,9 @@ import com.alexrdclement.palette.components.core.ButtonDefaults
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.mapSaverSafe
-import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.PaletteDarkColorScheme
-import com.alexrdclement.palette.theme.PaletteLightColorScheme
+import com.alexrdclement.palette.theme.semantic.ColorToken
+import com.alexrdclement.palette.theme.semantic.PaletteDarkColorScheme
+import com.alexrdclement.palette.theme.semantic.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.core.Surface
 import com.alexrdclement.palette.theme.components.demo.DemoList
@@ -32,8 +32,8 @@ import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
-import com.alexrdclement.palette.theme.copy
-import com.alexrdclement.palette.theme.toColor
+import com.alexrdclement.palette.theme.semantic.copy
+import com.alexrdclement.palette.theme.semantic.toColor
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -97,24 +97,24 @@ private fun ColorDisplayRow(
 ) {
     Surface(
         onClick = { onColorClick(color) },
-        style = PaletteTheme.styles.core.surface.default,
+        style = PaletteTheme.component.core.surface.default,
         modifier = modifier,
     ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+            horizontalArrangement = Arrangement.spacedBy(PaletteTheme.semantic.spacing.medium),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             ColorDisplay(
                 color = color,
-                style = PaletteTheme.styles.color.colorDisplay,
+                style = PaletteTheme.component.color.colorDisplay,
                 modifier = Modifier
                     .size(ButtonDefaults.MinHeight)
             )
             Text(
                 text = label,
-                style = PaletteTheme.styles.core.text.labelMedium,
+                style = PaletteTheme.component.core.text.labelMedium,
                 modifier = Modifier
-                    .padding(end = PaletteTheme.spacing.medium)
+                    .padding(end = PaletteTheme.semantic.spacing.medium)
             )
         }
     }

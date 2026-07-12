@@ -14,12 +14,12 @@ import com.alexrdclement.palette.components.core.TextStyle
 @Composable
 fun DemoText(
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = PaletteTheme.styles.core.text.display,
+    textStyle: TextStyle = PaletteTheme.component.core.text.display,
 ) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(PaletteTheme.colorScheme.surface)
+            .background(PaletteTheme.semantic.color.surface)
     ) {
         Text(
             text = "Hello world",

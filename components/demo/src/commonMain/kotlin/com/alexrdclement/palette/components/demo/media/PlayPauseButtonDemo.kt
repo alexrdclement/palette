@@ -25,7 +25,7 @@ fun PlayPauseButtonDemo(
 ) {
     var isPlaying by remember { mutableStateOf(false) }
     var isEnabled by remember { mutableStateOf(true) }
-    val base = PaletteTheme.styles.media.playPauseButton
+    val base = PaletteTheme.component.media.playPauseButton
     var contentPadding by remember { mutableStateOf(base.buttonStyle.contentPadding) }
 
     val controls = persistentListOf(
@@ -75,7 +75,7 @@ fun DemoScope.PlayPauseButtonDemo(
     isEnabled: Boolean,
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
-    style: PlayPauseButtonStyle = PaletteTheme.styles.media.playPauseButton,
+    style: PlayPauseButtonStyle = PaletteTheme.component.media.playPauseButton,
 ) {
     PlayPauseButton(
         onClick = onPlayPauseClick,

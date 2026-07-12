@@ -61,12 +61,12 @@ fun DemoScope.SliderDemo(
     val sliderModifier = modifier
         .fillMaxWidth()
         .align(Alignment.Center)
-        .padding(PaletteTheme.spacing.medium)
+        .padding(PaletteTheme.semantic.spacing.medium)
 
     when (state.sliderType) {
         SliderType.Continuous -> when (state.stepMode) {
             StepMode.Uniform -> Slider(
-                style = PaletteTheme.styles.core.slider,
+                style = PaletteTheme.component.core.slider,
                 value = state.value,
                 onValueChange = { state.value = it },
                 enabled = state.enabled,
@@ -74,7 +74,7 @@ fun DemoScope.SliderDemo(
                 modifier = sliderModifier,
             )
             StepMode.Custom -> Slider(
-                style = PaletteTheme.styles.core.slider,
+                style = PaletteTheme.component.core.slider,
                 value = state.value,
                 onValueChange = { state.value = it },
                 enabled = state.enabled,
@@ -84,7 +84,7 @@ fun DemoScope.SliderDemo(
         }
         SliderType.Range -> when (state.stepMode) {
             StepMode.Uniform -> RangeSlider(
-                style = PaletteTheme.styles.core.slider,
+                style = PaletteTheme.component.core.slider,
                 value = state.rangeStart..state.rangeEnd,
                 onValueChange = {
                     state.rangeStart = it.start
@@ -95,7 +95,7 @@ fun DemoScope.SliderDemo(
                 modifier = sliderModifier,
             )
             StepMode.Custom -> RangeSlider(
-                style = PaletteTheme.styles.core.slider,
+                style = PaletteTheme.component.core.slider,
                 value = state.rangeStart..state.rangeEnd,
                 onValueChange = {
                     state.rangeStart = it.start

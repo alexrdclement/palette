@@ -21,9 +21,9 @@ import com.alexrdclement.palette.formats.datetime.DateTimeFormatValue
 import com.alexrdclement.palette.formats.datetime.toFormat
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.control.ThemeController
-import com.alexrdclement.palette.theme.format.Formats
-import com.alexrdclement.palette.theme.format.datetime.DateTimeFormatScheme
-import com.alexrdclement.palette.theme.format.datetime.DateTimeFormatToken
+import com.alexrdclement.palette.theme.semantic.format.Formats
+import com.alexrdclement.palette.theme.semantic.format.datetime.DateTimeFormatScheme
+import com.alexrdclement.palette.theme.semantic.format.datetime.DateTimeFormatToken
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.datetime.format
@@ -62,7 +62,7 @@ fun DateTimeFormatSchemeScreen(
             BoxWithLabel(
                 label = token.name,
                 modifier = Modifier
-                    .padding(horizontal = PaletteTheme.spacing.medium)
+                    .padding(horizontal = PaletteTheme.semantic.spacing.medium)
             ) {
                 DateTimeFormatDemo(
                     state = state.dateTimeFormatDemoStateByToken[token]!!,

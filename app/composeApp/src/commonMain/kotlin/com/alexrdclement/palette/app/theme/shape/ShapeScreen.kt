@@ -21,14 +21,14 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.components.core.ShapeType
 import com.alexrdclement.palette.components.core.toShape as shapeTypeToShape
-import com.alexrdclement.palette.theme.ShapeScheme
-import com.alexrdclement.palette.theme.ShapeToken
+import com.alexrdclement.palette.theme.semantic.ShapeScheme
+import com.alexrdclement.palette.theme.semantic.ShapeToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
-import com.alexrdclement.palette.theme.copy
-import com.alexrdclement.palette.theme.toComposeShape
-import com.alexrdclement.palette.theme.toShape
+import com.alexrdclement.palette.theme.semantic.copy
+import com.alexrdclement.palette.theme.semantic.toComposeShape
+import com.alexrdclement.palette.theme.semantic.toShape
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -61,13 +61,13 @@ fun ShapeScreen(
                 modifier = Modifier
                     .border(
                         width = 1.dp,
-                        color = PaletteTheme.colorScheme.outline,
+                        color = PaletteTheme.semantic.color.outline,
                         shape = shape.toComposeShape(),
                     )
             ) {
                 Text(
                     text = shape.name,
-                    style = PaletteTheme.styles.core.text.headline,
+                    style = PaletteTheme.component.core.text.headline,
                 )
             }
         }

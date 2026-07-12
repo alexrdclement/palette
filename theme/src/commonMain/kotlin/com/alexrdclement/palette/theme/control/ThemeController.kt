@@ -2,12 +2,12 @@ package com.alexrdclement.palette.theme.control
 
 import androidx.compose.foundation.Indication
 import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.theme.ColorScheme
-import com.alexrdclement.palette.theme.format.Formats
-import com.alexrdclement.palette.theme.ShapeScheme
-import com.alexrdclement.palette.theme.Spacing
-import com.alexrdclement.palette.theme.styles.Styles
-import com.alexrdclement.palette.theme.Typography
+import com.alexrdclement.palette.theme.semantic.ColorScheme
+import com.alexrdclement.palette.theme.semantic.format.Formats
+import com.alexrdclement.palette.theme.semantic.ShapeScheme
+import com.alexrdclement.palette.theme.semantic.Spacing
+import com.alexrdclement.palette.theme.component.core.Styles
+import com.alexrdclement.palette.theme.semantic.Typography
 
 class ThemeController internal constructor(
     private val state: ThemeStateImpl

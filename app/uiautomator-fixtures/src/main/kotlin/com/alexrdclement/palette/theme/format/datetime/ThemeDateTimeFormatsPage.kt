@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.format.datetime
+package com.alexrdclement.palette.theme.semantic.format.datetime
 
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice

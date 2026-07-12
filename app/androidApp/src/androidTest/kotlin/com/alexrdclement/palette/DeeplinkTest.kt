@@ -25,8 +25,8 @@ import com.alexrdclement.palette.formats.money.MoneyFormatsPage
 import com.alexrdclement.palette.modifiers.ColorInvertPage
 import com.alexrdclement.palette.modifiers.ModifiersPage
 import com.alexrdclement.palette.theme.ThemePage
-import com.alexrdclement.palette.theme.format.ThemeFormatsPage
-import com.alexrdclement.palette.theme.format.datetime.ThemeDateTimeFormatsPage
+import com.alexrdclement.palette.theme.semantic.format.ThemeFormatsPage
+import com.alexrdclement.palette.theme.semantic.format.datetime.ThemeDateTimeFormatsPage
 import com.alexrdclement.palette.theme.interaction.InteractionPage
 import com.alexrdclement.palette.theme.styles.StylesPage
 import org.junit.Test

@@ -12,7 +12,7 @@ import com.alexrdclement.palette.components.core.Surface as BaseSurface
 @Composable
 fun Surface(
     modifier: Modifier = Modifier,
-    style: SurfaceStyle = PaletteTheme.styles.core.surface.default,
+    style: SurfaceStyle = PaletteTheme.component.core.surface.default,
     content: @Composable (PaddingValues) -> Unit,
 ) = BaseSurface(
     modifier = modifier,
@@ -24,7 +24,7 @@ fun Surface(
 fun Surface(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    style: SurfaceStyle = PaletteTheme.styles.core.surface.default,
+    style: SurfaceStyle = PaletteTheme.component.core.surface.default,
     onLongClickLabel: String? = null,
     onLongClick: (() -> Unit)? = null,
     onDoubleClick: (() -> Unit)? = null,

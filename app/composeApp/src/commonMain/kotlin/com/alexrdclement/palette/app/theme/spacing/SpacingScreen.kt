@@ -18,12 +18,12 @@ import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.Spacing
-import com.alexrdclement.palette.theme.SpacingToken
+import com.alexrdclement.palette.theme.semantic.Spacing
+import com.alexrdclement.palette.theme.semantic.SpacingToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.copy
-import com.alexrdclement.palette.theme.toSpacing
+import com.alexrdclement.palette.theme.semantic.copy
+import com.alexrdclement.palette.theme.semantic.toSpacing
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -69,13 +69,13 @@ fun SpacingDemo(
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
-            .border(1.dp, PaletteTheme.colorScheme.primary)
+            .border(1.dp, PaletteTheme.semantic.color.primary)
             .padding(spacing.toSpacing())
-            .border(1.dp, PaletteTheme.colorScheme.primary)
+            .border(1.dp, PaletteTheme.semantic.color.primary)
     ) {
         Text(
             text = spacing.name,
-            style = PaletteTheme.styles.core.text.headline,
+            style = PaletteTheme.component.core.text.headline,
         )
     }
 }

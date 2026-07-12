@@ -25,12 +25,12 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.formats.core.TextFormat
-import com.alexrdclement.palette.theme.TypographyToken
+import com.alexrdclement.palette.theme.semantic.TypographyToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.copy
+import com.alexrdclement.palette.theme.semantic.copy
 import com.alexrdclement.palette.components.core.TextStyle
-import com.alexrdclement.palette.theme.toComposeTextStyle
+import com.alexrdclement.palette.theme.semantic.toComposeTextStyle
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -68,7 +68,7 @@ fun TypographyScreen(
                     text = state.text,
                     style = TextStyle(
                         composeTextStyle = textStyle.toComposeTextStyle().copy(
-                            color = PaletteTheme.colorScheme.onSurface,
+                            color = PaletteTheme.semantic.color.onSurface,
                         ),
                         format = TextFormat(),
                     ),

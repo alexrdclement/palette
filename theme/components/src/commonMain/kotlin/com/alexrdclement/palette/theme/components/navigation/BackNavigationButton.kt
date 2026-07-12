@@ -10,7 +10,7 @@ import com.alexrdclement.palette.components.navigation.BackNavigationButton as B
 fun BackNavigationButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    style: BackNavigationButtonStyle = PaletteTheme.styles.navigation.backNavigationButton,
+    style: BackNavigationButtonStyle = PaletteTheme.component.navigation.backNavigationButton,
 ) = BaseBackNavigationButton(
     onClick = onClick,
     modifier = modifier,

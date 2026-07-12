@@ -17,7 +17,7 @@ fun <T> DemoList(
     items: List<T>,
     controls: PersistentList<Control>,
     modifier: Modifier = Modifier,
-    style: DemoListStyle = PaletteTheme.styles.demo.list,
+    style: DemoListStyle = PaletteTheme.component.demo.list,
     key: ((item: T) -> Any)? = null,
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(
         space = 24.dp,

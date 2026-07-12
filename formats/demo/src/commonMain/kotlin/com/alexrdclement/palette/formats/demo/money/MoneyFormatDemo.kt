@@ -53,7 +53,7 @@ fun DemoScope.MoneyFormatDemo(
 ) {
     Text(
         text = state.text,
-        style = PaletteTheme.styles.core.text.headline,
+        style = PaletteTheme.component.core.text.headline,
         modifier = modifier.align(Alignment.Center)
     )
 }

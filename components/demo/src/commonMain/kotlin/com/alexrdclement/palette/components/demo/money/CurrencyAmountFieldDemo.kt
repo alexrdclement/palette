@@ -26,7 +26,7 @@ import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
 fun CurrencyAmountFieldDemo(
-    moneyFormat: MoneyFormat = PaletteTheme.formats.moneyFormats.default,
+    moneyFormat: MoneyFormat = PaletteTheme.semantic.format.moneyFormats.default,
     modifier: Modifier = Modifier,
     textFieldState: TextFieldState = rememberTextFieldState(),
 ) {
@@ -38,7 +38,7 @@ fun CurrencyAmountFieldDemo(
             .fillMaxSize(),
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium, Alignment.CenterVertically),
+            verticalArrangement = Arrangement.spacedBy(PaletteTheme.semantic.spacing.medium, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .height(IntrinsicSize.Max)
@@ -52,7 +52,7 @@ fun CurrencyAmountFieldDemo(
             ) {
                 Text(
                     text = text,
-                    style = PaletteTheme.styles.core.text.headline,
+                    style = PaletteTheme.component.core.text.headline,
                 )
             }
             BoxWithLabel(
@@ -62,12 +62,12 @@ fun CurrencyAmountFieldDemo(
             ) {
                 Text(
                     text = moneyFormat.format(text),
-                    style = PaletteTheme.styles.core.text.headline,
+                    style = PaletteTheme.component.core.text.headline,
                 )
             }
             CurrencyAmountField(
-                style = PaletteTheme.styles.money.currencyAmountField,
-                moneyFormat = PaletteTheme.formats.moneyFormats.default,
+                style = PaletteTheme.component.money.currencyAmountField,
+                moneyFormat = PaletteTheme.semantic.format.moneyFormats.default,
                 textFieldState = textFieldState,
             )
         }

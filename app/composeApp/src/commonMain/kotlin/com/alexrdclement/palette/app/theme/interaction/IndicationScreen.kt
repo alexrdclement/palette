@@ -23,11 +23,11 @@ import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
-import com.alexrdclement.palette.theme.PaletteIndicationType
+import com.alexrdclement.palette.theme.semantic.PaletteIndicationType
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.toIndication
-import com.alexrdclement.palette.theme.toPaletteIndicationType
+import com.alexrdclement.palette.theme.semantic.toIndication
+import com.alexrdclement.palette.theme.semantic.toPaletteIndicationType
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 

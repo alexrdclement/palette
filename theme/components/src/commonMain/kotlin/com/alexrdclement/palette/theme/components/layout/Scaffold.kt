@@ -13,7 +13,7 @@ fun Scaffold(
     floatingAction: @Composable () -> Unit = {},
     navigationBar: @Composable () -> Unit = {},
     modifier: Modifier = Modifier,
-    style: ScaffoldStyle = PaletteTheme.styles.layout.scaffold,
+    style: ScaffoldStyle = PaletteTheme.component.layout.scaffold,
     content: @Composable (PaddingValues) -> Unit,
 ) = BaseScaffold(
     topBar = topBar,

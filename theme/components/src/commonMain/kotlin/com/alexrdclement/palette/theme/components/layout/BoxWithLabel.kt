@@ -10,7 +10,7 @@ import com.alexrdclement.palette.components.layout.BoxWithLabel as BaseBoxWithLa
 fun BoxWithLabel(
     label: String,
     modifier: Modifier = Modifier,
-    style: BoxWithLabelStyle = PaletteTheme.styles.layout.boxWithLabel,
+    style: BoxWithLabelStyle = PaletteTheme.component.layout.boxWithLabel,
     content: @Composable () -> Unit,
 ) = BaseBoxWithLabel(
     label = label,

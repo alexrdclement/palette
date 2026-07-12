@@ -52,7 +52,7 @@ fun DemoScope.TextFormatDemo(
 ) {
     Text(
         text = state.text,
-        style = PaletteTheme.styles.core.text.headline.copy(
+        style = PaletteTheme.component.core.text.headline.copy(
             format = state.textFormat
         ),
         modifier = modifier.align(Alignment.Center)

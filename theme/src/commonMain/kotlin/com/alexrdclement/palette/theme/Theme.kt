@@ -11,15 +11,33 @@ import androidx.compose.ui.unit.Dp
 import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.money.MoneyFormat
-import com.alexrdclement.palette.theme.components.PaletteStyles
-import com.alexrdclement.palette.theme.format.Formats
-import com.alexrdclement.palette.theme.format.PaletteFormats
-import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
-import com.alexrdclement.palette.theme.format.core.PaletteTextFormatScheme
-import com.alexrdclement.palette.theme.format.datetime.PaletteDateTimeFormats
-import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
-import com.alexrdclement.palette.theme.styles.LocalStyles
-import com.alexrdclement.palette.theme.styles.Styles
+import com.alexrdclement.palette.theme.component.ComponentStyles
+import com.alexrdclement.palette.theme.component.core.LocalStyles
+import com.alexrdclement.palette.theme.component.core.Styles
+import com.alexrdclement.palette.theme.primitive.PaletteShapePrimitives
+import com.alexrdclement.palette.theme.primitive.PalettePrimitiveTypography
+import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
+import com.alexrdclement.palette.theme.semantic.ColorScheme
+import com.alexrdclement.palette.theme.semantic.NoOpIndication
+import com.alexrdclement.palette.theme.semantic.PaletteDarkColorScheme
+import com.alexrdclement.palette.theme.semantic.PaletteIndication
+import com.alexrdclement.palette.theme.semantic.PaletteLightColorScheme
+import com.alexrdclement.palette.theme.semantic.PaletteShapeScheme
+import com.alexrdclement.palette.theme.semantic.PaletteSpacing
+import com.alexrdclement.palette.theme.semantic.PaletteTypography
+import com.alexrdclement.palette.theme.semantic.ShapeScheme
+import com.alexrdclement.palette.theme.semantic.Spacing
+import com.alexrdclement.palette.theme.semantic.Typography
+import com.alexrdclement.palette.theme.semantic.format.Formats
+import com.alexrdclement.palette.theme.semantic.format.PaletteFormats
+import com.alexrdclement.palette.theme.semantic.format.core.NumberFormatScheme
+import com.alexrdclement.palette.theme.semantic.format.core.PaletteTextFormatScheme
+import com.alexrdclement.palette.theme.semantic.format.datetime.PaletteDateTimeFormats
+import com.alexrdclement.palette.theme.semantic.format.money.MoneyFormatScheme
+
+val LocalPalettePrimitiveTypography = staticCompositionLocalOf {
+    PalettePrimitiveTypography
+}
 
 val LocalPaletteColorScheme = staticCompositionLocalOf {
     ColorScheme(
@@ -92,6 +110,7 @@ val LocalPaletteFormats = staticCompositionLocalOf {
 @Composable
 fun PaletteTheme(
     isDarkMode: Boolean = isSystemInDarkTheme(),
+    primitiveTypography: PrimitiveTypography = PalettePrimitiveTypography,
     lightColorScheme: ColorScheme = PaletteLightColorScheme,
     darkColorScheme: ColorScheme = PaletteDarkColorScheme,
     typography: Typography = PaletteTypography,
@@ -104,6 +123,7 @@ fun PaletteTheme(
 ) {
     val colorScheme = if (isDarkMode) darkColorScheme else lightColorScheme
     CompositionLocalProvider(
+        LocalPalettePrimitiveTypography provides primitiveTypography,
         LocalPaletteColorScheme provides colorScheme,
         LocalPaletteTypography provides typography,
         LocalPaletteShapes provides shapeScheme,
@@ -115,31 +135,50 @@ fun PaletteTheme(
     )
 }
 
+/**
+ * Theme accessors, grouped into the three design-token tiers:
+ *
+ * - [primitive]: unopinionated literal building blocks (font family/weight, raw shapes).
+ * - [semantic]: design-intent tokens that reference primitives (color, typography ramp, shape
+ *   scheme, spacing, indication, formats).
+ * - [component]: tokens that map closely to components (button, surface, text styles, ...).
+ */
 object PaletteTheme {
-    val colorScheme: ColorScheme
-        @Composable
-        get() = LocalPaletteColorScheme.current
+    val primitive get() = Primitive
+    val semantic get() = Semantic
+    val component get() = ComponentStyles
 
-    val formats: Formats
-        @Composable
-        get() = LocalPaletteFormats.current
+    object Primitive {
+        val typography: PrimitiveTypography
+            @Composable
+            get() = LocalPalettePrimitiveTypography.current
 
-    val typography: Typography
-        @Composable
-        get() = LocalPaletteTypography.current
+        val shape get() = PaletteShapePrimitives
+    }
 
-    val shapeScheme: ShapeScheme
-        @Composable
-        get() = LocalPaletteShapes.current
+    object Semantic {
+        val color: ColorScheme
+            @Composable
+            get() = LocalPaletteColorScheme.current
 
-    val spacing: Spacing
-        @Composable
-        get() = LocalPaletteSpacing.current
+        val typography: Typography
+            @Composable
+            get() = LocalPaletteTypography.current
 
-    val indication: Indication
-        @Composable
-        get() = LocalPaletteIndication.current
+        val shape: ShapeScheme
+            @Composable
+            get() = LocalPaletteShapes.current
 
-    val styles: PaletteStyles
-        get() = PaletteStyles
+        val spacing: Spacing
+            @Composable
+            get() = LocalPaletteSpacing.current
+
+        val indication: Indication
+            @Composable
+            get() = LocalPaletteIndication.current
+
+        val format: Formats
+            @Composable
+            get() = LocalPaletteFormats.current
+    }
 }
