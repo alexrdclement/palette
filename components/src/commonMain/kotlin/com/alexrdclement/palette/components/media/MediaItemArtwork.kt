@@ -10,14 +10,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import coil3.compose.AsyncImage
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.components.core.TextStyle
 
 private const val DisabledAlpha = 0.35f
+
+data class MediaItemArtworkStyle(
+    val fallbackTextStyle: TextStyle = TextStyle(),
+)
 
 @Composable
 fun MediaItemArtwork(
     imageUrl: String?,
     modifier: Modifier = Modifier,
+    style: MediaItemArtworkStyle = MediaItemArtworkStyle(),
     isEnabled: Boolean = true,
 ) {
     if (imageUrl != null) {
@@ -37,7 +42,7 @@ fun MediaItemArtwork(
         ) {
             Text(
                 "Art",
-                style = PaletteTheme.styles.text.labelLarge
+                style = style.fallbackTextStyle,
             )
         }
     }

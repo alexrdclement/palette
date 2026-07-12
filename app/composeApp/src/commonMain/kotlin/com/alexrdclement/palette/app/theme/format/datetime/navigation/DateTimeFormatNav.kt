@@ -9,7 +9,6 @@ import com.alexrdclement.palette.app.theme.format.datetime.TimeFormatSchemeScree
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.navigation.NavGraphBuilder
-import com.alexrdclement.palette.navigation.PathSegment
 import com.alexrdclement.palette.theme.control.ThemeController
 
 fun NavGraphBuilder.dateTimeFormatNavGraph() = navGraph(

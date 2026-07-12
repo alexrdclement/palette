@@ -20,19 +20,19 @@ import androidx.compose.foundation.layout.requiredSizeIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.progressSemantics
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.Layout
@@ -43,7 +43,6 @@ import androidx.compose.ui.semantics.setProgress
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.coroutines.coroutineScope
 import kotlin.math.abs
 import kotlin.math.max
@@ -52,11 +51,16 @@ import kotlin.math.roundToInt
 
 // Adapted from Material3's Slider. Does not support RTL layout.
 
+data class SliderStyle(
+    val colors: SliderColors = SliderColors(),
+)
+
 @Composable
 fun Slider(
     value: Float,
     onValueChange: ((Float) -> Unit)?,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     stepIncrement: Float,
@@ -71,6 +75,7 @@ fun Slider(
         valueRange = valueRange,
         steps = stepsForIncrement(valueRange, stepIncrement),
         onValueChangeFinished = onValueChangeFinished,
+        style = style,
         interactionSource = interactionSource,
     )
 }
@@ -80,6 +85,7 @@ fun Slider(
     value: Float,
     onValueChange: ((Float) -> Unit)?,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
@@ -111,6 +117,7 @@ fun Slider(
         state = state,
         modifier = modifier,
         enabled = enabled,
+        style = style,
         interactionSource = interactionSource,
     )
 }
@@ -121,6 +128,7 @@ fun Slider(
     onValueChange: ((Float) -> Unit)?,
     snapValues: List<Float>,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     onValueChangeFinished: (() -> Unit)? = null,
@@ -151,6 +159,7 @@ fun Slider(
         state = state,
         modifier = modifier,
         enabled = enabled,
+        style = style,
         interactionSource = interactionSource,
     )
 }
@@ -159,13 +168,14 @@ fun Slider(
 fun Slider(
     state: SliderState,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     Layout(
         content = {
-            SliderDefaults.Track(tickFractions = state.tickFractions)
-            SliderDefaults.Thumb()
+            SliderDefaults.Track(tickFractions = state.tickFractions, colors = style.colors)
+            SliderDefaults.Thumb(colors = style.colors)
         },
         modifier = modifier
             .requiredSizeIn(
@@ -231,6 +241,7 @@ fun RangeSlider(
     value: ClosedFloatingPointRange<Float>,
     onValueChange: ((ClosedFloatingPointRange<Float>) -> Unit)?,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     stepIncrement: Float,
@@ -244,6 +255,7 @@ fun RangeSlider(
         valueRange = valueRange,
         steps = stepsForIncrement(valueRange, stepIncrement),
         onValueChangeFinished = onValueChangeFinished,
+        style = style,
     )
 }
 
@@ -252,6 +264,7 @@ fun RangeSlider(
     value: ClosedFloatingPointRange<Float>,
     onValueChange: ((ClosedFloatingPointRange<Float>) -> Unit)?,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
@@ -284,6 +297,7 @@ fun RangeSlider(
         state = state,
         modifier = modifier,
         enabled = enabled,
+        style = style,
     )
 }
 
@@ -293,6 +307,7 @@ fun RangeSlider(
     onValueChange: ((ClosedFloatingPointRange<Float>) -> Unit)?,
     snapValues: List<Float>,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     onValueChangeFinished: (() -> Unit)? = null,
@@ -324,6 +339,7 @@ fun RangeSlider(
         state = state,
         modifier = modifier,
         enabled = enabled,
+        style = style,
     )
 }
 
@@ -331,11 +347,12 @@ fun RangeSlider(
 fun RangeSlider(
     state: RangeSliderState,
     modifier: Modifier = Modifier,
+    style: SliderStyle = SliderStyle(),
     enabled: Boolean = true,
 ) {
     Layout(
         content = {
-            SliderDefaults.Track(tickFractions = state.tickFractions)
+            SliderDefaults.Track(tickFractions = state.tickFractions, colors = style.colors)
             Box(
                 modifier = Modifier.then(
                     if (enabled) {
@@ -349,7 +366,7 @@ fun RangeSlider(
                     } else Modifier
                 )
             ) {
-                SliderDefaults.Thumb()
+                SliderDefaults.Thumb(colors = style.colors)
             }
             Box(
                 modifier = Modifier.then(
@@ -364,7 +381,7 @@ fun RangeSlider(
                     } else Modifier
                 )
             ) {
-                SliderDefaults.Thumb()
+                SliderDefaults.Thumb(colors = style.colors)
             }
         },
         modifier = modifier
@@ -437,52 +454,32 @@ private fun Modifier.sliderSemantics(
     state.steps,
 )
 
+data class SliderColors(
+    val trackColor: Color = Color.Unspecified,
+    val thumbColor: Color = Color.Unspecified,
+    val thumbPointColor: Color = Color.Unspecified,
+    val thumbBackgroundColor: Color = Color.Unspecified,
+)
+
 object SliderDefaults {
     val TrackHeight = 1.dp
     val TickSize = 2.dp
-    val TrackBrush: Brush
-        @Composable
-        get() = with(PaletteTheme.colorScheme) {
-            remember(this) {
-                SolidColor(primary)
-            }
-        }
 
     val ThumbSize = 20.dp
-    val ThumbBorderStroke: BorderStroke
-        @Composable
-        get() = with(PaletteTheme.colorScheme) {
-            remember(this) {
-                BorderStroke(
-                    width = 1.dp,
-                    color = primary,
-                )
-            }
-        }
+    val ThumbBorderWidth = 1.dp
     val ThumbPointSizeDp = 4.dp
     val ThumbPointSize: Size
         @Composable
         get() = with(LocalDensity.current) {
             Size(ThumbPointSizeDp.toPx(), ThumbPointSizeDp.toPx())
         }
-    val ThumbPointBrush: Brush
-        @Composable
-        get() = with(PaletteTheme.colorScheme) {
-            remember(this) {
-                SolidColor(primary)
-            }
-        }
-    val ThumbBackgroundBrush: Brush
-        @Composable
-        get() = with(PaletteTheme.colorScheme) {
-            remember(this) {
-                SolidColor(surface)
-            }
-        }
 
     @Composable
-    fun Track(tickFractions: FloatArray = floatArrayOf()) {
-        val brush = TrackBrush
+    fun Track(
+        tickFractions: FloatArray = floatArrayOf(),
+        colors: SliderColors = SliderColors(),
+    ) {
+        val brush = remember(colors.trackColor) { SolidColor(colors.trackColor) }
         val tickRadius = with(LocalDensity.current) { TickSize.toPx() }
         Canvas(
             modifier = Modifier
@@ -506,16 +503,21 @@ object SliderDefaults {
     }
 
     @Composable
-    fun Thumb() {
+    fun Thumb(
+        colors: SliderColors = SliderColors(),
+    ) {
+        val borderStroke = remember(colors.thumbColor) {
+            BorderStroke(width = ThumbBorderWidth, color = colors.thumbColor)
+        }
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .size(ThumbSize)
-                .border(ThumbBorderStroke)
+                .border(borderStroke)
         ) {
-            val pointBrush = ThumbPointBrush
+            val pointBrush = remember(colors.thumbPointColor) { SolidColor(colors.thumbPointColor) }
             val pointSize = ThumbPointSize
-            val backgroundBrush = ThumbBackgroundBrush
+            val backgroundBrush = remember(colors.thumbBackgroundColor) { SolidColor(colors.thumbBackgroundColor) }
             Canvas(modifier = Modifier.fillMaxSize()) {
                 drawRect(
                     brush = backgroundBrush,
@@ -815,10 +817,8 @@ private fun calcFraction(a: Float, b: Float, pos: Float) =
 @Preview
 @Composable
 private fun Preview() {
-    PaletteTheme {
-        Surface {
-            val state = remember { SliderState(value = 0.5f) }
-            Slider(state = state)
-        }
+    Surface {
+        val state = remember { SliderState(value = 0.5f) }
+        Slider(state = state)
     }
 }

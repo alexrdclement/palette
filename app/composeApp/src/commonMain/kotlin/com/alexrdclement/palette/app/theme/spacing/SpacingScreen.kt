@@ -13,9 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.Spacing
@@ -75,7 +75,7 @@ fun SpacingDemo(
     ) {
         Text(
             text = spacing.name,
-            style = PaletteTheme.styles.text.headline,
+            style = PaletteTheme.styles.core.text.headline,
         )
     }
 }

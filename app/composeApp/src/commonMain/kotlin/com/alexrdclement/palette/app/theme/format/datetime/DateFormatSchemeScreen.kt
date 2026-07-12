@@ -12,10 +12,10 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.formats.demo.datetime.DateTimeFormatDemo
 import com.alexrdclement.palette.formats.demo.datetime.DateTimeFormatDemoState
 import com.alexrdclement.palette.formats.demo.datetime.rememberDateTimeFormatDemoControl
-import com.alexrdclement.palette.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.layout.BoxWithLabel
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.datetime.DateFormatValue
 import com.alexrdclement.palette.formats.datetime.toFormat

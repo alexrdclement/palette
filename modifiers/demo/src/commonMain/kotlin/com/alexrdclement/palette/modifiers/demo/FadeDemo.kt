@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.ColorSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe

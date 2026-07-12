@@ -3,7 +3,6 @@ package com.alexrdclement.palette.components.core
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layout
-import com.alexrdclement.palette.theme.Shape
 
 
 @Stable

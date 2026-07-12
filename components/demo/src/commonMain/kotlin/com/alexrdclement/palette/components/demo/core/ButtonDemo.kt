@@ -1,15 +1,16 @@
 package com.alexrdclement.palette.components.demo.core
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,15 +19,19 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
+import com.alexrdclement.palette.components.demo.control.paddingValuesControls
+import com.alexrdclement.palette.components.util.PaddingValuesSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
+import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.theme.toColor
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -56,9 +61,19 @@ fun DemoScope.ButtonDemo(
     LaunchedEffect(control, maxWidth) {
         control.onButtonSizeChanged(maxWidth)
     }
+    // A colored button container needs matching content color; the demo, as the caller, picks it
+    // per variant — the same way content on a Surface is colored by whoever places it.
+    val contentColor = when (state.style) {
+        ButtonStyleToken.Primary -> ColorToken.OnPrimary
+        ButtonStyleToken.Secondary -> ColorToken.Secondary
+        ButtonStyleToken.Tertiary -> ColorToken.Primary
+    }.toColor()
+    LaunchedEffect(state.style, contentColor) {
+        state.textDemoState.textStyleDemoState.color = contentColor
+    }
     Button(
         onClick = {},
-        style = state.style,
+        style = PaletteTheme.styles.core.button[state.style].copy(contentPadding = state.contentPadding),
         enabled = state.enabled,
         modifier = modifier
             .width(state.width)
@@ -74,9 +89,14 @@ fun DemoScope.ButtonDemo(
 }
 
 @Composable
-fun rememberButtonDemoState(): ButtonDemoState = rememberSaveable(
-    saver = ButtonDemoStateSaver,
-) { ButtonDemoState() }
+fun rememberButtonDemoState(
+    contentPaddingInitial: PaddingValues = PaddingValues(
+        horizontal = PaletteTheme.spacing.large,
+        vertical = PaletteTheme.spacing.medium,
+    ),
+): ButtonDemoState = rememberSaveable(saver = ButtonDemoStateSaver) {
+    ButtonDemoState(contentPaddingInitial = contentPaddingInitial)
+}
 
 @Stable
 class ButtonDemoState(
@@ -84,6 +104,7 @@ class ButtonDemoState(
     enabledInitial: Boolean = true,
     maxWidthInitial: Dp = 0.dp,
     widthInitial: Dp = 200.dp,
+    contentPaddingInitial: PaddingValues = PaddingValues(),
     val textDemoState: TextDemoState = TextDemoState(
         initialText = "Button",
         textAlignInitial = TextAlign.Center,
@@ -97,12 +118,15 @@ class ButtonDemoState(
         internal set
     var width by mutableStateOf(widthInitial)
         internal set
+    var contentPadding by mutableStateOf(contentPaddingInitial)
+        internal set
 }
 
 private const val enabledKey = "enabled"
 private const val styleKey = "style"
 private const val maxWidthKey = "maxWidth"
 private const val widthKey = "width"
+private const val contentPaddingKey = "contentPadding"
 private const val textDemoStateKey = "textDemoState"
 
 val ButtonDemoStateSaver = mapSaverSafe(
@@ -112,6 +136,7 @@ val ButtonDemoStateSaver = mapSaverSafe(
             styleKey to value.style,
             maxWidthKey to value.maxWidth.value,
             widthKey to value.width.value,
+            contentPaddingKey to save(value.contentPadding, PaddingValuesSaver, this),
             textDemoStateKey to save(value.textDemoState, TextDemoStateSaver, this),
         )
     },
@@ -121,6 +146,7 @@ val ButtonDemoStateSaver = mapSaverSafe(
             styleInitial = map[styleKey] as ButtonStyleToken,
             maxWidthInitial = (map[maxWidthKey] as Float).dp,
             widthInitial = (map[widthKey] as Float).dp,
+            contentPaddingInitial = restore(map[contentPaddingKey], PaddingValuesSaver)!!,
             textDemoState = restore(map[textDemoStateKey], TextDemoStateSaver)!!
         )
     },
@@ -135,8 +161,8 @@ fun rememberButtonDemoControl(
 class ButtonDemoControl(
     val state: ButtonDemoState,
 ) {
-    val styleControl = enumControl(
-        name = "Style",
+    val styleTokenControl = enumControl(
+        name = "Token",
         values = { ButtonStyleToken.entries },
         selectedValue = { state.style },
         onValueChange = { state.style = it },
@@ -155,6 +181,24 @@ class ButtonDemoControl(
         valueRange = { 0f..state.maxWidth.value },
     )
 
+    val contentPaddingControl = paddingValuesControls(
+        name = "Content padding",
+        value = { state.contentPadding },
+        onValueChange = { state.contentPadding = it },
+    )
+
+    val styleControls = Control.ControlColumn(
+        name = "Style",
+        indent = true,
+        expandedInitial = true,
+        controls = {
+            persistentListOf(
+                styleTokenControl,
+                contentPaddingControl,
+            )
+        },
+    )
+
     val textDemoControl = TextDemoControl(state.textDemoState)
     val textDemoControls = Control.ControlColumn(
         name = "Text",
@@ -164,7 +208,7 @@ class ButtonDemoControl(
 
     val controls = persistentListOf(
         enabledControl,
-        styleControl,
+        styleControls,
         widthControl,
         textDemoControls,
     )

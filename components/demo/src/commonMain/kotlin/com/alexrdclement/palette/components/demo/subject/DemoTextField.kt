@@ -8,17 +8,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.components.core.TextField
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.TextStyle
+import com.alexrdclement.palette.components.core.TextStyle
 
 @Composable
 fun DemoTextField(
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = PaletteTheme.styles.text.labelLarge,
+    textStyle: TextStyle = PaletteTheme.styles.core.text.labelLarge,
 ) {
     Box(modifier = modifier.fillMaxSize()) {
         TextField(
             state = rememberTextFieldState(),
-            textStyle = textStyle,
+            style = PaletteTheme.styles.core.textField.copy(textStyle = textStyle),
             modifier = modifier.align(Alignment.Center)
         )
     }

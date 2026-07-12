@@ -1,10 +1,10 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.components.core
 
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.theme.util.toRadians
+import com.alexrdclement.palette.components.util.toRadians
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt

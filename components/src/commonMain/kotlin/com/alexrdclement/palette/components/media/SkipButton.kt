@@ -7,35 +7,39 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexrdclement.palette.components.LocalContentColor
+import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.styles.ButtonStyle
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.components.core.ButtonStyle
+
+data class SkipIconStyle(
+    val color: Color = Color.Unspecified,
+)
+
+data class SkipButtonStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(6.dp)),
+    val iconStyle: SkipIconStyle = SkipIconStyle(),
+)
 
 @Composable
 fun SkipButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: SkipButtonStyle = SkipButtonStyle(),
     enabled: Boolean = true,
-    style: ButtonStyleToken = ButtonStyleToken.Secondary,
-    contentPadding: PaddingValues = PaddingValues(6.dp),
 ) {
     Button(
         onClick = onClick,
         enabled = enabled,
-        style = style,
-        contentPadding = contentPadding,
+        style = style.buttonStyle,
         modifier = modifier.aspectRatio(1f),
     ) { shapePadding ->
         SkipIcon(
+            style = style.iconStyle,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(shapePadding),
@@ -46,14 +50,14 @@ fun SkipButton(
 @Composable
 fun SkipIcon(
     modifier: Modifier = Modifier,
+    style: SkipIconStyle = SkipIconStyle(),
 ) {
-    val color = LocalContentColor.current
     Canvas(modifier = modifier) {
         val barWidth = size.width * 0.15f
         val gap = size.width * 0.08f
 
         drawRect(
-            color = color,
+            color = style.color,
             topLeft = Offset(size.width - barWidth, 0f),
             size = Size(barWidth, size.height),
         )
@@ -64,22 +68,18 @@ fun SkipIcon(
             lineTo(size.width - barWidth - gap, size.height / 2f) // right tip
             close()
         }
-        drawPath(path, color = color)
+        drawPath(path, color = style.color)
     }
 }
 
 @Preview
 @Composable
 private fun SkipButtonPreview() {
-    PaletteTheme {
-        SkipButton(onClick = {})
-    }
+    SkipButton(onClick = {})
 }
 
 @Preview
 @Composable
 private fun SkipIconPreview() {
-    PaletteTheme {
-        SkipIcon()
-    }
+    SkipIcon()
 }

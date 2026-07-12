@@ -18,6 +18,7 @@ PLcom/alexrdclement/palette/modifiers/ColorSplitIndication;->access$getAnimation
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitIndication;->create$lambda$1(Landroidx/compose/animation/core/Animatable;Landroidx/compose/animation/core/Animatable;Lcom/alexrdclement/palette/modifiers/ShaderIndicationNode;)Lkotlin/Unit;
 HPLcom/alexrdclement/palette/modifiers/ColorSplitIndication;->create$lambda$2(Lcom/alexrdclement/palette/modifiers/ColorSplitIndication;Landroidx/compose/animation/core/Animatable;Landroidx/compose/animation/core/Animatable;Lcom/alexrdclement/palette/modifiers/ShaderIndicationNode;Landroidx/compose/foundation/interaction/Interaction;)Lkotlin/Unit;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitIndication;->create(Landroidx/compose/foundation/interaction/InteractionSource;)Landroidx/compose/ui/node/DelegatableNode;
+PLcom/alexrdclement/palette/modifiers/ColorSplitIndication;->equals(Ljava/lang/Object;)Z
 Lcom/alexrdclement/palette/modifiers/ColorSplitIndication$$ExternalSyntheticLambda0;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitIndication$$ExternalSyntheticLambda0;-><init>(Landroidx/compose/animation/core/Animatable;Landroidx/compose/animation/core/Animatable;)V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitIndication$$ExternalSyntheticLambda0;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
@@ -77,7 +78,7 @@ PLcom/alexrdclement/palette/modifiers/FadeKt;->$r8$lambda$H4ycrAPLNW-NfMG4gDlA4J
 PLcom/alexrdclement/palette/modifiers/FadeKt;->bottomFade-V5MJSes(Landroidx/compose/ui/Modifier;FLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/modifiers/FadeKt;->fade-ddyKRco(Landroidx/compose/ui/Modifier;IFLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/modifiers/FadeKt;->fade-ddyKRco(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/modifiers/FadeSide;FLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
-HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$0(Landroidx/compose/ui/graphics/GraphicsLayerScope;)Lkotlin/Unit;
+PLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$0(Landroidx/compose/ui/graphics/GraphicsLayerScope;)Lkotlin/Unit;
 HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$1(IFLandroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/drawscope/ContentDrawScope;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/FadeKt$$ExternalSyntheticLambda0;-><init>()V
 PLcom/alexrdclement/palette/modifiers/FadeKt$$ExternalSyntheticLambda0;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
@@ -189,7 +190,6 @@ PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$l
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$lambda$3$0(Lcom/alexrdclement/palette/modifiers/demo/ColorInvertState;F)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$lambda$4$0()Lkotlin/ranges/ClosedFloatingPointRange;
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$lambda$5(Landroidx/compose/ui/Modifier;IILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
-PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 HPLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertStateSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/modifiers/demo/ColorInvertState;)Ljava/util/Map;
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt$$ExternalSyntheticLambda0;-><init>()V
@@ -414,7 +414,6 @@ PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$3$0(Lcom/alexrdclement/palette/modifiers/demo/PixelateState;F)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$4$0()Lkotlin/ranges/ClosedFloatingPointRange;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$5(Landroidx/compose/ui/Modifier;IILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
-PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 HPLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateStateSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/modifiers/demo/PixelateState;)Ljava/util/Map;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt$$ExternalSyntheticLambda0;-><init>()V

@@ -18,7 +18,6 @@ import com.alexrdclement.palette.components.util.Point3D
 import com.alexrdclement.palette.components.util.ViewingAngle
 import com.alexrdclement.palette.components.util.rotatePoint3D
 import com.alexrdclement.palette.components.util.toRadians
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -66,11 +65,11 @@ fun GridSphere(
     modifier: Modifier = Modifier,
     viewingAngle: ViewingAngle = ViewingAngle(),
     precisionDegree: Int = 1,
-    strokeColor: Color = PaletteTheme.colorScheme.primary,
+    strokeColor: Color = Color.Unspecified,
     strokeWidth: Dp = Dp.Hairline,
     outlineStrokeColor: Color? = strokeColor,
     outlineStrokeWidth: Dp = strokeWidth,
-    faceColor: Color? = PaletteTheme.colorScheme.primary.copy(alpha = 0.1f),
+    faceColor: Color? = strokeColor.copy(alpha = 0.1f),
 ) {
     val latStepOffset = 2 // Don't count the poles
     val latStep = if (numLatitudeLines <= 1) 180f else 180f / (numLatitudeLines - 1 + latStepOffset)
@@ -196,16 +195,15 @@ fun GridSphere(
 @Preview
 @Composable
 fun GridSpherePreview() {
-    PaletteTheme {
-        Surface {
-            GridSphere(
-                numLatitudeLines = 20,
-                numLongitudeLines = 10,
-                modifier = Modifier.size(200.dp),
-                viewingAngle = ViewingAngle(
-                    rotationX = 20f,
-                ),
-            )
-        }
+    Surface {
+        GridSphere(
+            numLatitudeLines = 20,
+            numLongitudeLines = 10,
+            strokeColor = Color.Gray,
+            modifier = Modifier.size(200.dp),
+            viewingAngle = ViewingAngle(
+                rotationX = 20f,
+            ),
+        )
     }
 }

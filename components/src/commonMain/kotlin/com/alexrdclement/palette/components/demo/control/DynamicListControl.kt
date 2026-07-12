@@ -14,15 +14,24 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.toPersistentList
+
+data class DynamicListControlStyle(
+    val spacing: Dp = 16.dp,
+    val itemSpacing: Dp = 8.dp,
+    val itemControlSpacing: Dp = 4.dp,
+    val indent: Dp = 16.dp,
+)
 
 @Composable
 fun <T> DynamicListControl(
     control: Control.DynamicList<T>,
     modifier: Modifier = Modifier,
+    controlsStyle: ControlsStyle = ControlsStyle(),
 ) {
+    val style = controlsStyle.dynamicList
     val items by rememberUpdatedState(control.items())
     val onItemsChange by rememberUpdatedState(control.onItemsChange)
 
@@ -30,29 +39,31 @@ fun <T> DynamicListControl(
     var addingItem by remember { mutableStateOf<T?>(null) }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier.fillMaxWidth()
     ) {
         if (control.includeLabel) {
             ExpandableHeader(
                 name = control.name,
                 expanded = expanded,
-                onExpandedChange = { expanded = it }
+                onExpandedChange = { expanded = it },
+                style = controlsStyle.expandableHeader,
             )
         }
 
         if (!expanded && control.includeLabel) return@Column
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+            verticalArrangement = Arrangement.spacedBy(style.spacing),
             modifier = modifier
                 .fillMaxWidth()
-                .then(if (control.indent) Modifier.padding(start = PaletteTheme.spacing.medium) else Modifier)
+                .then(if (control.indent) Modifier.padding(start = style.indent) else Modifier)
         ) {
             items.forEachIndexed { index, item ->
                 DynamicListItem(
                     control = control,
                     item = item,
+                    controlsStyle = controlsStyle,
                     onItemChange = { newItem ->
                         val newList = items.toMutableList()
                         newList[index] = newItem
@@ -71,6 +82,7 @@ fun <T> DynamicListControl(
                 DynamicListAddItem(
                     control = control,
                     item = currentAddingItem,
+                    controlsStyle = controlsStyle,
                     onItemChange = { addingItem = it },
                     onConfirm = {
                         val newList = items.toMutableList()
@@ -83,6 +95,7 @@ fun <T> DynamicListControl(
             } else {
                 DynamicListAddButton(
                     text = control.addButtonText,
+                    style = controlsStyle.button,
                     onClick = { addingItem = control.newItemDefault() }
                 )
             }
@@ -97,19 +110,22 @@ private fun <T> DynamicListItem(
     onItemChange: (T) -> Unit,
     onDelete: () -> Unit,
     modifier: Modifier = Modifier,
+    controlsStyle: ControlsStyle = ControlsStyle(),
 ) {
+    val style = controlsStyle.dynamicList
     val itemControl = control.createControl(item, onItemChange)
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
+        horizontalArrangement = Arrangement.spacedBy(style.itemSpacing),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
     ) {
         Controls(
             controls = listOf(itemControl).toPersistentList(),
+            controlsStyle = controlsStyle,
             contentPadding = PaddingValues(0.dp),
-            verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.xs),
+            verticalArrangement = Arrangement.spacedBy(style.itemControlSpacing),
             modifier = Modifier.weight(1f)
         )
 
@@ -117,7 +133,8 @@ private fun <T> DynamicListItem(
             control = Control.Button(
                 name = "Delete",
                 onClick = onDelete
-            )
+            ),
+            style = controlsStyle.button,
         )
     }
 }
@@ -130,23 +147,27 @@ private fun <T> DynamicListAddItem(
     onConfirm: () -> Unit,
     onCancel: () -> Unit,
     modifier: Modifier = Modifier,
+    controlsStyle: ControlsStyle = ControlsStyle(),
 ) {
+    val style = controlsStyle.dynamicList
     val addItemControl = control.createControl(item, onItemChange)
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier
             .fillMaxWidth()
     ) {
         Controls(
             controls = listOf(addItemControl).toPersistentList(),
+            controlsStyle = controlsStyle,
             contentPadding = PaddingValues(0.dp),
-            verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.xs),
+            verticalArrangement = Arrangement.spacedBy(style.itemControlSpacing),
         )
 
         DynamicListActionButtons(
             onConfirm = onConfirm,
-            onCancel = onCancel
+            onCancel = onCancel,
+            controlsStyle = controlsStyle,
         )
     }
 }
@@ -156,22 +177,26 @@ private fun DynamicListActionButtons(
     onConfirm: () -> Unit,
     onCancel: () -> Unit,
     modifier: Modifier = Modifier,
+    controlsStyle: ControlsStyle = ControlsStyle(),
 ) {
+    val style = controlsStyle.dynamicList
     Row(
-        horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+        horizontalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier.fillMaxWidth()
     ) {
         ButtonControl(
             control = Control.Button(
                 name = "Confirm",
                 onClick = onConfirm
-            )
+            ),
+            style = controlsStyle.button,
         )
         ButtonControl(
             control = Control.Button(
                 name = "Cancel",
                 onClick = onCancel
-            )
+            ),
+            style = controlsStyle.button,
         )
     }
 }
@@ -181,12 +206,14 @@ private fun DynamicListAddButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: ButtonControlStyle = ButtonControlStyle(),
 ) {
     ButtonControl(
         control = Control.Button(
             name = text,
             onClick = onClick
         ),
+        style = style,
         modifier = modifier
     )
 }

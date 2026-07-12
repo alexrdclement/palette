@@ -6,16 +6,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.alexrdclement.palette.components.color.ColorPicker
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.ColorSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -49,6 +49,7 @@ fun BoxWithConstraintsScope.ColorPickerDemo(
     control: ColorPickerDemoControl = rememberColorPickerDemoControl(state),
 ) {
     ColorPicker(
+        style = PaletteTheme.styles.color.colorPicker,
         color = state.color,
         onColorChange = control::onColorChange,
         modifier = modifier

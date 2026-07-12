@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,26 +10,36 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.menu.DropdownMenu
 import com.alexrdclement.palette.components.menu.DropdownMenuItem
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.components.menu.DropdownMenuStyle
 import kotlinx.collections.immutable.toPersistentList
+
+data class DropdownControlStyle(
+    val labelStyle: TextStyle = TextStyle(),
+    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val menuStyle: DropdownMenuStyle = DropdownMenuStyle(),
+    val labelSpacing: Dp = 8.dp,
+    val rowSpacing: Dp = 16.dp,
+)
 
 @Composable
 fun <T> DropdownControl(
     control: Control.Dropdown<T>,
     modifier: Modifier = Modifier,
+    style: DropdownControlStyle = DropdownControlStyle(),
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
     val values by rememberUpdatedState(control.values())
@@ -38,19 +50,21 @@ fun <T> DropdownControl(
 
     Column(modifier = modifier) {
         if (control.includeLabel) {
-            Text(control.name, style = PaletteTheme.styles.text.labelLarge)
-            Spacer(modifier = Modifier.height(PaletteTheme.spacing.small))
+            Text(control.name, style = style.labelStyle)
+            Spacer(modifier = Modifier.height(style.labelSpacing))
         }
 
         DropdownMenuControlButton(
             selectedValue = selectedValue,
             onClick = { isMenuExpanded = true },
+            style = style,
         )
 
         DropdownControlMenu(
             control = control,
             isMenuExpanded = isMenuExpanded,
             onMenuDismissRequest = { isMenuExpanded = false },
+            style = style,
         )
     }
 }
@@ -59,6 +73,7 @@ fun <T> DropdownControl(
 fun <T> DropdownControlRow(
     control: Control.Dropdown<T>,
     modifier: Modifier = Modifier,
+    style: DropdownControlStyle = DropdownControlStyle(),
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
     val values by rememberUpdatedState(control.values())
@@ -75,16 +90,17 @@ fun <T> DropdownControlRow(
         if (control.includeLabel) {
             Text(
                 text = control.name,
-                style = PaletteTheme.styles.text.labelLarge,
+                style = style.labelStyle,
                 softWrap = true,
                 modifier = Modifier.weight(1f, fill = false)
             )
-            Spacer(modifier = Modifier.width(PaletteTheme.spacing.medium))
+            Spacer(modifier = Modifier.width(style.rowSpacing))
         }
 
         DropdownMenuControlButton(
             selectedValue = selectedValue,
             onClick = { isMenuExpanded = true },
+            style = style,
             modifier = Modifier.weight(1f, fill = false)
         )
 
@@ -92,6 +108,7 @@ fun <T> DropdownControlRow(
             control = control,
             isMenuExpanded = isMenuExpanded,
             onMenuDismissRequest = { isMenuExpanded = false },
+            style = style,
         )
     }
 }
@@ -100,14 +117,15 @@ fun <T> DropdownControlRow(
 private fun <T> DropdownMenuControlButton(
     selectedValue: Control.Dropdown.DropdownItem<T>,
     onClick: () -> Unit,
+    style: DropdownControlStyle,
     modifier: Modifier = Modifier,
 ) {
     Button(
-        style = ButtonStyleToken.Secondary,
+        style = style.buttonStyle,
         onClick = onClick,
         modifier = modifier,
     ) {
-        Text(text = selectedValue.name, style = PaletteTheme.styles.text.labelLarge)
+        Text(text = selectedValue.name, style = style.labelStyle)
     }
 }
 
@@ -116,19 +134,22 @@ private fun <T> DropdownControlMenu(
     control: Control.Dropdown<T>,
     isMenuExpanded: Boolean,
     onMenuDismissRequest: () -> Unit,
+    style: DropdownControlStyle,
 ) {
     val values by rememberUpdatedState(control.values())
     DropdownMenu(
         expanded = isMenuExpanded,
         onDismissRequest = onMenuDismissRequest,
+        style = style.menuStyle,
     ) {
         values.forEachIndexed { index, value ->
             DropdownMenuItem(
-                text = { Text(text = value.name, style = PaletteTheme.styles.text.labelLarge) },
+                text = { Text(text = value.name, style = style.labelStyle) },
                 onClick = {
                     onMenuDismissRequest()
                     control.onValueChange(index)
-                }
+                },
+                style = style.menuStyle.itemStyle,
             )
         }
     }
@@ -137,51 +158,47 @@ private fun <T> DropdownControlMenu(
 @Preview
 @Composable
 private fun DropdownControlPreview() {
-    PaletteTheme {
-        var selectedIndex by remember { mutableStateOf(0) }
-        val control by remember {
-            mutableStateOf(
-                Control.Dropdown(
-                    name = "Options",
-                    values = {
-                        listOf("A", "B", "C").map {
-                            Control.Dropdown.DropdownItem(
-                                name = it,
-                                value = it
-                            )
-                        }.toPersistentList()
-                    },
-                    selectedIndex = { selectedIndex },
-                    onValueChange = { selectedIndex = it }
-                )
+    var selectedIndex by remember { mutableStateOf(0) }
+    val control by remember {
+        mutableStateOf(
+            Control.Dropdown(
+                name = "Options",
+                values = {
+                    listOf("A", "B", "C").map {
+                        Control.Dropdown.DropdownItem(
+                            name = it,
+                            value = it
+                        )
+                    }.toPersistentList()
+                },
+                selectedIndex = { selectedIndex },
+                onValueChange = { selectedIndex = it }
             )
-        }
-        DropdownControl(control = control)
+        )
     }
+    DropdownControl(control = control)
 }
 
 @Preview
 @Composable
 private fun DropdownControlRowPreview() {
-    PaletteTheme {
-        var selectedIndex by remember { mutableStateOf(0) }
-        val control by remember {
-            mutableStateOf(
-                Control.Dropdown(
-                    name = "Options",
-                    values = {
-                        listOf("A", "B", "C").map {
-                            Control.Dropdown.DropdownItem(
-                                name = it,
-                                value = it
-                            )
-                        }.toPersistentList()
-                    },
-                    selectedIndex = { selectedIndex },
-                    onValueChange = { selectedIndex = it }
-                )
+    var selectedIndex by remember { mutableStateOf(0) }
+    val control by remember {
+        mutableStateOf(
+            Control.Dropdown(
+                name = "Options",
+                values = {
+                    listOf("A", "B", "C").map {
+                        Control.Dropdown.DropdownItem(
+                            name = it,
+                            value = it
+                        )
+                    }.toPersistentList()
+                },
+                selectedIndex = { selectedIndex },
+                onValueChange = { selectedIndex = it }
             )
-        }
-        DropdownControlRow(control = control)
+        )
     }
+    DropdownControlRow(control = control)
 }

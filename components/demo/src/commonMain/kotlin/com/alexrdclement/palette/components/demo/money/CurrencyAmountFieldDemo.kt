@@ -11,14 +11,14 @@ import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.Demo
-import com.alexrdclement.palette.components.layout.BoxWithLabel
+import com.alexrdclement.palette.theme.components.demo.Demo
+import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
 import com.alexrdclement.palette.components.money.CurrencyAmountField
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.formats.money.format
@@ -52,7 +52,7 @@ fun CurrencyAmountFieldDemo(
             ) {
                 Text(
                     text = text,
-                    style = PaletteTheme.styles.text.headline,
+                    style = PaletteTheme.styles.core.text.headline,
                 )
             }
             BoxWithLabel(
@@ -62,10 +62,11 @@ fun CurrencyAmountFieldDemo(
             ) {
                 Text(
                     text = moneyFormat.format(text),
-                    style = PaletteTheme.styles.text.headline,
+                    style = PaletteTheme.styles.core.text.headline,
                 )
             }
             CurrencyAmountField(
+                style = PaletteTheme.styles.money.currencyAmountField,
                 moneyFormat = PaletteTheme.formats.moneyFormats.default,
                 textFieldState = textFieldState,
             )

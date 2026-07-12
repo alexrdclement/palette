@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -53,7 +53,7 @@ fun DemoScope.MoneyFormatDemo(
 ) {
     Text(
         text = state.text,
-        style = PaletteTheme.styles.text.headline,
+        style = PaletteTheme.styles.core.text.headline,
         modifier = modifier.align(Alignment.Center)
     )
 }

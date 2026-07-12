@@ -5,6 +5,7 @@ import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.styles.BorderStyleScreen
 import com.alexrdclement.palette.app.theme.styles.ButtonStyleScreen
 import com.alexrdclement.palette.app.theme.styles.Styles
+import com.alexrdclement.palette.app.theme.styles.SurfaceStyleScreen
 import com.alexrdclement.palette.app.theme.styles.TextStyleScreen
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
@@ -18,6 +19,7 @@ fun NavGraphBuilder.stylesNavGraph() = navGraph(
     route(StylesCatalogRoute)
     route(ButtonStylesRoute)
     route(BorderStylesRoute)
+    route(SurfaceStylesRoute)
     route(TextStylesRoute)
 }
 
@@ -30,6 +32,7 @@ fun EntryProviderScope<NavKey>.stylesEntryProvider(
             when (style) {
                 Styles.Border -> navController.navigate(BorderStylesRoute)
                 Styles.Button -> navController.navigate(ButtonStylesRoute)
+                Styles.Surface -> navController.navigate(SurfaceStylesRoute)
                 Styles.Text -> navController.navigate(TextStylesRoute)
             }
         },
@@ -46,6 +49,13 @@ fun EntryProviderScope<NavKey>.stylesEntryProvider(
 
     entry<ButtonStylesRoute> {
         ButtonStyleScreen(
+            themeController = themeController,
+            onNavigateUp = navController::goBack,
+        )
+    }
+
+    entry<SurfaceStylesRoute> {
+        SurfaceStyleScreen(
             themeController = themeController,
             onNavigateUp = navController::goBack,
         )

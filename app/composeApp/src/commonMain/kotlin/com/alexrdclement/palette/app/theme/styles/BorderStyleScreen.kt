@@ -13,22 +13,19 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.Styles
+import com.alexrdclement.palette.theme.components.core.border
+import com.alexrdclement.palette.theme.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.modifiers.BorderStyle
-import com.alexrdclement.palette.theme.modifiers.BorderStyleScheme
-import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
-import com.alexrdclement.palette.theme.modifiers.border
-import com.alexrdclement.palette.theme.modifiers.toStyle
+import com.alexrdclement.palette.theme.styles.BorderStyleToken
+import com.alexrdclement.palette.theme.styles.BorderStyleTokenSet
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -51,20 +48,20 @@ fun BorderStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
-            items = state.borderStylesByToken.keys.toList(),
+            items = BorderStyleToken.entries,
             controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) { style ->
+        ) { token ->
             Box(
                 modifier = Modifier
                     .padding(PaletteTheme.spacing.large)
-                    .border(style.toStyle(state.borderStyleScheme)),
+                    .border(state.tokenSet(token)),
             ) {
                 Text(
-                    text = style.name,
-                    style = PaletteTheme.styles.text.headline,
+                    text = token.name,
+                    style = PaletteTheme.styles.core.text.headline,
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
@@ -90,15 +87,8 @@ fun rememberBorderStyleScreenState(
 class BorderStyleScreenState(
     val themeState: ThemeState,
 ) {
-    val styles: Styles
-        get() = themeState.styles
-
-    val borderStyleScheme
-        get() = styles.border
-
-    val borderStylesByToken get() = BorderStyleToken.entries.associateWith { token ->
-        token.toStyle(borderStyleScheme)
-    }
+    fun tokenSet(token: BorderStyleToken): BorderStyleTokenSet =
+        themeState.styles.border.getValue(token)
 }
 
 fun BorderStyleScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
@@ -145,32 +135,27 @@ private fun makeControlForToken(
     state: BorderStyleScreenState,
     themeController: ThemeController,
 ): Control {
+    fun setTokenSet(value: BorderStyleTokenSet) {
+        val styles = state.themeState.styles
+        themeController.setStyles(
+            styles.copy(border = styles.border + (token to value))
+        )
+    }
+
     val contentColorControl = enumControl(
         name = "Color",
         values = { ColorToken.entries },
-        selectedValue = { state.borderStylesByToken[token]!!.color },
+        selectedValue = { state.tokenSet(token).color },
         onValueChange = { newValue ->
-            val styles = state.styles.copy(
-                border = state.styles.border.update(
-                    token = token,
-                    color = newValue,
-                ),
-            )
-            themeController.setStyles(styles)
+            setTokenSet(state.tokenSet(token).update(color = newValue))
         },
     )
 
     val widthControl = Control.Slider(
         name = "Width",
-        value = { state.borderStylesByToken[token]!!.width?.value ?: 0f },
+        value = { state.tokenSet(token).width.value },
         onValueChange = { newValue ->
-            val styles = state.styles.copy(
-                border = state.styles.border.update(
-                    token = token,
-                    width = newValue.dp,
-                ),
-            )
-            themeController.setStyles(styles)
+            setTokenSet(state.tokenSet(token).update(width = newValue.dp))
         },
         valueRange = { 0f..100f },
     )
@@ -178,15 +163,9 @@ private fun makeControlForToken(
     val shapeControl = enumControl(
         name = "Shape",
         values = { ShapeToken.entries },
-        selectedValue = { state.borderStylesByToken[token]!!.shape },
+        selectedValue = { state.tokenSet(token).shape },
         onValueChange = { newValue ->
-            val styles = state.styles.copy(
-                border = state.styles.border.update(
-                    token = token,
-                    shape = newValue,
-                ),
-            )
-            themeController.setStyles(styles)
+            setTokenSet(state.tokenSet(token).update(shape = newValue))
         },
     )
 
@@ -202,49 +181,11 @@ private fun makeControlForToken(
     )
 }
 
-fun BorderStyleScheme.update(
-    token: BorderStyleToken,
+fun BorderStyleTokenSet.update(
     color: ColorToken? = null,
     width: Dp? = null,
     shape: ShapeToken? = null
-): BorderStyleScheme {
-    return when (token) {
-        BorderStyleToken.Primary -> this.copy(
-            primary = this.primary.update(
-                color = color,
-                width = width,
-                shape = shape,
-            )
-        )
-        BorderStyleToken.Secondary -> this.copy(
-            secondary = this.secondary.update(
-                color = color,
-                width = width,
-                shape = shape,
-            )
-        )
-        BorderStyleToken.Tertiary -> this.copy(
-            tertiary = this.tertiary.update(
-                color = color,
-                width = width,
-                shape = shape,
-            )
-        )
-        BorderStyleToken.Surface -> this.copy(
-            surface = this.surface.update(
-                color = color,
-                width = width,
-                shape = shape,
-            )
-        )
-    }
-}
-
-fun BorderStyle.update(
-    color: ColorToken? = null,
-    width: Dp? = null,
-    shape: ShapeToken? = null
-): BorderStyle = this.copy(
+): BorderStyleTokenSet = this.copy(
     color = color ?: this.color,
     width = width ?: this.width,
     shape = shape ?: this.shape,

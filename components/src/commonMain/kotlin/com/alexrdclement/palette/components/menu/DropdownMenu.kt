@@ -5,6 +5,7 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.rememberTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Indication
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -21,14 +22,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,22 +41,29 @@ import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
-import com.alexrdclement.palette.components.LocalContentColor
+import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMaxWidth
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMinHeight
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuItemDefaultMinWidth
 import com.alexrdclement.palette.components.menu.MenuDefaults.DropdownMenuVerticalPadding
 import com.alexrdclement.palette.components.menu.MenuDefaults.InTransitionDuration
 import com.alexrdclement.palette.components.menu.MenuDefaults.OutTransitionDuration
-import com.alexrdclement.palette.theme.ColorScheme
-import com.alexrdclement.palette.theme.LocalPaletteIndication
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.ShapeToken
 import kotlin.math.max
 import kotlin.math.min
 
 // Adapted from Material3's DropdownMenu.
+
+data class DropdownMenuStyle(
+    val surfaceStyle: SurfaceStyle = SurfaceStyle(),
+    val itemStyle: DropdownMenuItemStyle = DropdownMenuItemStyle(),
+)
+
+data class DropdownMenuItemStyle(
+    val indication: Indication? = null,
+    val contentPadding: PaddingValues = MenuDefaults.DropdownMenuItemContentPadding,
+)
 
 @Composable
 fun DropdownMenu(
@@ -65,6 +72,7 @@ fun DropdownMenu(
     modifier: Modifier = Modifier,
     offset: DpOffset = DpOffset(0.dp, 0.dp),
     scrollState: ScrollState = rememberScrollState(),
+    style: DropdownMenuStyle = DropdownMenuStyle(),
     properties: PopupProperties = PopupProperties(focusable = true),
     content: @Composable ColumnScope.() -> Unit
 ) {
@@ -92,6 +100,7 @@ fun DropdownMenu(
                 expandedState = expandedState,
                 transformOriginState = transformOriginState,
                 scrollState = scrollState,
+                style = style,
                 modifier = modifier,
                 content = content
             )
@@ -105,6 +114,7 @@ internal fun DropdownMenuContent(
     transformOriginState: MutableState<TransformOrigin>,
     scrollState: ScrollState,
     modifier: Modifier = Modifier,
+    style: DropdownMenuStyle = DropdownMenuStyle(),
     content: @Composable ColumnScope.() -> Unit
 ) {
     // Menu open/close animation.
@@ -147,7 +157,7 @@ internal fun DropdownMenuContent(
     }
 
     Surface(
-        borderStyle = PaletteTheme.styles.border.surface,
+        style = style.surfaceStyle,
         modifier = Modifier.graphicsLayer {
             scaleX = scale
             scaleY = scale
@@ -171,8 +181,7 @@ fun DropdownMenuItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    colors: MenuItemColors = MenuDefaults.itemColors(),
-    contentPadding: PaddingValues = MenuDefaults.DropdownMenuItemContentPadding,
+    style: DropdownMenuItemStyle = DropdownMenuItemStyle(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     Row(
@@ -181,7 +190,7 @@ fun DropdownMenuItem(
                 enabled = enabled,
                 onClick = onClick,
                 interactionSource = interactionSource,
-                indication = LocalPaletteIndication.current,
+                indication = style.indication,
             )
             .fillMaxWidth()
             // Preferred min and max width used during the intrinsic measurement.
@@ -190,15 +199,11 @@ fun DropdownMenuItem(
                 maxWidth = DropdownMenuItemDefaultMaxWidth,
                 minHeight = DropdownMenuItemDefaultMinHeight,
             )
-            .padding(contentPadding),
+            .padding(style.contentPadding),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        CompositionLocalProvider(
-            LocalContentColor provides colors.textColor(enabled).value,
-        ) {
-            Box(modifier = Modifier.weight(1f)) {
-                text()
-            }
+        Box(modifier = Modifier.weight(1f)) {
+            text()
         }
     }
 }
@@ -271,28 +276,13 @@ class MenuItemColors(
 
 object MenuDefaults {
 
-    @Composable
-    fun itemColors() = PaletteTheme.colorScheme.defaultMenuItemColors
-
-    @Composable
     fun itemColors(
         textColor: Color = Color.Unspecified,
         disabledTextColor: Color = Color.Unspecified,
-    ): MenuItemColors = PaletteTheme.colorScheme.defaultMenuItemColors.copy(
+    ): MenuItemColors = MenuItemColors(
         textColor = textColor,
         disabledTextColor = disabledTextColor,
     )
-
-    internal val ColorScheme.defaultMenuItemColors: MenuItemColors
-        @Composable
-        get() = with(PaletteTheme.colorScheme) {
-            remember(this) {
-                MenuItemColors(
-                    textColor = primary,
-                    disabledTextColor = onSurface.copy(alpha = 0.38f)
-                )
-            }
-        }
 
     // Size defaults.
     internal val MenuVerticalMargin = 48.dp
@@ -311,5 +301,5 @@ object MenuDefaults {
     )
     val DropdownMenuItemDefaultMinHeight = 48.dp
 
-    val ContainerShape = ShapeToken.Primary
+    val ContainerShape: Shape = Shape.Rectangle()
 }

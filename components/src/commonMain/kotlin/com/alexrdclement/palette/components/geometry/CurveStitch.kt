@@ -13,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Surface
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -198,105 +197,93 @@ private fun DrawScope.drawCurveStitch(
 @Preview
 @Composable
 fun CurveStitchPreview() {
-    PaletteTheme {
-        Surface {
-            CurveStitch(
-                start = Offset(0.1f, 0.1f),
-                vertex = Offset(0.1f, 0.9f),
-                end = Offset(0.9f, 0.9f),
-                numLines = 12,
-                strokeWidth = Dp.Hairline,
-                color = PaletteTheme.colorScheme.primary,
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitch(
+            start = Offset(0.1f, 0.1f),
+            vertex = Offset(0.1f, 0.9f),
+            end = Offset(0.9f, 0.9f),
+            numLines = 12,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CurveStitchStarInnerRadius0Preview() {
-    PaletteTheme {
-        Surface {
-            CurveStitchStar(
-                numLines = 12,
-                numPoints = 5,
-                innerRadius = 0f,
-                strokeWidth = Dp.Hairline,
-                color = PaletteTheme.colorScheme.primary,
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitchStar(
+            numLines = 12,
+            numPoints = 5,
+            innerRadius = 0f,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CurveStitchStarPreview() {
-    PaletteTheme {
-        Surface {
-            CurveStitchStar(
-                drawInsidePoints = true,
-                drawOutsidePoints = true,
-                numLines = 12,
-                numPoints = 6,
-                innerRadius = 0.5f,
-                strokeWidth = Dp.Hairline,
-                color = PaletteTheme.colorScheme.primary,
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitchStar(
+            drawInsidePoints = true,
+            drawOutsidePoints = true,
+            numLines = 12,
+            numPoints = 6,
+            innerRadius = 0.5f,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CurveStitchStarInsideOnlyPreview() {
-    PaletteTheme {
-        Surface {
-            CurveStitchStar(
-                drawOutsidePoints = false,
-                numLines = 12,
-                numPoints = 6,
-                innerRadius = 0.5f,
-                strokeWidth = Dp.Hairline,
-                color = PaletteTheme.colorScheme.primary,
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitchStar(
+            drawOutsidePoints = false,
+            numLines = 12,
+            numPoints = 6,
+            innerRadius = 0.5f,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CurveStitchStarOutsideOnlyPreview() {
-    PaletteTheme {
-        Surface {
-            CurveStitchStar(
-                drawInsidePoints = false,
-                numLines = 12,
-                numPoints = 6,
-                innerRadius = 0.5f,
-                strokeWidth = Dp.Hairline,
-                color = PaletteTheme.colorScheme.primary,
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitchStar(
+            drawInsidePoints = false,
+            numLines = 12,
+            numPoints = 6,
+            innerRadius = 0.5f,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CurveStitchShapePreview() {
-    PaletteTheme {
-        Surface {
-            CurveStitchShape(
-                numLines = 12,
-                numPoints = 4,
-                strokeWidth = Dp.Hairline,
-                color = PaletteTheme.colorScheme.primary,
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        CurveStitchShape(
+            numLines = 12,
+            numPoints = 4,
+            strokeWidth = Dp.Hairline,
+            color = Color(0xFF6200EE),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }

@@ -14,43 +14,48 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.navigation.BackNavigationButton
 import com.alexrdclement.palette.components.util.copy
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+
+data class TopBarStyle(
+    val spacing: Dp = 8.dp,
+)
 
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier,
+    style: TopBarStyle = TopBarStyle(),
     navButton: @Composable (() -> Unit)? = null,
     actions: @Composable (() -> Unit)? = null,
     title: @Composable (() -> Unit)? = null,
 ) {
+    val spacing = style.spacing
     val windowInsetsPaddingValues = WindowInsets.systemBars.asPaddingValues().copy(bottom = 0.dp)
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(windowInsetsPaddingValues)
             .consumeWindowInsets(windowInsetsPaddingValues)
-            .padding(vertical = PaletteTheme.spacing.small)
+            .padding(vertical = spacing)
             .wrapContentHeight(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Box(modifier = Modifier.padding(start = PaletteTheme.spacing.small)) {
+        Box(modifier = Modifier.padding(start = spacing)) {
             navButton?.invoke()
         }
         Box(
             modifier = Modifier
                 .weight(1f)
-                .padding(horizontal = PaletteTheme.spacing.small)
+                .padding(horizontal = spacing)
         ) {
             title?.invoke()
         }
-        Box(modifier = Modifier.padding(end = PaletteTheme.spacing.small)) {
+        Box(modifier = Modifier.padding(end = spacing)) {
             actions?.invoke()
         }
     }
@@ -59,53 +64,46 @@ fun TopBar(
 @Preview
 @Composable
 private fun Preview() {
-    PaletteTheme {
-        Surface {
-            TopBar(
-                title = {
-                    Text("Title", style = PaletteTheme.styles.text.headline)
-                }
-            )
-        }
+    Surface {
+        TopBar(
+            title = {
+                Text("Title")
+            }
+        )
     }
 }
 
 @Preview
 @Composable
 private fun NavButtonPreview() {
-    PaletteTheme {
-        Surface {
-            TopBar(
-                title = {
-                    Text("Title", style = PaletteTheme.styles.text.headline)
-                },
-                navButton = {
-                    BackNavigationButton(onClick = {})
-                }
-            )
-        }
+    Surface {
+        TopBar(
+            title = {
+                Text("Title")
+            },
+            navButton = {
+                BackNavigationButton(onClick = {})
+            }
+        )
     }
 }
 
 @Preview
 @Composable
 private fun ActionsPreview() {
-    PaletteTheme {
-        Surface {
-            TopBar(
-                title = {
-                    Text("Title", style = PaletteTheme.styles.text.headline)
-                },
-                actions = {
-                    Button(
-                        style = ButtonStyleToken.Secondary,
-                        onClick = {},
-                        modifier = Modifier.size(48.dp),
-                    ) {
-                        Text("Action")
-                    }
+    Surface {
+        TopBar(
+            title = {
+                Text("Title")
+            },
+            actions = {
+                Button(
+                    onClick = {},
+                    modifier = Modifier.size(48.dp),
+                ) {
+                    Text("Action")
                 }
-            )
-        }
+            }
+        )
     }
 }

@@ -1,15 +1,14 @@
 package com.alexrdclement.palette.app.theme.styles
 
+import com.alexrdclement.palette.theme.PaletteTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.demo.core.TextAlign
@@ -18,22 +17,23 @@ import com.alexrdclement.palette.components.demo.core.TextDemoControl
 import com.alexrdclement.palette.components.demo.core.TextDemoState
 import com.alexrdclement.palette.components.demo.core.TextDemoStateSaver
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.demo.DemoList
+import com.alexrdclement.palette.components.core.copy
+import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.demo.control.spacingTokenPaddingControls
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.ColorToken
 import com.alexrdclement.palette.theme.ShapeToken
-import com.alexrdclement.palette.theme.Styles
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.modifiers.BorderStyleToken
+import com.alexrdclement.palette.theme.styles.BorderStyleToken
 import com.alexrdclement.palette.theme.styles.ButtonStyleToken
-import com.alexrdclement.palette.theme.styles.copy
-import com.alexrdclement.palette.theme.styles.toStyle
+import com.alexrdclement.palette.theme.styles.ButtonStyleTokenSet
+import com.alexrdclement.palette.theme.toColor
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -56,21 +56,30 @@ fun ButtonStyleScreen(
         },
     ) { paddingValues ->
         DemoList(
-            items = state.buttonStylesByToken.keys.toList(),
+            items = ButtonStyleToken.entries,
             controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
         ) { style ->
+            val textDemoState = state.textDemoState(style)
+            val contentColor = when (style) {
+                ButtonStyleToken.Primary -> ColorToken.OnPrimary
+                ButtonStyleToken.Secondary -> ColorToken.Secondary
+                ButtonStyleToken.Tertiary -> ColorToken.Primary
+            }.toColor()
+            LaunchedEffect(textDemoState, contentColor) {
+                textDemoState.textStyleDemoState.color = contentColor
+            }
             Button(
-                style = style,
+                style = PaletteTheme.styles.core.button[style],
                 onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
                 this@DemoList.TextDemo(
-                    state = state.textDemoState,
-                    control = control.textDemoControl,
+                    state = textDemoState,
+                    control = control.textDemoControl(style),
                 )
             }
         }
@@ -80,19 +89,21 @@ fun ButtonStyleScreen(
 @Composable
 fun rememberButtonStyleScreenState(
     themeState: ThemeState,
-    textDemoStateInitial: TextDemoState = TextDemoState(
-        textAlignInitial = TextAlign.Center,
-        autoSizeInitial = true,
-    ),
+    textDemoStatesInitial: Map<ButtonStyleToken, TextDemoState> =
+        ButtonStyleToken.entries.associateWith {
+            TextDemoState(
+                textAlignInitial = TextAlign.Center,
+                autoSizeInitial = true,
+            )
+        },
 ): ButtonStyleScreenState {
     return rememberSaveable(
         themeState,
-        textDemoStateInitial,
         saver = ButtonStyleScreenStateSaver(themeState),
     ) {
         ButtonStyleScreenState(
             themeState = themeState,
-            textDemoStateInitial = textDemoStateInitial,
+            textDemoStates = textDemoStatesInitial,
         )
     }
 }
@@ -100,34 +111,27 @@ fun rememberButtonStyleScreenState(
 @Stable
 class ButtonStyleScreenState(
     val themeState: ThemeState,
-    textDemoStateInitial: TextDemoState,
+    val textDemoStates: Map<ButtonStyleToken, TextDemoState>,
 ) {
-    val styles: Styles
-        get() = themeState.styles
+    fun tokenSet(token: ButtonStyleToken): ButtonStyleTokenSet =
+        themeState.styles.button.getValue(token)
 
-    val buttonStyles
-        get() = styles.button
-
-    val buttonStylesByToken get() = ButtonStyleToken.entries.associateWith { token ->
-        token.toStyle(buttonStyles)
-    }
-
-    var textDemoState by mutableStateOf(textDemoStateInitial)
-        internal set
+    fun textDemoState(token: ButtonStyleToken): TextDemoState =
+        textDemoStates.getValue(token)
 }
-
-private const val textDemoStateKey = "buttonDemoState"
 
 fun ButtonStyleScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
     save = { state ->
-        mapOf(
-            textDemoStateKey to save(state.textDemoState, TextDemoStateSaver, this)
-        )
+        ButtonStyleToken.entries.associate { token ->
+            token.name to save(state.textDemoState(token), TextDemoStateSaver, this)
+        }
     },
     restore = { map ->
         ButtonStyleScreenState(
             themeState = themeState,
-            textDemoStateInitial = restore(map[textDemoStateKey], TextDemoStateSaver)!!,
+            textDemoStates = ButtonStyleToken.entries.associateWith { token ->
+                restore(map[token.name], TextDemoStateSaver)!!
+            },
         )
     }
 )
@@ -147,140 +151,99 @@ class ButtonStyleScreenControl(
     val state: ButtonStyleScreenState,
     val themeController: ThemeController,
 ) {
+    private val textDemoControls: Map<ButtonStyleToken, TextDemoControl> =
+        ButtonStyleToken.entries.associateWith { token ->
+            TextDemoControl(state.textDemoState(token))
+        }
+
     val buttonStyleControls = ButtonStyleToken.entries.map { token ->
         makeControlForToken(
             token = token,
             state = state,
             themeController = themeController,
+            textDemoControl = textDemoControls.getValue(token),
         )
     }
 
-    val textDemoControl = TextDemoControl(state.textDemoState)
-
     val controls: PersistentList<Control> = persistentListOf(
         *buttonStyleControls.toTypedArray(),
-        Control.ControlColumn(
-            name = "Demo text controls",
-            indent = true,
-            controls = { textDemoControl.controls },
-            expandedInitial = false,
-        )
     )
+
+    fun textDemoControl(token: ButtonStyleToken): TextDemoControl =
+        textDemoControls.getValue(token)
 }
 
 private fun makeControlForToken(
     token: ButtonStyleToken,
     state: ButtonStyleScreenState,
     themeController: ThemeController,
+    textDemoControl: TextDemoControl,
 ): Control {
-    val contentColorControl = enumControl(
-        name = "Content color",
-        values = { ColorToken.entries },
-        selectedValue = { state.buttonStylesByToken[token]!!.contentColor },
-        onValueChange = { newValue ->
-            val buttonStyles = state.buttonStyles.copy(
-                token = token,
-                value = state.buttonStylesByToken[token]!!.copy(
-                    contentColor = newValue
-                )
-            )
-            val styles = state.styles.copy(
-                button = buttonStyles,
-            )
-            themeController.setStyles(styles)
-        },
-    )
+    fun setTokenSet(value: ButtonStyleTokenSet) {
+        val styles = state.themeState.styles
+        themeController.setStyles(
+            styles.copy(button = styles.button + (token to value))
+        )
+    }
+
+    fun defaultBorder() = when (token) {
+        ButtonStyleToken.Primary -> BorderStyleToken.Primary
+        ButtonStyleToken.Secondary -> BorderStyleToken.Secondary
+        ButtonStyleToken.Tertiary -> BorderStyleToken.Tertiary
+    }
 
     val containerColorControl = enumControl(
         name = "Container color",
         values = { ColorToken.entries },
-        selectedValue = { state.buttonStylesByToken[token]!!.containerColor },
+        selectedValue = { state.tokenSet(token).containerColor },
         onValueChange = { newValue ->
-            val buttonStyles = state.buttonStyles.copy(
-                token = token,
-                value = state.buttonStylesByToken[token]!!.copy(
-                    containerColor = newValue
-                )
-            )
-            val styles = state.styles.copy(
-                button = buttonStyles,
-            )
-            themeController.setStyles(styles)
+            setTokenSet(state.tokenSet(token).copy(containerColor = newValue))
         },
     )
 
     val shapeControl = enumControl(
         name = "Shape",
         values = { ShapeToken.entries },
-        selectedValue = { state.buttonStylesByToken[token]!!.shape },
+        selectedValue = { state.tokenSet(token).shape },
         onValueChange = { newValue ->
-            val buttonStyles = state.buttonStyles.copy(
-                token = token,
-                value = state.buttonStylesByToken[token]!!.copy(
-                    shape = newValue,
-                )
-            )
-            val styles = state.styles.copy(
-                button = buttonStyles,
-            )
-            themeController.setStyles(styles)
+            setTokenSet(state.tokenSet(token).copy(shape = newValue))
         },
     )
 
     val borderStyleToggleControl = Control.Toggle(
         name = "Border",
-        value = { state.buttonStylesByToken[token]!!.borderStyle != null },
+        value = { state.tokenSet(token).borderStyle != null },
         onValueChange = { newValue ->
             val border = if (newValue) {
-                state.buttonStylesByToken[token]!!.borderStyle ?: when (token) {
-                    ButtonStyleToken.Primary -> BorderStyleToken.Primary
-                    ButtonStyleToken.Secondary -> BorderStyleToken.Secondary
-                    ButtonStyleToken.Tertiary -> BorderStyleToken.Tertiary
-                }
+                state.tokenSet(token).borderStyle ?: defaultBorder()
             } else {
                 null
             }
-            val buttonStyles = state.buttonStyles.copy(
-                token = token,
-                value = state.buttonStylesByToken[token]!!.copy(
-                    borderStyle = border,
-                )
-            )
-            val styles = state.styles.copy(
-                button = buttonStyles,
-            )
-            themeController.setStyles(styles)
+            setTokenSet(state.tokenSet(token).copy(borderStyle = border))
         },
     )
 
     val borderStyleControl = enumControl(
         name = "Border style",
         values = { BorderStyleToken.entries },
-        selectedValue = {
-            state.buttonStylesByToken[token]!!.borderStyle ?: when (token) {
-                ButtonStyleToken.Primary -> BorderStyleToken.Primary
-                ButtonStyleToken.Secondary -> BorderStyleToken.Secondary
-                ButtonStyleToken.Tertiary -> BorderStyleToken.Tertiary
-            }
-        },
+        selectedValue = { state.tokenSet(token).borderStyle ?: defaultBorder() },
         onValueChange = { newValue ->
-            val buttonStyles = state.buttonStyles.copy(
-                token = token,
-                value = state.buttonStylesByToken[token]!!.copy(
-                    borderStyle = newValue,
-                )
-            )
-            val styles = state.styles.copy(
-                button = buttonStyles,
-            )
-            themeController.setStyles(styles)
+            setTokenSet(state.tokenSet(token).copy(borderStyle = newValue))
+        },
+    )
+
+    val contentPaddingControl = spacingTokenPaddingControls(
+        name = "Content padding",
+        value = { state.tokenSet(token).contentPadding },
+        onValueChange = { newValue ->
+            setTokenSet(state.tokenSet(token).copy(contentPadding = newValue))
         },
     )
 
     return Control.ControlColumn(
         name = token.name,
         controls = {
-            val borderControls = if (state.buttonStylesByToken[token]!!.borderStyle != null) {
+            val borderControls = if (state.tokenSet(token).borderStyle != null) {
                 listOf(
                     borderStyleToggleControl,
                     borderStyleControl,
@@ -289,10 +252,16 @@ private fun makeControlForToken(
                 listOf(borderStyleToggleControl)
             }
             persistentListOf(
-                contentColorControl,
                 containerColorControl,
                 shapeControl,
-                *borderControls.toTypedArray()
+                *borderControls.toTypedArray(),
+                contentPaddingControl,
+                Control.ControlColumn(
+                    name = "Demo text",
+                    indent = true,
+                    controls = { textDemoControl.controls },
+                    expandedInitial = false,
+                ),
             )
         },
     )

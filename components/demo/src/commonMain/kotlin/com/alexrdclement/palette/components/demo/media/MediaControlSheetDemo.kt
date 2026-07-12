@@ -8,10 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -49,8 +49,8 @@ fun MediaControlSheetDemo(
             .fillMaxSize()
             .padding(WindowInsets.safeDrawing.horizontalPaddingValues())
     ) {
-        Text(text = "Current value ${state.currentValue}", style = PaletteTheme.styles.text.labelLarge)
-        Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.text.labelLarge)
+        Text(text = "Current value ${state.currentValue}", style = PaletteTheme.styles.core.text.labelLarge)
+        Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.core.text.labelLarge)
     }
 
     BoxWithConstraints(
@@ -72,7 +72,8 @@ fun MediaControlSheetDemo(
                 }
             },
             state = state,
-            maxContentSize = DpSize(
+            style = PaletteTheme.styles.media.mediaControlSheet,
+            expandedContentSize = DpSize(
                 width = Dp.Infinity,
                 height = with(LocalDensity.current) { maxHeight.toDp() / 2f },
             ),
@@ -86,8 +87,8 @@ fun MediaControlSheetDemo(
                         alpha = state.partialToFullProgress
                     }
             ) {
-                Text(text = "Current value ${state.currentValue}", style = PaletteTheme.styles.text.labelLarge)
-                Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.text.labelLarge)
+                Text(text = "Current value ${state.currentValue}", style = PaletteTheme.styles.core.text.labelLarge)
+                Text(text = "Target value ${state.targetValue}", style = PaletteTheme.styles.core.text.labelLarge)
             }
         }
     }

@@ -12,9 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,8 +29,10 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.isSpecified
 import com.alexrdclement.palette.components.MediaControlBarContentDescription
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.media.model.Artist
 import com.alexrdclement.palette.components.media.model.MediaItem
@@ -39,14 +41,27 @@ import com.alexrdclement.palette.components.util.calculateEndPadding
 import com.alexrdclement.palette.components.util.calculateHorizontalPadding
 import com.alexrdclement.palette.components.util.calculateStartPadding
 import com.alexrdclement.palette.components.util.calculateVerticalPadding
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.util.toIntSize
 import com.alexrdclement.palette.components.util.toPx
-import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.trace.trace
 import kotlin.math.roundToInt
 
 private const val TraceName = "MediaControlBar"
 private const val ArtworkTraceName = "$TraceName:MediaItemArtwork"
+
+data class MediaControlBarStyle(
+    val titleStyle: TextStyle = TextStyle(),
+    val artistStyle: TextStyle = TextStyle(),
+    val contentSpacing: Dp = 8.dp,
+    val playPauseButtonSize: Dp = 52.dp,
+    val contentPadding: PaddingValues = PaddingValues(0.dp),
+    val minContentSize: DpSize = DpSize(width = 64.dp, height = 64.dp),
+    val maxContentSize: DpSize = DpSize(width = Dp.Infinity, height = Dp.Infinity),
+    val artworkStyle: MediaItemArtworkStyle = MediaItemArtworkStyle(),
+    val playPauseButtonStyle: PlayPauseButtonStyle = PlayPauseButtonStyle(),
+    val surfaceStyle: SurfaceStyle = SurfaceStyle(),
+)
 
 private data class CachedSizes(
     val minContentWidth: Float,
@@ -59,24 +74,36 @@ private data class CachedSizes(
     val yDelta: Float,
 )
 
+/**
+ * @param expandedContentSize Size the artwork animates to at full [progress], clamped to
+ *   [MediaControlBarStyle.minContentSize]..[MediaControlBarStyle.maxContentSize] and the incoming
+ *   constraints. [DpSize.Unspecified] (default) fills the available space up to the style's max.
+ */
 @Composable
 fun MediaControlBar(
     mediaItem: MediaItem,
     isPlaying: Boolean,
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaddingValues(0.dp),
-    minContentSize: DpSize = DpSize(width = 64.dp, height = 64.dp),
-    maxContentSize: DpSize = DpSize(width = Dp.Infinity, height = Dp.Infinity),
+    style: MediaControlBarStyle = MediaControlBarStyle(),
+    expandedContentSize: DpSize = DpSize.Unspecified,
     progress: () -> Float = { 0f },
     onClick: () -> Unit = {},
     stateDescription: String? = null,
 ) {
     trace(TraceName) {
+        val contentPadding = style.contentPadding
         val paddingWidthPx = contentPadding.calculateHorizontalPadding().toPx()
         val paddingHeightPx = contentPadding.calculateVerticalPadding().toPx()
-        val minContentSizePx = minContentSize.toIntSize()
-        val maxContentSizePx = maxContentSize.toIntSize()
+        val minContentSizePx = style.minContentSize.toIntSize()
+        val maxContentSizePx = DpSize(
+            width = if (expandedContentSize.width.isSpecified) {
+                minOf(expandedContentSize.width, style.maxContentSize.width)
+            } else style.maxContentSize.width,
+            height = if (expandedContentSize.height.isSpecified) {
+                minOf(expandedContentSize.height, style.maxContentSize.height)
+            } else style.maxContentSize.height,
+        ).toIntSize()
 
         BoxWithConstraints {
             val maxWidthPx = constraints.maxWidth
@@ -128,7 +155,7 @@ fun MediaControlBar(
                 )
             }
 
-            Surface(onClick = onClick) {
+            Surface(onClick = onClick, style = style.surfaceStyle) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
@@ -148,6 +175,7 @@ fun MediaControlBar(
 
                     MediaItemArtwork(
                         imageUrl = mediaItem.artworkLargeUrl,
+                        style = style.artworkStyle,
                         modifier = Modifier
                             .layout { measurable, constraints ->
                                 trace("$ArtworkTraceName:layout") {
@@ -181,21 +209,21 @@ fun MediaControlBar(
                         verticalArrangement = Arrangement.Center,
                         modifier = Modifier
                             .weight(1f)
-                            .padding(horizontal = PaletteTheme.spacing.small)
+                            .padding(horizontal = style.contentSpacing)
                             .graphicsLayer {
                                 alpha = 1f - progress()
                             }
                     ) {
                         Text(
                             text = mediaItem.title,
-                            style = PaletteTheme.styles.text.titleMedium,
+                            style = style.titleStyle,
                             maxLines = 1,
                             modifier = Modifier
                                 .basicMarquee()
                         )
                         Text(
                             text = mediaItem.artists.joinToString { it.name },
-                            style = PaletteTheme.styles.text.bodyMedium,
+                            style = style.artistStyle,
                             maxLines = 1,
                             modifier = Modifier
                                 .basicMarquee()
@@ -205,9 +233,10 @@ fun MediaControlBar(
                     PlayPauseButton(
                         onClick = onPlayPauseClick,
                         isPlaying = isPlaying,
+                        style = style.playPauseButtonStyle,
                         modifier = Modifier
-                            .size(52.dp)
-                            .padding(PaletteTheme.spacing.small)
+                            .size(style.playPauseButtonSize)
+                            .padding(style.contentSpacing)
                             .graphicsLayer {
                                 alpha = 1f - progress()
                             }
@@ -229,19 +258,16 @@ private class ProgressPreviewParameterProvider : PreviewParameterProvider<Float>
 private fun Preview(
     @PreviewParameter(ProgressPreviewParameterProvider::class) progress: Float
 ) {
-    PaletteTheme {
-        var isPlaying by remember { mutableStateOf(false) }
-        MediaControlBar(
-            mediaItem = MediaItem(
-                artworkThumbnailUrl = null,
-                artworkLargeUrl = null,
-                title = "Title",
-                artists = listOf(Artist("Artist 1"), Artist("Artist 2")),
-            ),
-            isPlaying = isPlaying,
-            onPlayPauseClick = { isPlaying = !isPlaying },
-            progress = { progress },
-            minContentSize = DpSize(64.dp, 64.dp),
-        )
-    }
+    var isPlaying by remember { mutableStateOf(false) }
+    MediaControlBar(
+        mediaItem = MediaItem(
+            artworkThumbnailUrl = null,
+            artworkLargeUrl = null,
+            title = "Title",
+            artists = listOf(Artist("Artist 1"), Artist("Artist 2")),
+        ),
+        isPlaying = isPlaying,
+        onPlayPauseClick = { isPlaying = !isPlaying },
+        progress = { progress },
+    )
 }

@@ -11,9 +11,11 @@ android {
 
 dependencies {
     implementation(projects.components)
+    implementation(projects.theme)
     testImplementation(libs.junit)
     testImplementation(libs.test.parameter.injector)
     testImplementation(projects.components)
+    testImplementation(projects.theme)
     testImplementation(projects.testing)
     androidTestImplementation(libs.androidx.test.ext.junit)
 }

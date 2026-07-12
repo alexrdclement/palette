@@ -4,24 +4,32 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexrdclement.palette.theme.PaletteTheme
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+data class ConfirmCancelButtonRowStyle(
+    val buttonStyle: ConfirmButtonStyle = ConfirmButtonStyle(),
+    val spacing: Dp = 16.dp,
+)
 
 @Composable
 fun ConfirmCancelButtonRow(
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
+    style: ConfirmCancelButtonRowStyle = ConfirmCancelButtonRowStyle(),
 ) {
     DialogContentButtonRow(
         modifier = modifier,
     ) {
         CancelButton(
             onDismiss = onDismiss,
+            style = style.buttonStyle,
         )
         ConfirmButton(
             onConfirm = onConfirm,
+            style = style.buttonStyle,
             modifier = Modifier
-                .padding(start = PaletteTheme.spacing.medium)
+                .padding(start = style.spacing)
         )
     }
 }
@@ -29,10 +37,8 @@ fun ConfirmCancelButtonRow(
 @Preview
 @Composable
 fun ConfirmCancelButtonRowPreview() {
-    PaletteTheme {
-        ConfirmCancelButtonRow(
-            onConfirm = {},
-            onDismiss = {},
-        )
-    }
+    ConfirmCancelButtonRow(
+        onConfirm = {},
+        onDismiss = {},
+    )
 }

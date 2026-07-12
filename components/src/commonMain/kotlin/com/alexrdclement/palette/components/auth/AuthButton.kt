@@ -6,9 +6,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.ButtonStyle
+import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.ButtonStyleToken
+import com.alexrdclement.palette.components.core.TextStyle
 
 enum class AuthState {
     Loading,
@@ -16,19 +17,18 @@ enum class AuthState {
     LoggedIn,
 }
 
-enum class AuthButtonStyle {
-    Primary,
-    Secondary,
-    Tertiary,
-}
+data class AuthButtonStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle(),
+    val textStyle: TextStyle = TextStyle(),
+)
 
 @Composable
 fun AuthButton(
     authState: AuthState,
-    style: AuthButtonStyle,
     onLogInClick: () -> Unit,
     onLogOutClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: AuthButtonStyle = AuthButtonStyle(),
 ) {
     when (authState) {
         AuthState.Loading -> AuthButtonText(
@@ -51,9 +51,9 @@ fun AuthButton(
 
 @Composable
 fun LogInButton(
-    style: AuthButtonStyle,
     onLogInClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: AuthButtonStyle = AuthButtonStyle(),
 ) {
     AuthButton(
         authState = AuthState.LoggedOut,
@@ -65,9 +65,9 @@ fun LogInButton(
 
 @Composable
 fun LogOutButton(
-    style: AuthButtonStyle,
     onLogOutClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: AuthButtonStyle = AuthButtonStyle(),
 ) {
     AuthButton(
         authState = AuthState.LoggedIn,
@@ -80,16 +80,12 @@ fun LogOutButton(
 @Composable
 fun AuthButton(
     authState: AuthState,
-    style: AuthButtonStyle,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: AuthButtonStyle = AuthButtonStyle(),
 ) {
     Button(
-        style = when (style) {
-            AuthButtonStyle.Primary -> ButtonStyleToken.Primary
-            AuthButtonStyle.Secondary -> ButtonStyleToken.Secondary
-            AuthButtonStyle.Tertiary -> ButtonStyleToken.Tertiary
-        },
+        style = style.buttonStyle,
         onClick = onClick,
         modifier = modifier,
     ) {
@@ -103,8 +99,8 @@ fun AuthButton(
 @Composable
 fun AuthButtonText(
     authState: AuthState,
-    style: AuthButtonStyle,
     modifier: Modifier = Modifier,
+    style: AuthButtonStyle = AuthButtonStyle(),
 ) {
     Text(
         text = when (authState) {
@@ -112,11 +108,7 @@ fun AuthButtonText(
             AuthState.LoggedIn -> "Log out"
             AuthState.LoggedOut -> "Log in"
         },
-        style = when (style) {
-            AuthButtonStyle.Primary -> PaletteTheme.styles.text.labelLarge
-            AuthButtonStyle.Secondary -> PaletteTheme.styles.text.labelSmall
-            AuthButtonStyle.Tertiary -> PaletteTheme.styles.text.labelSmall
-        },
+        style = style.textStyle,
         modifier = modifier,
     )
 }
@@ -125,20 +117,14 @@ internal class AuthStatePreviewParameterProvider : PreviewParameterProvider<Auth
     override val values = sequenceOf(AuthState.Loading, AuthState.LoggedOut, AuthState.LoggedIn)
 }
 
-internal class AuthButtonStylePreviewParameterProvider : PreviewParameterProvider<AuthButtonStyle> {
-    override val values = sequenceOf(AuthButtonStyle.Primary, AuthButtonStyle.Secondary)
-}
-
 @Preview
 @Composable
 fun PreviewAuthButton(
     @PreviewParameter(AuthStatePreviewParameterProvider::class) authState: AuthState,
-    @PreviewParameter(AuthButtonStylePreviewParameterProvider::class) buttonStyle: AuthButtonStyle,
 ) {
-    PaletteTheme {
+    Surface {
         AuthButton(
             authState = authState,
-            style = buttonStyle,
             onLogInClick = {},
             onLogOutClick = {},
         )

@@ -1,19 +1,22 @@
 package com.alexrdclement.palette.components.demo.media
 
+import com.alexrdclement.palette.theme.PaletteTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
+import com.alexrdclement.palette.components.demo.control.paddingValuesControls
 import com.alexrdclement.palette.components.media.PlayPauseButton
+import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -22,6 +25,8 @@ fun PlayPauseButtonDemo(
 ) {
     var isPlaying by remember { mutableStateOf(false) }
     var isEnabled by remember { mutableStateOf(true) }
+    val base = PaletteTheme.styles.media.playPauseButton
+    var contentPadding by remember { mutableStateOf(base.buttonStyle.contentPadding) }
 
     val controls = persistentListOf(
         Control.Toggle(
@@ -34,6 +39,20 @@ fun PlayPauseButtonDemo(
             value = { isEnabled },
             onValueChange = { isEnabled = it },
         ),
+        Control.ControlColumn(
+            name = "Style",
+            indent = true,
+            expandedInitial = true,
+            controls = {
+                persistentListOf(
+                    paddingValuesControls(
+                        name = "Content padding",
+                        value = { contentPadding },
+                        onValueChange = { contentPadding = it },
+                    ),
+                )
+            },
+        ),
     )
 
     Demo(
@@ -45,6 +64,7 @@ fun PlayPauseButtonDemo(
             isPlaying = isPlaying,
             isEnabled = isEnabled,
             onPlayPauseClick = { isPlaying = !isPlaying },
+            style = base.copy(buttonStyle = base.buttonStyle.copy(contentPadding = contentPadding)),
         )
     }
 }
@@ -55,11 +75,13 @@ fun DemoScope.PlayPauseButtonDemo(
     isEnabled: Boolean,
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: PlayPauseButtonStyle = PaletteTheme.styles.media.playPauseButton,
 ) {
     PlayPauseButton(
         onClick = onPlayPauseClick,
         isPlaying = isPlaying,
         isEnabled = isEnabled,
+        style = style,
         modifier = modifier
             .size(52.dp)
             .align(Alignment.Center),

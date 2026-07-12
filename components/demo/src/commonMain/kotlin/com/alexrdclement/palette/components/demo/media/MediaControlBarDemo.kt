@@ -1,21 +1,24 @@
 package com.alexrdclement.palette.components.demo.media
 
+import com.alexrdclement.palette.theme.PaletteTheme
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.DpSize
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
+import com.alexrdclement.palette.components.demo.control.paddingValuesControls
 import com.alexrdclement.palette.components.media.MediaControlBar
+import com.alexrdclement.palette.components.media.MediaControlBarStyle
 import com.alexrdclement.palette.components.media.model.Artist
 import com.alexrdclement.palette.components.media.model.MediaItem
 import kotlinx.collections.immutable.persistentListOf
@@ -33,6 +36,8 @@ fun MediaControlBarDemo(
 ) {
     var progress by remember { mutableFloatStateOf(0f) }
     var isPlaying by remember { mutableStateOf(false) }
+    val contentPaddingInitial = PaletteTheme.styles.media.mediaControlBar.contentPadding
+    var contentPadding by remember { mutableStateOf(contentPaddingInitial) }
 
     val controls = persistentListOf(
         Control.Slider(
@@ -45,6 +50,20 @@ fun MediaControlBarDemo(
             value = { isPlaying },
             onValueChange = { isPlaying = it },
         ),
+        Control.ControlColumn(
+            name = "Style",
+            indent = true,
+            expandedInitial = true,
+            controls = {
+                persistentListOf(
+                    paddingValuesControls(
+                        name = "Content padding",
+                        value = { contentPadding },
+                        onValueChange = { contentPadding = it },
+                    ),
+                )
+            },
+        ),
     )
 
     Demo(
@@ -56,6 +75,7 @@ fun MediaControlBarDemo(
             progress = { progress },
             isPlaying = isPlaying,
             onPlayPauseClick = { isPlaying = !isPlaying },
+            style = PaletteTheme.styles.media.mediaControlBar.copy(contentPadding = contentPadding),
         )
     }
 }
@@ -66,6 +86,7 @@ fun DemoScope.MediaControlBarDemo(
     isPlaying: Boolean,
     onPlayPauseClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: MediaControlBarStyle = PaletteTheme.styles.media.mediaControlBar,
 ) {
     BoxWithConstraints(modifier = modifier.fillMaxWidth()) {
         val maxHeight = constraints.maxHeight
@@ -74,7 +95,8 @@ fun DemoScope.MediaControlBarDemo(
             isPlaying = isPlaying,
             onPlayPauseClick = onPlayPauseClick,
             progress = progress,
-            maxContentSize = DpSize(
+            style = style,
+            expandedContentSize = DpSize(
                 width = maxWidth,
                 height = with(LocalDensity.current) { maxHeight.toDp() / 2f },
             ),

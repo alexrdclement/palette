@@ -9,32 +9,37 @@ import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Surface
-import com.alexrdclement.palette.theme.ColorToken
-import com.alexrdclement.palette.theme.PaletteTheme
+
+data class BackNavigationButtonStyle(
+    val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(16.dp)),
+    val iconColor: Color = Color.Unspecified,
+    val size: Dp = 48.dp,
+)
 
 @Composable
 fun BackNavigationButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: BackNavigationButtonStyle = BackNavigationButtonStyle(),
 ) {
     Button(
         onClick = onClick,
-        contentColor = ColorToken.Primary,
-        containerColor = ColorToken.Surface,
-        borderStyle = null,
-        contentPadding = PaddingValues(PaletteTheme.spacing.medium),
-        modifier = modifier.size(48.dp),
+        style = style.buttonStyle,
+        modifier = modifier.size(style.size),
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .clip(BackNavigationIconShape)
-                .background(PaletteTheme.colorScheme.primary)
+                .background(style.iconColor)
         )
     }
 }
@@ -51,11 +56,9 @@ private val BackNavigationIconShape: Shape = GenericShape { size, _ ->
 @Preview
 @Composable
 private fun BackNavigationButtonPreview() {
-    PaletteTheme {
-        Surface {
-            BackNavigationButton(
-                onClick = {},
-            )
-        }
+    Surface {
+        BackNavigationButton(
+            onClick = {},
+        )
     }
 }

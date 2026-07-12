@@ -20,22 +20,27 @@ import androidx.compose.foundation.text.input.then
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.components.LocalContentColor
+import androidx.compose.ui.unit.Dp
 import com.alexrdclement.palette.formats.core.inputTransformation
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.TextStyle
+
+data class TextFieldStyle(
+    val textStyle: TextStyle = TextStyle(),
+    val cursorBrush: Brush = SolidColor(Color.Unspecified),
+    val borderStroke: BorderStroke = BorderStroke(1.dp, Color.Unspecified),
+    val contentPadding: Dp = 8.dp,
+)
 
 @Composable
 fun TextField(
     state: TextFieldState,
-    textStyle: TextStyle,
     modifier: Modifier = Modifier,
+    style: TextFieldStyle = TextFieldStyle(),
     enabled: Boolean = true,
     readOnly: Boolean = false,
     inputTransformation: InputTransformation? = null,
@@ -44,12 +49,14 @@ fun TextField(
     lineLimits: TextFieldLineLimits = TextFieldLineLimits.Default,
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     interactionSource: MutableInteractionSource? = null,
-    cursorBrush: Brush = TextFieldDefaults.CursorBrush,
     outputTransformation: OutputTransformation? = null,
-    decorator: TextFieldDecorator? = TextFieldDefaults.TextFieldDecorator,
+    decorator: TextFieldDecorator? = null,
     scrollState: ScrollState = rememberScrollState(),
 ) {
-    val color = textStyle.composeTextStyle.color.takeOrElse { LocalContentColor.current }
+    val textStyle = style.textStyle
+    val resolvedDecorator = decorator
+        ?: TextFieldDefaults.textFieldDecorator(style.borderStroke, style.contentPadding)
+    val color = textStyle.composeTextStyle.color
 
     val formatInputTransformation = textStyle.format.inputTransformation
     val combinedInputTransformation = when {
@@ -69,47 +76,44 @@ fun TextField(
         lineLimits = lineLimits,
         onTextLayout = onTextLayout,
         interactionSource = interactionSource,
-        cursorBrush = cursorBrush,
+        cursorBrush = style.cursorBrush,
         outputTransformation = outputTransformation,
-        decorator = decorator,
+        decorator = resolvedDecorator,
         scrollState = scrollState,
     )
 }
 
 object TextFieldDefaults {
-    val CursorBrush: Brush
-        @Composable
-        get() = SolidColor(PaletteTheme.colorScheme.primary)
+    val CursorBrush: Brush = SolidColor(Color.Unspecified)
 
-    val BorderStroke: BorderStroke
-        @Composable
-        get() = BorderStroke(
-            width = 1.dp,
-            color = PaletteTheme.colorScheme.outline,
-        )
+    val BorderStroke: BorderStroke = BorderStroke(
+        width = 1.dp,
+        color = Color.Unspecified,
+    )
 
-    val TextFieldDecorator: TextFieldDecorator
-        @Composable
-        get() = TextFieldDecorator { innerTextField ->
-            Box(
-                modifier = Modifier
-                    .border(BorderStroke)
-                    .padding(PaletteTheme.spacing.small),
-            ) {
-                innerTextField()
-            }
+    val Padding = 8.dp
+
+    @Composable
+    fun textFieldDecorator(
+        borderStroke: BorderStroke = BorderStroke,
+        padding: androidx.compose.ui.unit.Dp = Padding,
+    ): TextFieldDecorator = TextFieldDecorator { innerTextField ->
+        Box(
+            modifier = Modifier
+                .border(borderStroke)
+                .padding(padding),
+        ) {
+            innerTextField()
         }
+    }
 }
 
 @Preview
 @Composable
 private fun Preview() {
-    PaletteTheme {
-        Surface {
-            TextField(
-                state = rememberTextFieldState("text"),
-                textStyle = PaletteTheme.styles.text.bodyMedium,
-            )
-        }
+    Surface {
+        TextField(
+            state = rememberTextFieldState("text"),
+        )
     }
 }

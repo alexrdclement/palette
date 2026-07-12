@@ -13,11 +13,10 @@ import com.alexrdclement.palette.theme.PaletteIndication
 import com.alexrdclement.palette.theme.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.PaletteShapeScheme
 import com.alexrdclement.palette.theme.PaletteSpacing
-import com.alexrdclement.palette.theme.PaletteStyles
 import com.alexrdclement.palette.theme.PaletteTypography
 import com.alexrdclement.palette.theme.ShapeScheme
 import com.alexrdclement.palette.theme.Spacing
-import com.alexrdclement.palette.theme.Styles
+import com.alexrdclement.palette.theme.styles.Styles
 import com.alexrdclement.palette.theme.Typography
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.PaletteFormats
@@ -46,7 +45,7 @@ internal class ThemeStateImpl(
     indicationInitial: Indication = PaletteIndication,
     spacingInitial: Spacing = PaletteSpacing,
     formatsInitial: Formats = PaletteFormats,
-    stylesInitial: Styles = PaletteStyles,
+    stylesInitial: Styles = Styles(),
 ) : ThemeState {
     override var typography by mutableStateOf(typographyInitial)
     override var shapeScheme by mutableStateOf(shapeSchemeInitial)

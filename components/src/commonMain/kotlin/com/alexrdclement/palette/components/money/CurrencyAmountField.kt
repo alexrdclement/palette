@@ -13,28 +13,38 @@ import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
+import com.alexrdclement.palette.components.core.TextFieldStyle
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.formats.core.NumberFormatInputTransformation
 import com.alexrdclement.palette.formats.core.NumberFormatOutputTransformation
 import com.alexrdclement.palette.formats.money.MoneyFormat
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.copy
+
+data class CurrencyAmountFieldStyle(
+    val textFieldStyle: TextFieldStyle = TextFieldStyle(),
+    val placeholderStyle: TextStyle = TextStyle(),
+    val padding: Dp = 16.dp,
+    val spacing: Dp = 8.dp,
+)
 
 @Composable
 fun CurrencyAmountField(
     moneyFormat: MoneyFormat,
     textFieldState: TextFieldState = rememberTextFieldState(),
+    style: CurrencyAmountFieldStyle = CurrencyAmountFieldStyle(),
     placeholder: String = "0",
     includeCurrencyPrefix: Boolean = true,
-    maxNumDecimalValues: Int = 2
+    maxNumDecimalValues: Int = 2,
 ) {
     TextField(
         state = textFieldState,
-        textStyle = PaletteTheme.styles.text.headline,
+        style = style.textFieldStyle,
         modifier = Modifier
             .width(IntrinsicSize.Min)
-            .padding(PaletteTheme.spacing.medium),
+            .padding(style.padding),
         inputTransformation = NumberFormatInputTransformation(
             numberFormat = moneyFormat.numberFormat,
             maxNumDecimalValues = maxNumDecimalValues,
@@ -45,12 +55,12 @@ fun CurrencyAmountField(
         lineLimits = TextFieldLineLimits.SingleLine,
         decorator = { textField ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
+                horizontalArrangement = Arrangement.spacedBy(style.spacing),
             ) {
                 if (includeCurrencyPrefix) {
                     Text(
                         text = moneyFormat.currencySymbol.orEmpty(),
-                        style = PaletteTheme.styles.text.headline
+                        style = style.textFieldStyle.textStyle,
                     )
                 }
 
@@ -58,16 +68,12 @@ fun CurrencyAmountField(
                     if (textFieldState.text.isEmpty()) {
                         Text(
                             text = placeholder,
-                            style = PaletteTheme.styles.text.headline.copy(
-                                color = PaletteTheme.colorScheme.primary.copy(
-                                    alpha = 0.5f,
-                                ),
-                            )
+                            style = style.placeholderStyle,
                         )
                     }
 
                     // Min width to ensure cursor still appears
-                    Box(modifier = Modifier.widthIn(min = PaletteTheme.spacing.small)) {
+                    Box(modifier = Modifier.widthIn(min = style.spacing)) {
                         textField()
                     }
                 }
@@ -79,11 +85,9 @@ fun CurrencyAmountField(
 @Preview
 @Composable
 private fun Preview() {
-    PaletteTheme {
-        val textFieldState = rememberTextFieldState(initialText = "")
-        CurrencyAmountField(
-            moneyFormat = PaletteTheme.formats.moneyFormats.default,
-            textFieldState = textFieldState,
-        )
-    }
+    val textFieldState = rememberTextFieldState(initialText = "")
+    CurrencyAmountField(
+        moneyFormat = MoneyFormat(),
+        textFieldState = textFieldState,
+    )
 }

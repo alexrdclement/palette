@@ -6,6 +6,10 @@ PLcom/alexrdclement/palette/app/demo/formats/datetime/DateTimeFormatScreenKt;->D
 PLcom/alexrdclement/palette/app/demo/formats/datetime/DateTimeFormatScreenKt;->DateTimeFormatScreen$lambda$1$1$0(Lkotlin/time/Instant;Lkotlinx/datetime/LocalDateTime;Lcom/alexrdclement/palette/formats/datetime/DateTimeFormatValue;)Ljava/lang/String;
 PLcom/alexrdclement/palette/app/demo/formats/datetime/DateTimeFormatScreenKt;->DateTimeFormatScreen$lambda$1$2$0(Lkotlin/time/Instant;Lkotlinx/datetime/LocalDateTime;Lcom/alexrdclement/palette/formats/datetime/InstantFormatValue;)Ljava/lang/String;
 PLcom/alexrdclement/palette/app/demo/formats/datetime/DateTimeFormatScreenKt;->DateTimeFormatScreen$lambda$1$3$0(Lkotlin/time/Instant;Lkotlinx/datetime/LocalDateTime;Lcom/alexrdclement/palette/formats/datetime/TimeFormatValue;)Ljava/lang/String;
+HSPLcom/alexrdclement/palette/components/core/TextStyle;-><init>(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)V
+HSPLcom/alexrdclement/palette/components/core/TextStyle;->copy$default(Lcom/alexrdclement/palette/components/core/TextStyle;Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;ILjava/lang/Object;)Lcom/alexrdclement/palette/components/core/TextStyle;
+HSPLcom/alexrdclement/palette/components/core/TextStyle;->copy(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)Lcom/alexrdclement/palette/components/core/TextStyle;
+HSPLcom/alexrdclement/palette/components/core/TextStyle;->getFormat()Lcom/alexrdclement/palette/formats/core/TextFormat;
 Lcom/alexrdclement/palette/formats/core/Capitalization;
 HSPLcom/alexrdclement/palette/formats/core/Capitalization;-><clinit>()V
 HSPLcom/alexrdclement/palette/formats/core/Capitalization;-><init>()V
@@ -416,10 +420,9 @@ HSPLcom/alexrdclement/palette/theme/format/core/NumberFormatScheme;->getCurrency
 HSPLcom/alexrdclement/palette/theme/format/core/NumberFormatTokenKt;->toFormat(Lcom/alexrdclement/palette/theme/format/core/NumberFormatToken;)Lcom/alexrdclement/palette/formats/core/NumberFormat;
 HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;-><init>(Lcom/alexrdclement/palette/formats/core/TextFormat;Lcom/alexrdclement/palette/formats/core/TextFormat;Lcom/alexrdclement/palette/formats/core/TextFormat;Lcom/alexrdclement/palette/formats/core/TextFormat;Lcom/alexrdclement/palette/formats/core/TextFormat;)V
 HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getBody()Lcom/alexrdclement/palette/formats/core/TextFormat;
-HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getDisplay()Lcom/alexrdclement/palette/formats/core/TextFormat;
-HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getHeadline()Lcom/alexrdclement/palette/formats/core/TextFormat;
+PLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getHeadline()Lcom/alexrdclement/palette/formats/core/TextFormat;
 HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getLabel()Lcom/alexrdclement/palette/formats/core/TextFormat;
-HSPLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getTitle()Lcom/alexrdclement/palette/formats/core/TextFormat;
+PLcom/alexrdclement/palette/theme/format/core/TextFormatScheme;->getTitle()Lcom/alexrdclement/palette/formats/core/TextFormat;
 HSPLcom/alexrdclement/palette/theme/format/core/TextFormatTokenKt;->toFormat(Lcom/alexrdclement/palette/theme/format/core/TextFormatToken;)Lcom/alexrdclement/palette/formats/core/TextFormat;
 HSPLcom/alexrdclement/palette/theme/format/core/TextFormatTokenKt;->toFormat(Lcom/alexrdclement/palette/theme/format/core/TextFormatToken;Lcom/alexrdclement/palette/theme/format/core/TextFormatScheme;)Lcom/alexrdclement/palette/formats/core/TextFormat;
 HSPLcom/alexrdclement/palette/theme/format/datetime/DateFormatScheme;-><init>(Lcom/alexrdclement/palette/formats/datetime/DateFormatValue;Lcom/alexrdclement/palette/formats/datetime/DateFormatValue;Lcom/alexrdclement/palette/formats/datetime/DateFormatValue;)V
@@ -428,7 +431,3 @@ HSPLcom/alexrdclement/palette/theme/format/datetime/InstantFormatScheme;-><init>
 HSPLcom/alexrdclement/palette/theme/format/datetime/TimeFormatScheme;-><init>(Lcom/alexrdclement/palette/formats/datetime/TimeFormatValue;Lcom/alexrdclement/palette/formats/datetime/TimeFormatValue;Lcom/alexrdclement/palette/formats/datetime/TimeFormatValue;)V
 HSPLcom/alexrdclement/palette/theme/format/money/MoneyFormatScheme;-><init>(Lcom/alexrdclement/palette/formats/money/MoneyFormat;)V
 HSPLcom/alexrdclement/palette/theme/format/money/MoneyFormatTokenKt;->toFormat(Lcom/alexrdclement/palette/theme/format/money/MoneyFormatToken;)Lcom/alexrdclement/palette/formats/money/MoneyFormat;
-HSPLcom/alexrdclement/palette/theme/styles/TextStyle;-><init>(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)V
-PLcom/alexrdclement/palette/theme/styles/TextStyle;->copy$default(Lcom/alexrdclement/palette/theme/styles/TextStyle;Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;ILjava/lang/Object;)Lcom/alexrdclement/palette/theme/styles/TextStyle;
-PLcom/alexrdclement/palette/theme/styles/TextStyle;->copy(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)Lcom/alexrdclement/palette/theme/styles/TextStyle;
-HSPLcom/alexrdclement/palette/theme/styles/TextStyle;->getFormat()Lcom/alexrdclement/palette/formats/core/TextFormat;

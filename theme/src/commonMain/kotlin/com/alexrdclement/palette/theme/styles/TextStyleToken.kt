@@ -1,39 +1,29 @@
 package com.alexrdclement.palette.theme.styles
 
 import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.theme.ColorToken
+import com.alexrdclement.palette.theme.TypographyToken
+import com.alexrdclement.palette.theme.format.core.TextFormatToken
 
-enum class TextStyleToken {
-    Display,
-    Headline,
-    TitleLarge,
-    TitleMedium,
-    TitleSmall,
-    BodyLarge,
-    BodyMedium,
-    BodySmall,
-    LabelLarge,
-    LabelMedium,
-    LabelSmall,
+enum class TextStyleToken(val default: TextStyleTokenSet) {
+    Display(TextStyleTokenSet(TypographyToken.Display, TextFormatToken.Display, ColorToken.OnSurface)),
+    Headline(TextStyleTokenSet(TypographyToken.Headline, TextFormatToken.Headline, ColorToken.OnSurface)),
+    TitleLarge(TextStyleTokenSet(TypographyToken.TitleLarge, TextFormatToken.Title, ColorToken.OnSurface)),
+    TitleMedium(TextStyleTokenSet(TypographyToken.TitleMedium, TextFormatToken.Title, ColorToken.OnSurface)),
+    TitleSmall(TextStyleTokenSet(TypographyToken.TitleSmall, TextFormatToken.Title, ColorToken.OnSurface)),
+    BodyLarge(TextStyleTokenSet(TypographyToken.BodyLarge, TextFormatToken.Body, ColorToken.OnSurface)),
+    BodyMedium(TextStyleTokenSet(TypographyToken.BodyMedium, TextFormatToken.Body, ColorToken.OnSurface)),
+    BodySmall(TextStyleTokenSet(TypographyToken.BodySmall, TextFormatToken.Body, ColorToken.OnSurface)),
+    LabelLarge(TextStyleTokenSet(TypographyToken.LabelLarge, TextFormatToken.Label, ColorToken.OnSurface)),
+    LabelMedium(TextStyleTokenSet(TypographyToken.LabelMedium, TextFormatToken.Label, ColorToken.OnSurface)),
+    LabelSmall(TextStyleTokenSet(TypographyToken.LabelSmall, TextFormatToken.Label, ColorToken.OnSurface)),
 }
 
 @Composable
-fun TextStyleToken.toStyle(): TextStyleTokenSet {
-    return toStyle(PaletteTheme.styles.textStyleScheme)
-}
+fun TextStyleToken.tokenSet(): TextStyleTokenSet =
+    LocalStyles.current.text.getValue(this)
 
-fun TextStyleToken.toStyle(textStyleScheme: TextStyleScheme): TextStyleTokenSet {
-    return when (this) {
-        TextStyleToken.Display -> textStyleScheme.display
-        TextStyleToken.Headline -> textStyleScheme.headline
-        TextStyleToken.TitleLarge -> textStyleScheme.titleLarge
-        TextStyleToken.TitleMedium -> textStyleScheme.titleMedium
-        TextStyleToken.TitleSmall -> textStyleScheme.titleSmall
-        TextStyleToken.BodyLarge -> textStyleScheme.bodyLarge
-        TextStyleToken.BodyMedium -> textStyleScheme.bodyMedium
-        TextStyleToken.BodySmall -> textStyleScheme.bodySmall
-        TextStyleToken.LabelLarge -> textStyleScheme.labelLarge
-        TextStyleToken.LabelMedium -> textStyleScheme.labelMedium
-        TextStyleToken.LabelSmall -> textStyleScheme.labelSmall
-    }
-}
+@Composable
+fun TextStyleToken.resolve(): TextStyle =
+    tokenSet().toTextStyle()

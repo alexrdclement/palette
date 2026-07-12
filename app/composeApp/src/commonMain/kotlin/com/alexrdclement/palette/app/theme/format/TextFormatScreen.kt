@@ -13,10 +13,11 @@ import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemo
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemoState
 import com.alexrdclement.palette.formats.demo.core.rememberTextFormatDemoControl
-import com.alexrdclement.palette.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.layout.BoxWithLabel
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.format.Formats

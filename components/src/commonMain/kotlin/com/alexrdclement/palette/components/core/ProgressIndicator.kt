@@ -3,19 +3,21 @@ package com.alexrdclement.palette.components.core
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexrdclement.palette.theme.PaletteTheme
+
+data class ProgressIndicatorStyle(
+    val textStyle: TextStyle = TextStyle(),
+)
 
 @Composable
 fun IndeterminateProgressIndicator(
     modifier: Modifier = Modifier,
+    style: ProgressIndicatorStyle = ProgressIndicatorStyle(),
 ) {
-    Text("...", modifier = modifier)
+    Text("...", style = style.textStyle, modifier = modifier)
 }
 
 @Preview
 @Composable
 fun PreviewIndeterminateProgressIndicator() {
-    PaletteTheme {
-        IndeterminateProgressIndicator()
-    }
+    IndeterminateProgressIndicator()
 }

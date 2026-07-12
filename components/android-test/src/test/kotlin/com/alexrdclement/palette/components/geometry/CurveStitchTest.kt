@@ -37,7 +37,7 @@ class CurveStitchTest(
     fun curveStitch() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.styles.core.surface.default) {
                     CurveStitch(
                         start = Offset(0.1f, 0.1f),
                         vertex = Offset(0.1f, 0.9f),
@@ -56,7 +56,7 @@ class CurveStitchTest(
     fun curveStitchStar() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.styles.core.surface.default) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
@@ -76,7 +76,7 @@ class CurveStitchTest(
     fun curveStitchStarInsideOnly() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.styles.core.surface.default) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
@@ -95,7 +95,7 @@ class CurveStitchTest(
     fun curveStitchStarOutsideOnly() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.styles.core.surface.default) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
@@ -114,7 +114,7 @@ class CurveStitchTest(
     fun curveStitchStarInnerRadius0() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.styles.core.surface.default) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
@@ -132,7 +132,7 @@ class CurveStitchTest(
     fun curveStitchShape() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.styles.core.surface.default) {
                     CurveStitchShape(
                         numLines = numLines,
                         numPoints = numPoints,

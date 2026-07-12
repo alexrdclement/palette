@@ -16,6 +16,7 @@ kotlin {
                 api(projects.components)
                 api(projects.formats)
                 api(projects.theme)
+                api(projects.theme.components)
 
                 implementation(libs.androidx.lifecycle.runtime.compose)
             }

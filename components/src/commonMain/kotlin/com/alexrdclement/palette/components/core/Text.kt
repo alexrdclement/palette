@@ -6,23 +6,36 @@ import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.takeOrElse
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.alexrdclement.palette.components.LocalContentColor
+import com.alexrdclement.palette.formats.core.TextFormat
 import com.alexrdclement.palette.formats.core.format
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.TextStyle
-import com.alexrdclement.palette.theme.preview.TextStylePreviewParameterProvider
+import androidx.compose.ui.text.TextStyle as ComposeTextStyle
+
+data class TextStyle(
+    val composeTextStyle: ComposeTextStyle = ComposeTextStyle(),
+    val format: TextFormat = TextFormat(),
+)
+
+fun TextStyle.copy(
+    color: Color = this.composeTextStyle.color,
+    textAlign: TextAlign = this.composeTextStyle.textAlign,
+) = copy(
+    composeTextStyle = this.composeTextStyle.copy(
+        color = color,
+        textAlign = textAlign,
+    ),
+)
 
 @Composable
 fun Text(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = PaletteTheme.styles.text.bodyMedium,
+    style: TextStyle = TextStyle(),
     onTextLayout: ((TextLayoutResult) -> Unit)? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     softWrap: Boolean = true,
@@ -31,7 +44,7 @@ fun Text(
     autoSize: TextAutoSize? = null,
 ) {
     val formattedText = remember(text, style.format) { style.format.format(text) }
-    val color = style.composeTextStyle.color.takeOrElse { LocalContentColor.current }
+    val color = style.composeTextStyle.color
     BasicText(
         text = formattedText,
         modifier = modifier,
@@ -49,7 +62,7 @@ fun Text(
 fun Text(
     text: AnnotatedString,
     modifier: Modifier = Modifier,
-    style: TextStyle = PaletteTheme.styles.text.bodyMedium,
+    style: TextStyle = TextStyle(),
     onTextLayout: (TextLayoutResult) -> Unit = {},
     overflow: TextOverflow = TextOverflow.Clip,
     softWrap: Boolean = true,
@@ -58,7 +71,7 @@ fun Text(
     inlineContent: Map<String, InlineTextContent> = mapOf(),
     autoSize: TextAutoSize? = null,
 ) {
-    val color = style.composeTextStyle.color.takeOrElse { LocalContentColor.current }
+    val color = style.composeTextStyle.color
     BasicText(
         text = text,
         modifier = modifier,
@@ -75,15 +88,10 @@ fun Text(
 
 @Preview
 @Composable
-private fun Preview(
-    @PreviewParameter(TextStylePreviewParameterProvider::class) textStylePair: Pair<String, TextStyle>,
-) {
-    PaletteTheme {
-        Surface {
-            Text(
-                text = textStylePair.first,
-                style = textStylePair.second,
-            )
-        }
+private fun Preview() {
+    Surface {
+        Text(
+            text = "Hello world",
+        )
     }
 }

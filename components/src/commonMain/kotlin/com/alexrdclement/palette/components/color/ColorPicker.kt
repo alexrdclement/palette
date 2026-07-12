@@ -11,23 +11,40 @@ import androidx.compose.ui.graphics.colorspace.ColorSpace
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Slider
+import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.components.core.TextStyle
+
+data class ColorPickerControlsStyle(
+    val labelStyle: TextStyle = TextStyle(),
+    val sliderStyle: SliderStyle = SliderStyle(),
+    val spacing: Dp = 8.dp,
+)
+
+data class ColorPickerStyle(
+    val spacing: Dp = 16.dp,
+    val colorDisplayStyle: ColorDisplayStyle = ColorDisplayStyle(),
+    val controlsStyle: ColorPickerControlsStyle = ColorPickerControlsStyle(),
+)
 
 @Composable
 fun ColorPicker(
     color: Color,
     onColorChange: (Color) -> Unit,
     modifier: Modifier = Modifier,
+    style: ColorPickerStyle = ColorPickerStyle(),
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier,
     ) {
         ColorDisplay(
             color = color,
+            style = style.colorDisplayStyle,
             modifier = Modifier
                 .weight(1f, fill = false)
                 .semantics {
@@ -37,6 +54,7 @@ fun ColorPicker(
         ColorPickerControls(
             color = color,
             onColorChange = onColorChange,
+            style = style.controlsStyle,
             modifier = Modifier.fillMaxWidth()
         )
     }
@@ -48,6 +66,7 @@ fun ColorPickerControls(
     onColorChange: (Color) -> Unit,
     colorSpace: ColorSpace = color.colorSpace,
     modifier: Modifier = Modifier,
+    style: ColorPickerControlsStyle = ColorPickerControlsStyle(),
 ) {
     data class ColorComponentInfo(
         val name: String,
@@ -90,6 +109,7 @@ fun ColorPickerControls(
                 value = colorComponent.value,
                 onValueChange = { onColorChange(colorComponent.onValueChange(it)) },
                 label = colorComponent.name,
+                style = style,
                 valueRange = colorComponent.valueRange,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -104,17 +124,19 @@ private fun ColorSlider(
     onValueChange: (Float) -> Unit,
     label: String,
     modifier: Modifier = Modifier,
+    style: ColorPickerControlsStyle = ColorPickerControlsStyle(),
     valueRange: ClosedFloatingPointRange<Float> = 0f..255f,
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
+        verticalArrangement = Arrangement.spacedBy(style.spacing),
         modifier = modifier,
     ) {
-        Text(text = label, style = PaletteTheme.styles.text.labelLarge)
+        Text(text = label, style = style.labelStyle)
         Slider(
             value = value,
             onValueChange = onValueChange,
             valueRange = valueRange,
+            style = style.sliderStyle,
             modifier = Modifier.semantics {
                 contentDescription = label
             }
@@ -125,12 +147,10 @@ private fun ColorSlider(
 @Preview
 @Composable
 private fun ColorPickerPreview() {
-    PaletteTheme {
-        var color = Color(0xFF6200EE)
-        ColorPicker(
-            color = color,
-            onColorChange = { color = it},
-            modifier = Modifier
-        )
-    }
+    var color = Color(0xFF6200EE)
+    ColorPicker(
+        color = color,
+        onColorChange = { color = it},
+        modifier = Modifier
+    )
 }

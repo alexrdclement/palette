@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
@@ -15,7 +16,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Surface
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -286,117 +286,105 @@ fun PolarGrid(
 @Preview
 @Composable
 fun CartesianGridPreview() {
-    PaletteTheme {
-        Surface {
-            CartesianGrid(
-                xSpacing = { 20.dp.toPx() },
-                ySpacing = { 20.dp.toPx() },
-                lineStyle = GridLineStyle(
-                    color = PaletteTheme.colorScheme.primary,
-                    stroke = Stroke(width = 1f),
-                ),
-                modifier = Modifier.size(200.dp),
-                offset = Offset(0f, 10f),
-            )
-        }
+    Surface {
+        CartesianGrid(
+            xSpacing = { 20.dp.toPx() },
+            ySpacing = { 20.dp.toPx() },
+            lineStyle = GridLineStyle(
+                color = Color(0xFF6200EE),
+                stroke = Stroke(width = 1f),
+            ),
+            modifier = Modifier.size(200.dp),
+            offset = Offset(0f, 10f),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CartesianGridLogarithmicScalePreview() {
-    PaletteTheme {
-        Surface {
-            Grid(
-                coordinateSystem = GridCoordinateSystem.Cartesian(
-                    scaleX = GridScale.Logarithmic(spacing = 1.dp, base = 2f),
-                    scaleY = GridScale.Logarithmic(spacing = 1.dp, base = 2f),
-                ),
-                lineStyle = GridLineStyle(
-                    color = PaletteTheme.colorScheme.primary,
-                    stroke = Stroke(width = 1f),
-                ),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        Grid(
+            coordinateSystem = GridCoordinateSystem.Cartesian(
+                scaleX = GridScale.Logarithmic(spacing = 1.dp, base = 2f),
+                scaleY = GridScale.Logarithmic(spacing = 1.dp, base = 2f),
+            ),
+            lineStyle = GridLineStyle(
+                color = Color(0xFF6200EE),
+                stroke = Stroke(width = 1f),
+            ),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CartesianGridLogarithmicDecayScalePreview() {
-    PaletteTheme {
-        Surface {
-            Grid(
-                coordinateSystem = GridCoordinateSystem.Cartesian(
-                    scaleX = GridScale.LogarithmicDecay(spacing = 50.dp, base = 2f),
-                    scaleY = GridScale.LogarithmicDecay(spacing = 50.dp, base = 2f),
-                ),
-                lineStyle = GridLineStyle(
-                    color = PaletteTheme.colorScheme.primary,
-                    stroke = Stroke(width = 1f),
-                ),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        Grid(
+            coordinateSystem = GridCoordinateSystem.Cartesian(
+                scaleX = GridScale.LogarithmicDecay(spacing = 50.dp, base = 2f),
+                scaleY = GridScale.LogarithmicDecay(spacing = 50.dp, base = 2f),
+            ),
+            lineStyle = GridLineStyle(
+                color = Color(0xFF6200EE),
+                stroke = Stroke(width = 1f),
+            ),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CartesianGridExponentialScalePreview() {
-    PaletteTheme {
-        Surface {
-            Grid(
-                coordinateSystem = GridCoordinateSystem.Cartesian(
-                    scaleX = GridScale.Exponential(spacing = 1.dp, exponent = 2f),
-                    scaleY = GridScale.Exponential(spacing = 1.dp, exponent = 2f),
-                ),
-                lineStyle = GridLineStyle(
-                    color = PaletteTheme.colorScheme.primary,
-                    stroke = Stroke(width = 1f),
-                ),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        Grid(
+            coordinateSystem = GridCoordinateSystem.Cartesian(
+                scaleX = GridScale.Exponential(spacing = 1.dp, exponent = 2f),
+                scaleY = GridScale.Exponential(spacing = 1.dp, exponent = 2f),
+            ),
+            lineStyle = GridLineStyle(
+                color = Color(0xFF6200EE),
+                stroke = Stroke(width = 1f),
+            ),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun CartesianGridExponentialDecayScalePreview() {
-    PaletteTheme {
-        Surface {
-            Grid(
-                coordinateSystem = GridCoordinateSystem.Cartesian(
-                    scaleX = GridScale.ExponentialDecay(spacing = 100.dp, exponent = 2f),
-                    scaleY = GridScale.ExponentialDecay(spacing = 100.dp, exponent = 2f),
-                ),
-                lineStyle = GridLineStyle(
-                    color = PaletteTheme.colorScheme.primary,
-                    stroke = Stroke(width = 1f),
-                ),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        Grid(
+            coordinateSystem = GridCoordinateSystem.Cartesian(
+                scaleX = GridScale.ExponentialDecay(spacing = 100.dp, exponent = 2f),
+                scaleY = GridScale.ExponentialDecay(spacing = 100.dp, exponent = 2f),
+            ),
+            lineStyle = GridLineStyle(
+                color = Color(0xFF6200EE),
+                stroke = Stroke(width = 1f),
+            ),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
 @Preview
 @Composable
 fun PolarGridPreview() {
-    PaletteTheme {
-        Surface {
-            PolarGrid(
-                radiusSpacing = { 30.dp.toPx() },
-                theta = { (PI / 3).toFloat() },
-                lineStyle = GridLineStyle(
-                    color = PaletteTheme.colorScheme.primary,
-                    stroke = Stroke(width = 1f),
-                ),
-                modifier = Modifier.size(200.dp),
-            )
-        }
+    Surface {
+        PolarGrid(
+            radiusSpacing = { 30.dp.toPx() },
+            theta = { (PI / 3).toFloat() },
+            lineStyle = GridLineStyle(
+                color = Color(0xFF6200EE),
+                stroke = Stroke(width = 1f),
+            ),
+            modifier = Modifier.size(200.dp),
+        )
     }
 }
 
@@ -404,20 +392,18 @@ fun PolarGridPreview() {
 @Composable
 fun OvalGridPreview() {
     val coordinateSystem = GridCoordinateSystem.Cartesian(spacing = 20.dp)
-    PaletteTheme {
-        Surface {
-            Grid(
-                coordinateSystem = coordinateSystem,
-                lineStyle = null,
-                vertex = GridVertex.Oval(
-                    color = PaletteTheme.colorScheme.primary,
-                    size = DpSize(PaletteTheme.spacing.xs / 2f, PaletteTheme.spacing.xs / 2f),
-                    drawStyle = Stroke(width = 1f),
-                ),
-                modifier = Modifier.size(200.dp),
-                offset = Offset(80f, 10f),
-            )
-        }
+    Surface {
+        Grid(
+            coordinateSystem = coordinateSystem,
+            lineStyle = null,
+            vertex = GridVertex.Oval(
+                color = Color(0xFF6200EE),
+                size = DpSize(4.dp / 2f, 4.dp / 2f),
+                drawStyle = Stroke(width = 1f),
+            ),
+            modifier = Modifier.size(200.dp),
+            offset = Offset(80f, 10f),
+        )
     }
 }
 
@@ -425,20 +411,18 @@ fun OvalGridPreview() {
 @Composable
 fun RectGridPreview() {
     val coordinateSystem = GridCoordinateSystem.Cartesian(spacing = 20.dp)
-    PaletteTheme {
-        Surface {
-            Grid(
-                coordinateSystem = coordinateSystem,
-                lineStyle = null,
-                vertex = GridVertex.Rect(
-                    color = PaletteTheme.colorScheme.primary,
-                    size = DpSize(PaletteTheme.spacing.small, PaletteTheme.spacing.small),
-                    drawStyle = Stroke(width = 1f),
-                ),
-                modifier = Modifier.size(200.dp),
-                offset = Offset(80f, 10f),
-            )
-        }
+    Surface {
+        Grid(
+            coordinateSystem = coordinateSystem,
+            lineStyle = null,
+            vertex = GridVertex.Rect(
+                color = Color(0xFF6200EE),
+                size = DpSize(8.dp, 8.dp),
+                drawStyle = Stroke(width = 1f),
+            ),
+            modifier = Modifier.size(200.dp),
+            offset = Offset(80f, 10f),
+        )
     }
 }
 
@@ -446,19 +430,17 @@ fun RectGridPreview() {
 @Composable
 fun PlusGridPreview() {
     val coordinateSystem = GridCoordinateSystem.Cartesian(spacing = 20.dp)
-    PaletteTheme {
-        Surface {
-            Grid(
-                coordinateSystem = coordinateSystem,
-                lineStyle = null,
-                vertex = GridVertex.Plus(
-                    color = PaletteTheme.colorScheme.primary,
-                    size = DpSize(PaletteTheme.spacing.small, PaletteTheme.spacing.small),
-                    strokeWidth = Dp.Hairline,
-                ),
-                modifier = Modifier.size(200.dp),
-                offset = Offset(80f, 0f),
-            )
-        }
+    Surface {
+        Grid(
+            coordinateSystem = coordinateSystem,
+            lineStyle = null,
+            vertex = GridVertex.Plus(
+                color = Color(0xFF6200EE),
+                size = DpSize(8.dp, 8.dp),
+                strokeWidth = Dp.Hairline,
+            ),
+            modifier = Modifier.size(200.dp),
+            offset = Offset(80f, 0f),
+        )
     }
 }

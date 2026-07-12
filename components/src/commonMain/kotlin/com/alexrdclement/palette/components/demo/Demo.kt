@@ -19,15 +19,24 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.alexrdclement.palette.components.core.DividerStyle
 import com.alexrdclement.palette.components.core.HorizontalDivider
 import com.alexrdclement.palette.components.core.VerticalDivider
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.Controls
+import com.alexrdclement.palette.components.demo.control.ControlsStyle
 import com.alexrdclement.palette.components.util.horizontalPaddingValues
-import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
+
+data class DemoStyle(
+    val controlsStyle: ControlsStyle = ControlsStyle(),
+    val dividerStyle: DividerStyle = DividerStyle(),
+    val controlsPadding: Dp = 16.dp,
+    val controlsMaxSize: Dp = 300.dp,
+)
 
 @Stable
 interface DemoScope : BoxWithConstraintsScope
@@ -39,6 +48,7 @@ private class DemoScopeImpl(
 @Composable
 fun Demo(
     modifier: Modifier = Modifier,
+    style: DemoStyle = DemoStyle(),
     controls: PersistentList<Control> = persistentListOf(),
     content: @Composable DemoScope.() -> Unit,
 ) {
@@ -60,14 +70,15 @@ fun Demo(
                     scope.content()
                 }
                 if (controls.isNotEmpty()) {
-                    HorizontalDivider(modifier = Modifier.fillMaxWidth())
+                    HorizontalDivider(modifier = Modifier.fillMaxWidth(), style = style.dividerStyle)
                     Controls(
                         controls = controls,
+                        controlsStyle = style.controlsStyle,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .heightIn(max = 300.dp)
+                            .heightIn(max = style.controlsMaxSize)
                             .verticalScroll(rememberScrollState())
-                            .padding(PaletteTheme.spacing.medium)
+                            .padding(style.controlsPadding)
                             .navigationBarsPadding(),
                     )
                 }
@@ -86,14 +97,15 @@ fun Demo(
                     scope.content()
                 }
                 if (controls.isNotEmpty()) {
-                    VerticalDivider(modifier = Modifier.fillMaxHeight())
+                    VerticalDivider(modifier = Modifier.fillMaxHeight(), style = style.dividerStyle)
                     Controls(
                         controls = controls,
+                        controlsStyle = style.controlsStyle,
                         modifier = Modifier
                             .fillMaxHeight()
-                            .widthIn(max = 300.dp)
+                            .widthIn(max = style.controlsMaxSize)
                             .verticalScroll(rememberScrollState())
-                            .padding(horizontal = PaletteTheme.spacing.medium)
+                            .padding(horizontal = style.controlsPadding)
                             .navigationBarsPadding(),
                     )
                 }

@@ -26,6 +26,7 @@ kotlin {
             implementation(projects.modifiers.demo)
             implementation(projects.navigation)
             implementation(projects.theme)
+            implementation(projects.theme.components)
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.components.demo.control
 
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,21 +10,30 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.TextField
-import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.components.core.TextFieldStyle
+import com.alexrdclement.palette.components.core.TextStyle
 import kotlinx.coroutines.flow.distinctUntilChanged
+
+data class TextFieldControlStyle(
+    val labelStyle: TextStyle = TextStyle(),
+    val textFieldStyle: TextFieldStyle = TextFieldStyle(),
+    val spacing: Dp = 8.dp,
+    val verticalPadding: Dp = 8.dp,
+)
 
 @Composable
 fun TextFieldControl(
     control: Control.TextField,
     modifier: Modifier = Modifier,
+    style: TextFieldControlStyle = TextFieldControlStyle(),
 ) {
     val enabled by rememberUpdatedState(control.enabled())
     val keyboardOptions by rememberUpdatedState(control.keyboardOptions())
@@ -37,25 +48,25 @@ fun TextFieldControl(
             }
     }
     Row(
-        horizontalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.small),
+        horizontalArrangement = Arrangement.spacedBy(style.spacing),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .then(
-                if (control.includeLabel) Modifier.padding(vertical = PaletteTheme.spacing.small)
-                else Modifier.padding(bottom = PaletteTheme.spacing.small)
+                if (control.includeLabel) Modifier.padding(vertical = style.verticalPadding)
+                else Modifier.padding(bottom = style.verticalPadding)
             ),
     ) {
         if (control.includeLabel) {
             Text(
                 text = control.name,
-                style = PaletteTheme.styles.text.labelLarge,
+                style = style.labelStyle,
                 modifier = Modifier.weight(1f, fill = false),
             )
-            Spacer(modifier = Modifier.width(PaletteTheme.spacing.small))
+            Spacer(modifier = Modifier.width(style.spacing))
         }
         TextField(
             state = control.textFieldState,
-            textStyle = PaletteTheme.styles.text.bodyMedium,
+            style = style.textFieldStyle,
             enabled = enabled,
             inputTransformation = inputTransformation,
             keyboardOptions = keyboardOptions,
@@ -67,13 +78,11 @@ fun TextFieldControl(
 @Composable
 fun TextFieldControlPreview() {
     val textFieldState = rememberTextFieldState(initialText = "Text Field")
-    PaletteTheme {
-        TextFieldControl(
-            control = Control.TextField(
-                name = "Label",
-                textFieldState = textFieldState,
-                includeLabel = true,
-            ),
-        )
-    }
+    TextFieldControl(
+        control = Control.TextField(
+            name = "Label",
+            textFieldState = textFieldState,
+            includeLabel = true,
+        ),
+    )
 }

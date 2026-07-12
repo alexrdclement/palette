@@ -6,16 +6,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 import androidx.compose.ui.unit.Dp
+import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.money.MoneyFormat
+import com.alexrdclement.palette.theme.components.PaletteStyles
 import com.alexrdclement.palette.theme.format.Formats
 import com.alexrdclement.palette.theme.format.PaletteFormats
 import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.format.core.PaletteTextFormatScheme
 import com.alexrdclement.palette.theme.format.datetime.PaletteDateTimeFormats
 import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
-import androidx.compose.ui.text.TextStyle as ComposeTextStyle
+import com.alexrdclement.palette.theme.styles.LocalStyles
+import com.alexrdclement.palette.theme.styles.Styles
 
 val LocalPaletteColorScheme = staticCompositionLocalOf {
     ColorScheme(
@@ -71,10 +75,6 @@ val LocalPaletteIndication = staticCompositionLocalOf<Indication> {
     NoOpIndication
 }
 
-val LocalPaletteStyles = staticCompositionLocalOf<Styles> {
-    error("Styles not provided")
-}
-
 val LocalPaletteFormats = staticCompositionLocalOf {
     Formats(
         dateTimeFormats = PaletteDateTimeFormats,
@@ -98,7 +98,7 @@ fun PaletteTheme(
     shapeScheme: ShapeScheme = PaletteShapeScheme,
     indication: Indication = PaletteIndication,
     spacing: Spacing = PaletteSpacing,
-    styles: Styles = PaletteStyles,
+    styles: Styles = Styles(),
     formats: Formats = PaletteFormats,
     content: @Composable () -> Unit
 ) {
@@ -109,7 +109,7 @@ fun PaletteTheme(
         LocalPaletteShapes provides shapeScheme,
         LocalPaletteIndication provides indication,
         LocalPaletteSpacing provides spacing,
-        LocalPaletteStyles provides styles,
+        LocalStyles provides styles,
         LocalPaletteFormats provides formats,
         content = content,
     )
@@ -140,7 +140,6 @@ object PaletteTheme {
         @Composable
         get() = LocalPaletteIndication.current
 
-    val styles: Styles
-        @Composable
-        get() = LocalPaletteStyles.current
+    val styles: PaletteStyles
+        get() = PaletteStyles
 }

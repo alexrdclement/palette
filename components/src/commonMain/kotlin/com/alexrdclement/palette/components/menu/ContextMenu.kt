@@ -18,6 +18,7 @@ fun ContextMenu(
     offset: Offset = Offset.Zero,
     modifier: Modifier = Modifier,
     scrollState: ScrollState = rememberScrollState(),
+    style: DropdownMenuStyle = DropdownMenuStyle(),
     properties: PopupProperties = PopupProperties(focusable = true),
     content: @Composable ColumnScope.() -> Unit,
 ) {
@@ -33,6 +34,7 @@ fun ContextMenu(
             onDismissRequest = onDismissRequest,
             modifier = modifier,
             scrollState = scrollState,
+            style = style,
             properties = properties,
             content = content,
         )

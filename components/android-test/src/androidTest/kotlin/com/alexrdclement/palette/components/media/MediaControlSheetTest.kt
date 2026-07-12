@@ -4,10 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +19,7 @@ import androidx.compose.ui.test.performClick
 import com.alexrdclement.palette.components.MediaControlBarContentDescription
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionExpanded
 import com.alexrdclement.palette.components.MediaControlBarStateDescriptionPartiallyExpanded
+import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.layout.PeekSheetAnchor
 import com.alexrdclement.palette.components.layout.rememberPeekSheetState
@@ -63,13 +64,14 @@ class MediaControlSheetTest {
                 }
             },
             state = state,
+            style = PaletteTheme.styles.media.mediaControlSheet,
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize(),
             ) {
-                Text("Content")
+                Text("Content", style = PaletteTheme.styles.core.text.bodyMedium)
             }
         }
     }

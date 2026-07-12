@@ -16,6 +16,7 @@ kotlin {
                 api(projects.components.demo)
                 api(projects.modifiers)
                 api(projects.theme)
+                api(projects.theme.components)
             }
         }
     }

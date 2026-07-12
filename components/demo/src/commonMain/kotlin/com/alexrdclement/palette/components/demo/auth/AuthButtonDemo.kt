@@ -5,21 +5,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.components.auth.AuthButton
-import com.alexrdclement.palette.components.auth.AuthButtonStyle
 import com.alexrdclement.palette.components.auth.AuthState
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.styles.AuthButtonStyleToken
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -48,7 +48,7 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
 ) {
     AuthButton(
         authState = state.authState,
-        style = state.style,
+        style = PaletteTheme.styles.auth.authButton[state.style],
         onLogInClick = {},
         onLogOutClick = {},
         modifier = modifier
@@ -60,7 +60,7 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
 @Composable
 fun rememberAuthButtonDemoState(
     authStateInitial: AuthState = AuthState.LoggedOut,
-    styleInitial: AuthButtonStyle = AuthButtonStyle.Secondary,
+    styleInitial: AuthButtonStyleToken = AuthButtonStyleToken.Secondary,
 ): AuthButtonDemoState = rememberSaveable(
     saver = AuthButtonDemoStateSaver,
 ) {
@@ -73,7 +73,7 @@ fun rememberAuthButtonDemoState(
 @Stable
 class AuthButtonDemoState(
     authStateInitial: AuthState,
-    styleInitial: AuthButtonStyle,
+    styleInitial: AuthButtonStyleToken,
 ) {
     var authState by mutableStateOf(authStateInitial)
         internal set
@@ -95,7 +95,7 @@ val AuthButtonDemoStateSaver = mapSaverSafe(
     restore = { map ->
         AuthButtonDemoState(
             authStateInitial = map[authStateKey] as AuthState,
-            styleInitial = map[styleKey] as AuthButtonStyle,
+            styleInitial = map[styleKey] as AuthButtonStyleToken,
         )
     },
 )
@@ -118,7 +118,7 @@ class AuthButtonDemoControl(
         ),
         enumControl(
             name = "Style",
-            values = { AuthButtonStyle.entries },
+            values = { AuthButtonStyleToken.entries },
             selectedValue = { state.style },
             onValueChange = { state.style = it },
         ),

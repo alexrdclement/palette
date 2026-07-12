@@ -21,10 +21,11 @@ class SphereTest {
     fun gridSphere() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface {
+                Surface(style = PaletteTheme.styles.core.surface.default) {
                     GridSphere(
                         numLatitudeLines = 20,
                         numLongitudeLines = 10,
+                        strokeColor = PaletteTheme.colorScheme.onSurface,
                         modifier = Modifier.size(200.dp),
                         viewingAngle = ViewingAngle(
                             rotationX = 20f,

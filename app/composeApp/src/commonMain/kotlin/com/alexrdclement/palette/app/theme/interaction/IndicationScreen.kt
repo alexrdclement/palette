@@ -1,13 +1,14 @@
 package com.alexrdclement.palette.app.theme.interaction
 
+import com.alexrdclement.palette.theme.PaletteTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
@@ -15,10 +16,10 @@ import com.alexrdclement.palette.components.demo.core.ButtonDemo
 import com.alexrdclement.palette.components.demo.core.ButtonDemoControl
 import com.alexrdclement.palette.components.demo.core.ButtonDemoState
 import com.alexrdclement.palette.components.demo.core.ButtonDemoStateSaver
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save

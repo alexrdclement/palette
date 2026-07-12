@@ -6,7 +6,8 @@ import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.components.auth.navigation.AuthComponent
 import com.alexrdclement.palette.components.demo.auth.AuthButtonDemo
-import com.alexrdclement.palette.components.layout.Scaffold
+import com.alexrdclement.palette.theme.components.layout.Scaffold
+import com.alexrdclement.palette.theme.PaletteTheme
 
 @Composable
 fun AuthComponentScreen(

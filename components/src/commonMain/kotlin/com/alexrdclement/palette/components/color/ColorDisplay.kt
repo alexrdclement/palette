@@ -8,20 +8,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.modifiers.border
-import com.alexrdclement.palette.theme.toComposeShape
+import com.alexrdclement.palette.components.core.BorderStyle
+import com.alexrdclement.palette.components.core.Shape
+import com.alexrdclement.palette.components.core.border
+import com.alexrdclement.palette.components.core.toComposeShape
+
+data class ColorDisplayStyle(
+    val shape: Shape = Shape.Circle,
+    val borderStyle: BorderStyle? = null,
+)
 
 @Composable
 fun ColorDisplay(
     color: Color,
     modifier: Modifier = Modifier,
+    style: ColorDisplayStyle = ColorDisplayStyle(),
 ) {
     Box(
         modifier = modifier
             .aspectRatio(1f)
-            .background(color = color, shape = PaletteTheme.shapeScheme.primary.toComposeShape())
-            .border(style = PaletteTheme.styles.border.primary),
+            .background(color = color, shape = style.shape.toComposeShape())
+            .then(if (style.borderStyle != null) Modifier.border(style = style.borderStyle) else Modifier),
     )
 }
 

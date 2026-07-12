@@ -7,12 +7,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Surface
+import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.copy
+import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.components.core.copy
+
+data class DialogContentStyle(
+    val titleStyle: TextStyle = TextStyle(),
+    val messageStyle: TextStyle = TextStyle(),
+    val surfaceStyle: SurfaceStyle = SurfaceStyle(),
+    val buttonRowStyle: ConfirmCancelButtonRowStyle = ConfirmCancelButtonRowStyle(),
+    val spacing: Dp = 16.dp,
+    val padding: Dp = 24.dp,
+    val titleBottomPadding: Dp = 16.dp,
+    val messageBottomPadding: Dp = 24.dp,
+)
 
 @Composable
 fun DialogContent(
@@ -20,6 +33,7 @@ fun DialogContent(
     message: String,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
+    style: DialogContentStyle = DialogContentStyle(),
     onConfirm: (() -> Unit)? = null,
 ) {
     DialogContent(
@@ -30,17 +44,20 @@ fun DialogContent(
                 ConfirmCancelButtonRow(
                     onConfirm = it,
                     onDismiss = onDismissRequest,
+                    style = style.buttonRowStyle,
                     modifier = modifier,
                 )
             } ?: run {
                 ConfirmButtonRow(
                     onConfirm = onDismissRequest,
+                    style = style.buttonRowStyle.buttonStyle,
                     modifier = modifier,
                 )
             }
         },
         onDismissRequest = onDismissRequest,
         modifier = modifier,
+        style = style,
     )
 }
 
@@ -50,6 +67,7 @@ fun ErrorDialogContent(
     message: String,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
+    style: DialogContentStyle = DialogContentStyle(),
 ) {
     DialogContent(
         title = title,
@@ -57,11 +75,13 @@ fun ErrorDialogContent(
         buttonRow = { onDismissRequest, modifier ->
             ConfirmButtonRow(
                 onConfirm = onDismissRequest,
+                style = style.buttonRowStyle.buttonStyle,
                 modifier = modifier,
             )
         },
         onDismissRequest = onDismissRequest,
         modifier = modifier,
+        style = style,
     )
 }
 
@@ -72,18 +92,18 @@ fun DialogContent(
     onDismissRequest: () -> Unit,
     buttonRow: @Composable (onDismissRequest: () -> Unit, modifier: Modifier) -> Unit,
     modifier: Modifier = Modifier,
+    style: DialogContentStyle = DialogContentStyle(),
 ) {
     DialogContent(
         title = title,
         modifier = modifier,
+        style = style,
     ) {
         Text(
             text = message,
-            style = PaletteTheme.styles.text.bodyLarge.copy(
-                textAlign = TextAlign.Center,
-            ),
+            style = style.messageStyle,
             modifier = Modifier
-                .padding(bottom = PaletteTheme.spacing.large)
+                .padding(bottom = style.messageBottomPadding)
         )
         buttonRow(onDismissRequest, Modifier.align(Alignment.End))
     }
@@ -93,25 +113,24 @@ fun DialogContent(
 fun DialogContent(
     title: String,
     modifier: Modifier = Modifier,
+    style: DialogContentStyle = DialogContentStyle(),
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Surface(
-        borderStyle = PaletteTheme.styles.border.surface,
+        style = style.surfaceStyle,
         modifier = modifier,
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(PaletteTheme.spacing.medium),
+            verticalArrangement = Arrangement.spacedBy(style.spacing),
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .padding(PaletteTheme.spacing.large)
+                .padding(style.padding)
         ) {
             Text(
                 text = title,
-                style = PaletteTheme.styles.text.titleLarge.copy(
-                    textAlign = TextAlign.Center,
-                ),
+                style = style.titleStyle,
                 modifier = Modifier
-                    .padding(bottom = PaletteTheme.spacing.medium)
+                    .padding(bottom = style.titleBottomPadding)
             )
             content()
         }
@@ -121,27 +140,23 @@ fun DialogContent(
 @Preview
 @Composable
 private fun DialogContentPreview() {
-    PaletteTheme {
-        DialogContent(
-            title = "Title",
-            message = "Long message to show in the dialog content area.",
-            onDismissRequest = {},
-            onConfirm = {},
-            modifier = Modifier
-                .padding(PaletteTheme.spacing.medium)
-        )
-    }
+    DialogContent(
+        title = "Title",
+        message = "Long message to show in the dialog content area.",
+        onDismissRequest = {},
+        onConfirm = {},
+        modifier = Modifier
+            .padding(16.dp)
+    )
 }
 
 @Preview
 @Composable
 private fun ErrorDialogContentPreview() {
-    PaletteTheme {
-        ErrorDialogContent(
-            message = "An error occurred while processing your request.",
-            onDismissRequest = {},
-            modifier = Modifier
-                .padding(PaletteTheme.spacing.medium)
-        )
-    }
+    ErrorDialogContent(
+        message = "An error occurred while processing your request.",
+        onDismissRequest = {},
+        modifier = Modifier
+            .padding(16.dp)
+    )
 }

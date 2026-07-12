@@ -1,12 +1,12 @@
 package com.alexrdclement.palette.components.core
 
+import androidx.compose.foundation.Indication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,44 +21,37 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
-import com.alexrdclement.palette.components.LocalContentColor
-import com.alexrdclement.palette.components.contentColorFor
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.Shape
-import com.alexrdclement.palette.theme.modifiers.BorderStyle
-import com.alexrdclement.palette.theme.modifiers.border
-import com.alexrdclement.palette.theme.toComposeShape
 import kotlin.math.sqrt
+
+data class SurfaceStyle(
+    val shape: Shape = Shape.Rectangle(),
+    val color: Color = Color.Unspecified,
+    val borderStyle: BorderStyle? = null,
+    val indication: Indication? = null,
+)
 
 @Composable
 fun Surface(
     modifier: Modifier = Modifier,
-    shape: Shape = PaletteTheme.shapeScheme.surface,
-    color: Color = PaletteTheme.colorScheme.surface,
-    contentColor: Color = contentColorFor(color),
-    borderStyle: BorderStyle? = null,
+    style: SurfaceStyle = SurfaceStyle(),
     content: @Composable (PaddingValues) -> Unit
 ) {
-    CompositionLocalProvider(
-        LocalContentColor provides contentColor,
+    Box(
+        modifier = modifier
+            .shapeLayout(style.shape)
+            .surface(
+                composeShape = style.shape.toComposeShape(),
+                backgroundColor = style.color,
+                borderStyle = style.borderStyle,
+            )
+            .semantics(mergeDescendants = false) {
+                isTraversalGroup = true
+            }
+            .pointerInput(Unit) {},
+        propagateMinConstraints = true
     ) {
-        Box(
-            modifier = modifier
-                .shapeLayout(shape)
-                .surface(
-                    composeShape = shape.toComposeShape(),
-                    backgroundColor = color,
-                    borderStyle = borderStyle,
-                )
-                .semantics(mergeDescendants = false) {
-                    isTraversalGroup = true
-                }
-                .pointerInput(Unit) {},
-            propagateMinConstraints = true
-        ) {
-            ShapeContent(shape, content)
-        }
+        ShapeContent(style.shape, content)
     }
 }
 
@@ -66,44 +59,37 @@ fun Surface(
 fun Surface(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    style: SurfaceStyle = SurfaceStyle(),
     onLongClickLabel: String? = null,
     onLongClick: (() -> Unit)? = null,
     onDoubleClick: (() -> Unit)? = null,
     hapticFeedbackEnabled: Boolean = true,
     enabled: Boolean = true,
-    shape: Shape = PaletteTheme.shapeScheme.surface,
-    color: Color = PaletteTheme.colorScheme.surface,
-    contentColor: Color = contentColorFor(color),
-    borderStyle: BorderStyle? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable (PaddingValues) -> Unit
 ) {
-    CompositionLocalProvider(
-        LocalContentColor provides contentColor
+    Box(
+        propagateMinConstraints = true,
+        modifier = modifier
+            .shapeLayout(style.shape)
+            .shapeClickable(
+                shape = style.shape,
+                interactionSource = interactionSource,
+                indication = style.indication,
+                enabled = enabled,
+                onClick = onClick,
+                onLongClickLabel = onLongClickLabel,
+                onLongClick = onLongClick,
+                onDoubleClick = onDoubleClick,
+                hapticFeedbackEnabled = hapticFeedbackEnabled,
+            )
+            .surface(
+                composeShape = style.shape.toComposeShape(),
+                backgroundColor = style.color,
+                borderStyle = style.borderStyle,
+            )
     ) {
-        Box(
-            propagateMinConstraints = true,
-            modifier = modifier
-                .shapeLayout(shape)
-                .shapeClickable(
-                    shape = shape,
-                    interactionSource = interactionSource,
-                    indication = PaletteTheme.indication,
-                    enabled = enabled,
-                    onClick = onClick,
-                    onLongClickLabel = onLongClickLabel,
-                    onLongClick = onLongClick,
-                    onDoubleClick = onDoubleClick,
-                    hapticFeedbackEnabled = hapticFeedbackEnabled,
-                )
-                .surface(
-                    composeShape = shape.toComposeShape(),
-                    backgroundColor = color,
-                    borderStyle = borderStyle,
-                )
-        ) {
-            ShapeContent(shape, content)
-        }
+        ShapeContent(style.shape, content)
     }
 }
 
@@ -179,25 +165,20 @@ private fun Modifier.surface(
 private fun Preview(
     @PreviewParameter(BoolPreviewParameterProvider::class) isDarkTheme: Boolean,
 ) {
-    PaletteTheme(isDarkMode = isDarkTheme) {
-        Surface {
-            Text("Hello world")
-        }
+    Surface {
+        Text("Hello world")
     }
 }
 
 @Preview
 @Composable
 private fun PreviewClickable(
-    @PreviewParameter(BoolPreviewParameterProvider::class) isDarkTheme: Boolean,
     @PreviewParameter(BoolPreviewParameterProvider::class) enabled: Boolean,
 ) {
-    PaletteTheme(isDarkMode = isDarkTheme) {
-        Surface(
-            onClick = {},
-            enabled = enabled,
-        ) {
-            Text("Hello world")
-        }
+    Surface(
+        onClick = {},
+        enabled = enabled,
+    ) {
+        Text("Hello world")
     }
 }

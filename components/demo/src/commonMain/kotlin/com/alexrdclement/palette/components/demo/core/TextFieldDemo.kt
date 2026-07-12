@@ -11,13 +11,13 @@ import androidx.compose.foundation.text.input.allCaps
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -26,7 +26,7 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.TextField
-import com.alexrdclement.palette.components.demo.Demo
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
@@ -38,7 +38,8 @@ import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.formats.core.format
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.TextStyle
+import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.components.core.copy
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 
@@ -84,7 +85,9 @@ fun DemoScope.TextFieldDemo(
 
     TextField(
         state = state.textFieldState,
-        textStyle = state.textStyleDemoState.textStyle,
+        style = PaletteTheme.styles.core.textField.copy(
+            textStyle = state.textStyleDemoState.textStyle,
+        ),
         enabled = state.enabled,
         lineLimits = when (state.lineLimits) {
             LineLimits.SingleLine -> TextFieldLineLimits.SingleLine
@@ -144,10 +147,14 @@ enum class InputTransformations {
 @Composable
 fun rememberTextFieldDemoState(
     initialText: String = "Hello world",
+    textStyleInitial: TextStyle = TextStyleDemoDefault.copy(
+        color = PaletteTheme.colorScheme.onSurface,
+    ),
 ): TextFieldDemoState {
     return rememberSaveable(saver = TextFieldDemoStateSaver) {
         TextFieldDemoState(
             initialText = initialText,
+            textStyleInitial = textStyleInitial,
         )
     }
 }
