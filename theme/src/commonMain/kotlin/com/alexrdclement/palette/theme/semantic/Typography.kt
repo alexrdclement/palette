@@ -5,6 +5,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.alexrdclement.palette.theme.primitive.PalettePrimitiveTypography
 import com.alexrdclement.palette.theme.primitive.toComposeFontFamily
+import com.alexrdclement.palette.theme.primitive.toComposeFontWeight
 import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
 
 data class Typography(
@@ -29,21 +30,25 @@ fun makePaletteTypography(
     primitiveTypography: PrimitiveTypography = PalettePrimitiveTypography,
 ): Typography {
     val fontFamily = primitiveTypography.fontFamily.toComposeFontFamily()
+    val fontWeight = primitiveTypography.fontWeight.toComposeFontWeight()
     return Typography(
         display = TextStyle(
             fontFamily = fontFamily,
+            fontWeight = fontWeight,
             fontSize = 57.sp,
             lineHeight = 64.sp,
             letterSpacing = (-0.2).sp
         ),
         headline = TextStyle(
             fontFamily = fontFamily,
+            fontWeight = fontWeight,
             fontSize = 32.sp,
             lineHeight = 40.sp,
             letterSpacing = 0.sp
         ),
         titleLarge = TextStyle(
             fontFamily = fontFamily,
+            fontWeight = fontWeight,
             fontSize = 22.sp,
             lineHeight = 28.sp,
             letterSpacing = 0.sp
@@ -85,18 +90,21 @@ fun makePaletteTypography(
         ),
         bodyLarge = TextStyle(
             fontFamily = fontFamily,
+            fontWeight = fontWeight,
             fontSize = 16.sp,
             lineHeight = 24.sp,
             letterSpacing = 0.5.sp
         ),
         bodyMedium = TextStyle(
             fontFamily = fontFamily,
+            fontWeight = fontWeight,
             fontSize = 14.sp,
             lineHeight = 20.sp,
             letterSpacing = 0.2.sp
         ),
         bodySmall = TextStyle(
             fontFamily = fontFamily,
+            fontWeight = fontWeight,
             fontSize = 12.sp,
             lineHeight = 16.sp,
             letterSpacing = 0.4.sp

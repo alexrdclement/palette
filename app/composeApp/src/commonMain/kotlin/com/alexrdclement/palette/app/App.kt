@@ -15,6 +15,7 @@ fun App(
     themeController: ThemeController = rememberThemeController(),
 ) {
     PaletteTheme(
+        primitiveTypography = themeController.primitiveTypography,
         lightColorScheme = themeController.lightColorScheme,
         darkColorScheme = themeController.darkColorScheme,
         isDarkMode = themeController.isDarkMode,

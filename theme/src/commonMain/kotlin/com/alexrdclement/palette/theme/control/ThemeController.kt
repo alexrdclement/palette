@@ -7,11 +7,24 @@ import com.alexrdclement.palette.theme.semantic.format.Formats
 import com.alexrdclement.palette.theme.semantic.ShapeScheme
 import com.alexrdclement.palette.theme.semantic.Spacing
 import com.alexrdclement.palette.theme.component.core.Styles
+import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
 import com.alexrdclement.palette.theme.semantic.Typography
+import com.alexrdclement.palette.theme.semantic.makePaletteTypography
 
 class ThemeController internal constructor(
     private val state: ThemeStateImpl
 ): ThemeState by state {
+
+    /**
+     * Sets the primitive typography (base font family/weight) and rebuilds the semantic typography
+     * ramp from it, so primitive changes propagate through the whole ramp. Note this regenerates the
+     * ramp, resetting any per-token semantic typography overrides.
+     */
+    fun setPrimitiveTypography(primitiveTypography: PrimitiveTypography): Boolean {
+        state.primitiveTypography = primitiveTypography
+        state.typography = makePaletteTypography(primitiveTypography = primitiveTypography)
+        return true
+    }
 
     fun setTypography(typography: Typography): Boolean {
         state.typography = typography

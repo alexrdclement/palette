@@ -1,13 +1,13 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.semantic.interaction
 
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import com.alexrdclement.palette.waitAndFindObject
 
-class ThemePage(
+class InteractionPage(
     private val device: UiDevice,
 ) {
     fun assertIsDisplayed() {
-        device.waitAndFindObject(By.text("Semantic"))
+        device.waitAndFindObject(By.text("Indication"))
     }
 }

@@ -1,13 +1,13 @@
-package com.alexrdclement.palette.theme
+package com.alexrdclement.palette.theme.component
 
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import com.alexrdclement.palette.waitAndFindObject
 
-class ThemePage(
+class ComponentPage(
     private val device: UiDevice,
 ) {
     fun assertIsDisplayed() {
-        device.waitAndFindObject(By.text("Semantic"))
+        device.waitAndFindObject(By.text("Core"))
     }
 }

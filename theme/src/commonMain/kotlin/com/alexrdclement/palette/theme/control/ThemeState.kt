@@ -17,11 +17,14 @@ import com.alexrdclement.palette.theme.semantic.PaletteTypography
 import com.alexrdclement.palette.theme.semantic.ShapeScheme
 import com.alexrdclement.palette.theme.semantic.Spacing
 import com.alexrdclement.palette.theme.component.core.Styles
+import com.alexrdclement.palette.theme.primitive.PalettePrimitiveTypography
+import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
 import com.alexrdclement.palette.theme.semantic.Typography
 import com.alexrdclement.palette.theme.semantic.format.Formats
 import com.alexrdclement.palette.theme.semantic.format.PaletteFormats
 
 interface ThemeState {
+    val primitiveTypography: PrimitiveTypography
     val typography: Typography
     val indication: Indication
     val lightColorScheme: ColorScheme
@@ -38,6 +41,7 @@ interface ThemeState {
 
 internal class ThemeStateImpl(
     isDarkModeInitial: Boolean,
+    primitiveTypographyInitial: PrimitiveTypography = PalettePrimitiveTypography,
     lightColorSchemeInitial: ColorScheme = PaletteLightColorScheme,
     darkColorSchemeInitial: ColorScheme = PaletteDarkColorScheme,
     typographyInitial: Typography = PaletteTypography,
@@ -47,6 +51,7 @@ internal class ThemeStateImpl(
     formatsInitial: Formats = PaletteFormats,
     stylesInitial: Styles = Styles(),
 ) : ThemeState {
+    override var primitiveTypography by mutableStateOf(primitiveTypographyInitial)
     override var typography by mutableStateOf(typographyInitial)
     override var shapeScheme by mutableStateOf(shapeSchemeInitial)
     override var indication by mutableStateOf(indicationInitial)
