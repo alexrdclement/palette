@@ -31,7 +31,7 @@ fun MoneyFormatScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
-    val state = rememberMoneyFormatScreenState(formats = themeController.formats)
+    val state = rememberMoneyFormatScreenState(formats = themeController.semantic.formats)
     val control = rememberMoneyFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
@@ -152,14 +152,14 @@ private fun makeControlForToken(
     val moneyFormatDemoControl = MoneyFormatDemoControl(
         state = state.moneyFormatDemoStatesByToken[token]!!,
         onValueChange = { newValue ->
-            themeController.setFormats(
+            themeController.updateSemantic { it.copy(
                 formats = state.formats.copy(
                     moneyFormats = state.moneyFormatScheme.update(
                         token = token,
                         moneyFormat = newValue,
                     )
                 )
-            )
+            ) }
         }
     )
 

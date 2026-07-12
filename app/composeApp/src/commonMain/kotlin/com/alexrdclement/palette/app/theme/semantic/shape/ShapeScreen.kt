@@ -93,7 +93,7 @@ class ShapeScreenState(
     val themeState: ThemeState,
 ) {
     val shapeScheme: ShapeScheme
-        get() = themeState.shapeScheme
+        get() = themeState.semantic.shapeScheme
 
     val cornerRadiusByShapeToken get() = ShapeToken.entries.associateWith { token ->
         token.toShape(shapeScheme).cornerRadius
@@ -155,7 +155,7 @@ private fun makeControlForToken(
                     cornerRadius = state.cornerRadiusByShapeToken[token]!!
                 )
             )
-            themeController.setShapeScheme(shapeScheme)
+            themeController.updateSemantic { it.copy(shapeScheme = shapeScheme) }
         }
     )
 
@@ -169,7 +169,7 @@ private fun makeControlForToken(
                     cornerRadius = radius.dp,
                 )
             )
-            themeController.setShapeScheme(shapeScheme)
+            themeController.updateSemantic { it.copy(shapeScheme = shapeScheme) }
         },
         valueRange = { 0f..64f },
         stepIncrement = 8f,

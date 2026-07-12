@@ -34,7 +34,7 @@ fun PrimitiveTypographyScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
-    val primitiveTypography = themeController.primitiveTypography
+    val primitiveTypography = themeController.primitive.typography
 
     val controls = remember(primitiveTypography) {
         persistentListOf<Control>(
@@ -43,9 +43,9 @@ fun PrimitiveTypographyScreen(
                 values = { FontFamily.entries },
                 selectedValue = { primitiveTypography.fontFamily },
                 onValueChange = { fontFamily ->
-                    themeController.setPrimitiveTypography(
-                        primitiveTypography.copy(fontFamily = fontFamily),
-                    )
+                    themeController.updatePrimitive {
+                        it.copy(typography = it.typography.copy(fontFamily = fontFamily))
+                    }
                 },
             ),
             enumControl(
@@ -53,9 +53,9 @@ fun PrimitiveTypographyScreen(
                 values = { FontWeight.entries },
                 selectedValue = { primitiveTypography.fontWeight },
                 onValueChange = { fontWeight ->
-                    themeController.setPrimitiveTypography(
-                        primitiveTypography.copy(fontWeight = fontWeight),
-                    )
+                    themeController.updatePrimitive {
+                        it.copy(typography = it.typography.copy(fontWeight = fontWeight))
+                    }
                 },
             ),
         )

@@ -34,7 +34,7 @@ fun InstantFormatSchemeScreen(
     onNavigateUp: () -> Unit,
 ) {
     val state = rememberInstantFormatSchemeScreenState(
-        formats = themeController.formats,
+        formats = themeController.semantic.formats,
     )
     val control = rememberInstantFormatSchemeScreenControl(
         state = state,
@@ -165,7 +165,7 @@ private fun makeControlForToken(
         entries = InstantFormatValue.entries,
         state = state.dateTimeFormatDemoStateByToken[token]!!,
         onValueChange = { newValue ->
-            themeController.setFormats(
+            themeController.updateSemantic { it.copy(
                 formats = state.formats.copy(
                     dateTimeFormats = state.formats.dateTimeFormats.copy(
                         instantFormatScheme = state.instantFormatScheme.update(
@@ -174,7 +174,7 @@ private fun makeControlForToken(
                         )
                     )
                 )
-            )
+            ) }
         }
     )
     return Control.ControlColumn(

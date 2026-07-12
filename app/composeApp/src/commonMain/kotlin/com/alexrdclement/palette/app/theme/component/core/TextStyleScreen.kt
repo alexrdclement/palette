@@ -113,7 +113,7 @@ class TextStyleScreenState(
     }
 
     fun tokenSet(token: TextStyleToken): TextStyleTokenSet =
-        themeState.styles.text.getValue(token)
+        themeState.component.styles.text.getValue(token)
 
     fun surfaceToken(token: TextStyleToken): SurfaceStyleToken =
         surfaceTokens[token] ?: SurfaceStyleToken.Default
@@ -190,10 +190,10 @@ private fun makeControlForToken(
     themeController: ThemeController,
 ): Control {
     fun setTokenSet(value: TextStyleTokenSet) {
-        val styles = state.themeState.styles
-        themeController.setStyles(
-            styles.copy(text = styles.text + (token to value))
-        )
+        val styles = state.themeState.component.styles
+        themeController.updateComponent { it.copy(
+            styles = styles.copy(text = styles.text + (token to value))
+        ) }
     }
 
     val typographyTokenControl = enumControl(

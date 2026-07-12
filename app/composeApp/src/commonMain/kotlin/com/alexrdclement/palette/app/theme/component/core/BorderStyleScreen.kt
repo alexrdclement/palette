@@ -88,7 +88,7 @@ class BorderStyleScreenState(
     val themeState: ThemeState,
 ) {
     fun tokenSet(token: BorderStyleToken): BorderStyleTokenSet =
-        themeState.styles.border.getValue(token)
+        themeState.component.styles.border.getValue(token)
 }
 
 fun BorderStyleScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
@@ -136,10 +136,10 @@ private fun makeControlForToken(
     themeController: ThemeController,
 ): Control {
     fun setTokenSet(value: BorderStyleTokenSet) {
-        val styles = state.themeState.styles
-        themeController.setStyles(
-            styles.copy(border = styles.border + (token to value))
-        )
+        val styles = state.themeState.component.styles
+        themeController.updateComponent { it.copy(
+            styles = styles.copy(border = styles.border + (token to value))
+        ) }
     }
 
     val contentColorControl = enumControl(

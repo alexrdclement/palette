@@ -32,7 +32,7 @@ fun TextFormatScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
-    val state = rememberTextFormatScreenState(formats = themeController.formats)
+    val state = rememberTextFormatScreenState(formats = themeController.semantic.formats)
     val control = rememberTextFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
@@ -155,14 +155,14 @@ private fun makeControlForToken(
     val demoControl = rememberTextFormatDemoControl(
         state = state.textFormatDemoStatesByToken[token]!!,
         onValueChange = { newValue ->
-            themeController.setFormats(
+            themeController.updateSemantic { it.copy(
                 formats = state.formats.copy(
                     textFormats = state.textFormatScheme.update(
                         token = token,
                         value = newValue,
                     )
                 )
-            )
+            ) }
         }
     )
     return Control.ControlColumn(

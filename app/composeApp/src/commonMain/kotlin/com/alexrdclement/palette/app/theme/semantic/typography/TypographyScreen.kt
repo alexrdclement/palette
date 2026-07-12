@@ -28,7 +28,7 @@ import com.alexrdclement.palette.formats.core.TextFormat
 import com.alexrdclement.palette.theme.semantic.TypographyToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.semantic.copy
+import com.alexrdclement.palette.theme.semantic.resolve
 import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.theme.semantic.toComposeTextStyle
 import kotlinx.collections.immutable.PersistentList
@@ -101,7 +101,7 @@ class TypographyScreenState(
     val textFieldState: TextFieldState,
 ) {
     val typography
-        get() = themeState.typography
+        get() = themeState.semantic.typography.resolve(themeState.primitive.typography)
 
     val text: String
         get() = textFieldState.text.toString()
@@ -143,11 +143,9 @@ fun rememberTypographyScreenControl(
 
         LaunchedEffect(composeTextStyleState.composeTextStyle) {
             snapshotFlow { composeTextStyleState.composeTextStyle }.collect { newStyle ->
-                val typography = state.typography.copy(
-                    token = token,
-                    textStyle = newStyle,
-                )
-                themeController.setTypography(typography)
+                themeController.updateSemantic {
+                    it.copy(typography = it.typography.withOverride(token, newStyle))
+                }
             }
         }
 

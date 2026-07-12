@@ -180,9 +180,9 @@ class ColorScreenControl(
         name = "Reset",
         onClick = {
             if (themeController.isDarkMode) {
-                themeController.setDarkColorScheme(PaletteDarkColorScheme)
+                themeController.updateSemantic { it.copy(colors = it.colors.copy(dark = PaletteDarkColorScheme)) }
             } else {
-                themeController.setLightColorScheme(PaletteLightColorScheme)
+                themeController.updateSemantic { it.copy(colors = it.colors.copy(light = PaletteLightColorScheme)) }
             }
         }
     )
@@ -198,9 +198,9 @@ class ColorScreenControl(
             color = color,
         )
         if (themeController.isDarkMode) {
-            themeController.setDarkColorScheme(colorScheme = colorScheme)
+            themeController.updateSemantic { it.copy(colors = it.colors.copy(dark = colorScheme)) }
         } else {
-            themeController.setLightColorScheme(colorScheme = colorScheme)
+            themeController.updateSemantic { it.copy(colors = it.colors.copy(light = colorScheme)) }
         }
     }
 }

@@ -86,7 +86,7 @@ class IndicationScreenState(
     buttonDemoStateInitial: ButtonDemoState,
 ) {
     val indicationType
-        get() = themeState.indication.toPaletteIndicationType()
+        get() = themeState.semantic.indication.toPaletteIndicationType()
 
     var buttonDemoState by mutableStateOf(buttonDemoStateInitial)
         internal set
@@ -127,7 +127,9 @@ class IndicationScreenControl(
         name = "Indication",
         values = { PaletteIndicationType.entries },
         selectedValue = { state.indicationType },
-        onValueChange = { themeController.setIndication(it.toIndication()) },
+        onValueChange = { type ->
+            themeController.updateSemantic { it.copy(indication = type.toIndication()) }
+        },
     )
 
     val buttonDemoControl = ButtonDemoControl(state = state.buttonDemoState)

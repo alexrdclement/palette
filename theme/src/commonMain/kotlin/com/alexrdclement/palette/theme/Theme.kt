@@ -4,6 +4,7 @@ import androidx.compose.foundation.Indication
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle as ComposeTextStyle
@@ -20,12 +21,11 @@ import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
 import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
 import com.alexrdclement.palette.theme.semantic.ColorScheme
 import com.alexrdclement.palette.theme.semantic.NoOpIndication
-import com.alexrdclement.palette.theme.semantic.PaletteDarkColorScheme
-import com.alexrdclement.palette.theme.semantic.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.semantic.SemanticTokens
 import com.alexrdclement.palette.theme.semantic.ShapeScheme
 import com.alexrdclement.palette.theme.semantic.Spacing
 import com.alexrdclement.palette.theme.semantic.Typography
+import com.alexrdclement.palette.theme.semantic.resolve
 import com.alexrdclement.palette.theme.semantic.format.Formats
 import com.alexrdclement.palette.theme.semantic.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.semantic.format.core.PaletteTextFormatScheme
@@ -107,16 +107,19 @@ val LocalPaletteFormats = staticCompositionLocalOf {
 @Composable
 fun PaletteTheme(
     primitive: PrimitiveTokens = PrimitiveTokens(),
-    semantic: SemanticTokens = SemanticTokens(
-        colorScheme = if (isSystemInDarkTheme()) PaletteDarkColorScheme else PaletteLightColorScheme,
-    ),
+    semantic: SemanticTokens = SemanticTokens(),
     component: ComponentTokens = ComponentTokens(),
+    isDarkMode: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
+    val colorScheme = if (isDarkMode) semantic.colors.dark else semantic.colors.light
+    val typography = remember(primitive.typography, semantic.typography) {
+        semantic.typography.resolve(primitive.typography)
+    }
     CompositionLocalProvider(
         LocalPalettePrimitiveTypography provides primitive.typography,
-        LocalPaletteColorScheme provides semantic.colorScheme,
-        LocalPaletteTypography provides semantic.typography,
+        LocalPaletteColorScheme provides colorScheme,
+        LocalPaletteTypography provides typography,
         LocalPaletteShapes provides semantic.shapeScheme,
         LocalPaletteIndication provides semantic.indication,
         LocalPaletteSpacing provides semantic.spacing,

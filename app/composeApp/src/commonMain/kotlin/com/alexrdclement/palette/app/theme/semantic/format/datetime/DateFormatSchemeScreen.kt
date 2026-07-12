@@ -34,7 +34,7 @@ fun DateFormatSchemeScreen(
     onNavigateUp: () -> Unit,
 ) {
     val state = rememberDateFormatSchemeScreenState(
-        formats = themeController.formats,
+        formats = themeController.semantic.formats,
     )
     val control = rememberDateFormatSchemeScreenControl(
         state = state,
@@ -165,7 +165,7 @@ private fun makeControlForToken(
         entries = DateFormatValue.entries,
         state = state.dateTimeFormatDemoStateByToken[token]!!,
         onValueChange = { newValue ->
-            themeController.setFormats(
+            themeController.updateSemantic { it.copy(
                 formats = state.formats.copy(
                     dateTimeFormats = state.formats.dateTimeFormats.copy(
                         dateFormatScheme = state.dateFormatScheme.update(
@@ -174,7 +174,7 @@ private fun makeControlForToken(
                         )
                     )
                 )
-            )
+            ) }
         }
     )
     return Control.ControlColumn(

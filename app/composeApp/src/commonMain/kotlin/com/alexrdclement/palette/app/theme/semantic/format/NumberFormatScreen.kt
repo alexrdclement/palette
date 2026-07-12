@@ -32,7 +32,7 @@ fun NumberFormatScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
-    val state = rememberNumberFormatScreenState(formats = themeController.formats)
+    val state = rememberNumberFormatScreenState(formats = themeController.semantic.formats)
     val control = rememberNumberFormatScreenControl(state = state, themeController = themeController)
 
     Scaffold(
@@ -152,14 +152,14 @@ private fun makeControlForToken(
     val demoControl = rememberNumberFormatDemoControl(
         state = state.numberFormatDemoStatesByToken[token]!!,
         onValueChange = { newValue ->
-            themeController.setFormats(
+            themeController.updateSemantic { it.copy(
                 formats = state.formats.copy(
                     numberFormats = state.numberFormatScheme.update(
                         token = token,
                         numberFormat = newValue,
                     )
                 )
-            )
+            ) }
         }
     )
     return Control.ControlColumn(

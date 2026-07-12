@@ -114,7 +114,7 @@ class ButtonStyleScreenState(
     val textDemoStates: Map<ButtonStyleToken, TextDemoState>,
 ) {
     fun tokenSet(token: ButtonStyleToken): ButtonStyleTokenSet =
-        themeState.styles.button.getValue(token)
+        themeState.component.styles.button.getValue(token)
 
     fun textDemoState(token: ButtonStyleToken): TextDemoState =
         textDemoStates.getValue(token)
@@ -180,10 +180,10 @@ private fun makeControlForToken(
     textDemoControl: TextDemoControl,
 ): Control {
     fun setTokenSet(value: ButtonStyleTokenSet) {
-        val styles = state.themeState.styles
-        themeController.setStyles(
-            styles.copy(button = styles.button + (token to value))
-        )
+        val styles = state.themeState.component.styles
+        themeController.updateComponent { it.copy(
+            styles = styles.copy(button = styles.button + (token to value))
+        ) }
     }
 
     fun defaultBorder() = when (token) {
