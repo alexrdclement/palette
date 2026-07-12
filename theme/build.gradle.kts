@@ -18,5 +18,10 @@ kotlin {
                 implementation(projects.modifiers)
             }
         }
+        commonTest {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
     }
 }

@@ -136,6 +136,13 @@ fun PaletteTheme(
  * - [semantic]: design-intent tokens that reference primitives (color, typography ramp, shape
  *   scheme, spacing, indication, formats).
  * - [component]: tokens that map closely to components (button, surface, text styles, ...).
+ *
+ * These accessors expose the **resolved** values components consume, which differ from the editable
+ * inputs of the same tier: [semantic].[Semantic.color] is the active [ColorScheme] resolved from the
+ * [com.alexrdclement.palette.theme.semantic.SemanticTokens.colors] light/dark pair and the dark-mode
+ * flag, and [semantic].[Semantic.typography] is the [Typography] ramp resolved from the primitive
+ * font plus the [com.alexrdclement.palette.theme.semantic.SemanticTypography] overrides. Edit the
+ * inputs via the token holders (see [PaletteTheme]); read the resolved values here.
  */
 object PaletteTheme {
     val primitive get() = Primitive
