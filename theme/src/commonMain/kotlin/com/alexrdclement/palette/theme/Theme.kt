@@ -12,24 +12,21 @@ import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.component.ComponentStyles
+import com.alexrdclement.palette.theme.component.ComponentTokens
 import com.alexrdclement.palette.theme.component.core.LocalStyles
-import com.alexrdclement.palette.theme.component.core.Styles
 import com.alexrdclement.palette.theme.primitive.PaletteShapePrimitives
 import com.alexrdclement.palette.theme.primitive.PalettePrimitiveTypography
+import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
 import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
 import com.alexrdclement.palette.theme.semantic.ColorScheme
 import com.alexrdclement.palette.theme.semantic.NoOpIndication
 import com.alexrdclement.palette.theme.semantic.PaletteDarkColorScheme
-import com.alexrdclement.palette.theme.semantic.PaletteIndication
 import com.alexrdclement.palette.theme.semantic.PaletteLightColorScheme
-import com.alexrdclement.palette.theme.semantic.PaletteShapeScheme
-import com.alexrdclement.palette.theme.semantic.PaletteSpacing
-import com.alexrdclement.palette.theme.semantic.PaletteTypography
+import com.alexrdclement.palette.theme.semantic.SemanticTokens
 import com.alexrdclement.palette.theme.semantic.ShapeScheme
 import com.alexrdclement.palette.theme.semantic.Spacing
 import com.alexrdclement.palette.theme.semantic.Typography
 import com.alexrdclement.palette.theme.semantic.format.Formats
-import com.alexrdclement.palette.theme.semantic.format.PaletteFormats
 import com.alexrdclement.palette.theme.semantic.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.semantic.format.core.PaletteTextFormatScheme
 import com.alexrdclement.palette.theme.semantic.format.datetime.PaletteDateTimeFormats
@@ -109,28 +106,22 @@ val LocalPaletteFormats = staticCompositionLocalOf {
 
 @Composable
 fun PaletteTheme(
-    isDarkMode: Boolean = isSystemInDarkTheme(),
-    primitiveTypography: PrimitiveTypography = PalettePrimitiveTypography,
-    lightColorScheme: ColorScheme = PaletteLightColorScheme,
-    darkColorScheme: ColorScheme = PaletteDarkColorScheme,
-    typography: Typography = PaletteTypography,
-    shapeScheme: ShapeScheme = PaletteShapeScheme,
-    indication: Indication = PaletteIndication,
-    spacing: Spacing = PaletteSpacing,
-    styles: Styles = Styles(),
-    formats: Formats = PaletteFormats,
+    primitive: PrimitiveTokens = PrimitiveTokens(),
+    semantic: SemanticTokens = SemanticTokens(
+        colorScheme = if (isSystemInDarkTheme()) PaletteDarkColorScheme else PaletteLightColorScheme,
+    ),
+    component: ComponentTokens = ComponentTokens(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (isDarkMode) darkColorScheme else lightColorScheme
     CompositionLocalProvider(
-        LocalPalettePrimitiveTypography provides primitiveTypography,
-        LocalPaletteColorScheme provides colorScheme,
-        LocalPaletteTypography provides typography,
-        LocalPaletteShapes provides shapeScheme,
-        LocalPaletteIndication provides indication,
-        LocalPaletteSpacing provides spacing,
-        LocalStyles provides styles,
-        LocalPaletteFormats provides formats,
+        LocalPalettePrimitiveTypography provides primitive.typography,
+        LocalPaletteColorScheme provides semantic.colorScheme,
+        LocalPaletteTypography provides semantic.typography,
+        LocalPaletteShapes provides semantic.shapeScheme,
+        LocalPaletteIndication provides semantic.indication,
+        LocalPaletteSpacing provides semantic.spacing,
+        LocalStyles provides component.styles,
+        LocalPaletteFormats provides semantic.formats,
         content = content,
     )
 }
