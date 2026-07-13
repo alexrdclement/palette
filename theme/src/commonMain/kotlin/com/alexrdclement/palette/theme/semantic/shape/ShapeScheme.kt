@@ -2,11 +2,6 @@ package com.alexrdclement.palette.theme.semantic.shape
 
 import com.alexrdclement.palette.theme.primitive.ShapePrimitiveToken
 
-/**
- * Semantic shape tokens: each role references a primitive shape token
- * ([com.alexrdclement.palette.theme.primitive.ShapePrimitives]). Roles that reference the same
- * primitive share its geometry (e.g. the rectangle's corner radius).
- */
 data class ShapeScheme(
     val primary: ShapePrimitiveToken,
     val secondary: ShapePrimitiveToken,
@@ -16,7 +11,7 @@ data class ShapeScheme(
 
 val PaletteShapeScheme = ShapeScheme(
     primary = ShapePrimitiveToken.Circle,
-    secondary = ShapePrimitiveToken.Rectangle,
+    secondary = ShapePrimitiveToken.RoundRect,
     tertiary = ShapePrimitiveToken.Rectangle,
     surface = ShapePrimitiveToken.Rectangle,
 )

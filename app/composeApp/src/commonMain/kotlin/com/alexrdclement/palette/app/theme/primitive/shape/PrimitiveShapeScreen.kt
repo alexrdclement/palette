@@ -1,6 +1,6 @@
 package com.alexrdclement.palette.app.theme.primitive.shape
 
-import androidx.compose.foundation.border
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,6 +14,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
@@ -33,11 +34,6 @@ import com.alexrdclement.palette.theme.primitive.ShapePrimitives
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
-/**
- * Edits the primitive shape tokens ([PaletteTheme.primitive.shape]). A single primitive is shown as
- * the demo subject; the rectangle's corner radius is editable and shared by every semantic shape
- * role that references the rectangle primitive.
- */
 @Composable
 fun PrimitiveShapeScreen(
     themeController: ThemeController,
@@ -66,9 +62,8 @@ fun PrimitiveShapeScreen(
                 modifier = Modifier
                     .align(Alignment.Center)
                     .size(96.dp)
-                    .border(
-                        width = 1.dp,
-                        color = PaletteTheme.semantic.color.outline,
+                    .background(
+                        color = PaletteTheme.semantic.color.onSurface,
                         shape = state.subjectShape.toComposeShape(),
                     )
             )
@@ -144,10 +139,10 @@ class PrimitiveShapeScreenControl(
 
     private val cornerRadiusControl = Control.Slider(
         name = "Corner radius",
-        value = { state.shapePrimitives.rectangle.cornerRadius.value },
+        value = { state.shapePrimitives.roundRect.cornerRadius.value },
         onValueChange = { radius ->
             themeController.updatePrimitive {
-                it.copy(shape = it.shape.copy(rectangle = Shape.Rectangle(cornerRadius = radius.dp)))
+                it.copy(shape = it.shape.copy(roundRect = Shape.Rectangle(cornerRadius = radius.dp)))
             }
         },
         valueRange = { 0f..64f },
@@ -157,8 +152,9 @@ class PrimitiveShapeScreenControl(
     val controls: PersistentList<Control>
         get() = buildList {
             add(subjectControl)
-            if (state.subject == ShapePrimitiveToken.Rectangle) {
-                add(cornerRadiusControl)
+            when (state.subject) {
+                ShapePrimitiveToken.RoundRect -> add(cornerRadiusControl)
+                else -> Unit
             }
         }.toPersistentList()
 }

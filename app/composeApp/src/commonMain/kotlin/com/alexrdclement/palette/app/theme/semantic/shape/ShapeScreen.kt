@@ -1,6 +1,6 @@
 package com.alexrdclement.palette.app.theme.semantic.shape
 
-import androidx.compose.foundation.border
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -65,9 +65,8 @@ fun ShapeScreen(
                 Box(
                     modifier = Modifier
                         .size(96.dp)
-                        .border(
-                            width = 1.dp,
-                            color = PaletteTheme.semantic.color.outline,
+                        .background(
+                            color = PaletteTheme.semantic.color.onSurface,
                             shape = token.toComposeShape(),
                         )
                 )
