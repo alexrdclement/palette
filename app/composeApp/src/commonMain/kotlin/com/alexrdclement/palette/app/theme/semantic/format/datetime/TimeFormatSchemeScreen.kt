@@ -165,16 +165,18 @@ private fun makeControlForToken(
         entries = TimeFormatValue.entries,
         state = state.dateTimeFormatDemoStateByToken[token]!!,
         onValueChange = { newValue ->
-            themeController.updateSemantic { it.copy(
-                formats = state.formats.copy(
-                    dateTimeFormats = state.formats.dateTimeFormats.copy(
-                        timeFormatScheme = state.timeFormatScheme.update(
-                            format = token,
-                            value = newValue,
+            themeController.updateSemantic {
+                it.copy(
+                    formats = state.formats.copy(
+                        dateTimeFormats = state.formats.dateTimeFormats.copy(
+                            timeFormatScheme = state.timeFormatScheme.update(
+                                format = token,
+                                value = newValue,
+                            )
                         )
                     )
                 )
-            ) }
+            }
         }
     )
     return Control.ControlColumn(

@@ -155,14 +155,16 @@ private fun makeControlForToken(
     val demoControl = rememberTextFormatDemoControl(
         state = state.textFormatDemoStatesByToken[token]!!,
         onValueChange = { newValue ->
-            themeController.updateSemantic { it.copy(
-                formats = state.formats.copy(
-                    textFormats = state.textFormatScheme.update(
-                        token = token,
-                        value = newValue,
+            themeController.updateSemantic {
+                it.copy(
+                    formats = state.formats.copy(
+                        textFormats = state.textFormatScheme.update(
+                            token = token,
+                            value = newValue,
+                        )
                     )
                 )
-            ) }
+            }
         }
     )
     return Control.ControlColumn(

@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.theme.component.core
 
+import com.alexrdclement.palette.theme.component.LocalComponentTokens
+
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.theme.semantic.ColorToken
@@ -22,7 +24,7 @@ enum class TextStyleToken(val default: TextStyleTokenSet) {
 
 @Composable
 fun TextStyleToken.tokenSet(): TextStyleTokenSet =
-    LocalStyles.current.text.getValue(this)
+    LocalComponentTokens.current.text.getValue(this)
 
 @Composable
 fun TextStyleToken.resolve(): TextStyle =

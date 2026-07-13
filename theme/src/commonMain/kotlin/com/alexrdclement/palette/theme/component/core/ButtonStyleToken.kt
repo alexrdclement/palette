@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.theme.component.core
 
+import com.alexrdclement.palette.theme.component.LocalComponentTokens
+
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.theme.semantic.ColorToken
@@ -31,7 +33,7 @@ enum class ButtonStyleToken(val default: ButtonStyleTokenSet) {
 
 @Composable
 fun ButtonStyleToken.tokenSet(): ButtonStyleTokenSet =
-    LocalStyles.current.button.getValue(this)
+    LocalComponentTokens.current.button.getValue(this)
 
 @Composable
 fun ButtonStyleToken.resolve(): ButtonStyle = tokenSet().toComponentStyle()

@@ -87,7 +87,7 @@ class SurfaceStyleScreenState(
     val themeState: ThemeState,
 ) {
     fun tokenSet(token: SurfaceStyleToken): SurfaceStyleTokenSet =
-        themeState.component.styles.surface.getValue(token)
+        themeState.component.surface.getValue(token)
 }
 
 fun SurfaceStyleScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
@@ -135,10 +135,7 @@ private fun makeControlForToken(
     themeController: ThemeController,
 ): Control {
     fun setTokenSet(value: SurfaceStyleTokenSet) {
-        val styles = state.themeState.component.styles
-        themeController.updateComponent { it.copy(
-            styles = styles.copy(surface = styles.surface + (token to value))
-        ) }
+        themeController.updateComponent { it.copy(surface = it.surface + (token to value)) }
     }
 
     val colorControl = enumControl(

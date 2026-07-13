@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.theme.component.core
 
+import com.alexrdclement.palette.theme.component.LocalComponentTokens
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -39,7 +41,7 @@ enum class BorderStyleToken(val default: BorderStyleTokenSet) {
 }
 
 @Composable
-fun BorderStyleToken.tokenSet(): BorderStyleTokenSet = LocalStyles.current.border.getValue(this)
+fun BorderStyleToken.tokenSet(): BorderStyleTokenSet = LocalComponentTokens.current.border.getValue(this)
 
 @Composable
 fun BorderStyleToken.resolve(): ComponentBorderStyle = tokenSet().toComponentStyle()

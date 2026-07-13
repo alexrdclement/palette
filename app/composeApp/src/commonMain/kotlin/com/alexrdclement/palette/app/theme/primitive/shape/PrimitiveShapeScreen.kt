@@ -4,13 +4,13 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Shape
-import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.core.toComposeShape
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.demo.DemoList
@@ -54,23 +54,16 @@ fun PrimitiveShapeScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) { (name, shape) ->
-            BoxWithLabel(
-                label = name,
-                modifier = Modifier.fillMaxSize(),
-            ) {
+            BoxWithLabel(label = name) {
                 Box(
                     modifier = Modifier
+                        .size(96.dp)
                         .border(
                             width = 1.dp,
                             color = PaletteTheme.semantic.color.outline,
                             shape = shape.toComposeShape(),
                         )
-                ) {
-                    Text(
-                        text = name,
-                        style = PaletteTheme.component.core.text.headline,
-                    )
-                }
+                )
             }
         }
     }

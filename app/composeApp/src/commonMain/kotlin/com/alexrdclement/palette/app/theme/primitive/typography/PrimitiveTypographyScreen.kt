@@ -1,33 +1,30 @@
 package com.alexrdclement.palette.app.theme.primitive.typography
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.formats.core.TextFormat
+import com.alexrdclement.palette.components.demo.core.TextDemo
+import com.alexrdclement.palette.components.demo.core.rememberTextDemoControl
+import com.alexrdclement.palette.components.demo.core.rememberTextDemoState
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components.demo.DemoList
-import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
+import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.primitive.FontFamily
 import com.alexrdclement.palette.theme.primitive.FontWeight
-import com.alexrdclement.palette.theme.semantic.TypographyToken
-import com.alexrdclement.palette.theme.semantic.toComposeTextStyle
 import kotlinx.collections.immutable.persistentListOf
 
 /**
  * Edits the primitive typography tokens ([PaletteTheme.primitive.typography]) — the base font family
- * and weight. Changes propagate through the semantic typography ramp shown below.
+ * and weight — which propagate through the semantic typography ramp. A single centered text demo is
+ * shown; its own controls are grouped in the collapsed "Text" column.
  */
 @Composable
 fun PrimitiveTypographyScreen(
@@ -35,8 +32,10 @@ fun PrimitiveTypographyScreen(
     onNavigateUp: () -> Unit,
 ) {
     val primitiveTypography = themeController.primitive.typography
+    val textDemoState = rememberTextDemoState()
+    val textDemoControl = rememberTextDemoControl(textDemoState)
 
-    val controls = remember(primitiveTypography) {
+    val controls = remember(primitiveTypography, textDemoControl) {
         persistentListOf<Control>(
             enumControl(
                 name = "Font family",
@@ -58,6 +57,10 @@ fun PrimitiveTypographyScreen(
                     }
                 },
             ),
+            Control.ControlColumn(
+                name = "Text",
+                controls = { textDemoControl.controls },
+            ),
         )
     }
 
@@ -71,27 +74,16 @@ fun PrimitiveTypographyScreen(
             )
         },
     ) { paddingValues ->
-        DemoList(
-            items = TypographyToken.entries.toList(),
+        Demo(
             controls = controls,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-        ) { token ->
-            BoxWithLabel(
-                label = token.name,
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text(
-                    text = "Sphinx of black quartz, judge my vow",
-                    style = TextStyle(
-                        composeTextStyle = token.toComposeTextStyle().copy(
-                            color = PaletteTheme.semantic.color.onSurface,
-                        ),
-                        format = TextFormat(),
-                    ),
-                )
-            }
+                .padding(paddingValues),
+        ) {
+            TextDemo(
+                state = textDemoState,
+                control = textDemoControl,
+            )
         }
     }
 }

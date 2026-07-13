@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.theme.component.core
 
+import com.alexrdclement.palette.theme.component.LocalComponentTokens
+
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.theme.semantic.ColorToken
@@ -24,7 +26,7 @@ enum class SurfaceStyleToken(val default: SurfaceStyleTokenSet) {
 
 @Composable
 fun SurfaceStyleToken.tokenSet(): SurfaceStyleTokenSet =
-    LocalStyles.current.surface.getValue(this)
+    LocalComponentTokens.current.surface.getValue(this)
 
 @Composable
 fun SurfaceStyleToken.resolve(): SurfaceStyle = tokenSet().toComponentStyle()

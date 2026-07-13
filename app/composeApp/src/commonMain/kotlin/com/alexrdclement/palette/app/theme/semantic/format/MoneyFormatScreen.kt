@@ -152,14 +152,16 @@ private fun makeControlForToken(
     val moneyFormatDemoControl = MoneyFormatDemoControl(
         state = state.moneyFormatDemoStatesByToken[token]!!,
         onValueChange = { newValue ->
-            themeController.updateSemantic { it.copy(
-                formats = state.formats.copy(
-                    moneyFormats = state.moneyFormatScheme.update(
-                        token = token,
-                        moneyFormat = newValue,
+            themeController.updateSemantic {
+                it.copy(
+                    formats = state.formats.copy(
+                        moneyFormats = state.moneyFormatScheme.update(
+                            token = token,
+                            moneyFormat = newValue,
+                        )
                     )
                 )
-            ) }
+            }
         }
     )
 

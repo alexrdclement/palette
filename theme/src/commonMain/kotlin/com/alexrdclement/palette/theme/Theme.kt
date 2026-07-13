@@ -14,7 +14,7 @@ import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.component.ComponentStyles
 import com.alexrdclement.palette.theme.component.ComponentTokens
-import com.alexrdclement.palette.theme.component.core.LocalStyles
+import com.alexrdclement.palette.theme.component.LocalComponentTokens
 import com.alexrdclement.palette.theme.primitive.PaletteShapePrimitives
 import com.alexrdclement.palette.theme.primitive.PalettePrimitiveTypography
 import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
@@ -123,7 +123,7 @@ fun PaletteTheme(
         LocalPaletteShapes provides semantic.shapeScheme,
         LocalPaletteIndication provides semantic.indication,
         LocalPaletteSpacing provides semantic.spacing,
-        LocalStyles provides component.styles,
+        LocalComponentTokens provides component,
         LocalPaletteFormats provides semantic.formats,
         content = content,
     )
