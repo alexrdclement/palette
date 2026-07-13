@@ -282,6 +282,7 @@ HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->ShapeContent$lambda$2$
 HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->ShapeContent(Lcom/alexrdclement/palette/components/core/Shape;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)V
 HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->Surface$lambda$0$0(Landroidx/compose/ui/semantics/SemanticsPropertyReceiver;)Lkotlin/Unit;
 HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->Surface(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/SurfaceStyle;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->Surface(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/SurfaceStyle;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 HSPLcom/alexrdclement/palette/components/core/SurfaceKt;->surface-FNF3uiM(Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/Shape;JLcom/alexrdclement/palette/components/core/BorderStyle;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/Modifier;
 Lcom/alexrdclement/palette/components/core/SurfaceKt$$ExternalSyntheticLambda1;
 HSPLcom/alexrdclement/palette/components/core/SurfaceKt$$ExternalSyntheticLambda1;-><init>(Lcom/alexrdclement/palette/components/core/Shape;Lkotlin/jvm/functions/Function3;)V
