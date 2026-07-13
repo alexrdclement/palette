@@ -10,12 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.snapshotFlow
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.takeOrElse
@@ -24,8 +24,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Text
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.core.copy
-import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
@@ -33,7 +33,7 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.theme.components.demo.Demo
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -373,6 +373,10 @@ class TextDemoControl(
         if (state.width > state.maxWidth) {
             state.width = state.maxWidth
         }
+    }
+
+    fun updateTextStyle(textStyle: TextStyle) {
+        textStyleControl.updateStyle(textStyle)
     }
 }
 

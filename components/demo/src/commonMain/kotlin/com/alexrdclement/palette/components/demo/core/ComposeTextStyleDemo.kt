@@ -164,4 +164,15 @@ class ComposeTextStyleDemoControl(
         lineHeightControl,
         letterSpacingControl,
     )
+
+    fun updateTextStyle(style: ComposeTextStyle) {
+        with(style) {
+            state.fontFamily = fontFamily?.toFontFamily()
+            state.fontWeight = fontWeight?.toFontWeight()
+            state.fontStyle = fontStyle?.toFontStyle()
+            state.fontSize = fontSize.value.takeIf { it.isFinite() }
+            state.lineHeight = lineHeight.value.takeIf { it.isFinite() }
+            state.letterSpacing = letterSpacing.value.takeIf { it.isFinite() }
+        }
+    }
 }

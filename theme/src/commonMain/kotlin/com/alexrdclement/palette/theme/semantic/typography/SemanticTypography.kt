@@ -3,12 +3,6 @@ package com.alexrdclement.palette.theme.semantic.typography
 import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
 
-/**
- * Semantic typography tokens, modeled as a base ramp derived from the primitive font family/weight
- * plus per-token [overrides]. A primitive change flows through every non-overridden token; an
- * overridden token stays pinned to its explicit style. Resolved to a concrete [Typography] ramp via
- * [resolve].
- */
 data class SemanticTypography(
     val overrides: Map<TypographyToken, ComposeTextStyle> = emptyMap(),
 ) {
