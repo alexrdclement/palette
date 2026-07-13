@@ -1,67 +1,58 @@
 package com.alexrdclement.palette.app.theme.primitive.typography
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.components.demo.control.enumControl
+import com.alexrdclement.palette.components.demo.core.ComposeTextStyleDemoDefault
 import com.alexrdclement.palette.components.demo.core.TextDemo
+import com.alexrdclement.palette.components.demo.core.TextStyleDemoDefault
 import com.alexrdclement.palette.components.demo.core.rememberTextDemoControl
 import com.alexrdclement.palette.components.demo.core.rememberTextDemoState
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.rememberThemeController
-import com.alexrdclement.palette.theme.primitive.FontFamily
-import com.alexrdclement.palette.theme.primitive.FontWeight
-import kotlinx.collections.immutable.persistentListOf
+import com.alexrdclement.palette.theme.primitive.toComposeFontFamily
+import com.alexrdclement.palette.theme.primitive.toComposeFontWeight
 
 /**
  * Edits the primitive typography tokens ([PaletteTheme.primitive.typography]) — the base font family
- * and weight — which propagate through the semantic typography ramp. A single centered text demo is
- * shown; its own controls are grouped in the collapsed "Text" column.
+ * and weight — which propagate through the semantic typography ramp. The centered text demo is
+ * seeded from the primitive font, and its font-family/weight controls write back to the primitive so
+ * the two stay merged.
  */
 @Composable
 fun PrimitiveTypographyScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
-    val primitiveTypography = themeController.primitive.typography
-    val textDemoState = rememberTextDemoState()
+    val textDemoState = rememberTextDemoState(
+        textStyleInitial = TextStyleDemoDefault.copy(
+            composeTextStyle = ComposeTextStyleDemoDefault.copy(
+                fontFamily = themeController.primitive.typography.fontFamily.toComposeFontFamily(),
+                fontWeight = themeController.primitive.typography.fontWeight.toComposeFontWeight(),
+            ),
+        ),
+    )
     val textDemoControl = rememberTextDemoControl(textDemoState)
 
-    val controls = remember(primitiveTypography, textDemoControl) {
-        persistentListOf<Control>(
-            enumControl(
-                name = "Font family",
-                values = { FontFamily.entries },
-                selectedValue = { primitiveTypography.fontFamily },
-                onValueChange = { fontFamily ->
-                    themeController.updatePrimitive {
-                        it.copy(typography = it.typography.copy(fontFamily = fontFamily))
-                    }
-                },
-            ),
-            enumControl(
-                name = "Font weight",
-                values = { FontWeight.entries },
-                selectedValue = { primitiveTypography.fontWeight },
-                onValueChange = { fontWeight ->
-                    themeController.updatePrimitive {
-                        it.copy(typography = it.typography.copy(fontWeight = fontWeight))
-                    }
-                },
-            ),
-            Control.ControlColumn(
-                name = "Text",
-                controls = { textDemoControl.controls },
-            ),
-        )
+    val composeTextStyleState = textDemoState.textStyleDemoState.composeTextStyleDemoState
+    LaunchedEffect(composeTextStyleState, themeController) {
+        snapshotFlow { composeTextStyleState.fontFamily to composeTextStyleState.fontWeight }
+            .collect { (fontFamily, fontWeight) ->
+                themeController.updatePrimitive {
+                    it.copy(
+                        typography = it.typography.copy(
+                            fontFamily = fontFamily ?: it.typography.fontFamily,
+                            fontWeight = fontWeight ?: it.typography.fontWeight,
+                        ),
+                    )
+                }
+            }
     }
 
     Scaffold(
@@ -74,17 +65,11 @@ fun PrimitiveTypographyScreen(
             )
         },
     ) { paddingValues ->
-        Demo(
-            controls = controls,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-        ) {
-            TextDemo(
-                state = textDemoState,
-                control = textDemoControl,
-            )
-        }
+        TextDemo(
+            modifier = Modifier.padding(paddingValues),
+            state = textDemoState,
+            control = textDemoControl,
+        )
     }
 }
 
