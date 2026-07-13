@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.app.theme.semantic.interaction
 
-import com.alexrdclement.palette.theme.PaletteTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -23,11 +22,11 @@ import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
-import com.alexrdclement.palette.theme.semantic.PaletteIndicationType
+import com.alexrdclement.palette.theme.semantic.indication.PaletteIndicationType
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.semantic.toIndication
-import com.alexrdclement.palette.theme.semantic.toPaletteIndicationType
+import com.alexrdclement.palette.theme.semantic.indication.toIndication
+import com.alexrdclement.palette.theme.semantic.indication.toPaletteIndicationType
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 

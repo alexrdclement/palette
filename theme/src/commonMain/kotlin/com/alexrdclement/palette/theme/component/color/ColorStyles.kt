@@ -11,8 +11,8 @@ import com.alexrdclement.palette.theme.component.core.CoreStyles
 import com.alexrdclement.palette.theme.component.core.TextStyles
 import com.alexrdclement.palette.theme.component.core.resolve
 import com.alexrdclement.palette.theme.component.layout.LayoutStyles
-import com.alexrdclement.palette.theme.semantic.ShapeToken
-import com.alexrdclement.palette.theme.semantic.toShape
+import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
+import com.alexrdclement.palette.theme.semantic.shape.toShape
 
 object ColorStyles {
 

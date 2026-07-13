@@ -5,8 +5,8 @@ import com.alexrdclement.palette.theme.component.LocalComponentTokens
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.alexrdclement.palette.theme.semantic.ColorToken
-import com.alexrdclement.palette.theme.semantic.ShapeToken
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
+import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
 import com.alexrdclement.palette.components.core.BorderStyle as ComponentBorderStyle
 
 enum class BorderStyleToken(val default: BorderStyleTokenSet) {

@@ -4,8 +4,8 @@ import com.alexrdclement.palette.theme.component.LocalComponentTokens
 
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.SurfaceStyle
-import com.alexrdclement.palette.theme.semantic.ColorToken
-import com.alexrdclement.palette.theme.semantic.ShapeToken
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
+import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
 
 enum class SurfaceStyleToken(val default: SurfaceStyleTokenSet) {
     Default(

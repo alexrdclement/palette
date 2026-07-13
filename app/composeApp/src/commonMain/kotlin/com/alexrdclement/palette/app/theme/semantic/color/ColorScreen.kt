@@ -22,9 +22,9 @@ import com.alexrdclement.palette.components.core.ButtonDefaults
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.mapSaverSafe
-import com.alexrdclement.palette.theme.semantic.ColorToken
-import com.alexrdclement.palette.theme.semantic.PaletteDarkColorScheme
-import com.alexrdclement.palette.theme.semantic.PaletteLightColorScheme
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
+import com.alexrdclement.palette.theme.semantic.color.PaletteDarkColorScheme
+import com.alexrdclement.palette.theme.semantic.color.PaletteLightColorScheme
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.core.Surface
 import com.alexrdclement.palette.theme.components.demo.DemoList
@@ -32,8 +32,8 @@ import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
-import com.alexrdclement.palette.theme.semantic.copy
-import com.alexrdclement.palette.theme.semantic.toColor
+import com.alexrdclement.palette.theme.semantic.color.copy
+import com.alexrdclement.palette.theme.semantic.color.toColor
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 

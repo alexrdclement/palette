@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.semantic
+package com.alexrdclement.palette.theme.semantic.typography
 
 import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography

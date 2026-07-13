@@ -12,13 +12,13 @@ import com.alexrdclement.palette.components.media.MediaItemArtworkStyle
 import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
 import com.alexrdclement.palette.components.media.SkipButtonStyle
 import com.alexrdclement.palette.components.media.SkipIconStyle
-import com.alexrdclement.palette.theme.semantic.ColorToken
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.component.core.CoreStyles
 import com.alexrdclement.palette.theme.component.core.TextStyles
-import com.alexrdclement.palette.theme.semantic.ShapeToken
-import com.alexrdclement.palette.theme.semantic.toColor
-import com.alexrdclement.palette.theme.semantic.toShape
+import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
+import com.alexrdclement.palette.theme.semantic.color.toColor
+import com.alexrdclement.palette.theme.semantic.shape.toShape
 
 object MediaStyles {
 

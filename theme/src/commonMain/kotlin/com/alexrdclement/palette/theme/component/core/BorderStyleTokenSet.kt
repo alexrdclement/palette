@@ -2,10 +2,10 @@ package com.alexrdclement.palette.theme.component.core
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
-import com.alexrdclement.palette.theme.semantic.ColorToken
-import com.alexrdclement.palette.theme.semantic.ShapeToken
-import com.alexrdclement.palette.theme.semantic.toColor
-import com.alexrdclement.palette.theme.semantic.toShape
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
+import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
+import com.alexrdclement.palette.theme.semantic.color.toColor
+import com.alexrdclement.palette.theme.semantic.shape.toShape
 import com.alexrdclement.palette.components.core.BorderStyle as ComponentBorderStyle
 
 data class BorderStyleTokenSet(

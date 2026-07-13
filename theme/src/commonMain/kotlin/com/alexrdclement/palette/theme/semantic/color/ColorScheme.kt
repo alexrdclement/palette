@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.semantic
+package com.alexrdclement.palette.theme.semantic.color
 
 import androidx.compose.ui.graphics.Color
 

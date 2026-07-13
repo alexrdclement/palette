@@ -11,11 +11,11 @@ import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
 import com.alexrdclement.palette.components.core.copy
-import com.alexrdclement.palette.theme.semantic.ColorToken
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.component.core.CoreStyles
 import com.alexrdclement.palette.theme.component.core.TextStyles
-import com.alexrdclement.palette.theme.semantic.toColor
+import com.alexrdclement.palette.theme.semantic.color.toColor
 
 object LayoutStyles {
 

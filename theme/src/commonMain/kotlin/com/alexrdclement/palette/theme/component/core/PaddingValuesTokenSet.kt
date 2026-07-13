@@ -2,8 +2,8 @@ package com.alexrdclement.palette.theme.component.core
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.theme.semantic.SpacingToken
-import com.alexrdclement.palette.theme.semantic.toSpacing
+import com.alexrdclement.palette.theme.semantic.spacing.SpacingToken
+import com.alexrdclement.palette.theme.semantic.spacing.toSpacing
 
 data class PaddingValuesTokenSet(
     val start: SpacingToken,

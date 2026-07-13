@@ -33,7 +33,7 @@ import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.modifiers.FadeSide
 import com.alexrdclement.palette.modifiers.bottomFade
 import com.alexrdclement.palette.modifiers.fade
-import com.alexrdclement.palette.theme.semantic.PaletteSpacing
+import com.alexrdclement.palette.theme.semantic.spacing.PaletteSpacing
 import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.persistentListOf
 

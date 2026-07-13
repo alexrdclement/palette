@@ -7,10 +7,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
 import com.alexrdclement.palette.components.color.ColorPickerDialogContent
-import com.alexrdclement.palette.theme.semantic.ColorToken
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.core.Surface
-import com.alexrdclement.palette.theme.semantic.toColor
+import com.alexrdclement.palette.theme.semantic.color.toColor
 
 @Composable
 fun ColorPickerDialog(

@@ -25,12 +25,12 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.formats.core.TextFormat
-import com.alexrdclement.palette.theme.semantic.TypographyToken
+import com.alexrdclement.palette.theme.semantic.typography.TypographyToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.semantic.resolve
+import com.alexrdclement.palette.theme.semantic.typography.resolve
 import com.alexrdclement.palette.components.core.TextStyle
-import com.alexrdclement.palette.theme.semantic.toComposeTextStyle
+import com.alexrdclement.palette.theme.semantic.typography.toComposeTextStyle
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 

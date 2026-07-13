@@ -7,8 +7,8 @@ import com.alexrdclement.palette.components.core.border
 import com.alexrdclement.palette.theme.component.core.BorderStyleToken
 import com.alexrdclement.palette.theme.component.core.BorderStyleTokenSet
 import com.alexrdclement.palette.theme.component.core.resolve
-import com.alexrdclement.palette.theme.semantic.toColor
-import com.alexrdclement.palette.theme.semantic.toComposeShape
+import com.alexrdclement.palette.theme.semantic.color.toColor
+import com.alexrdclement.palette.theme.semantic.shape.toComposeShape
 
 @Composable
 fun Modifier.border(

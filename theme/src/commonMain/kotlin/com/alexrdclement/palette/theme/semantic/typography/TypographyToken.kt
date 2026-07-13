@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.semantic
+package com.alexrdclement.palette.theme.semantic.typography
 
 import com.alexrdclement.palette.theme.PaletteTheme
 import androidx.compose.runtime.Composable

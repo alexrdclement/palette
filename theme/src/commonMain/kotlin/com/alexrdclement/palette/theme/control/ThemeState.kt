@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.alexrdclement.palette.theme.component.ComponentTokens
 import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
-import com.alexrdclement.palette.theme.semantic.ColorScheme
+import com.alexrdclement.palette.theme.semantic.color.ColorScheme
 import com.alexrdclement.palette.theme.semantic.SemanticTokens
 
 interface ThemeState {

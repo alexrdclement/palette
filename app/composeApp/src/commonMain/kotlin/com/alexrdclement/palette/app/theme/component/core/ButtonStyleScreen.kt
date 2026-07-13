@@ -17,7 +17,6 @@ import com.alexrdclement.palette.components.demo.core.TextDemoControl
 import com.alexrdclement.palette.components.demo.core.TextDemoState
 import com.alexrdclement.palette.components.demo.core.TextDemoStateSaver
 import com.alexrdclement.palette.components.core.Button
-import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
@@ -26,14 +25,14 @@ import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
-import com.alexrdclement.palette.theme.semantic.ColorToken
-import com.alexrdclement.palette.theme.semantic.ShapeToken
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
+import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.component.core.BorderStyleToken
 import com.alexrdclement.palette.theme.component.core.ButtonStyleToken
 import com.alexrdclement.palette.theme.component.core.ButtonStyleTokenSet
-import com.alexrdclement.palette.theme.semantic.toColor
+import com.alexrdclement.palette.theme.semantic.color.toColor
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 

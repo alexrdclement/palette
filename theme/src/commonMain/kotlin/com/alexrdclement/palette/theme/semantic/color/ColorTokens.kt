@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.semantic
+package com.alexrdclement.palette.theme.semantic.color
 
 /**
  * Semantic color tokens: the light and dark [ColorScheme]s. Both are tokens; which one is active is a

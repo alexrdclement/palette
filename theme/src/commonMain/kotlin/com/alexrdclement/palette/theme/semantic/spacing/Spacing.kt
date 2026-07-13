@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.semantic
+package com.alexrdclement.palette.theme.semantic.spacing
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp

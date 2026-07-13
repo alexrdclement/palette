@@ -28,10 +28,10 @@ import com.alexrdclement.palette.components.util.PaddingValuesSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
-import com.alexrdclement.palette.theme.semantic.ColorToken
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.component.core.ButtonStyleToken
-import com.alexrdclement.palette.theme.semantic.toColor
+import com.alexrdclement.palette.theme.semantic.color.toColor
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable

@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.semantic
+package com.alexrdclement.palette.theme.semantic.shape
 
 import com.alexrdclement.palette.theme.primitive.ShapePrimitiveToken
 

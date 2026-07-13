@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.semantic
+package com.alexrdclement.palette.theme.semantic.indication
 
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.IndicationNodeFactory

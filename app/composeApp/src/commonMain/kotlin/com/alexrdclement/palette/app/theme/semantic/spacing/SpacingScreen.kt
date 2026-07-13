@@ -18,12 +18,12 @@ import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.semantic.Spacing
-import com.alexrdclement.palette.theme.semantic.SpacingToken
+import com.alexrdclement.palette.theme.semantic.spacing.Spacing
+import com.alexrdclement.palette.theme.semantic.spacing.SpacingToken
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.semantic.copy
-import com.alexrdclement.palette.theme.semantic.toSpacing
+import com.alexrdclement.palette.theme.semantic.spacing.copy
+import com.alexrdclement.palette.theme.semantic.spacing.toSpacing
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 

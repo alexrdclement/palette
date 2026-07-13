@@ -1,7 +1,8 @@
-package com.alexrdclement.palette.theme.semantic
+package com.alexrdclement.palette.theme.semantic.color
 
 import com.alexrdclement.palette.theme.PaletteTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 enum class ColorToken {
     Primary,
@@ -16,7 +17,7 @@ enum class ColorToken {
 }
 
 @Composable
-fun ColorToken.toColor(): androidx.compose.ui.graphics.Color {
+fun ColorToken.toColor(): Color {
     return when (this) {
         ColorToken.Primary -> PaletteTheme.semantic.color.primary
         ColorToken.OnPrimary -> PaletteTheme.semantic.color.onPrimary

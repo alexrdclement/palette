@@ -24,11 +24,11 @@ import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.primitive.ShapePrimitiveToken
-import com.alexrdclement.palette.theme.semantic.ShapeScheme
-import com.alexrdclement.palette.theme.semantic.ShapeToken
-import com.alexrdclement.palette.theme.semantic.copy
-import com.alexrdclement.palette.theme.semantic.primitiveToken
-import com.alexrdclement.palette.theme.semantic.toComposeShape
+import com.alexrdclement.palette.theme.semantic.shape.ShapeScheme
+import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
+import com.alexrdclement.palette.theme.semantic.shape.copy
+import com.alexrdclement.palette.theme.semantic.shape.primitiveToken
+import com.alexrdclement.palette.theme.semantic.shape.toComposeShape
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 

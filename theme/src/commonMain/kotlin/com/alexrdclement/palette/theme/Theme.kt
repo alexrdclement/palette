@@ -20,13 +20,13 @@ import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
 import com.alexrdclement.palette.theme.primitive.ShapePrimitiveToken
 import com.alexrdclement.palette.theme.primitive.ShapePrimitives
 import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
-import com.alexrdclement.palette.theme.semantic.ColorScheme
-import com.alexrdclement.palette.theme.semantic.NoOpIndication
+import com.alexrdclement.palette.theme.semantic.color.ColorScheme
+import com.alexrdclement.palette.theme.semantic.indication.NoOpIndication
 import com.alexrdclement.palette.theme.semantic.SemanticTokens
-import com.alexrdclement.palette.theme.semantic.ShapeScheme
-import com.alexrdclement.palette.theme.semantic.Spacing
-import com.alexrdclement.palette.theme.semantic.Typography
-import com.alexrdclement.palette.theme.semantic.resolve
+import com.alexrdclement.palette.theme.semantic.shape.ShapeScheme
+import com.alexrdclement.palette.theme.semantic.spacing.Spacing
+import com.alexrdclement.palette.theme.semantic.typography.Typography
+import com.alexrdclement.palette.theme.semantic.typography.resolve
 import com.alexrdclement.palette.theme.semantic.format.Formats
 import com.alexrdclement.palette.theme.semantic.format.core.NumberFormatScheme
 import com.alexrdclement.palette.theme.semantic.format.core.PaletteTextFormatScheme
@@ -147,7 +147,7 @@ fun PaletteTheme(
  * inputs of the same tier: [semantic].[Semantic.color] is the active [ColorScheme] resolved from the
  * [com.alexrdclement.palette.theme.semantic.SemanticTokens.colors] light/dark pair and the dark-mode
  * flag, and [semantic].[Semantic.typography] is the [Typography] ramp resolved from the primitive
- * font plus the [com.alexrdclement.palette.theme.semantic.SemanticTypography] overrides. Edit the
+ * font plus the [com.alexrdclement.palette.theme.semantic.typography.SemanticTypography] overrides. Edit the
  * inputs via the token holders (see [PaletteTheme]); read the resolved values here.
  */
 object PaletteTheme {
