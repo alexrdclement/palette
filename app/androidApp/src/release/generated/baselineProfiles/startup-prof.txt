@@ -2869,7 +2869,6 @@ HSPLandroidx/compose/runtime/GapComposer;->endRestartGroup()Landroidx/compose/ru
 HSPLandroidx/compose/runtime/GapComposer;->endReusableGroup()V
 HSPLandroidx/compose/runtime/GapComposer;->endRoot()V
 HSPLandroidx/compose/runtime/GapComposer;->ensureWriter()V
-HSPLandroidx/compose/runtime/GapComposer;->enterGroup(ZLandroidx/compose/runtime/GapPending;)V
 HSPLandroidx/compose/runtime/GapComposer;->enterRecomposeScope(Landroidx/compose/runtime/RecomposeScopeImpl;)V
 HSPLandroidx/compose/runtime/GapComposer;->exitGroup(IZ)V
 HSPLandroidx/compose/runtime/GapComposer;->exitRecomposeScope(Landroidx/compose/runtime/RecomposeScopeImpl;)Lkotlin/jvm/functions/Function1;
@@ -3799,7 +3798,6 @@ HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndex(I)I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndex([II)I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndexToDataAddress(I)I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndexToDataAnchor(IIII)I
-HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->endGroup()I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->endInsert()V
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->ensureStarted(I)V
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->ensureStarted(Landroidx/compose/runtime/composer/gapbuffer/GapAnchor;)V
@@ -10147,6 +10145,7 @@ HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getMetadataItem()Landroidx/emo
 PLandroidx/emoji2/text/flatbuffer/MetadataItem;-><init>()V
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->__assign(ILjava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->__init(ILjava/nio/ByteBuffer;)V
+HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->codepoints(I)I
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->codepointsLength()I
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->id()I
 PLandroidx/emoji2/text/flatbuffer/MetadataList;-><init>()V
@@ -10927,8 +10926,6 @@ PLandroidx/profileinstaller/ProfileVerifier;->getPackageLastUpdateTime(Landroid/
 PLandroidx/profileinstaller/ProfileVerifier;->setCompilationStatus(IZZZ)Landroidx/profileinstaller/ProfileVerifier$CompilationStatus;
 PLandroidx/profileinstaller/ProfileVerifier;->writeProfileVerification(Landroid/content/Context;Z)Landroidx/profileinstaller/ProfileVerifier$CompilationStatus;
 PLandroidx/profileinstaller/ProfileVerifier$Cache;-><init>(IIJJ)V
-PLandroidx/profileinstaller/ProfileVerifier$Cache;->equals(Ljava/lang/Object;)Z
-PLandroidx/profileinstaller/ProfileVerifier$Cache;->readFromFile(Ljava/io/File;)Landroidx/profileinstaller/ProfileVerifier$Cache;
 PLandroidx/profileinstaller/ProfileVerifier$Cache;->writeOnFile(Ljava/io/File;)V
 PLandroidx/profileinstaller/ProfileVerifier$CompilationStatus;-><init>(IZZZ)V
 Landroidx/savedstate/R$id;
