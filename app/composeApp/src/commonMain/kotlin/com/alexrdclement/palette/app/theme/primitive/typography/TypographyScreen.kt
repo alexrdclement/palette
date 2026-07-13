@@ -28,7 +28,7 @@ import com.alexrdclement.palette.theme.primitive.toComposeFontWeight
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-fun PrimitiveTypographyScreen(
+fun TypographyScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
@@ -134,7 +134,7 @@ fun PrimitiveTypographyScreen(
 @Composable
 private fun Preview() {
     PaletteTheme {
-        PrimitiveTypographyScreen(
+        TypographyScreen(
             themeController = rememberThemeController(),
             onNavigateUp = {},
         )

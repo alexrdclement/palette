@@ -14,7 +14,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
@@ -35,7 +34,7 @@ import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
-fun PrimitiveShapeScreen(
+fun ShapeScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
@@ -163,7 +162,7 @@ class PrimitiveShapeScreenControl(
 @Composable
 private fun Preview() {
     PaletteTheme {
-        PrimitiveShapeScreen(
+        ShapeScreen(
             themeController = rememberThemeController(),
             onNavigateUp = {},
         )

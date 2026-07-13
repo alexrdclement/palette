@@ -3,8 +3,8 @@ package com.alexrdclement.palette.app.theme.primitive.navigation
 import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.primitive.PrimitiveItem
-import com.alexrdclement.palette.app.theme.primitive.shape.PrimitiveShapeScreen
-import com.alexrdclement.palette.app.theme.primitive.typography.PrimitiveTypographyScreen
+import com.alexrdclement.palette.app.theme.primitive.shape.ShapeScreen
+import com.alexrdclement.palette.app.theme.primitive.typography.TypographyScreen
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.NavKey
@@ -35,14 +35,14 @@ fun EntryProviderScope<NavKey>.primitiveEntryProvider(
     )
 
     entry<PrimitiveTypographyRoute> {
-        PrimitiveTypographyScreen(
+        TypographyScreen(
             themeController = themeController,
             onNavigateUp = navController::goBack,
         )
     }
 
     entry<PrimitiveShapeRoute> {
-        PrimitiveShapeScreen(
+        ShapeScreen(
             themeController = themeController,
             onNavigateUp = navController::goBack,
         )
