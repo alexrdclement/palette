@@ -6,24 +6,30 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
+import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
+import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.primitive.ShapePrimitiveToken
+import com.alexrdclement.palette.theme.semantic.ShapeScheme
 import com.alexrdclement.palette.theme.semantic.ShapeToken
 import com.alexrdclement.palette.theme.semantic.copy
 import com.alexrdclement.palette.theme.semantic.primitiveToken
 import com.alexrdclement.palette.theme.semantic.toComposeShape
+import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
 /**
@@ -35,27 +41,8 @@ fun ShapeScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
-    val controls = remember(themeController) {
-        persistentListOf<Control>(
-            *ShapeToken.entries.map { token ->
-                enumControl(
-                    name = token.name,
-                    values = { ShapePrimitiveToken.entries },
-                    selectedValue = { token.primitiveToken(themeController.semantic.shapeScheme) },
-                    onValueChange = { primitiveToken ->
-                        themeController.updateSemantic {
-                            it.copy(
-                                shapeScheme = it.shapeScheme.copy(
-                                    token = token,
-                                    shapePrimitiveToken = primitiveToken,
-                                ),
-                            )
-                        }
-                    },
-                )
-            }.toTypedArray()
-        )
-    }
+    val state = rememberShapeScreenState(themeState = themeController)
+    val control = rememberShapeScreenControl(state = state, themeController = themeController)
 
     Scaffold(
         topBar = {
@@ -69,7 +56,7 @@ fun ShapeScreen(
     ) { paddingValues ->
         DemoList(
             items = ShapeToken.entries.toList(),
-            controls = controls,
+            controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -87,6 +74,87 @@ fun ShapeScreen(
             }
         }
     }
+}
+
+@Composable
+fun rememberShapeScreenState(
+    themeState: ThemeState,
+): ShapeScreenState {
+    return rememberSaveable(
+        themeState,
+        saver = ShapeScreenStateSaver(themeState),
+    ) {
+        ShapeScreenState(
+            themeState = themeState,
+        )
+    }
+}
+
+@Stable
+class ShapeScreenState(
+    val themeState: ThemeState,
+) {
+    val shapeScheme: ShapeScheme
+        get() = themeState.semantic.shapeScheme
+}
+
+fun ShapeScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
+    save = { mapOf() },
+    restore = {
+        ShapeScreenState(
+            themeState = themeState,
+        )
+    }
+)
+
+@Composable
+fun rememberShapeScreenControl(
+    state: ShapeScreenState,
+    themeController: ThemeController,
+): ShapeScreenControl {
+    return remember(state, themeController) {
+        ShapeScreenControl(state = state, themeController = themeController)
+    }
+}
+
+@Stable
+class ShapeScreenControl(
+    val state: ShapeScreenState,
+    val themeController: ThemeController,
+) {
+    private val shapeControls = ShapeToken.entries.map { token ->
+        makeControlForToken(
+            token = token,
+            state = state,
+            themeController = themeController,
+        )
+    }
+
+    val controls: PersistentList<Control> = persistentListOf(
+        *shapeControls.toTypedArray(),
+    )
+}
+
+private fun makeControlForToken(
+    token: ShapeToken,
+    state: ShapeScreenState,
+    themeController: ThemeController,
+): Control {
+    return enumControl(
+        name = token.name,
+        values = { ShapePrimitiveToken.entries },
+        selectedValue = { token.primitiveToken(state.shapeScheme) },
+        onValueChange = { primitiveToken ->
+            themeController.updateSemantic {
+                it.copy(
+                    shapeScheme = it.shapeScheme.copy(
+                        token = token,
+                        shapePrimitiveToken = primitiveToken,
+                    ),
+                )
+            }
+        },
+    )
 }
 
 @Preview
