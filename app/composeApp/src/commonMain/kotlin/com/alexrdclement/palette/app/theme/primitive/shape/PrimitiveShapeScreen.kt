@@ -12,29 +12,39 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.components.core.toComposeShape
+import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.demo.DemoList
 import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.rememberThemeController
+import com.alexrdclement.palette.theme.primitive.ShapePrimitiveToken
 import kotlinx.collections.immutable.persistentListOf
 
 /**
- * Displays the primitive shape tokens ([PaletteTheme.primitive.shape]) — the raw, unopinionated
- * shapes. These are literal building blocks and are not editable; semantic shape tokens reference
- * them.
+ * Edits the primitive shape tokens ([PaletteTheme.primitive.shape]). The rectangle's corner radius is
+ * editable and shared by every semantic shape role that references the rectangle primitive.
  */
 @Composable
 fun PrimitiveShapeScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
-    val shapes: List<Pair<String, Shape>> = listOf(
-        "Circle" to PaletteTheme.primitive.shape.circle,
-        "Rectangle" to PaletteTheme.primitive.shape.rectangle,
-        "Triangle" to PaletteTheme.primitive.shape.triangle,
-        "Diamond" to PaletteTheme.primitive.shape.diamond,
+    val shapePrimitives = PaletteTheme.primitive.shape
+
+    val controls = persistentListOf<Control>(
+        Control.Slider(
+            name = "Rectangle corner radius",
+            value = { shapePrimitives.rectangle.cornerRadius.value },
+            onValueChange = { radius ->
+                themeController.updatePrimitive {
+                    it.copy(shape = it.shape.copy(rectangle = Shape.Rectangle(cornerRadius = radius.dp)))
+                }
+            },
+            valueRange = { 0f..64f },
+            stepIncrement = 4f,
+        ),
     )
 
     Scaffold(
@@ -48,20 +58,20 @@ fun PrimitiveShapeScreen(
         },
     ) { paddingValues ->
         DemoList(
-            items = shapes,
-            controls = persistentListOf(),
+            items = ShapePrimitiveToken.entries.toList(),
+            controls = controls,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) { (name, shape) ->
-            BoxWithLabel(label = name) {
+        ) { token ->
+            BoxWithLabel(label = token.name) {
                 Box(
                     modifier = Modifier
                         .size(96.dp)
                         .border(
                             width = 1.dp,
                             color = PaletteTheme.semantic.color.outline,
-                            shape = shape.toComposeShape(),
+                            shape = shapePrimitives.shape(token).toComposeShape(),
                         )
                 )
             }

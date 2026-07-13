@@ -9,7 +9,6 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 import androidx.compose.ui.unit.Dp
-import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.formats.core.NumberFormat
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.theme.component.ComponentStyles
@@ -18,6 +17,8 @@ import com.alexrdclement.palette.theme.component.LocalComponentTokens
 import com.alexrdclement.palette.theme.primitive.PaletteShapePrimitives
 import com.alexrdclement.palette.theme.primitive.PalettePrimitiveTypography
 import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
+import com.alexrdclement.palette.theme.primitive.ShapePrimitiveToken
+import com.alexrdclement.palette.theme.primitive.ShapePrimitives
 import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
 import com.alexrdclement.palette.theme.semantic.ColorScheme
 import com.alexrdclement.palette.theme.semantic.NoOpIndication
@@ -34,6 +35,10 @@ import com.alexrdclement.palette.theme.semantic.format.money.MoneyFormatScheme
 
 val LocalPalettePrimitiveTypography = staticCompositionLocalOf {
     PalettePrimitiveTypography
+}
+
+val LocalPalettePrimitiveShape = staticCompositionLocalOf {
+    PaletteShapePrimitives
 }
 
 val LocalPaletteColorScheme = staticCompositionLocalOf {
@@ -70,10 +75,10 @@ val LocalPaletteTypography = staticCompositionLocalOf {
 
 val LocalPaletteShapes = staticCompositionLocalOf {
     ShapeScheme(
-        primary = Shape.Rectangle(),
-        secondary = Shape.Rectangle(),
-        tertiary = Shape.Rectangle(),
-        surface = Shape.Rectangle(),
+        primary = ShapePrimitiveToken.Rectangle,
+        secondary = ShapePrimitiveToken.Rectangle,
+        tertiary = ShapePrimitiveToken.Rectangle,
+        surface = ShapePrimitiveToken.Rectangle,
     )
 }
 
@@ -118,6 +123,7 @@ fun PaletteTheme(
     }
     CompositionLocalProvider(
         LocalPalettePrimitiveTypography provides primitive.typography,
+        LocalPalettePrimitiveShape provides primitive.shape,
         LocalPaletteColorScheme provides colorScheme,
         LocalPaletteTypography provides typography,
         LocalPaletteShapes provides semantic.shapeScheme,
@@ -154,7 +160,9 @@ object PaletteTheme {
             @Composable
             get() = LocalPalettePrimitiveTypography.current
 
-        val shape get() = PaletteShapePrimitives
+        val shape: ShapePrimitives
+            @Composable
+            get() = LocalPalettePrimitiveShape.current
     }
 
     object Semantic {

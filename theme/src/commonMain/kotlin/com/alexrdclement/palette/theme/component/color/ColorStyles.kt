@@ -11,12 +11,14 @@ import com.alexrdclement.palette.theme.component.core.CoreStyles
 import com.alexrdclement.palette.theme.component.core.TextStyles
 import com.alexrdclement.palette.theme.component.core.resolve
 import com.alexrdclement.palette.theme.component.layout.LayoutStyles
+import com.alexrdclement.palette.theme.semantic.ShapeToken
+import com.alexrdclement.palette.theme.semantic.toShape
 
 object ColorStyles {
 
     val colorDisplay: ColorDisplayStyle
         @Composable get() = ColorDisplayStyle(
-            shape = PaletteTheme.semantic.shape.primary,
+            shape = ShapeToken.Primary.toShape(),
             borderStyle = BorderStyleToken.Primary.resolve(),
         )
 
