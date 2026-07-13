@@ -10,13 +10,7 @@ import com.alexrdclement.palette.theme.component.menu.MenuStyles
 import com.alexrdclement.palette.theme.component.money.MoneyStyles
 import com.alexrdclement.palette.theme.component.navigation.NavigationStyles
 
-/**
- * Component-tier accessor: styles that map closely to components. Reached via
- * [com.alexrdclement.palette.theme.PaletteTheme.component]. The [core] grouping holds the
- * foundational styles (text, button, border, surface) that superseded the former `Styles`
- * grouping; the remaining groupings mirror their component families.
- */
-object ComponentStyles {
+object Component {
     val core get() = CoreStyles
     val auth get() = AuthStyles
     val color get() = ColorStyles
