@@ -32,10 +32,6 @@ import com.alexrdclement.palette.theme.semantic.shape.toComposeShape
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
-/**
- * Assigns each semantic shape role a primitive shape token. The geometry (e.g. the rectangle's
- * corner radius) is edited on the primitive shape screen and shared by roles that reference it.
- */
 @Composable
 fun ShapeScreen(
     themeController: ThemeController,

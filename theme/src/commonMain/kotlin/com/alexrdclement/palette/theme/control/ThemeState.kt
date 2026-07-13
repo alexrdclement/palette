@@ -8,16 +8,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.alexrdclement.palette.theme.component.ComponentTokens
 import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
-import com.alexrdclement.palette.theme.semantic.color.ColorScheme
 import com.alexrdclement.palette.theme.semantic.SemanticTokens
+import com.alexrdclement.palette.theme.semantic.color.ColorScheme
 
 interface ThemeState {
     val primitive: PrimitiveTokens
     val semantic: SemanticTokens
     val component: ComponentTokens
     val isDarkMode: Boolean
-
-    /** The active, resolved color scheme — derived from [semantic] colors and [isDarkMode]. */
     val colorScheme: ColorScheme
         get() = if (isDarkMode) semantic.colors.dark else semantic.colors.light
 }

@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.theme.primitive
 
+import androidx.compose.ui.text.font.FontFamily as ComposeFontFamily
+
 enum class FontFamily {
     Default,
     Monospace,
@@ -8,23 +10,23 @@ enum class FontFamily {
     Cursive,
 }
 
-fun FontFamily.toComposeFontFamily(): androidx.compose.ui.text.font.FontFamily {
+fun FontFamily.toComposeFontFamily(): ComposeFontFamily {
     return when (this) {
-        FontFamily.Default -> androidx.compose.ui.text.font.FontFamily.Default
-        FontFamily.Monospace -> androidx.compose.ui.text.font.FontFamily.Monospace
-        FontFamily.SansSerif -> androidx.compose.ui.text.font.FontFamily.SansSerif
-        FontFamily.Serif -> androidx.compose.ui.text.font.FontFamily.Serif
-        FontFamily.Cursive -> androidx.compose.ui.text.font.FontFamily.Cursive
+        FontFamily.Default -> ComposeFontFamily.Default
+        FontFamily.Monospace -> ComposeFontFamily.Monospace
+        FontFamily.SansSerif -> ComposeFontFamily.SansSerif
+        FontFamily.Serif -> ComposeFontFamily.Serif
+        FontFamily.Cursive -> ComposeFontFamily.Cursive
     }
 }
 
-fun androidx.compose.ui.text.font.FontFamily.toFontFamily(): FontFamily {
+fun ComposeFontFamily.toFontFamily(): FontFamily {
     return when (this) {
-        androidx.compose.ui.text.font.FontFamily.Default -> FontFamily.Default
-        androidx.compose.ui.text.font.FontFamily.Monospace -> FontFamily.Monospace
-        androidx.compose.ui.text.font.FontFamily.SansSerif -> FontFamily.SansSerif
-        androidx.compose.ui.text.font.FontFamily.Serif -> FontFamily.Serif
-        androidx.compose.ui.text.font.FontFamily.Cursive -> FontFamily.Cursive
+        ComposeFontFamily.Default -> FontFamily.Default
+        ComposeFontFamily.Monospace -> FontFamily.Monospace
+        ComposeFontFamily.SansSerif -> FontFamily.SansSerif
+        ComposeFontFamily.Serif -> FontFamily.Serif
+        ComposeFontFamily.Cursive -> FontFamily.Cursive
         else -> throw IllegalArgumentException("Unknown FontFamily: $this")
     }
 }

@@ -1,5 +1,7 @@
 package com.alexrdclement.palette.theme.primitive
 
+import androidx.compose.ui.text.font.FontWeight as ComposeFontWeight
+
 enum class FontWeight {
     Thin,
     ExtraLight,
@@ -12,31 +14,31 @@ enum class FontWeight {
     Black,
 }
 
-fun FontWeight.toComposeFontWeight(): androidx.compose.ui.text.font.FontWeight {
+fun FontWeight.toComposeFontWeight(): ComposeFontWeight {
     return when (this) {
-        FontWeight.Thin -> androidx.compose.ui.text.font.FontWeight.Thin
-        FontWeight.ExtraLight -> androidx.compose.ui.text.font.FontWeight.ExtraLight
-        FontWeight.Light -> androidx.compose.ui.text.font.FontWeight.Light
-        FontWeight.Normal -> androidx.compose.ui.text.font.FontWeight.Normal
-        FontWeight.Medium -> androidx.compose.ui.text.font.FontWeight.Medium
-        FontWeight.SemiBold -> androidx.compose.ui.text.font.FontWeight.SemiBold
-        FontWeight.Bold -> androidx.compose.ui.text.font.FontWeight.Bold
-        FontWeight.ExtraBold -> androidx.compose.ui.text.font.FontWeight.ExtraBold
-        FontWeight.Black -> androidx.compose.ui.text.font.FontWeight.Black
+        FontWeight.Thin -> ComposeFontWeight.Thin
+        FontWeight.ExtraLight -> ComposeFontWeight.ExtraLight
+        FontWeight.Light -> ComposeFontWeight.Light
+        FontWeight.Normal -> ComposeFontWeight.Normal
+        FontWeight.Medium -> ComposeFontWeight.Medium
+        FontWeight.SemiBold -> ComposeFontWeight.SemiBold
+        FontWeight.Bold -> ComposeFontWeight.Bold
+        FontWeight.ExtraBold -> ComposeFontWeight.ExtraBold
+        FontWeight.Black -> ComposeFontWeight.Black
     }
 }
 
-fun androidx.compose.ui.text.font.FontWeight.toFontWeight(): FontWeight {
+fun ComposeFontWeight.toFontWeight(): FontWeight {
     return when (this) {
-        androidx.compose.ui.text.font.FontWeight.Thin -> FontWeight.Thin
-        androidx.compose.ui.text.font.FontWeight.ExtraLight -> FontWeight.ExtraLight
-        androidx.compose.ui.text.font.FontWeight.Light -> FontWeight.Light
-        androidx.compose.ui.text.font.FontWeight.Normal -> FontWeight.Normal
-        androidx.compose.ui.text.font.FontWeight.Medium -> FontWeight.Medium
-        androidx.compose.ui.text.font.FontWeight.SemiBold -> FontWeight.SemiBold
-        androidx.compose.ui.text.font.FontWeight.Bold -> FontWeight.Bold
-        androidx.compose.ui.text.font.FontWeight.ExtraBold -> FontWeight.ExtraBold
-        androidx.compose.ui.text.font.FontWeight.Black -> FontWeight.Black
+        ComposeFontWeight.Thin -> FontWeight.Thin
+        ComposeFontWeight.ExtraLight -> FontWeight.ExtraLight
+        ComposeFontWeight.Light -> FontWeight.Light
+        ComposeFontWeight.Normal -> FontWeight.Normal
+        ComposeFontWeight.Medium -> FontWeight.Medium
+        ComposeFontWeight.SemiBold -> FontWeight.SemiBold
+        ComposeFontWeight.Bold -> FontWeight.Bold
+        ComposeFontWeight.ExtraBold -> FontWeight.ExtraBold
+        ComposeFontWeight.Black -> FontWeight.Black
         else -> throw IllegalArgumentException("Unknown FontWeight: $this")
     }
 }

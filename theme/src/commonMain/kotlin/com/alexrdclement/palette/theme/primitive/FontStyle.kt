@@ -1,17 +1,19 @@
 package com.alexrdclement.palette.theme.primitive
 
+import androidx.compose.ui.text.font.FontStyle as ComposeFontStyle
+
 enum class FontStyle {
     Normal,
     Italic,
 }
 
-fun FontStyle.toComposeFontStyle(): androidx.compose.ui.text.font.FontStyle = when (this) {
-    FontStyle.Normal -> androidx.compose.ui.text.font.FontStyle.Normal
-    FontStyle.Italic -> androidx.compose.ui.text.font.FontStyle.Italic
+fun FontStyle.toComposeFontStyle(): ComposeFontStyle = when (this) {
+    FontStyle.Normal -> ComposeFontStyle.Normal
+    FontStyle.Italic -> ComposeFontStyle.Italic
 }
 
-fun androidx.compose.ui.text.font.FontStyle.toFontStyle(): FontStyle = when (this) {
-    androidx.compose.ui.text.font.FontStyle.Normal -> FontStyle.Normal
-    androidx.compose.ui.text.font.FontStyle.Italic -> FontStyle.Italic
+fun ComposeFontStyle.toFontStyle(): FontStyle = when (this) {
+    ComposeFontStyle.Normal -> FontStyle.Normal
+    ComposeFontStyle.Italic -> FontStyle.Italic
     else -> FontStyle.Normal
 }

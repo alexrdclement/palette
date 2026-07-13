@@ -15,7 +15,6 @@ enum class ShapeToken {
     Surface,
 }
 
-/** The primitive shape token this role references in [shapeScheme]. */
 fun ShapeToken.primitiveToken(shapeScheme: ShapeScheme): ShapePrimitiveToken {
     return when (this) {
         ShapeToken.Primary -> shapeScheme.primary
