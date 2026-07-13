@@ -22,8 +22,10 @@ import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.primitive.FontFamily
+import com.alexrdclement.palette.theme.primitive.FontStyle
 import com.alexrdclement.palette.theme.primitive.FontWeight
 import com.alexrdclement.palette.theme.primitive.toComposeFontFamily
+import com.alexrdclement.palette.theme.primitive.toComposeFontStyle
 import com.alexrdclement.palette.theme.primitive.toComposeFontWeight
 import kotlinx.collections.immutable.persistentListOf
 
@@ -39,6 +41,7 @@ fun TypographyScreen(
             composeTextStyle = ComposeTextStyleDemoDefault.copy(
                 fontFamily = primitiveTypography.fontFamily.toComposeFontFamily(),
                 fontWeight = primitiveTypography.fontWeight.toComposeFontWeight(),
+                fontStyle = primitiveTypography.fontStyle.toComposeFontStyle(),
             ),
         ),
     )
@@ -84,6 +87,25 @@ fun TypographyScreen(
                     )
                 },
             ),
+            enumControl(
+                name = "Font style",
+                values = { FontStyle.entries },
+                selectedValue = { primitiveTypography.fontStyle },
+                onValueChange = { fontStyle ->
+                    themeController.updatePrimitive {
+                        it.copy(typography = it.typography.copy(fontStyle = fontStyle))
+                    }
+                    textDemoControl.updateTextStyle(
+                        textStyle = with(textDemoState.textStyleDemoState.textStyle) {
+                            copy(
+                                composeTextStyle = composeTextStyle.copy(
+                                    fontStyle = fontStyle.toComposeFontStyle(),
+                                ),
+                            )
+                        }
+                    )
+                },
+            ),
             Control.ControlColumn(
                 name = "Text",
                 controls = { textDemoControl.controls },
@@ -93,13 +115,14 @@ fun TypographyScreen(
 
     val composeTextStyleState = textDemoState.textStyleDemoState.composeTextStyleDemoState
     LaunchedEffect(composeTextStyleState, themeController) {
-        snapshotFlow { composeTextStyleState.fontFamily to composeTextStyleState.fontWeight }
-            .collect { (fontFamily, fontWeight) ->
+        snapshotFlow { composeTextStyleState }
+            .collect { textStyle ->
                 themeController.updatePrimitive {
                     it.copy(
                         typography = it.typography.copy(
-                            fontFamily = fontFamily ?: it.typography.fontFamily,
-                            fontWeight = fontWeight ?: it.typography.fontWeight,
+                            fontFamily = textStyle.fontFamily ?: it.typography.fontFamily,
+                            fontWeight = textStyle.fontWeight ?: it.typography.fontWeight,
+                            fontStyle = textStyle.fontStyle ?: it.typography.fontStyle
                         ),
                     )
                 }
