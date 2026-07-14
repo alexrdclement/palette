@@ -1,10 +1,7 @@
 package com.alexrdclement.palette.app.theme.primitive.shape
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -12,15 +9,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.core.Shape
-import com.alexrdclement.palette.components.core.toComposeShape
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
+import com.alexrdclement.palette.components.demo.core.ShapeDemo
+import com.alexrdclement.palette.components.demo.core.ShapeDemoControl
+import com.alexrdclement.palette.components.demo.core.rememberShapeDemoControl
+import com.alexrdclement.palette.components.demo.core.rememberShapeDemoState
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.demo.Demo
@@ -38,7 +37,13 @@ fun ShapeScreen(
     onNavigateUp: () -> Unit,
 ) {
     val state = rememberPrimitiveShapeScreenState(themeState = themeController)
-    val control = rememberPrimitiveShapeScreenControl(state = state, themeController = themeController)
+    val shapeDemoState = rememberShapeDemoState(state.subjectShape)
+    val shapeDemoControl = rememberShapeDemoControl(shapeDemoState)
+    val control = rememberPrimitiveShapeScreenControl(
+        state = state,
+        themeController = themeController,
+        shapeDemoControl = shapeDemoControl,
+    )
 
     Scaffold(
         topBar = {
@@ -56,14 +61,9 @@ fun ShapeScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            Box(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .size(96.dp)
-                    .background(
-                        color = PaletteTheme.semantic.color.onSurface,
-                        shape = state.subjectShape.toComposeShape(),
-                    )
+            ShapeDemo(
+                shape = state.subjectShape,
+                state = shapeDemoState,
             )
         }
     }
@@ -77,9 +77,7 @@ fun rememberPrimitiveShapeScreenState(
         themeState,
         saver = PrimitiveShapeScreenStateSaver(themeState),
     ) {
-        PrimitiveShapeScreenState(
-            themeState = themeState,
-        )
+        PrimitiveShapeScreenState(themeState = themeState)
     }
 }
 
@@ -100,9 +98,7 @@ class PrimitiveShapeScreenState(
 private const val subjectKey = "subject"
 
 fun PrimitiveShapeScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
-    save = { state ->
-        mapOf(subjectKey to state.subject.name)
-    },
+    save = { state -> mapOf(subjectKey to state.subject.name) },
     restore = { map ->
         PrimitiveShapeScreenState(
             themeState = themeState,
@@ -117,9 +113,14 @@ fun PrimitiveShapeScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
 fun rememberPrimitiveShapeScreenControl(
     state: PrimitiveShapeScreenState,
     themeController: ThemeController,
+    shapeDemoControl: ShapeDemoControl,
 ): PrimitiveShapeScreenControl {
-    return remember(state, themeController) {
-        PrimitiveShapeScreenControl(state = state, themeController = themeController)
+    return remember(state, themeController, shapeDemoControl) {
+        PrimitiveShapeScreenControl(
+            state = state,
+            themeController = themeController,
+            shapeDemoControl = shapeDemoControl,
+        )
     }
 }
 
@@ -127,6 +128,7 @@ fun rememberPrimitiveShapeScreenControl(
 class PrimitiveShapeScreenControl(
     val state: PrimitiveShapeScreenState,
     val themeController: ThemeController,
+    val shapeDemoControl: ShapeDemoControl,
 ) {
     private val subjectControl = enumControl(
         name = "Shape",
@@ -156,6 +158,7 @@ class PrimitiveShapeScreenControl(
                 ShapePrimitiveToken.RoundRect -> add(cornerRadiusControl)
                 else -> Unit
             }
+            addAll(shapeDemoControl.controls)
         }.toPersistentList()
 }
 
