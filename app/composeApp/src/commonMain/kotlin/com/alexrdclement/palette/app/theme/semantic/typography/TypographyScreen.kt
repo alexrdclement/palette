@@ -6,30 +6,31 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.sp
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.components.demo.core.ComposeTextStyleDemoControl
-import com.alexrdclement.palette.components.demo.core.rememberComposeTextStyleDemoState
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.components.demo.DemoList
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.demo.control.Control
-import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
-import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.components.layout.Scaffold
+import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.formats.core.TextFormat
-import com.alexrdclement.palette.theme.semantic.typography.TypographyToken
+import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components.demo.DemoList
+import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
+import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.semantic.typography.resolve
-import com.alexrdclement.palette.components.core.TextStyle
+import com.alexrdclement.palette.theme.primitive.FontFamily
+import com.alexrdclement.palette.theme.primitive.FontStyle
+import com.alexrdclement.palette.theme.primitive.FontWeight
+import com.alexrdclement.palette.theme.semantic.typography.TypographyToken
+import com.alexrdclement.palette.theme.semantic.typography.TypographyTokenSet
 import com.alexrdclement.palette.theme.semantic.typography.toComposeTextStyle
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
@@ -58,16 +59,16 @@ fun TypographyScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        ) { textStyle ->
+        ) { token ->
             BoxWithLabel(
-                label = textStyle.name,
+                label = token.name,
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
                 Text(
                     text = state.text,
                     style = TextStyle(
-                        composeTextStyle = textStyle.toComposeTextStyle().copy(
+                        composeTextStyle = token.toComposeTextStyle().copy(
                             color = PaletteTheme.semantic.color.onSurface,
                         ),
                         format = TextFormat(),
@@ -100,11 +101,11 @@ class TypographyScreenState(
     val themeState: ThemeState,
     val textFieldState: TextFieldState,
 ) {
-    val typography
-        get() = themeState.semantic.typography.resolve(themeState.primitive.typography)
-
     val text: String
         get() = textFieldState.text.toString()
+
+    fun tokenSet(token: TypographyToken): TypographyTokenSet =
+        themeState.semantic.typography.tokens.getValue(token)
 }
 
 private val textFieldKey = "textField"
@@ -128,52 +129,109 @@ fun rememberTypographyScreenControl(
     state: TypographyScreenState,
     themeController: ThemeController,
 ): TypographyScreenControl {
-    val textFieldControl = Control.TextField(
-        name = "Sample text",
-        includeLabel = false,
-        textFieldState = state.textFieldState,
-    )
-
-    val tokenControls = TypographyToken.entries.map { token ->
-        val baseStyle = token.toComposeTextStyle(state.typography)
-
-        val composeTextStyleState = rememberComposeTextStyleDemoState(
-            composeTextStyleInitial = baseStyle,
-        )
-
-        LaunchedEffect(composeTextStyleState.composeTextStyle) {
-            snapshotFlow { composeTextStyleState.composeTextStyle }.collect { newStyle ->
-                themeController.updateSemantic {
-                    it.copy(typography = it.typography.withOverride(token, newStyle))
-                }
-            }
-        }
-
-        val control = ComposeTextStyleDemoControl(state = composeTextStyleState)
-
-        Control.ControlColumn(
-            name = token.name,
-            controls = { control.controls },
-            indent = true,
-            expandedInitial = false,
-        )
-    }
-
-    return remember(textFieldControl, tokenControls) {
+    return remember(state, themeController) {
         TypographyScreenControl(
-            textFieldControl = textFieldControl,
-            tokenControls = tokenControls,
+            state = state,
+            themeController = themeController,
         )
     }
 }
 
 @Stable
 class TypographyScreenControl(
-    val textFieldControl: Control.TextField,
-    val tokenControls: List<Control.ControlColumn>,
+    val state: TypographyScreenState,
+    val themeController: ThemeController,
 ) {
+    private val textFieldControl = Control.TextField(
+        name = "Sample text",
+        includeLabel = false,
+        textFieldState = state.textFieldState,
+    )
+
+    private val tokenControls: List<Control.ControlColumn> =
+        TypographyToken.entries.map { makeControlForToken(it) }
+
     val controls: PersistentList<Control> = persistentListOf(
         textFieldControl,
         *tokenControls.toTypedArray(),
     )
+
+    private fun makeControlForToken(token: TypographyToken): Control.ControlColumn {
+        val fontFamilyControl = enumControl(
+            name = "Font family",
+            values = { FontFamily.entries },
+            selectedValue = { state.tokenSet(token).fontFamily },
+            onValueChange = { fontFamily ->
+                updateTokenSet(token) { it.copy(fontFamily = fontFamily) }
+            },
+        )
+        val fontWeightControl = enumControl(
+            name = "Font weight",
+            values = { FontWeight.entries },
+            selectedValue = { state.tokenSet(token).fontWeight },
+            onValueChange = { fontWeight ->
+                updateTokenSet(token) { it.copy(fontWeight = fontWeight) }
+            },
+        )
+        val fontStyleControl = enumControl(
+            name = "Font style",
+            values = { FontStyle.entries },
+            selectedValue = { state.tokenSet(token).fontStyle },
+            onValueChange = { fontStyle ->
+                updateTokenSet(token) { it.copy(fontStyle = fontStyle) }
+            },
+        )
+        val fontSizeControl = Control.Slider(
+            name = "Font size",
+            value = { state.tokenSet(token).fontSize.value },
+            onValueChange = { size ->
+                updateTokenSet(token) { it.copy(fontSize = size.sp) }
+            },
+            valueRange = { 8f..96f },
+            stepIncrement = 1f,
+        )
+        val lineHeightControl = Control.Slider(
+            name = "Line height",
+            value = { state.tokenSet(token).lineHeight.value },
+            onValueChange = { lineHeight ->
+                updateTokenSet(token) { it.copy(lineHeight = lineHeight.sp) }
+            },
+            valueRange = { 8f..96f },
+            stepIncrement = 1f,
+        )
+        val letterSpacingControl = Control.Slider(
+            name = "Letter spacing",
+            value = { state.tokenSet(token).letterSpacing.value },
+            onValueChange = { letterSpacing ->
+                updateTokenSet(token) { it.copy(letterSpacing = letterSpacing.sp) }
+            },
+            valueRange = { -1f..2f },
+            stepIncrement = 0.1f,
+        )
+        return Control.ControlColumn(
+            name = token.name,
+            controls = {
+                persistentListOf(
+                    fontFamilyControl,
+                    fontWeightControl,
+                    fontStyleControl,
+                    fontSizeControl,
+                    lineHeightControl,
+                    letterSpacingControl,
+                )
+            },
+            indent = true,
+            expandedInitial = false,
+        )
+    }
+
+    private fun updateTokenSet(
+        token: TypographyToken,
+        transform: (TypographyTokenSet) -> TypographyTokenSet,
+    ) {
+        themeController.updateSemantic {
+            val current = it.typography.tokens.getValue(token)
+            it.copy(typography = it.typography.withTokenSet(token, transform(current)))
+        }
+    }
 }

@@ -1,22 +1,25 @@
 package com.alexrdclement.palette.theme.primitive
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.text.font.FontFamily as ComposeFontFamily
+import androidx.compose.ui.text.font.FontStyle as ComposeFontStyle
+import androidx.compose.ui.text.font.FontWeight as ComposeFontWeight
+import com.alexrdclement.palette.components.core.Shape
 
 object Primitive {
-    val typography: Typography
+    val fontFamily: Map<FontFamily, ComposeFontFamily>
         @Composable
-        get() = LocalPalettePrimitiveTypography.current
+        get() = LocalPrimitiveTokens.current.fontFamily
 
-    val shape: ShapePrimitives
+    val fontWeight: Map<FontWeight, ComposeFontWeight>
         @Composable
-        get() = LocalPalettePrimitiveShape.current
-}
+        get() = LocalPrimitiveTokens.current.fontWeight
 
-val LocalPalettePrimitiveTypography = staticCompositionLocalOf {
-    PalettePrimitiveTypography
-}
+    val fontStyle: Map<FontStyle, ComposeFontStyle>
+        @Composable
+        get() = LocalPrimitiveTokens.current.fontStyle
 
-val LocalPalettePrimitiveShape = staticCompositionLocalOf {
-    PaletteShapePrimitives
+    val shape: Map<ShapePrimitiveToken, Shape>
+        @Composable
+        get() = LocalPrimitiveTokens.current.shape
 }

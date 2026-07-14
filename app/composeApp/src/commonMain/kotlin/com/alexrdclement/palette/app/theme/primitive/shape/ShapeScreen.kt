@@ -29,7 +29,6 @@ import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.primitive.ShapePrimitiveToken
-import com.alexrdclement.palette.theme.primitive.ShapePrimitives
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
@@ -91,11 +90,11 @@ class PrimitiveShapeScreenState(
 ) {
     var subject by mutableStateOf(subjectInitial)
 
-    val shapePrimitives: ShapePrimitives
+    val shapePrimitives: Map<ShapePrimitiveToken, Shape>
         get() = themeState.primitive.shape
 
     val subjectShape: Shape
-        get() = shapePrimitives.shape(subject)
+        get() = shapePrimitives.getValue(subject)
 }
 
 private const val subjectKey = "subject"
@@ -138,10 +137,12 @@ class PrimitiveShapeScreenControl(
 
     private val cornerRadiusControl = Control.Slider(
         name = "Corner radius",
-        value = { state.shapePrimitives.roundRect.cornerRadius.value },
+        value = { state.shapePrimitives.getValue(ShapePrimitiveToken.RoundRect).cornerRadius.value },
         onValueChange = { radius ->
             themeController.updatePrimitive {
-                it.copy(shape = it.shape.copy(roundRect = Shape.Rectangle(cornerRadius = radius.dp)))
+                it.copy(
+                    shape = it.shape + (ShapePrimitiveToken.RoundRect to Shape.Rectangle(cornerRadius = radius.dp))
+                )
             }
         },
         valueRange = { 0f..64f },

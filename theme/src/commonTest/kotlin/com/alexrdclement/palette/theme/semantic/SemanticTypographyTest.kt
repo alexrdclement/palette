@@ -1,57 +1,76 @@
 package com.alexrdclement.palette.theme.semantic
 
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 import com.alexrdclement.palette.theme.primitive.FontFamily
-import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
+import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
+import com.alexrdclement.palette.theme.semantic.typography.SemanticTypography
+import com.alexrdclement.palette.theme.semantic.typography.TypographyToken
+import com.alexrdclement.palette.theme.semantic.typography.resolve
+import com.alexrdclement.palette.theme.semantic.typography.toComposeTextStyle
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
 class SemanticTypographyTest {
 
-    private val monospace = PrimitiveTypography(fontFamily = FontFamily.Monospace)
-    private val serif = PrimitiveTypography(fontFamily = FontFamily.Serif)
-    private val override = TextStyle(fontSize = 99.sp)
+    private val primitiveTokens = PrimitiveTokens()
 
     @Test
-    fun emptyOverridesResolvesToBase() {
+    fun defaultResolvesEachTokenFromItsDefaultSet() {
+        val resolved = SemanticTypography().resolve(primitiveTokens)
+
         assertEquals(
-            makePaletteTypography(monospace),
-            SemanticTypography().resolve(monospace),
+            TypographyToken.Display.default.toComposeTextStyle(primitiveTokens),
+            resolved.display,
+        )
+        assertEquals(
+            TypographyToken.LabelSmall.default.toComposeTextStyle(primitiveTokens),
+            resolved.labelSmall,
         )
     }
 
     @Test
-    fun overridePinsTokenAndLeavesOthersAtBase() {
-        val base = makePaletteTypography(monospace)
+    fun withTokenSetPinsTokenAndLeavesOthersAtDefault() {
+        val override = TypographyToken.TitleLarge.default.copy(fontSize = 99.sp)
         val resolved = SemanticTypography()
-            .withOverride(TypographyToken.TitleLarge, override)
-            .resolve(monospace)
+            .withTokenSet(TypographyToken.TitleLarge, override)
+            .resolve(primitiveTokens)
 
-        assertEquals(override, resolved.titleLarge)
-        assertEquals(base.display, resolved.display)
+        assertEquals(99.sp, resolved.titleLarge.fontSize)
+        assertEquals(
+            TypographyToken.Display.default.toComposeTextStyle(primitiveTokens),
+            resolved.display,
+        )
     }
 
     @Test
-    fun primitiveChangePropagatesToNonOverriddenTokensOnly() {
-        val semantic = SemanticTypography().withOverride(TypographyToken.TitleLarge, override)
-        val fromMono = semantic.resolve(monospace)
-        val fromSerif = semantic.resolve(serif)
+    fun fontFamilySelectionResolvesThroughPrimitiveTokens() {
+        val monospace = SemanticTypography().resolve(primitiveTokens)
+        val serif = SemanticTypography()
+            .withTokenSet(
+                TypographyToken.Display,
+                TypographyToken.Display.default.copy(fontFamily = FontFamily.Serif),
+            )
+            .resolve(primitiveTokens)
 
-        // An overridden token stays pinned across a primitive change.
-        assertEquals(override, fromMono.titleLarge)
-        assertEquals(override, fromSerif.titleLarge)
-        // A non-overridden token follows the primitive font family.
-        assertNotEquals(fromMono.display, fromSerif.display)
+        assertEquals(
+            primitiveTokens.fontFamily.getValue(FontFamily.Serif),
+            serif.display.fontFamily,
+        )
+        assertNotEquals(monospace.display.fontFamily, serif.display.fontFamily)
     }
 
     @Test
-    fun withOverrideAccumulatesOverrides() {
+    fun withTokenSetAccumulatesSelections() {
+        val custom = TypographyToken.TitleLarge.default.copy(fontFamily = FontFamily.Serif)
         val semantic = SemanticTypography()
-            .withOverride(TypographyToken.TitleLarge, override)
-            .withOverride(TypographyToken.Display, override)
+            .withTokenSet(TypographyToken.TitleLarge, custom)
+            .withTokenSet(
+                TypographyToken.Display,
+                TypographyToken.Display.default.copy(fontFamily = FontFamily.SansSerif),
+            )
 
-        assertEquals(2, semantic.overrides.size)
+        assertEquals(custom, semantic.tokens.getValue(TypographyToken.TitleLarge))
+        assertEquals(FontFamily.SansSerif, semantic.tokens.getValue(TypographyToken.Display).fontFamily)
     }
 }

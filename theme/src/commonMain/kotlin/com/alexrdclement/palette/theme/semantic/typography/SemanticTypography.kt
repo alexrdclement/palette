@@ -1,19 +1,29 @@
 package com.alexrdclement.palette.theme.semantic.typography
 
-import androidx.compose.ui.text.TextStyle as ComposeTextStyle
-import com.alexrdclement.palette.theme.primitive.Typography as PrimitiveTypography
+import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
 
 data class SemanticTypography(
-    val overrides: Map<TypographyToken, ComposeTextStyle> = emptyMap(),
+    val tokens: Map<TypographyToken, TypographyTokenSet> =
+        TypographyToken.entries.associateWith { it.default },
 ) {
-    fun withOverride(token: TypographyToken, textStyle: ComposeTextStyle): SemanticTypography =
-        copy(overrides = overrides + (token to textStyle))
+    fun withTokenSet(token: TypographyToken, tokenSet: TypographyTokenSet): SemanticTypography =
+        copy(tokens = tokens + (token to tokenSet))
 }
 
-fun SemanticTypography.resolve(primitiveTypography: PrimitiveTypography): Typography {
-    var typography = makePaletteTypography(primitiveTypography = primitiveTypography)
-    overrides.forEach { (token, textStyle) ->
-        typography = typography.copy(token = token, textStyle = textStyle)
-    }
-    return typography
+fun SemanticTypography.resolve(primitiveTokens: PrimitiveTokens): Typography {
+    fun style(token: TypographyToken) =
+        tokens.getValue(token).toComposeTextStyle(primitiveTokens)
+    return Typography(
+        display = style(TypographyToken.Display),
+        headline = style(TypographyToken.Headline),
+        titleLarge = style(TypographyToken.TitleLarge),
+        titleMedium = style(TypographyToken.TitleMedium),
+        titleSmall = style(TypographyToken.TitleSmall),
+        bodyLarge = style(TypographyToken.BodyLarge),
+        bodyMedium = style(TypographyToken.BodyMedium),
+        bodySmall = style(TypographyToken.BodySmall),
+        labelLarge = style(TypographyToken.LabelLarge),
+        labelMedium = style(TypographyToken.LabelMedium),
+        labelSmall = style(TypographyToken.LabelSmall),
+    )
 }

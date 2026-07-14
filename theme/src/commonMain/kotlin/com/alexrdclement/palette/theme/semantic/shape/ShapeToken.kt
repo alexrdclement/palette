@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.Shape
 import com.alexrdclement.palette.components.core.toComposeShape
 import com.alexrdclement.palette.theme.primitive.ShapePrimitiveToken
-import com.alexrdclement.palette.theme.primitive.ShapePrimitives
 import androidx.compose.ui.graphics.Shape as ComposeShape
 
 enum class ShapeToken {
@@ -24,8 +23,11 @@ fun ShapeToken.primitiveToken(shapeScheme: ShapeScheme): ShapePrimitiveToken {
     }
 }
 
-fun ShapeToken.toShape(shapeScheme: ShapeScheme, shapePrimitives: ShapePrimitives): Shape {
-    return shapePrimitives.shape(primitiveToken(shapeScheme))
+fun ShapeToken.toShape(
+    shapeScheme: ShapeScheme,
+    shapePrimitives: Map<ShapePrimitiveToken, Shape>,
+): Shape {
+    return shapePrimitives.getValue(primitiveToken(shapeScheme))
 }
 
 @Composable
@@ -35,7 +37,7 @@ fun ShapeToken.toShape(): Shape {
 
 fun ShapeToken.toComposeShape(
     shapeScheme: ShapeScheme,
-    shapePrimitives: ShapePrimitives,
+    shapePrimitives: Map<ShapePrimitiveToken, Shape>,
 ): ComposeShape {
     return this.toShape(shapeScheme, shapePrimitives).toComposeShape()
 }

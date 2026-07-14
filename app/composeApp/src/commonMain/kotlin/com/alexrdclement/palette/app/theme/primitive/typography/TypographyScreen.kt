@@ -22,7 +22,6 @@ import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
-import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.primitive.FontFamily
 import com.alexrdclement.palette.theme.primitive.FontStyle
@@ -44,7 +43,7 @@ fun TypographyScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
-    val state = rememberTypographyScreenState(themeState = themeController)
+    val state = rememberTypographyScreenState()
     val control = rememberTypographyScreenControl(state = state)
 
     Scaffold(
@@ -72,16 +71,13 @@ fun TypographyScreen(
 }
 
 @Composable
-fun rememberTypographyScreenState(
-    themeState: ThemeState,
-): TypographyScreenState {
-    val primitiveTypography = themeState.primitive.typography
+fun rememberTypographyScreenState(): TypographyScreenState {
     val textDemoState = rememberTextDemoState(
         textStyleInitial = TextStyleDemoDefault.copy(
             composeTextStyle = ComposeTextStyleDemoDefault.copy(
-                fontFamily = primitiveTypography.fontFamily.toComposeFontFamily(),
-                fontWeight = primitiveTypography.fontWeight.toComposeFontWeight(),
-                fontStyle = primitiveTypography.fontStyle.toComposeFontStyle(),
+                fontFamily = FontFamily.Monospace.toComposeFontFamily(),
+                fontWeight = FontWeight.Normal.toComposeFontWeight(),
+                fontStyle = FontStyle.Normal.toComposeFontStyle(),
             ),
         ),
     )

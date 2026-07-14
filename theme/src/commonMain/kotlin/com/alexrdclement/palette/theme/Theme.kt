@@ -7,8 +7,7 @@ import androidx.compose.runtime.remember
 import com.alexrdclement.palette.theme.component.Component
 import com.alexrdclement.palette.theme.component.ComponentTokens
 import com.alexrdclement.palette.theme.component.LocalComponentTokens
-import com.alexrdclement.palette.theme.primitive.LocalPalettePrimitiveShape
-import com.alexrdclement.palette.theme.primitive.LocalPalettePrimitiveTypography
+import com.alexrdclement.palette.theme.primitive.LocalPrimitiveTokens
 import com.alexrdclement.palette.theme.primitive.Primitive
 import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
 import com.alexrdclement.palette.theme.semantic.LocalPaletteColorScheme
@@ -30,12 +29,11 @@ fun PaletteTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = if (isDarkMode) semantic.colors.dark else semantic.colors.light
-    val typography = remember(primitive.typography, semantic.typography) {
-        semantic.typography.resolve(primitive.typography)
+    val typography = remember(primitive, semantic.typography) {
+        semantic.typography.resolve(primitive)
     }
     CompositionLocalProvider(
-        LocalPalettePrimitiveTypography provides primitive.typography,
-        LocalPalettePrimitiveShape provides primitive.shape,
+        LocalPrimitiveTokens provides primitive,
         LocalPaletteColorScheme provides colorScheme,
         LocalPaletteTypography provides typography,
         LocalPaletteShapes provides semantic.shapeScheme,
