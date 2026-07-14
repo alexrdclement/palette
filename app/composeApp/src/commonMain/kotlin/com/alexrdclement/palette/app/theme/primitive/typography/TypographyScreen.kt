@@ -3,10 +3,8 @@ package com.alexrdclement.palette.app.theme.primitive.typography
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.alexrdclement.palette.app.demo.DemoTopBar
@@ -29,35 +27,25 @@ import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.primitive.FontFamily
 import com.alexrdclement.palette.theme.primitive.FontStyle
 import com.alexrdclement.palette.theme.primitive.FontWeight
-import com.alexrdclement.palette.theme.primitive.Typography
 import com.alexrdclement.palette.theme.primitive.toComposeFontFamily
 import com.alexrdclement.palette.theme.primitive.toComposeFontStyle
 import com.alexrdclement.palette.theme.primitive.toComposeFontWeight
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
+/**
+ * Previews the available primitive typography tokens. The font family/weight/style controls only
+ * update this screen's local text demo to display the selected values; they do not change the
+ * theme's primitive tokens. Semantic typography selects which primitive tokens it uses on the
+ * semantic typography screen.
+ */
 @Composable
 fun TypographyScreen(
     themeController: ThemeController,
     onNavigateUp: () -> Unit,
 ) {
     val state = rememberTypographyScreenState(themeState = themeController)
-    val control = rememberTypographyScreenControl(state = state, themeController = themeController)
-
-    LaunchedEffect(state, themeController) {
-        snapshotFlow { state.composeTextStyleState }
-            .collect { textStyle ->
-                themeController.updatePrimitive {
-                    it.copy(
-                        typography = it.typography.copy(
-                            fontFamily = textStyle.fontFamily ?: it.typography.fontFamily,
-                            fontWeight = textStyle.fontWeight ?: it.typography.fontWeight,
-                            fontStyle = textStyle.fontStyle ?: it.typography.fontStyle,
-                        ),
-                    )
-                }
-            }
-    }
+    val control = rememberTypographyScreenControl(state = state)
 
     Scaffold(
         topBar = {
@@ -97,9 +85,8 @@ fun rememberTypographyScreenState(
             ),
         ),
     )
-    return remember(themeState, textDemoState) {
+    return remember(textDemoState) {
         TypographyScreenState(
-            themeState = themeState,
             textDemoState = textDemoState,
         )
     }
@@ -107,12 +94,8 @@ fun rememberTypographyScreenState(
 
 @Stable
 class TypographyScreenState(
-    val themeState: ThemeState,
     val textDemoState: TextDemoState,
 ) {
-    val primitiveTypography: Typography
-        get() = themeState.primitive.typography
-
     val composeTextStyleState: ComposeTextStyleDemoState
         get() = textDemoState.textStyleDemoState.composeTextStyleDemoState
 }
@@ -120,13 +103,11 @@ class TypographyScreenState(
 @Composable
 fun rememberTypographyScreenControl(
     state: TypographyScreenState,
-    themeController: ThemeController,
 ): TypographyScreenControl {
     val textDemoControl = rememberTextDemoControl(state.textDemoState)
-    return remember(state, themeController, textDemoControl) {
+    return remember(state, textDemoControl) {
         TypographyScreenControl(
             state = state,
-            themeController = themeController,
             textDemoControl = textDemoControl,
         )
     }
@@ -135,66 +116,32 @@ fun rememberTypographyScreenControl(
 @Stable
 class TypographyScreenControl(
     val state: TypographyScreenState,
-    val themeController: ThemeController,
     val textDemoControl: TextDemoControl,
 ) {
     private val fontFamilyControl = enumControl(
         name = "Font family",
         values = { FontFamily.entries },
-        selectedValue = { state.primitiveTypography.fontFamily },
+        selectedValue = { state.composeTextStyleState.fontFamily ?: FontFamily.Default },
         onValueChange = { fontFamily ->
-            themeController.updatePrimitive {
-                it.copy(typography = it.typography.copy(fontFamily = fontFamily))
-            }
-            textDemoControl.updateTextStyle(
-                textStyle = with(state.textDemoState.textStyleDemoState.textStyle) {
-                    copy(
-                        composeTextStyle = composeTextStyle.copy(
-                            fontFamily = fontFamily.toComposeFontFamily(),
-                        ),
-                    )
-                }
-            )
+            updateComposeTextStyle { it.copy(fontFamily = fontFamily.toComposeFontFamily()) }
         },
     )
 
     private val fontWeightControl = enumControl(
         name = "Font weight",
         values = { FontWeight.entries },
-        selectedValue = { state.primitiveTypography.fontWeight },
+        selectedValue = { state.composeTextStyleState.fontWeight ?: FontWeight.Normal },
         onValueChange = { fontWeight ->
-            themeController.updatePrimitive {
-                it.copy(typography = it.typography.copy(fontWeight = fontWeight))
-            }
-            textDemoControl.updateTextStyle(
-                textStyle = with(state.textDemoState.textStyleDemoState.textStyle) {
-                    copy(
-                        composeTextStyle = composeTextStyle.copy(
-                            fontWeight = fontWeight.toComposeFontWeight(),
-                        ),
-                    )
-                }
-            )
+            updateComposeTextStyle { it.copy(fontWeight = fontWeight.toComposeFontWeight()) }
         },
     )
 
     private val fontStyleControl = enumControl(
         name = "Font style",
         values = { FontStyle.entries },
-        selectedValue = { state.primitiveTypography.fontStyle },
+        selectedValue = { state.composeTextStyleState.fontStyle ?: FontStyle.Normal },
         onValueChange = { fontStyle ->
-            themeController.updatePrimitive {
-                it.copy(typography = it.typography.copy(fontStyle = fontStyle))
-            }
-            textDemoControl.updateTextStyle(
-                textStyle = with(state.textDemoState.textStyleDemoState.textStyle) {
-                    copy(
-                        composeTextStyle = composeTextStyle.copy(
-                            fontStyle = fontStyle.toComposeFontStyle(),
-                        ),
-                    )
-                }
-            )
+            updateComposeTextStyle { it.copy(fontStyle = fontStyle.toComposeFontStyle()) }
         },
     )
 
@@ -209,6 +156,16 @@ class TypographyScreenControl(
         fontStyleControl,
         textControl,
     )
+
+    private fun updateComposeTextStyle(
+        transform: (androidx.compose.ui.text.TextStyle) -> androidx.compose.ui.text.TextStyle,
+    ) {
+        textDemoControl.updateTextStyle(
+            textStyle = with(state.textDemoState.textStyleDemoState.textStyle) {
+                copy(composeTextStyle = transform(composeTextStyle))
+            }
+        )
+    }
 }
 
 @Preview
