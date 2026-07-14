@@ -3,6 +3,9 @@ package com.alexrdclement.palette.app.theme.primitive.navigation
 import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.primitive.PrimitiveItem
+import com.alexrdclement.palette.app.theme.primitive.interaction.navigation.PrimitiveInteractionGraph
+import com.alexrdclement.palette.app.theme.primitive.interaction.navigation.primitiveInteractionEntryProvider
+import com.alexrdclement.palette.app.theme.primitive.interaction.navigation.primitiveInteractionNavGraph
 import com.alexrdclement.palette.app.theme.primitive.shape.ShapeScreen
 import com.alexrdclement.palette.app.theme.primitive.typography.TypographyScreen
 import com.alexrdclement.palette.navigation.NavController
@@ -17,6 +20,7 @@ fun NavGraphBuilder.primitiveNavGraph() = navGraph(
     route(PrimitiveCatalogRoute)
     route(PrimitiveTypographyRoute)
     route(PrimitiveShapeRoute)
+    primitiveInteractionNavGraph()
 }
 
 fun EntryProviderScope<NavKey>.primitiveEntryProvider(
@@ -28,6 +32,7 @@ fun EntryProviderScope<NavKey>.primitiveEntryProvider(
             when (item) {
                 PrimitiveItem.Typography -> navController.navigate(PrimitiveTypographyRoute)
                 PrimitiveItem.Shape -> navController.navigate(PrimitiveShapeRoute)
+                PrimitiveItem.Interaction -> navController.navigate(PrimitiveInteractionGraph)
             }
         },
         title = "Primitive",
@@ -47,4 +52,6 @@ fun EntryProviderScope<NavKey>.primitiveEntryProvider(
             onNavigateUp = navController::goBack,
         )
     }
+
+    primitiveInteractionEntryProvider(navController)
 }
