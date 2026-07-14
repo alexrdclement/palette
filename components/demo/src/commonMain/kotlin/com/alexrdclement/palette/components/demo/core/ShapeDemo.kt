@@ -145,7 +145,8 @@ class ShapeDemoControl(
     )
 
     val controls = persistentListOf<Control>(
-        widthControl,
-        heightControl,
+        Control.ControlColumn(
+            controls = { persistentListOf(widthControl, heightControl) },
+        ),
     )
 }
