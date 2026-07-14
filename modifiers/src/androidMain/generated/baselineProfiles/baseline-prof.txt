@@ -1,3 +1,7 @@
+Lcom/alexrdclement/palette/modifiers/ColorInvertIndication;
+HSPLcom/alexrdclement/palette/modifiers/ColorInvertIndication;-><clinit>()V
+HSPLcom/alexrdclement/palette/modifiers/ColorInvertIndication;-><init>(Lkotlin/jvm/functions/Function1;Landroidx/compose/animation/core/AnimationSpec;)V
+HSPLcom/alexrdclement/palette/modifiers/ColorInvertIndication;-><init>(Lkotlin/jvm/functions/Function1;Landroidx/compose/animation/core/AnimationSpec;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/modifiers/ColorInvertKt;->colorInvert(Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/modifiers/ColorInvertShaderImpl;-><clinit>()V
 PLcom/alexrdclement/palette/modifiers/ColorInvertShaderImpl;-><init>()V
@@ -78,7 +82,7 @@ PLcom/alexrdclement/palette/modifiers/FadeKt;->$r8$lambda$H4ycrAPLNW-NfMG4gDlA4J
 PLcom/alexrdclement/palette/modifiers/FadeKt;->bottomFade-V5MJSes(Landroidx/compose/ui/Modifier;FLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
 HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade-ddyKRco(Landroidx/compose/ui/Modifier;IFLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/modifiers/FadeKt;->fade-ddyKRco(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/modifiers/FadeSide;FLandroidx/compose/ui/graphics/Color;)Landroidx/compose/ui/Modifier;
-HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$0(Landroidx/compose/ui/graphics/GraphicsLayerScope;)Lkotlin/Unit;
+PLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$0(Landroidx/compose/ui/graphics/GraphicsLayerScope;)Lkotlin/Unit;
 HPLcom/alexrdclement/palette/modifiers/FadeKt;->fade_ddyKRco$lambda$1(IFLandroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/drawscope/ContentDrawScope;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/FadeKt$$ExternalSyntheticLambda0;-><init>()V
 PLcom/alexrdclement/palette/modifiers/FadeKt$$ExternalSyntheticLambda0;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
@@ -95,11 +99,16 @@ PLcom/alexrdclement/palette/modifiers/FadeSide;->values()[Lcom/alexrdclement/pal
 PLcom/alexrdclement/palette/modifiers/FadeSide$Companion;-><init>()V
 PLcom/alexrdclement/palette/modifiers/FadeSide$Companion;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 HPLcom/alexrdclement/palette/modifiers/FadeSide$Companion;->fromMask(I)Ljava/util/List;
-PLcom/alexrdclement/palette/modifiers/NoiseColorMode;->$values()[Lcom/alexrdclement/palette/modifiers/NoiseColorMode;
-PLcom/alexrdclement/palette/modifiers/NoiseColorMode;-><clinit>()V
-PLcom/alexrdclement/palette/modifiers/NoiseColorMode;-><init>(Ljava/lang/String;I)V
+Lcom/alexrdclement/palette/modifiers/NoiseColorMode;
+HSPLcom/alexrdclement/palette/modifiers/NoiseColorMode;->$values()[Lcom/alexrdclement/palette/modifiers/NoiseColorMode;
+HSPLcom/alexrdclement/palette/modifiers/NoiseColorMode;-><clinit>()V
+HSPLcom/alexrdclement/palette/modifiers/NoiseColorMode;-><init>(Ljava/lang/String;I)V
 PLcom/alexrdclement/palette/modifiers/NoiseColorMode;->getEntries()Lkotlin/enums/EnumEntries;
 PLcom/alexrdclement/palette/modifiers/NoiseColorMode;->values()[Lcom/alexrdclement/palette/modifiers/NoiseColorMode;
+Lcom/alexrdclement/palette/modifiers/NoiseIndication;
+HSPLcom/alexrdclement/palette/modifiers/NoiseIndication;-><clinit>()V
+HSPLcom/alexrdclement/palette/modifiers/NoiseIndication;-><init>(Lcom/alexrdclement/palette/modifiers/NoiseColorMode;Lkotlin/jvm/functions/Function1;Landroidx/compose/animation/core/AnimationSpec;)V
+HSPLcom/alexrdclement/palette/modifiers/NoiseIndication;-><init>(Lcom/alexrdclement/palette/modifiers/NoiseColorMode;Lkotlin/jvm/functions/Function1;Landroidx/compose/animation/core/AnimationSpec;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/modifiers/NoiseKt;->noise(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/modifiers/NoiseColorMode;Lkotlin/jvm/functions/Function0;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/modifiers/NoiseShaderImpl;-><clinit>()V
 PLcom/alexrdclement/palette/modifiers/NoiseShaderImpl;-><init>()V
@@ -112,6 +121,10 @@ PLcom/alexrdclement/palette/modifiers/NoiseShaderImpl$WhenMappings;-><clinit>()V
 PLcom/alexrdclement/palette/modifiers/Noise_androidKt;-><clinit>()V
 PLcom/alexrdclement/palette/modifiers/Noise_androidKt;->access$getShaderSource$p()Ljava/lang/String;
 PLcom/alexrdclement/palette/modifiers/Noise_androidKt;->createNoiseShader()Lcom/alexrdclement/palette/modifiers/NoiseShader;
+Lcom/alexrdclement/palette/modifiers/PixelateIndication;
+HSPLcom/alexrdclement/palette/modifiers/PixelateIndication;-><clinit>()V
+HSPLcom/alexrdclement/palette/modifiers/PixelateIndication;-><init>(Lkotlin/jvm/functions/Function1;Landroidx/compose/animation/core/AnimationSpec;)V
+HSPLcom/alexrdclement/palette/modifiers/PixelateIndication;-><init>(Lkotlin/jvm/functions/Function1;Landroidx/compose/animation/core/AnimationSpec;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/modifiers/PixelateKt;->pixelate(Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/modifiers/PixelateShaderImpl;-><clinit>()V
 PLcom/alexrdclement/palette/modifiers/PixelateShaderImpl;-><init>()V
@@ -164,6 +177,10 @@ HSPLcom/alexrdclement/palette/modifiers/ShaderNode;->onPlaced(Landroidx/compose/
 HSPLcom/alexrdclement/palette/modifiers/ShaderNode;->onRemeasured-ozmzZPI(J)V
 PLcom/alexrdclement/palette/modifiers/ShaderNode;->setShader(Lcom/alexrdclement/palette/modifiers/Shader;)V
 PLcom/alexrdclement/palette/modifiers/ShaderNode;->setTraceLabel(Ljava/lang/String;)V
+Lcom/alexrdclement/palette/modifiers/WarpIndication;
+HSPLcom/alexrdclement/palette/modifiers/WarpIndication;-><clinit>()V
+HSPLcom/alexrdclement/palette/modifiers/WarpIndication;-><init>(Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/animation/core/AnimationSpec;)V
+HSPLcom/alexrdclement/palette/modifiers/WarpIndication;-><init>(Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/animation/core/AnimationSpec;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/modifiers/WarpKt;->warp(Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/modifiers/WarpShaderImpl;-><clinit>()V
 PLcom/alexrdclement/palette/modifiers/WarpShaderImpl;-><init>()V
@@ -191,7 +208,6 @@ PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$l
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$lambda$4$0()Lkotlin/ranges/ClosedFloatingPointRange;
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo$lambda$5(Landroidx/compose/ui/Modifier;IILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
-HPLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt;->ColorInvertStateSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/modifiers/demo/ColorInvertState;)Ljava/util/Map;
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt$$ExternalSyntheticLambda0;-><init>()V
 PLcom/alexrdclement/palette/modifiers/demo/ColorInvertDemoKt$$ExternalSyntheticLambda0;->invoke()Ljava/lang/Object;
