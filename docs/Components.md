@@ -82,48 +82,52 @@ screenshot tests, `:theme:components` wrappers) the relevant section says so.
   runtime-driven size, the cap (`minContentSize`, `maxContentSize`) belongs on the `*Style` and the
   runtime target (`expandedContentSize`) is a parameter. Do not collapse the two.
 
-## Theme & Styles
+## Theme
 
-Component styles are resolved and exposed to app code through the theme.
+Component styles are resolved and exposed to app code through the theme, which is organized into
+primitive, semantic, and component token tiers — see **[Tokens.md](Tokens.md)** for that model. This
+section covers the requirements for exposing a component's style through it.
 
-- Resolved component styles MUST be reachable via `PaletteTheme.styles`, which returns the
-  `PaletteStyles` facade. `PaletteStyles` exposes a chain of `val` accessors that mirror the
-  component package structure, e.g. `PaletteTheme.styles.core.button`,
-  `PaletteTheme.styles.media.playPauseButton`, `PaletteTheme.styles.color.colorPicker`.
+- Resolved component styles MUST be reachable via `PaletteTheme.component`, which returns the
+  `Component` facade. `Component` exposes a chain of `val` accessors that mirror the component package
+  structure, e.g. `PaletteTheme.component.core.button`,
+  `PaletteTheme.component.media.playPauseButton`, `PaletteTheme.component.color.colorDisplay`.
 - Each package's accessors live in a `*Styles` object in `:theme` (`CoreStyles`, `LayoutStyles`,
   `MediaStyles`, …) as `@Composable get()` properties that return a fully-resolved `*Style`.
 - A component that has more than one themed variant exposes them as named sub-accessors rather than a
-  single value: `PaletteTheme.styles.core.surface.default`, `…core.button.primary` /
+  single value: `PaletteTheme.component.core.surface.default`, `…core.button.primary` /
   `…core.button.secondary`. A component with a single themed style resolves directly
-  (`PaletteTheme.styles.core.slider`). Use the named variant where one exists.
+  (`PaletteTheme.component.core.slider`). Use the named variant where one exists.
 - A `*Style` getter MUST reuse existing theme values wherever one applies rather than inventing a
   literal:
-  - content on a `Surface` uses `PaletteTheme.colorScheme.onSurface`;
-  - `Dp` values use `PaletteTheme.spacing.*` tokens;
-  - shapes use `PaletteTheme.shapeScheme.*` / shape tokens; indication uses `PaletteTheme.indication`.
+  - content on a `Surface` uses `PaletteTheme.semantic.color.onSurface`;
+  - `Dp` values use `PaletteTheme.semantic.spacing.*` tokens;
+  - shapes use `PaletteTheme.semantic.shape.*` / shape tokens; indication uses
+    `PaletteTheme.semantic.indication`.
 - `*Style` getters MAY compose sub-styles from other getters (e.g. `SkipButtonStyle.buttonStyle =
   CoreStyles.button.secondary`). `.copy()` to assemble a themed style **in the theme layer** is
   allowed — that is the theme being the source of truth. `.copy()` inside a component is not.
 
 ### Token sets
 
-Some styles are edited token-by-token (so the theme editor can tweak them). These use an extra
-aliasing layer:
+Component styles are edited token-by-token (so the theme editor can tweak them) via the token-set
+pattern shared across the token tiers — see **[Tokens.md → Token sets](Tokens.md#token-sets)** for the
+general mechanism. The component-tier requirements:
 
 - A `*TokenSet` data class primarily contains other token values (e.g. `ButtonStyleTokenSet` holds a
   `containerColor: ColorToken`, `shape: ShapeToken`, `borderStyle: BorderStyleToken?`,
   `contentPadding: PaddingValuesTokenSet`).
 - Each `*Token` enum entry carries a `default: *TokenSet`.
-- The current token set for every token is stored in the `Styles` class as a
-  `Map<*Token, *TokenSet>` (one map per token family), provided via `LocalStyles` and edited through
-  `ThemeController`.
+- The current token set for every token is stored in `ComponentTokens` as a `Map<*Token, *TokenSet>`
+  (one map per token family), provided via `LocalComponentTokens` and edited through
+  `ThemeController.updateComponent`.
 - A `*TokenSet` MUST expose a resolver helper (e.g. `toComponentStyle()` / `toTextStyle()`) that
   turns it into the final component `*Style`. The package `*Styles` getters call these resolvers.
 
 ## `:theme:components` wrappers
 
 The `:theme:components` module contains theme-aware wrappers over the headless components. A wrapper
-exists only to save callers from passing `style = PaletteTheme.styles.…` at every call site.
+exists only to save callers from passing `style = PaletteTheme.component.…` at every call site.
 
 - Not every component has a wrapper. A wrapper is warranted only when a component has a single
   dominant themed default that most callers want. Components whose style is a per-call choice
@@ -136,7 +140,7 @@ exists only to save callers from passing `style = PaletteTheme.styles.…` at ev
   package `com.alexrdclement.palette.theme.components.*`.
 - A wrapper MUST expose the **same API** as the base component (same name, same parameters), except
   that its `style` parameter defaults to the matching themed value, e.g.
-  `style: SurfaceStyle = PaletteTheme.styles.core.surface.default`.
+  `style: SurfaceStyle = PaletteTheme.component.core.surface.default`.
 - A wrapper MUST do nothing but default the style and delegate to the base component. It MUST NOT add
   behavior. Callers that want the unstyled/headless component use the base `:components` version;
   callers that want the themed default use the wrapper.
@@ -156,7 +160,7 @@ bar.
 - Tests live in the `:components:android-test` module, in a package that mirrors the component's
   package, in a `<ComponentName>Test.kt` file.
 - A test SHOULD render the component inside `PaletteTheme` with its themed style
-  (`style = PaletteTheme.styles.<…>`) via the shared `PaparazziTestRule`.
+  (`style = PaletteTheme.component.<…>`) via the shared `PaparazziTestRule`.
 - A test SHOULD cover the states that change appearance. Sweep them with `TestParameterInjector` —
   `@TestParameter isEnabled: Boolean`, an enum/anchor `valuesProvider`, etc. — rather than writing one
   `@Test` per combination. For an interactive component, snapshotting both enabled and disabled is the
@@ -199,26 +203,33 @@ Under `app/.../demo/components/<group>/navigation/`:
   to `componentsNavGraph()`, its `…EntryProvider(navController)` to `componentsEntryProvider`, and a
   corresponding entry to the top-level `Component` enum.
 
-## Demo app: theme / style editor
+## Demo app: theme editor
 
-Editors for token-set-backed styles live under `app/.../theme/styles/`.
+Editors for token-set-backed component styles live under `app/.../theme/component/core/`. The
+primitive and semantic tiers have parallel editors under `app/.../theme/primitive/` and
+`app/.../theme/semantic/`; the requirements below describe the component-style editors, and the other
+tiers follow the same shape.
 
 ### Screen
 
 - A `<X>StyleScreen(themeController, onNavigateUp)` composable MUST render a `Scaffold` +
   `DemoTopBar`, then a `DemoList` over the token family's `*Token.entries`, with per-token controls.
-- Controls MUST read the current token set from `themeController` (via `ThemeState.styles`) and write
-  edits back with `themeController.setStyles(styles.copy(<family> = styles.<family> + (token to …)))`.
-  The screen MUST NOT mutate resolved styles directly.
+- Controls MUST read the current token set from `themeController` (via `ThemeState.component`) and
+  write edits back with
+  `themeController.updateComponent { it.copy(<family> = it.<family> + (token to …)) }`. The screen
+  MUST NOT mutate resolved styles directly.
 
 ### Navigation
 
-Under `app/.../theme/styles/navigation/`:
+Under `app/.../theme/component/core/navigation/`:
 
-- A `Styles : CatalogItem` enum MUST list the editable style families.
-- `StylesRoutes.kt` MUST define a sealed `StylesRoute : NavKey`, a `StylesGraph : NavGraphRoute`, a
-  `StylesCatalogRoute`, and one route per family (`ButtonStylesRoute`, `TextStylesRoute`, …).
-- `StylesNav.kt` MUST define `NavGraphBuilder.stylesNavGraph()` (declaring the catalog + per-family
-  routes) and `EntryProviderScope<NavKey>.stylesEntryProvider(navController, themeController)` (a
-  `catalogEntry<StylesCatalogRoute, Styles>` plus an `entry<…>` per family rendering the matching
+- A `CoreStyleItem : CatalogItem` enum MUST list the editable style families.
+- `CoreRoutes.kt` MUST define a sealed `CoreRoute : NavKey`, a `CoreGraph : NavGraphRoute`, a
+  `CoreCatalogRoute`, and one route per family (`ButtonStylesRoute`, `TextStylesRoute`, …).
+- `CoreNav.kt` MUST define `NavGraphBuilder.coreNavGraph()` (declaring the catalog + per-family
+  routes) and `EntryProviderScope<NavKey>.coreEntryProvider(navController, themeController)` (a
+  `catalogEntry<CoreCatalogRoute, CoreStyleItem>` plus an `entry<…>` per family rendering the matching
   `<X>StyleScreen(themeController, onNavigateUp)`).
+- The group MUST be registered in `theme/component/navigation/ComponentNav.kt`: add `coreNavGraph()`
+  to `componentNavGraph()` and `coreEntryProvider(navController, themeController)` to
+  `componentEntryProvider`, with a corresponding `ComponentItem` entry.
