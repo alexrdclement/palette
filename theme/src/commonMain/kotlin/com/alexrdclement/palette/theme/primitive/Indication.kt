@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.semantic.indication
+package com.alexrdclement.palette.theme.primitive
 
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.IndicationNodeFactory
@@ -17,7 +17,7 @@ import com.alexrdclement.palette.modifiers.NoiseIndication
 import com.alexrdclement.palette.modifiers.PixelateIndication
 import com.alexrdclement.palette.modifiers.WarpIndication
 
-enum class PaletteIndicationType {
+enum class IndicationPrimitiveToken {
     None,
     ColorInvert,
     ColorSplit,
@@ -26,23 +26,9 @@ enum class PaletteIndicationType {
     Warp,
 }
 
-val PaletteIndication: Indication = PaletteIndicationType.ColorSplit.toIndication()
-
-fun Indication.toPaletteIndicationType(): PaletteIndicationType {
-    return when (this) {
-        is NoOpIndication -> PaletteIndicationType.None
-        is ColorInvertIndication -> PaletteIndicationType.ColorInvert
-        is ColorSplitIndication -> PaletteIndicationType.ColorSplit
-        is NoiseIndication -> PaletteIndicationType.Noise
-        is PixelateIndication -> PaletteIndicationType.Pixelate
-        is WarpIndication -> PaletteIndicationType.Warp
-        else -> throw IllegalArgumentException("Unknown indication type: $this")
-    }
-}
-
-fun PaletteIndicationType.toIndication(): Indication = when (this) {
-    PaletteIndicationType.None -> NoOpIndication
-    PaletteIndicationType.ColorInvert -> ColorInvertIndication(
+fun IndicationPrimitiveToken.toIndication(): Indication = when (this) {
+    IndicationPrimitiveToken.None -> NoOpIndication
+    IndicationPrimitiveToken.ColorInvert -> ColorInvertIndication(
         amount = { interaction ->
             when (interaction) {
                 is HoverInteraction.Enter -> .5f
@@ -51,7 +37,7 @@ fun PaletteIndicationType.toIndication(): Indication = when (this) {
             }
         },
     )
-    PaletteIndicationType.ColorSplit -> ColorSplitIndication(
+    IndicationPrimitiveToken.ColorSplit -> ColorSplitIndication(
         xAmount = { interaction ->
             when (interaction) {
                 is HoverInteraction.Enter -> -0.02f
@@ -68,7 +54,7 @@ fun PaletteIndicationType.toIndication(): Indication = when (this) {
         },
         colorMode = ColorSplitMode.RGB,
     )
-    PaletteIndicationType.Noise -> NoiseIndication(
+    IndicationPrimitiveToken.Noise -> NoiseIndication(
         colorMode = NoiseColorMode.RandomColorFilterBlack,
         amount = { interaction ->
             when (interaction) {
@@ -78,7 +64,7 @@ fun PaletteIndicationType.toIndication(): Indication = when (this) {
             }
         },
     )
-    PaletteIndicationType.Pixelate -> PixelateIndication(
+    IndicationPrimitiveToken.Pixelate -> PixelateIndication(
         subdivisions = { interaction ->
             when (interaction) {
                 is HoverInteraction.Enter -> 2
@@ -87,7 +73,7 @@ fun PaletteIndicationType.toIndication(): Indication = when (this) {
             }
         },
     )
-    PaletteIndicationType.Warp -> WarpIndication(
+    IndicationPrimitiveToken.Warp -> WarpIndication(
         point = { interaction ->
             when (interaction) {
                 is PressInteraction.Press -> interaction.pressPosition
@@ -111,7 +97,7 @@ fun PaletteIndicationType.toIndication(): Indication = when (this) {
     )
 }
 
-data object NoOpIndication: IndicationNodeFactory {
+data object NoOpIndication : IndicationNodeFactory {
     override fun create(interactionSource: InteractionSource): DelegatableNode {
         return object : Modifier.Node() {}
     }

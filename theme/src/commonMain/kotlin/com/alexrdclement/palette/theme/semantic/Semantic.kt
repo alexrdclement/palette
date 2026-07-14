@@ -7,6 +7,9 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.alexrdclement.palette.theme.primitive.LocalPrimitiveTokens
 import com.alexrdclement.palette.theme.semantic.color.ColorScheme
 import com.alexrdclement.palette.theme.semantic.format.Formats
+import com.alexrdclement.palette.theme.semantic.interaction.IndicationToken
+import com.alexrdclement.palette.theme.semantic.interaction.InteractionScheme
+import com.alexrdclement.palette.theme.semantic.interaction.toIndication
 import com.alexrdclement.palette.theme.semantic.shape.ShapeScheme
 import com.alexrdclement.palette.theme.semantic.spacing.Spacing
 import com.alexrdclement.palette.theme.semantic.typography.Typography
@@ -38,9 +41,14 @@ object Semantic {
         @Composable
         get() = LocalSemanticTokens.current.spacing
 
+    val interaction: InteractionScheme
+        @Composable
+        get() = LocalSemanticTokens.current.interaction
+
+    /** The resolved indication for the default interaction token, as components consume it. */
     val indication: Indication
         @Composable
-        get() = LocalSemanticTokens.current.indication
+        get() = IndicationToken.Default.toIndication()
 
     val format: Formats
         @Composable

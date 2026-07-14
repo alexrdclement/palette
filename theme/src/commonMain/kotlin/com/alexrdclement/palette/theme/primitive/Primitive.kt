@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.theme.primitive
 
+import androidx.compose.foundation.Indication
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily as ComposeFontFamily
 import androidx.compose.ui.text.font.FontStyle as ComposeFontStyle
@@ -22,4 +23,8 @@ object Primitive {
     val shape: Map<ShapePrimitiveToken, Shape>
         @Composable
         get() = LocalPrimitiveTokens.current.shape
+
+    val indication: Map<IndicationPrimitiveToken, Indication>
+        @Composable
+        get() = LocalPrimitiveTokens.current.indication
 }

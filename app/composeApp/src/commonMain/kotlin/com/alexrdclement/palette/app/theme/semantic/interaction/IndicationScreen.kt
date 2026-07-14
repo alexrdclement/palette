@@ -22,11 +22,13 @@ import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
-import com.alexrdclement.palette.theme.semantic.indication.PaletteIndicationType
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
-import com.alexrdclement.palette.theme.semantic.indication.toIndication
-import com.alexrdclement.palette.theme.semantic.indication.toPaletteIndicationType
+import com.alexrdclement.palette.theme.primitive.IndicationPrimitiveToken
+import com.alexrdclement.palette.theme.semantic.interaction.IndicationToken
+import com.alexrdclement.palette.theme.semantic.interaction.InteractionScheme
+import com.alexrdclement.palette.theme.semantic.interaction.copy
+import com.alexrdclement.palette.theme.semantic.interaction.primitiveToken
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -84,8 +86,8 @@ class IndicationScreenState(
     val themeState: ThemeState,
     buttonDemoStateInitial: ButtonDemoState,
 ) {
-    val indicationType
-        get() = themeState.semantic.indication.toPaletteIndicationType()
+    val interactionScheme: InteractionScheme
+        get() = themeState.semantic.interaction
 
     var buttonDemoState by mutableStateOf(buttonDemoStateInitial)
         internal set
@@ -124,10 +126,12 @@ class IndicationScreenControl(
 ) {
     val indicationControl = enumControl(
         name = "Indication",
-        values = { PaletteIndicationType.entries },
-        selectedValue = { state.indicationType },
-        onValueChange = { type ->
-            themeController.updateSemantic { it.copy(indication = type.toIndication()) }
+        values = { IndicationPrimitiveToken.entries },
+        selectedValue = { IndicationToken.Default.primitiveToken(state.interactionScheme) },
+        onValueChange = { primitiveToken ->
+            themeController.updateSemantic {
+                it.copy(interaction = it.interaction.copy(IndicationToken.Default, primitiveToken))
+            }
         },
     )
 

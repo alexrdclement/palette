@@ -1,10 +1,10 @@
 package com.alexrdclement.palette.theme.semantic
 
-import androidx.compose.foundation.Indication
 import com.alexrdclement.palette.theme.semantic.color.ColorTokens
 import com.alexrdclement.palette.theme.semantic.format.Formats
 import com.alexrdclement.palette.theme.semantic.format.PaletteFormats
-import com.alexrdclement.palette.theme.semantic.indication.PaletteIndication
+import com.alexrdclement.palette.theme.semantic.interaction.InteractionScheme
+import com.alexrdclement.palette.theme.semantic.interaction.PaletteInteractionScheme
 import com.alexrdclement.palette.theme.semantic.shape.PaletteShapeScheme
 import com.alexrdclement.palette.theme.semantic.shape.ShapeScheme
 import com.alexrdclement.palette.theme.semantic.spacing.PaletteSpacing
@@ -22,6 +22,6 @@ data class SemanticTokens(
     val typography: SemanticTypography = SemanticTypography(),
     val shapeScheme: ShapeScheme = PaletteShapeScheme,
     val spacing: Spacing = PaletteSpacing,
-    val indication: Indication = PaletteIndication,
+    val interaction: InteractionScheme = PaletteInteractionScheme,
     val formats: Formats = PaletteFormats,
 )
