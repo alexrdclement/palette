@@ -45,7 +45,6 @@ object Semantic {
         @Composable
         get() = LocalSemanticTokens.current.interaction
 
-    /** The resolved indication for the default interaction token, as components consume it. */
     val indication: Indication
         @Composable
         get() = IndicationToken.Default.toIndication()

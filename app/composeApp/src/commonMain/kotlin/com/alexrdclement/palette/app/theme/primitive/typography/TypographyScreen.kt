@@ -32,12 +32,6 @@ import com.alexrdclement.palette.theme.primitive.toComposeFontWeight
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
-/**
- * Previews the available primitive typography tokens. The font family/weight/style controls only
- * update this screen's local text demo to display the selected values; they do not change the
- * theme's primitive tokens. Semantic typography selects which primitive tokens it uses on the
- * semantic typography screen.
- */
 @Composable
 fun TypographyScreen(
     themeController: ThemeController,

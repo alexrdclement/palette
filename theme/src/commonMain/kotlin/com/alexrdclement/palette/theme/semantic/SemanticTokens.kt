@@ -11,12 +11,6 @@ import com.alexrdclement.palette.theme.semantic.spacing.PaletteSpacing
 import com.alexrdclement.palette.theme.semantic.spacing.Spacing
 import com.alexrdclement.palette.theme.semantic.typography.SemanticTypography
 
-/**
- * Semantic-tier token inputs for [com.alexrdclement.palette.theme.PaletteTheme] — design-intent
- * tokens that reference primitives. These are the editable inputs; the values components consume
- * (the active color scheme, the resolved typography ramp) are derived by `PaletteTheme` from these
- * plus the primitive tokens and the dark-mode flag.
- */
 data class SemanticTokens(
     val colors: ColorTokens = ColorTokens(),
     val typography: SemanticTypography = SemanticTypography(),
