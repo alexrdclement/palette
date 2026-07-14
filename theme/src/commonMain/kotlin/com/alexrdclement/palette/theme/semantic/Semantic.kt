@@ -4,8 +4,10 @@ import androidx.compose.foundation.Indication
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
 import com.alexrdclement.palette.theme.primitive.LocalPrimitiveTokens
 import com.alexrdclement.palette.theme.semantic.color.ColorScheme
+import com.alexrdclement.palette.theme.semantic.color.ColorTokens
 import com.alexrdclement.palette.theme.semantic.format.Formats
 import com.alexrdclement.palette.theme.semantic.shape.ShapeScheme
 import com.alexrdclement.palette.theme.semantic.spacing.Spacing
@@ -47,6 +49,31 @@ object Semantic {
         get() = LocalSemanticTokens.current.formats
 }
 
-val LocalSemanticTokens = staticCompositionLocalOf { SemanticTokens() }
+/**
+ * Default used when no [com.alexrdclement.palette.theme.PaletteTheme] is applied: an unspecified
+ * color scheme, so reads outside a theme surface as clearly missing rather than as real colors.
+ */
+private val UnspecifiedColorScheme = ColorScheme(
+    primary = Color.Unspecified,
+    onPrimary = Color.Unspecified,
+    secondary = Color.Unspecified,
+    onSecondary = Color.Unspecified,
+    background = Color.Unspecified,
+    onBackground = Color.Unspecified,
+    surface = Color.Unspecified,
+    onSurface = Color.Unspecified,
+    outline = Color.Unspecified,
+    disabledContainerAlpha = 1f,
+    disabledContentAlpha = 1f,
+)
+
+val LocalSemanticTokens = staticCompositionLocalOf {
+    SemanticTokens(
+        colors = ColorTokens(
+            light = UnspecifiedColorScheme,
+            dark = UnspecifiedColorScheme,
+        ),
+    )
+}
 
 val LocalIsDarkMode = staticCompositionLocalOf { false }
