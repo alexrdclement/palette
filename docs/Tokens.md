@@ -52,12 +52,14 @@ value, and exposed through `PaletteTheme.primitive`:
 - `PaletteTheme.primitive.fontWeight` — `Map<FontWeight, ComposeFontWeight>`
 - `PaletteTheme.primitive.fontStyle` — `Map<FontStyle, ComposeFontStyle>`
 - `PaletteTheme.primitive.shape` — `Map<ShapePrimitiveToken, Shape>`
-- `PaletteTheme.primitive.indication` — `Map<IndicationPrimitiveToken, Indication>`
+- `PaletteTheme.primitive.indication` — `Map<IndicationPrimitiveToken, IndicationTokenSet>`
 
-The map form makes primitives editable (e.g. the `RoundRect` shape's corner radius) and keeps the
-resolved value in one place. A primitive token enum either converts itself (`FontFamily.Monospace
-.toComposeFontFamily()`) or carries its default value (`ShapePrimitiveToken.RoundRect.default`).
-Primitives are read raw — there is nothing to resolve.
+The map form makes primitives editable (e.g. the `RoundRect` shape's corner radius, or an
+indication's amount and colour mode) and keeps the value in one place. A primitive token enum either
+converts itself (`FontFamily.Monospace.toComposeFontFamily()`) or carries its default value
+(`ShapePrimitiveToken.RoundRect.default`, `IndicationPrimitiveToken.ColorSplit.default`). Shape and
+font primitives resolve directly; an `IndicationTokenSet` builds its `Indication` via `toIndication()`
+from the stored parameters (see [Token sets](#token-sets)).
 
 ## Semantic tier
 
@@ -100,22 +102,25 @@ Each package's accessors live in a `*Styles` object in `:theme` (`CoreStyles`, `
 
 ## Token sets
 
-The semantic and component tiers share one editing pattern: a token whose value is itself a bundle of
-other tokens plus literals is backed by a `*TokenSet`.
+All three tiers share one editing pattern: a token whose value is itself a bundle of other tokens or
+parameters is backed by a `*TokenSet`.
 
-- A `*TokenSet` data class holds the token selections and literals for one token (e.g.
-  `TypographyTokenSet` holds a primitive `FontFamily`/`FontWeight`/`FontStyle` plus size/line-height/
-  letter-spacing; `ButtonStyleTokenSet` holds a `ColorToken`, a `ShapeToken`, an optional
-  `BorderStyleToken`, and a `PaddingValuesTokenSet`).
+- A `*TokenSet` holds the token selections and literals for one token (e.g. `TypographyTokenSet` holds
+  a primitive `FontFamily`/`FontWeight`/`FontStyle` plus size/line-height/letter-spacing;
+  `ButtonStyleTokenSet` holds a `ColorToken`, a `ShapeToken`, an optional `BorderStyleToken`, and a
+  `PaddingValuesTokenSet`; `IndicationTokenSet` holds an effect's parameters such as amount and colour
+  mode). Most are data classes; `IndicationTokenSet` is a sealed type with one variant per effect.
 - Each `*Token` enum entry carries a `default: *TokenSet`.
 - The current set for every token is stored in the tier holder as a `Map<*Token, *TokenSet>` (one map
   per family) — e.g. `SemanticTypography.tokens`, `ComponentTokens.button` — populated by
   `*Token.entries.associateWith { it.default }`.
 - A `*TokenSet` exposes a resolver that turns it into the final value (`toComposeTextStyle`,
-  `toComponentStyle`, `toTextStyle`), looking any token selections up through the tier below.
+  `toComponentStyle`, `toTextStyle`, `toIndication`), looking any token selections up through the tier
+  below.
 
-This is why `ShapeScheme`, `InteractionScheme`, `SemanticTypography.tokens`, and `ComponentTokens`
-all read the same way: a map of tokens to selections that resolves down a tier on read.
+This is why `PrimitiveTokens.indication`, `SemanticTypography.tokens`, `ShapeScheme`,
+`InteractionScheme`, and `ComponentTokens` all read the same way: a map of tokens to selections or
+parameters that resolves on read.
 
 ## Editing tokens
 

@@ -6,6 +6,7 @@ import com.alexrdclement.palette.app.theme.primitive.interaction.IndicationScree
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.NavKey
+import com.alexrdclement.palette.theme.control.ThemeController
 
 fun NavGraphBuilder.primitiveInteractionNavGraph() = navGraph(
     root = PrimitiveInteractionGraph,
@@ -17,6 +18,7 @@ fun NavGraphBuilder.primitiveInteractionNavGraph() = navGraph(
 
 fun EntryProviderScope<NavKey>.primitiveInteractionEntryProvider(
     navController: NavController,
+    themeController: ThemeController,
 ) {
     catalogEntry<PrimitiveInteractionCatalogRoute, PrimitiveInteraction>(
         onItemClick = { interaction ->
@@ -30,6 +32,7 @@ fun EntryProviderScope<NavKey>.primitiveInteractionEntryProvider(
 
     entry<PrimitiveIndicationRoute> {
         IndicationScreen(
+            themeController = themeController,
             onNavigateUp = navController::goBack,
         )
     }

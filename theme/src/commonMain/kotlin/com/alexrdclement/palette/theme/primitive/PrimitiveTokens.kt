@@ -1,6 +1,5 @@
 package com.alexrdclement.palette.theme.primitive
 
-import androidx.compose.foundation.Indication
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.font.FontFamily as ComposeFontFamily
 import androidx.compose.ui.text.font.FontStyle as ComposeFontStyle
@@ -16,8 +15,8 @@ data class PrimitiveTokens(
         FontStyle.entries.associateWith { it.toComposeFontStyle() },
     val shape: Map<ShapePrimitiveToken, Shape> =
         ShapePrimitiveToken.entries.associateWith { it.default },
-    val indication: Map<IndicationPrimitiveToken, Indication> =
-        IndicationPrimitiveToken.entries.associateWith { it.toIndication() },
+    val indication: Map<IndicationPrimitiveToken, IndicationTokenSet> =
+        IndicationPrimitiveToken.entries.associateWith { it.default },
 )
 
 val LocalPrimitiveTokens = staticCompositionLocalOf { PrimitiveTokens() }

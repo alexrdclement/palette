@@ -53,5 +53,5 @@ fun EntryProviderScope<NavKey>.primitiveEntryProvider(
         )
     }
 
-    primitiveInteractionEntryProvider(navController)
+    primitiveInteractionEntryProvider(navController, themeController)
 }
