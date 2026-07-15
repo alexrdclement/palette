@@ -89,8 +89,8 @@ sealed interface IndicationTokenSet {
     }
 
     data class Warp(
-        val amount: Float = 0.5f,
-        val radius: Dp = 100.dp,
+        val pressAmount: Float = 0.5f,
+        val pressRadius: Dp = 100.dp,
     ) : IndicationTokenSet {
         override fun toIndication(): Indication = WarpIndication(
             point = { interaction ->
@@ -103,13 +103,13 @@ sealed interface IndicationTokenSet {
             },
             radius = { interaction ->
                 when (interaction) {
-                    is PressInteraction.Press -> radius
+                    is PressInteraction.Press -> pressRadius
                     else -> 0.dp
                 }
             },
             amount = { interaction ->
                 when (interaction) {
-                    is PressInteraction.Press -> amount
+                    is PressInteraction.Press -> pressAmount
                     else -> 0f
                 }
             },

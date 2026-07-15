@@ -1,25 +1,23 @@
 package com.alexrdclement.palette.app.theme.primitive.interaction
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
-import com.alexrdclement.palette.components.demo.ComponentDemo
-import com.alexrdclement.palette.components.demo.ComponentDemoControl
-import com.alexrdclement.palette.components.demo.rememberComponentDemoControl
-import com.alexrdclement.palette.components.demo.rememberComponentDemoState
+import com.alexrdclement.palette.components.demo.core.ButtonDemo
+import com.alexrdclement.palette.components.demo.core.ButtonDemoControl
+import com.alexrdclement.palette.components.demo.core.rememberButtonDemoControl
+import com.alexrdclement.palette.components.demo.core.rememberButtonDemoState
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -33,6 +31,7 @@ import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.primitive.IndicationPrimitiveToken
 import com.alexrdclement.palette.theme.primitive.IndicationTokenSet
+import com.alexrdclement.palette.theme.semantic.LocalSemanticTokens
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
@@ -42,12 +41,12 @@ fun IndicationScreen(
     onNavigateUp: () -> Unit,
 ) {
     val state = rememberPrimitiveIndicationScreenState(themeState = themeController)
-    val componentDemoState = rememberComponentDemoState()
-    val componentDemoControl = rememberComponentDemoControl(componentDemoState)
+    val buttonDemoState = rememberButtonDemoState()
+    val buttonDemoControl = rememberButtonDemoControl(buttonDemoState)
     val control = rememberPrimitiveIndicationScreenControl(
         state = state,
         themeController = themeController,
-        componentDemoControl = componentDemoControl,
+        buttonDemoControl = buttonDemoControl,
     )
 
     Scaffold(
@@ -66,19 +65,19 @@ fun IndicationScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            val interactionSource = remember { MutableInteractionSource() }
-            val indication = remember(state.tokenSet) { state.tokenSet.toIndication() }
-            ComponentDemo(
-                state = componentDemoState,
-                control = componentDemoControl,
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .clickable(
-                        interactionSource = interactionSource,
-                        indication = indication,
-                        onClick = {},
-                    ),
-            )
+            // Preview the selected primitive by pointing the semantic default at it, so the demo
+            // button's indication resolves to the token being edited.
+            val semantic = remember(themeController.semantic, state.subject) {
+                themeController.semantic.copy(
+                    interaction = themeController.semantic.interaction.copy(default = state.subject),
+                )
+            }
+            CompositionLocalProvider(LocalSemanticTokens provides semantic) {
+                this@Demo.ButtonDemo(
+                    state = buttonDemoState,
+                    control = buttonDemoControl,
+                )
+            }
         }
     }
 }
@@ -102,9 +101,6 @@ class PrimitiveIndicationScreenState(
 ) {
     var subject by mutableStateOf(subjectInitial)
 
-    val tokenSet: IndicationTokenSet
-        get() = tokenSet(subject)
-
     fun tokenSet(token: IndicationPrimitiveToken): IndicationTokenSet =
         themeState.primitive.indication.getValue(token)
 }
@@ -127,13 +123,13 @@ fun PrimitiveIndicationScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
 fun rememberPrimitiveIndicationScreenControl(
     state: PrimitiveIndicationScreenState,
     themeController: ThemeController,
-    componentDemoControl: ComponentDemoControl,
+    buttonDemoControl: ButtonDemoControl,
 ): PrimitiveIndicationScreenControl {
-    return remember(state, themeController, componentDemoControl) {
+    return remember(state, themeController, buttonDemoControl) {
         PrimitiveIndicationScreenControl(
             state = state,
             themeController = themeController,
-            componentDemoControl = componentDemoControl,
+            buttonDemoControl = buttonDemoControl,
         )
     }
 }
@@ -142,7 +138,7 @@ fun rememberPrimitiveIndicationScreenControl(
 class PrimitiveIndicationScreenControl(
     val state: PrimitiveIndicationScreenState,
     val themeController: ThemeController,
-    val componentDemoControl: ComponentDemoControl,
+    val buttonDemoControl: ButtonDemoControl,
 ) {
     private val indicationControl = enumControl(
         name = "Indication",
@@ -261,31 +257,31 @@ class PrimitiveIndicationScreenControl(
         valueRange = { 0f..100f },
     )
 
-    private val warpAmountControl = Control.Slider(
-        name = "Amount",
-        value = { warp().amount },
+    private val warpPressAmountControl = Control.Slider(
+        name = "Press amount",
+        value = { warp().pressAmount },
         onValueChange = { amount ->
             updateIndication(IndicationPrimitiveToken.Warp) {
-                (it as IndicationTokenSet.Warp).copy(amount = amount)
+                (it as IndicationTokenSet.Warp).copy(pressAmount = amount)
             }
         },
         valueRange = { -5f..5f },
     )
 
-    private val warpRadiusControl = Control.Slider(
-        name = "Radius",
-        value = { warp().radius.value },
+    private val warpPressRadiusControl = Control.Slider(
+        name = "Press radius",
+        value = { warp().pressRadius.value },
         onValueChange = { radius ->
             updateIndication(IndicationPrimitiveToken.Warp) {
-                (it as IndicationTokenSet.Warp).copy(radius = radius.dp)
+                (it as IndicationTokenSet.Warp).copy(pressRadius = radius.dp)
             }
         },
         valueRange = { 0f..1000f },
     )
 
-    private val componentControls = Control.ControlColumn(
-        name = "Component",
-        controls = { componentDemoControl.controls },
+    private val buttonControls = Control.ControlColumn(
+        name = "Demo button",
+        controls = { buttonDemoControl.controls },
         expandedInitial = false,
     )
 
@@ -313,11 +309,11 @@ class PrimitiveIndicationScreenControl(
                     add(pixelatePressSubdivisionsControl)
                 }
                 IndicationPrimitiveToken.Warp -> {
-                    add(warpAmountControl)
-                    add(warpRadiusControl)
+                    add(warpPressAmountControl)
+                    add(warpPressRadiusControl)
                 }
             }
-            add(componentControls)
+            add(buttonControls)
         }.toPersistentList()
 
     private fun colorInvert() =

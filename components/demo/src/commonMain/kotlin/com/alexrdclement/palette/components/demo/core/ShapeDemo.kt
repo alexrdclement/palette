@@ -102,7 +102,7 @@ class ShapeDemoState(
 private const val widthKey = "width"
 private const val heightKey = "height"
 
-val ShapeDemoStateSaver = mapSaverSafe(
+private val ShapeDemoStateSaver = mapSaverSafe(
     save = { value ->
         mapOf(
             widthKey to value.width.value,
@@ -146,6 +146,7 @@ class ShapeDemoControl(
 
     val controls = persistentListOf<Control>(
         Control.ControlColumn(
+            name = "Size",
             controls = { persistentListOf(widthControl, heightControl) },
         ),
     )
