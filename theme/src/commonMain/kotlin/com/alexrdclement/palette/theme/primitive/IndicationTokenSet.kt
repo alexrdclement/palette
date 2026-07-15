@@ -2,6 +2,7 @@ package com.alexrdclement.palette.theme.primitive
 
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.interaction.HoverInteraction
+import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.Dp
@@ -22,13 +23,14 @@ sealed interface IndicationTokenSet {
     }
 
     data class ColorInvert(
-        val amount: Float = 1f,
+        val hoverAmount: Float = 0.5f,
+        val pressAmount: Float = 1f,
     ) : IndicationTokenSet {
         override fun toIndication(): Indication = ColorInvertIndication(
             amount = { interaction ->
                 when (interaction) {
-                    is HoverInteraction.Enter -> amount / 2f
-                    is PressInteraction.Press -> amount
+                    is HoverInteraction.Enter -> hoverAmount
+                    is PressInteraction.Press -> pressAmount
                     else -> 0f
                 }
             },
@@ -36,38 +38,35 @@ sealed interface IndicationTokenSet {
     }
 
     data class ColorSplit(
-        val amount: Float = 0.02f,
+        val hoverAmount: Float = -0.02f,
+        val pressAmount: Float = 0.02f,
         val colorMode: ColorSplitMode = ColorSplitMode.RGB,
     ) : IndicationTokenSet {
         override fun toIndication(): Indication = ColorSplitIndication(
-            xAmount = { interaction ->
-                when (interaction) {
-                    is HoverInteraction.Enter -> -amount
-                    is PressInteraction.Press -> amount
-                    else -> 0f
-                }
-            },
-            yAmount = { interaction ->
-                when (interaction) {
-                    is HoverInteraction.Enter -> -amount
-                    is PressInteraction.Press -> amount
-                    else -> 0f
-                }
-            },
+            xAmount = { interaction -> amountFor(interaction) },
+            yAmount = { interaction -> amountFor(interaction) },
             colorMode = colorMode,
         )
+
+        private fun amountFor(interaction: Interaction): Float =
+            when (interaction) {
+                is HoverInteraction.Enter -> hoverAmount
+                is PressInteraction.Press -> pressAmount
+                else -> 0f
+            }
     }
 
     data class Noise(
-        val amount: Float = 1f,
+        val hoverAmount: Float = 0.25f,
+        val pressAmount: Float = 1f,
         val colorMode: NoiseColorMode = NoiseColorMode.RandomColorFilterBlack,
     ) : IndicationTokenSet {
         override fun toIndication(): Indication = NoiseIndication(
             colorMode = colorMode,
             amount = { interaction ->
                 when (interaction) {
-                    is HoverInteraction.Enter -> amount / 4f
-                    is PressInteraction.Press -> amount
+                    is HoverInteraction.Enter -> hoverAmount
+                    is PressInteraction.Press -> pressAmount
                     else -> 0f
                 }
             },
@@ -75,13 +74,14 @@ sealed interface IndicationTokenSet {
     }
 
     data class Pixelate(
-        val subdivisions: Int = 6,
+        val hoverSubdivisions: Int = 2,
+        val pressSubdivisions: Int = 6,
     ) : IndicationTokenSet {
         override fun toIndication(): Indication = PixelateIndication(
             subdivisions = { interaction ->
                 when (interaction) {
-                    is HoverInteraction.Enter -> subdivisions / 3
-                    is PressInteraction.Press -> subdivisions
+                    is HoverInteraction.Enter -> hoverSubdivisions
+                    is PressInteraction.Press -> pressSubdivisions
                     else -> 0
                 }
             },
