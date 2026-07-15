@@ -3,11 +3,12 @@ package com.alexrdclement.palette.app.theme.primitive.interaction
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -31,7 +32,6 @@ import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.primitive.IndicationPrimitiveToken
 import com.alexrdclement.palette.theme.primitive.IndicationTokenSet
-import com.alexrdclement.palette.theme.semantic.LocalSemanticTokens
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
@@ -41,13 +41,25 @@ fun IndicationScreen(
     onNavigateUp: () -> Unit,
 ) {
     val state = rememberPrimitiveIndicationScreenState(themeState = themeController)
-    val buttonDemoState = rememberButtonDemoState()
+    val baseButtonStyle by rememberUpdatedState(PaletteTheme.component.core.button.primary)
+    val buttonDemoState = rememberButtonDemoState(
+        buttonStyleInitial = baseButtonStyle.copy(
+            indication = themeController.primitive.indication.getValue(state.subject).toIndication(),
+        ),
+    )
     val buttonDemoControl = rememberButtonDemoControl(buttonDemoState)
     val control = rememberPrimitiveIndicationScreenControl(
         state = state,
         themeController = themeController,
         buttonDemoControl = buttonDemoControl,
     )
+
+    // Preview the selected primitive on the demo button. Keyed on the token set (a stable data
+    // class), so it re-syncs when the subject or its parameters change.
+    val tokenSet = state.tokenSet(state.subject)
+    LaunchedEffect(tokenSet) {
+        buttonDemoControl.updateStyle(baseButtonStyle.copy(indication = tokenSet.toIndication()))
+    }
 
     Scaffold(
         topBar = {
@@ -65,19 +77,10 @@ fun IndicationScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            // Preview the selected primitive by pointing the semantic default at it, so the demo
-            // button's indication resolves to the token being edited.
-            val semantic = remember(themeController.semantic, state.subject) {
-                themeController.semantic.copy(
-                    interaction = themeController.semantic.interaction.copy(default = state.subject),
-                )
-            }
-            CompositionLocalProvider(LocalSemanticTokens provides semantic) {
-                this@Demo.ButtonDemo(
-                    state = buttonDemoState,
-                    control = buttonDemoControl,
-                )
-            }
+            this@Demo.ButtonDemo(
+                state = buttonDemoState,
+                control = buttonDemoControl,
+            )
         }
     }
 }

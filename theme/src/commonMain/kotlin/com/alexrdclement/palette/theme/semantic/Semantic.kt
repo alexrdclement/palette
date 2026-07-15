@@ -28,7 +28,12 @@ object Semantic {
         get() {
             val primitive = LocalPrimitiveTokens.current
             val semantic = LocalSemanticTokens.current
-            return remember(primitive, semantic.typography) {
+            return remember(
+                primitive.fontFamily,
+                primitive.fontWeight,
+                primitive.fontStyle,
+                semantic.typography,
+            ) {
                 semantic.typography.resolve(primitive)
             }
         }

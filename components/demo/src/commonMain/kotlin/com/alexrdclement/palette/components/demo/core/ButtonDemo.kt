@@ -19,6 +19,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
+import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
@@ -71,9 +72,10 @@ fun DemoScope.ButtonDemo(
     LaunchedEffect(state.style, contentColor) {
         state.textDemoState.textStyleDemoState.color = contentColor
     }
+    val style = state.buttonStyle ?: PaletteTheme.component.core.button[state.style]
     Button(
         onClick = {},
-        style = PaletteTheme.component.core.button[state.style].copy(contentPadding = state.contentPadding),
+        style = style.copy(contentPadding = state.contentPadding),
         enabled = state.enabled,
         modifier = modifier
             .width(state.width)
@@ -90,12 +92,16 @@ fun DemoScope.ButtonDemo(
 
 @Composable
 fun rememberButtonDemoState(
+    buttonStyleInitial: ButtonStyle? = null,
     contentPaddingInitial: PaddingValues = PaddingValues(
         horizontal = PaletteTheme.semantic.spacing.large,
         vertical = PaletteTheme.semantic.spacing.medium,
     ),
 ): ButtonDemoState = rememberSaveable(saver = ButtonDemoStateSaver) {
-    ButtonDemoState(contentPaddingInitial = contentPaddingInitial)
+    ButtonDemoState(
+        buttonStyleInitial = buttonStyleInitial,
+        contentPaddingInitial = contentPaddingInitial,
+    )
 }
 
 @Stable
@@ -105,6 +111,7 @@ class ButtonDemoState(
     maxWidthInitial: Dp = 0.dp,
     widthInitial: Dp = 200.dp,
     contentPaddingInitial: PaddingValues = PaddingValues(),
+    buttonStyleInitial: ButtonStyle? = null,
     val textDemoState: TextDemoState = TextDemoState(
         initialText = "Button",
         textAlignInitial = TextAlign.Center,
@@ -113,6 +120,8 @@ class ButtonDemoState(
     var enabled by mutableStateOf(enabledInitial)
         internal set
     var style by mutableStateOf(styleInitial)
+        internal set
+    var buttonStyle by mutableStateOf(buttonStyleInitial)
         internal set
     var maxWidth by mutableStateOf(maxWidthInitial)
         internal set
@@ -212,6 +221,10 @@ class ButtonDemoControl(
         widthControl,
         textDemoControls,
     )
+
+    fun updateStyle(buttonStyle: ButtonStyle?) {
+        state.buttonStyle = buttonStyle
+    }
 
     fun onButtonSizeChanged(width: Dp) {
         if (state.maxWidth == 0.dp) {
