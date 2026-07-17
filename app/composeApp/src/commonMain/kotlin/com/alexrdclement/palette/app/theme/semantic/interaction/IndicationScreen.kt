@@ -67,16 +67,14 @@ fun IndicationScreen(
 @Composable
 fun rememberIndicationScreenState(
     themeState: ThemeState,
-    buttonDemoStateInitial: ButtonDemoState = ButtonDemoState(),
 ): IndicationScreenState {
     return rememberSaveable(
         themeState,
-        buttonDemoStateInitial,
         saver = IndicationScreenStateSaver(themeState),
     ) {
         IndicationScreenState(
             themeState = themeState,
-            buttonDemoStateInitial = buttonDemoStateInitial,
+            buttonDemoStateInitial = ButtonDemoState(),
         )
     }
 }
