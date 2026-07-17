@@ -41,9 +41,8 @@ fun IndicationScreen(
     onNavigateUp: () -> Unit,
 ) {
     val state = rememberPrimitiveIndicationScreenState(themeState = themeController)
-    val baseButtonStyle by rememberUpdatedState(PaletteTheme.component.core.button.primary)
     val buttonDemoState = rememberButtonDemoState(
-        buttonStyleInitial = baseButtonStyle.copy(
+        buttonStyleInitial = PaletteTheme.component.core.button.primary.copy(
             indication = themeController.primitive.indication.getValue(state.subject).toIndication(),
         ),
     )
@@ -54,10 +53,14 @@ fun IndicationScreen(
         buttonDemoControl = buttonDemoControl,
     )
 
-    // Preview the selected primitive on the demo button. Keyed on the token set (a stable data
-    // class), so it re-syncs when the subject or its parameters change.
+    // Preview the selected primitive on the demo button: keep the themed style for the chosen button
+    // variant and swap in the selected primitive's indication. Keyed on the token set (a stable data
+    // class) and the button variant, so it re-syncs when either changes.
+    val baseButtonStyle by rememberUpdatedState(
+        PaletteTheme.component.core.button[buttonDemoState.style],
+    )
     val tokenSet = state.tokenSet(state.subject)
-    LaunchedEffect(tokenSet) {
+    LaunchedEffect(tokenSet, buttonDemoState.style) {
         buttonDemoControl.updateStyle(baseButtonStyle.copy(indication = tokenSet.toIndication()))
     }
 
@@ -154,8 +157,8 @@ class PrimitiveIndicationScreenControl(
         name = "Hover amount",
         value = { colorInvert().hoverAmount },
         onValueChange = { amount ->
-            updateIndication(IndicationPrimitiveToken.ColorInvert) {
-                (it as IndicationTokenSet.ColorInvert).copy(hoverAmount = amount)
+            updateIndication<IndicationTokenSet.ColorInvert>(IndicationPrimitiveToken.ColorInvert) {
+                it.copy(hoverAmount = amount)
             }
         },
         valueRange = { 0f..1f },
@@ -165,8 +168,8 @@ class PrimitiveIndicationScreenControl(
         name = "Press amount",
         value = { colorInvert().pressAmount },
         onValueChange = { amount ->
-            updateIndication(IndicationPrimitiveToken.ColorInvert) {
-                (it as IndicationTokenSet.ColorInvert).copy(pressAmount = amount)
+            updateIndication<IndicationTokenSet.ColorInvert>(IndicationPrimitiveToken.ColorInvert) {
+                it.copy(pressAmount = amount)
             }
         },
         valueRange = { 0f..1f },
@@ -177,8 +180,8 @@ class PrimitiveIndicationScreenControl(
         values = { ColorSplitMode.entries },
         selectedValue = { colorSplit().colorMode },
         onValueChange = { colorMode ->
-            updateIndication(IndicationPrimitiveToken.ColorSplit) {
-                (it as IndicationTokenSet.ColorSplit).copy(colorMode = colorMode)
+            updateIndication<IndicationTokenSet.ColorSplit>(IndicationPrimitiveToken.ColorSplit) {
+                it.copy(colorMode = colorMode)
             }
         },
     )
@@ -187,8 +190,8 @@ class PrimitiveIndicationScreenControl(
         name = "Hover amount",
         value = { colorSplit().hoverAmount },
         onValueChange = { amount ->
-            updateIndication(IndicationPrimitiveToken.ColorSplit) {
-                (it as IndicationTokenSet.ColorSplit).copy(hoverAmount = amount)
+            updateIndication<IndicationTokenSet.ColorSplit>(IndicationPrimitiveToken.ColorSplit) {
+                it.copy(hoverAmount = amount)
             }
         },
         valueRange = { -1f..1f },
@@ -198,8 +201,8 @@ class PrimitiveIndicationScreenControl(
         name = "Press amount",
         value = { colorSplit().pressAmount },
         onValueChange = { amount ->
-            updateIndication(IndicationPrimitiveToken.ColorSplit) {
-                (it as IndicationTokenSet.ColorSplit).copy(pressAmount = amount)
+            updateIndication<IndicationTokenSet.ColorSplit>(IndicationPrimitiveToken.ColorSplit) {
+                it.copy(pressAmount = amount)
             }
         },
         valueRange = { -1f..1f },
@@ -209,8 +212,8 @@ class PrimitiveIndicationScreenControl(
         name = "Hover amount",
         value = { noise().hoverAmount },
         onValueChange = { amount ->
-            updateIndication(IndicationPrimitiveToken.Noise) {
-                (it as IndicationTokenSet.Noise).copy(hoverAmount = amount)
+            updateIndication<IndicationTokenSet.Noise>(IndicationPrimitiveToken.Noise) {
+                it.copy(hoverAmount = amount)
             }
         },
         valueRange = { 0f..1f },
@@ -220,8 +223,8 @@ class PrimitiveIndicationScreenControl(
         name = "Press amount",
         value = { noise().pressAmount },
         onValueChange = { amount ->
-            updateIndication(IndicationPrimitiveToken.Noise) {
-                (it as IndicationTokenSet.Noise).copy(pressAmount = amount)
+            updateIndication<IndicationTokenSet.Noise>(IndicationPrimitiveToken.Noise) {
+                it.copy(pressAmount = amount)
             }
         },
         valueRange = { 0f..1f },
@@ -232,8 +235,8 @@ class PrimitiveIndicationScreenControl(
         values = { NoiseColorMode.entries },
         selectedValue = { noise().colorMode },
         onValueChange = { colorMode ->
-            updateIndication(IndicationPrimitiveToken.Noise) {
-                (it as IndicationTokenSet.Noise).copy(colorMode = colorMode)
+            updateIndication<IndicationTokenSet.Noise>(IndicationPrimitiveToken.Noise) {
+                it.copy(colorMode = colorMode)
             }
         },
     )
@@ -242,8 +245,8 @@ class PrimitiveIndicationScreenControl(
         name = "Hover subdivisions",
         value = { pixelate().hoverSubdivisions.toFloat() },
         onValueChange = { subdivisions ->
-            updateIndication(IndicationPrimitiveToken.Pixelate) {
-                (it as IndicationTokenSet.Pixelate).copy(hoverSubdivisions = subdivisions.toInt())
+            updateIndication<IndicationTokenSet.Pixelate>(IndicationPrimitiveToken.Pixelate) {
+                it.copy(hoverSubdivisions = subdivisions.toInt())
             }
         },
         valueRange = { 0f..100f },
@@ -253,8 +256,8 @@ class PrimitiveIndicationScreenControl(
         name = "Press subdivisions",
         value = { pixelate().pressSubdivisions.toFloat() },
         onValueChange = { subdivisions ->
-            updateIndication(IndicationPrimitiveToken.Pixelate) {
-                (it as IndicationTokenSet.Pixelate).copy(pressSubdivisions = subdivisions.toInt())
+            updateIndication<IndicationTokenSet.Pixelate>(IndicationPrimitiveToken.Pixelate) {
+                it.copy(pressSubdivisions = subdivisions.toInt())
             }
         },
         valueRange = { 0f..100f },
@@ -264,8 +267,8 @@ class PrimitiveIndicationScreenControl(
         name = "Press amount",
         value = { warp().pressAmount },
         onValueChange = { amount ->
-            updateIndication(IndicationPrimitiveToken.Warp) {
-                (it as IndicationTokenSet.Warp).copy(pressAmount = amount)
+            updateIndication<IndicationTokenSet.Warp>(IndicationPrimitiveToken.Warp) {
+                it.copy(pressAmount = amount)
             }
         },
         valueRange = { -5f..5f },
@@ -275,8 +278,8 @@ class PrimitiveIndicationScreenControl(
         name = "Press radius",
         value = { warp().pressRadius.value },
         onValueChange = { radius ->
-            updateIndication(IndicationPrimitiveToken.Warp) {
-                (it as IndicationTokenSet.Warp).copy(pressRadius = radius.dp)
+            updateIndication<IndicationTokenSet.Warp>(IndicationPrimitiveToken.Warp) {
+                it.copy(pressRadius = radius.dp)
             }
         },
         valueRange = { 0f..1000f },
@@ -334,12 +337,12 @@ class PrimitiveIndicationScreenControl(
     private fun warp() =
         state.tokenSet(IndicationPrimitiveToken.Warp) as IndicationTokenSet.Warp
 
-    private fun updateIndication(
+    private inline fun <reified T : IndicationTokenSet> updateIndication(
         token: IndicationPrimitiveToken,
-        transform: (IndicationTokenSet) -> IndicationTokenSet,
+        crossinline transform: (T) -> IndicationTokenSet,
     ) {
         themeController.updatePrimitive {
-            it.copy(indication = it.indication + (token to transform(it.indication.getValue(token))))
+            it.copy(indication = it.indication + (token to transform(it.indication.getValue(token) as T)))
         }
     }
 }

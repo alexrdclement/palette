@@ -140,7 +140,7 @@ class IndicationScreenControl(
     val controls: PersistentList<Control> = persistentListOf(
         indicationControl,
         Control.ControlColumn(
-            name = "Demo button controls",
+            name = "Demo button",
             indent = true,
             controls = { buttonDemoControl.controls },
             expandedInitial = false,
