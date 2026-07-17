@@ -1,8 +1,10 @@
 # Design tokens
 
-How Palette's theme is structured. This is an architecture and reference document for the token model
-that `PaletteTheme` exposes. For the rules a new **component** must follow, see
-**[Components.md](Components.md)** — this document explains the token layers those rules build on.
+Requirements for adding and organizing theme tokens, plus a reference for the token model that
+`PaletteTheme` exposes. The `MUST`/`SHOULD`/`MAY` items are rules a new token is expected to follow;
+the surrounding prose explains the model those rules build on. Component-tier styling has its own
+requirements in **[Components.md](Components.md)** — this document covers the primitive/semantic model
+those build on and cross-links rather than repeats the component rules.
 
 ## Tiers
 
@@ -16,9 +18,12 @@ Tokens are organized into three tiers, each building on the one before:
 - **Component** — per-component styling assembled from semantic tokens (`ButtonStyleTokenSet`,
   `TextStyleTokenSet`), resolving to the headless `*Style` a component consumes.
 
-The dividing rule: a **capability** is a primitive; a **choice** is semantic; a **component's
-assembled styling** is component-tier. "ColorSplit is an available effect" is primitive; "interactions
-use ColorSplit" is semantic; "the primary button uses these tokens" is component-tier.
+- A new token MUST be placed in the tier that matches its role, by this test: a **capability** is
+  primitive, a **choice** is semantic, a **component's assembled styling** is component-tier.
+  "ColorSplit is an available effect" is primitive; "interactions use ColorSplit" is semantic; "the
+  primary button uses these tokens" is component-tier.
+- Tokens MUST depend only downward — component references semantic, semantic references primitive. A
+  primitive MUST NOT reference a semantic or component token.
 
 ## Accessors
 
@@ -31,7 +36,11 @@ composition local:
 | Semantic | `PaletteTheme.semantic` | `SemanticTokens` | `LocalSemanticTokens` (+ `LocalIsDarkMode`) |
 | Component | `PaletteTheme.component` | `ComponentTokens` | `LocalComponentTokens` |
 
-`PaletteTheme` provides all four locals from the tokens passed to it:
+- Each tier MUST expose exactly one holder type, provided through exactly one composition local, and be
+  reachable via `PaletteTheme.<tier>`. A new token belongs on its tier's existing holder — it MUST NOT
+  introduce a second holder or a per-value composition local.
+
+`PaletteTheme` provides these locals from the tokens passed to it:
 
 ```kotlin
 PaletteTheme(
@@ -45,8 +54,8 @@ PaletteTheme(
 
 ## Primitive tier
 
-Primitives are stored on `PrimitiveTokens` as maps from a primitive token enum to its resolved Compose
-value, and exposed through `PaletteTheme.primitive`:
+Primitives are stored on `PrimitiveTokens` as maps from a primitive token enum to its resolved value,
+exposed through `PaletteTheme.primitive`:
 
 - `PaletteTheme.primitive.fontFamily` — `Map<FontFamily, ComposeFontFamily>`
 - `PaletteTheme.primitive.fontWeight` — `Map<FontWeight, ComposeFontWeight>`
@@ -54,12 +63,19 @@ value, and exposed through `PaletteTheme.primitive`:
 - `PaletteTheme.primitive.shape` — `Map<ShapePrimitiveToken, Shape>`
 - `PaletteTheme.primitive.indication` — `Map<IndicationPrimitiveToken, IndicationTokenSet>`
 
-The map form makes primitives editable (e.g. the `RoundRect` shape's corner radius, or an
-indication's amount and colour mode) and keeps the value in one place. A primitive token enum either
-converts itself (`FontFamily.Monospace.toComposeFontFamily()`) or carries its default value
-(`ShapePrimitiveToken.RoundRect.default`, `IndicationPrimitiveToken.ColorSplit.default`). Shape and
-font primitives resolve directly; an `IndicationTokenSet` builds its `Indication` via `toIndication()`
-from the stored parameters (see [Token sets](#token-sets)).
+The map form keeps primitives editable (e.g. the `RoundRect` shape's corner radius, or an indication's
+amount and colour mode) and in one place. Requirements for a new primitive family:
+
+- A primitive value MUST be unopinionated — a raw capability with no design intent. Anything that
+  encodes a *choice* belongs in the semantic tier.
+- A primitive family MUST be exposed as a `Map<*PrimitiveToken, Value>` on `PrimitiveTokens`,
+  populated from the token enum (`entries.associateWith { … }`).
+- A primitive token enum MUST either convert itself to its value (`FontFamily.Monospace
+  .toComposeFontFamily()`) or carry a `default` (`ShapePrimitiveToken.RoundRect.default`,
+  `IndicationPrimitiveToken.ColorSplit.default`).
+- A primitive whose value bundles parameters (like an indication's amount + colour mode) SHOULD use a
+  `*TokenSet` that builds the value via a resolver (see [Token sets](#token-sets)); simple primitives
+  (shape, font) resolve directly.
 
 ## Semantic tier
 
@@ -67,12 +83,11 @@ Semantic tokens are the editable inputs on `SemanticTokens`; `PaletteTheme.seman
 values components consume, resolving where needed:
 
 - `PaletteTheme.semantic.color` — `ColorScheme`. `SemanticTokens.colors` holds both a `light` and a
-  `dark` scheme; the active one is resolved on read from `LocalIsDarkMode` (dark mode is runtime
-  state, not a token).
+  `dark` scheme; the active one is resolved on read from `LocalIsDarkMode` (dark mode is runtime state,
+  not a token).
 - `PaletteTheme.semantic.typography` — `Typography`. Each `TypographyToken` carries a default
   `TypographyTokenSet` that **selects** primitive `FontFamily`/`FontWeight`/`FontStyle` tokens plus its
   own size/line-height/letter-spacing; `resolve` looks those selections up through the primitive maps.
-  The resolved ramp is memoized.
 - `PaletteTheme.semantic.shape` — `ShapeScheme`, mapping each `ShapeToken` (Primary, Secondary,
   Tertiary, Surface) to a `ShapePrimitiveToken`. `ShapeToken.toShape()` resolves through the primitive
   shape map.
@@ -83,8 +98,17 @@ values components consume, resolving where needed:
   indication.
 - `PaletteTheme.semantic.format` — `Formats` (text, number, money, date-time format schemes).
 
-Semantic values resolve **on read**, the same way component styles do. Color is a cheap branch;
-typography is memoized in its accessor.
+Requirements for a new semantic token:
+
+- A semantic token MUST express design intent by **selecting** a primitive (`ShapeToken` → a
+  `ShapePrimitiveToken`, `TypographyToken` → primitive font tokens) rather than embedding a raw value —
+  except color, which holds its `light`/`dark` `ColorScheme`s directly because there is no color
+  primitive tier.
+- A semantic accessor MUST resolve on read from its tier local and MUST NOT cache a resolved value on
+  the holder. Resolution that is more than a cheap branch SHOULD be memoized in the accessor (as
+  typography's ramp is).
+- Runtime state that isn't a token (dark mode) MUST NOT live on `SemanticTokens`; it is provided
+  separately (`LocalIsDarkMode`) and folded in during resolution.
 
 ## Component tier
 
@@ -96,27 +120,27 @@ component packages:
 - `PaletteTheme.component.core.button.primary`, `…core.surface.default`, `…core.text.titleMedium`
 - `PaletteTheme.component.media.playPauseButton`, `…color.colorDisplay`, …
 
-Each package's accessors live in a `*Styles` object in `:theme` (`CoreStyles`, `MediaStyles`, …) as
-`@Composable get()` properties returning a fully-resolved `*Style`. See
-**[Components.md → Theme](Components.md#theme)** for the requirements a `*Style` getter must follow.
+The requirements for a component `*Style` getter and its `*TokenSet` (reuse existing theme values,
+expose a resolver, `.copy()` only in the theme layer, …) live in
+**[Components.md → Theme](Components.md#theme)** and
+**[Components.md → Token sets](Components.md#token-sets)** — they are not repeated here.
 
 ## Token sets
 
 All three tiers share one editing pattern: a token whose value is itself a bundle of other tokens or
-parameters is backed by a `*TokenSet`.
+parameters is backed by a `*TokenSet`. A `*TokenSet` holds the token selections and literals for one
+token (e.g. `TypographyTokenSet` holds primitive `FontFamily`/`FontWeight`/`FontStyle` plus
+size/line-height/letter-spacing; `IndicationTokenSet` holds an effect's parameters such as amount and
+colour mode). Most are data classes; `IndicationTokenSet` is a sealed type with one variant per effect.
 
-- A `*TokenSet` holds the token selections and literals for one token (e.g. `TypographyTokenSet` holds
-  a primitive `FontFamily`/`FontWeight`/`FontStyle` plus size/line-height/letter-spacing;
-  `ButtonStyleTokenSet` holds a `ColorToken`, a `ShapeToken`, an optional `BorderStyleToken`, and a
-  `PaddingValuesTokenSet`; `IndicationTokenSet` holds an effect's parameters such as amount and colour
-  mode). Most are data classes; `IndicationTokenSet` is a sealed type with one variant per effect.
-- Each `*Token` enum entry carries a `default: *TokenSet`.
-- The current set for every token is stored in the tier holder as a `Map<*Token, *TokenSet>` (one map
-  per family) — e.g. `SemanticTypography.tokens`, `ComponentTokens.button` — populated by
-  `*Token.entries.associateWith { it.default }`.
-- A `*TokenSet` exposes a resolver that turns it into the final value (`toComposeTextStyle`,
-  `toComponentStyle`, `toTextStyle`, `toIndication`), looking any token selections up through the tier
-  below.
+Requirements for a new `*TokenSet`:
+
+- Each `*Token` enum entry MUST carry a `default: *TokenSet`.
+- The current set for every token MUST be stored in the tier holder as a `Map<*Token, *TokenSet>` (one
+  map per family), populated by `*Token.entries.associateWith { it.default }` — e.g.
+  `SemanticTypography.tokens`, `ComponentTokens.button`.
+- A `*TokenSet` MUST expose a resolver (`toComposeTextStyle`, `toComponentStyle`, `toIndication`, …)
+  that turns it into the final value, looking any token selections up through the tier below.
 
 This is why `PrimitiveTokens.indication`, `SemanticTypography.tokens`, `ShapeScheme`,
 `InteractionScheme`, and `ComponentTokens` all read the same way: a map of tokens to selections or
@@ -125,14 +149,15 @@ parameters that resolves on read.
 ## Editing tokens
 
 The demo app's theme editor drives tokens through `ThemeController`, which wraps a `ThemeState`
-(`primitive`, `semantic`, `component`, `isDarkMode`, and the resolved `colorScheme`). Edits are made
-per tier and never mutate resolved values:
+(`primitive`, `semantic`, `component`, `isDarkMode`, and the resolved `colorScheme`).
 
-- `themeController.updatePrimitive { it.copy(shape = it.shape + (ShapePrimitiveToken.RoundRect to …)) }`
-- `themeController.updateSemantic { it.copy(interaction = it.interaction.copy(IndicationToken.Default, …)) }`
-- `themeController.updateComponent { it.copy(button = it.button + (token to …)) }`
-- `themeController.setIsDarkMode(true)`
+- Edits MUST go through the tier's `ThemeController.update*` (or `setIsDarkMode`) and replace tokens by
+  value; an editor MUST NOT mutate a resolved value:
+  - `themeController.updatePrimitive { it.copy(shape = it.shape + (ShapePrimitiveToken.RoundRect to …)) }`
+  - `themeController.updateSemantic { it.copy(interaction = it.interaction.copy(IndicationToken.Default, …)) }`
+  - `themeController.updateComponent { it.copy(button = it.button + (token to …)) }`
+  - `themeController.setIsDarkMode(true)`
 
 `PaletteTheme` re-provides the tier locals from the updated `ThemeState`, and the `@Composable`
-accessors re-resolve. See **[Components.md → Demo app: theme editor](Components.md#demo-app-theme-editor)**
-for the editor-screen requirements.
+accessors re-resolve. The editor-screen requirements are in
+**[Components.md → Demo app: theme editor](Components.md#demo-app-theme-editor)**.
