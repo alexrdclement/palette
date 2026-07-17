@@ -13,7 +13,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.components.demo.core.ButtonDemo
 import com.alexrdclement.palette.components.demo.core.ButtonDemoControl
@@ -22,8 +21,6 @@ import com.alexrdclement.palette.components.demo.core.rememberButtonDemoState
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
-import com.alexrdclement.palette.modifiers.ColorSplitMode
-import com.alexrdclement.palette.modifiers.NoiseColorMode
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.theme.components.layout.Scaffold
@@ -153,136 +150,29 @@ class PrimitiveIndicationScreenControl(
         onValueChange = { state.subject = it },
     )
 
-    private val colorInvertHoverAmountControl = Control.Slider(
-        name = "Hover amount",
-        value = { colorInvert().hoverAmount },
-        onValueChange = { amount ->
-            updateIndication<IndicationTokenSet.ColorInvert>(IndicationPrimitiveToken.ColorInvert) {
-                it.copy(hoverAmount = amount)
-            }
-        },
-        valueRange = { 0f..1f },
+    private val colorInvertControl = ColorInvertIndicationControl(
+        value = { tokenSet(IndicationPrimitiveToken.ColorInvert) },
+        onValueChange = { updateIndication(IndicationPrimitiveToken.ColorInvert, it) },
     )
 
-    private val colorInvertPressAmountControl = Control.Slider(
-        name = "Press amount",
-        value = { colorInvert().pressAmount },
-        onValueChange = { amount ->
-            updateIndication<IndicationTokenSet.ColorInvert>(IndicationPrimitiveToken.ColorInvert) {
-                it.copy(pressAmount = amount)
-            }
-        },
-        valueRange = { 0f..1f },
+    private val colorSplitControl = ColorSplitIndicationControl(
+        value = { tokenSet(IndicationPrimitiveToken.ColorSplit) },
+        onValueChange = { updateIndication(IndicationPrimitiveToken.ColorSplit, it) },
     )
 
-    private val colorSplitColorModeControl = enumControl(
-        name = "Color mode",
-        values = { ColorSplitMode.entries },
-        selectedValue = { colorSplit().colorMode },
-        onValueChange = { colorMode ->
-            updateIndication<IndicationTokenSet.ColorSplit>(IndicationPrimitiveToken.ColorSplit) {
-                it.copy(colorMode = colorMode)
-            }
-        },
+    private val noiseControl = NoiseIndicationControl(
+        value = { tokenSet(IndicationPrimitiveToken.Noise) },
+        onValueChange = { updateIndication(IndicationPrimitiveToken.Noise, it) },
     )
 
-    private val colorSplitHoverAmountControl = Control.Slider(
-        name = "Hover amount",
-        value = { colorSplit().hoverAmount },
-        onValueChange = { amount ->
-            updateIndication<IndicationTokenSet.ColorSplit>(IndicationPrimitiveToken.ColorSplit) {
-                it.copy(hoverAmount = amount)
-            }
-        },
-        valueRange = { -1f..1f },
+    private val pixelateControl = PixelateIndicationControl(
+        value = { tokenSet(IndicationPrimitiveToken.Pixelate) },
+        onValueChange = { updateIndication(IndicationPrimitiveToken.Pixelate, it) },
     )
 
-    private val colorSplitPressAmountControl = Control.Slider(
-        name = "Press amount",
-        value = { colorSplit().pressAmount },
-        onValueChange = { amount ->
-            updateIndication<IndicationTokenSet.ColorSplit>(IndicationPrimitiveToken.ColorSplit) {
-                it.copy(pressAmount = amount)
-            }
-        },
-        valueRange = { -1f..1f },
-    )
-
-    private val noiseHoverAmountControl = Control.Slider(
-        name = "Hover amount",
-        value = { noise().hoverAmount },
-        onValueChange = { amount ->
-            updateIndication<IndicationTokenSet.Noise>(IndicationPrimitiveToken.Noise) {
-                it.copy(hoverAmount = amount)
-            }
-        },
-        valueRange = { 0f..1f },
-    )
-
-    private val noisePressAmountControl = Control.Slider(
-        name = "Press amount",
-        value = { noise().pressAmount },
-        onValueChange = { amount ->
-            updateIndication<IndicationTokenSet.Noise>(IndicationPrimitiveToken.Noise) {
-                it.copy(pressAmount = amount)
-            }
-        },
-        valueRange = { 0f..1f },
-    )
-
-    private val noiseColorModeControl = enumControl(
-        name = "Color mode",
-        values = { NoiseColorMode.entries },
-        selectedValue = { noise().colorMode },
-        onValueChange = { colorMode ->
-            updateIndication<IndicationTokenSet.Noise>(IndicationPrimitiveToken.Noise) {
-                it.copy(colorMode = colorMode)
-            }
-        },
-    )
-
-    private val pixelateHoverSubdivisionsControl = Control.Slider(
-        name = "Hover subdivisions",
-        value = { pixelate().hoverSubdivisions.toFloat() },
-        onValueChange = { subdivisions ->
-            updateIndication<IndicationTokenSet.Pixelate>(IndicationPrimitiveToken.Pixelate) {
-                it.copy(hoverSubdivisions = subdivisions.toInt())
-            }
-        },
-        valueRange = { 0f..100f },
-    )
-
-    private val pixelatePressSubdivisionsControl = Control.Slider(
-        name = "Press subdivisions",
-        value = { pixelate().pressSubdivisions.toFloat() },
-        onValueChange = { subdivisions ->
-            updateIndication<IndicationTokenSet.Pixelate>(IndicationPrimitiveToken.Pixelate) {
-                it.copy(pressSubdivisions = subdivisions.toInt())
-            }
-        },
-        valueRange = { 0f..100f },
-    )
-
-    private val warpPressAmountControl = Control.Slider(
-        name = "Press amount",
-        value = { warp().pressAmount },
-        onValueChange = { amount ->
-            updateIndication<IndicationTokenSet.Warp>(IndicationPrimitiveToken.Warp) {
-                it.copy(pressAmount = amount)
-            }
-        },
-        valueRange = { -5f..5f },
-    )
-
-    private val warpPressRadiusControl = Control.Slider(
-        name = "Press radius",
-        value = { warp().pressRadius.value },
-        onValueChange = { radius ->
-            updateIndication<IndicationTokenSet.Warp>(IndicationPrimitiveToken.Warp) {
-                it.copy(pressRadius = radius.dp)
-            }
-        },
-        valueRange = { 0f..1000f },
+    private val warpControl = WarpIndicationControl(
+        value = { tokenSet(IndicationPrimitiveToken.Warp) },
+        onValueChange = { updateIndication(IndicationPrimitiveToken.Warp, it) },
     )
 
     private val buttonControls = Control.ControlColumn(
@@ -294,55 +184,29 @@ class PrimitiveIndicationScreenControl(
     val controls: PersistentList<Control>
         get() = buildList {
             add(indicationControl)
-            when (state.subject) {
-                IndicationPrimitiveToken.None -> Unit
-                IndicationPrimitiveToken.ColorInvert -> {
-                    add(colorInvertHoverAmountControl)
-                    add(colorInvertPressAmountControl)
+            addAll(
+                when (state.subject) {
+                    IndicationPrimitiveToken.None -> emptyList()
+                    IndicationPrimitiveToken.ColorInvert -> colorInvertControl.controls
+                    IndicationPrimitiveToken.ColorSplit -> colorSplitControl.controls
+                    IndicationPrimitiveToken.Noise -> noiseControl.controls
+                    IndicationPrimitiveToken.Pixelate -> pixelateControl.controls
+                    IndicationPrimitiveToken.Warp -> warpControl.controls
                 }
-                IndicationPrimitiveToken.ColorSplit -> {
-                    add(colorSplitColorModeControl)
-                    add(colorSplitHoverAmountControl)
-                    add(colorSplitPressAmountControl)
-                }
-                IndicationPrimitiveToken.Noise -> {
-                    add(noiseColorModeControl)
-                    add(noiseHoverAmountControl)
-                    add(noisePressAmountControl)
-                }
-                IndicationPrimitiveToken.Pixelate -> {
-                    add(pixelateHoverSubdivisionsControl)
-                    add(pixelatePressSubdivisionsControl)
-                }
-                IndicationPrimitiveToken.Warp -> {
-                    add(warpPressAmountControl)
-                    add(warpPressRadiusControl)
-                }
-            }
+            )
             add(buttonControls)
         }.toPersistentList()
 
-    private fun colorInvert() =
-        state.tokenSet(IndicationPrimitiveToken.ColorInvert) as IndicationTokenSet.ColorInvert
-
-    private fun colorSplit() =
-        state.tokenSet(IndicationPrimitiveToken.ColorSplit) as IndicationTokenSet.ColorSplit
-
-    private fun noise() =
-        state.tokenSet(IndicationPrimitiveToken.Noise) as IndicationTokenSet.Noise
-
-    private fun pixelate() =
-        state.tokenSet(IndicationPrimitiveToken.Pixelate) as IndicationTokenSet.Pixelate
-
-    private fun warp() =
-        state.tokenSet(IndicationPrimitiveToken.Warp) as IndicationTokenSet.Warp
-
-    private inline fun <reified T : IndicationTokenSet> updateIndication(
+    private inline fun <reified T : IndicationTokenSet> tokenSet(
         token: IndicationPrimitiveToken,
-        crossinline transform: (T) -> IndicationTokenSet,
+    ): T = state.tokenSet(token) as T
+
+    private fun updateIndication(
+        token: IndicationPrimitiveToken,
+        tokenSet: IndicationTokenSet,
     ) {
         themeController.updatePrimitive {
-            it.copy(indication = it.indication + (token to transform(it.indication.getValue(token) as T)))
+            it.copy(indication = it.indication + (token to tokenSet))
         }
     }
 }
