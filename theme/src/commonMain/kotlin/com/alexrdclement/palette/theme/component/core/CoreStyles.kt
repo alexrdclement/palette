@@ -7,8 +7,9 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.CheckboxStyle
 import com.alexrdclement.palette.components.core.ChevronButtonStyle
-import com.alexrdclement.palette.components.core.ChevronIconStyle
 import com.alexrdclement.palette.components.core.DividerStyle
+import com.alexrdclement.palette.components.core.IconSize
+import com.alexrdclement.palette.components.core.IconStyle
 import com.alexrdclement.palette.components.core.ProgressIndicatorStyle
 import com.alexrdclement.palette.components.core.SliderColors
 import com.alexrdclement.palette.components.core.SliderStyle
@@ -61,11 +62,15 @@ object CoreStyles {
                 disabledContainerAlpha = PaletteTheme.semantic.color.disabledContainerAlpha,
                 indication = PaletteTheme.semantic.indication,
             ),
-            iconColor = PaletteTheme.semantic.color.primary,
+            iconStyle = IconStyle(
+                size = IconSize.Fill,
+                color = PaletteTheme.semantic.color.primary,
+            ),
         )
 
-    val chevronIcon: ChevronIconStyle
-        @Composable get() = ChevronIconStyle(
+    val chevronIcon: IconStyle
+        @Composable get() = IconStyle(
+            size = IconSize.Fill,
             color = PaletteTheme.semantic.color.primary,
         )
 

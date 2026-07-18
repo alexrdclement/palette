@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,11 +23,7 @@ enum class ChevronDirection {
 
 data class ChevronButtonStyle(
     val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(16.dp)),
-    val iconColor: Color = Color.Unspecified,
-)
-
-data class ChevronIconStyle(
-    val color: Color = Color.Unspecified,
+    val iconStyle: IconStyle = IconStyle(size = IconSize.Fill),
 )
 
 @Composable
@@ -45,16 +40,20 @@ fun ChevronButton(
     ) {
         ChevronIcon(
             direction = direction,
-            style = ChevronIconStyle(color = style.iconColor),
+            style = style.iconStyle,
         )
     }
 }
 
+/**
+ * A directional chevron glyph. Fills the height it is given and keeps a square aspect, so its
+ * [IconStyle.size] is intrinsic ([IconSize.Fill]); the style is consumed for [IconStyle.color].
+ */
 @Composable
 fun ChevronIcon(
     direction: ChevronDirection,
     modifier: Modifier = Modifier,
-    style: ChevronIconStyle = ChevronIconStyle(),
+    style: IconStyle = IconStyle(),
 ) {
     val color = style.color
     val rotation = when (direction) {
