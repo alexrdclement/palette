@@ -1,19 +1,19 @@
-package com.alexrdclement.palette.app.theme.semantic.dimensions.navigation
+package com.alexrdclement.palette.app.theme.semantic.dimension.navigation
 
 import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.app.navigation.catalogEntry
-import com.alexrdclement.palette.app.theme.semantic.dimensions.PaddingScreen
-import com.alexrdclement.palette.app.theme.semantic.dimensions.SpacingScreen
+import com.alexrdclement.palette.app.theme.semantic.dimension.PaddingScreen
+import com.alexrdclement.palette.app.theme.semantic.dimension.SpacingScreen
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
 import com.alexrdclement.palette.navigation.NavKey
 import com.alexrdclement.palette.theme.control.ThemeController
 
 fun NavGraphBuilder.dimensionNavGraph() = navGraph(
-    root = DimensionsGraph,
-    start = DimensionsCatalogRoute,
+    root = DimensionGraph,
+    start = DimensionCatalogRoute,
 ) {
-    route(DimensionsCatalogRoute)
+    route(DimensionCatalogRoute)
     route(SpacingRoute)
     route(PaddingRoute)
 }
@@ -22,14 +22,14 @@ fun EntryProviderScope<NavKey>.dimensionEntryProvider(
     navController: NavController,
     themeController: ThemeController,
 ) {
-    catalogEntry<DimensionsCatalogRoute, Dimension>(
+    catalogEntry<DimensionCatalogRoute, Dimension>(
         onItemClick = { dimension ->
             when (dimension) {
                 Dimension.Spacing -> navController.navigate(SpacingRoute)
                 Dimension.Padding -> navController.navigate(PaddingRoute)
             }
         },
-        title = "Dimensions",
+        title = "Dimension",
         onNavigateUp = navController::goBack,
     )
 

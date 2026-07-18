@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.semantic.dimensions
+package com.alexrdclement.palette.theme.semantic.dimension
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -24,6 +24,6 @@ fun PaddingValuesToken.toPaddingValues(
 
 @Composable
 fun PaddingValuesToken.toPaddingValues(): PaddingValues = toPaddingValues(
-    scheme = PaletteTheme.semantic.dimensions.padding,
-    spacing = PaletteTheme.semantic.dimensions.spacing,
+    scheme = PaletteTheme.semantic.dimension.padding,
+    spacing = PaletteTheme.semantic.dimension.spacing,
 )

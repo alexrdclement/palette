@@ -58,7 +58,7 @@ fun TextFieldDemo(
             state = state,
             modifier = Modifier
                 .align(Alignment.Center)
-                .padding(vertical = PaletteTheme.semantic.dimensions.spacing.medium)
+                .padding(vertical = PaletteTheme.semantic.dimension.spacing.medium)
         )
     }
 }

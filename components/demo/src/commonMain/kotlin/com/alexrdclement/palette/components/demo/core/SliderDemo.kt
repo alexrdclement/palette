@@ -61,7 +61,7 @@ fun DemoScope.SliderDemo(
     val sliderModifier = modifier
         .fillMaxWidth()
         .align(Alignment.Center)
-        .padding(PaletteTheme.semantic.dimensions.spacing.medium)
+        .padding(PaletteTheme.semantic.dimension.spacing.medium)
 
     when (state.sliderType) {
         SliderType.Continuous -> when (state.stepMode) {

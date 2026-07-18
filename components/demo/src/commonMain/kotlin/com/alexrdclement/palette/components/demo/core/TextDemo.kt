@@ -93,7 +93,7 @@ fun DemoScope.TextDemo(
         modifier = modifier
             .align(Alignment.Center)
             .width(state.width)
-            .padding(vertical = PaletteTheme.semantic.dimensions.spacing.medium)
+            .padding(vertical = PaletteTheme.semantic.dimension.spacing.medium)
             .then(
                 if (state.showBorder) Modifier.border(
                     1.dp,

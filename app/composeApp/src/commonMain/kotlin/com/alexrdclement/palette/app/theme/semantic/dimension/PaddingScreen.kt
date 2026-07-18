@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.app.theme.semantic.dimensions
+package com.alexrdclement.palette.app.theme.semantic.dimension
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -23,11 +23,11 @@ import com.alexrdclement.palette.theme.components.layout.Scaffold
 import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
-import com.alexrdclement.palette.theme.semantic.dimensions.PaddingScheme
-import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValuesToken
-import com.alexrdclement.palette.theme.semantic.dimensions.copy
-import com.alexrdclement.palette.theme.semantic.dimensions.toPaddingValues
-import com.alexrdclement.palette.theme.semantic.dimensions.tokenSet
+import com.alexrdclement.palette.theme.semantic.dimension.PaddingScheme
+import com.alexrdclement.palette.theme.semantic.dimension.PaddingValuesToken
+import com.alexrdclement.palette.theme.semantic.dimension.copy
+import com.alexrdclement.palette.theme.semantic.dimension.toPaddingValues
+import com.alexrdclement.palette.theme.semantic.dimension.tokenSet
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
@@ -103,7 +103,7 @@ class PaddingScreenState(
     val themeState: ThemeState,
 ) {
     val paddingScheme: PaddingScheme
-        get() = themeState.semantic.dimensions.padding
+        get() = themeState.semantic.dimension.padding
 }
 
 fun PaddingScreenStateSaver(themeState: ThemeState) = mapSaverSafe(
@@ -140,8 +140,8 @@ class PaddingScreenControl(
             onValueChange = { tokenSet ->
                 themeController.updateSemantic {
                     it.copy(
-                        dimensions = it.dimensions.copy(
-                            padding = it.dimensions.padding.copy(
+                        dimension = it.dimension.copy(
+                            padding = it.dimension.padding.copy(
                                 token = token,
                                 tokenSet = tokenSet,
                             ),

@@ -62,7 +62,7 @@ fun DateFormatSchemeScreen(
             BoxWithLabel(
                 label = token.name,
                 modifier = Modifier
-                    .padding(horizontal = PaletteTheme.semantic.dimensions.spacing.medium)
+                    .padding(horizontal = PaletteTheme.semantic.dimension.spacing.medium)
             ) {
                 DateTimeFormatDemo(
                     state = state.dateTimeFormatDemoStateByToken[token]!!,

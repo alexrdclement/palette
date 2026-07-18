@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.app.theme.semantic.dimensions.navigation
+package com.alexrdclement.palette.app.theme.semantic.dimension.navigation
 
 import com.alexrdclement.palette.components.layout.catalog.CatalogItem
 

@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.theme.semantic.dimensions
+package com.alexrdclement.palette.theme.semantic.dimension
 
 import com.alexrdclement.palette.theme.semantic.spacing.SpacingToken
 

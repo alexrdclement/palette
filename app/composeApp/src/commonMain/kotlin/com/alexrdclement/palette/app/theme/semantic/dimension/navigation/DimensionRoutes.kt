@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.app.theme.semantic.dimensions.navigation
+package com.alexrdclement.palette.app.theme.semantic.dimension.navigation
 
 import com.alexrdclement.palette.navigation.NavGraphRoute
 import com.alexrdclement.palette.navigation.NavKey
@@ -9,14 +9,14 @@ import kotlinx.serialization.Serializable
 sealed interface DimensionRoute : NavKey
 
 @Serializable
-@SerialName("dimensions")
-data object DimensionsGraph : DimensionRoute, NavGraphRoute {
-    override val pathSegment = "dimensions".toPathSegment()
+@SerialName("dimension")
+data object DimensionGraph : DimensionRoute, NavGraphRoute {
+    override val pathSegment = "dimension".toPathSegment()
 }
 
 @Serializable
-@SerialName("dimensions-catalog")
-data object DimensionsCatalogRoute : DimensionRoute {
+@SerialName("dimension-catalog")
+data object DimensionCatalogRoute : DimensionRoute {
     override val pathSegment = "catalog".toPathSegment()
 }
 

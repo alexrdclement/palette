@@ -10,7 +10,7 @@ import com.alexrdclement.palette.theme.semantic.format.Formats
 import com.alexrdclement.palette.theme.semantic.interaction.IndicationToken
 import com.alexrdclement.palette.theme.semantic.interaction.InteractionScheme
 import com.alexrdclement.palette.theme.semantic.interaction.toIndication
-import com.alexrdclement.palette.theme.semantic.dimensions.Dimensions
+import com.alexrdclement.palette.theme.semantic.dimension.Dimension
 import com.alexrdclement.palette.theme.semantic.shape.ShapeScheme
 import com.alexrdclement.palette.theme.semantic.typography.Typography
 import com.alexrdclement.palette.theme.semantic.typography.resolve
@@ -42,9 +42,9 @@ object Semantic {
         @Composable
         get() = LocalSemanticTokens.current.shapeScheme
 
-    val dimensions: Dimensions
+    val dimension: Dimension
         @Composable
-        get() = LocalSemanticTokens.current.dimensions
+        get() = LocalSemanticTokens.current.dimension
 
     val interaction: InteractionScheme
         @Composable

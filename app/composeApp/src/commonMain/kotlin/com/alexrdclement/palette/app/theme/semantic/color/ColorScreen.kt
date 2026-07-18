@@ -101,7 +101,7 @@ private fun ColorDisplayRow(
         modifier = modifier,
     ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(PaletteTheme.semantic.dimensions.spacing.medium),
+            horizontalArrangement = Arrangement.spacedBy(PaletteTheme.semantic.dimension.spacing.medium),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             ColorDisplay(
@@ -114,7 +114,7 @@ private fun ColorDisplayRow(
                 text = label,
                 style = PaletteTheme.component.core.text.labelMedium,
                 modifier = Modifier
-                    .padding(end = PaletteTheme.semantic.dimensions.spacing.medium)
+                    .padding(end = PaletteTheme.semantic.dimension.spacing.medium)
             )
         }
     }
