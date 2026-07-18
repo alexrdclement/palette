@@ -33,18 +33,6 @@ data object ShapeRoute : SemanticRoute {
 }
 
 @Serializable
-@SerialName("spacing")
-data object SpacingRoute : SemanticRoute {
-    override val pathSegment = "spacing".toPathSegment()
-}
-
-@Serializable
-@SerialName("padding")
-data object PaddingRoute : SemanticRoute {
-    override val pathSegment = "padding".toPathSegment()
-}
-
-@Serializable
 @SerialName("typography")
 data object TypographyRoute : SemanticRoute {
     override val pathSegment = "typography".toPathSegment()
