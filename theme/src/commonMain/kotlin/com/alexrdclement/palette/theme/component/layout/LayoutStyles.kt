@@ -26,25 +26,25 @@ object LayoutStyles {
 
     val floatingAction: FloatingActionStyle
         @Composable get() = FloatingActionStyle(
-            spacing = PaletteTheme.semantic.dimensions.spacing.small,
+            spacing = PaletteTheme.semantic.dimension.spacing.small,
         )
 
     val topBar: TopBarStyle
         @Composable get() = TopBarStyle(
-            spacing = PaletteTheme.semantic.dimensions.spacing.small,
+            spacing = PaletteTheme.semantic.dimension.spacing.small,
         )
 
     val boxWithLabel: BoxWithLabelStyle
         @Composable get() = BoxWithLabelStyle(
-            spacing = PaletteTheme.semantic.dimensions.spacing.small,
-            labelPadding = PaletteTheme.semantic.dimensions.spacing.xs,
+            spacing = PaletteTheme.semantic.dimension.spacing.small,
+            labelPadding = PaletteTheme.semantic.dimension.spacing.xs,
             labelStyle = TextStyles.labelSmall,
             borderColor = PaletteTheme.semantic.color.outline,
         )
 
     val catalog: CatalogStyle
         @Composable get() = CatalogStyle(
-            itemSpacing = PaletteTheme.semantic.dimensions.spacing.medium,
+            itemSpacing = PaletteTheme.semantic.dimension.spacing.medium,
             itemStyle = CoreStyles.button.secondary,
             itemTextStyle = TextStyles.bodyMedium.copy(
                 color = ColorToken.Secondary.toColor(),
@@ -59,7 +59,7 @@ object LayoutStyles {
                     color = ColorToken.Secondary.toColor(),
                 ),
             ),
-            spacing = PaletteTheme.semantic.dimensions.spacing.medium,
+            spacing = PaletteTheme.semantic.dimension.spacing.medium,
         )
 
     val dialogContent: DialogContentStyle
@@ -68,9 +68,9 @@ object LayoutStyles {
             messageStyle = TextStyles.bodyLarge.copy(textAlign = TextAlign.Center),
             surfaceStyle = CoreStyles.surface.container,
             buttonRowStyle = confirmCancelButtonRow,
-            spacing = PaletteTheme.semantic.dimensions.spacing.medium,
-            padding = PaletteTheme.semantic.dimensions.spacing.large,
-            titleBottomPadding = PaletteTheme.semantic.dimensions.spacing.medium,
-            messageBottomPadding = PaletteTheme.semantic.dimensions.spacing.large,
+            spacing = PaletteTheme.semantic.dimension.spacing.medium,
+            padding = PaletteTheme.semantic.dimension.spacing.large,
+            titleBottomPadding = PaletteTheme.semantic.dimension.spacing.medium,
+            messageBottomPadding = PaletteTheme.semantic.dimension.spacing.large,
         )
 }

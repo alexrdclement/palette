@@ -16,8 +16,8 @@ import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValuesToken
-import com.alexrdclement.palette.theme.semantic.dimensions.toPaddingValues
+import com.alexrdclement.palette.theme.semantic.dimension.PaddingValuesToken
+import com.alexrdclement.palette.theme.semantic.dimension.toPaddingValues
 import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
 import com.alexrdclement.palette.theme.semantic.color.toColor
 import com.alexrdclement.palette.theme.semantic.shape.toShape
@@ -89,6 +89,6 @@ object CoreStyles {
             textStyle = text.bodyMedium,
             cursorBrush = SolidColor(PaletteTheme.semantic.color.primary),
             borderStroke = BorderStroke(1.dp, PaletteTheme.semantic.color.outline),
-            contentPadding = PaletteTheme.semantic.dimensions.spacing.small,
+            contentPadding = PaletteTheme.semantic.dimension.spacing.small,
         )
 }

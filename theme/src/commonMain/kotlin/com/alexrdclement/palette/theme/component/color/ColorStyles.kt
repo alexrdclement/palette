@@ -24,12 +24,12 @@ object ColorStyles {
 
     val colorPicker: ColorPickerStyle
         @Composable get() = ColorPickerStyle(
-            spacing = PaletteTheme.semantic.dimensions.spacing.medium,
+            spacing = PaletteTheme.semantic.dimension.spacing.medium,
             colorDisplayStyle = colorDisplay,
             controlsStyle = ColorPickerControlsStyle(
                 labelStyle = TextStyles.labelLarge,
                 sliderStyle = CoreStyles.slider,
-                spacing = PaletteTheme.semantic.dimensions.spacing.small,
+                spacing = PaletteTheme.semantic.dimension.spacing.small,
             ),
         )
 
@@ -37,7 +37,7 @@ object ColorStyles {
         @Composable get() = ColorPickerDialogContentStyle(
             colorPickerStyle = colorPicker,
             confirmCancelButtonRowStyle = LayoutStyles.confirmCancelButtonRow,
-            spacing = PaletteTheme.semantic.dimensions.spacing.medium,
-            padding = PaletteTheme.semantic.dimensions.spacing.large,
+            spacing = PaletteTheme.semantic.dimension.spacing.medium,
+            padding = PaletteTheme.semantic.dimension.spacing.large,
         )
 }

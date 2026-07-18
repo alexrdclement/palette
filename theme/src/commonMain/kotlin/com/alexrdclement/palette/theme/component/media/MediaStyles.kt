@@ -59,7 +59,7 @@ object MediaStyles {
         @Composable get() = MediaControlBarStyle(
             titleStyle = TextStyles.titleMedium,
             artistStyle = TextStyles.bodyMedium,
-            contentSpacing = PaletteTheme.semantic.dimensions.spacing.small,
+            contentSpacing = PaletteTheme.semantic.dimension.spacing.small,
             artworkStyle = mediaItemArtwork,
             playPauseButtonStyle = playPauseButton,
             surfaceStyle = CoreStyles.surface.default,

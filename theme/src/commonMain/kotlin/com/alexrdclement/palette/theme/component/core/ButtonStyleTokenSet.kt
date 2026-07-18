@@ -3,9 +3,9 @@ package com.alexrdclement.palette.theme.component.core
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValuesTokenSet
-import com.alexrdclement.palette.theme.semantic.dimensions.PalettePaddingScheme
-import com.alexrdclement.palette.theme.semantic.dimensions.toPaddingValues
+import com.alexrdclement.palette.theme.semantic.dimension.PaddingValuesTokenSet
+import com.alexrdclement.palette.theme.semantic.dimension.PalettePaddingScheme
+import com.alexrdclement.palette.theme.semantic.dimension.toPaddingValues
 import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
 import com.alexrdclement.palette.theme.semantic.color.toColor
 import com.alexrdclement.palette.theme.semantic.shape.toShape

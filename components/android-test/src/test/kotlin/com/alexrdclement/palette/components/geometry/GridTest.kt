@@ -156,8 +156,8 @@ class GridTest {
                         vertex = GridVertex.Oval(
                             color = PaletteTheme.semantic.color.primary,
                             size = DpSize(
-                                PaletteTheme.semantic.dimensions.spacing.xs / 2f,
-                                PaletteTheme.semantic.dimensions.spacing.xs / 2f
+                                PaletteTheme.semantic.dimension.spacing.xs / 2f,
+                                PaletteTheme.semantic.dimension.spacing.xs / 2f
                             ),
                             drawStyle = Stroke(width = 1f),
                         ),
@@ -181,8 +181,8 @@ class GridTest {
                         vertex = GridVertex.Rect(
                             color = PaletteTheme.semantic.color.primary,
                             size = DpSize(
-                                PaletteTheme.semantic.dimensions.spacing.small,
-                                PaletteTheme.semantic.dimensions.spacing.small
+                                PaletteTheme.semantic.dimension.spacing.small,
+                                PaletteTheme.semantic.dimension.spacing.small
                             ),
                             drawStyle = Stroke(width = 1f),
                         ),
@@ -206,8 +206,8 @@ class GridTest {
                         vertex = GridVertex.Plus(
                             color = PaletteTheme.semantic.color.primary,
                             size = DpSize(
-                                PaletteTheme.semantic.dimensions.spacing.small,
-                                PaletteTheme.semantic.dimensions.spacing.small
+                                PaletteTheme.semantic.dimension.spacing.small,
+                                PaletteTheme.semantic.dimension.spacing.small
                             ),
                             strokeWidth = Dp.Hairline,
                         ),

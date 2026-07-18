@@ -4,9 +4,9 @@ import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.semantic.SemanticItem
 import com.alexrdclement.palette.app.theme.semantic.color.ColorScreen
-import com.alexrdclement.palette.app.theme.semantic.dimensions.navigation.DimensionsGraph
-import com.alexrdclement.palette.app.theme.semantic.dimensions.navigation.dimensionEntryProvider
-import com.alexrdclement.palette.app.theme.semantic.dimensions.navigation.dimensionNavGraph
+import com.alexrdclement.palette.app.theme.semantic.dimension.navigation.DimensionGraph
+import com.alexrdclement.palette.app.theme.semantic.dimension.navigation.dimensionEntryProvider
+import com.alexrdclement.palette.app.theme.semantic.dimension.navigation.dimensionNavGraph
 import com.alexrdclement.palette.app.theme.semantic.format.navigation.FormatsGraph
 import com.alexrdclement.palette.app.theme.semantic.format.navigation.formatNavGraph
 import com.alexrdclement.palette.app.theme.semantic.format.navigation.formatsEntryProvider
@@ -43,7 +43,7 @@ fun EntryProviderScope<NavKey>.semanticEntryProvider(
                 SemanticItem.Color -> navController.navigate(ColorRoute)
                 SemanticItem.Typography -> navController.navigate(TypographyRoute)
                 SemanticItem.Shape -> navController.navigate(ShapeRoute)
-                SemanticItem.Dimensions -> navController.navigate(DimensionsGraph)
+                SemanticItem.Dimension -> navController.navigate(DimensionGraph)
                 SemanticItem.Interaction -> navController.navigate(InteractionGraph)
                 SemanticItem.Format -> navController.navigate(FormatsGraph)
             }
