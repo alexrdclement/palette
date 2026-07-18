@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.app.theme.semantic.padding
+package com.alexrdclement.palette.app.theme.semantic.dimensions
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box

@@ -4,15 +4,16 @@ import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.semantic.SemanticItem
 import com.alexrdclement.palette.app.theme.semantic.color.ColorScreen
+import com.alexrdclement.palette.app.theme.semantic.dimensions.navigation.DimensionsGraph
+import com.alexrdclement.palette.app.theme.semantic.dimensions.navigation.dimensionEntryProvider
+import com.alexrdclement.palette.app.theme.semantic.dimensions.navigation.dimensionNavGraph
 import com.alexrdclement.palette.app.theme.semantic.format.navigation.FormatsGraph
 import com.alexrdclement.palette.app.theme.semantic.format.navigation.formatNavGraph
 import com.alexrdclement.palette.app.theme.semantic.format.navigation.formatsEntryProvider
 import com.alexrdclement.palette.app.theme.semantic.interaction.navigation.InteractionGraph
 import com.alexrdclement.palette.app.theme.semantic.interaction.navigation.interactionEntryProvider
 import com.alexrdclement.palette.app.theme.semantic.interaction.navigation.interactionNavGraph
-import com.alexrdclement.palette.app.theme.semantic.padding.PaddingScreen
 import com.alexrdclement.palette.app.theme.semantic.shape.ShapeScreen
-import com.alexrdclement.palette.app.theme.semantic.spacing.SpacingScreen
 import com.alexrdclement.palette.app.theme.semantic.typography.TypographyScreen
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
@@ -27,8 +28,7 @@ fun NavGraphBuilder.semanticNavGraph() = navGraph(
     route(ColorRoute)
     route(ShapeRoute)
     route(TypographyRoute)
-    route(SpacingRoute)
-    route(PaddingRoute)
+    dimensionNavGraph()
     interactionNavGraph()
     formatNavGraph()
 }
@@ -43,8 +43,7 @@ fun EntryProviderScope<NavKey>.semanticEntryProvider(
                 SemanticItem.Color -> navController.navigate(ColorRoute)
                 SemanticItem.Typography -> navController.navigate(TypographyRoute)
                 SemanticItem.Shape -> navController.navigate(ShapeRoute)
-                SemanticItem.Spacing -> navController.navigate(SpacingRoute)
-                SemanticItem.Padding -> navController.navigate(PaddingRoute)
+                SemanticItem.Dimensions -> navController.navigate(DimensionsGraph)
                 SemanticItem.Interaction -> navController.navigate(InteractionGraph)
                 SemanticItem.Format -> navController.navigate(FormatsGraph)
             }
@@ -67,20 +66,6 @@ fun EntryProviderScope<NavKey>.semanticEntryProvider(
         )
     }
 
-    entry<SpacingRoute> {
-        SpacingScreen(
-            themeController = themeController,
-            onNavigateUp = navController::goBack,
-        )
-    }
-
-    entry<PaddingRoute> {
-        PaddingScreen(
-            themeController = themeController,
-            onNavigateUp = navController::goBack,
-        )
-    }
-
     entry<TypographyRoute> {
         TypographyScreen(
             themeController = themeController,
@@ -88,6 +73,7 @@ fun EntryProviderScope<NavKey>.semanticEntryProvider(
         )
     }
 
+    dimensionEntryProvider(navController, themeController)
     interactionEntryProvider(navController, themeController)
     formatsEntryProvider(navController, themeController)
 }

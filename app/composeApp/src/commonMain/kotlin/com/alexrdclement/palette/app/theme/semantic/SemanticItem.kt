@@ -6,8 +6,7 @@ enum class SemanticItem : CatalogItem {
     Color,
     Typography,
     Shape,
-    Spacing,
-    Padding,
+    Dimensions,
     Interaction,
     Format,
     ;
