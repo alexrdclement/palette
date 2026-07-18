@@ -80,7 +80,7 @@ amount and colour mode) and in one place. Requirements for a new primitive famil
 ## Semantic tier
 
 Semantic tokens are the editable inputs on `SemanticTokens`; `PaletteTheme.semantic.<family>` (color,
-typography, shape, spacing, interaction, format, …) exposes the value components consume, resolving
+typography, shape, dimensions, interaction, format, …) exposes the value components consume, resolving
 where needed. Most families follow one shape: a `*Token` enum selects a primitive, and the accessor
 resolves that selection through the tier below. A few families carry extra behavior worth calling out:
 
@@ -93,6 +93,11 @@ resolves that selection through the tier below. A few families carry extra behav
 - **Interaction** additionally exposes `PaletteTheme.semantic.indication`, a convenience that resolves
   the default interaction token to its `Indication` for the many component styles that just want "the"
   indication.
+- **Dimensions** groups the size families under `PaletteTheme.semantic.dimensions`: `.spacing` holds
+  the `Spacing` scale (`xs`/`small`/`medium`/`large` `Dp`s) and `.padding` holds a `PaddingScheme` of
+  named `PaddingValueToken`s (`Default`, `Compact`). A `PaddingValueToken` resolves through the scheme
+  to a `PaddingValueTokenSet` (a `SpacingToken` per edge), which in turn resolves to `PaddingValues`
+  through the spacing scale — padding never embeds raw `Dp`s, it selects spacing tokens.
 
 Requirements for a new semantic token:
 

@@ -24,8 +24,8 @@ object DemoStyles {
     val list: DemoListStyle
         @Composable get() = DemoListStyle(
             demoStyle = style,
-            itemSpacing = PaletteTheme.semantic.spacing.large,
-            contentPadding = PaletteTheme.semantic.spacing.medium,
+            itemSpacing = PaletteTheme.semantic.dimensions.spacing.large,
+            contentPadding = PaletteTheme.semantic.dimensions.spacing.medium,
         )
 
     val style: DemoStyle
@@ -35,12 +35,12 @@ object DemoStyles {
             val textField = CoreStyles.textField
             return DemoStyle(
                 dividerStyle = CoreStyles.divider,
-                controlsPadding = PaletteTheme.semantic.spacing.medium,
+                controlsPadding = PaletteTheme.semantic.dimensions.spacing.medium,
                 controlsStyle = ControlsStyle(
-                    spacing = PaletteTheme.semantic.spacing.medium,
-                    contentPadding = PaletteTheme.semantic.spacing.small,
-                    rowSpacing = PaletteTheme.semantic.spacing.small,
-                    indent = PaletteTheme.semantic.spacing.medium,
+                    spacing = PaletteTheme.semantic.dimensions.spacing.medium,
+                    contentPadding = PaletteTheme.semantic.dimensions.spacing.small,
+                    rowSpacing = PaletteTheme.semantic.dimensions.spacing.small,
+                    indent = PaletteTheme.semantic.dimensions.spacing.medium,
                     button = ButtonControlStyle(
                         labelStyle = label,
                         buttonStyle = button,
@@ -48,7 +48,7 @@ object DemoStyles {
                     slider = SliderControlStyle(
                         labelStyle = label,
                         sliderStyle = CoreStyles.slider,
-                        spacing = PaletteTheme.semantic.spacing.small,
+                        spacing = PaletteTheme.semantic.dimensions.spacing.small,
                     ),
                     color = ColorControlStyle(
                         labelStyle = label,
@@ -56,46 +56,46 @@ object DemoStyles {
                         colorDisplayStyle = ColorStyles.colorDisplay,
                         colorPickerDialogContentStyle = ColorStyles.colorPickerDialogContent,
                         surfaceStyle = CoreStyles.surface.container,
-                        spacing = PaletteTheme.semantic.spacing.medium,
-                        contentSpacing = PaletteTheme.semantic.spacing.small,
+                        spacing = PaletteTheme.semantic.dimensions.spacing.medium,
+                        contentSpacing = PaletteTheme.semantic.dimensions.spacing.small,
                     ),
                     toggle = ToggleControlStyle(
                         labelStyle = label,
                         checkboxStyle = CoreStyles.checkbox,
-                        spacing = PaletteTheme.semantic.spacing.small,
+                        spacing = PaletteTheme.semantic.dimensions.spacing.small,
                     ),
                     char = CharControlStyle(
                         labelStyle = label,
                         textFieldStyle = textField,
-                        spacing = PaletteTheme.semantic.spacing.small,
-                        verticalPadding = PaletteTheme.semantic.spacing.small,
+                        spacing = PaletteTheme.semantic.dimensions.spacing.small,
+                        verticalPadding = PaletteTheme.semantic.dimensions.spacing.small,
                     ),
                     textField = TextFieldControlStyle(
                         labelStyle = label,
                         textFieldStyle = textField,
-                        spacing = PaletteTheme.semantic.spacing.small,
-                        verticalPadding = PaletteTheme.semantic.spacing.small,
+                        spacing = PaletteTheme.semantic.dimensions.spacing.small,
+                        verticalPadding = PaletteTheme.semantic.dimensions.spacing.small,
                     ),
                     dropdown = DropdownControlStyle(
                         labelStyle = label,
                         buttonStyle = button,
                         menuStyle = MenuStyles.dropdownMenu,
-                        labelSpacing = PaletteTheme.semantic.spacing.small,
-                        rowSpacing = PaletteTheme.semantic.spacing.medium,
+                        labelSpacing = PaletteTheme.semantic.dimensions.spacing.small,
+                        rowSpacing = PaletteTheme.semantic.dimensions.spacing.medium,
                     ),
                     expandableHeader = ExpandableHeaderStyle(
                         headerStyle = TextStyles.labelSmall,
                         borderColor = PaletteTheme.semantic.color.outline,
                         chevronIconStyle = CoreStyles.chevronIcon,
-                        spacing = PaletteTheme.semantic.spacing.small,
-                        labelPadding = PaletteTheme.semantic.spacing.xs,
+                        spacing = PaletteTheme.semantic.dimensions.spacing.small,
+                        labelPadding = PaletteTheme.semantic.dimensions.spacing.xs,
                         indication = PaletteTheme.semantic.indication,
                     ),
                     dynamicList = DynamicListControlStyle(
-                        spacing = PaletteTheme.semantic.spacing.medium,
-                        itemSpacing = PaletteTheme.semantic.spacing.small,
-                        itemControlSpacing = PaletteTheme.semantic.spacing.xs,
-                        indent = PaletteTheme.semantic.spacing.medium,
+                        spacing = PaletteTheme.semantic.dimensions.spacing.medium,
+                        itemSpacing = PaletteTheme.semantic.dimensions.spacing.small,
+                        itemControlSpacing = PaletteTheme.semantic.dimensions.spacing.xs,
+                        indent = PaletteTheme.semantic.dimensions.spacing.medium,
                     ),
                 ),
             )

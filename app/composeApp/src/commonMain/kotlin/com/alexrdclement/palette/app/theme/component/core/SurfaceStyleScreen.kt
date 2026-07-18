@@ -61,7 +61,7 @@ fun SurfaceStyleScreen(
                     style = PaletteTheme.component.core.text.headline,
                     modifier = Modifier
                         .padding(shapePadding)
-                        .padding(PaletteTheme.semantic.spacing.large),
+                        .padding(PaletteTheme.semantic.dimensions.spacing.large),
                 )
             }
         }
