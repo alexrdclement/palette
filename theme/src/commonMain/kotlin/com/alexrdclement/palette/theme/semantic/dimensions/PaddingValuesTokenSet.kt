@@ -7,21 +7,21 @@ import com.alexrdclement.palette.theme.semantic.spacing.Spacing
 import com.alexrdclement.palette.theme.semantic.spacing.SpacingToken
 import com.alexrdclement.palette.theme.semantic.spacing.toSpacing
 
-data class PaddingValueTokenSet(
+data class PaddingValuesTokenSet(
     val start: SpacingToken,
     val top: SpacingToken,
     val end: SpacingToken,
     val bottom: SpacingToken,
 )
 
-fun PaddingValueTokenSet(all: SpacingToken) = PaddingValueTokenSet(
+fun PaddingValuesTokenSet(all: SpacingToken) = PaddingValuesTokenSet(
     start = all,
     top = all,
     end = all,
     bottom = all,
 )
 
-fun PaddingValueTokenSet.toPaddingValues(spacing: Spacing): PaddingValues = PaddingValues(
+fun PaddingValuesTokenSet.toPaddingValues(spacing: Spacing): PaddingValues = PaddingValues(
     start = start.toSpacing(spacing),
     top = top.toSpacing(spacing),
     end = end.toSpacing(spacing),
@@ -29,5 +29,5 @@ fun PaddingValueTokenSet.toPaddingValues(spacing: Spacing): PaddingValues = Padd
 )
 
 @Composable
-fun PaddingValueTokenSet.toPaddingValues(): PaddingValues =
+fun PaddingValuesTokenSet.toPaddingValues(): PaddingValues =
     toPaddingValues(PaletteTheme.semantic.dimensions.spacing)

@@ -3,7 +3,7 @@ package com.alexrdclement.palette.theme.component.core
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValueTokenSet
+import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValuesTokenSet
 import com.alexrdclement.palette.theme.semantic.dimensions.PalettePaddingScheme
 import com.alexrdclement.palette.theme.semantic.dimensions.toPaddingValues
 import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
@@ -15,7 +15,7 @@ data class ButtonStyleTokenSet(
     val containerColor: ColorToken,
     val shape: ShapeToken,
     val borderStyle: BorderStyleToken?,
-    val contentPadding: PaddingValueTokenSet = PalettePaddingScheme.default,
+    val contentPadding: PaddingValuesTokenSet = PalettePaddingScheme.default,
 )
 
 @Composable

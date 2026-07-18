@@ -16,7 +16,7 @@ import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValueToken
+import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValuesToken
 import com.alexrdclement.palette.theme.semantic.dimensions.toPaddingValues
 import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
 import com.alexrdclement.palette.theme.semantic.color.toColor
@@ -57,7 +57,7 @@ object CoreStyles {
             buttonStyle = ButtonStyle(
                 containerColor = ColorToken.Surface.toColor(),
                 shape = ShapeToken.Primary.toShape(),
-                contentPadding = PaddingValueToken.Compact.toPaddingValues(),
+                contentPadding = PaddingValuesToken.Compact.toPaddingValues(),
                 disabledContentAlpha = PaletteTheme.semantic.color.disabledContentAlpha,
                 disabledContainerAlpha = PaletteTheme.semantic.color.disabledContainerAlpha,
                 indication = PaletteTheme.semantic.indication,

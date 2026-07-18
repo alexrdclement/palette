@@ -102,7 +102,7 @@ section covers the requirements for exposing a component's style through it.
   literal:
   - content on a `Surface` uses `PaletteTheme.semantic.color.onSurface`;
   - `Dp` values use `PaletteTheme.semantic.dimensions.spacing.*` tokens; multi-edge padding uses
-    `PaletteTheme.semantic.dimensions.padding.*` / `PaddingValueToken.*`;
+    `PaletteTheme.semantic.dimensions.padding.*` / `PaddingValuesToken.*`;
   - shapes use `PaletteTheme.semantic.shape.*` / shape tokens; indication uses
     `PaletteTheme.semantic.indication`.
 - `*Style` getters MAY compose sub-styles from other getters (e.g. `SkipButtonStyle.buttonStyle =
@@ -117,7 +117,7 @@ general mechanism. The component-tier requirements:
 
 - A `*TokenSet` data class primarily contains other token values (e.g. `ButtonStyleTokenSet` holds a
   `containerColor: ColorToken`, `shape: ShapeToken`, `borderStyle: BorderStyleToken?`,
-  `contentPadding: PaddingValueTokenSet`).
+  `contentPadding: PaddingValuesTokenSet`).
 - Each `*Token` enum entry carries a `default: *TokenSet`.
 - The current token set for every token is stored in `ComponentTokens` as a `Map<*Token, *TokenSet>`
   (one map per token family), provided via `LocalComponentTokens` and edited through

@@ -3,29 +3,29 @@ package com.alexrdclement.palette.theme.semantic.dimensions
 import com.alexrdclement.palette.theme.semantic.spacing.SpacingToken
 
 data class PaddingScheme(
-    val default: PaddingValueTokenSet,
-    val compact: PaddingValueTokenSet,
+    val default: PaddingValuesTokenSet,
+    val compact: PaddingValuesTokenSet,
 )
 
 val PalettePaddingScheme = PaddingScheme(
-    default = PaddingValueTokenSet(
+    default = PaddingValuesTokenSet(
         start = SpacingToken.Large,
         top = SpacingToken.Small,
         end = SpacingToken.Large,
         bottom = SpacingToken.Small,
     ),
-    compact = PaddingValueTokenSet(all = SpacingToken.Medium),
+    compact = PaddingValuesTokenSet(all = SpacingToken.Medium),
 )
 
 fun PaddingScheme.copy(
-    token: PaddingValueToken,
-    tokenSet: PaddingValueTokenSet,
+    token: PaddingValuesToken,
+    tokenSet: PaddingValuesTokenSet,
 ) = this.copy(
-    default = if (token == PaddingValueToken.Default) tokenSet else this.default,
-    compact = if (token == PaddingValueToken.Compact) tokenSet else this.compact,
+    default = if (token == PaddingValuesToken.Default) tokenSet else this.default,
+    compact = if (token == PaddingValuesToken.Compact) tokenSet else this.compact,
 )
 
-fun PaddingScheme.tokenSet(token: PaddingValueToken): PaddingValueTokenSet = when (token) {
-    PaddingValueToken.Default -> default
-    PaddingValueToken.Compact -> compact
+fun PaddingScheme.tokenSet(token: PaddingValuesToken): PaddingValuesTokenSet = when (token) {
+    PaddingValuesToken.Default -> default
+    PaddingValuesToken.Compact -> compact
 }
