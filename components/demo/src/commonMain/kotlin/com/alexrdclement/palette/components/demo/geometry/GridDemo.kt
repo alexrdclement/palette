@@ -83,7 +83,7 @@ fun DemoScope.GridDemo(
 
 @Composable
 fun rememberGridDemoState(
-    color: Color = PaletteTheme.colorScheme.primary,
+    color: Color = PaletteTheme.semantic.color.primary,
     density: Density = LocalDensity.current,
 ): GridDemoState = rememberSaveable(
     saver = GridDemoStateSaver,

@@ -15,15 +15,10 @@ fun App(
     themeController: ThemeController = rememberThemeController(),
 ) {
     PaletteTheme(
-        lightColorScheme = themeController.lightColorScheme,
-        darkColorScheme = themeController.darkColorScheme,
+        primitive = themeController.primitive,
+        semantic = themeController.semantic,
+        component = themeController.component,
         isDarkMode = themeController.isDarkMode,
-        typography = themeController.typography,
-        shapeScheme = themeController.shapeScheme,
-        indication = themeController.indication,
-        spacing = themeController.spacing,
-        styles = themeController.styles,
-        formats = themeController.formats,
     ) {
         Surface {
             PaletteNav(

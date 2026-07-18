@@ -1,145 +1,38 @@
 package com.alexrdclement.palette.theme
 
-import androidx.compose.foundation.Indication
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle as ComposeTextStyle
-import androidx.compose.ui.unit.Dp
-import com.alexrdclement.palette.components.core.Shape
-import com.alexrdclement.palette.formats.core.NumberFormat
-import com.alexrdclement.palette.formats.money.MoneyFormat
-import com.alexrdclement.palette.theme.components.PaletteStyles
-import com.alexrdclement.palette.theme.format.Formats
-import com.alexrdclement.palette.theme.format.PaletteFormats
-import com.alexrdclement.palette.theme.format.core.NumberFormatScheme
-import com.alexrdclement.palette.theme.format.core.PaletteTextFormatScheme
-import com.alexrdclement.palette.theme.format.datetime.PaletteDateTimeFormats
-import com.alexrdclement.palette.theme.format.money.MoneyFormatScheme
-import com.alexrdclement.palette.theme.styles.LocalStyles
-import com.alexrdclement.palette.theme.styles.Styles
-
-val LocalPaletteColorScheme = staticCompositionLocalOf {
-    ColorScheme(
-        primary = Color.Unspecified,
-        onPrimary = Color.Unspecified,
-        secondary = Color.Unspecified,
-        onSecondary = Color.Unspecified,
-        background = Color.Unspecified,
-        onBackground = Color.Unspecified,
-        surface = Color.Unspecified,
-        onSurface = Color.Unspecified,
-        outline = Color.Unspecified,
-        disabledContainerAlpha = 1f,
-        disabledContentAlpha = 1f,
-    )
-}
-
-val LocalPaletteTypography = staticCompositionLocalOf {
-    Typography(
-        headline = ComposeTextStyle.Default,
-        display = ComposeTextStyle.Default,
-        titleLarge = ComposeTextStyle.Default,
-        titleMedium = ComposeTextStyle.Default,
-        titleSmall = ComposeTextStyle.Default,
-        labelLarge = ComposeTextStyle.Default,
-        labelMedium = ComposeTextStyle.Default,
-        labelSmall = ComposeTextStyle.Default,
-        bodyLarge = ComposeTextStyle.Default,
-        bodyMedium = ComposeTextStyle.Default,
-        bodySmall = ComposeTextStyle.Default,
-    )
-}
-
-val LocalPaletteShapes = staticCompositionLocalOf {
-    ShapeScheme(
-        primary = Shape.Rectangle(),
-        secondary = Shape.Rectangle(),
-        tertiary = Shape.Rectangle(),
-        surface = Shape.Rectangle(),
-    )
-}
-
-val LocalPaletteSpacing = staticCompositionLocalOf {
-    Spacing(
-        xs = Dp.Unspecified,
-        small = Dp.Unspecified,
-        medium = Dp.Unspecified,
-        large = Dp.Unspecified,
-    )
-}
-
-val LocalPaletteIndication = staticCompositionLocalOf<Indication> {
-    NoOpIndication
-}
-
-val LocalPaletteFormats = staticCompositionLocalOf {
-    Formats(
-        dateTimeFormats = PaletteDateTimeFormats,
-        moneyFormats = MoneyFormatScheme(
-            default = MoneyFormat(),
-        ),
-        numberFormats = NumberFormatScheme(
-            default = NumberFormat(),
-            currency = NumberFormat(),
-        ),
-        textFormats = PaletteTextFormatScheme,
-    )
-}
+import com.alexrdclement.palette.theme.component.Component
+import com.alexrdclement.palette.theme.component.ComponentTokens
+import com.alexrdclement.palette.theme.component.LocalComponentTokens
+import com.alexrdclement.palette.theme.primitive.LocalPrimitiveTokens
+import com.alexrdclement.palette.theme.primitive.Primitive
+import com.alexrdclement.palette.theme.primitive.PrimitiveTokens
+import com.alexrdclement.palette.theme.semantic.LocalIsDarkMode
+import com.alexrdclement.palette.theme.semantic.LocalSemanticTokens
+import com.alexrdclement.palette.theme.semantic.Semantic
+import com.alexrdclement.palette.theme.semantic.SemanticTokens
 
 @Composable
 fun PaletteTheme(
+    primitive: PrimitiveTokens = PrimitiveTokens(),
+    semantic: SemanticTokens = SemanticTokens(),
+    component: ComponentTokens = ComponentTokens(),
     isDarkMode: Boolean = isSystemInDarkTheme(),
-    lightColorScheme: ColorScheme = PaletteLightColorScheme,
-    darkColorScheme: ColorScheme = PaletteDarkColorScheme,
-    typography: Typography = PaletteTypography,
-    shapeScheme: ShapeScheme = PaletteShapeScheme,
-    indication: Indication = PaletteIndication,
-    spacing: Spacing = PaletteSpacing,
-    styles: Styles = Styles(),
-    formats: Formats = PaletteFormats,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (isDarkMode) darkColorScheme else lightColorScheme
     CompositionLocalProvider(
-        LocalPaletteColorScheme provides colorScheme,
-        LocalPaletteTypography provides typography,
-        LocalPaletteShapes provides shapeScheme,
-        LocalPaletteIndication provides indication,
-        LocalPaletteSpacing provides spacing,
-        LocalStyles provides styles,
-        LocalPaletteFormats provides formats,
+        LocalPrimitiveTokens provides primitive,
+        LocalSemanticTokens provides semantic,
+        LocalIsDarkMode provides isDarkMode,
+        LocalComponentTokens provides component,
         content = content,
     )
 }
 
 object PaletteTheme {
-    val colorScheme: ColorScheme
-        @Composable
-        get() = LocalPaletteColorScheme.current
-
-    val formats: Formats
-        @Composable
-        get() = LocalPaletteFormats.current
-
-    val typography: Typography
-        @Composable
-        get() = LocalPaletteTypography.current
-
-    val shapeScheme: ShapeScheme
-        @Composable
-        get() = LocalPaletteShapes.current
-
-    val spacing: Spacing
-        @Composable
-        get() = LocalPaletteSpacing.current
-
-    val indication: Indication
-        @Composable
-        get() = LocalPaletteIndication.current
-
-    val styles: PaletteStyles
-        get() = PaletteStyles
+    val primitive get() = Primitive
+    val semantic get() = Semantic
+    val component get() = Component
 }

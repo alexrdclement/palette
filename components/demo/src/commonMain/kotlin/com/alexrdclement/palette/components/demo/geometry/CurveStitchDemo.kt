@@ -140,7 +140,7 @@ fun DemoScope.CurveStitchDemo(
             end = state.angleEndOffset,
             numLines = state.numLines,
             strokeWidth = state.strokeWidth,
-            color = PaletteTheme.colorScheme.primary,
+            color = PaletteTheme.semantic.color.primary,
             modifier = modifier
                 .then(anglePointerModifier)
         )
@@ -149,7 +149,7 @@ fun DemoScope.CurveStitchDemo(
             numLines = state.numLines,
             numPoints = state.numPoints,
             strokeWidth = state.strokeWidth,
-            color = PaletteTheme.colorScheme.primary,
+            color = PaletteTheme.semantic.color.primary,
             innerRadius = state.innerRadius,
             drawInsidePoints = state.starInsidePoints,
             drawOutsidePoints = state.starOutsidePoints,
@@ -160,7 +160,7 @@ fun DemoScope.CurveStitchDemo(
             numLines = state.numLines,
             numPoints = state.numPoints,
             strokeWidth = state.strokeWidth,
-            color = PaletteTheme.colorScheme.primary,
+            color = PaletteTheme.semantic.color.primary,
             modifier = modifier,
         )
     }

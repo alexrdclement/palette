@@ -4,13 +4,14 @@ import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.isSpecified
+import com.alexrdclement.palette.components.core.TextStyle
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.util.ColorSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe
@@ -19,7 +20,6 @@ import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemoControl
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemoState
 import com.alexrdclement.palette.formats.demo.core.TextFormatDemoStateSaver
-import com.alexrdclement.palette.components.core.TextStyle
 import kotlinx.collections.immutable.persistentListOf
 
 val TextStyleDemoDefault = TextStyle(
@@ -127,8 +127,6 @@ class TextStyleDemoControl(
     val composeTextStyleControlColumn = Control.ControlColumn(
         name = "ComposeTextStyle",
         controls = { composeTextStyleControl.controls },
-        indent = true,
-        expandedInitial = true,
     )
 
     val colorControl = Control.Color(
@@ -145,8 +143,6 @@ class TextStyleDemoControl(
     val textFormatControlColumn = Control.ControlColumn(
         name = "TextFormat",
         controls = { textFormatControl.controls },
-        indent = true,
-        expandedInitial = false,
     )
 
     val controls = persistentListOf(
@@ -154,4 +150,9 @@ class TextStyleDemoControl(
         colorControl,
         textFormatControlColumn,
     )
+
+    fun updateStyle(textStyle: TextStyle) {
+        composeTextStyleControl.updateTextStyle(textStyle.composeTextStyle)
+        textFormatControl.updateFormat(textStyle.format)
+    }
 }

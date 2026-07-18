@@ -33,7 +33,7 @@ import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.modifiers.FadeSide
 import com.alexrdclement.palette.modifiers.bottomFade
 import com.alexrdclement.palette.modifiers.fade
-import com.alexrdclement.palette.theme.PaletteSpacing
+import com.alexrdclement.palette.theme.semantic.spacing.PaletteSpacing
 import com.alexrdclement.palette.theme.PaletteTheme
 import kotlinx.collections.immutable.persistentListOf
 
@@ -82,7 +82,7 @@ fun FadeDemo(
                                 length = state.fadeLength,
                                 borderColor = state.borderColor.takeIf { state.showBorder },
                             )
-                            .background(PaletteTheme.colorScheme.primary)
+                            .background(PaletteTheme.semantic.color.primary)
                             .align(alignment)
                     )
                 }
@@ -109,7 +109,7 @@ fun FadeDemo(
                                 length = state.fadeLength,
                                 borderColor = state.borderColor.takeIf { state.showBorder },
                             )
-                            .background(PaletteTheme.colorScheme.primary)
+                            .background(PaletteTheme.semantic.color.primary)
                             .align(alignment)
                     )
                 }
@@ -119,7 +119,7 @@ fun FadeDemo(
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1f)
-                    .background(PaletteTheme.colorScheme.primary)
+                    .background(PaletteTheme.semantic.color.primary)
             )
         }
     }

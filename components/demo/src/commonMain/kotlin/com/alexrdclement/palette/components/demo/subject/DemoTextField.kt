@@ -13,12 +13,12 @@ import com.alexrdclement.palette.components.core.TextStyle
 @Composable
 fun DemoTextField(
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = PaletteTheme.styles.core.text.labelLarge,
+    textStyle: TextStyle = PaletteTheme.component.core.text.labelLarge,
 ) {
     Box(modifier = modifier.fillMaxSize()) {
         TextField(
             state = rememberTextFieldState(),
-            style = PaletteTheme.styles.core.textField.copy(textStyle = textStyle),
+            style = PaletteTheme.component.core.textField.copy(textStyle = textStyle),
             modifier = modifier.align(Alignment.Center)
         )
     }

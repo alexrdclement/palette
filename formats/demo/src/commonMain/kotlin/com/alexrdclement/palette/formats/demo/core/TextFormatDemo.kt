@@ -16,7 +16,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.components.core.Text
-import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
@@ -24,6 +23,7 @@ import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.formats.core.Capitalization
 import com.alexrdclement.palette.formats.core.TextFormat
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.components.demo.Demo
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
@@ -52,7 +52,7 @@ fun DemoScope.TextFormatDemo(
 ) {
     Text(
         text = state.text,
-        style = PaletteTheme.styles.core.text.headline.copy(
+        style = PaletteTheme.component.core.text.headline.copy(
             format = state.textFormat
         ),
         modifier = modifier.align(Alignment.Center)
@@ -234,4 +234,8 @@ class TextFormatDemoControl(
         add(wordDelimiterControl)
         add(replacementsControl)
     }.toPersistentList()
+
+    fun updateFormat(format: TextFormat) {
+        state.textFormat = format
+    }
 }

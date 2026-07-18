@@ -14,15 +14,15 @@ import androidx.compose.ui.unit.sp
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
-import com.alexrdclement.palette.theme.FontFamily
-import com.alexrdclement.palette.theme.FontStyle
-import com.alexrdclement.palette.theme.FontWeight
-import com.alexrdclement.palette.theme.toComposeFontFamily
-import com.alexrdclement.palette.theme.toComposeFontStyle
-import com.alexrdclement.palette.theme.toComposeFontWeight
-import com.alexrdclement.palette.theme.toFontFamily
-import com.alexrdclement.palette.theme.toFontStyle
-import com.alexrdclement.palette.theme.toFontWeight
+import com.alexrdclement.palette.theme.primitive.FontFamily
+import com.alexrdclement.palette.theme.primitive.FontStyle
+import com.alexrdclement.palette.theme.primitive.FontWeight
+import com.alexrdclement.palette.theme.primitive.toComposeFontFamily
+import com.alexrdclement.palette.theme.primitive.toComposeFontStyle
+import com.alexrdclement.palette.theme.primitive.toComposeFontWeight
+import com.alexrdclement.palette.theme.primitive.toFontFamily
+import com.alexrdclement.palette.theme.primitive.toFontStyle
+import com.alexrdclement.palette.theme.primitive.toFontWeight
 import kotlinx.collections.immutable.persistentListOf
 import androidx.compose.ui.text.TextStyle as ComposeTextStyle
 
@@ -164,4 +164,15 @@ class ComposeTextStyleDemoControl(
         lineHeightControl,
         letterSpacingControl,
     )
+
+    fun updateTextStyle(style: ComposeTextStyle) {
+        with(style) {
+            state.fontFamily = fontFamily?.toFontFamily()
+            state.fontWeight = fontWeight?.toFontWeight()
+            state.fontStyle = fontStyle?.toFontStyle()
+            state.fontSize = fontSize.value.takeIf { it.isFinite() }
+            state.lineHeight = lineHeight.value.takeIf { it.isFinite() }
+            state.letterSpacing = letterSpacing.value.takeIf { it.isFinite() }
+        }
+    }
 }

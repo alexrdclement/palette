@@ -37,14 +37,14 @@ class CurveStitchTest(
     fun curveStitch() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     CurveStitch(
                         start = Offset(0.1f, 0.1f),
                         vertex = Offset(0.1f, 0.9f),
                         end = Offset(0.9f, 0.9f),
                         numLines = numLines,
                         strokeWidth = Dp.Hairline,
-                        color = PaletteTheme.colorScheme.primary,
+                        color = PaletteTheme.semantic.color.primary,
                         modifier = Modifier.size(200.dp),
                     )
                 }
@@ -56,12 +56,12 @@ class CurveStitchTest(
     fun curveStitchStar() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
                         strokeWidth = Dp.Hairline,
-                        color = PaletteTheme.colorScheme.primary,
+                        color = PaletteTheme.semantic.color.primary,
                         innerRadius = 0.5f,
                         drawInsidePoints = true,
                         drawOutsidePoints = true,
@@ -76,12 +76,12 @@ class CurveStitchTest(
     fun curveStitchStarInsideOnly() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
                         strokeWidth = Dp.Hairline,
-                        color = PaletteTheme.colorScheme.primary,
+                        color = PaletteTheme.semantic.color.primary,
                         innerRadius = 0.5f,
                         drawOutsidePoints = false,
                         modifier = Modifier.size(200.dp),
@@ -95,12 +95,12 @@ class CurveStitchTest(
     fun curveStitchStarOutsideOnly() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
                         strokeWidth = Dp.Hairline,
-                        color = PaletteTheme.colorScheme.primary,
+                        color = PaletteTheme.semantic.color.primary,
                         innerRadius = 0.5f,
                         drawInsidePoints = true,
                         modifier = Modifier.size(200.dp),
@@ -114,12 +114,12 @@ class CurveStitchTest(
     fun curveStitchStarInnerRadius0() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     CurveStitchStar(
                         numLines = numLines,
                         numPoints = numPoints,
                         strokeWidth = Dp.Hairline,
-                        color = PaletteTheme.colorScheme.primary,
+                        color = PaletteTheme.semantic.color.primary,
                         innerRadius = 0f,
                         modifier = Modifier.size(200.dp),
                     )
@@ -132,12 +132,12 @@ class CurveStitchTest(
     fun curveStitchShape() {
         paparazzi.snapshot {
             PaletteTheme {
-                Surface(style = PaletteTheme.styles.core.surface.default) {
+                Surface(style = PaletteTheme.component.core.surface.default) {
                     CurveStitchShape(
                         numLines = numLines,
                         numPoints = numPoints,
                         strokeWidth = Dp.Hairline,
-                        color = PaletteTheme.colorScheme.primary,
+                        color = PaletteTheme.semantic.color.primary,
                         modifier = Modifier.size(200.dp),
                     )
                 }

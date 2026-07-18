@@ -8,6 +8,6 @@ class ThemePage(
     private val device: UiDevice,
 ) {
     fun assertIsDisplayed() {
-        device.waitAndFindObject(By.text("Color"))
+        device.waitAndFindObject(By.text("Semantic"))
     }
 }

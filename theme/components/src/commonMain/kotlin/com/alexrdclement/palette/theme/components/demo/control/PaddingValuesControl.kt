@@ -2,8 +2,8 @@ package com.alexrdclement.palette.theme.components.demo.control
 
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
-import com.alexrdclement.palette.theme.SpacingToken
-import com.alexrdclement.palette.theme.styles.PaddingValuesTokenSet
+import com.alexrdclement.palette.theme.semantic.spacing.SpacingToken
+import com.alexrdclement.palette.theme.component.core.PaddingValuesTokenSet
 import kotlinx.collections.immutable.persistentListOf
 
 /**

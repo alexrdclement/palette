@@ -9,7 +9,7 @@ import com.alexrdclement.palette.components.layout.TopBar as BaseTopBar
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier,
-    style: TopBarStyle = PaletteTheme.styles.layout.topBar,
+    style: TopBarStyle = PaletteTheme.component.layout.topBar,
     navButton: @Composable (() -> Unit)? = null,
     actions: @Composable (() -> Unit)? = null,
     title: @Composable (() -> Unit)? = null,

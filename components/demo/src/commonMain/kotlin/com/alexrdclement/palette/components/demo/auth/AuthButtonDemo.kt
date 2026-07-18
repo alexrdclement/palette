@@ -19,7 +19,7 @@ import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.styles.AuthButtonStyleToken
+import com.alexrdclement.palette.theme.component.auth.AuthButtonStyleToken
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -48,12 +48,12 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
 ) {
     AuthButton(
         authState = state.authState,
-        style = PaletteTheme.styles.auth.authButton[state.style],
+        style = PaletteTheme.component.auth.authButton[state.style],
         onLogInClick = {},
         onLogOutClick = {},
         modifier = modifier
             .align(Alignment.Center)
-            .padding(PaletteTheme.spacing.medium)
+            .padding(PaletteTheme.semantic.spacing.medium)
     )
 }
 

@@ -58,7 +58,7 @@ fun TextFieldDemo(
             state = state,
             modifier = Modifier
                 .align(Alignment.Center)
-                .padding(vertical = PaletteTheme.spacing.medium)
+                .padding(vertical = PaletteTheme.semantic.spacing.medium)
         )
     }
 }
@@ -85,7 +85,7 @@ fun DemoScope.TextFieldDemo(
 
     TextField(
         state = state.textFieldState,
-        style = PaletteTheme.styles.core.textField.copy(
+        style = PaletteTheme.component.core.textField.copy(
             textStyle = state.textStyleDemoState.textStyle,
         ),
         enabled = state.enabled,
@@ -148,7 +148,7 @@ enum class InputTransformations {
 fun rememberTextFieldDemoState(
     initialText: String = "Hello world",
     textStyleInitial: TextStyle = TextStyleDemoDefault.copy(
-        color = PaletteTheme.colorScheme.onSurface,
+        color = PaletteTheme.semantic.color.onSurface,
     ),
 ): TextFieldDemoState {
     return rememberSaveable(saver = TextFieldDemoStateSaver) {

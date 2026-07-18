@@ -25,10 +25,13 @@ import com.alexrdclement.palette.formats.money.MoneyFormatsPage
 import com.alexrdclement.palette.modifiers.ColorInvertPage
 import com.alexrdclement.palette.modifiers.ModifiersPage
 import com.alexrdclement.palette.theme.ThemePage
-import com.alexrdclement.palette.theme.format.ThemeFormatsPage
-import com.alexrdclement.palette.theme.format.datetime.ThemeDateTimeFormatsPage
-import com.alexrdclement.palette.theme.interaction.InteractionPage
-import com.alexrdclement.palette.theme.styles.StylesPage
+import com.alexrdclement.palette.theme.component.ComponentPage
+import com.alexrdclement.palette.theme.component.core.CoreStylesPage
+import com.alexrdclement.palette.theme.primitive.PrimitivePage
+import com.alexrdclement.palette.theme.semantic.SemanticPage
+import com.alexrdclement.palette.theme.semantic.format.ThemeFormatsPage
+import com.alexrdclement.palette.theme.semantic.format.datetime.ThemeDateTimeFormatsPage
+import com.alexrdclement.palette.theme.semantic.interaction.InteractionPage
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -215,32 +218,62 @@ class DeeplinkTest {
     }
 
     @Test
-    fun themeStylesCatalog() {
-        startDeeplink("theme/styles/catalog")
-        StylesPage(device).assertIsDisplayed()
+    fun themePrimitiveCatalog() {
+        startDeeplink("theme/primitive/catalog")
+        PrimitivePage(device).assertIsDisplayed()
     }
 
     @Test
-    fun themeInteractionCatalog() {
-        startDeeplink("theme/interaction/catalog")
+    fun themePrimitiveTypography() {
+        startDeeplink("theme/primitive/typography")
+        DemoPage(device, title = "Typography").assertIsDisplayed()
+    }
+
+    @Test
+    fun themePrimitiveShape() {
+        startDeeplink("theme/primitive/shape")
+        DemoPage(device, title = "Shape").assertIsDisplayed()
+    }
+
+    @Test
+    fun themeSemanticCatalog() {
+        startDeeplink("theme/semantic/catalog")
+        SemanticPage(device).assertIsDisplayed()
+    }
+
+    @Test
+    fun themeComponentCatalog() {
+        startDeeplink("theme/component/catalog")
+        ComponentPage(device).assertIsDisplayed()
+    }
+
+    @Test
+    fun themeComponentCoreCatalog() {
+        startDeeplink("theme/component/core/catalog")
+        CoreStylesPage(device).assertIsDisplayed()
+    }
+
+    @Test
+    fun themeSemanticInteractionCatalog() {
+        startDeeplink("theme/semantic/interaction/catalog")
         InteractionPage(device).assertIsDisplayed()
     }
 
     @Test
-    fun themeFormatsCatalog() {
-        startDeeplink("theme/formats/catalog")
+    fun themeSemanticFormatsCatalog() {
+        startDeeplink("theme/semantic/formats/catalog")
         ThemeFormatsPage(device).assertIsDisplayed()
     }
 
     @Test
-    fun themeFormatsDateTimeCatalog() {
-        startDeeplink("theme/formats/datetime/catalog")
+    fun themeSemanticFormatsDateTimeCatalog() {
+        startDeeplink("theme/semantic/formats/datetime/catalog")
         ThemeDateTimeFormatsPage(device).assertIsDisplayed()
     }
 
     @Test
-    fun themeFormatsDateTimeDate() {
-        startDeeplink("theme/formats/datetime/date")
+    fun themeSemanticFormatsDateTimeDate() {
+        startDeeplink("theme/semantic/formats/datetime/date")
         DemoPage(device, title = "Date").assertIsDisplayed()
     }
 

@@ -49,19 +49,19 @@ fun BoxWithConstraintsScope.ColorPickerDemo(
     control: ColorPickerDemoControl = rememberColorPickerDemoControl(state),
 ) {
     ColorPicker(
-        style = PaletteTheme.styles.color.colorPicker,
+        style = PaletteTheme.component.color.colorPicker,
         color = state.color,
         onColorChange = control::onColorChange,
         modifier = modifier
             .fillMaxWidth()
             .align(Alignment.Center)
-            .padding(PaletteTheme.spacing.medium)
+            .padding(PaletteTheme.semantic.spacing.medium)
     )
 }
 
 @Composable
 fun rememberColorPickerDemoState(
-    colorInitial: Color = PaletteTheme.colorScheme.primary,
+    colorInitial: Color = PaletteTheme.semantic.color.primary,
 ): ColorPickerDemoState = rememberSaveable(
     saver = ColorPickerDemoStateSaver,
 ) {
