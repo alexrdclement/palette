@@ -372,6 +372,7 @@ PLcom/alexrdclement/palette/modifiers/demo/NoiseDemoKt;->NoiseDemo$lambda$2$0(Lc
 PLcom/alexrdclement/palette/modifiers/demo/NoiseDemoKt;->NoiseDemo$lambda$3$0(Lcom/alexrdclement/palette/modifiers/demo/NoiseState;F)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/demo/NoiseDemoKt;->NoiseDemo$lambda$4$0()Lkotlin/ranges/ClosedFloatingPointRange;
 PLcom/alexrdclement/palette/modifiers/demo/NoiseDemoKt;->NoiseDemo$lambda$8(Landroidx/compose/ui/Modifier;IILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
+PLcom/alexrdclement/palette/modifiers/demo/NoiseDemoKt;->NoiseDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 HPLcom/alexrdclement/palette/modifiers/demo/NoiseDemoKt;->NoiseDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/modifiers/demo/NoiseDemoKt;->NoiseStateSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/modifiers/demo/NoiseState;)Ljava/util/Map;
 PLcom/alexrdclement/palette/modifiers/demo/NoiseDemoKt$$ExternalSyntheticLambda0;-><init>()V
@@ -416,7 +417,6 @@ PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$4$0()Lkotlin/ranges/ClosedFloatingPointRange;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$5(Landroidx/compose/ui/Modifier;IILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
-HPLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateStateSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/modifiers/demo/PixelateState;)Ljava/util/Map;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt$$ExternalSyntheticLambda0;-><init>()V
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt$$ExternalSyntheticLambda0;->invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
