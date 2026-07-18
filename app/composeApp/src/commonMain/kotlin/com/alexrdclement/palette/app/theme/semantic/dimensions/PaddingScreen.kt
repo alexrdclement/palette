@@ -24,7 +24,7 @@ import com.alexrdclement.palette.theme.control.ThemeController
 import com.alexrdclement.palette.theme.control.ThemeState
 import com.alexrdclement.palette.theme.control.rememberThemeController
 import com.alexrdclement.palette.theme.semantic.dimensions.PaddingScheme
-import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValueToken
+import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValuesToken
 import com.alexrdclement.palette.theme.semantic.dimensions.copy
 import com.alexrdclement.palette.theme.semantic.dimensions.toPaddingValues
 import com.alexrdclement.palette.theme.semantic.dimensions.tokenSet
@@ -50,7 +50,7 @@ fun PaddingScreen(
         },
     ) { paddingValues ->
         DemoList(
-            items = PaddingValueToken.entries.toList(),
+            items = PaddingValuesToken.entries.toList(),
             controls = control.controls,
             modifier = Modifier
                 .fillMaxSize()
@@ -68,7 +68,7 @@ fun PaddingScreen(
 @Composable
 fun PaddingDemo(
     modifier: Modifier = Modifier,
-    token: PaddingValueToken,
+    token: PaddingValuesToken,
 ) {
     Box(
         contentAlignment = Alignment.Center,
@@ -132,7 +132,7 @@ class PaddingScreenControl(
     val state: PaddingScreenState,
     val themeController: ThemeController,
 ) {
-    val controls: PersistentList<Control> = PaddingValueToken.entries.map { token ->
+    val controls: PersistentList<Control> = PaddingValuesToken.entries.map { token ->
         spacingTokenPaddingControls(
             name = token.name,
             expandedInitial = true,

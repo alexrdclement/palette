@@ -95,8 +95,8 @@ resolves that selection through the tier below. A few families carry extra behav
   indication.
 - **Dimensions** groups the size families under `PaletteTheme.semantic.dimensions`: `.spacing` holds
   the `Spacing` scale (`xs`/`small`/`medium`/`large` `Dp`s) and `.padding` holds a `PaddingScheme` of
-  named `PaddingValueToken`s (`Default`, `Compact`). A `PaddingValueToken` resolves through the scheme
-  to a `PaddingValueTokenSet` (a `SpacingToken` per edge), which in turn resolves to `PaddingValues`
+  named `PaddingValuesToken`s (`Default`, `Compact`). A `PaddingValuesToken` resolves through the scheme
+  to a `PaddingValuesTokenSet` (a `SpacingToken` per edge), which in turn resolves to `PaddingValues`
   through the spacing scale — padding never embeds raw `Dp`s, it selects spacing tokens.
 
 Requirements for a new semantic token:

@@ -3,15 +3,15 @@ package com.alexrdclement.palette.theme.components.demo.control
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
 import com.alexrdclement.palette.theme.semantic.spacing.SpacingToken
-import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValueTokenSet
+import com.alexrdclement.palette.theme.semantic.dimensions.PaddingValuesTokenSet
 import kotlinx.collections.immutable.persistentListOf
 
 /**
- * A collapsed column of [SpacingToken] pickers for each edge of a [PaddingValueTokenSet].
+ * A collapsed column of [SpacingToken] pickers for each edge of a [PaddingValuesTokenSet].
  */
 fun spacingTokenPaddingControls(
-    value: () -> PaddingValueTokenSet,
-    onValueChange: (PaddingValueTokenSet) -> Unit,
+    value: () -> PaddingValuesTokenSet,
+    onValueChange: (PaddingValuesTokenSet) -> Unit,
     name: String = "Padding",
     expandedInitial: Boolean = false,
 ): Control {
