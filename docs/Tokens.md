@@ -79,24 +79,20 @@ amount and colour mode) and in one place. Requirements for a new primitive famil
 
 ## Semantic tier
 
-Semantic tokens are the editable inputs on `SemanticTokens`; `PaletteTheme.semantic` exposes the
-values components consume, resolving where needed:
+Semantic tokens are the editable inputs on `SemanticTokens`; `PaletteTheme.semantic.<family>` (color,
+typography, shape, spacing, interaction, format, …) exposes the value components consume, resolving
+where needed. Most families follow one shape: a `*Token` enum selects a primitive, and the accessor
+resolves that selection through the tier below. A few families carry extra behavior worth calling out:
 
-- `PaletteTheme.semantic.color` — `ColorScheme`. `SemanticTokens.colors` holds both a `light` and a
-  `dark` scheme; the active one is resolved on read from `LocalIsDarkMode` (dark mode is runtime state,
-  not a token).
-- `PaletteTheme.semantic.typography` — `Typography`. Each `TypographyToken` carries a default
-  `TypographyTokenSet` that **selects** primitive `FontFamily`/`FontWeight`/`FontStyle` tokens plus its
-  own size/line-height/letter-spacing; `resolve` looks those selections up through the primitive maps.
-- `PaletteTheme.semantic.shape` — `ShapeScheme`, mapping each `ShapeToken` (Primary, Secondary,
-  Tertiary, Surface) to a `ShapePrimitiveToken`. `ShapeToken.toShape()` resolves through the primitive
-  shape map.
-- `PaletteTheme.semantic.spacing` — `Spacing`; `SpacingToken` (XS, Small, Medium, Large) reads a `Dp`.
-- `PaletteTheme.semantic.interaction` — `InteractionScheme`, mapping each `IndicationToken` (Default)
-  to an `IndicationPrimitiveToken`. `PaletteTheme.semantic.indication` is a convenience that resolves
-  the default interaction token to its `Indication`, for the many component styles that just want "the"
+- **Color** holds its `light`/`dark` `ColorScheme`s directly (there is no color primitive tier), and
+  `PaletteTheme.semantic.color` resolves the active one on read from `LocalIsDarkMode` — dark mode is
+  runtime state, not a token.
+- **Typography** resolves a whole ramp: each `TypographyToken` selects primitive
+  `FontFamily`/`FontWeight`/`FontStyle` tokens plus its own size/line-height/letter-spacing, so its
+  accessor memoizes the resolved `Typography`.
+- **Interaction** additionally exposes `PaletteTheme.semantic.indication`, a convenience that resolves
+  the default interaction token to its `Indication` for the many component styles that just want "the"
   indication.
-- `PaletteTheme.semantic.format` — `Formats` (text, number, money, date-time format schemes).
 
 Requirements for a new semantic token:
 
