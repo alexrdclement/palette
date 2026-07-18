@@ -52,14 +52,13 @@ screenshot tests, `:theme:components` wrappers) the relevant section says so.
   text styles, indication, spacing/padding, sizes).
 - Style data classes MUST provide reasonable defaults:
   - `Dp` *defaults* SHOULD be in increments of `4.dp`. (This applies to the data-class defaults only;
-    the theme layer MAY resolve finer values where a design calls for it — e.g.
-    `MediaStyles.playPauseButton` uses `2.dp` padding.)
+    the theme layer MAY resolve finer values where a design calls for it.)
   - `Color` values MUST default to `Color.Unspecified`.
   - Defaults represent the *unstyled* component (transparent/neutral); the themed look is supplied
     by the theme layer, not by the defaults.
 - Styles MUST contain child component styles where applicable rather than re-declaring the child's
   fields. For example, an `AuthButtonStyle` contains a `ButtonStyle`; a `SkipButtonStyle` contains a
-  `ButtonStyle` and a `SkipIconStyle`.
+  `ButtonStyle` and an `IconStyle`.
 - Components MUST NOT contain hardcoded visual styling values. Every color, shape, size, padding, or
   spacing that affects appearance MUST be read from the `style`. (Layout values driven by runtime
   constraints — window insets, available space — are not "visual styling" and MAY remain parameters;
