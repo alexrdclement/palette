@@ -22,5 +22,5 @@ fun SpacingToken.toSpacing(spacing: Spacing): Dp {
 
 @Composable
 fun SpacingToken.toSpacing(): Dp {
-    return toSpacing(PaletteTheme.semantic.spacing)
+    return toSpacing(PaletteTheme.semantic.dimensions.spacing)
 }

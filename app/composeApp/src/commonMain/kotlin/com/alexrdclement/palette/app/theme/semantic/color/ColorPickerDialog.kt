@@ -30,7 +30,7 @@ fun ColorPickerDialog(
                 onDismissRequest = onDismissRequest,
                 style = PaletteTheme.component.color.colorPickerDialogContent,
                 modifier = Modifier
-                    .padding(PaletteTheme.semantic.spacing.medium)
+                    .padding(PaletteTheme.semantic.dimensions.spacing.medium)
             )
         }
     }

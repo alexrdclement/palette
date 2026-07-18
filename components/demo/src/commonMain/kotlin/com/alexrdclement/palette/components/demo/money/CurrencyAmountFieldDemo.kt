@@ -38,7 +38,7 @@ fun CurrencyAmountFieldDemo(
             .fillMaxSize(),
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(PaletteTheme.semantic.spacing.medium, Alignment.CenterVertically),
+            verticalArrangement = Arrangement.spacedBy(PaletteTheme.semantic.dimensions.spacing.medium, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .height(IntrinsicSize.Max)
