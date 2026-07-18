@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import com.alexrdclement.palette.app.demo.DemoTopBar
 import com.alexrdclement.palette.app.demo.components.core.navigation.CoreComponent
 import com.alexrdclement.palette.components.demo.core.ButtonDemo
+import com.alexrdclement.palette.components.demo.core.IconDemo
 import com.alexrdclement.palette.components.demo.core.SliderDemo
 import com.alexrdclement.palette.components.demo.core.TextDemo
 import com.alexrdclement.palette.components.demo.core.TextFieldDemo
@@ -28,6 +29,9 @@ fun CoreComponentScreen(
     ) { innerPadding ->
         when (component) {
             CoreComponent.Button -> ButtonDemo(
+                modifier = Modifier.padding(innerPadding)
+            )
+            CoreComponent.Icon -> IconDemo(
                 modifier = Modifier.padding(innerPadding)
             )
             CoreComponent.Slider -> SliderDemo(
