@@ -3,26 +3,23 @@ package com.alexrdclement.palette.components.media
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
-
-data class SkipIconStyle(
-    val color: Color = Color.Unspecified,
-)
+import com.alexrdclement.palette.components.core.IconSize
+import com.alexrdclement.palette.components.core.IconStyle
+import com.alexrdclement.palette.components.core.iconSize
 
 data class SkipButtonStyle(
-    val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(6.dp)),
-    val iconStyle: SkipIconStyle = SkipIconStyle(),
+    val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(0.dp)),
+    val iconStyle: IconStyle = IconStyle(size = IconSize.Scale(0.7f)),
 )
 
 @Composable
@@ -41,7 +38,6 @@ fun SkipButton(
         SkipIcon(
             style = style.iconStyle,
             modifier = Modifier
-                .fillMaxSize()
                 .padding(shapePadding),
         )
     }
@@ -50,9 +46,9 @@ fun SkipButton(
 @Composable
 fun SkipIcon(
     modifier: Modifier = Modifier,
-    style: SkipIconStyle = SkipIconStyle(),
+    style: IconStyle = IconStyle(),
 ) {
-    Canvas(modifier = modifier) {
+    Canvas(modifier = modifier.iconSize(style.size)) {
         val barWidth = size.width * 0.15f
         val gap = size.width * 0.08f
 

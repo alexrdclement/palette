@@ -11,7 +11,8 @@ import com.alexrdclement.palette.components.media.MediaControlSheetStyle
 import com.alexrdclement.palette.components.media.MediaItemArtworkStyle
 import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
 import com.alexrdclement.palette.components.media.SkipButtonStyle
-import com.alexrdclement.palette.components.media.SkipIconStyle
+import com.alexrdclement.palette.components.core.IconSize
+import com.alexrdclement.palette.components.core.IconStyle
 import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.component.core.CoreStyles
@@ -27,20 +28,24 @@ object MediaStyles {
             buttonStyle = ButtonStyle(
                 containerColor = ColorToken.Primary.toColor(),
                 shape = ShapeToken.Primary.toShape(),
-                contentPadding = PaddingValues(2.dp),
+                contentPadding = PaddingValues(0.dp),
                 disabledContentAlpha = PaletteTheme.semantic.color.disabledContentAlpha,
                 disabledContainerAlpha = PaletteTheme.semantic.color.disabledContainerAlpha,
                 indication = PaletteTheme.semantic.indication,
             ),
-            iconColor = PaletteTheme.semantic.color.onPrimary,
+            iconStyle = IconStyle(
+                size = IconSize.Scale(0.9f),
+                color = PaletteTheme.semantic.color.onPrimary,
+            ),
         )
 
     val skipButton: SkipButtonStyle
         @Composable get() = SkipButtonStyle(
             buttonStyle = CoreStyles.button.secondary.copy(
-                contentPadding = PaddingValues(6.dp),
+                contentPadding = PaddingValues(0.dp),
             ),
-            iconStyle = SkipIconStyle(
+            iconStyle = IconStyle(
+                size = IconSize.Scale(0.7f),
                 color = PaletteTheme.semantic.color.secondary,
             ),
         )
