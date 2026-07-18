@@ -10,6 +10,7 @@ import com.alexrdclement.palette.app.theme.semantic.format.navigation.formatsEnt
 import com.alexrdclement.palette.app.theme.semantic.interaction.navigation.InteractionGraph
 import com.alexrdclement.palette.app.theme.semantic.interaction.navigation.interactionEntryProvider
 import com.alexrdclement.palette.app.theme.semantic.interaction.navigation.interactionNavGraph
+import com.alexrdclement.palette.app.theme.semantic.padding.PaddingScreen
 import com.alexrdclement.palette.app.theme.semantic.shape.ShapeScreen
 import com.alexrdclement.palette.app.theme.semantic.spacing.SpacingScreen
 import com.alexrdclement.palette.app.theme.semantic.typography.TypographyScreen
@@ -27,6 +28,7 @@ fun NavGraphBuilder.semanticNavGraph() = navGraph(
     route(ShapeRoute)
     route(TypographyRoute)
     route(SpacingRoute)
+    route(PaddingRoute)
     interactionNavGraph()
     formatNavGraph()
 }
@@ -42,6 +44,7 @@ fun EntryProviderScope<NavKey>.semanticEntryProvider(
                 SemanticItem.Typography -> navController.navigate(TypographyRoute)
                 SemanticItem.Shape -> navController.navigate(ShapeRoute)
                 SemanticItem.Spacing -> navController.navigate(SpacingRoute)
+                SemanticItem.Padding -> navController.navigate(PaddingRoute)
                 SemanticItem.Interaction -> navController.navigate(InteractionGraph)
                 SemanticItem.Format -> navController.navigate(FormatsGraph)
             }
@@ -66,6 +69,13 @@ fun EntryProviderScope<NavKey>.semanticEntryProvider(
 
     entry<SpacingRoute> {
         SpacingScreen(
+            themeController = themeController,
+            onNavigateUp = navController::goBack,
+        )
+    }
+
+    entry<PaddingRoute> {
+        PaddingScreen(
             themeController = themeController,
             onNavigateUp = navController::goBack,
         )
