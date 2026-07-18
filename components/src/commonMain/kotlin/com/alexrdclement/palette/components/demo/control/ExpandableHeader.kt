@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ChevronDirection
 import com.alexrdclement.palette.components.core.ChevronIcon
-import com.alexrdclement.palette.components.core.ChevronIconStyle
+import com.alexrdclement.palette.components.core.IconStyle
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
@@ -29,7 +29,7 @@ data class ExpandableHeaderStyle(
     val borderWidth: Dp = 1.dp,
     val labelPadding: Dp = 4.dp,
     val iconPadding: Dp = 6.dp,
-    val chevronIconStyle: ChevronIconStyle = ChevronIconStyle(),
+    val chevronIconStyle: IconStyle = IconStyle(),
     val indication: Indication? = null,
 )
 

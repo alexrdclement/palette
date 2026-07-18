@@ -55,7 +55,7 @@ fun MoneyFormatScreen(
             BoxWithLabel(
                 label = token.name,
                 modifier = Modifier
-                    .padding(horizontal = PaletteTheme.semantic.spacing.medium)
+                    .padding(horizontal = PaletteTheme.semantic.dimension.spacing.medium)
             ) {
                 MoneyFormatDemo(
                     state = state.moneyFormatDemoStatesByToken[token]!!,

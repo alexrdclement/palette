@@ -56,7 +56,7 @@ fun BorderStyleScreen(
         ) { token ->
             Box(
                 modifier = Modifier
-                    .padding(PaletteTheme.semantic.spacing.large)
+                    .padding(PaletteTheme.semantic.dimension.spacing.large)
                     .border(state.tokenSet(token)),
             ) {
                 Text(

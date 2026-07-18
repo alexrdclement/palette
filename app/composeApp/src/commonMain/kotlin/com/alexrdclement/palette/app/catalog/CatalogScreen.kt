@@ -49,7 +49,7 @@ fun <T : CatalogItem> CatalogScreen(
             contentPadding = innerPadding.plus(WindowInsets.safeDrawing.horizontalPaddingValues()),
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = PaletteTheme.semantic.spacing.medium)
+                .padding(horizontal = PaletteTheme.semantic.dimension.spacing.medium)
         )
     }
 }

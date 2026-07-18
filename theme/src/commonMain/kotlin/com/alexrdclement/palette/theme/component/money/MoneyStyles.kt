@@ -19,7 +19,7 @@ object MoneyStyles {
             placeholderStyle = TextStyles.headline.copy(
                 color = PaletteTheme.semantic.color.primary.copy(alpha = 0.5f),
             ),
-            padding = PaletteTheme.semantic.spacing.medium,
-            spacing = PaletteTheme.semantic.spacing.small,
+            padding = PaletteTheme.semantic.dimension.spacing.medium,
+            spacing = PaletteTheme.semantic.dimension.spacing.small,
         )
 }

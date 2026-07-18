@@ -53,7 +53,7 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
         onLogOutClick = {},
         modifier = modifier
             .align(Alignment.Center)
-            .padding(PaletteTheme.semantic.spacing.medium)
+            .padding(PaletteTheme.semantic.dimension.spacing.medium)
     )
 }
 
