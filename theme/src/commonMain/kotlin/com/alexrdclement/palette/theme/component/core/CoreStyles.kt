@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.theme.component.core
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
@@ -16,8 +17,6 @@ import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
 import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.semantic.dimension.PaddingValuesToken
-import com.alexrdclement.palette.theme.semantic.dimension.toPaddingValues
 import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
 import com.alexrdclement.palette.theme.semantic.color.toColor
 import com.alexrdclement.palette.theme.semantic.shape.toShape
@@ -57,7 +56,7 @@ object CoreStyles {
             buttonStyle = ButtonStyle(
                 containerColor = ColorToken.Surface.toColor(),
                 shape = ShapeToken.Primary.toShape(),
-                contentPadding = PaddingValuesToken.Compact.toPaddingValues(),
+                contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.medium),
                 disabledContentAlpha = PaletteTheme.semantic.color.disabledContentAlpha,
                 disabledContainerAlpha = PaletteTheme.semantic.color.disabledContainerAlpha,
                 indication = PaletteTheme.semantic.indication,

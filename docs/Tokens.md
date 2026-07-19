@@ -93,11 +93,21 @@ resolves that selection through the tier below. A few families carry extra behav
 - **Interaction** additionally exposes `PaletteTheme.semantic.indication`, a convenience that resolves
   the default interaction token to its `Indication` for the many component styles that just want "the"
   indication.
-- **Dimension** groups the size families under `PaletteTheme.semantic.dimension`: `.spacing` holds
-  the `Spacing` scale (`xs`/`small`/`medium`/`large` `Dp`s) and `.padding` holds a `PaddingScheme` of
-  named `PaddingValuesToken`s (`Default`, `Compact`). A `PaddingValuesToken` resolves through the scheme
-  to a `PaddingValuesTokenSet` (a `SpacingToken` per edge), which in turn resolves to `PaddingValues`
-  through the spacing scale — padding never embeds raw `Dp`s, it selects spacing tokens.
+- **Dimension** groups the size families under `PaletteTheme.semantic.dimension`, split by the *role*
+  a value plays:
+  - `.spacing` — space **between** items (gaps in a `Row`/`Column`, item/row/content spacing). The
+    `Spacing` scale is a set of `Dp` steps (`none`/`xs`/`small`/`medium`/`large`) selected by
+    `SpacingToken`; `none` (= `0.dp`) is a real step so a zero gap or a zeroed padding edge is a token,
+    not a literal.
+  - `.padding` — space **inside** a component (internal insets). A `PaddingScheme` of named
+    `PaddingValuesToken`s that resolve to a `PaddingValuesTokenSet` (a `SpacingToken` per edge) and then
+    to `PaddingValues` through the spacing scale — padding never embeds raw `Dp`s, it selects spacing
+    tokens per edge.
+  - A `PaddingValuesToken` exists **only for an inset whose edges differ** — asymmetric (`Default` =
+    `Large`/`Small`/`Large`/`Small`) or directional (some edges `None`). A **uniform** inset carries no
+    per-edge information, so it is expressed straight from a single spacing step
+    (`PaddingValues(dimension.spacing.medium)`), not a token. (Element/glyph *sizes* — how big a thing
+    is — are a separate concern from spacing/padding and are not part of this scale.)
 
 Requirements for a new semantic token:
 
