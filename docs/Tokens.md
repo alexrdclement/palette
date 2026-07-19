@@ -94,21 +94,21 @@ resolves that selection through the tier below. A few families carry extra behav
   the default interaction token to its `Indication` for the many component styles that just want "the"
   indication.
 - **Dimension** groups the size families under `PaletteTheme.semantic.dimension`, split by the *role*
-  a value plays. Today it exposes `.spacing` — space **between** items (gaps in a `Row`/`Column`,
-  item/row/content spacing) — as the `Spacing` scale: `Dp` steps (`none`/`xs`/`small`/`medium`/`large`)
-  selected by `SpacingToken`, where `none` (= `0.dp`) is a real step so a zero gap or a zeroed padding
-  edge is a token, not a literal.
-  - Space **inside** a component (internal insets, i.e. *padding*) is a **component-tier** concern, not
-    a semantic accessor: a `PaddingValuesTokenSet` (a `SpacingToken` per edge, resolved to
-    `PaddingValues` through the spacing scale) held on the component's `*Style` — e.g.
-    `ButtonStyleTokenSet.contentPadding`. Padding never embeds raw `Dp`s; it selects spacing tokens per
-    edge.
-  - A named `PaddingValuesTokenSet` constant (`Wide` = `Large`/`Small`/`Large`/`Small`) is warranted
-    **only for an inset whose edges differ** — asymmetric or directional (some edges `None`). A
-    **uniform** inset carries no per-edge information, so it is a single spacing step
-    (`PaddingValues(dimension.spacing.medium)`), not a named set.
-  - Element/glyph **sizes** — how big a thing is — are a separate concern from spacing/padding, coming
-    as their own `dimension` category.
+  a value plays:
+  - `.spacing` — space **between** items (gaps in a `Row`/`Column`, item/row/content spacing). The
+    `Spacing` scale is a set of `Dp` steps (`none`/`xs`/`small`/`medium`/`large`) selected by
+    `SpacingToken`; `none` (= `0.dp`) is a real step so a zero gap or a zeroed padding edge is a token,
+    not a literal.
+  - `.padding` — space **inside** a component (internal insets). A `PaddingScheme` of named
+    `PaddingValuesToken`s that resolve to a `PaddingValuesTokenSet` (a `SpacingToken` per edge) and then
+    to `PaddingValues` through the spacing scale — padding never embeds raw `Dp`s, it selects spacing
+    tokens per edge.
+  - A `PaddingValuesToken` exists **only for an inset whose edges differ** — asymmetric (`Wide` =
+    `Large`/`Small`/`Large`/`Small`, wider horizontally than vertically) or directional (some edges
+    `None`). A **uniform** inset carries no per-edge information, so it is expressed straight from a
+    single spacing step (`PaddingValues(dimension.spacing.medium)`), not a token. (Element/glyph
+    *sizes* — how big a thing is — are a separate concern from spacing/padding, coming as their own
+    `dimension` category.)
 
 Requirements for a new semantic token:
 

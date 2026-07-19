@@ -100,9 +100,8 @@ section covers the requirements for exposing a component's style through it.
 - A `*Style` getter MUST reuse existing theme values wherever one applies rather than inventing a
   literal:
   - content on a `Surface` uses `PaletteTheme.semantic.color.onSurface`;
-  - `Dp` values use `PaletteTheme.semantic.dimension.spacing.*` tokens; multi-edge padding is a
-    `PaddingValuesTokenSet` (a spacing token per edge) on the component's token set, e.g.
-    `ButtonStyleTokenSet.contentPadding`;
+  - `Dp` values use `PaletteTheme.semantic.dimension.spacing.*` tokens; multi-edge padding uses
+    `PaletteTheme.semantic.dimension.padding.*` / `PaddingValuesToken.*`;
   - shapes use `PaletteTheme.semantic.shape.*` / shape tokens; indication uses
     `PaletteTheme.semantic.indication`.
 - `*Style` getters MAY compose sub-styles from other getters (e.g. `SkipButtonStyle.buttonStyle =
