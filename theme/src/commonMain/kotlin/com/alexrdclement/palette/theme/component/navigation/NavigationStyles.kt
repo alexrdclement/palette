@@ -20,7 +20,7 @@ object NavigationStyles {
             buttonStyle = ButtonStyle(
                 containerColor = ColorToken.Surface.toColor(),
                 shape = ShapeToken.Primary.toShape(),
-                contentPadding = PaddingValues(0.dp),
+                contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.none),
                 disabledContentAlpha = PaletteTheme.semantic.color.disabledContentAlpha,
                 disabledContainerAlpha = PaletteTheme.semantic.color.disabledContainerAlpha,
                 indication = PaletteTheme.semantic.indication,

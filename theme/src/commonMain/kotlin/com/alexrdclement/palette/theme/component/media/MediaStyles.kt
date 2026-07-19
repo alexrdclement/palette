@@ -28,7 +28,7 @@ object MediaStyles {
             buttonStyle = ButtonStyle(
                 containerColor = ColorToken.Primary.toColor(),
                 shape = ShapeToken.Primary.toShape(),
-                contentPadding = PaddingValues(0.dp),
+                contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.none),
                 disabledContentAlpha = PaletteTheme.semantic.color.disabledContentAlpha,
                 disabledContainerAlpha = PaletteTheme.semantic.color.disabledContainerAlpha,
                 indication = PaletteTheme.semantic.indication,
@@ -42,7 +42,7 @@ object MediaStyles {
     val skipButton: SkipButtonStyle
         @Composable get() = SkipButtonStyle(
             buttonStyle = CoreStyles.button.secondary.copy(
-                contentPadding = PaddingValues(0.dp),
+                contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.none),
             ),
             iconStyle = IconStyle(
                 size = IconSize.Scale(0.7f),
