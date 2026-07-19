@@ -25,3 +25,9 @@ data object DimensionCatalogRoute : DimensionRoute {
 data object SpacingRoute : DimensionRoute {
     override val pathSegment = "spacing".toPathSegment()
 }
+
+@Serializable
+@SerialName("padding")
+data object PaddingRoute : DimensionRoute {
+    override val pathSegment = "padding".toPathSegment()
+}

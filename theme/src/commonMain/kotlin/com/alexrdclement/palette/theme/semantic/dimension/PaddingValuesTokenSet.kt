@@ -21,19 +21,6 @@ fun PaddingValuesTokenSet(all: SpacingToken) = PaddingValuesTokenSet(
     bottom = all,
 )
 
-/**
- * A named inset shape: wider horizontally than vertically. The standard content padding for
- * labeled/interactive elements (buttons). Uniform insets need no such constant — they are a single
- * [SpacingToken] applied on all edges (`PaddingValues(spacing.medium)`); a named [PaddingValuesTokenSet]
- * earns its place only when the edges differ.
- */
-val Wide = PaddingValuesTokenSet(
-    start = SpacingToken.Large,
-    top = SpacingToken.Small,
-    end = SpacingToken.Large,
-    bottom = SpacingToken.Small,
-)
-
 fun PaddingValuesTokenSet.toPaddingValues(spacing: Spacing): PaddingValues = PaddingValues(
     start = start.toSpacing(spacing),
     top = top.toSpacing(spacing),
