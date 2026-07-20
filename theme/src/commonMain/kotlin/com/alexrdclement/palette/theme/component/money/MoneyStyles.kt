@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.theme.component.money
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.SolidColor
 import com.alexrdclement.palette.components.core.TextFieldStyle
@@ -19,7 +20,7 @@ object MoneyStyles {
             placeholderStyle = TextStyles.headline.copy(
                 color = PaletteTheme.semantic.color.primary.copy(alpha = 0.5f),
             ),
-            padding = PaletteTheme.semantic.dimension.spacing.medium,
+            padding = PaddingValues(PaletteTheme.semantic.dimension.spacing.medium),
             spacing = PaletteTheme.semantic.dimension.spacing.small,
         )
 }

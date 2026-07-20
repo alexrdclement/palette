@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.theme.component.demo
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.demo.DemoListStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
@@ -25,7 +26,7 @@ object DemoStyles {
         @Composable get() = DemoListStyle(
             demoStyle = style,
             itemSpacing = PaletteTheme.semantic.dimension.spacing.large,
-            contentPadding = PaletteTheme.semantic.dimension.spacing.medium,
+            contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.medium),
         )
 
     val style: DemoStyle
@@ -88,7 +89,7 @@ object DemoStyles {
                         borderColor = PaletteTheme.semantic.color.outline,
                         chevronIconStyle = CoreStyles.chevronIcon,
                         spacing = PaletteTheme.semantic.dimension.spacing.small,
-                        labelPadding = PaletteTheme.semantic.dimension.spacing.xs,
+                        labelPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.xs),
                         indication = PaletteTheme.semantic.indication,
                     ),
                     dynamicList = DynamicListControlStyle(

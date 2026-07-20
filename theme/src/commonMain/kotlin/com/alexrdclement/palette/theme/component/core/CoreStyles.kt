@@ -88,6 +88,6 @@ object CoreStyles {
             textStyle = text.bodyMedium,
             cursorBrush = SolidColor(PaletteTheme.semantic.color.primary),
             borderStroke = BorderStroke(1.dp, PaletteTheme.semantic.color.outline),
-            contentPadding = PaletteTheme.semantic.dimension.spacing.small,
+            contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.small),
         )
 }

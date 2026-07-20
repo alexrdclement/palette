@@ -3,6 +3,7 @@ package com.alexrdclement.palette.components.layout
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,7 +16,7 @@ import com.alexrdclement.palette.components.core.TextStyle
 
 data class BoxWithLabelStyle(
     val spacing: Dp = 8.dp,
-    val labelPadding: Dp = 4.dp,
+    val labelPadding: PaddingValues = PaddingValues(4.dp),
     val labelStyle: TextStyle = TextStyle(),
     val borderColor: Color = Color.Unspecified,
     val borderWidth: Dp = 1.dp,

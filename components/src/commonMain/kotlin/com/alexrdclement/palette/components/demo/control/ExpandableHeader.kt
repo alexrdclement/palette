@@ -4,6 +4,7 @@ import androidx.compose.foundation.Indication
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
@@ -27,8 +28,8 @@ data class ExpandableHeaderStyle(
     val borderColor: Color = Color.Unspecified,
     val spacing: Dp = 8.dp,
     val borderWidth: Dp = 1.dp,
-    val labelPadding: Dp = 4.dp,
-    val iconPadding: Dp = 6.dp,
+    val labelPadding: PaddingValues = PaddingValues(4.dp),
+    val iconPadding: PaddingValues = PaddingValues(6.dp),
     val chevronIconStyle: IconStyle = IconStyle(),
     val indication: Indication? = null,
 )

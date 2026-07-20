@@ -5,6 +5,7 @@ import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
@@ -33,7 +34,7 @@ data class TextFieldStyle(
     val textStyle: TextStyle = TextStyle(),
     val cursorBrush: Brush = SolidColor(Color.Unspecified),
     val borderStroke: BorderStroke = BorderStroke(1.dp, Color.Unspecified),
-    val contentPadding: Dp = 8.dp,
+    val contentPadding: PaddingValues = PaddingValues(8.dp),
 )
 
 @Composable
@@ -91,12 +92,12 @@ object TextFieldDefaults {
         color = Color.Unspecified,
     )
 
-    val Padding = 8.dp
+    val Padding = PaddingValues(8.dp)
 
     @Composable
     fun textFieldDecorator(
         borderStroke: BorderStroke = BorderStroke,
-        padding: androidx.compose.ui.unit.Dp = Padding,
+        padding: PaddingValues = Padding,
     ): TextFieldDecorator = TextFieldDecorator { innerTextField ->
         Box(
             modifier = Modifier
