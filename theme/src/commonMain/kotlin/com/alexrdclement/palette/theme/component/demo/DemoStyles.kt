@@ -36,10 +36,12 @@ object DemoStyles {
             val textField = CoreStyles.textField
             return DemoStyle(
                 dividerStyle = CoreStyles.divider,
-                controlsPadding = PaletteTheme.semantic.dimension.spacing.medium,
+                verticalControlsPadding = PaletteTheme.semantic.dimension.spacing.medium,
+                horizontalControlsPadding = PaletteTheme.semantic.dimension.spacing.medium,
                 controlsStyle = ControlsStyle(
                     spacing = PaletteTheme.semantic.dimension.spacing.medium,
-                    contentPadding = PaletteTheme.semantic.dimension.spacing.small,
+                    verticalContentPadding = PaletteTheme.semantic.dimension.spacing.small,
+                    horizontalContentPadding = PaletteTheme.semantic.dimension.spacing.small,
                     rowSpacing = PaletteTheme.semantic.dimension.spacing.small,
                     indent = PaletteTheme.semantic.dimension.spacing.medium,
                     button = ButtonControlStyle(
@@ -69,13 +71,13 @@ object DemoStyles {
                         labelStyle = label,
                         textFieldStyle = textField,
                         spacing = PaletteTheme.semantic.dimension.spacing.small,
-                        verticalPadding = PaletteTheme.semantic.dimension.spacing.small,
+                        contentPadding = PaddingValues(vertical = PaletteTheme.semantic.dimension.spacing.small),
                     ),
                     textField = TextFieldControlStyle(
                         labelStyle = label,
                         textFieldStyle = textField,
                         spacing = PaletteTheme.semantic.dimension.spacing.small,
-                        verticalPadding = PaletteTheme.semantic.dimension.spacing.small,
+                        contentPadding = PaddingValues(vertical = PaletteTheme.semantic.dimension.spacing.small),
                     ),
                     dropdown = DropdownControlStyle(
                         labelStyle = label,
