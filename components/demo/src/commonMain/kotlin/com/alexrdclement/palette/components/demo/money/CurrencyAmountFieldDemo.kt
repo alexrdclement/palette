@@ -11,18 +11,25 @@ import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Text
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.theme.components.layout.BoxWithLabel
+import com.alexrdclement.palette.components.demo.control.Control
+import com.alexrdclement.palette.components.demo.control.paddingValuesControls
 import com.alexrdclement.palette.components.money.CurrencyAmountField
 import com.alexrdclement.palette.formats.money.MoneyFormat
 import com.alexrdclement.palette.formats.money.format
 import com.alexrdclement.palette.theme.PaletteTheme
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun CurrencyAmountFieldDemo(
@@ -33,7 +40,35 @@ fun CurrencyAmountFieldDemo(
     val text by snapshotFlow { textFieldState.text.toString() }
         .collectAsState(initial = textFieldState.text.toString())
 
+    val base = PaletteTheme.component.money.currencyAmountField
+    var padding by remember { mutableStateOf(base.padding) }
+    var spacing by remember { mutableStateOf(base.spacing) }
+
+    val controls = persistentListOf(
+        Control.ControlColumn(
+            name = "Style",
+            indent = true,
+            expandedInitial = true,
+            controls = {
+                persistentListOf(
+                    paddingValuesControls(
+                        name = "Padding",
+                        value = { padding },
+                        onValueChange = { padding = it },
+                    ),
+                    Control.Slider(
+                        name = "Spacing",
+                        value = { spacing.value },
+                        onValueChange = { spacing = it.dp },
+                        valueRange = { 0f..48f },
+                    ),
+                )
+            },
+        ),
+    )
+
     Demo(
+        controls = controls,
         modifier = modifier
             .fillMaxSize(),
     ) {
@@ -66,7 +101,10 @@ fun CurrencyAmountFieldDemo(
                 )
             }
             CurrencyAmountField(
-                style = PaletteTheme.component.money.currencyAmountField,
+                style = base.copy(
+                    padding = padding,
+                    spacing = spacing,
+                ),
                 moneyFormat = PaletteTheme.semantic.format.moneyFormats.default,
                 textFieldState = textFieldState,
             )

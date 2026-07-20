@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.components.demo.core
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -30,9 +31,11 @@ import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
+import com.alexrdclement.palette.components.demo.control.paddingValuesControls
 import com.alexrdclement.palette.components.demo.util.KeyboardCapitalizationSaver
 import com.alexrdclement.palette.components.demo.util.KeyboardTypeSaver
 import com.alexrdclement.palette.components.demo.util.onlyDigits
+import com.alexrdclement.palette.components.util.PaddingValuesSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe
 import com.alexrdclement.palette.components.util.restore
 import com.alexrdclement.palette.components.util.save
@@ -87,6 +90,7 @@ fun DemoScope.TextFieldDemo(
         state = state.textFieldState,
         style = PaletteTheme.component.core.textField.copy(
             textStyle = state.textStyleDemoState.textStyle,
+            contentPadding = state.contentPadding,
         ),
         enabled = state.enabled,
         lineLimits = when (state.lineLimits) {
@@ -150,11 +154,13 @@ fun rememberTextFieldDemoState(
     textStyleInitial: TextStyle = TextStyleDemoDefault.copy(
         color = PaletteTheme.semantic.color.onSurface,
     ),
+    contentPaddingInitial: PaddingValues = PaletteTheme.component.core.textField.contentPadding,
 ): TextFieldDemoState {
     return rememberSaveable(saver = TextFieldDemoStateSaver) {
         TextFieldDemoState(
             initialText = initialText,
             textStyleInitial = textStyleInitial,
+            contentPaddingInitial = contentPaddingInitial,
         )
     }
 }
@@ -174,6 +180,7 @@ class TextFieldDemoState(
     minHeightInLinesInitial: Int = 1,
     maxHeightInLinesInitial: Int = Int.MAX_VALUE,
     inputTransformationInitial: InputTransformations = InputTransformations.None,
+    contentPaddingInitial: PaddingValues = PaddingValues(),
 ) {
     internal val textFieldState = TextFieldState(initialText = initialText)
     val text = snapshotFlow { textFieldState.text.toString() }
@@ -209,6 +216,9 @@ class TextFieldDemoState(
 
     var inputTransformation by mutableStateOf(inputTransformationInitial)
         internal set
+
+    var contentPadding by mutableStateOf(contentPaddingInitial)
+        internal set
 }
 
 private const val textKey = "text"
@@ -224,6 +234,7 @@ private const val lineLimitsKey = "lineLimits"
 private const val minHeightInLinesKey = "minHeightInLines"
 private const val maxHeightInLinesKey = "maxHeightInLines"
 private const val inputTransformationKey = "inputTransformation"
+private const val contentPaddingKey = "contentPadding"
 
 val TextFieldDemoStateSaver = mapSaverSafe(
     save = { value ->
@@ -245,6 +256,7 @@ val TextFieldDemoStateSaver = mapSaverSafe(
             minHeightInLinesKey to value.minHeightInLines,
             maxHeightInLinesKey to value.maxHeightInLines,
             inputTransformationKey to value.inputTransformation.name,
+            contentPaddingKey to save(value.contentPadding, PaddingValuesSaver, this),
         )
     },
     restore = { map ->
@@ -264,6 +276,7 @@ val TextFieldDemoStateSaver = mapSaverSafe(
             minHeightInLinesInitial = map[minHeightInLinesKey] as Int,
             maxHeightInLinesInitial = map[maxHeightInLinesKey] as Int,
             inputTransformationInitial = InputTransformations.valueOf(map[inputTransformationKey] as String),
+            contentPaddingInitial = restore(map[contentPaddingKey], PaddingValuesSaver)!!,
         )
     }
 )
@@ -389,6 +402,23 @@ class TextFieldDemoControl(
         onValueChange = { state.inputTransformation = it },
     )
 
+    val contentPaddingControl = paddingValuesControls(
+        name = "Content padding",
+        value = { state.contentPadding },
+        onValueChange = { state.contentPadding = it },
+    )
+
+    val styleControls = Control.ControlColumn(
+        name = "Style",
+        indent = true,
+        expandedInitial = true,
+        controls = {
+            persistentListOf(
+                contentPaddingControl,
+            )
+        },
+    )
+
     val keyboardControls = persistentListOf(
         keyboardTypeControl,
         keyboardCapitalizationControl,
@@ -410,6 +440,7 @@ class TextFieldDemoControl(
     val controls
         get() = persistentListOf(
             textFieldControl,
+            styleControls,
             textStyleControls,
             widthControl,
             enabledControl,
