@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.theme.component.layout
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.style.TextAlign
 import com.alexrdclement.palette.components.layout.BoxWithLabelStyle
@@ -37,7 +38,7 @@ object LayoutStyles {
     val boxWithLabel: BoxWithLabelStyle
         @Composable get() = BoxWithLabelStyle(
             spacing = PaletteTheme.semantic.dimension.spacing.small,
-            labelPadding = PaletteTheme.semantic.dimension.spacing.xs,
+            labelPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.xs),
             labelStyle = TextStyles.labelSmall,
             borderColor = PaletteTheme.semantic.color.outline,
         )
@@ -69,7 +70,7 @@ object LayoutStyles {
             surfaceStyle = CoreStyles.surface.container,
             buttonRowStyle = confirmCancelButtonRow,
             spacing = PaletteTheme.semantic.dimension.spacing.medium,
-            padding = PaletteTheme.semantic.dimension.spacing.large,
+            padding = PaddingValues(PaletteTheme.semantic.dimension.spacing.large),
             titleBottomPadding = PaletteTheme.semantic.dimension.spacing.medium,
             messageBottomPadding = PaletteTheme.semantic.dimension.spacing.large,
         )

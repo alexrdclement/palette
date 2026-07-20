@@ -3,6 +3,7 @@ package com.alexrdclement.palette.components.layout.dialog
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,7 +23,7 @@ data class DialogContentStyle(
     val surfaceStyle: SurfaceStyle = SurfaceStyle(),
     val buttonRowStyle: ConfirmCancelButtonRowStyle = ConfirmCancelButtonRowStyle(),
     val spacing: Dp = 16.dp,
-    val padding: Dp = 24.dp,
+    val padding: PaddingValues = PaddingValues(24.dp),
     val titleBottomPadding: Dp = 16.dp,
     val messageBottomPadding: Dp = 24.dp,
 )

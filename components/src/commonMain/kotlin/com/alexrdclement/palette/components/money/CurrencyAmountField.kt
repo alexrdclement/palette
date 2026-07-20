@@ -3,6 +3,7 @@ package com.alexrdclement.palette.components.money
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -26,7 +27,7 @@ import com.alexrdclement.palette.formats.money.MoneyFormat
 data class CurrencyAmountFieldStyle(
     val textFieldStyle: TextFieldStyle = TextFieldStyle(),
     val placeholderStyle: TextStyle = TextStyle(),
-    val padding: Dp = 16.dp,
+    val padding: PaddingValues = PaddingValues(16.dp),
     val spacing: Dp = 8.dp,
 )
 
