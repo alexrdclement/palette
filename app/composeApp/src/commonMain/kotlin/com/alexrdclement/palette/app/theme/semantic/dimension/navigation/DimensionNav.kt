@@ -3,6 +3,7 @@ package com.alexrdclement.palette.app.theme.semantic.dimension.navigation
 import androidx.navigation3.runtime.EntryProviderScope
 import com.alexrdclement.palette.app.navigation.catalogEntry
 import com.alexrdclement.palette.app.theme.semantic.dimension.PaddingScreen
+import com.alexrdclement.palette.app.theme.semantic.dimension.SizeScreen
 import com.alexrdclement.palette.app.theme.semantic.dimension.SpacingScreen
 import com.alexrdclement.palette.navigation.NavController
 import com.alexrdclement.palette.navigation.NavGraphBuilder
@@ -16,6 +17,7 @@ fun NavGraphBuilder.dimensionNavGraph() = navGraph(
     route(DimensionCatalogRoute)
     route(SpacingRoute)
     route(PaddingRoute)
+    route(SizeRoute)
 }
 
 fun EntryProviderScope<NavKey>.dimensionEntryProvider(
@@ -27,6 +29,7 @@ fun EntryProviderScope<NavKey>.dimensionEntryProvider(
             when (dimension) {
                 Dimension.Spacing -> navController.navigate(SpacingRoute)
                 Dimension.Padding -> navController.navigate(PaddingRoute)
+                Dimension.Size -> navController.navigate(SizeRoute)
             }
         },
         title = "Dimension",
@@ -42,6 +45,13 @@ fun EntryProviderScope<NavKey>.dimensionEntryProvider(
 
     entry<PaddingRoute> {
         PaddingScreen(
+            themeController = themeController,
+            onNavigateUp = navController::goBack,
+        )
+    }
+
+    entry<SizeRoute> {
+        SizeScreen(
             themeController = themeController,
             onNavigateUp = navController::goBack,
         )
