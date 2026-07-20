@@ -23,7 +23,8 @@ import kotlinx.collections.immutable.persistentListOf
 
 data class ControlsStyle(
     val spacing: Dp = 16.dp,
-    val contentPadding: Dp = 8.dp,
+    val verticalContentPadding: Dp = 8.dp,
+    val horizontalContentPadding: Dp = 8.dp,
     val rowSpacing: Dp = 8.dp,
     val indent: Dp = 16.dp,
     val button: ButtonControlStyle = ButtonControlStyle(),
@@ -45,7 +46,7 @@ fun Controls(
     name: String? = null,
     indent: Boolean = false,
     expandedInitial: Boolean = true,
-    contentPadding: PaddingValues = PaddingValues(vertical = controlsStyle.contentPadding),
+    contentPadding: PaddingValues = PaddingValues(vertical = controlsStyle.verticalContentPadding),
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(controlsStyle.spacing)
 ) {
     Column(
@@ -92,7 +93,7 @@ fun Controls(
                             name = control.name,
                             indent = control.indent,
                             expandedInitial = control.expandedInitial,
-                            contentPadding = PaddingValues(vertical = controlsStyle.contentPadding),
+                            contentPadding = PaddingValues(vertical = controlsStyle.verticalContentPadding),
                         )
                     }
                     is Control.ControlRow -> {
@@ -140,7 +141,7 @@ fun ControlsRow(
                             name = control.name,
                             indent = control.indent,
                             expandedInitial = control.expandedInitial,
-                            contentPadding = PaddingValues(horizontal = controlsStyle.contentPadding),
+                            contentPadding = PaddingValues(horizontal = controlsStyle.horizontalContentPadding),
                         )
                     }
                     is Control.ControlRow -> {

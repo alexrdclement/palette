@@ -71,7 +71,7 @@ object LayoutStyles {
             buttonRowStyle = confirmCancelButtonRow,
             spacing = PaletteTheme.semantic.dimension.spacing.medium,
             padding = PaddingValues(PaletteTheme.semantic.dimension.spacing.large),
-            titleBottomPadding = PaletteTheme.semantic.dimension.spacing.medium,
-            messageBottomPadding = PaletteTheme.semantic.dimension.spacing.large,
+            titleSpacing = PaletteTheme.semantic.dimension.spacing.medium,
+            messageSpacing = PaletteTheme.semantic.dimension.spacing.large,
         )
 }

@@ -34,7 +34,8 @@ import kotlinx.collections.immutable.persistentListOf
 data class DemoStyle(
     val controlsStyle: ControlsStyle = ControlsStyle(),
     val dividerStyle: DividerStyle = DividerStyle(),
-    val controlsPadding: Dp = 16.dp,
+    val verticalControlsPadding: Dp = 16.dp,
+    val horizontalControlsPadding: Dp = 16.dp,
     val controlsMaxSize: Dp = 300.dp,
 )
 
@@ -78,7 +79,10 @@ fun Demo(
                             .fillMaxWidth()
                             .heightIn(max = style.controlsMaxSize)
                             .verticalScroll(rememberScrollState())
-                            .padding(style.controlsPadding)
+                            .padding(
+                                horizontal = style.horizontalControlsPadding,
+                                vertical = style.verticalControlsPadding,
+                            )
                             .navigationBarsPadding(),
                     )
                 }
@@ -105,7 +109,7 @@ fun Demo(
                             .fillMaxHeight()
                             .widthIn(max = style.controlsMaxSize)
                             .verticalScroll(rememberScrollState())
-                            .padding(horizontal = style.controlsPadding)
+                            .padding(horizontal = style.horizontalControlsPadding)
                             .navigationBarsPadding(),
                     )
                 }

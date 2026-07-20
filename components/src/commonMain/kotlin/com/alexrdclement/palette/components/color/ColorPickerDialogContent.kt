@@ -2,6 +2,7 @@ package com.alexrdclement.palette.components.color
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,7 +21,8 @@ data class ColorPickerDialogContentStyle(
     val colorPickerStyle: ColorPickerStyle = ColorPickerStyle(),
     val confirmCancelButtonRowStyle: ConfirmCancelButtonRowStyle = ConfirmCancelButtonRowStyle(),
     val spacing: Dp = 16.dp,
-    val padding: Dp = 24.dp,
+    val padding: PaddingValues = PaddingValues(24.dp),
+    val buttonRowSpacing: Dp = 24.dp,
 )
 
 @Composable
@@ -54,7 +56,7 @@ fun ColorPickerDialogContent(
             },
             onDismiss = onDismissRequest,
             modifier = Modifier
-                .padding(top = style.padding)
+                .padding(top = style.buttonRowSpacing)
         )
     }
 }

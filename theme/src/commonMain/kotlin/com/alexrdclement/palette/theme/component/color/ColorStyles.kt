@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.theme.component.color
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
@@ -38,6 +39,7 @@ object ColorStyles {
             colorPickerStyle = colorPicker,
             confirmCancelButtonRowStyle = LayoutStyles.confirmCancelButtonRow,
             spacing = PaletteTheme.semantic.dimension.spacing.medium,
-            padding = PaletteTheme.semantic.dimension.spacing.large,
+            padding = PaddingValues(PaletteTheme.semantic.dimension.spacing.large),
+            buttonRowSpacing = PaletteTheme.semantic.dimension.spacing.large,
         )
 }

@@ -24,8 +24,8 @@ data class DialogContentStyle(
     val buttonRowStyle: ConfirmCancelButtonRowStyle = ConfirmCancelButtonRowStyle(),
     val spacing: Dp = 16.dp,
     val padding: PaddingValues = PaddingValues(24.dp),
-    val titleBottomPadding: Dp = 16.dp,
-    val messageBottomPadding: Dp = 24.dp,
+    val titleSpacing: Dp = 16.dp,
+    val messageSpacing: Dp = 24.dp,
 )
 
 @Composable
@@ -104,7 +104,7 @@ fun DialogContent(
             text = message,
             style = style.messageStyle,
             modifier = Modifier
-                .padding(bottom = style.messageBottomPadding)
+                .padding(bottom = style.messageSpacing)
         )
         buttonRow(onDismissRequest, Modifier.align(Alignment.End))
     }
@@ -131,7 +131,7 @@ fun DialogContent(
                 text = title,
                 style = style.titleStyle,
                 modifier = Modifier
-                    .padding(bottom = style.titleBottomPadding)
+                    .padding(bottom = style.titleSpacing)
             )
             content()
         }
