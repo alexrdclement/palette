@@ -106,9 +106,15 @@ resolves that selection through the tier below. A few families carry extra behav
   - A `PaddingValuesToken` exists **only for an inset whose edges differ** — asymmetric (`Wide` =
     `Large`/`Small`/`Large`/`Small`, wider horizontally than vertically) or directional (some edges
     `None`). A **uniform** inset carries no per-edge information, so it is expressed straight from a
-    single spacing step (`PaddingValues(dimension.spacing.medium)`), not a token. (Element/glyph
-    *sizes* — how big a thing is — are a separate concern from spacing/padding, coming as their own
-    `dimension` category.)
+    single spacing step (`PaddingValues(dimension.spacing.medium)`), not a token.
+  - `.size` — how big an element **is** (icon/glyph sizes, min touch target). Distinct from spacing
+    (*between*) and padding (*inside*). Unlike spacing, `SizeToken` is named by **role** rather than
+    magnitude (like `ColorToken`, not `SpacingToken`) — `TouchTargetMin`, `IconSmall`, … — because
+    sizes serve distinct purposes at very different scales, and a single small/medium/large ramp can
+    neither convey purpose nor stretch (a large component isn't "xLarge"). Only tokens with a real
+    consumer live here; add more as components need them. Components stay headless, so a `SizeToken`
+    resolves to a `Dp` in the theme (`SizeToken.IconSmall.toSize()`) and is fed into the component's
+    style, exactly like `ColorToken.toColor()`.
 
 Requirements for a new semantic token:
 
