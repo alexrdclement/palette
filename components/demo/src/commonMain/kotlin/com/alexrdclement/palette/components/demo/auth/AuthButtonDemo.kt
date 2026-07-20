@@ -1,6 +1,7 @@
 package com.alexrdclement.palette.components.demo.auth
 
 import androidx.compose.foundation.layout.BoxWithConstraintsScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -17,7 +18,11 @@ import com.alexrdclement.palette.components.auth.AuthState
 import com.alexrdclement.palette.theme.components.demo.Demo
 import com.alexrdclement.palette.components.demo.control.Control
 import com.alexrdclement.palette.components.demo.control.enumControl
+import com.alexrdclement.palette.components.demo.control.paddingValuesControls
+import com.alexrdclement.palette.components.util.PaddingValuesSaver
 import com.alexrdclement.palette.components.util.mapSaverSafe
+import com.alexrdclement.palette.components.util.restore
+import com.alexrdclement.palette.components.util.save
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.component.auth.AuthButtonStyleToken
 import kotlinx.collections.immutable.persistentListOf
@@ -46,9 +51,12 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
     state: AuthButtonDemoState = rememberAuthButtonDemoState(),
     control: AuthButtonDemoControl = rememberAuthButtonDemoControl(state),
 ) {
+    val baseStyle = PaletteTheme.component.auth.authButton[state.style]
     AuthButton(
         authState = state.authState,
-        style = PaletteTheme.component.auth.authButton[state.style],
+        style = baseStyle.copy(
+            buttonStyle = baseStyle.buttonStyle.copy(contentPadding = state.contentPadding),
+        ),
         onLogInClick = {},
         onLogOutClick = {},
         modifier = modifier
@@ -61,12 +69,15 @@ fun BoxWithConstraintsScope.AuthButtonDemo(
 fun rememberAuthButtonDemoState(
     authStateInitial: AuthState = AuthState.LoggedOut,
     styleInitial: AuthButtonStyleToken = AuthButtonStyleToken.Secondary,
+    contentPaddingInitial: PaddingValues =
+        PaletteTheme.component.auth.authButton[styleInitial].buttonStyle.contentPadding,
 ): AuthButtonDemoState = rememberSaveable(
     saver = AuthButtonDemoStateSaver,
 ) {
     AuthButtonDemoState(
         authStateInitial = authStateInitial,
         styleInitial = styleInitial,
+        contentPaddingInitial = contentPaddingInitial,
     )
 }
 
@@ -74,28 +85,35 @@ fun rememberAuthButtonDemoState(
 class AuthButtonDemoState(
     authStateInitial: AuthState,
     styleInitial: AuthButtonStyleToken,
+    contentPaddingInitial: PaddingValues = PaddingValues(),
 ) {
     var authState by mutableStateOf(authStateInitial)
         internal set
 
     var style by mutableStateOf(styleInitial)
         internal set
+
+    var contentPadding by mutableStateOf(contentPaddingInitial)
+        internal set
 }
 
 private const val authStateKey = "authState"
 private const val styleKey = "style"
+private const val contentPaddingKey = "contentPadding"
 
 val AuthButtonDemoStateSaver = mapSaverSafe(
     save = { value ->
         mapOf(
             authStateKey to value.authState,
             styleKey to value.style,
+            contentPaddingKey to save(value.contentPadding, PaddingValuesSaver, this),
         )
     },
     restore = { map ->
         AuthButtonDemoState(
             authStateInitial = map[authStateKey] as AuthState,
             styleInitial = map[styleKey] as AuthButtonStyleToken,
+            contentPaddingInitial = restore(map[contentPaddingKey], PaddingValuesSaver)!!,
         )
     },
 )
@@ -109,18 +127,40 @@ fun rememberAuthButtonDemoControl(
 class AuthButtonDemoControl(
     val state: AuthButtonDemoState,
 ) {
+    val authStateControl = enumControl(
+        name = "Auth state",
+        values = { AuthState.entries },
+        selectedValue = { state.authState },
+        onValueChange = { state.authState = it },
+    )
+
+    val styleTokenControl = enumControl(
+        name = "Token",
+        values = { AuthButtonStyleToken.entries },
+        selectedValue = { state.style },
+        onValueChange = { state.style = it },
+    )
+
+    val contentPaddingControl = paddingValuesControls(
+        name = "Content padding",
+        value = { state.contentPadding },
+        onValueChange = { state.contentPadding = it },
+    )
+
+    val styleControls = Control.ControlColumn(
+        name = "Style",
+        indent = true,
+        expandedInitial = true,
+        controls = {
+            persistentListOf(
+                styleTokenControl,
+                contentPaddingControl,
+            )
+        },
+    )
+
     val controls = persistentListOf<Control>(
-        enumControl(
-            name = "Auth state",
-            values = { AuthState.entries },
-            selectedValue = { state.authState },
-            onValueChange = { state.authState = it },
-        ),
-        enumControl(
-            name = "Style",
-            values = { AuthButtonStyleToken.entries },
-            selectedValue = { state.style },
-            onValueChange = { state.style = it },
-        ),
+        authStateControl,
+        styleControls,
     )
 }
