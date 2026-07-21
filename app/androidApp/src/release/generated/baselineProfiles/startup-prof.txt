@@ -26,6 +26,7 @@ HSPLandroidx/activity/ComponentActivity;->getViewModelStore()Landroidx/lifecycle
 HSPLandroidx/activity/ComponentActivity;->initializeViewTreeOwners()V
 HSPLandroidx/activity/ComponentActivity;->onBackPressedDispatcher_delegate$lambda$0(Landroidx/activity/ComponentActivity;)Landroidx/activity/OnBackPressedDispatcher;
 HSPLandroidx/activity/ComponentActivity;->onCreate(Landroid/os/Bundle;)V
+HSPLandroidx/activity/ComponentActivity;->onTrimMemory(I)V
 HSPLandroidx/activity/ComponentActivity;->reportFullyDrawn()V
 HSPLandroidx/activity/ComponentActivity;->setContentView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 Landroidx/activity/ComponentActivity$$ExternalSyntheticLambda0;
@@ -2869,7 +2870,6 @@ HSPLandroidx/compose/runtime/GapComposer;->currentCompositionLocalScope()Landroi
 HSPLandroidx/compose/runtime/GapComposer;->currentCompositionLocalScope(I)Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/GapComposer;->doCompose-aFTiNEg(Landroidx/collection/MutableScatterMap;Lkotlin/jvm/functions/Function2;)V
 PLandroidx/compose/runtime/GapComposer;->doRecordDownsFor(II)V
-HSPLandroidx/compose/runtime/GapComposer;->end(Z)V
 HSPLandroidx/compose/runtime/GapComposer;->endDefaults()V
 HSPLandroidx/compose/runtime/GapComposer;->endGroup()V
 HSPLandroidx/compose/runtime/GapComposer;->endMovableGroup()V
@@ -3194,7 +3194,6 @@ PLandroidx/compose/runtime/PausableMonotonicFrameClock$withFrameNanos$1;->invoke
 Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/PersistentCompositionLocalMap;->getCurrentValue(Landroidx/compose/runtime/CompositionLocal;)Ljava/lang/Object;
 Landroidx/compose/runtime/PersistentCompositionLocalMap$Builder;
-Landroidx/compose/runtime/PreconditionsKt;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt;
 HSPLandroidx/compose/runtime/PrimitiveSnapshotStateKt;->mutableFloatStateOf(F)Landroidx/compose/runtime/MutableFloatState;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt__SnapshotFloatStateKt;
@@ -3388,7 +3387,7 @@ HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;-><init>(L
 HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invoke(Lkotlinx/coroutines/CoroutineScope;Landroidx/compose/runtime/MonotonicFrameClock;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend$fillToInsert(Ljava/util/List;Landroidx/compose/runtime/Recomposer;)V
-HPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend$lambda$2(Landroidx/compose/runtime/Recomposer;Landroidx/collection/MutableScatterSet;Landroidx/collection/MutableScatterSet;Ljava/util/List;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/Set;J)Lkotlin/Unit;
+PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend$lambda$2(Landroidx/compose/runtime/Recomposer;Landroidx/collection/MutableScatterSet;Landroidx/collection/MutableScatterSet;Ljava/util/List;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/Set;J)Lkotlin/Unit;
 HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
 PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2$$ExternalSyntheticLambda0;-><init>(Landroidx/compose/runtime/Recomposer;Landroidx/collection/MutableScatterSet;Landroidx/collection/MutableScatterSet;Ljava/util/List;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/Set;)V
 PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2$$ExternalSyntheticLambda0;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
@@ -10211,7 +10210,6 @@ HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;-><init>(Landroidx/emoji2/text/M
 HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getCodepointAt(I)I
 HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getCodepointsLength()I
 PLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getId()I
-HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getMetadataItem()Landroidx/emoji2/text/flatbuffer/MetadataItem;
 PLandroidx/emoji2/text/flatbuffer/MetadataItem;-><init>()V
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->__assign(ILjava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->__init(ILjava/nio/ByteBuffer;)V
@@ -10223,6 +10221,7 @@ PLandroidx/emoji2/text/flatbuffer/MetadataList;->__assign(ILjava/nio/ByteBuffer;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->__init(ILjava/nio/ByteBuffer;)V
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataList;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;Landroidx/emoji2/text/flatbuffer/MetadataList;)Landroidx/emoji2/text/flatbuffer/MetadataList;
+HPLandroidx/emoji2/text/flatbuffer/MetadataList;->list(Landroidx/emoji2/text/flatbuffer/MetadataItem;I)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->listLength()I
 PLandroidx/emoji2/text/flatbuffer/Table;-><init>()V
 HPLandroidx/emoji2/text/flatbuffer/Table;->__indirect(I)I
@@ -13928,7 +13927,7 @@ HSPLkotlin/collections/ArrayDeque;->isEmpty()Z
 HSPLkotlin/collections/ArrayDeque;->lastOrNull()Ljava/lang/Object;
 HSPLkotlin/collections/ArrayDeque;->positiveMod(I)I
 HSPLkotlin/collections/ArrayDeque;->registerModification()V
-PLkotlin/collections/ArrayDeque;->removeFirst()Ljava/lang/Object;
+HPLkotlin/collections/ArrayDeque;->removeFirst()Ljava/lang/Object;
 PLkotlin/collections/ArrayDeque;->removeFirstOrNull()Ljava/lang/Object;
 HSPLkotlin/collections/ArrayDeque;->removeLastOrNull()Ljava/lang/Object;
 Lkotlin/collections/ArrayDeque$Companion;
