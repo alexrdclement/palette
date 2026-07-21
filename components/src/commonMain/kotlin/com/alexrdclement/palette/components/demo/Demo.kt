@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
@@ -34,8 +35,7 @@ import kotlinx.collections.immutable.persistentListOf
 data class DemoStyle(
     val controlsStyle: ControlsStyle = ControlsStyle(),
     val dividerStyle: DividerStyle = DividerStyle(),
-    val verticalControlsPadding: Dp = 16.dp,
-    val horizontalControlsPadding: Dp = 16.dp,
+    val contentPadding: PaddingValues = PaddingValues(16.dp),
     val controlsMaxSize: Dp = 300.dp,
 )
 
@@ -79,10 +79,7 @@ fun Demo(
                             .fillMaxWidth()
                             .heightIn(max = style.controlsMaxSize)
                             .verticalScroll(rememberScrollState())
-                            .padding(
-                                horizontal = style.horizontalControlsPadding,
-                                vertical = style.verticalControlsPadding,
-                            )
+                            .padding(style.contentPadding)
                             .navigationBarsPadding(),
                     )
                 }
@@ -109,7 +106,7 @@ fun Demo(
                             .fillMaxHeight()
                             .widthIn(max = style.controlsMaxSize)
                             .verticalScroll(rememberScrollState())
-                            .padding(horizontal = style.horizontalControlsPadding)
+                            .padding(style.contentPadding)
                             .navigationBarsPadding(),
                     )
                 }

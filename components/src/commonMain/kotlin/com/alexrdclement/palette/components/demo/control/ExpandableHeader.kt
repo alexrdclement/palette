@@ -3,10 +3,8 @@ package com.alexrdclement.palette.components.demo.control
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -29,7 +27,7 @@ data class ExpandableHeaderStyle(
     val spacing: Dp = 8.dp,
     val borderWidth: Dp = 1.dp,
     val labelPadding: PaddingValues = PaddingValues(4.dp),
-    val iconPadding: PaddingValues = PaddingValues(6.dp),
+    val chevronSize: Dp = 16.dp,
     val chevronIconStyle: IconStyle = IconStyle(),
     val indication: Indication? = null,
 )
@@ -50,8 +48,6 @@ fun ExpandableHeader(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(style.spacing),
-            modifier = Modifier
-                .height(IntrinsicSize.Min)
         ) {
             Text(
                 text = name,
@@ -64,8 +60,7 @@ fun ExpandableHeader(
                 direction = if (expanded) ChevronDirection.Up else ChevronDirection.Down,
                 style = style.chevronIconStyle,
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(style.iconPadding)
+                    .height(style.chevronSize)
             )
         }
     }

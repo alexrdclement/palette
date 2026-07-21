@@ -15,6 +15,8 @@ import com.alexrdclement.palette.components.demo.control.SliderControlStyle
 import com.alexrdclement.palette.components.demo.control.TextFieldControlStyle
 import com.alexrdclement.palette.components.demo.control.ToggleControlStyle
 import com.alexrdclement.palette.theme.PaletteTheme
+import com.alexrdclement.palette.theme.semantic.dimension.SizeToken
+import com.alexrdclement.palette.theme.semantic.dimension.toSize
 import com.alexrdclement.palette.theme.component.color.ColorStyles
 import com.alexrdclement.palette.theme.component.core.CoreStyles
 import com.alexrdclement.palette.theme.component.core.TextStyles
@@ -36,8 +38,7 @@ object DemoStyles {
             val textField = CoreStyles.textField
             return DemoStyle(
                 dividerStyle = CoreStyles.divider,
-                verticalControlsPadding = PaletteTheme.semantic.dimension.spacing.medium,
-                horizontalControlsPadding = PaletteTheme.semantic.dimension.spacing.medium,
+                contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.medium),
                 controlsStyle = ControlsStyle(
                     spacing = PaletteTheme.semantic.dimension.spacing.medium,
                     verticalContentPadding = PaletteTheme.semantic.dimension.spacing.small,
@@ -92,6 +93,7 @@ object DemoStyles {
                         chevronIconStyle = CoreStyles.chevronIcon,
                         spacing = PaletteTheme.semantic.dimension.spacing.small,
                         labelPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.xs),
+                        chevronSize = SizeToken.IconSmall.toSize(),
                         indication = PaletteTheme.semantic.indication,
                     ),
                     dynamicList = DynamicListControlStyle(
