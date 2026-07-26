@@ -35,4 +35,5 @@ inline fun <T : Saver<Original, Saveable>, Original, Saveable, reified Result> r
     return value?.let { with(saver) { restore(value) } as Result }
 }
 
+@PublishedApi
 internal interface NonNullValueClassSaver<Original, Saveable : Any> : Saver<Original, Saveable>
