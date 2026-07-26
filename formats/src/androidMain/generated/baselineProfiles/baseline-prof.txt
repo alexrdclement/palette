@@ -259,7 +259,7 @@ PLcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState;->getNegativ
 PLcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState;->getNumberFormat()Lcom/alexrdclement/palette/formats/core/NumberFormat;
 PLcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState;->getPositiveSignTextFieldState()Landroidx/compose/foundation/text/input/TextFieldState;
 PLcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState;->getText()Ljava/lang/String;
-PLcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState;->setNumberFormat$demo(Lcom/alexrdclement/palette/formats/core/NumberFormat;)V
+PLcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState;->setNumberFormat$palette_formats_demo(Lcom/alexrdclement/palette/formats/core/NumberFormat;)V
 PLcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState;->text_delegate$lambda$0(Lcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState;)Ljava/lang/String;
 PLcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState$$ExternalSyntheticLambda0;-><init>(Lcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState;)V
 PLcom/alexrdclement/palette/formats/demo/core/NumberFormatDemoState$$ExternalSyntheticLambda0;->invoke()Ljava/lang/Object;
@@ -315,7 +315,7 @@ PLcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState;->getDemoTextF
 PLcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState;->getText()Ljava/lang/String;
 PLcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState;->getTextFormat()Lcom/alexrdclement/palette/formats/core/TextFormat;
 PLcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState;->getWordDelimiterTextFieldState()Landroidx/compose/foundation/text/input/TextFieldState;
-PLcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState;->setTextFormat$demo(Lcom/alexrdclement/palette/formats/core/TextFormat;)V
+PLcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState;->setTextFormat$palette_formats_demo(Lcom/alexrdclement/palette/formats/core/TextFormat;)V
 PLcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState;->text_delegate$lambda$0(Lcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState;)Ljava/lang/String;
 PLcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState$$ExternalSyntheticLambda0;-><init>(Lcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState;)V
 PLcom/alexrdclement/palette/formats/demo/core/TextFormatDemoState$$ExternalSyntheticLambda0;->invoke()Ljava/lang/Object;
@@ -361,6 +361,8 @@ PLcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$$External
 PLcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$$ExternalSyntheticLambda5;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 PLcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$DateTimeFormatDemo$$inlined$map$1;-><init>(Lkotlinx/coroutines/flow/Flow;Lkotlin/jvm/functions/Function3;Lcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoState;)V
 PLcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$DateTimeFormatDemo$$inlined$map$1;->collect(Lkotlinx/coroutines/flow/FlowCollector;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+PLcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$DateTimeFormatDemo$$inlined$map$1$1;-><init>(Lcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$DateTimeFormatDemo$$inlined$map$1;Lkotlin/coroutines/Continuation;)V
+PLcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$DateTimeFormatDemo$$inlined$map$1$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
 PLcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$DateTimeFormatDemo$$inlined$map$1$2;-><init>(Lkotlinx/coroutines/flow/FlowCollector;Lkotlin/jvm/functions/Function3;Lcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoState;)V
 PLcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$DateTimeFormatDemo$$inlined$map$1$2;->emit(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 PLcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$DateTimeFormatDemo$$inlined$map$1$2$1;-><init>(Lcom/alexrdclement/palette/formats/demo/datetime/DateTimeFormatDemoKt$DateTimeFormatDemo$$inlined$map$1$2;Lkotlin/coroutines/Continuation;)V

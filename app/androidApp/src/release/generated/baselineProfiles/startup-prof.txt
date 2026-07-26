@@ -2498,16 +2498,6 @@ HSPLandroidx/compose/foundation/text/modifiers/ParagraphLayoutCache;->newLayoutW
 HSPLandroidx/compose/foundation/text/modifiers/ParagraphLayoutCache;->recordHistory-4ETZmGE(J)V
 HSPLandroidx/compose/foundation/text/modifiers/ParagraphLayoutCache;->setDensity$foundation(Landroidx/compose/ui/unit/Density;)V
 HSPLandroidx/compose/foundation/text/modifiers/ParagraphLayoutCache;->setLayoutDirection(Landroidx/compose/ui/unit/LayoutDirection;)Landroidx/compose/ui/text/ParagraphIntrinsics;
-Landroidx/compose/foundation/text/modifiers/StylePhase;
-HSPLandroidx/compose/foundation/text/modifiers/StylePhase;-><clinit>()V
-PLandroidx/compose/foundation/text/modifiers/StylePhase;->access$getDraw$cp()I
-HSPLandroidx/compose/foundation/text/modifiers/StylePhase;->access$getLayout$cp()I
-HSPLandroidx/compose/foundation/text/modifiers/StylePhase;->constructor-impl(I)I
-Landroidx/compose/foundation/text/modifiers/StylePhase$Companion;
-HSPLandroidx/compose/foundation/text/modifiers/StylePhase$Companion;-><init>()V
-HSPLandroidx/compose/foundation/text/modifiers/StylePhase$Companion;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-PLandroidx/compose/foundation/text/modifiers/StylePhase$Companion;->getDraw-oWBPZag()I
-HSPLandroidx/compose/foundation/text/modifiers/StylePhase$Companion;->getLayout-oWBPZag()I
 Landroidx/compose/foundation/text/modifiers/TextStringSimpleElement;
 HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleElement;-><clinit>()V
 HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleElement;-><init>(Ljava/lang/String;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/font/FontFamily$Resolver;IZIILandroidx/compose/ui/graphics/ColorProducer;)V
@@ -2526,7 +2516,6 @@ HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleNode;->getLayoutC
 HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleNode;->getLayoutCacheOrSubstitute()Landroidx/compose/foundation/text/modifiers/ParagraphLayoutCache;
 HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleNode;->measure-3p2s80s(Landroidx/compose/ui/layout/MeasureScope;Landroidx/compose/ui/layout/Measurable;J)Landroidx/compose/ui/layout/MeasureResult;
 HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleNode;->measure_3p2s80s$lambda$0$0(Landroidx/compose/ui/layout/Placeable;Landroidx/compose/ui/layout/Placeable$PlacementScope;)Lkotlin/Unit;
-HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleNode;->resolveInheritedStyle-uwmK9pY(I)Z
 Landroidx/compose/foundation/text/modifiers/TextStringSimpleNode$$ExternalSyntheticLambda0;
 HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleNode$$ExternalSyntheticLambda0;-><init>(Landroidx/compose/foundation/text/modifiers/TextStringSimpleNode;)V
 Landroidx/compose/foundation/text/modifiers/TextStringSimpleNode$$ExternalSyntheticLambda1;
@@ -2538,10 +2527,6 @@ HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleNode$$ExternalSyn
 Landroidx/compose/foundation/text/modifiers/TextStringSimpleNode$$ExternalSyntheticLambda4;
 HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleNode$$ExternalSyntheticLambda4;-><init>(Landroidx/compose/ui/layout/Placeable;)V
 HSPLandroidx/compose/foundation/text/modifiers/TextStringSimpleNode$$ExternalSyntheticLambda4;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
-Landroidx/compose/foundation/text/modifiers/TextStyleProviderNodeKt;
-HSPLandroidx/compose/foundation/text/modifiers/TextStyleProviderNodeKt;->inheritedTextStyle-Bh5OqGs(Landroidx/compose/ui/node/DelegatableNode;ILandroidx/compose/ui/text/TextStyle;)Landroidx/compose/ui/text/TextStyle;
-Landroidx/compose/foundation/text/modifiers/TextStyleProviderNodeKt$$ExternalSyntheticLambda0;
-HSPLandroidx/compose/foundation/text/modifiers/TextStyleProviderNodeKt$$ExternalSyntheticLambda0;-><init>(Lkotlin/jvm/internal/Ref$ObjectRef;ILandroidx/compose/ui/text/TextStyle;)V
 Landroidx/compose/foundation/text/selection/SelectionRegistrar;
 Landroidx/compose/foundation/text/selection/SelectionRegistrarKt;
 HSPLandroidx/compose/foundation/text/selection/SelectionRegistrarKt;-><clinit>()V
@@ -3337,7 +3322,7 @@ HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;-><init>(L
 HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invoke(Lkotlinx/coroutines/CoroutineScope;Landroidx/compose/runtime/MonotonicFrameClock;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend$fillToInsert(Ljava/util/List;Landroidx/compose/runtime/Recomposer;)V
-PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend$lambda$2(Landroidx/compose/runtime/Recomposer;Landroidx/collection/MutableScatterSet;Landroidx/collection/MutableScatterSet;Ljava/util/List;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/Set;J)Lkotlin/Unit;
+HPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend$lambda$2(Landroidx/compose/runtime/Recomposer;Landroidx/collection/MutableScatterSet;Landroidx/collection/MutableScatterSet;Ljava/util/List;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/Set;J)Lkotlin/Unit;
 HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
 PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2$$ExternalSyntheticLambda0;-><init>(Landroidx/compose/runtime/Recomposer;Landroidx/collection/MutableScatterSet;Landroidx/collection/MutableScatterSet;Ljava/util/List;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/Set;)V
 PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2$$ExternalSyntheticLambda0;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
@@ -11882,9 +11867,9 @@ HSPLcom/alexrdclement/palette/app/main/navigation/MainNavKt$mainNavGraph$lambda$
 HSPLcom/alexrdclement/palette/app/main/navigation/MainNavKt$mainNavGraph$lambda$0$$inlined$route$default$1;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
 HSPLcom/alexrdclement/palette/app/main/navigation/MainNavKt$mainNavGraph$lambda$0$$inlined$route$default$1;->invoke-7eC-mTA(Ljava/lang/String;)Lcom/alexrdclement/palette/navigation/NavKey;
 Lcom/alexrdclement/palette/app/main/navigation/MainRoute;
-Lcom/alexrdclement/palette/app/navigation/ComposableSingletons$CatalogEntryKt$lambda$-500814762$1;
-HSPLcom/alexrdclement/palette/app/navigation/ComposableSingletons$CatalogEntryKt$lambda$-500814762$1;-><clinit>()V
-HSPLcom/alexrdclement/palette/app/navigation/ComposableSingletons$CatalogEntryKt$lambda$-500814762$1;-><init>()V
+Lcom/alexrdclement/palette/app/navigation/CatalogEntryKt$catalogEntry$1;
+HSPLcom/alexrdclement/palette/app/navigation/CatalogEntryKt$catalogEntry$1;-><clinit>()V
+HSPLcom/alexrdclement/palette/app/navigation/CatalogEntryKt$catalogEntry$1;-><init>()V
 Lcom/alexrdclement/palette/app/navigation/PaletteGraph;
 HSPLcom/alexrdclement/palette/app/navigation/PaletteGraph;->$r8$lambda$8X408wusxYOf8UJ9h2J784CyFBc()Lkotlinx/serialization/KSerializer;
 HSPLcom/alexrdclement/palette/app/navigation/PaletteGraph;-><clinit>()V
@@ -11920,7 +11905,7 @@ HSPLcom/alexrdclement/palette/app/navigation/PaletteNavKt$special$$inlined$navGr
 Lcom/alexrdclement/palette/app/theme/ComposableSingletons$ThemeButtonKt;
 HSPLcom/alexrdclement/palette/app/theme/ComposableSingletons$ThemeButtonKt;-><clinit>()V
 HSPLcom/alexrdclement/palette/app/theme/ComposableSingletons$ThemeButtonKt;-><init>()V
-HSPLcom/alexrdclement/palette/app/theme/ComposableSingletons$ThemeButtonKt;->getLambda$646698896$composeApp()Lkotlin/jvm/functions/Function4;
+HSPLcom/alexrdclement/palette/app/theme/ComposableSingletons$ThemeButtonKt;->getLambda$646698896$palette_app_composeApp()Lkotlin/jvm/functions/Function4;
 HSPLcom/alexrdclement/palette/app/theme/ComposableSingletons$ThemeButtonKt;->lambda_646698896$lambda$0(Landroidx/compose/foundation/layout/RowScope;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 Lcom/alexrdclement/palette/app/theme/ComposableSingletons$ThemeButtonKt$$ExternalSyntheticLambda0;
 HSPLcom/alexrdclement/palette/app/theme/ComposableSingletons$ThemeButtonKt$$ExternalSyntheticLambda0;-><init>()V
@@ -12690,7 +12675,6 @@ Lcom/alexrdclement/palette/components/core/BorderStyle;
 HSPLcom/alexrdclement/palette/components/core/BorderStyle;-><clinit>()V
 HSPLcom/alexrdclement/palette/components/core/BorderStyle;-><init>(FJLcom/alexrdclement/palette/components/core/Shape;)V
 HSPLcom/alexrdclement/palette/components/core/BorderStyle;-><init>(FJLcom/alexrdclement/palette/components/core/Shape;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-PLcom/alexrdclement/palette/components/core/BorderStyle;->equals(Ljava/lang/Object;)Z
 HSPLcom/alexrdclement/palette/components/core/BorderStyle;->getColor-0d7_KjU()J
 HSPLcom/alexrdclement/palette/components/core/BorderStyle;->getShape()Lcom/alexrdclement/palette/components/core/Shape;
 HSPLcom/alexrdclement/palette/components/core/BorderStyle;->getWidth-D9Ej5fM()F
@@ -12719,7 +12703,6 @@ Lcom/alexrdclement/palette/components/core/ButtonStyle;
 HSPLcom/alexrdclement/palette/components/core/ButtonStyle;-><clinit>()V
 HSPLcom/alexrdclement/palette/components/core/ButtonStyle;-><init>(JLcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/BorderStyle;FFLandroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/Indication;)V
 HSPLcom/alexrdclement/palette/components/core/ButtonStyle;-><init>(JLcom/alexrdclement/palette/components/core/Shape;Lcom/alexrdclement/palette/components/core/BorderStyle;FFLandroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/Indication;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-PLcom/alexrdclement/palette/components/core/ButtonStyle;->equals(Ljava/lang/Object;)Z
 HSPLcom/alexrdclement/palette/components/core/ButtonStyle;->getBorderStyle()Lcom/alexrdclement/palette/components/core/BorderStyle;
 HSPLcom/alexrdclement/palette/components/core/ButtonStyle;->getContainerColor-0d7_KjU()J
 HSPLcom/alexrdclement/palette/components/core/ButtonStyle;->getContentPadding()Landroidx/compose/foundation/layout/PaddingValues;
@@ -12827,7 +12810,6 @@ Lcom/alexrdclement/palette/components/core/SurfaceStyle;
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;-><clinit>()V
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;-><init>(Lcom/alexrdclement/palette/components/core/Shape;JLcom/alexrdclement/palette/components/core/BorderStyle;Landroidx/compose/foundation/Indication;)V
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;-><init>(Lcom/alexrdclement/palette/components/core/Shape;JLcom/alexrdclement/palette/components/core/BorderStyle;Landroidx/compose/foundation/Indication;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-PLcom/alexrdclement/palette/components/core/SurfaceStyle;->equals(Ljava/lang/Object;)Z
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;->getBorderStyle()Lcom/alexrdclement/palette/components/core/BorderStyle;
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;->getColor-0d7_KjU()J
 HSPLcom/alexrdclement/palette/components/core/SurfaceStyle;->getIndication()Landroidx/compose/foundation/Indication;
@@ -12841,6 +12823,7 @@ HSPLcom/alexrdclement/palette/components/core/TextStyle;-><clinit>()V
 HSPLcom/alexrdclement/palette/components/core/TextStyle;-><init>(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)V
 HSPLcom/alexrdclement/palette/components/core/TextStyle;->copy$default(Lcom/alexrdclement/palette/components/core/TextStyle;Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;ILjava/lang/Object;)Lcom/alexrdclement/palette/components/core/TextStyle;
 HSPLcom/alexrdclement/palette/components/core/TextStyle;->copy(Landroidx/compose/ui/text/TextStyle;Lcom/alexrdclement/palette/formats/core/TextFormat;)Lcom/alexrdclement/palette/components/core/TextStyle;
+PLcom/alexrdclement/palette/components/core/TextStyle;->equals(Ljava/lang/Object;)Z
 HSPLcom/alexrdclement/palette/components/core/TextStyle;->getComposeTextStyle()Landroidx/compose/ui/text/TextStyle;
 HSPLcom/alexrdclement/palette/components/core/TextStyle;->getFormat()Lcom/alexrdclement/palette/formats/core/TextFormat;
 Lcom/alexrdclement/palette/components/layout/ScaffoldComponents;
@@ -12930,7 +12913,7 @@ HSPLcom/alexrdclement/palette/components/layout/catalog/CatalogStyle;->getItemTe
 Lcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt;
 HSPLcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt;-><clinit>()V
 HSPLcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt;-><init>()V
-HSPLcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt;->getLambda$-519986709$components()Lkotlin/jvm/functions/Function3;
+HSPLcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt;->getLambda$-519986709$palette_components()Lkotlin/jvm/functions/Function3;
 HSPLcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt;->lambda__519986709$lambda$0(Landroidx/compose/foundation/lazy/LazyItemScope;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 Lcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt$$ExternalSyntheticLambda0;
 HSPLcom/alexrdclement/palette/components/layout/catalog/ComposableSingletons$CatalogKt$$ExternalSyntheticLambda0;-><init>()V
@@ -13325,8 +13308,8 @@ HSPLcom/alexrdclement/palette/theme/components/core/SurfaceKt;->Surface(Landroid
 Lcom/alexrdclement/palette/theme/components/layout/ComposableSingletons$ScaffoldKt;
 HSPLcom/alexrdclement/palette/theme/components/layout/ComposableSingletons$ScaffoldKt;-><clinit>()V
 HSPLcom/alexrdclement/palette/theme/components/layout/ComposableSingletons$ScaffoldKt;-><init>()V
-HSPLcom/alexrdclement/palette/theme/components/layout/ComposableSingletons$ScaffoldKt;->getLambda$-170461207$components()Lkotlin/jvm/functions/Function2;
-HSPLcom/alexrdclement/palette/theme/components/layout/ComposableSingletons$ScaffoldKt;->getLambda$-29163712$components()Lkotlin/jvm/functions/Function2;
+HSPLcom/alexrdclement/palette/theme/components/layout/ComposableSingletons$ScaffoldKt;->getLambda$-170461207$palette_theme_components()Lkotlin/jvm/functions/Function2;
+HSPLcom/alexrdclement/palette/theme/components/layout/ComposableSingletons$ScaffoldKt;->getLambda$-29163712$palette_theme_components()Lkotlin/jvm/functions/Function2;
 HSPLcom/alexrdclement/palette/theme/components/layout/ComposableSingletons$ScaffoldKt;->lambda__170461207$lambda$0(Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 HSPLcom/alexrdclement/palette/theme/components/layout/ComposableSingletons$ScaffoldKt;->lambda__29163712$lambda$0(Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 Lcom/alexrdclement/palette/theme/components/layout/ComposableSingletons$ScaffoldKt$$ExternalSyntheticLambda0;
@@ -13821,7 +13804,7 @@ HSPLkotlin/collections/ArrayDeque;->isEmpty()Z
 HSPLkotlin/collections/ArrayDeque;->lastOrNull()Ljava/lang/Object;
 HSPLkotlin/collections/ArrayDeque;->positiveMod(I)I
 HSPLkotlin/collections/ArrayDeque;->registerModification()V
-HPLkotlin/collections/ArrayDeque;->removeFirst()Ljava/lang/Object;
+PLkotlin/collections/ArrayDeque;->removeFirst()Ljava/lang/Object;
 PLkotlin/collections/ArrayDeque;->removeFirstOrNull()Ljava/lang/Object;
 HSPLkotlin/collections/ArrayDeque;->removeLastOrNull()Ljava/lang/Object;
 Lkotlin/collections/ArrayDeque$Companion;

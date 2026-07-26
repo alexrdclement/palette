@@ -60,7 +60,7 @@ Lcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;-><clinit>()V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;-><init>()V
 PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->createRenderEffect()Landroidx/compose/ui/graphics/RenderEffect;
-PLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->isActive()Z
+HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->isActive()Z
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->onRemeasured(II)V
 HSPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setColorMode(Lcom/alexrdclement/palette/modifiers/ColorSplitMode;)V
 HPLcom/alexrdclement/palette/modifiers/ColorSplitShaderImpl;->setXAmount(F)V
@@ -133,7 +133,7 @@ PLcom/alexrdclement/palette/modifiers/ShaderElement;-><clinit>()V
 PLcom/alexrdclement/palette/modifiers/ShaderElement;-><init>(Lcom/alexrdclement/palette/modifiers/Shader;Ljava/lang/String;)V
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->create()Landroidx/compose/ui/Modifier$Node;
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->create()Lcom/alexrdclement/palette/modifiers/ShaderNode;
-PLcom/alexrdclement/palette/modifiers/ShaderElement;->equals(Ljava/lang/Object;)Z
+HPLcom/alexrdclement/palette/modifiers/ShaderElement;->equals(Ljava/lang/Object;)Z
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->update(Landroidx/compose/ui/Modifier$Node;)V
 PLcom/alexrdclement/palette/modifiers/ShaderElement;->update(Lcom/alexrdclement/palette/modifiers/ShaderNode;)V
 Lcom/alexrdclement/palette/modifiers/ShaderIndicationNode;
@@ -311,8 +311,8 @@ PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getBorderColor-0d7_Kj
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getFadeLength-D9Ej5fM()F
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getShowBorder()Z
 PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->getWidth-D9Ej5fM()F
-PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->setFadeLength-0680j_4$demo(F)V
-PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->setWidth-0680j_4$demo(F)V
+PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->setFadeLength-0680j_4$palette_modifiers_demo(F)V
+PLcom/alexrdclement/palette/modifiers/demo/FadeDemoState;->setWidth-0680j_4$palette_modifiers_demo(F)V
 PLcom/alexrdclement/palette/modifiers/demo/ModifierDemoControl;-><clinit>()V
 PLcom/alexrdclement/palette/modifiers/demo/ModifierDemoControl;-><init>(Lkotlinx/collections/immutable/PersistentList;Lcom/alexrdclement/palette/modifiers/demo/ModifierDemoState;)V
 PLcom/alexrdclement/palette/modifiers/demo/ModifierDemoControl;->componentDemoControls$lambda$0(Lcom/alexrdclement/palette/modifiers/demo/ModifierDemoControl;)Lkotlinx/collections/immutable/ImmutableList;
@@ -393,7 +393,6 @@ PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$3$0(Lcom/alexrdclement/palette/modifiers/demo/PixelateState;F)Lkotlin/Unit;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$4$0()Lkotlin/ranges/ClosedFloatingPointRange;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo$lambda$5(Landroidx/compose/ui/Modifier;IILandroidx/compose/runtime/Composer;I)Lkotlin/Unit;
-PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 HPLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateDemo(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt;->PixelateStateSaver$lambda$0(Landroidx/compose/runtime/saveable/SaverScope;Lcom/alexrdclement/palette/modifiers/demo/PixelateState;)Ljava/util/Map;
 PLcom/alexrdclement/palette/modifiers/demo/PixelateDemoKt$$ExternalSyntheticLambda0;-><init>()V
