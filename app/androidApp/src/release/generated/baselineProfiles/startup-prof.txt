@@ -3137,7 +3137,6 @@ PLandroidx/compose/runtime/PausableMonotonicFrameClock$withFrameNanos$1;->invoke
 Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/PersistentCompositionLocalMap;->getCurrentValue(Landroidx/compose/runtime/CompositionLocal;)Ljava/lang/Object;
 Landroidx/compose/runtime/PersistentCompositionLocalMap$Builder;
-Landroidx/compose/runtime/PreconditionsKt;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt;
 HSPLandroidx/compose/runtime/PrimitiveSnapshotStateKt;->mutableFloatStateOf(F)Landroidx/compose/runtime/MutableFloatState;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt__SnapshotFloatStateKt;
@@ -13807,7 +13806,7 @@ HSPLkotlin/collections/ArrayDeque;->isEmpty()Z
 HSPLkotlin/collections/ArrayDeque;->lastOrNull()Ljava/lang/Object;
 HSPLkotlin/collections/ArrayDeque;->positiveMod(I)I
 HSPLkotlin/collections/ArrayDeque;->registerModification()V
-PLkotlin/collections/ArrayDeque;->removeFirst()Ljava/lang/Object;
+HPLkotlin/collections/ArrayDeque;->removeFirst()Ljava/lang/Object;
 PLkotlin/collections/ArrayDeque;->removeFirstOrNull()Ljava/lang/Object;
 HSPLkotlin/collections/ArrayDeque;->removeLastOrNull()Ljava/lang/Object;
 Lkotlin/collections/ArrayDeque$Companion;
