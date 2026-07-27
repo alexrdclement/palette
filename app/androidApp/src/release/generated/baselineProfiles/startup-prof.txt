@@ -3322,7 +3322,7 @@ HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;-><init>(L
 HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invoke(Lkotlinx/coroutines/CoroutineScope;Landroidx/compose/runtime/MonotonicFrameClock;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend$fillToInsert(Ljava/util/List;Landroidx/compose/runtime/Recomposer;)V
-HPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend$lambda$2(Landroidx/compose/runtime/Recomposer;Landroidx/collection/MutableScatterSet;Landroidx/collection/MutableScatterSet;Ljava/util/List;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/Set;J)Lkotlin/Unit;
+PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend$lambda$2(Landroidx/compose/runtime/Recomposer;Landroidx/collection/MutableScatterSet;Landroidx/collection/MutableScatterSet;Ljava/util/List;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/Set;J)Lkotlin/Unit;
 HSPLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
 PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2$$ExternalSyntheticLambda0;-><init>(Landroidx/compose/runtime/Recomposer;Landroidx/collection/MutableScatterSet;Landroidx/collection/MutableScatterSet;Ljava/util/List;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/List;Landroidx/collection/MutableScatterSet;Ljava/util/Set;)V
 PLandroidx/compose/runtime/Recomposer$runRecomposeAndApplyChanges$2$$ExternalSyntheticLambda0;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
@@ -10117,13 +10117,11 @@ PLandroidx/emoji2/text/MetadataRepo;->put(Landroidx/emoji2/text/TypefaceEmojiRas
 PLandroidx/emoji2/text/MetadataRepo$Node;-><init>()V
 PLandroidx/emoji2/text/MetadataRepo$Node;-><init>(I)V
 HPLandroidx/emoji2/text/MetadataRepo$Node;->get(I)Landroidx/emoji2/text/MetadataRepo$Node;
-HPLandroidx/emoji2/text/MetadataRepo$Node;->put(Landroidx/emoji2/text/TypefaceEmojiRasterizer;II)V
 PLandroidx/emoji2/text/TypefaceEmojiRasterizer;-><clinit>()V
 HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;-><init>(Landroidx/emoji2/text/MetadataRepo;I)V
 HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getCodepointAt(I)I
 HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getCodepointsLength()I
 PLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getId()I
-HPLandroidx/emoji2/text/TypefaceEmojiRasterizer;->getMetadataItem()Landroidx/emoji2/text/flatbuffer/MetadataItem;
 PLandroidx/emoji2/text/flatbuffer/MetadataItem;-><init>()V
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->__assign(ILjava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 HPLandroidx/emoji2/text/flatbuffer/MetadataItem;->__init(ILjava/nio/ByteBuffer;)V
@@ -10135,7 +10133,6 @@ PLandroidx/emoji2/text/flatbuffer/MetadataList;->__assign(ILjava/nio/ByteBuffer;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->__init(ILjava/nio/ByteBuffer;)V
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataList;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;Landroidx/emoji2/text/flatbuffer/MetadataList;)Landroidx/emoji2/text/flatbuffer/MetadataList;
-HPLandroidx/emoji2/text/flatbuffer/MetadataList;->list(Landroidx/emoji2/text/flatbuffer/MetadataItem;I)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 PLandroidx/emoji2/text/flatbuffer/MetadataList;->listLength()I
 PLandroidx/emoji2/text/flatbuffer/Table;-><init>()V
 HPLandroidx/emoji2/text/flatbuffer/Table;->__indirect(I)I
@@ -10897,8 +10894,6 @@ PLandroidx/profileinstaller/ProfileVerifier;->getPackageLastUpdateTime(Landroid/
 PLandroidx/profileinstaller/ProfileVerifier;->setCompilationStatus(IZZZ)Landroidx/profileinstaller/ProfileVerifier$CompilationStatus;
 PLandroidx/profileinstaller/ProfileVerifier;->writeProfileVerification(Landroid/content/Context;Z)Landroidx/profileinstaller/ProfileVerifier$CompilationStatus;
 PLandroidx/profileinstaller/ProfileVerifier$Cache;-><init>(IIJJ)V
-PLandroidx/profileinstaller/ProfileVerifier$Cache;->equals(Ljava/lang/Object;)Z
-PLandroidx/profileinstaller/ProfileVerifier$Cache;->readFromFile(Ljava/io/File;)Landroidx/profileinstaller/ProfileVerifier$Cache;
 PLandroidx/profileinstaller/ProfileVerifier$Cache;->writeOnFile(Ljava/io/File;)V
 PLandroidx/profileinstaller/ProfileVerifier$CompilationStatus;-><init>(IZZZ)V
 Landroidx/savedstate/R$id;
@@ -13805,7 +13800,7 @@ HSPLkotlin/collections/ArrayDeque;->isEmpty()Z
 HSPLkotlin/collections/ArrayDeque;->lastOrNull()Ljava/lang/Object;
 HSPLkotlin/collections/ArrayDeque;->positiveMod(I)I
 HSPLkotlin/collections/ArrayDeque;->registerModification()V
-PLkotlin/collections/ArrayDeque;->removeFirst()Ljava/lang/Object;
+HPLkotlin/collections/ArrayDeque;->removeFirst()Ljava/lang/Object;
 PLkotlin/collections/ArrayDeque;->removeFirstOrNull()Ljava/lang/Object;
 HSPLkotlin/collections/ArrayDeque;->removeLastOrNull()Ljava/lang/Object;
 Lkotlin/collections/ArrayDeque$Companion;
