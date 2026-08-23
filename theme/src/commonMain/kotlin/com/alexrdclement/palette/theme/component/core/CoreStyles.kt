@@ -69,7 +69,7 @@ object CoreStyles {
 
     val chevronIcon: IconStyle
         @Composable get() = IconStyle(
-            size = IconSize.Fill,
+            size = IconSize.Scale(0.7f),
             color = PaletteTheme.semantic.color.primary,
         )
 

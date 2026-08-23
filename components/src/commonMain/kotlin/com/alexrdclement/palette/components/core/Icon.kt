@@ -1,6 +1,9 @@
 package com.alexrdclement.palette.components.core
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
@@ -17,6 +20,23 @@ data class IconStyle(
     val color: Color = Color.Unspecified,
 )
 
+/**
+ * Renders custom [content] as an icon: applies the [IconStyle.size] sizing strategy to the slot and
+ * hands the content the resolved [IconStyle.color] to consume however it draws (a tint, a fill, …).
+ * The [ImageVector] overload and [ChevronIcon] both build on this so sizing and color live in one
+ * place.
+ */
+@Composable
+fun Icon(
+    modifier: Modifier = Modifier,
+    style: IconStyle = IconStyle(),
+    content: @Composable BoxScope.(color: Color) -> Unit,
+) {
+    Box(modifier = modifier.iconSize(style.size)) {
+        content(style.color)
+    }
+}
+
 @Composable
 fun Icon(
     imageVector: ImageVector,
@@ -24,12 +44,14 @@ fun Icon(
     modifier: Modifier = Modifier,
     style: IconStyle = IconStyle(),
 ) {
-    Image(
-        imageVector = imageVector,
-        contentDescription = contentDescription,
-        colorFilter = if (style.color.isSpecified) ColorFilter.tint(style.color) else null,
-        modifier = modifier.iconSize(style.size),
-    )
+    Icon(modifier = modifier, style = style) { color ->
+        Image(
+            imageVector = imageVector,
+            contentDescription = contentDescription,
+            colorFilter = if (color.isSpecified) ColorFilter.tint(color) else null,
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
 }
 
 @Preview

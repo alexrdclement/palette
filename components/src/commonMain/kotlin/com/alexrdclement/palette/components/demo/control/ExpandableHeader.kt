@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -46,8 +45,8 @@ fun ExpandableHeader(
         style = SurfaceStyle(indication = style.indication),
         modifier = modifier,
     ) {
-        // The label drives the row height (IntrinsicSize.Min), and the chevron fills it, so the
-        // glyph tracks the header text instead of a fixed size — its intrinsic IconSize.Fill.
+        // The label drives the row height (IntrinsicSize.Min) and the chevron sizes itself against
+        // it via its IconStyle.size, so the glyph tracks the header text.
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(style.spacing),
@@ -64,8 +63,6 @@ fun ExpandableHeader(
             ChevronIcon(
                 direction = if (expanded) ChevronDirection.Up else ChevronDirection.Down,
                 style = style.chevronIconStyle,
-                modifier = Modifier
-                    .fillMaxHeight()
             )
         }
     }
