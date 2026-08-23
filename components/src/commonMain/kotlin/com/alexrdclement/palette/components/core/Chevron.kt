@@ -22,7 +22,7 @@ enum class ChevronDirection {
 
 data class ChevronButtonStyle(
     val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(16.dp)),
-    val iconStyle: IconStyle = IconStyle(size = IconSize.Fill),
+    val iconStyle: IconStyle = IconStyle(size = Sizing.Fill),
 )
 
 @Composable

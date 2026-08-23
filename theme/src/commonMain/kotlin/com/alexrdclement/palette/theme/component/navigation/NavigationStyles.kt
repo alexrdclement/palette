@@ -3,7 +3,7 @@ package com.alexrdclement.palette.theme.component.navigation
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.core.ButtonStyle
-import com.alexrdclement.palette.components.core.IconSize
+import com.alexrdclement.palette.components.core.Sizing
 import com.alexrdclement.palette.components.navigation.BackNavigationButtonStyle
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.component.core.CoreStyles
@@ -27,9 +27,9 @@ object NavigationStyles {
                 indication = PaletteTheme.semantic.indication,
             ),
             iconStyle = CoreStyles.icon.copy(
-                size = IconSize.Fixed(SizeToken.IconSmall.toSize()),
+                size = Sizing.Fixed(SizeToken.IconSmall.toSize()),
                 color = PaletteTheme.semantic.color.primary,
             ),
-            size = SizeToken.TouchTargetMin.toSize(),
+            size = Sizing.Fixed(SizeToken.TouchTargetMin.toSize()),
         )
 }

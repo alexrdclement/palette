@@ -2,7 +2,7 @@ package com.alexrdclement.palette.theme.component.demo
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import com.alexrdclement.palette.components.core.IconSize
+import com.alexrdclement.palette.components.core.Sizing
 import com.alexrdclement.palette.components.demo.DemoListStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
 import com.alexrdclement.palette.components.demo.control.ButtonControlStyle
@@ -48,7 +48,7 @@ object DemoStyles {
                         headerStyle = TextStyles.labelSmall,
                         borderColor = PaletteTheme.semantic.color.outline,
                         chevronIconStyle = CoreStyles.icon.copy(
-                            size = IconSize.Scale(0.4f),
+                            size = Sizing.Scale(0.4f),
                         ),
                         chevronPadding = PaddingValues(all = PaletteTheme.semantic.dimension.spacing.none),
                         spacing = PaletteTheme.semantic.dimension.spacing.small,

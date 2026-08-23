@@ -3,26 +3,26 @@ package com.alexrdclement.palette.components.navigation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
-import com.alexrdclement.palette.components.core.IconSize
 import com.alexrdclement.palette.components.core.IconStyle
+import com.alexrdclement.palette.components.core.Sizing
 import com.alexrdclement.palette.components.core.Surface
-import com.alexrdclement.palette.components.core.iconSize
+import com.alexrdclement.palette.components.core.height
+import com.alexrdclement.palette.components.core.size
 
 data class BackNavigationButtonStyle(
     val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(0.dp)),
-    val iconStyle: IconStyle = IconStyle(size = IconSize.Fixed(16.dp)),
-    val size: Dp = 48.dp,
+    val iconStyle: IconStyle = IconStyle(size = Sizing.Fixed(16.dp)),
+    val size: Sizing = Sizing.Fixed(48.dp),
 )
 
 @Composable
@@ -34,11 +34,13 @@ fun BackNavigationButton(
     Button(
         onClick = onClick,
         style = style.buttonStyle,
-        modifier = modifier.size(style.size),
+        modifier = modifier
+            .height(style.size)
+            .aspectRatio(1f),
     ) {
         Box(
             modifier = Modifier
-                .iconSize(style.iconStyle.size)
+                .size(style.iconStyle.size)
                 .clip(BackNavigationIconShape)
                 .background(style.iconStyle.color)
         )

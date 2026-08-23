@@ -11,7 +11,7 @@ import com.alexrdclement.palette.components.media.MediaControlSheetStyle
 import com.alexrdclement.palette.components.media.MediaItemArtworkStyle
 import com.alexrdclement.palette.components.media.PlayPauseButtonStyle
 import com.alexrdclement.palette.components.media.SkipButtonStyle
-import com.alexrdclement.palette.components.core.IconSize
+import com.alexrdclement.palette.components.core.Sizing
 import com.alexrdclement.palette.components.core.IconStyle
 import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
@@ -34,7 +34,7 @@ object MediaStyles {
                 indication = PaletteTheme.semantic.indication,
             ),
             iconStyle = IconStyle(
-                size = IconSize.Scale(0.9f),
+                size = Sizing.Scale(0.9f),
                 color = PaletteTheme.semantic.color.onPrimary,
             ),
         )
@@ -45,7 +45,7 @@ object MediaStyles {
                 contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.none),
             ),
             iconStyle = IconStyle(
-                size = IconSize.Scale(0.7f),
+                size = Sizing.Scale(0.7f),
                 color = PaletteTheme.semantic.color.secondary,
             ),
         )

@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 data class IconStyle(
-    val size: IconSize = IconSize.Fill,
+    val size: Sizing = Sizing.Fill,
     val color: Color = Color.Unspecified,
 )
 
@@ -43,7 +43,7 @@ fun Icon(
     style: IconStyle = IconStyle(),
     content: @Composable BoxScope.(color: Color) -> Unit,
 ) {
-    Box(modifier = modifier.iconSize(style.size)) {
+    Box(modifier = modifier.size(style.size)) {
         content(style.color)
     }
 }
@@ -54,6 +54,6 @@ private fun IconPreview() {
     Icon(
         imageVector = Icons.Default.Star,
         contentDescription = null,
-        style = IconStyle(size = IconSize.Fixed(48.dp)),
+        style = IconStyle(size = Sizing.Fixed(48.dp)),
     )
 }

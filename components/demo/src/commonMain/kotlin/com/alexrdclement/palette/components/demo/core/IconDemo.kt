@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.Icon
-import com.alexrdclement.palette.components.core.IconSize
+import com.alexrdclement.palette.components.core.Sizing
 import com.alexrdclement.palette.components.core.IconStyle
 import com.alexrdclement.palette.components.demo.DemoScope
 import com.alexrdclement.palette.components.demo.control.Control
@@ -36,11 +36,11 @@ import kotlinx.collections.immutable.persistentListOf
 private val IconDemoContainerSize = 240.dp
 
 /**
- * Which [IconSize] variant the demo is currently exercising. Selecting one exposes only the
- * controls relevant to that variant (a `Dp` for [IconSize.Fixed], a fraction for [IconSize.Scale],
- * nothing for [IconSize.Fill]).
+ * Which [Sizing] variant the demo is currently exercising. Selecting one exposes only the
+ * controls relevant to that variant (a `Dp` for [Sizing.Fixed], a fraction for [Sizing.Scale],
+ * nothing for [Sizing.Fill]).
  */
-enum class IconSizeType {
+enum class SizingType {
     Fixed,
     Scale,
     Fill,
@@ -91,7 +91,7 @@ fun rememberIconDemoState(
 
 @Stable
 class IconDemoState(
-    sizeTypeInitial: IconSizeType = IconSizeType.Fixed,
+    sizeTypeInitial: SizingType = SizingType.Fixed,
     fixedSizeInitial: Dp = 48.dp,
     scaleInitial: Float = 0.75f,
     colorInitial: Color = Color.Unspecified,
@@ -105,15 +105,15 @@ class IconDemoState(
     var color by mutableStateOf(colorInitial)
         internal set
 
-    val iconSize: IconSize
+    val sizing: Sizing
         get() = when (sizeType) {
-            IconSizeType.Fixed -> IconSize.Fixed(fixedSize)
-            IconSizeType.Scale -> IconSize.Scale(scale)
-            IconSizeType.Fill -> IconSize.Fill
+            SizingType.Fixed -> Sizing.Fixed(fixedSize)
+            SizingType.Scale -> Sizing.Scale(scale)
+            SizingType.Fill -> Sizing.Fill
         }
 
     val iconStyle: IconStyle
-        get() = IconStyle(size = iconSize, color = color)
+        get() = IconStyle(size = sizing, color = color)
 }
 
 private const val sizeTypeKey = "sizeType"
@@ -132,7 +132,7 @@ val IconDemoStateSaver = mapSaverSafe(
     },
     restore = { map ->
         IconDemoState(
-            sizeTypeInitial = map[sizeTypeKey] as IconSizeType,
+            sizeTypeInitial = map[sizeTypeKey] as SizingType,
             fixedSizeInitial = (map[fixedSizeKey] as Float).dp,
             scaleInitial = map[scaleKey] as Float,
             colorInitial = restore(map[colorKey], ColorSaver)!!,
@@ -157,7 +157,7 @@ class IconDemoControl(
 
     val sizeTypeControl = enumControl(
         name = "Size",
-        values = { IconSizeType.entries },
+        values = { SizingType.entries },
         selectedValue = { state.sizeType },
         onValueChange = { state.sizeType = it },
     )
@@ -191,10 +191,10 @@ class IconDemoControl(
     )
 
     // Only the control relevant to the selected size variant is exposed.
-    private fun sizeControls(sizeType: IconSizeType): List<Control> = when (sizeType) {
-        IconSizeType.Fixed -> listOf(fixedSizeControl)
-        IconSizeType.Scale -> listOf(scaleControl)
-        IconSizeType.Fill -> emptyList()
+    private fun sizeControls(sizeType: SizingType): List<Control> = when (sizeType) {
+        SizingType.Fixed -> listOf(fixedSizeControl)
+        SizingType.Scale -> listOf(scaleControl)
+        SizingType.Fill -> emptyList()
     }
 
     val controls = persistentListOf(styleControls)

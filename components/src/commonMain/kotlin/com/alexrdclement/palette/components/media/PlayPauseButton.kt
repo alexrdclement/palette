@@ -16,13 +16,13 @@ import com.alexrdclement.palette.components.PlayPauseButtonContentDescriptionPla
 import com.alexrdclement.palette.components.core.Button
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.Icon
-import com.alexrdclement.palette.components.core.IconSize
+import com.alexrdclement.palette.components.core.Sizing
 import com.alexrdclement.palette.components.core.IconStyle
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 
 data class PlayPauseButtonStyle(
     val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(0.dp)),
-    val iconStyle: IconStyle = IconStyle(size = IconSize.Scale(0.9f)),
+    val iconStyle: IconStyle = IconStyle(size = Sizing.Scale(0.9f)),
 )
 
 @Composable

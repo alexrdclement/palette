@@ -9,7 +9,7 @@ import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.CheckboxStyle
 import com.alexrdclement.palette.components.core.ChevronButtonStyle
 import com.alexrdclement.palette.components.core.DividerStyle
-import com.alexrdclement.palette.components.core.IconSize
+import com.alexrdclement.palette.components.core.Sizing
 import com.alexrdclement.palette.components.core.IconStyle
 import com.alexrdclement.palette.components.core.ProgressIndicatorStyle
 import com.alexrdclement.palette.components.core.SliderColors
@@ -55,7 +55,7 @@ object CoreStyles {
 
     val icon: IconStyle
         @Composable get() = IconStyle(
-            size = IconSize.Fixed(SizeToken.IconSmall.toSize()),
+            size = Sizing.Fixed(SizeToken.IconSmall.toSize()),
             color = PaletteTheme.semantic.color.primary,
         )
 
