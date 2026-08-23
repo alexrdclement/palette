@@ -17,6 +17,8 @@ kotlin {
                 api(projects.formats.demo)
                 api(projects.theme)
                 api(projects.theme.components)
+
+                implementation(libs.compose.material.icons.extended)
             }
         }
     }

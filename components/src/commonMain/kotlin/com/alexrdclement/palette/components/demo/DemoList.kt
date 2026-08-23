@@ -16,7 +16,7 @@ import kotlinx.collections.immutable.PersistentList
 data class DemoListStyle(
     val demoStyle: DemoStyle = DemoStyle(),
     val itemSpacing: Dp = 24.dp,
-    val contentPadding: Dp = 16.dp,
+    val contentPadding: PaddingValues = PaddingValues(16.dp),
 )
 
 @Composable
@@ -41,7 +41,7 @@ fun <T> DemoList(
         LazyColumn(
             verticalArrangement = verticalArrangement,
             horizontalAlignment = horizontalAlignment,
-            contentPadding = PaddingValues(style.contentPadding),
+            contentPadding = style.contentPadding,
             modifier = Modifier
                 .fillMaxHeight()
                 .align(Alignment.Center)

@@ -3,6 +3,7 @@ package com.alexrdclement.palette.components.demo.control
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -28,7 +29,7 @@ data class CharControlStyle(
     val labelStyle: TextStyle = TextStyle(),
     val textFieldStyle: TextFieldStyle = TextFieldStyle(),
     val spacing: Dp = 8.dp,
-    val verticalPadding: Dp = 8.dp,
+    val contentPadding: PaddingValues = PaddingValues(vertical = 8.dp),
 )
 
 @Composable
@@ -61,10 +62,7 @@ fun CharControl(
         horizontalArrangement = Arrangement.spacedBy(style.spacing),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .then(
-                if (control.includeLabel) Modifier.padding(vertical = style.verticalPadding)
-                else Modifier.padding(bottom = style.verticalPadding)
-            ),
+            .padding(style.contentPadding),
     ) {
         if (control.includeLabel) {
             Text(

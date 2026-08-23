@@ -1,6 +1,8 @@
 package com.alexrdclement.palette.theme.component.demo
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import com.alexrdclement.palette.components.core.Sizing
 import com.alexrdclement.palette.components.demo.DemoListStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
 import com.alexrdclement.palette.components.demo.control.ButtonControlStyle
@@ -24,8 +26,8 @@ object DemoStyles {
     val list: DemoListStyle
         @Composable get() = DemoListStyle(
             demoStyle = style,
-            itemSpacing = PaletteTheme.semantic.spacing.large,
-            contentPadding = PaletteTheme.semantic.spacing.medium,
+            itemSpacing = PaletteTheme.semantic.dimension.spacing.large,
+            contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.medium),
         )
 
     val style: DemoStyle
@@ -35,12 +37,24 @@ object DemoStyles {
             val textField = CoreStyles.textField
             return DemoStyle(
                 dividerStyle = CoreStyles.divider,
-                controlsPadding = PaletteTheme.semantic.spacing.medium,
+                contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.medium),
                 controlsStyle = ControlsStyle(
-                    spacing = PaletteTheme.semantic.spacing.medium,
-                    contentPadding = PaletteTheme.semantic.spacing.small,
-                    rowSpacing = PaletteTheme.semantic.spacing.small,
-                    indent = PaletteTheme.semantic.spacing.medium,
+                    spacing = PaletteTheme.semantic.dimension.spacing.medium,
+                    verticalContentPadding = PaletteTheme.semantic.dimension.spacing.small,
+                    horizontalContentPadding = PaletteTheme.semantic.dimension.spacing.small,
+                    rowSpacing = PaletteTheme.semantic.dimension.spacing.small,
+                    indent = PaletteTheme.semantic.dimension.spacing.medium,
+                    expandableHeader = ExpandableHeaderStyle(
+                        headerStyle = TextStyles.labelSmall,
+                        borderColor = PaletteTheme.semantic.color.outline,
+                        chevronIconStyle = CoreStyles.icon.copy(
+                            size = Sizing.Scale(0.4f),
+                        ),
+                        chevronPadding = PaddingValues(all = PaletteTheme.semantic.dimension.spacing.none),
+                        spacing = PaletteTheme.semantic.dimension.spacing.small,
+                        labelPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.xs),
+                        indication = PaletteTheme.semantic.indication,
+                    ),
                     button = ButtonControlStyle(
                         labelStyle = label,
                         buttonStyle = button,
@@ -48,7 +62,7 @@ object DemoStyles {
                     slider = SliderControlStyle(
                         labelStyle = label,
                         sliderStyle = CoreStyles.slider,
-                        spacing = PaletteTheme.semantic.spacing.small,
+                        spacing = PaletteTheme.semantic.dimension.spacing.small,
                     ),
                     color = ColorControlStyle(
                         labelStyle = label,
@@ -56,46 +70,38 @@ object DemoStyles {
                         colorDisplayStyle = ColorStyles.colorDisplay,
                         colorPickerDialogContentStyle = ColorStyles.colorPickerDialogContent,
                         surfaceStyle = CoreStyles.surface.container,
-                        spacing = PaletteTheme.semantic.spacing.medium,
-                        contentSpacing = PaletteTheme.semantic.spacing.small,
+                        spacing = PaletteTheme.semantic.dimension.spacing.medium,
+                        contentSpacing = PaletteTheme.semantic.dimension.spacing.small,
                     ),
                     toggle = ToggleControlStyle(
                         labelStyle = label,
                         checkboxStyle = CoreStyles.checkbox,
-                        spacing = PaletteTheme.semantic.spacing.small,
+                        spacing = PaletteTheme.semantic.dimension.spacing.small,
                     ),
                     char = CharControlStyle(
                         labelStyle = label,
                         textFieldStyle = textField,
-                        spacing = PaletteTheme.semantic.spacing.small,
-                        verticalPadding = PaletteTheme.semantic.spacing.small,
+                        spacing = PaletteTheme.semantic.dimension.spacing.small,
+                        contentPadding = PaddingValues(vertical = PaletteTheme.semantic.dimension.spacing.small),
                     ),
                     textField = TextFieldControlStyle(
                         labelStyle = label,
                         textFieldStyle = textField,
-                        spacing = PaletteTheme.semantic.spacing.small,
-                        verticalPadding = PaletteTheme.semantic.spacing.small,
+                        spacing = PaletteTheme.semantic.dimension.spacing.small,
+                        contentPadding = PaddingValues(vertical = PaletteTheme.semantic.dimension.spacing.small),
                     ),
                     dropdown = DropdownControlStyle(
                         labelStyle = label,
                         buttonStyle = button,
                         menuStyle = MenuStyles.dropdownMenu,
-                        labelSpacing = PaletteTheme.semantic.spacing.small,
-                        rowSpacing = PaletteTheme.semantic.spacing.medium,
-                    ),
-                    expandableHeader = ExpandableHeaderStyle(
-                        headerStyle = TextStyles.labelSmall,
-                        borderColor = PaletteTheme.semantic.color.outline,
-                        chevronIconStyle = CoreStyles.chevronIcon,
-                        spacing = PaletteTheme.semantic.spacing.small,
-                        labelPadding = PaletteTheme.semantic.spacing.xs,
-                        indication = PaletteTheme.semantic.indication,
+                        labelSpacing = PaletteTheme.semantic.dimension.spacing.small,
+                        rowSpacing = PaletteTheme.semantic.dimension.spacing.medium,
                     ),
                     dynamicList = DynamicListControlStyle(
-                        spacing = PaletteTheme.semantic.spacing.medium,
-                        itemSpacing = PaletteTheme.semantic.spacing.small,
-                        itemControlSpacing = PaletteTheme.semantic.spacing.xs,
-                        indent = PaletteTheme.semantic.spacing.medium,
+                        spacing = PaletteTheme.semantic.dimension.spacing.medium,
+                        itemSpacing = PaletteTheme.semantic.dimension.spacing.small,
+                        itemControlSpacing = PaletteTheme.semantic.dimension.spacing.xs,
+                        indent = PaletteTheme.semantic.dimension.spacing.medium,
                     ),
                 ),
             )

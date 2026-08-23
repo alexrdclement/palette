@@ -6,10 +6,10 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +24,7 @@ import com.alexrdclement.palette.components.util.copy
 
 data class TopBarStyle(
     val spacing: Dp = 8.dp,
+    val minHeight: Dp = 48.dp,
 )
 
 @Composable
@@ -42,7 +43,7 @@ fun TopBar(
             .padding(windowInsetsPaddingValues)
             .consumeWindowInsets(windowInsetsPaddingValues)
             .padding(vertical = spacing)
-            .wrapContentHeight(),
+            .heightIn(min = style.minHeight),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(modifier = Modifier.padding(start = spacing)) {

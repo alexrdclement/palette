@@ -8,16 +8,19 @@ import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ButtonStyle
 import com.alexrdclement.palette.components.core.CheckboxStyle
 import com.alexrdclement.palette.components.core.ChevronButtonStyle
-import com.alexrdclement.palette.components.core.ChevronIconStyle
 import com.alexrdclement.palette.components.core.DividerStyle
+import com.alexrdclement.palette.components.core.Sizing
+import com.alexrdclement.palette.components.core.IconStyle
 import com.alexrdclement.palette.components.core.ProgressIndicatorStyle
 import com.alexrdclement.palette.components.core.SliderColors
 import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
-import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.semantic.color.toColor
+import com.alexrdclement.palette.theme.semantic.dimension.SizeToken
+import com.alexrdclement.palette.theme.semantic.dimension.toSize
+import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
 import com.alexrdclement.palette.theme.semantic.shape.toShape
 
 object CoreStyles {
@@ -50,22 +53,23 @@ object CoreStyles {
             textStyle = text.titleLarge,
         )
 
+    val icon: IconStyle
+        @Composable get() = IconStyle(
+            size = Sizing.Fixed(SizeToken.IconSmall.toSize()),
+            color = PaletteTheme.semantic.color.primary,
+        )
+
     val chevronButton: ChevronButtonStyle
         @Composable get() = ChevronButtonStyle(
             buttonStyle = ButtonStyle(
                 containerColor = ColorToken.Surface.toColor(),
                 shape = ShapeToken.Primary.toShape(),
-                contentPadding = PaddingValues(PaletteTheme.semantic.spacing.medium),
+                contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.medium),
                 disabledContentAlpha = PaletteTheme.semantic.color.disabledContentAlpha,
                 disabledContainerAlpha = PaletteTheme.semantic.color.disabledContainerAlpha,
                 indication = PaletteTheme.semantic.indication,
             ),
-            iconColor = PaletteTheme.semantic.color.primary,
-        )
-
-    val chevronIcon: ChevronIconStyle
-        @Composable get() = ChevronIconStyle(
-            color = PaletteTheme.semantic.color.primary,
+            iconStyle = icon,
         )
 
     val slider: SliderStyle
@@ -83,6 +87,6 @@ object CoreStyles {
             textStyle = text.bodyMedium,
             cursorBrush = SolidColor(PaletteTheme.semantic.color.primary),
             borderStroke = BorderStroke(1.dp, PaletteTheme.semantic.color.outline),
-            contentPadding = PaletteTheme.semantic.spacing.small,
+            contentPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.small),
         )
 }

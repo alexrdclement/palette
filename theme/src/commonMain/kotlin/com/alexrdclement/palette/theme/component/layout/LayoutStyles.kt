@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.theme.component.layout
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.style.TextAlign
 import com.alexrdclement.palette.components.layout.BoxWithLabelStyle
@@ -16,6 +17,8 @@ import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.component.core.CoreStyles
 import com.alexrdclement.palette.theme.component.core.TextStyles
 import com.alexrdclement.palette.theme.semantic.color.toColor
+import com.alexrdclement.palette.theme.semantic.dimension.SizeToken
+import com.alexrdclement.palette.theme.semantic.dimension.toSize
 
 object LayoutStyles {
 
@@ -26,25 +29,26 @@ object LayoutStyles {
 
     val floatingAction: FloatingActionStyle
         @Composable get() = FloatingActionStyle(
-            spacing = PaletteTheme.semantic.spacing.small,
+            spacing = PaletteTheme.semantic.dimension.spacing.small,
         )
 
     val topBar: TopBarStyle
         @Composable get() = TopBarStyle(
-            spacing = PaletteTheme.semantic.spacing.small,
+            spacing = PaletteTheme.semantic.dimension.spacing.small,
+            minHeight = SizeToken.TouchTargetMin.toSize(),
         )
 
     val boxWithLabel: BoxWithLabelStyle
         @Composable get() = BoxWithLabelStyle(
-            spacing = PaletteTheme.semantic.spacing.small,
-            labelPadding = PaletteTheme.semantic.spacing.xs,
+            spacing = PaletteTheme.semantic.dimension.spacing.small,
+            labelPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.xs),
             labelStyle = TextStyles.labelSmall,
             borderColor = PaletteTheme.semantic.color.outline,
         )
 
     val catalog: CatalogStyle
         @Composable get() = CatalogStyle(
-            itemSpacing = PaletteTheme.semantic.spacing.medium,
+            itemSpacing = PaletteTheme.semantic.dimension.spacing.medium,
             itemStyle = CoreStyles.button.secondary,
             itemTextStyle = TextStyles.bodyMedium.copy(
                 color = ColorToken.Secondary.toColor(),
@@ -59,7 +63,7 @@ object LayoutStyles {
                     color = ColorToken.Secondary.toColor(),
                 ),
             ),
-            spacing = PaletteTheme.semantic.spacing.medium,
+            spacing = PaletteTheme.semantic.dimension.spacing.medium,
         )
 
     val dialogContent: DialogContentStyle
@@ -68,9 +72,9 @@ object LayoutStyles {
             messageStyle = TextStyles.bodyLarge.copy(textAlign = TextAlign.Center),
             surfaceStyle = CoreStyles.surface.container,
             buttonRowStyle = confirmCancelButtonRow,
-            spacing = PaletteTheme.semantic.spacing.medium,
-            padding = PaletteTheme.semantic.spacing.large,
-            titleBottomPadding = PaletteTheme.semantic.spacing.medium,
-            messageBottomPadding = PaletteTheme.semantic.spacing.large,
+            spacing = PaletteTheme.semantic.dimension.spacing.medium,
+            padding = PaddingValues(PaletteTheme.semantic.dimension.spacing.large),
+            titlePadding = PaddingValues(bottom = PaletteTheme.semantic.dimension.spacing.medium),
+            messagePadding = PaddingValues(bottom = PaletteTheme.semantic.dimension.spacing.large),
         )
 }

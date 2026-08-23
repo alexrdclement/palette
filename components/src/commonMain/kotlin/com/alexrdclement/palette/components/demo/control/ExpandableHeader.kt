@@ -4,8 +4,8 @@ import androidx.compose.foundation.Indication
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.alexrdclement.palette.components.core.ChevronDirection
 import com.alexrdclement.palette.components.core.ChevronIcon
-import com.alexrdclement.palette.components.core.ChevronIconStyle
+import com.alexrdclement.palette.components.core.IconStyle
 import com.alexrdclement.palette.components.core.Surface
 import com.alexrdclement.palette.components.core.SurfaceStyle
 import com.alexrdclement.palette.components.core.Text
@@ -27,9 +27,9 @@ data class ExpandableHeaderStyle(
     val borderColor: Color = Color.Unspecified,
     val spacing: Dp = 8.dp,
     val borderWidth: Dp = 1.dp,
-    val labelPadding: Dp = 4.dp,
-    val iconPadding: Dp = 6.dp,
-    val chevronIconStyle: ChevronIconStyle = ChevronIconStyle(),
+    val labelPadding: PaddingValues = PaddingValues(4.dp),
+    val chevronIconStyle: IconStyle = IconStyle(),
+    val chevronPadding: PaddingValues = PaddingValues(0.dp),
     val indication: Indication? = null,
 )
 
@@ -63,8 +63,7 @@ fun ExpandableHeader(
                 direction = if (expanded) ChevronDirection.Up else ChevronDirection.Down,
                 style = style.chevronIconStyle,
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(style.iconPadding)
+                    .padding(style.chevronPadding)
             )
         }
     }

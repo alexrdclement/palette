@@ -80,7 +80,7 @@ amount and colour mode) and in one place. Requirements for a new primitive famil
 ## Semantic tier
 
 Semantic tokens are the editable inputs on `SemanticTokens`; `PaletteTheme.semantic.<family>` (color,
-typography, shape, spacing, interaction, format, …) exposes the value components consume, resolving
+typography, shape, dimension, interaction, format, …) exposes the value components consume, resolving
 where needed. Most families follow one shape: a `*Token` enum selects a primitive, and the accessor
 resolves that selection through the tier below. A few families carry extra behavior worth calling out:
 
@@ -93,6 +93,28 @@ resolves that selection through the tier below. A few families carry extra behav
 - **Interaction** additionally exposes `PaletteTheme.semantic.indication`, a convenience that resolves
   the default interaction token to its `Indication` for the many component styles that just want "the"
   indication.
+- **Dimension** groups the size families under `PaletteTheme.semantic.dimension`, split by the *role*
+  a value plays:
+  - `.spacing` — space **between** items (gaps in a `Row`/`Column`, item/row/content spacing). The
+    `Spacing` scale is a set of `Dp` steps (`none`/`xs`/`small`/`medium`/`large`) selected by
+    `SpacingToken`; `none` (= `0.dp`) is a real step so a zero gap or a zeroed padding edge is a token,
+    not a literal.
+  - `.padding` — space **inside** a component (internal insets). A `PaddingScheme` of named
+    `PaddingValuesToken`s that resolve to a `PaddingValuesTokenSet` (a `SpacingToken` per edge) and then
+    to `PaddingValues` through the spacing scale — padding never embeds raw `Dp`s, it selects spacing
+    tokens per edge.
+  - A `PaddingValuesToken` exists **only for an inset whose edges differ** — asymmetric (`Wide` =
+    `Large`/`Small`/`Large`/`Small`, wider horizontally than vertically) or directional (some edges
+    `None`). A **uniform** inset carries no per-edge information, so it is expressed straight from a
+    single spacing step (`PaddingValues(dimension.spacing.medium)`), not a token.
+  - `.size` — how big an element **is** (icon/glyph sizes, min touch target). Distinct from spacing
+    (*between*) and padding (*inside*). Unlike spacing, `SizeToken` is named by **role** rather than
+    magnitude (like `ColorToken`, not `SpacingToken`) — `TouchTargetMin`, `IconSmall`, … — because
+    sizes serve distinct purposes at very different scales, and a single small/medium/large ramp can
+    neither convey purpose nor stretch (a large component isn't "xLarge"). Only tokens with a real
+    consumer live here; add more as components need them. Components stay headless, so a `SizeToken`
+    resolves to a `Dp` in the theme (`SizeToken.IconSmall.toSize()`) and is fed into the component's
+    style, exactly like `ColorToken.toColor()`.
 
 Requirements for a new semantic token:
 

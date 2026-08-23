@@ -4,13 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,11 +22,7 @@ enum class ChevronDirection {
 
 data class ChevronButtonStyle(
     val buttonStyle: ButtonStyle = ButtonStyle(contentPadding = PaddingValues(16.dp)),
-    val iconColor: Color = Color.Unspecified,
-)
-
-data class ChevronIconStyle(
-    val color: Color = Color.Unspecified,
+    val iconStyle: IconStyle = IconStyle(size = Sizing.Fill),
 )
 
 @Composable
@@ -45,7 +39,7 @@ fun ChevronButton(
     ) {
         ChevronIcon(
             direction = direction,
-            style = ChevronIconStyle(color = style.iconColor),
+            style = style.iconStyle,
         )
     }
 }
@@ -54,23 +48,26 @@ fun ChevronButton(
 fun ChevronIcon(
     direction: ChevronDirection,
     modifier: Modifier = Modifier,
-    style: ChevronIconStyle = ChevronIconStyle(),
+    style: IconStyle = IconStyle(),
 ) {
-    val color = style.color
     val rotation = when (direction) {
         ChevronDirection.Left -> 0f
         ChevronDirection.Up -> 90f
         ChevronDirection.Down -> 270f
         ChevronDirection.Right -> 180f
     }
-    Box(
-        modifier = modifier
-            .fillMaxHeight()
-            .aspectRatio(1f, matchHeightConstraintsFirst = false)
-            .rotate(rotation)
-            .clip(ChevronIconShape)
-            .background(color)
-    )
+    Icon(
+        style = style,
+        modifier = modifier,
+    ) { color ->
+        Box(
+            modifier = Modifier
+                .aspectRatio(1f, matchHeightConstraintsFirst = false)
+                .rotate(rotation)
+                .clip(ChevronIconShape)
+                .background(color)
+        )
+    }
 }
 
 private const val ChevronIconWidthProportion = 0.8f

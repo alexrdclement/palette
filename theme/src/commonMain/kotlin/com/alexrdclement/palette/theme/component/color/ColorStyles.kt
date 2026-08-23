@@ -1,5 +1,6 @@
 package com.alexrdclement.palette.theme.component.color
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.components.color.ColorDisplayStyle
 import com.alexrdclement.palette.components.color.ColorPickerControlsStyle
@@ -24,12 +25,12 @@ object ColorStyles {
 
     val colorPicker: ColorPickerStyle
         @Composable get() = ColorPickerStyle(
-            spacing = PaletteTheme.semantic.spacing.medium,
+            spacing = PaletteTheme.semantic.dimension.spacing.medium,
             colorDisplayStyle = colorDisplay,
             controlsStyle = ColorPickerControlsStyle(
                 labelStyle = TextStyles.labelLarge,
                 sliderStyle = CoreStyles.slider,
-                spacing = PaletteTheme.semantic.spacing.small,
+                spacing = PaletteTheme.semantic.dimension.spacing.small,
             ),
         )
 
@@ -37,7 +38,8 @@ object ColorStyles {
         @Composable get() = ColorPickerDialogContentStyle(
             colorPickerStyle = colorPicker,
             confirmCancelButtonRowStyle = LayoutStyles.confirmCancelButtonRow,
-            spacing = PaletteTheme.semantic.spacing.medium,
-            padding = PaletteTheme.semantic.spacing.large,
+            spacing = PaletteTheme.semantic.dimension.spacing.medium,
+            padding = PaddingValues(PaletteTheme.semantic.dimension.spacing.large),
+            buttonRowSpacing = PaletteTheme.semantic.dimension.spacing.large,
         )
 }

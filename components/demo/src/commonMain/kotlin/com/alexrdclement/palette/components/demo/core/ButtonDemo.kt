@@ -80,7 +80,7 @@ fun DemoScope.ButtonDemo(
         modifier = modifier
             .width(state.width)
             .align(Alignment.Center)
-            .padding(PaletteTheme.semantic.spacing.medium)
+            .padding(PaletteTheme.semantic.dimension.spacing.medium)
             .semantics { contentDescription = "Demo Button" }
     ) {
         this@ButtonDemo.TextDemo(
@@ -94,8 +94,8 @@ fun DemoScope.ButtonDemo(
 fun rememberButtonDemoState(
     buttonStyleInitial: ButtonStyle? = null,
     contentPaddingInitial: PaddingValues = PaddingValues(
-        horizontal = PaletteTheme.semantic.spacing.large,
-        vertical = PaletteTheme.semantic.spacing.medium,
+        horizontal = PaletteTheme.semantic.dimension.spacing.large,
+        vertical = PaletteTheme.semantic.dimension.spacing.medium,
     ),
 ): ButtonDemoState = rememberSaveable(saver = ButtonDemoStateSaver) {
     ButtonDemoState(

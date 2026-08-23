@@ -1,4 +1,4 @@
-package com.alexrdclement.palette.app.theme.semantic.spacing
+package com.alexrdclement.palette.app.theme.semantic.dimension
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -99,7 +99,7 @@ class SpacingScreenState(
     val themeState: ThemeState,
 ) {
     val spacing: Spacing
-        get() = themeState.semantic.spacing
+        get() = themeState.semantic.dimension.spacing
 
     val spacingByToken get() = SpacingToken.entries.associateWith { token ->
         token.toSpacing(spacing)
@@ -158,7 +158,9 @@ private fun makeControlForToken(
                 token = token,
                 value = radius.dp,
             )
-            themeController.updateSemantic { it.copy(spacing = spacing) }
+            themeController.updateSemantic {
+                it.copy(dimension = it.dimension.copy(spacing = spacing))
+            }
         },
         valueRange = { 0f..64f },
         stepIncrement = 4f,
