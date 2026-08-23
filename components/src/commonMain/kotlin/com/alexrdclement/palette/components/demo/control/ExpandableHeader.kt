@@ -29,6 +29,7 @@ data class ExpandableHeaderStyle(
     val borderWidth: Dp = 1.dp,
     val labelPadding: PaddingValues = PaddingValues(4.dp),
     val chevronIconStyle: IconStyle = IconStyle(),
+    val chevronPadding: PaddingValues = PaddingValues(0.dp),
     val indication: Indication? = null,
 )
 
@@ -63,6 +64,8 @@ fun ExpandableHeader(
             ChevronIcon(
                 direction = if (expanded) ChevronDirection.Up else ChevronDirection.Down,
                 style = style.chevronIconStyle,
+                modifier = Modifier
+                    .padding(style.chevronPadding)
             )
         }
     }
