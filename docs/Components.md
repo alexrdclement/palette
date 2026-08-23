@@ -77,6 +77,11 @@ screenshot tests, `:theme:components` wrappers) the relevant section says so.
   `contentPadding`-style parameter that lets a caller bypass the themed value. (Params that carry a
   genuine runtime layout choice — window insets, a caller-chosen container size — are not styling and
   are covered by the runtime-constraints exception above.)
+- **A configurable size is a `Sizing`.** When a component's own size can be more than one fixed value
+  — an icon/glyph size, or a footprint that can be fixed, scaled, or filled — its `*Style` field
+  SHOULD be a `Sizing` (`Fixed`/`Scale`/`Fill`), applied with `Modifier.size`/`height`/`width`, rather
+  than a bare `Dp` — the same way multi-edge padding is a `PaddingValues`. A size that is always a
+  single fixed value MAY stay a `Dp`.
 - **Separate a design bound from a runtime target.** When a component has both a design-time cap and a
   runtime-driven size, the cap (`minContentSize`, `maxContentSize`) belongs on the `*Style` and the
   runtime target (`expandedContentSize`) is a parameter. Do not collapse the two.
