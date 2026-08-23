@@ -17,6 +17,8 @@ import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.component.core.CoreStyles
 import com.alexrdclement.palette.theme.component.core.TextStyles
 import com.alexrdclement.palette.theme.semantic.color.toColor
+import com.alexrdclement.palette.theme.semantic.dimension.SizeToken
+import com.alexrdclement.palette.theme.semantic.dimension.toSize
 
 object LayoutStyles {
 
@@ -33,6 +35,7 @@ object LayoutStyles {
     val topBar: TopBarStyle
         @Composable get() = TopBarStyle(
             spacing = PaletteTheme.semantic.dimension.spacing.small,
+            minHeight = SizeToken.TouchTargetMin.toSize(),
         )
 
     val boxWithLabel: BoxWithLabelStyle

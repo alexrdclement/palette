@@ -30,6 +30,6 @@ object NavigationStyles {
                 size = Sizing.Fixed(SizeToken.IconSmall.toSize()),
                 color = PaletteTheme.semantic.color.primary,
             ),
-            size = Sizing.Fixed(SizeToken.TouchTargetMin.toSize()),
+            size = Sizing.Fill,
         )
 }
