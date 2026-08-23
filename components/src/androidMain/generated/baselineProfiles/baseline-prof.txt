@@ -70,7 +70,7 @@ PLcom/alexrdclement/palette/components/core/ChevronDirection;-><clinit>()V
 PLcom/alexrdclement/palette/components/core/ChevronDirection;-><init>(Ljava/lang/String;I)V
 PLcom/alexrdclement/palette/components/core/ChevronDirection;->values()[Lcom/alexrdclement/palette/components/core/ChevronDirection;
 PLcom/alexrdclement/palette/components/core/ChevronKt;-><clinit>()V
-PLcom/alexrdclement/palette/components/core/ChevronKt;->ChevronIcon(Lcom/alexrdclement/palette/components/core/ChevronDirection;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/IconStyle;Landroidx/compose/runtime/Composer;II)V
+HPLcom/alexrdclement/palette/components/core/ChevronKt;->ChevronIcon(Lcom/alexrdclement/palette/components/core/ChevronDirection;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/IconStyle;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/components/core/ChevronKt;->ChevronIconShape$lambda$0(Landroidx/compose/ui/graphics/Path;Landroidx/compose/ui/geometry/Size;Landroidx/compose/ui/unit/LayoutDirection;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/components/core/ChevronKt;->access$getChevronIconShape$p()Landroidx/compose/ui/graphics/Shape;
 PLcom/alexrdclement/palette/components/core/ChevronKt$$ExternalSyntheticLambda4;-><init>()V
@@ -1120,14 +1120,10 @@ PLcom/alexrdclement/palette/components/menu/DropdownMenuStyle;-><init>(Lcom/alex
 PLcom/alexrdclement/palette/components/menu/MenuDefaults;-><clinit>()V
 PLcom/alexrdclement/palette/components/menu/MenuDefaults;-><init>()V
 PLcom/alexrdclement/palette/components/menu/MenuDefaults;->getDropdownMenuItemContentPadding()Landroidx/compose/foundation/layout/PaddingValues;
-PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt;-><clinit>()V
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt;->BackNavigationButton$lambda$0(Lcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;Landroidx/compose/foundation/layout/RowScope;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/runtime/Composer;I)Lkotlin/Unit;
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt;->BackNavigationButton(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;Landroidx/compose/runtime/Composer;II)V
-PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt;->BackNavigationIconShape$lambda$0(Landroidx/compose/ui/graphics/Path;Landroidx/compose/ui/geometry/Size;Landroidx/compose/ui/unit/LayoutDirection;)Lkotlin/Unit;
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt$$ExternalSyntheticLambda1;-><init>(Lcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;)V
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt$$ExternalSyntheticLambda1;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt$$ExternalSyntheticLambda3;-><init>()V
-PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonKt$$ExternalSyntheticLambda3;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;-><clinit>()V
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;-><init>(Lcom/alexrdclement/palette/components/core/ButtonStyle;Lcom/alexrdclement/palette/components/core/IconStyle;Lcom/alexrdclement/palette/components/core/Sizing;)V
 PLcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;->getButtonStyle()Lcom/alexrdclement/palette/components/core/ButtonStyle;
