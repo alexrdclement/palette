@@ -91,9 +91,6 @@ PLcom/alexrdclement/palette/components/core/DividerStyle;-><init>(FJLkotlin/jvm/
 PLcom/alexrdclement/palette/components/core/DividerStyle;->getColor-0d7_KjU()J
 PLcom/alexrdclement/palette/components/core/DividerStyle;->getThickness-D9Ej5fM()F
 HPLcom/alexrdclement/palette/components/core/IconKt;->Icon(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/IconStyle;Lkotlin/jvm/functions/Function4;Landroidx/compose/runtime/Composer;II)V
-PLcom/alexrdclement/palette/components/core/IconSize$Fill;-><clinit>()V
-PLcom/alexrdclement/palette/components/core/IconSize$Fill;-><init>()V
-PLcom/alexrdclement/palette/components/core/IconSize$Fill;->equals(Ljava/lang/Object;)Z
 PLcom/alexrdclement/palette/components/core/IconSize$Fixed;-><clinit>()V
 PLcom/alexrdclement/palette/components/core/IconSize$Fixed;-><init>(F)V
 PLcom/alexrdclement/palette/components/core/IconSize$Fixed;-><init>(FLkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -104,8 +101,9 @@ PLcom/alexrdclement/palette/components/core/IconSize$Scale;->getFraction()F
 PLcom/alexrdclement/palette/components/core/IconSizeKt;->iconSize(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/IconSize;)Landroidx/compose/ui/Modifier;
 PLcom/alexrdclement/palette/components/core/IconStyle;-><clinit>()V
 PLcom/alexrdclement/palette/components/core/IconStyle;-><init>(Lcom/alexrdclement/palette/components/core/IconSize;J)V
-PLcom/alexrdclement/palette/components/core/IconStyle;-><init>(Lcom/alexrdclement/palette/components/core/IconSize;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
 PLcom/alexrdclement/palette/components/core/IconStyle;-><init>(Lcom/alexrdclement/palette/components/core/IconSize;JLkotlin/jvm/internal/DefaultConstructorMarker;)V
+PLcom/alexrdclement/palette/components/core/IconStyle;->copy-4WTKRHQ$default(Lcom/alexrdclement/palette/components/core/IconStyle;Lcom/alexrdclement/palette/components/core/IconSize;JILjava/lang/Object;)Lcom/alexrdclement/palette/components/core/IconStyle;
+PLcom/alexrdclement/palette/components/core/IconStyle;->copy-4WTKRHQ(Lcom/alexrdclement/palette/components/core/IconSize;J)Lcom/alexrdclement/palette/components/core/IconStyle;
 PLcom/alexrdclement/palette/components/core/IconStyle;->getColor-0d7_KjU()J
 PLcom/alexrdclement/palette/components/core/IconStyle;->getSize()Lcom/alexrdclement/palette/components/core/IconSize;
 Lcom/alexrdclement/palette/components/core/Shape;
@@ -1176,8 +1174,8 @@ PLcom/alexrdclement/palette/theme/component/core/ButtonStyles;->get(Lcom/alexrdc
 HSPLcom/alexrdclement/palette/theme/component/core/ButtonStyles;->getSecondary(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ButtonStyle;
 HSPLcom/alexrdclement/palette/theme/component/core/ButtonStyles;->getTertiary(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/ButtonStyle;
 PLcom/alexrdclement/palette/theme/component/core/CoreStyles;->getCheckbox(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/CheckboxStyle;
-PLcom/alexrdclement/palette/theme/component/core/CoreStyles;->getChevronIcon(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/IconStyle;
 PLcom/alexrdclement/palette/theme/component/core/CoreStyles;->getDivider(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/DividerStyle;
+PLcom/alexrdclement/palette/theme/component/core/CoreStyles;->getIcon(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/IconStyle;
 PLcom/alexrdclement/palette/theme/component/core/CoreStyles;->getSlider(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SliderStyle;
 PLcom/alexrdclement/palette/theme/component/core/CoreStyles;->getTextField(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/TextFieldStyle;
 HSPLcom/alexrdclement/palette/theme/component/core/SurfaceStyleTokenKt;->resolve(Lcom/alexrdclement/palette/theme/component/core/SurfaceStyleToken;Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/core/SurfaceStyle;
