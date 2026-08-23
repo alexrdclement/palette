@@ -2,6 +2,7 @@ package com.alexrdclement.palette.theme.component.demo
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import com.alexrdclement.palette.components.core.IconSize
 import com.alexrdclement.palette.components.demo.DemoListStyle
 import com.alexrdclement.palette.components.demo.DemoStyle
 import com.alexrdclement.palette.components.demo.control.ButtonControlStyle
@@ -43,6 +44,17 @@ object DemoStyles {
                     horizontalContentPadding = PaletteTheme.semantic.dimension.spacing.small,
                     rowSpacing = PaletteTheme.semantic.dimension.spacing.small,
                     indent = PaletteTheme.semantic.dimension.spacing.medium,
+                    expandableHeader = ExpandableHeaderStyle(
+                        headerStyle = TextStyles.labelSmall,
+                        borderColor = PaletteTheme.semantic.color.outline,
+                        chevronIconStyle = CoreStyles.icon.copy(
+                            size = IconSize.Scale(0.4f),
+                        ),
+                        chevronPadding = PaddingValues(all = PaletteTheme.semantic.dimension.spacing.none),
+                        spacing = PaletteTheme.semantic.dimension.spacing.small,
+                        labelPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.xs),
+                        indication = PaletteTheme.semantic.indication,
+                    ),
                     button = ButtonControlStyle(
                         labelStyle = label,
                         buttonStyle = button,
@@ -84,14 +96,6 @@ object DemoStyles {
                         menuStyle = MenuStyles.dropdownMenu,
                         labelSpacing = PaletteTheme.semantic.dimension.spacing.small,
                         rowSpacing = PaletteTheme.semantic.dimension.spacing.medium,
-                    ),
-                    expandableHeader = ExpandableHeaderStyle(
-                        headerStyle = TextStyles.labelSmall,
-                        borderColor = PaletteTheme.semantic.color.outline,
-                        chevronIconStyle = CoreStyles.chevronIcon,
-                        spacing = PaletteTheme.semantic.dimension.spacing.small,
-                        labelPadding = PaddingValues(PaletteTheme.semantic.dimension.spacing.xs),
-                        indication = PaletteTheme.semantic.indication,
                     ),
                     dynamicList = DynamicListControlStyle(
                         spacing = PaletteTheme.semantic.dimension.spacing.medium,

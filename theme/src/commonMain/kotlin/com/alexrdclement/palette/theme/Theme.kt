@@ -25,8 +25,8 @@ fun PaletteTheme(
     CompositionLocalProvider(
         LocalPrimitiveTokens provides primitive,
         LocalSemanticTokens provides semantic,
-        LocalIsDarkMode provides isDarkMode,
         LocalComponentTokens provides component,
+        LocalIsDarkMode provides isDarkMode,
         content = content,
     )
 }

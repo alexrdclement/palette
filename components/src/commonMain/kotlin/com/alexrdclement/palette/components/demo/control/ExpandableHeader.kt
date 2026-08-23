@@ -46,8 +46,6 @@ fun ExpandableHeader(
         style = SurfaceStyle(indication = style.indication),
         modifier = modifier,
     ) {
-        // The label drives the row height (IntrinsicSize.Min) and the chevron sizes itself against
-        // it via its IconStyle.size, so the glyph tracks the header text.
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(style.spacing),

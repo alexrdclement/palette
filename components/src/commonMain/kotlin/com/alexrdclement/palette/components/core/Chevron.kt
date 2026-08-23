@@ -4,9 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -47,14 +44,6 @@ fun ChevronButton(
     }
 }
 
-/**
- * A directional chevron glyph. It is a square glyph referenced to its height (it typically sits in
- * a width-unbounded row), so [IconStyle.size] is mapped onto the height axis and a square aspect is
- * kept: [IconSize.Fill] fills the height, [IconSize.Scale] takes a fraction of it, [IconSize.Fixed]
- * pins it. The general [Modifier.iconSize] fills both axes, which would reserve width beside the
- * glyph, so the mapping is done here. Rendering routes through [Icon] so the slot and color are
- * shared with the [ImageVector] overload.
- */
 @Composable
 fun ChevronIcon(
     direction: ChevronDirection,
@@ -67,20 +56,13 @@ fun ChevronIcon(
         ChevronDirection.Down -> 270f
         ChevronDirection.Right -> 180f
     }
-    val sizeModifier = when (val size = style.size) {
-        is IconSize.Fixed -> Modifier.size(size.size)
-        is IconSize.Scale -> Modifier.fillMaxHeight(size.fraction)
-        IconSize.Fill -> Modifier.fillMaxHeight()
-    }
     Icon(
-        modifier = modifier
-            .then(sizeModifier)
-            .aspectRatio(1f, matchHeightConstraintsFirst = false),
-        style = IconStyle(color = style.color),
+        style = style,
+        modifier = modifier,
     ) { color ->
         Box(
             modifier = Modifier
-                .fillMaxSize()
+                .aspectRatio(1f, matchHeightConstraintsFirst = false)
                 .rotate(rotation)
                 .clip(ChevronIconShape)
                 .background(color)

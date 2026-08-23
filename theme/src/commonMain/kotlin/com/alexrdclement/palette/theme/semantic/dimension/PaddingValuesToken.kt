@@ -5,12 +5,6 @@ import androidx.compose.runtime.Composable
 import com.alexrdclement.palette.theme.PaletteTheme
 import com.alexrdclement.palette.theme.semantic.spacing.Spacing
 
-/**
- * Named internal-inset (padding) tokens. A `PaddingValuesToken` exists only for insets whose edges
- * differ — asymmetric (e.g. [Wide], wider horizontally than vertically) or directional (some edges
- * [SpacingToken.None]). A *uniform* inset carries no per-edge information, so it is expressed directly
- * from a single spacing step (`PaddingValues(spacing.medium)`) rather than a token.
- */
 enum class PaddingValuesToken {
     Wide,
 }

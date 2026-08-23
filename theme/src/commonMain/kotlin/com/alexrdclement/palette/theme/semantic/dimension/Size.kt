@@ -3,12 +3,6 @@ package com.alexrdclement.palette.theme.semantic.dimension
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-/**
- * Element/glyph sizes — how big a thing is (distinct from spacing *between* things and padding
- * *inside* things). Named by role rather than magnitude (like `ColorToken`, not `SpacingToken`),
- * because sizes serve distinct purposes at very different scales. Only tokens with a real consumer
- * live here; add more (e.g. `iconMedium`, a hero size) when a component needs them.
- */
 data class Size(
     val touchTargetMin: Dp,
     val iconSmall: Dp,

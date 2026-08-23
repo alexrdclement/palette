@@ -20,23 +20,6 @@ data class IconStyle(
     val color: Color = Color.Unspecified,
 )
 
-/**
- * Renders custom [content] as an icon: applies the [IconStyle.size] sizing strategy to the slot and
- * hands the content the resolved [IconStyle.color] to consume however it draws (a tint, a fill, …).
- * The [ImageVector] overload and [ChevronIcon] both build on this so sizing and color live in one
- * place.
- */
-@Composable
-fun Icon(
-    modifier: Modifier = Modifier,
-    style: IconStyle = IconStyle(),
-    content: @Composable BoxScope.(color: Color) -> Unit,
-) {
-    Box(modifier = modifier.iconSize(style.size)) {
-        content(style.color)
-    }
-}
-
 @Composable
 fun Icon(
     imageVector: ImageVector,
@@ -51,6 +34,17 @@ fun Icon(
             colorFilter = if (color.isSpecified) ColorFilter.tint(color) else null,
             modifier = Modifier.fillMaxSize(),
         )
+    }
+}
+
+@Composable
+fun Icon(
+    modifier: Modifier = Modifier,
+    style: IconStyle = IconStyle(),
+    content: @Composable BoxScope.(color: Color) -> Unit,
+) {
+    Box(modifier = modifier.iconSize(style.size)) {
+        content(style.color)
     }
 }
 

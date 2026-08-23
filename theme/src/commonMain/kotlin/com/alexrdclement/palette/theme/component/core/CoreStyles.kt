@@ -15,10 +15,12 @@ import com.alexrdclement.palette.components.core.ProgressIndicatorStyle
 import com.alexrdclement.palette.components.core.SliderColors
 import com.alexrdclement.palette.components.core.SliderStyle
 import com.alexrdclement.palette.components.core.TextFieldStyle
-import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
-import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
+import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.semantic.color.toColor
+import com.alexrdclement.palette.theme.semantic.dimension.SizeToken
+import com.alexrdclement.palette.theme.semantic.dimension.toSize
+import com.alexrdclement.palette.theme.semantic.shape.ShapeToken
 import com.alexrdclement.palette.theme.semantic.shape.toShape
 
 object CoreStyles {
@@ -51,6 +53,12 @@ object CoreStyles {
             textStyle = text.titleLarge,
         )
 
+    val icon: IconStyle
+        @Composable get() = IconStyle(
+            size = IconSize.Fixed(SizeToken.IconSmall.toSize()),
+            color = PaletteTheme.semantic.color.primary,
+        )
+
     val chevronButton: ChevronButtonStyle
         @Composable get() = ChevronButtonStyle(
             buttonStyle = ButtonStyle(
@@ -61,16 +69,7 @@ object CoreStyles {
                 disabledContainerAlpha = PaletteTheme.semantic.color.disabledContainerAlpha,
                 indication = PaletteTheme.semantic.indication,
             ),
-            iconStyle = IconStyle(
-                size = IconSize.Fill,
-                color = PaletteTheme.semantic.color.primary,
-            ),
-        )
-
-    val chevronIcon: IconStyle
-        @Composable get() = IconStyle(
-            size = IconSize.Scale(0.7f),
-            color = PaletteTheme.semantic.color.primary,
+            iconStyle = icon,
         )
 
     val slider: SliderStyle
