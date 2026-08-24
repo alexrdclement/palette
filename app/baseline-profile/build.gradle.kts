@@ -26,7 +26,6 @@ firebaseTestLab {
 
 dependencies {
     implementation(libs.androidx.test.ext.junit)
-    implementation(libs.espresso.core)
     implementation(libs.androidx.uiautomator)
     implementation(libs.androidx.benchmark.macro.junit4)
 
