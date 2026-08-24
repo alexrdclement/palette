@@ -2813,6 +2813,7 @@ HSPLandroidx/compose/runtime/GapComposer;->currentCompositionLocalScope()Landroi
 HSPLandroidx/compose/runtime/GapComposer;->currentCompositionLocalScope(I)Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/GapComposer;->doCompose-aFTiNEg(Landroidx/collection/MutableScatterMap;Lkotlin/jvm/functions/Function2;)V
 PLandroidx/compose/runtime/GapComposer;->doRecordDownsFor(II)V
+HSPLandroidx/compose/runtime/GapComposer;->end(Z)V
 HSPLandroidx/compose/runtime/GapComposer;->endDefaults()V
 HSPLandroidx/compose/runtime/GapComposer;->endGroup()V
 HSPLandroidx/compose/runtime/GapComposer;->endMovableGroup()V
@@ -2825,6 +2826,7 @@ HSPLandroidx/compose/runtime/GapComposer;->endRestartGroup()Landroidx/compose/ru
 HSPLandroidx/compose/runtime/GapComposer;->endReusableGroup()V
 HSPLandroidx/compose/runtime/GapComposer;->endRoot()V
 HSPLandroidx/compose/runtime/GapComposer;->ensureWriter()V
+HSPLandroidx/compose/runtime/GapComposer;->enterGroup(ZLandroidx/compose/runtime/GapPending;)V
 HSPLandroidx/compose/runtime/GapComposer;->enterRecomposeScope(Landroidx/compose/runtime/RecomposeScopeImpl;)V
 HSPLandroidx/compose/runtime/GapComposer;->exitGroup(IZ)V
 HSPLandroidx/compose/runtime/GapComposer;->exitRecomposeScope(Landroidx/compose/runtime/RecomposeScopeImpl;)Lkotlin/jvm/functions/Function1;
@@ -3135,7 +3137,6 @@ PLandroidx/compose/runtime/PausableMonotonicFrameClock$withFrameNanos$1;->invoke
 Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/PersistentCompositionLocalMap;->getCurrentValue(Landroidx/compose/runtime/CompositionLocal;)Ljava/lang/Object;
 Landroidx/compose/runtime/PersistentCompositionLocalMap$Builder;
-Landroidx/compose/runtime/PreconditionsKt;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt;
 HSPLandroidx/compose/runtime/PrimitiveSnapshotStateKt;->mutableFloatStateOf(F)Landroidx/compose/runtime/MutableFloatState;
 Landroidx/compose/runtime/PrimitiveSnapshotStateKt__SnapshotFloatStateKt;
@@ -3752,6 +3753,7 @@ HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndex(I)I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndex([II)I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndexToDataAddress(I)I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->dataIndexToDataAnchor(IIII)I
+HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->endGroup()I
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->endInsert()V
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->ensureStarted(I)V
 HSPLandroidx/compose/runtime/composer/gapbuffer/SlotWriter;->ensureStarted(Landroidx/compose/runtime/composer/gapbuffer/GapAnchor;)V
