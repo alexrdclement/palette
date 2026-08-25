@@ -17,5 +17,4 @@ dependencies {
     testImplementation(projects.components)
     testImplementation(projects.theme)
     testImplementation(projects.testing)
-    androidTestImplementation(libs.androidx.test.ext.junit)
 }
