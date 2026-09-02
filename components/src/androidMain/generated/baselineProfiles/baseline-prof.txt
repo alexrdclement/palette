@@ -1193,6 +1193,7 @@ PLcom/alexrdclement/palette/theme/component/layout/LayoutStyles;->getConfirmCanc
 HSPLcom/alexrdclement/palette/theme/component/layout/LayoutStyles;->getScaffold(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/ScaffoldStyle;
 HSPLcom/alexrdclement/palette/theme/component/layout/LayoutStyles;->getTopBar(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/layout/TopBarStyle;
 PLcom/alexrdclement/palette/theme/component/menu/MenuStyles;->getDropdownMenu(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/menu/DropdownMenuStyle;
+PLcom/alexrdclement/palette/theme/component/menu/MenuStyles;->getDropdownMenuItem(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/menu/DropdownMenuItemStyle;
 HPLcom/alexrdclement/palette/theme/component/navigation/NavigationStyles;->getBackNavigationButton(Landroidx/compose/runtime/Composer;I)Lcom/alexrdclement/palette/components/navigation/BackNavigationButtonStyle;
 HSPLcom/alexrdclement/palette/theme/components/core/SurfaceKt;->Surface(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/core/SurfaceStyle;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 PLcom/alexrdclement/palette/theme/components/demo/DemoKt;->Demo(Landroidx/compose/ui/Modifier;Lcom/alexrdclement/palette/components/demo/DemoStyle;Lkotlinx/collections/immutable/PersistentList;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
