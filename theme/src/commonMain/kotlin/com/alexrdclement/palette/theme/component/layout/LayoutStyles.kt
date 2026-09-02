@@ -11,6 +11,7 @@ import com.alexrdclement.palette.components.layout.catalog.CatalogStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmButtonStyle
 import com.alexrdclement.palette.components.layout.dialog.ConfirmCancelButtonRowStyle
 import com.alexrdclement.palette.components.layout.dialog.DialogContentStyle
+import com.alexrdclement.palette.components.layout.dialog.ProgressDialogContentStyle
 import com.alexrdclement.palette.components.core.copy
 import com.alexrdclement.palette.theme.semantic.color.ColorToken
 import com.alexrdclement.palette.theme.PaletteTheme
@@ -76,5 +77,11 @@ object LayoutStyles {
             padding = PaddingValues(PaletteTheme.semantic.dimension.spacing.large),
             titlePadding = PaddingValues(bottom = PaletteTheme.semantic.dimension.spacing.medium),
             messagePadding = PaddingValues(bottom = PaletteTheme.semantic.dimension.spacing.large),
+        )
+
+    val progressDialogContent: ProgressDialogContentStyle
+        @Composable get() = ProgressDialogContentStyle(
+            dialogContentStyle = dialogContent,
+            progressIndicatorStyle = CoreStyles.progressIndicator,
         )
 }
