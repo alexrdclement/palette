@@ -8,11 +8,14 @@ import com.alexrdclement.palette.theme.component.core.CoreStyles
 
 object MenuStyles {
 
+    val dropdownMenuItem: DropdownMenuItemStyle
+        @Composable get() = DropdownMenuItemStyle(
+            indication = PaletteTheme.semantic.indication,
+        )
+
     val dropdownMenu: DropdownMenuStyle
         @Composable get() = DropdownMenuStyle(
             surfaceStyle = CoreStyles.surface.container,
-            itemStyle = DropdownMenuItemStyle(
-                indication = PaletteTheme.semantic.indication,
-            ),
+            itemStyle = dropdownMenuItem,
         )
 }
