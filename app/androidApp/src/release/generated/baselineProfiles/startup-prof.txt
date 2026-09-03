@@ -2940,7 +2940,6 @@ HSPLandroidx/compose/runtime/GapComposer;->currentCompositionLocalScope()Landroi
 HSPLandroidx/compose/runtime/GapComposer;->currentCompositionLocalScope(I)Landroidx/compose/runtime/PersistentCompositionLocalMap;
 HSPLandroidx/compose/runtime/GapComposer;->doCompose-aFTiNEg(Landroidx/collection/MutableScatterMap;Lkotlin/jvm/functions/Function2;)V
 PLandroidx/compose/runtime/GapComposer;->doRecordDownsFor(II)V
-HSPLandroidx/compose/runtime/GapComposer;->end(Z)V
 HSPLandroidx/compose/runtime/GapComposer;->endDefaults()V
 HSPLandroidx/compose/runtime/GapComposer;->endGroup()V
 HSPLandroidx/compose/runtime/GapComposer;->endMovableGroup()V
@@ -2953,6 +2952,7 @@ HSPLandroidx/compose/runtime/GapComposer;->endRestartGroup()Landroidx/compose/ru
 HSPLandroidx/compose/runtime/GapComposer;->endReusableGroup()V
 HSPLandroidx/compose/runtime/GapComposer;->endRoot()V
 HSPLandroidx/compose/runtime/GapComposer;->ensureWriter()V
+HSPLandroidx/compose/runtime/GapComposer;->enterGroup(ZLandroidx/compose/runtime/GapPending;)V
 HSPLandroidx/compose/runtime/GapComposer;->enterRecomposeScope(Landroidx/compose/runtime/RecomposeScopeImpl;)V
 HSPLandroidx/compose/runtime/GapComposer;->exitGroup(IZ)V
 HSPLandroidx/compose/runtime/GapComposer;->exitRecomposeScope(Landroidx/compose/runtime/RecomposeScopeImpl;)Lkotlin/jvm/functions/Function1;
@@ -6102,7 +6102,7 @@ PLandroidx/compose/ui/graphics/layer/GraphicsLayer;->access$getUsePathForClip$p(
 PLandroidx/compose/ui/graphics/layer/GraphicsLayer;->addSubLayer(Landroidx/compose/ui/graphics/layer/GraphicsLayer;)V
 HSPLandroidx/compose/ui/graphics/layer/GraphicsLayer;->configureOutlineAndClip()V
 HPLandroidx/compose/ui/graphics/layer/GraphicsLayer;->draw$ui_graphics(Landroidx/compose/ui/graphics/Canvas;Landroidx/compose/ui/graphics/layer/GraphicsLayer;)V
-HPLandroidx/compose/ui/graphics/layer/GraphicsLayer;->drawWithChildTracking(Landroidx/compose/ui/graphics/drawscope/DrawScope;)V
+PLandroidx/compose/ui/graphics/layer/GraphicsLayer;->drawWithChildTracking(Landroidx/compose/ui/graphics/drawscope/DrawScope;)V
 HSPLandroidx/compose/ui/graphics/layer/GraphicsLayer;->getAlpha()F
 HSPLandroidx/compose/ui/graphics/layer/GraphicsLayer;->getShadowElevation()F
 HSPLandroidx/compose/ui/graphics/layer/GraphicsLayer;->obtainAndroidOutline()Landroid/graphics/Outline;
