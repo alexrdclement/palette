@@ -13,14 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.isSpecified
 import com.alexrdclement.palette.components.preview.BoolPreviewParameterProvider
 import kotlin.math.sqrt
 
@@ -121,27 +119,13 @@ private fun ShapeContent(
         }
         is Shape.Rectangle -> {
             if (shape.cornerRadius > 0.dp) {
-                SubcomposeLayout { constraints ->
-                    val maxWidthDp = if (constraints.hasBoundedWidth) constraints.maxWidth.toDp() else Dp.Unspecified
-                    val maxHeightDp = if (constraints.hasBoundedHeight) constraints.maxHeight.toDp() else Dp.Unspecified
-                    val actualRadius = if (maxWidthDp.isSpecified && maxHeightDp.isSpecified) {
-                        minOf(shape.cornerRadius, minOf(maxWidthDp, maxHeightDp) / 2)
-                    } else {
-                        shape.cornerRadius
-                    }
-                    val inset = actualRadius * (1f - (1f / sqrt(2f)))
-                    val measurables = subcompose(Unit) { content(PaddingValues(inset)) }
-                    val placeables = measurables.map { it.measure(constraints) }
-                    val width = placeables.maxOfOrNull { it.width } ?: 0
-                    val height = placeables.maxOfOrNull { it.height } ?: 0
-                    layout(width, height) {
-                        placeables.forEach { placeable ->
-                            placeable.placeRelative(
-                                x = (width - placeable.width) / 2,
-                                y = (height - placeable.height) / 2,
-                            )
-                        }
-                    }
+                // Inset the content so it clears the rounded corners. The inset is
+                // derived from the corner radius alone (not the measured size) so this
+                // stays a plain Box, which — unlike SubcomposeLayout — supports intrinsic
+                // measurement and can therefore be placed under IntrinsicSize.
+                val inset = shape.cornerRadius * (1f - (1f / sqrt(2f)))
+                Box(contentAlignment = Alignment.Center) {
+                    content(PaddingValues(inset))
                 }
             } else {
                 content(PaddingValues(0.dp))
