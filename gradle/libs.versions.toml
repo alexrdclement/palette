@@ -22,7 +22,7 @@ paparazzi = "2.0.0-SNAPSHOT"
 profileinstaller = "1.4.1"
 test-parameter-injector = "1.22"
 uiautomator = "2.4.0"
-trace = "0.0.13"
+trace = "0.0.14"
 uievent = "0.0.15"
 
 [libraries]
