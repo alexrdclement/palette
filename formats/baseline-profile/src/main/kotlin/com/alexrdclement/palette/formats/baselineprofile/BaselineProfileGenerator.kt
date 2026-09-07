@@ -71,7 +71,7 @@ class BaselineProfileGenerator {
 
             FormatsPage(device).navigateToMoneyFormats()
             MoneyFormatsPage(device).apply {
-                navigateToMoney()
+                navigateToMoneyFormat()
                 MoneyFormatPage(device)
                 device.pressBack()
             }
