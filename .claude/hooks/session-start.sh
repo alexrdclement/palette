@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Claude Code on the web starts each session from a fresh, shallow clone that
 # does not include git tags. The root project's release plugin
-# (shipkit-auto-version, via com.alexrdclement.gradle.plugin.github.release)
+# (shipkit-auto-version, via com.embarrasdf.gradle.plugin.github.release)
 # derives the project version from tags matching version.properties (0.0.*).
 # Without tags it fails root-project configuration with:
 #   "null cannot be cast to non-null type kotlin.String"
