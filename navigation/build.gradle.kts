@@ -1,8 +1,8 @@
 plugins {
-    id(libs.plugins.alexrdclement.kotlin.multiplatform.library.get().pluginId)
-    id(libs.plugins.alexrdclement.compose.multiplatform.get().pluginId)
-    id(libs.plugins.alexrdclement.kotlin.serialization.get().pluginId)
-    id(libs.plugins.alexrdclement.maven.publish.get().pluginId)
+    id(libs.plugins.embarrasdf.kotlin.multiplatform.library.get().pluginId)
+    id(libs.plugins.embarrasdf.compose.multiplatform.get().pluginId)
+    id(libs.plugins.embarrasdf.kotlin.serialization.get().pluginId)
+    id(libs.plugins.embarrasdf.maven.publish.get().pluginId)
 }
 
 kotlin {
