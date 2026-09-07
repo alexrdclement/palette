@@ -1,7 +1,7 @@
 plugins {
     id(libs.plugins.embarrasdf.android.application.asProvider().get().pluginId)
     id(libs.plugins.embarrasdf.android.application.compose.get().pluginId)
-    id(libs.plugins.embarrasdf.android.baselineprofile.app.get().pluginId)
+    id(libs.plugins.embarrasdf.android.baselineprofile.consumer.app.get().pluginId)
     id(libs.plugins.embarrasdf.android.instrumented.test.get().pluginId)
 }
 

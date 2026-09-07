@@ -56,8 +56,8 @@ uievent = { group = "com.alexrdclement.uievent", name = "uievent", version.ref =
 [plugins]
 embarrasdf-android-application = { id = "com.embarrasdf.gradle.plugin.android.application", version.ref = "embarrasdf-gradle-plugins" }
 embarrasdf-android-application-compose = { id = "com.embarrasdf.gradle.plugin.android.application.compose", version.ref = "embarrasdf-gradle-plugins" }
-embarrasdf-android-baselineprofile-app = { id = "com.embarrasdf.gradle.plugin.android.baselineprofile.app", version.ref = "embarrasdf-gradle-plugins" }
-embarrasdf-android-baselineprofile-consumer = { id = "com.embarrasdf.gradle.plugin.android.baselineprofile.consumer", version.ref = "embarrasdf-gradle-plugins" }
+embarrasdf-android-baselineprofile-consumer-app = { id = "com.embarrasdf.gradle.plugin.android.baselineprofile.consumer.app", version.ref = "embarrasdf-gradle-plugins" }
+embarrasdf-android-baselineprofile-consumer-library = { id = "com.embarrasdf.gradle.plugin.android.baselineprofile.consumer.library", version.ref = "embarrasdf-gradle-plugins" }
 embarrasdf-android-baselineprofile-generator = { id = "com.embarrasdf.gradle.plugin.android.baselineprofile.generator", version.ref = "embarrasdf-gradle-plugins" }
 embarrasdf-android-benchmark = { id = "com.embarrasdf.gradle.plugin.android.benchmark", version.ref = "embarrasdf-gradle-plugins" }
 embarrasdf-android-compose-test = { id = "com.embarrasdf.gradle.plugin.android.compose.test", version.ref = "embarrasdf-gradle-plugins" }
