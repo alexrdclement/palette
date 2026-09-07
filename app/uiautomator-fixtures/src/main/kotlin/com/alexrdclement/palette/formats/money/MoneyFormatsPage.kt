@@ -10,8 +10,4 @@ class MoneyFormatsPage(
     fun assertIsDisplayed() {
         device.waitAndFindObject(By.text("Money"))
     }
-
-    fun navigateToMoneyFormat() {
-        device.waitAndFindObject(By.text("MoneyFormat")).click()
-    }
 }

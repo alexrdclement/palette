@@ -10,12 +10,4 @@ class CoreFormatsPage(
     fun assertIsDisplayed() {
         device.waitAndFindObject(By.text("Number"))
     }
-
-    fun navigateToNumber() {
-        device.waitAndFindObject(By.text("Number")).click()
-    }
-
-    fun navigateToText() {
-        device.waitAndFindObject(By.text("Text")).click()
-    }
 }

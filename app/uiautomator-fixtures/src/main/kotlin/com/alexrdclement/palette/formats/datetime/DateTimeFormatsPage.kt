@@ -10,20 +10,4 @@ class DateTimeFormatsPage(
     fun assertIsDisplayed() {
         device.waitAndFindObject(By.text("DateTime"))
     }
-
-    fun navigateToDate() {
-        device.waitAndFindObject(By.text("Date")).click()
-    }
-
-    fun navigateToDateTime() {
-        device.waitAndFindObject(By.text("DateTime")).click()
-    }
-
-    fun navigateToInstant() {
-        device.waitAndFindObject(By.text("Instant")).click()
-    }
-
-    fun navigateToTime() {
-        device.waitAndFindObject(By.text("Time")).click()
-    }
 }

@@ -5,15 +5,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.alexrdclement.palette.MainCatalogPage
 import com.alexrdclement.palette.appPackageName
-import com.alexrdclement.palette.formats.FormatsPage
-import com.alexrdclement.palette.formats.core.CoreFormatsPage
-import com.alexrdclement.palette.formats.core.NumberFormatPage
-import com.alexrdclement.palette.formats.core.TextFormatPage
-import com.alexrdclement.palette.formats.datetime.DateTimeFormatPage
-import com.alexrdclement.palette.formats.datetime.DateTimeFormatsPage
-import com.alexrdclement.palette.formats.money.MoneyFormatPage
-import com.alexrdclement.palette.formats.money.MoneyFormatsPage
 import com.alexrdclement.palette.formatsPackageName
+import com.alexrdclement.palette.navigateCatalogItems
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -36,45 +29,10 @@ class BaselineProfileGenerator {
 
             MainCatalogPage(device).navigateToFormats()
 
-            FormatsPage(device).navigateToCoreFormats()
+            // Recursively visit every formats catalog item and detail screen. New categories or
+            // formats are covered automatically without updating this test.
+            device.navigateCatalogItems()
 
-            CoreFormatsPage(device).apply {
-                navigateToNumber()
-                NumberFormatPage(device)
-                device.pressBack()
-
-                navigateToText()
-                TextFormatPage(device)
-                device.pressBack()
-            }
-            device.pressBack()
-
-            FormatsPage(device).navigateToDateTimeFormats()
-            DateTimeFormatsPage(device).apply {
-                navigateToDate()
-                DateTimeFormatPage(device)
-                device.pressBack()
-
-                navigateToDateTime()
-                DateTimeFormatPage(device)
-                device.pressBack()
-
-                navigateToInstant()
-                DateTimeFormatPage(device)
-                device.pressBack()
-
-                navigateToTime()
-                DateTimeFormatPage(device)
-                device.pressBack()
-            }
-            device.pressBack()
-
-            FormatsPage(device).navigateToMoneyFormats()
-            MoneyFormatsPage(device).apply {
-                navigateToMoneyFormat()
-                MoneyFormatPage(device)
-                device.pressBack()
-            }
             device.pressBack()
         }
     }

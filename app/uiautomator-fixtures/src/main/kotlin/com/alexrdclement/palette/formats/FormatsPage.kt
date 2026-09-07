@@ -10,16 +10,4 @@ class FormatsPage(
     fun assertIsDisplayed() {
         device.waitAndFindObject(By.text("Core"))
     }
-
-    fun navigateToCoreFormats() {
-        device.waitAndFindObject(By.text("Core")).click()
-    }
-
-    fun navigateToDateTimeFormats() {
-        device.waitAndFindObject(By.text("DateTime")).click()
-    }
-
-    fun navigateToMoneyFormats() {
-        device.waitAndFindObject(By.text("Money")).click()
-    }
 }
