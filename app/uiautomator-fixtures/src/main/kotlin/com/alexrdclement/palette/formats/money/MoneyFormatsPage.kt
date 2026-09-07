@@ -11,7 +11,7 @@ class MoneyFormatsPage(
         device.waitAndFindObject(By.text("Money"))
     }
 
-    fun navigateToMoney() {
-        device.waitAndFindObject(By.text("Money")).click()
+    fun navigateToMoneyFormat() {
+        device.waitAndFindObject(By.text("MoneyFormat")).click()
     }
 }
