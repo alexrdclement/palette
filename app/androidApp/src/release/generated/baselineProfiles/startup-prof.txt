@@ -14742,6 +14742,7 @@ PLkotlinx/coroutines/JobSupport;->makeCompletingOnce$kotlinx_coroutines_core(Lja
 PLkotlinx/coroutines/JobSupport;->minusKey(Lkotlin/coroutines/CoroutineContext$Key;)Lkotlin/coroutines/CoroutineContext;
 PLkotlinx/coroutines/JobSupport;->nextChild(Lkotlinx/coroutines/internal/LockFreeLinkedListNode;)Lkotlinx/coroutines/ChildHandleNode;
 PLkotlinx/coroutines/JobSupport;->notifyCancelling(Lkotlinx/coroutines/NodeList;Ljava/lang/Throwable;)V
+HPLkotlinx/coroutines/JobSupport;->notifyCancelling(Lkotlinx/coroutines/NodeList;Ljava/lang/Throwable;)V
 PLkotlinx/coroutines/JobSupport;->notifyCompletion(Lkotlinx/coroutines/NodeList;Ljava/lang/Throwable;)V
 PLkotlinx/coroutines/JobSupport;->onCancelling(Ljava/lang/Throwable;)V
 PLkotlinx/coroutines/JobSupport;->onCompletionInternal(Ljava/lang/Object;)V
