@@ -1,11 +1,11 @@
-git_url("https://github.com/alexrdclement/certificates")
+git_url("https://github.com/embarrasdf/certificates")
 
 storage_mode("git")
 
 type("adhoc") # appstore, adhoc, enterprise or development
 
-app_identifier("com.alexrdclement.palette")
-username("alexrdclement@gmail.com")
+app_identifier("com.embarrasdf.palette")
+username("embarrasdf@gmail.com")
 
 # For all available options run `fastlane match --help`
 # Remove the # in the beginning of the line to enable the other options

@@ -6,10 +6,10 @@ plugins {
 }
 
 android {
-    namespace = "com.alexrdclement.palette"
+    namespace = "com.embarrasdf.palette"
 
     defaultConfig {
-        applicationId = "com.alexrdclement.palette"
+        applicationId = "com.embarrasdf.palette"
         versionCode = 1
         versionName = "1.0"
 

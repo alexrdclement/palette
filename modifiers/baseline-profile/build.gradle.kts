@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.alexrdclement.palette.modifiers.baselineprofile"
+    namespace = "com.embarrasdf.palette.modifiers.baselineprofile"
 
     targetProjectPath = ":app:androidApp"
 }

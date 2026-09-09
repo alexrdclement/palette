@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.alexrdclement.palette.benchmark"
+    namespace = "com.embarrasdf.palette.benchmark"
 
     buildTypes {
         create("benchmarkRelease") {
