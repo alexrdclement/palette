@@ -24,7 +24,7 @@ firebaseTestLab {
         serviceAccountCredentials.set(file(serviceAccountJson))
     }
     testOptions {
-        results.cloudStorageBucket = "firebase-test-lab-palette"
+        results.cloudStorageBucket = providers.gradleProperty("palette.ftl.bucket").get()
     }
 }
 
